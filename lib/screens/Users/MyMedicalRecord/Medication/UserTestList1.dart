@@ -287,13 +287,13 @@ class _MedicineList extends State<UserTestList1> {
                                             Spacer(),
                                             Text(
                                               /*'Confirmed'*/
-                                              body.status ??
-                                                  "N/A",
+                                              body.testname!=null?"N/A" /*'Confirmed'*/
+                                                  :body.testname/*:"N/A"*/,
+                                            /*  body.status??
+                                                  "N/A",*/
                                               style: TextStyle(
-
                                                   fontSize: 14,
-                                                  color: Colors
-                                                      .grey),
+                                                  color: Colors.grey),
                                             ),
                                           ],
                                         ),

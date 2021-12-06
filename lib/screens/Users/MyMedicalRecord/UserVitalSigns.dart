@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 import 'dart:developer';
 
@@ -16,8 +15,10 @@ import 'package:user/widgets/MyWidget.dart';
 class VitalSigns extends StatefulWidget {
   final MainModel model;
   final bool isConfirmPage;
- // final Choice choice;
-  const VitalSigns({Key key, this.model,this.isConfirmPage= false}) : super(key: key);
+
+  // final Choice choice;
+  const VitalSigns({Key key, this.model, this.isConfirmPage = false})
+      : super(key: key);
 
   @override
   _VitalSignsState createState() => _VitalSignsState();
@@ -27,8 +28,20 @@ class _VitalSignsState extends State<VitalSigns> {
   int _selectedDestination = -1;
   int count = 0;
   VitalsignsModel vitalsignsModel;
-  List<String> strOrders = ['My Orders', 'Confirm Orders', 'Processed Orders','Delivered Orders','Delivered Orders1'];
-  List<String> strOthers1 = ['Invoices','Monthly Review','Offfers and Discount', 'Online Chat', 'Daily Sales'];
+  List<String> strOrders = [
+    'My Orders',
+    'Confirm Orders',
+    'Processed Orders',
+    'Delivered Orders',
+    'Delivered Orders1'
+  ];
+  List<String> strOthers1 = [
+    'Invoices',
+    'Monthly Review',
+    'Offfers and Discount',
+    'Online Chat',
+    'Daily Sales'
+  ];
   String valueText = null;
 
   void selectDestination(int index) {
@@ -36,6 +49,7 @@ class _VitalSignsState extends State<VitalSigns> {
       _selectedDestination = index;
     });
   }
+
   List<TextEditingController> textEditingController = [
     new TextEditingController(),
     new TextEditingController(),
@@ -65,18 +79,19 @@ class _VitalSignsState extends State<VitalSigns> {
   TextEditingController _pulse = TextEditingController();
   TextEditingController _respiration = TextEditingController();
   TextEditingController _oxygensaturation = TextEditingController();
- // VITAL_SIGN_DETAIS
+
+  // VITAL_SIGN_DETAIS
   void initState() {
     // TODO: implement initState
     super.initState();
     setState(() {
-
       callAPI();
     });
   }
+
   callAPI() {
     widget.model.GETMETHODCALL_TOKEN(
-        api: ApiFactory.VITAL_SIGN_DETAIS + widget.model.user ,
+        api: ApiFactory.VITAL_SIGN_DETAIS + widget.model.user,
         token: widget.model.token,
         fun: (Map<String, dynamic> map) {
           setState(() {
@@ -91,16 +106,18 @@ class _VitalSignsState extends State<VitalSigns> {
           });
         });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(MyLocalizations.of(context).text("VITAL_SIGNS"),
-          style: TextStyle(color: AppData.white),
-        ),
-        centerTitle: true,
-        backgroundColor:AppData.kPrimaryColor,
-        iconTheme: IconThemeData(color: AppData.white),
+          title: Text(
+            MyLocalizations.of(context).text("VITAL_SIGNS"),
+            style: TextStyle(color: AppData.white),
+          ),
+          centerTitle: true,
+          backgroundColor: AppData.kPrimaryColor,
+          iconTheme: IconThemeData(color: AppData.white),
           actions: <Widget>[
             InkWell(
               child: Padding(
@@ -111,26 +128,26 @@ class _VitalSignsState extends State<VitalSigns> {
                   size: 25,
                 ),
               ),
-              onTap:() async{
+              onTap: () async {
                 showDialog(
                   context: context,
-                  builder: (BuildContext context) => dialogaddnomination(context),
+                  builder: (BuildContext context) =>
+                      dialogaddnomination(context),
                 );
-               // dialogaddnomination(context);
-
-
-
+                // dialogaddnomination(context);
               },
             ),
-]
-      ),
-
-      body:   SingleChildScrollView(
+          ]),
+      body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.only(top: 15,left: 5,right: 5,),
+          padding: const EdgeInsets.only(
+            top: 15,
+            left: 5,
+            right: 5,
+          ),
           child: Column(
             children: [
-               Container(
+              Container(
                 height: 100,
                 //color: Colors.,
                 child: ListView(
@@ -140,9 +157,10 @@ class _VitalSignsState extends State<VitalSigns> {
                     Container(
                       width: 100,
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5),
-                          border: Border.all(color: Colors.black26),
-                          /*color: Colors.blue[50]*/),
+                        borderRadius: BorderRadius.circular(5),
+                        border: Border.all(color: Colors.black26),
+                        /*color: Colors.blue[50]*/
+                      ),
                       child: Center(
                         child: Padding(
                           padding: const EdgeInsets.all(5.0),
@@ -150,8 +168,13 @@ class _VitalSignsState extends State<VitalSigns> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                 (vitalsignsModel == null || vitalsignsModel?.body[0]?.height?.toString()=="0.0")
-                                  ?"N/A": vitalsignsModel?.body[0]?.height?.toString(),
+                                (vitalsignsModel == null ||
+                                        vitalsignsModel?.body[0]?.height
+                                                ?.toString() ==
+                                            "0.0")
+                                    ? "N/A"
+                                    : vitalsignsModel?.body[0]?.height
+                                        ?.toString(),
                                 style: TextStyle(
                                     fontSize: 15,
                                     fontWeight: FontWeight.bold,
@@ -160,7 +183,8 @@ class _VitalSignsState extends State<VitalSigns> {
                               SizedBox(
                                 height: 5,
                               ),
-                              Text("Height(Cm)",
+                              Text(
+                                "Height(Cm)",
                                 style: TextStyle(
                                   color: Colors.black38,
                                   fontWeight: FontWeight.w500,
@@ -178,9 +202,9 @@ class _VitalSignsState extends State<VitalSigns> {
                     Container(
                       width: 100,
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5),
-                          border: Border.all(color: Colors.black26),
-                          //color: Colors.red[50]),
+                        borderRadius: BorderRadius.circular(5),
+                        border: Border.all(color: Colors.black26),
+                        //color: Colors.red[50]),
                       ),
                       child: Center(
                         child: Padding(
@@ -189,8 +213,12 @@ class _VitalSignsState extends State<VitalSigns> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                               (vitalsignsModel == null || vitalsignsModel.body[0].weight.toString()=="0.0")
-                              ? "N/A":vitalsignsModel.body[0].weight.toString(),
+                                (vitalsignsModel == null ||
+                                        vitalsignsModel.body[0].weight
+                                                .toString() ==
+                                            "0.0")
+                                    ? "N/A"
+                                    : vitalsignsModel.body[0].weight.toString(),
                                 style: TextStyle(
                                     fontSize: 15,
                                     fontWeight: FontWeight.bold,
@@ -199,7 +227,8 @@ class _VitalSignsState extends State<VitalSigns> {
                               SizedBox(
                                 height: 5,
                               ),
-                              Text("Weight(Kg)",
+                              Text(
+                                "Weight(Kg)",
                                 style: TextStyle(
                                   color: Colors.black38,
                                   fontWeight: FontWeight.w500,
@@ -217,9 +246,9 @@ class _VitalSignsState extends State<VitalSigns> {
                     Container(
                       width: 100,
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5),
-                          border: Border.all(color: Colors.black26),
-                          ),
+                        borderRadius: BorderRadius.circular(5),
+                        border: Border.all(color: Colors.black26),
+                      ),
                       child: Center(
                         child: Padding(
                           padding: const EdgeInsets.all(5.0),
@@ -227,8 +256,12 @@ class _VitalSignsState extends State<VitalSigns> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                               (vitalsignsModel?.body == null || vitalsignsModel.body[0].bmi.toString()=="0.0")
-                                  ? "N/A":vitalsignsModel.body[0].bmi.toString() ,
+                                (vitalsignsModel?.body == null ||
+                                        vitalsignsModel.body[0].bmi
+                                                .toString() ==
+                                            "0.0")
+                                    ? "N/A"
+                                    : vitalsignsModel.body[0].bmi.toString(),
                                 style: TextStyle(
                                     fontSize: 15,
                                     fontWeight: FontWeight.bold,
@@ -237,7 +270,8 @@ class _VitalSignsState extends State<VitalSigns> {
                               SizedBox(
                                 height: 5,
                               ),
-                              Text("BMI(Kg/m)",
+                              Text(
+                                "BMI(Kg/m)",
                                 style: TextStyle(
                                     fontWeight: FontWeight.w500,
                                     color: Colors.black38),
@@ -249,7 +283,7 @@ class _VitalSignsState extends State<VitalSigns> {
                       ),
                     ),
                   ],
-                ),/*:Container(),*/
+                ), /*:Container(),*/
               ),
               SizedBox(
                 height: 20,
@@ -259,7 +293,8 @@ class _VitalSignsState extends State<VitalSigns> {
                   height: 600,
                   color: AppData.greyBorder,
                   child: Padding(
-                    padding: const EdgeInsets.only(top: 10.0, right: 5,left: 5),
+                    padding:
+                        const EdgeInsets.only(top: 10.0, right: 5, left: 5),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -270,18 +305,26 @@ class _VitalSignsState extends State<VitalSigns> {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-
                                   _buildTile1(
                                     icon: "assets/temperatuer.png",
-                                    title: (vitalsignsModel?.body == null || vitalsignsModel.body[0].tempcel.toString()=="0.0")
-                        ?"N/A": vitalsignsModel.body[0].tempcel.toString() +"/" +vitalsignsModel.body[0].tempfar.toString(),
-                                    subtitle: MyLocalizations.of(context).text("TEMPERATURE"),
+                                    title: (vitalsignsModel?.body == null ||
+                                            vitalsignsModel.body[0].tempcel
+                                                    .toString() ==
+                                                "0.0")
+                                        ? "N/A"
+                                        : vitalsignsModel.body[0].tempcel
+                                                .toString() +
+                                            "/" +
+                                            vitalsignsModel.body[0].tempfar
+                                                .toString(),
+                                    subtitle: MyLocalizations.of(context)
+                                        .text("TEMPERATURE"),
                                     fun: () {
                                       /*Navigator.pushNamed(
                                       context, "/patientRegistration");*/
-                                     // Navigator.pushNamed(context, "/walkRegList");
+                                      // Navigator.pushNamed(context, "/walkRegList");
                                     },
-                                    color:Color(0xFFCF3564),
+                                    color: Color(0xFFCF3564),
                                     bordercolor: AppData.grey100,
                                     // ,
                                   ),
@@ -292,11 +335,20 @@ class _VitalSignsState extends State<VitalSigns> {
                                 children: [
                                   _buildTile1(
                                     icon: "assets/bloodp.png",
-                                    title:(vitalsignsModel?.body == null|| vitalsignsModel.body[0].respiartion.toString()=="0")
-                                        ? "N/A":vitalsignsModel.body[0].sysbp.toString()+"/"+vitalsignsModel.body[0].diabp.toString(),
-                                    subtitle:MyLocalizations.of(context).text("BLOOD_PRESSURE"),
+                                    title: (vitalsignsModel?.body == null ||
+                                            vitalsignsModel.body[0].respiartion
+                                                    .toString() ==
+                                                "0")
+                                        ? "N/A"
+                                        : vitalsignsModel.body[0].sysbp
+                                                .toString() +
+                                            "/" +
+                                            vitalsignsModel.body[0].diabp
+                                                .toString(),
+                                    subtitle: MyLocalizations.of(context)
+                                        .text("BLOOD_PRESSURE"),
                                     fun: () {
-                                     // chooseAppointment(context);
+                                      // chooseAppointment(context);
                                       // Navigator.pushNamed(context, "/medicalrecordpage");
                                     },
                                     color: Color(0xFF2372B6),
@@ -317,9 +369,15 @@ class _VitalSignsState extends State<VitalSigns> {
                                   _buildTile1(
                                     //icon: Icons.document_scanner,
                                     icon: "assets/pulse.png",
-                                    title: (vitalsignsModel?.body == null || vitalsignsModel.body[0].pulse.toString()=="0")
-                                        ?"N/A" :vitalsignsModel.body[0].pulse.toString() ,
-                                    subtitle:MyLocalizations.of(context).text("PULSE"),
+                                    title: (vitalsignsModel?.body == null ||
+                                            vitalsignsModel.body[0].pulse
+                                                    .toString() ==
+                                                "0")
+                                        ? "N/A"
+                                        : vitalsignsModel.body[0].pulse
+                                            .toString(),
+                                    subtitle: MyLocalizations.of(context)
+                                        .text("PULSE"),
                                     fun: () {
                                       /*Navigator.pushNamed(
                                           context, "/pocreportlist");*/
@@ -335,12 +393,18 @@ class _VitalSignsState extends State<VitalSigns> {
                               children: [
                                 _buildTile1(
                                   icon: "assets/respiration.png",
-                                  title: (vitalsignsModel?.body == null || vitalsignsModel?.body[0].respiartion.toString()=="0")
-                                      ?"N/A": vitalsignsModel.body[0].respiartion.toString(),
-                                  subtitle:MyLocalizations.of(context).text("RESPIRATION"),
+                                  title: (vitalsignsModel?.body == null ||
+                                          vitalsignsModel?.body[0].respiartion
+                                                  .toString() ==
+                                              "0")
+                                      ? "N/A"
+                                      : vitalsignsModel.body[0].respiartion
+                                          .toString(),
+                                  subtitle: MyLocalizations.of(context)
+                                      .text("RESPIRATION"),
                                   fun: () {
                                     //chooseAppointment1(context);
-                                   /* Navigator.pushNamed(
+                                    /* Navigator.pushNamed(
                                         context, "/testappointmentpage");*/
                                   },
                                   color: Color(0xFFCF3564),
@@ -354,18 +418,24 @@ class _VitalSignsState extends State<VitalSigns> {
                         ),
                         SizedBox(height: 7),
                         Padding(
-                          padding: const EdgeInsets.only( right: 5,left: 5,bottom: 10),
+                          padding: const EdgeInsets.only(
+                              right: 5, left: 5, bottom: 10),
                           child: Row(
                             //mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               _buildTile1(
                                 //icon: Icons.document_scanner,
-                                icon:"assets/oxygen.png",
-                                title:  (vitalsignsModel?.body == null || vitalsignsModel.body[0].oxygen.toString()=="0")
-                                    ? "N/A":vitalsignsModel.body[0].oxygen.toString(),
-                                subtitle: MyLocalizations.of(context).text("OXYGEN_SATURATION"),
+                                icon: "assets/oxygen.png",
+                                title: (vitalsignsModel?.body == null ||
+                                        vitalsignsModel.body[0].oxygen
+                                                .toString() ==
+                                            "0")
+                                    ? "N/A"
+                                    : vitalsignsModel.body[0].oxygen.toString(),
+                                subtitle: MyLocalizations.of(context)
+                                    .text("OXYGEN_SATURATION"),
                                 fun: () {
-                                 /* Navigator.pushNamed(context, "/testappointmentpage1");*/
+                                  /* Navigator.pushNamed(context, "/testappointmentpage1");*/
                                 },
                                 color: Color(0xFFCF3564),
                                 bordercolor: AppData.BG1RED,
@@ -385,50 +455,49 @@ class _VitalSignsState extends State<VitalSigns> {
       ),
     );
   }
+
   Widget _buildTile1(
       {String icon,
-        String title,
-        String subtitle,
-        double size,
-        Color bordercolor,
-        Color color,
-        Function fun}) {
+      String title,
+      String subtitle,
+      double size,
+      Color bordercolor,
+      Color color,
+      Function fun}) {
     return InkWell(
       onTap: fun,
-        child: Card(
+      child: Card(
         elevation: 2,
-        child:Container(
-        padding: const EdgeInsets.all(0.0),
-        /* height: MediaQuery.of(context).size.height * 0.23,*/
-        height: 155,
-        width: (MediaQuery.of(context).size.width - 50) / 2,
-        decoration: BoxDecoration(
-
-          /// borderRadius: BorderRadius.circular(7.0),
+        child: Container(
+          padding: const EdgeInsets.all(0.0),
+          /* height: MediaQuery.of(context).size.height * 0.23,*/
+          height: 155,
+          width: (MediaQuery.of(context).size.width - 50) / 2,
+          decoration: BoxDecoration(
+            /// borderRadius: BorderRadius.circular(7.0),
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(1.0),
               topRight: Radius.circular(1.0),
               bottomLeft: Radius.circular(1.0),
               bottomRight: Radius.circular(1.0),
             ),
-           //color: AppData.grey100,
-           color: AppData.white,
+            //color: AppData.grey100,
+            color: AppData.white,
 
-           /* border: Border.all(
+            /* border: Border.all(
               color: AppData.kPrimaryColor,
               width: 1.0,
-            )*/),
-        child: Stack(
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
+            )*/
+          ),
+          child: Stack(
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                     Material(
-                      color:color,
+                      color: color,
                       elevation: 10,
                       child: new Image.asset(
                         icon,
@@ -437,9 +506,8 @@ class _VitalSignsState extends State<VitalSigns> {
                         // color: Colors.blue
                       ),
                     ),
-  ]
-        ),
-                /* Align(
+                  ]),
+                  /* Align(
                   alignment: Alignment.center,
                   child: Image.asset(
                     icon,
@@ -447,8 +515,8 @@ class _VitalSignsState extends State<VitalSigns> {
                     width: 50,
                     height: 70.0, color:color
                   ),),*/
-               // Icon(icon, color:color, size: 40.0),                                                Material(
-                /*Text(
+                  // Icon(icon, color:color, size: 40.0),                                                Material(
+                  /*Text(
                   title,
                   style: TextStyle(
                     color: Colors.white,
@@ -458,42 +526,42 @@ class _VitalSignsState extends State<VitalSigns> {
                   ),
 
                 ),*/
-                SizedBox(height: 10.0),
-                Text(title,
-                  style: TextStyle( color: Colors.black,fontSize: 15),
-                  textAlign: TextAlign.center,
-                  overflow: TextOverflow.clip,
-                  maxLines: 2,
-                ),
-                SizedBox(height:5.0),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      border: Border(
-                        bottom: BorderSide(
-                          color: Color(0xFFD8ABAF),
-                          width: 1.0, // Underline thickness
+                  SizedBox(height: 10.0),
+                  Text(
+                    title,
+                    style: TextStyle(color: Colors.black, fontSize: 15),
+                    textAlign: TextAlign.center,
+                    overflow: TextOverflow.clip,
+                    maxLines: 2,
+                  ),
+                  SizedBox(height: 5.0),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border: Border(
+                          bottom: BorderSide(
+                            color: Color(0xFFD8ABAF),
+                            width: 1.0, // Underline thickness
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-                SizedBox(height: 5.0),
-                Text( subtitle,
-                  style: TextStyle( color: Colors.grey,fontSize: 12),
-                  textAlign: TextAlign.center,
-                  overflow: TextOverflow.clip,
-                  maxLines: 2,
-                ),
-
-              ],
-            ),
-
-          ],
+                  SizedBox(height: 5.0),
+                  Text(
+                    subtitle,
+                    style: TextStyle(color: Colors.grey, fontSize: 12),
+                    textAlign: TextAlign.center,
+                    overflow: TextOverflow.clip,
+                    maxLines: 2,
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
-      ),
-      /*  Card(
+        /*  Card(
           elevation: 2,
 
           child: Container(
@@ -519,7 +587,7 @@ class _VitalSignsState extends State<VitalSigns> {
                           children: [
 
                             Container(
-                              *//* count % 2 == 1 ??*//*
+                              */ /* count % 2 == 1 ??*/ /*
                                 color:choices[index].color,
                                 padding: EdgeInsets.all(3),
                                 child: Image.asset(choices[index].icon,height: 40,)
@@ -560,20 +628,48 @@ class _VitalSignsState extends State<VitalSigns> {
             ),
           ),
         );*/
-        ),
+      ),
     );
   }
+
   Widget dialogaddnomination(BuildContext context) {
-   // DoctorMedicationlistModel item = DoctorMedicationlistModel();
-    vitalsignsModel.body[0].height.toString()=="0.0"?"N/A":textEditingController[0].text=vitalsignsModel.body[0].height.toString();
-    vitalsignsModel.body[0].weight.toString()=="0.0"?"N/A": textEditingController[1].text=vitalsignsModel.body[0].weight.toString();
-    vitalsignsModel.body[0].bmi.toString()=="0.0"?"N/A":textEditingController[2].text=vitalsignsModel.body[0].bmi.toString();
-    vitalsignsModel.body[0].tempcel.toString()=="0.0"?"N/A":textEditingController[3].text=vitalsignsModel.body[0].tempcel.toString();
-    vitalsignsModel.body[0].sysbp.toString()=="0"?"N/A":textEditingController[4].text=vitalsignsModel.body[0].sysbp.toString();
-    vitalsignsModel.body[0].diabp.toString()=="0"?"N/A":textEditingController[5].text=vitalsignsModel.body[0].diabp.toString();
-    vitalsignsModel.body[0].pulse.toString()=="0"?"N/A": textEditingController[6].text=vitalsignsModel.body[0].pulse.toString();
-    vitalsignsModel.body[0].respiartion.toString()=="0"?"N/A":textEditingController[7].text=vitalsignsModel.body[0].respiartion.toString();
-    vitalsignsModel.body[0].oxygen.toString()=="0"?"N/A":textEditingController[8].text=vitalsignsModel.body[0].oxygen.toString();
+    // DoctorMedicationlistModel item = DoctorMedicationlistModel();
+    vitalsignsModel.body[0].height.toString() == "0.0"
+        ? "N/A"
+        : textEditingController[0].text =
+            vitalsignsModel.body[0].height.toString();
+    vitalsignsModel.body[0].weight.toString() == "0.0"
+        ? "N/A"
+        : textEditingController[1].text =
+            vitalsignsModel.body[0].weight.toString();
+    vitalsignsModel.body[0].bmi.toString() == "0.0"
+        ? "N/A"
+        : textEditingController[2].text =
+            vitalsignsModel.body[0].bmi.toString();
+    vitalsignsModel.body[0].tempcel.toString() == "0.0"
+        ? "N/A"
+        : textEditingController[3].text =
+            vitalsignsModel.body[0].tempcel.toString();
+    vitalsignsModel.body[0].sysbp.toString() == "0"
+        ? "N/A"
+        : textEditingController[4].text =
+            vitalsignsModel.body[0].sysbp.toString();
+    vitalsignsModel.body[0].diabp.toString() == "0"
+        ? "N/A"
+        : textEditingController[5].text =
+            vitalsignsModel.body[0].diabp.toString();
+    vitalsignsModel.body[0].pulse.toString() == "0"
+        ? "N/A"
+        : textEditingController[6].text =
+            vitalsignsModel.body[0].pulse.toString();
+    vitalsignsModel.body[0].respiartion.toString() == "0"
+        ? "N/A"
+        : textEditingController[7].text =
+            vitalsignsModel.body[0].respiartion.toString();
+    vitalsignsModel.body[0].oxygen.toString() == "0"
+        ? "N/A"
+        : textEditingController[8].text =
+            vitalsignsModel.body[0].oxygen.toString();
     //Nomine
     return AlertDialog(
       contentPadding: EdgeInsets.only(left: 5, right: 5, top: 30),
@@ -590,7 +686,8 @@ class _VitalSignsState extends State<VitalSigns> {
                 children: <Widget>[
                   //_buildAboutText(),
                   //_buildLogoAttribution(),
-                  Text(MyLocalizations.of(context).text("UPDATE_VITAL"),
+                  Text(
+                    MyLocalizations.of(context).text("UPDATE_VITAL"),
                     style: TextStyle(
                       fontSize: 25,
                       color: Colors.black,
@@ -600,11 +697,13 @@ class _VitalSignsState extends State<VitalSigns> {
                   SizedBox(
                     height: 15,
                   ),
-                  formFieldMobile(0, MyLocalizations.of(context).text("HEIGHT")),
+                  formFieldMobile(
+                      0, MyLocalizations.of(context).text("HEIGHT")),
                   SizedBox(
                     height: 5,
                   ),
-                  formFieldMobile(1,  MyLocalizations.of(context).text("WEIGHT")),
+                  formFieldMobile(
+                      1, MyLocalizations.of(context).text("WEIGHT")),
                   SizedBox(
                     height: 5,
                   ),
@@ -612,27 +711,33 @@ class _VitalSignsState extends State<VitalSigns> {
                   SizedBox(
                     height: 5,
                   ),
-                  formFieldMobile(3, MyLocalizations.of(context).text("TEMPERATURE")),
+                  formFieldMobile(
+                      3, MyLocalizations.of(context).text("TEMPERATURE")),
                   SizedBox(
                     height: 5,
                   ),
-                  formFieldMobile(4,"Systolic Blood Pressure"),
+                  formFieldMobile(4, "Systolic Blood Pressure"),
                   SizedBox(
                     height: 5,
                   ),
-                  formFieldMobile(5,MyLocalizations.of(context).text("DIASTOLIC_BLOOD_PRESSURE")),
+                  formFieldMobile(
+                      5,
+                      MyLocalizations.of(context)
+                          .text("DIASTOLIC_BLOOD_PRESSURE")),
                   SizedBox(
                     height: 5,
                   ),
-                  formFieldMobile(6,MyLocalizations.of(context).text("PULSE")),
+                  formFieldMobile(6, MyLocalizations.of(context).text("PULSE")),
                   SizedBox(
                     height: 5,
                   ),
-                  formFieldMobile(7,MyLocalizations.of(context).text("RESPIRATION")),
+                  formFieldMobile(
+                      7, MyLocalizations.of(context).text("RESPIRATION")),
                   SizedBox(
                     height: 5,
                   ),
-                  formFieldMobile(8, MyLocalizations.of(context).text("OXYGEN_SATURATION")),
+                  formFieldMobile(
+                      8, MyLocalizations.of(context).text("OXYGEN_SATURATION")),
                 ],
               ),
             ),
@@ -643,15 +748,31 @@ class _VitalSignsState extends State<VitalSigns> {
         new FlatButton(
           onPressed: () {
             Navigator.of(context).pop();
-           // textEditingController[0].text = "";
+            // textEditingController[0].text = "";
           },
           textColor: AppData.kPrimaryRedColor,
-          child:Text(MyLocalizations.of(context).text("CANCEL")),
+          child: Text(MyLocalizations.of(context).text("CANCEL")),
         ),
         new FlatButton(
+          child: Text(
+            'Update',
+            //style: TextStyle(color: Colors.grey),
+            style: TextStyle(color: AppData.matruColor),
+          ),
           onPressed: () {
-              var sendData =
-                [
+            //AppData.showInSnackBar(context, "click");
+            setState(() {
+              bool isAllBlank = true;
+              textEditingController.forEach((element) {
+                if (element.text != "") isAllBlank = false;
+              });
+
+              if (isAllBlank) {
+                //AppData.showInSnackBar(context, "Please select Smoking");
+                AppData.showInSnackBar(
+                    context, "Please Fill Up Atleast One Field ");
+              } else {
+                var sendData = [
                   {
                     "key": "4",
                     "code": textEditingController[0].text.toString(),
@@ -697,29 +818,26 @@ class _VitalSignsState extends State<VitalSigns> {
                     "code": textEditingController[8].text,
                     "name": widget.model.user
                   }
-
-                  ];
-
-              log("API NAME>>>>" + ApiFactory.UPDATE_VITAL_SIGN);
-              log("TO POST>>>>" + jsonEncode(sendData));
-              MyWidgets.showLoading(context);
-              widget.model.POSTMETHOD_TOKEN(
+                ];
+                log("API NAME>>>>" + ApiFactory.UPDATE_VITAL_SIGN);
+                log("TO POST>>>>" + jsonEncode(sendData));
+                MyWidgets.showLoading(context);
+                widget.model.POSTMETHOD_TOKEN(
                   api: ApiFactory.UPDATE_VITAL_SIGN,
                   json: sendData,
                   token: widget.model.token,
-                fun: (Map<String, dynamic> map) {
-                  Navigator.pop(context);
-                  setState(() {
-                    if (map[Const.STATUS1] == Const.SUCCESS) {
-                      //Navigator.pop(context);
-                      callAPI();
-                      AppData.showInSnackDone(
-                          context, map[Const.MESSAGE]);
-                    } else {
-                      AppData.showInSnackBar(context, map[Const.MESSAGE]);
-                    }
-                  });
-                },
+                  fun: (Map<String, dynamic> map) {
+                    Navigator.pop(context);
+                    setState(() {
+                      if (map[Const.STATUS1] == Const.SUCCESS) {
+                        //Navigator.pop(context);
+                        callAPI();
+                        AppData.showInSnackDone(context, map[Const.MESSAGE]);
+                      } else {
+                        AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                      }
+                    });
+                  },
                   /*fun: (Map<String, dynamic> map) {
                     Navigator.pop(context);
                     callAPI();
@@ -730,32 +848,30 @@ class _VitalSignsState extends State<VitalSigns> {
                       AppData.showInSnackBar(context, map[Const.MESSAGE]);
                     }
                   }*/
-                  );
-              callAPI();
-            Navigator.of(context).pop();
-           // textEditingController[0].text = "";
+                );
+                callAPI();
+                Navigator.of(context).pop();
+              }
+            });
           },
-          textColor: Theme.of(context).primaryColor,
-          child:Text(MyLocalizations.of(context).text("UPDATE")),
         ),
       ],
     );
   }
+
   Widget formFieldMobile(
-      int index,
-      String hint,
-      ) {
+    int index,
+    String hint,
+  ) {
     return Padding(
       //padding: const EdgeInsets.all(8.0),
       padding:
-      const EdgeInsets.only(top: 0.0, left: 8.0, right: 8.0, bottom: 0.0),
+          const EdgeInsets.only(top: 0.0, left: 8.0, right: 8.0, bottom: 0.0),
       child: Container(
         decoration: BoxDecoration(
             color: AppData.white,
             borderRadius: BorderRadius.circular(5),
-            border: Border.all(
-                color: Colors.black, width: 0.3)
-        ),
+            border: Border.all(color: Colors.black, width: 0.3)),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10.0),
           child: Row(
@@ -770,16 +886,15 @@ class _VitalSignsState extends State<VitalSigns> {
                   maxLength: 6,
                   keyboardType: TextInputType.number,
                   inputFormatters: [
-                    WhitelistingTextInputFormatter(
-                        RegExp("[0-9 .]")),
+                    WhitelistingTextInputFormatter(RegExp("[0-9 .]")),
                   ],
                   decoration: InputDecoration(
                     //suffixIcon: Icon(Icons.phone),
                     border: InputBorder.none,
                     counterText: "",
                     hintText: hint,
-                    hintStyle: TextStyle(
-                        color: AppData.hintColor, fontSize: 15),
+                    hintStyle:
+                        TextStyle(color: AppData.hintColor, fontSize: 15),
                   ),
 
                   onFieldSubmitted: (value) {
@@ -799,9 +914,8 @@ class _VitalSignsState extends State<VitalSigns> {
       ),
     );
   }
+
   Future<void> _displayTextInputDialog(BuildContext context) async {
-
-
     return showDialog(
         context: context,
         builder: (context) {
@@ -813,9 +927,8 @@ class _VitalSignsState extends State<VitalSigns> {
               builder: (BuildContext context, StateSetter setState) {
                 return SingleChildScrollView(
                   child: Column(
-                //    mainAxisSize: MainAxisSize.min,
+                    //    mainAxisSize: MainAxisSize.min,
                     children: [
-
                       SizedBox(height: 10),
                       Text(
                         "Update Vital Sign",
@@ -827,9 +940,8 @@ class _VitalSignsState extends State<VitalSigns> {
                       TextField(
                         onChanged: (value) {
                           setState(() {
-
-                           // valueText = value;
-                             _height.text=value;
+                            // valueText = value;
+                            _height.text = value;
                           });
                         },
                         controller: _height,
@@ -839,7 +951,7 @@ class _VitalSignsState extends State<VitalSigns> {
                         onChanged: (value) {
                           setState(() {
                             //valueText = value;
-                          _weight.text = value;
+                            _weight.text = value;
                           });
                         },
                         controller: _weight,
@@ -849,7 +961,6 @@ class _VitalSignsState extends State<VitalSigns> {
                         height: 2,
                         color: Colors.black,
                       ),
-
                       TextField(
                         // onChanged: (value) {
                         //   setState(() {
@@ -858,81 +969,75 @@ class _VitalSignsState extends State<VitalSigns> {
                         //   });
                         // },
                         controller: _bmi,
-                        decoration:
-                        InputDecoration(hintText: "BMI(KG/m)"),
+                        decoration: InputDecoration(hintText: "BMI(KG/m)"),
                       ),
                       Divider(height: 2, color: Colors.black),
-
                       TextField(
                         onChanged: (value) {
                           setState(() {
-                           //valueText = value;
-                           _tempreture.text = value;
+                            //valueText = value;
+                            _tempreture.text = value;
                           });
                         },
                         controller: _tempreture,
-                        decoration:
-                        InputDecoration(hintText: "Temprature"),
+                        decoration: InputDecoration(hintText: "Temprature"),
                       ),
                       TextField(
                         onChanged: (value) {
                           setState(() {
-                          // valueText = value;
-                           _systolicbloodpressure.text = value;
+                            // valueText = value;
+                            _systolicbloodpressure.text = value;
                           });
                         },
                         controller: _systolicbloodpressure,
-                        decoration:
-                        InputDecoration(hintText: "Systolic Blood Pressure"),
+                        decoration: InputDecoration(
+                            hintText: "Systolic Blood Pressure"),
                       ),
                       TextField(
                         onChanged: (value) {
                           setState(() {
-                           //valueText = value;
-                           _diastolicbloodpressure.text = value;
-
+                            //valueText = value;
+                            _diastolicbloodpressure.text = value;
                           });
                         },
                         controller: _diastolicbloodpressure,
-                        decoration: InputDecoration(hintText: "Diastolic Blood Pressure"),
+                        decoration: InputDecoration(
+                            hintText: "Diastolic Blood Pressure"),
                       ),
                       Divider(
                         height: 2,
                         color: Colors.black,
                       ),
-
                       TextField(
                         onChanged: (value) {
                           setState(() {
-                          // valueText = value;
-                           _pulse.text = value;
+                            // valueText = value;
+                            _pulse.text = value;
                           });
                         },
                         controller: _pulse,
-                        decoration:
-                        InputDecoration(hintText: " Pulse"),
+                        decoration: InputDecoration(hintText: " Pulse"),
                       ),
                       TextField(
                         onChanged: (value) {
                           setState(() {
-                           // valueText = value;
-                           _respiration.text = value;
+                            // valueText = value;
+                            _respiration.text = value;
                           });
                         },
                         controller: _respiration,
-                        decoration:
-                        InputDecoration(hintText: " Respiration"),
+                        decoration: InputDecoration(hintText: " Respiration"),
                       ),
                       TextField(
                         onChanged: (value) {
                           setState(() {
-                           valueText = value;
-                           _oxygensaturation.text = value;
+                            valueText = value;
+                            _oxygensaturation.text = value;
                           });
                         },
                         controller: _oxygensaturation,
                         decoration:
-                        InputDecoration(hintText: " Oxygen Saturation"),
+                            InputDecoration(hintText: " Oxygen Saturation"),
                       ),
                     ],
                   ),
@@ -942,7 +1047,8 @@ class _VitalSignsState extends State<VitalSigns> {
             actions: <Widget>[
               FlatButton(
                 textColor: Colors.grey,
-                child: Text('CANCEL', style: TextStyle(color: Color(0xFF2372B6))),
+                child:
+                    Text('CANCEL', style: TextStyle(color: Color(0xFF2372B6))),
                 onPressed: () {
                   setState(() {
                     Navigator.pop(context);
@@ -957,16 +1063,11 @@ class _VitalSignsState extends State<VitalSigns> {
                 ),
                 onPressed: () {
                   //AppData.showInSnackBar(context, "click");
-                  setState(() {
-
-                  });
+                  setState(() {});
                 },
               ),
             ],
           );
         });
   }
-
 }
-
-

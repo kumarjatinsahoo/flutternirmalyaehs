@@ -307,6 +307,7 @@ class _ImmunizationState extends State<Immunization> {
 
   displayTextInputDialog(BuildContext context) {
     _date.text = "";
+    Immunization.immunizationmodel = null;
     // = "";
     //_reason.text = "";
     showDialog(
@@ -541,7 +542,7 @@ class _ImmunizationState extends State<Immunization> {
             hintText: hint,
             /* prefixIcon:
             Icon(Icons.person_rounded),*/
-            hintStyle: TextStyle(color: AppData.hintColor, fontSize: 15),
+            hintStyle: TextStyle(color: AppData.hintColor),
           ),
           textInputAction: TextInputAction.next,
           keyboardType: TextInputType.text,

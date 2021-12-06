@@ -548,6 +548,8 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
         ? textEditingController[2].text =
             lifeStyleHistryModel.body.pets.toString() ?? "N/A"
         : textEditingController[2].text = "N/A";
+    LifeStyleHistory.ditemodel=KeyvalueModel(name: lifeStyleHistryModel.body.diet);
+
     /* textEditingController[1].text=lifeStyleHistryModel.body.occupation.toString() ?? "N/A";
     textEditingController[2].text=lifeStyleHistryModel.body.pets.toString() ?? "N?A";*/
 
@@ -681,7 +683,6 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                   textEditingController[1].text == null ||
                   textEditingController[1].text == "") {
                 AppData.showInSnackBar(context, "Please enter  Occupation");
-
               } else if (textEditingController[2].text == "N/A" ||
                   textEditingController[2].text == null ||
                   textEditingController[2].text == "") {
@@ -706,10 +707,11 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                     token: widget.model.token,
                     fun: (Map<String, dynamic> map) {
                       Navigator.pop(context);
-                      setState(() {
+                      /*setState(() {
                         if (map[Const.STATUS1] == Const.SUCCESS) {
                           Navigator.pop(context);
-                         // callAPI();
+                          Navigator.pop(context);
+                          callAPI();
                           AppData.showInSnackBargreen(
                               context, map[Const.MESSAGE]);
 
@@ -717,8 +719,34 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                           callAPI();
                           AppData.showInSnackBar(context, map[Const.MESSAGE]);
                         }
+                      });*/
+
+                    /*});*/
+                      setState(() {
+                        if (map[Const.CODE] == Const.SUCCESS) {
+                          //Navigator.pop(context);
+                          callAPI();
+                          //AppData.showInSnackDone(context, map[Const.MESSAGE]);
+                          AppData.showInSnackBargreen(context, map[Const.MESSAGE]);
+                        } else {
+                          AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                        }
                       });
-                    });
+                    },
+                  /*fun: (Map<String, dynamic> map) {
+                    Navigator.pop(context);
+                    callAPI();
+                    if (map[Const.STATUS] == Const.SUCCESS) {
+                      AppData.showInSnackDone(context, map[Const.MESSAGE]);
+
+                    } else {
+                      AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                    }
+                  }*/
+                );
+                callAPI();
+                Navigator.of(context).pop();
+
               }
 
             });
@@ -732,7 +760,7 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
 
   Widget gender() {
     return DropDown.staticDropdown3(
-        MyLocalizations.of(context).text("DIET"), "genderPartner", genderList,
+        MyLocalizations.of(context).text("DIET"), "diet", genderList,
         (KeyvalueModel model) {
           LifeStyleHistory.ditemodel = model;
           lifeStyleHistryModel.body.alcoholId = model.key;

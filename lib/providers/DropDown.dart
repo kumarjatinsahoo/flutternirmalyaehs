@@ -961,7 +961,7 @@ class DropDown {
       padding:
           const EdgeInsets.only(top: 8.0, left: 8.0, right: 8.0, bottom: 0.0),
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 15),
+        padding: EdgeInsets.symmetric(horizontal: 10),
         decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(5),
@@ -1323,6 +1323,10 @@ class DropDown {
           case "risk":
             gender = data;
             break;
+          case "diet":
+            gender = data;
+            break;
+
         }
         //selectbank = data;
       },
@@ -2046,6 +2050,9 @@ class DropDown {
         break;
       case "relation1":
         return  SetupContactsPage.relationmodel;
+        break;
+      case "diet":
+        return  LifeStyleHistory.ditemodel;
         break;
 
     }
