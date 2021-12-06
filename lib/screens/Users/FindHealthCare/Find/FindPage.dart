@@ -305,14 +305,14 @@ class _FindPageState extends State<FindPage> {
             ),
           ),
         ),
-        Align(
+      /*  Align(
           alignment: Alignment.topRight,
           child: InkWell(
               onTap: () {
                 Navigator.pushNamed(context, "/autoComplete");
               },
               child: Icon(Icons.search)),
-        ),
+        ),*/
         Align(
           alignment: Alignment.topLeft,
           child: InkWell(

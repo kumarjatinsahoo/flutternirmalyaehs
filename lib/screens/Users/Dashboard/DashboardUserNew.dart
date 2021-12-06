@@ -61,7 +61,10 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
     "assets/images/tmc.png"
   ];*/
 List<String> imageSliders = [
-    "assets/intro/pm1.jpeg",
+    // "assets/intro/pm1.jpeg",
+
+  "assets/images/uk_two.jpeg",
+  "assets/images/uk_one.jpg",
   ];
 
   SharedPref sharedPref = SharedPref();
@@ -658,11 +661,11 @@ List<String> imageSliders = [
                               /*AppData.launchURL(
                                   "https://www.youtube.com/watch?v=QYcKscyUvuY");*/
                               AppData.launchURL(
-                                  "https://www.youtube.com/watch?v=CmPGUBJZqlA");
+                                  "https://www.youtube.com/watch?v=cXU3FTZ4UzU");
                               break;
                             case 1:
                               AppData.launchURL(
-                                  "https://www.youtube.com/embed/-sTLaWKiklM&vs");
+                                  "https://www.youtube.com/watch?v=8RXHYZczFBw");
                               break;
                             case 4:
                               AppData.launchURL(

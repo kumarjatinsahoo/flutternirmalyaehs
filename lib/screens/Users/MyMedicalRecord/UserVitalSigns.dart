@@ -160,7 +160,7 @@ class _VitalSignsState extends State<VitalSigns> {
                               SizedBox(
                                 height: 5,
                               ),
-                              Text(MyLocalizations.of(context).text("HEIGHT"),
+                              Text("Height(Cm)",
                                 style: TextStyle(
                                   color: Colors.black38,
                                   fontWeight: FontWeight.w500,
@@ -199,7 +199,7 @@ class _VitalSignsState extends State<VitalSigns> {
                               SizedBox(
                                 height: 5,
                               ),
-                              Text(MyLocalizations.of(context).text("WEIGHT"),
+                              Text("Weight(Kg)",
                                 style: TextStyle(
                                   color: Colors.black38,
                                   fontWeight: FontWeight.w500,
@@ -237,7 +237,7 @@ class _VitalSignsState extends State<VitalSigns> {
                               SizedBox(
                                 height: 5,
                               ),
-                              Text(MyLocalizations.of(context).text("BMI"),
+                              Text("BMI(Kg/m)",
                                 style: TextStyle(
                                     fontWeight: FontWeight.w500,
                                     color: Colors.black38),
@@ -274,7 +274,7 @@ class _VitalSignsState extends State<VitalSigns> {
                                   _buildTile1(
                                     icon: "assets/temperatuer.png",
                                     title: (vitalsignsModel?.body == null || vitalsignsModel.body[0].tempcel.toString()=="0.0")
-                        ?"N/A": vitalsignsModel.body[0].tempcel.toString() +"  " +vitalsignsModel.body[0].tempfar.toString(),
+                        ?"N/A": vitalsignsModel.body[0].tempcel.toString() +"/" +vitalsignsModel.body[0].tempfar.toString(),
                                     subtitle: MyLocalizations.of(context).text("TEMPERATURE"),
                                     fun: () {
                                       /*Navigator.pushNamed(
@@ -616,7 +616,7 @@ class _VitalSignsState extends State<VitalSigns> {
                   SizedBox(
                     height: 5,
                   ),
-                  formFieldMobile(4,MyLocalizations.of(context).text("BLOOD_PRESSURE")),
+                  formFieldMobile(4,"Systolic Blood Pressure"),
                   SizedBox(
                     height: 5,
                   ),

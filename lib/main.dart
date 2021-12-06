@@ -38,6 +38,11 @@ import 'package:user/screens/Ngo/Registration/NgoSignUpForm2.dart';
 import 'package:user/screens/Pharmacists/MonthlyOverview/MonthlyOverviewPharma.dart';
 import 'package:user/screens/Pharmacists/MonthlyOverview/MonthlyOverviewPharmalist.dart';
 import 'package:user/screens/Pharmacists/Screens/NewDashboardPharmacy.dart';
+import 'package:user/screens/Receptionlist/Dashboard/DashboardReceptionlist.dart';
+import 'package:user/screens/Receptionlist/registration/ReceptionlistSignUpForm.dart';
+import 'package:user/screens/Receptionlist/registration/ReceptionlistSignUpForm1.dart';
+import 'package:user/screens/Receptionlist/registration/ReceptionlistSignUpForm2.dart';
+import 'package:user/screens/Receptionlist/registration/ReceptionlistSignUpFormm.dart';
 import 'package:user/screens/Users/BookAmbulance/BookAmbulance.dart';
 import 'package:user/screens/Users/BookAmbulance/BookAmbulancelist.dart';
 import 'package:user/screens/Users/BookBloodBank/BookBloodBank.dart';
@@ -999,7 +1004,21 @@ class _MyAppState extends State<MyApp> {
               '/healthchart': (context) => HealthChart(
                 model: _model,
               ),
-              '/monthlyOverviewlist': (context) => MonthlyOverviewlist(
+              '/receptionlistsignup': (context) => MonthlyOverviewlist(
+                model: _model,
+              ),
+////////////////////////////////////////////////////////////////////////////////
+            // RECEPTIONLIST
+              '/receptionlistsignUpformm': (context) => ReceptionlistSignUpFormm(
+                model: _model,
+              ),
+              '/dashboardreceptionlist': (context) => DashboardReceptionlist(
+                model: _model,
+              ),
+              '/receptionlistsignup1': (context) => ReceptionlistSignupForm1(
+                model: _model,
+              ),
+              '/receptionlistSignupform2': (context) => ReceptionlistSignupForm2(
                 model: _model,
               ),
               '/monthlyOverviewAmbulanc': (context) => MonthlyOverviewAmbulanc(

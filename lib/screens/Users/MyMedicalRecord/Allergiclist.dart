@@ -575,7 +575,6 @@ class _AllergicListListState extends State<AllergicListList> {
                         token: widget.model.token,
                         fun: (Map<String, dynamic> map) {
                           Navigator.pop(context);
-
                           setState(() {
                             if (map[Const.STATUS1] == Const.SUCCESS) {
                               Navigator.pop(context);

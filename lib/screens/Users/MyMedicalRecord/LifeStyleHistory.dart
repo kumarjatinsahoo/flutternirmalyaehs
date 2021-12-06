@@ -708,10 +708,10 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                       Navigator.pop(context);
                       setState(() {
                         if (map[Const.STATUS1] == Const.SUCCESS) {
-                          //Navigator.pop(context);
+                          Navigator.pop(context);
+                         // callAPI();
                           AppData.showInSnackBargreen(
                               context, map[Const.MESSAGE]);
-                          callAPI();
 
                         } else {
                           callAPI();
@@ -734,9 +734,10 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
     return DropDown.staticDropdown3(
         MyLocalizations.of(context).text("DIET"), "genderPartner", genderList,
         (KeyvalueModel model) {
-      LifeStyleHistory.ditemodel = model;
+          LifeStyleHistory.ditemodel = model;
+          lifeStyleHistryModel.body.alcoholId = model.key;
+          lifeStyleHistryModel.body.diet = model.name;
       //lifeStyleHistryModel.body.smokingId = model.key;
-      lifeStyleHistryModel.body.diet = model.name;
       //LifeStyleHistory.ditemodel = model;
     });
   }

@@ -427,17 +427,15 @@ class _ImmunizationState extends State<Immunization> {
                       token: widget.model.token,
                       fun: (Map<String, dynamic> map) {
                         Navigator.pop(context);
-                        setState(() {
-                          if (map[Const.STATUS1] == Const.SUCCESS) {
+                          if (map["code"] == Const.SUCCESS) {
                             Navigator.pop(context);
                             callApi();
                             AppData.showInSnackDone(
-                                context, map[Const.MESSAGE]);
+                                context,map["message"]);
                           } else {
-                            callApi();
+
                             AppData.showInSnackBar(context, map[Const.MESSAGE]);
                           }
-                        });
                       },
                     );
                   }
