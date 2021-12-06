@@ -191,7 +191,7 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                                   icon: "assets/smoking.png",
                                   title: (lifeStyleHistryModel?.body == null ||
                                           lifeStyleHistryModel.body.smokingName
-                                                  .toString() == "") ? "N/A"
+                                                  .toString() == "")? "N/A"
                                       : lifeStyleHistryModel.body.smokingName
                                           .toString(),
                                   subtitle: MyLocalizations.of(context)
