@@ -972,7 +972,7 @@ class _MyAppState extends State<MyApp> {
               '/myPatientlist': (context) => MyPatientlist(
                 model: _model,
               ),
-              '/uploaddocument': (context) => UploadDocument(
+              '/uploaddocument': (context) => DocumentList(
                 model: _model,
               ),
               '/adduploaddocument': (context) => AddUploadDocument(
