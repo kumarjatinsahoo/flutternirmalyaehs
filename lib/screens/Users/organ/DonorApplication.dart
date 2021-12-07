@@ -11,6 +11,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:user/models/AddOrganDonModel.dart';
+import 'package:user/models/ProfileModel.dart';
 import 'package:user/models/TissueModel.dart' as tissue;
 import 'package:user/models/OrganModel.dart' as organ;
 import 'package:user/models/OrganModel.dart';
@@ -63,8 +64,11 @@ class DonorApplicationState extends State<DonorApplication> {
   bool isTissueChecked = false;
   DateTime selectedDate = DateTime.now();
   PayMode1 payMode1 = PayMode1.cash;
+  ProfileModel patientProfileModel;
 
   List<TextEditingController> textEditingController = [
+    new TextEditingController(),
+    new TextEditingController(),
     new TextEditingController(),
     new TextEditingController(),
     new TextEditingController(),
@@ -212,6 +216,7 @@ class DonorApplicationState extends State<DonorApplication> {
     });*/
     organcallAPI();
     tissuecallAPI();
+    profileAPI();
   }
 
   List<DropdownMenuItem<KeyvalueModel>> buildDropDownMenuItems(List listItems) {
@@ -239,6 +244,41 @@ class DonorApplicationState extends State<DonorApplication> {
       );
     }
     return items;
+  }
+
+  profileAPI() {
+    widget.model.GETMETHODCALL_TOKEN(
+      api: ApiFactory.PATIENT_PROFILE+widget.model.loginResponse1.body.user,
+      token: widget.model.token,
+      fun: (Map<String, dynamic> map) {
+        String msg = map[Const.MESSAGE];
+        //String msg = map[Const.MESSAGE];
+        if (map[Const.CODE] == Const.SUCCESS) {
+          setState(() {
+            log("Response from sagar>>>>>" + jsonEncode(map));
+            patientProfileModel = ProfileModel.fromJson(map);
+            textEditingController[0].text=patientProfileModel.body.fullName;
+            textEditingController[2].text=patientProfileModel.body.dob;
+            textEditingController[3].text=patientProfileModel.body.ageYears;
+            textEditingController[4].text=patientProfileModel.body.mobile;
+            textEditingController[5].text=patientProfileModel.body.email;
+            textEditingController[6].text=patientProfileModel.body.address+" , "+patientProfileModel.body.pAddress;
+            textEditingController[15].text=patientProfileModel.body.bloodGroup;
+          });
+        } else {
+          setState(() {
+            //isDataNoFound = true;
+          });
+          /* Center(
+            child: Text(
+              'Data Not Found',
+              style: TextStyle(fontSize: 12),
+            ),
+          );*/
+          // AppData.showInSnackBar(context, msg);
+        }
+      },
+    );
   }
 
   tissuecallAPI() {
@@ -327,10 +367,13 @@ class DonorApplicationState extends State<DonorApplication> {
                 child: TextFormField(
                   controller: textEditingController[0],
                   decoration: InputDecoration(
+                     // hintText: patientProfileModel?.body?.fullName??"N/A",
                       hintText: MyLocalizations.of(context).text("NAME"),
                       hintStyle: TextStyle(color: Colors.grey)),
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.text,
+                  enabled: false,
+                  autofocus: false,
                   inputFormatters: [
                     WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
                   ],
@@ -346,10 +389,30 @@ class DonorApplicationState extends State<DonorApplication> {
               SizedBox(
                 height: 8,
               ),
+
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                child: dob(),
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: TextFormField(
+                  controller: textEditingController[2],
+                  decoration: InputDecoration(
+                      counterText: "",
+                      //hintText: patientProfileModel?.body?.dob??"N/A",
+                      hintText: MyLocalizations.of(context).text("DOB1"),
+                      hintStyle: TextStyle(color: Colors.grey)),
+                  textInputAction: TextInputAction.next,
+                  maxLength: 10,
+                  enabled: false,
+                  autofocus: false,
+                  keyboardType: TextInputType.number,
+                  inputFormatters: [
+                    WhitelistingTextInputFormatter(RegExp("[0-9 -]")),
+                  ],
+                ),
               ),
+              // Padding(
+              //   padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              //   child: dob(),
+              // ),
               SizedBox(
                 height: 8,
               ),
@@ -359,10 +422,13 @@ class DonorApplicationState extends State<DonorApplication> {
                   controller: textEditingController[3],
                   decoration: InputDecoration(
                       counterText: "",
+                      //hintText: patientProfileModel?.body?.ageYears??"N/A",
                       hintText: MyLocalizations.of(context).text("AGE"),
                       hintStyle: TextStyle(color: Colors.grey)),
                   textInputAction: TextInputAction.next,
                   maxLength: 3,
+                  // enabled: false,
+                  // autofocus: false,
                   keyboardType: TextInputType.number,
                   inputFormatters: [
                     WhitelistingTextInputFormatter(RegExp("[0-9]")),
@@ -374,17 +440,34 @@ class DonorApplicationState extends State<DonorApplication> {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: DropDown.networkDropdownGetpartUserundreline(
-                    MyLocalizations.of(context).text("BLOODGROUP"),
-                    ApiFactory.BLOODGROUP_API,
-                    "bloodgroupdn", (KeyvalueModel data) {
-                  setState(() {
-                    print(ApiFactory.BLOODGROUP_API);
-                    DonorApplication.bloodgroupModel = data;
-                    //DonorApplication.bloodgroupModel = null;
-                  });
-                }),
+                child: TextFormField(
+                  controller: textEditingController[15],
+                  decoration: InputDecoration(
+                     // hintText: patientProfileModel?.body?.bloodGroup??"N/A",
+                        hintText: MyLocalizations.of(context).text("Blood Group"),
+                      hintStyle: TextStyle(color: Colors.grey)),
+                  textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.text,
+                  enabled: false,
+                  autofocus: false,
+                  inputFormatters: [
+                    WhitelistingTextInputFormatter(RegExp("[0-9,a-zA-Z./-]")),
+                  ],
+                ),
               ),
+              // Padding(
+              //   padding: const EdgeInsets.symmetric(horizontal: 20),
+              //   child: DropDown.networkDropdownGetpartUserundreline(
+              //       MyLocalizations.of(context).text("BLOODGROUP"),
+              //       ApiFactory.BLOODGROUP_API,
+              //       "bloodgroupdn", (KeyvalueModel data) {
+              //     setState(() {
+              //       print(ApiFactory.BLOODGROUP_API);
+              //       DonorApplication.bloodgroupModel = data;
+              //       //DonorApplication.bloodgroupModel = null;
+              //     });
+              //   }),
+              // ),
               SizedBox(
                 height: 8,
               ),
@@ -394,12 +477,14 @@ class DonorApplicationState extends State<DonorApplication> {
                   controller: textEditingController[4],
                   decoration: InputDecoration(
                       counterText: "",
-                      hintText:
-                          MyLocalizations.of(context).text("MOBILE_NO"),
+                      //hintText: patientProfileModel?.body?.mobile??"N/A",
+                      hintText: MyLocalizations.of(context).text("MOBILE_NO"),
                       hintStyle: TextStyle(color: Colors.grey)),
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.number,
                   maxLength: 10,
+                  enabled: false,
+                  autofocus: false,
                   inputFormatters: [
                     WhitelistingTextInputFormatter(RegExp("[0-9]")),
                   ],
@@ -413,13 +498,16 @@ class DonorApplicationState extends State<DonorApplication> {
                 child: TextFormField(
                   controller: textEditingController[5],
                   decoration: InputDecoration(
+                      //hintText: patientProfileModel?.body?.email??"N/A",
                       hintText: MyLocalizations.of(context).text("EMAILID"),
                       hintStyle: TextStyle(color: Colors.grey)),
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.emailAddress,
-                  //           inputFormatters: [
-                  //  WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
-                  //           ],
+                  // enabled: false,
+                  // autofocus: false,
+                  inputFormatters: [
+                   WhitelistingTextInputFormatter(RegExp("[a-zA-Z@.]")),
+                            ],
                 ),
               ),
               SizedBox(
@@ -430,10 +518,13 @@ class DonorApplicationState extends State<DonorApplication> {
                 child: TextFormField(
                   controller: textEditingController[6],
                   decoration: InputDecoration(
+                     // hintText: patientProfileModel?.body?.address??"N/A",
                       hintText: MyLocalizations.of(context).text("ADDRESS"),
                       hintStyle: TextStyle(color: Colors.grey)),
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.text,
+                  enabled: false,
+                  autofocus: false,
                   inputFormatters: [
                     WhitelistingTextInputFormatter(RegExp("[0-9,a-zA-Z./-]")),
                   ],
@@ -495,11 +586,10 @@ class DonorApplicationState extends State<DonorApplication> {
                               isChecked = val;
                               //selectedOrganList.clear();
                               organModel.body.forEach((element) {
-                                element.isChecked=val;
+                                element.isChecked = val;
                                 if (val) {
                                   selectedorgan.add(element);
-                                  selectedOrganList
-                                      .add(element.key.toString());
+                                  selectedOrganList.add(element.key.toString());
                                 } else {
                                   selectedorgan.remove(element);
                                   selectedOrganList
@@ -530,7 +620,7 @@ class DonorApplicationState extends State<DonorApplication> {
                                   isTissueChecked = val;
                                   // selectedTissueList.clear();
                                   tissueModel.body.forEach((body) {
-                                    body.isChecked=val;
+                                    body.isChecked = val;
                                     if (val) {
                                       selectetissue.add(body);
                                       selectedTissueList.add(body.key);
@@ -874,7 +964,8 @@ class DonorApplicationState extends State<DonorApplication> {
                             decoration: InputDecoration(
                               // border: InputBorder.none,
                               counterText: "",
-                              hintText: MyLocalizations.of(context).text("RELATION_OF"),
+                              hintText: MyLocalizations.of(context)
+                                  .text("RELATION_OF"),
                               hintStyle: TextStyle(color: Colors.grey),
                             ),
                             validator: (value) {
@@ -914,8 +1005,7 @@ class DonorApplicationState extends State<DonorApplication> {
                     controller: textEditingController[9],
                     decoration: InputDecoration(
                         counterText: "",
-                        hintText:
-                        MyLocalizations.of(context).text("AGE"),
+                        hintText: MyLocalizations.of(context).text("AGE"),
                         hintStyle: TextStyle(color: Colors.grey)),
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.number,
@@ -933,8 +1023,8 @@ class DonorApplicationState extends State<DonorApplication> {
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: DropDown.networkDropdownGetpartUserundreline(
                       MyLocalizations.of(context).text("RELATION"),
-                 ApiFactory.RELATION_API, "relation",
-                      (KeyvalueModel model) {
+                      ApiFactory.RELATION_API,
+                      "relation", (KeyvalueModel model) {
                     setState(() {
                       DonorApplication.relationmodel = model;
                     });
@@ -967,8 +1057,7 @@ class DonorApplicationState extends State<DonorApplication> {
                   child: TextFormField(
                     controller: textEditingController[11],
                     decoration: InputDecoration(
-                        hintText:
-                        MyLocalizations.of(context).text("EMAILID"),
+                        hintText: MyLocalizations.of(context).text("EMAILID"),
                         hintStyle: TextStyle(color: Colors.grey)),
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.emailAddress,
@@ -985,7 +1074,7 @@ class DonorApplicationState extends State<DonorApplication> {
                   child: TextFormField(
                     controller: textEditingController[12],
                     decoration: InputDecoration(
-                        hintText:MyLocalizations.of(context).text("ADDRESS"),
+                        hintText: MyLocalizations.of(context).text("ADDRESS"),
                         hintStyle: TextStyle(color: Colors.grey)),
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.text,
@@ -1072,7 +1161,7 @@ class DonorApplicationState extends State<DonorApplication> {
              controller[1].text="";*/
           },
           textColor: Theme.of(context).primaryColor,
-          child:Text(MyLocalizations.of(context).text("SAVE")),
+          child: Text(MyLocalizations.of(context).text("SAVE")),
         ),
       ],
     );
@@ -1227,7 +1316,7 @@ class DonorApplicationState extends State<DonorApplication> {
         keyboardType: keyType,
         decoration: InputDecoration(
           // border: InputBorder.none,
-          hintText: hint,
+          hintText: hint, 
           hintStyle: TextStyle(color: Colors.grey),
         ),
         validator: (value) {
@@ -1272,21 +1361,26 @@ class DonorApplicationState extends State<DonorApplication> {
           } else if (textEditingController[3].text == "" ||
               textEditingController[3].text == null) {
             AppData.showInSnackBar(context, "Please enter Age: Years");
-          } else if (DonorApplication.bloodgroupModel == null ||
-              DonorApplication.bloodgroupModel == "") {
-            AppData.showInSnackBar(context, "Please select Blood Group");
+          // } else if (DonorApplication.bloodgroupModel == null ||
+          //     DonorApplication.bloodgroupModel == "") {
+          //   AppData.showInSnackBar(context, "Please select Blood Group");
           } else if (textEditingController[4].text == "" ||
               textEditingController[4].text == null) {
             AppData.showInSnackBar(context, "Please enter Mobile Number");
           } else if (textEditingController[4].text != "" &&
               textEditingController[4].text.length != 10) {
             AppData.showInSnackBar(context, "Please enter valid Mobile Number");
-          } else if (textEditingController[5].text != '' &&
+          } else if (textEditingController[5].text == '') {
+            AppData.showInSnackBar(context, "Please enter E-mail");
+          }else if (textEditingController[5].text != '' &&
               !AppData.isValidEmail(textEditingController[5].text)) {
             AppData.showInSnackBar(context, "Please enter a valid E-mail");
           } else if (textEditingController[6].text == "" ||
               textEditingController[6].text == null) {
             AppData.showInSnackBar(context, "Please enter Address");
+          } else if (textEditingController[15].text == "" ||
+              textEditingController[15].text == null) {
+            AppData.showInSnackBar(context, "Please enter Blood Group");
           } else {
             // Navigator.pushNamed(context, "/addWitness");
             MyWidgets.showLoading(context);
@@ -1297,10 +1391,11 @@ class DonorApplicationState extends State<DonorApplication> {
             addOrganDonModel.typeUserName = textEditingController[1].text;
             addOrganDonModel.dob = textEditingController[2].text;
             addOrganDonModel.age = textEditingController[3].text;
-            addOrganDonModel.bldGr = DonorApplication.bloodgroupModel.key;
+            //addOrganDonModel.bldGr = DonorApplication.bloodgroupModel.key;
             addOrganDonModel.mob = textEditingController[4].text;
             addOrganDonModel.email = textEditingController[5].text;
             addOrganDonModel.address = textEditingController[6].text;
+            addOrganDonModel.bldGr = textEditingController[15].text;
             addOrganDonModel.witnessList = witnessModle;
             addOrganDonModel.organList = selectedOrganList;
             addOrganDonModel.tissueList = selectedTissueList;
@@ -1677,7 +1772,8 @@ class DonorApplicationState extends State<DonorApplication> {
                 AppData.fieldFocusChange(context, fnode3, fnode4);
               },
               decoration: InputDecoration(
-                hintText: MyLocalizations.of(context).text("DOB1"),
+                hintText: patientProfileModel?.body?.dob??"N/A",
+                //hintText: MyLocalizations.of(context).text("DOB1"),
                 //"Date of Birth",
                 border: InputBorder.none,
                 //contentPadding: EdgeInsets.symmetric(vertical: 10),
