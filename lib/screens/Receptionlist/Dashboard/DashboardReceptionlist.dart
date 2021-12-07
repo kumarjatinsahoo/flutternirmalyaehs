@@ -143,7 +143,7 @@ class _DashboardReceptionlistState extends State<DashboardReceptionlist> {
             children: [
               Container(
                 child: Image.asset(
-                  "assets/images/doctorbanner.jpg",
+                  "assets/images/receptionalist.jpg",
                   // width: size.width,
                   // fit: BoxFit.cover,
                 ),
@@ -491,16 +491,17 @@ class _DashboardReceptionlistState extends State<DashboardReceptionlist> {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                _buildTilewhite(
-                                  icon: "assets/images/mypatient.png",
+                                _buildTileblue(
+                                  icon: "assets/images/medical.png",
                                   fun: () {
+
                                     // AppData.showInSnackDone(context, "Coming Soon");
-                                    // Navigator.pushNamed(context, "/discountoffer");
+                                   Navigator.pushNamed(context, "/refferedpatients");
                                     //AppData.showInSnackBar(context, "Coming soon");
                                   },
                                   //color: AppData.BG2BLUE,
-                                  color: AppData.white,
-                                  bordercolor: AppData.white,
+                                  color: AppData.BG2BLUE,
+                                  bordercolor: AppData.BG2BLUE,
                                   size: 100 / 3,
                                 ),
                                 SizedBox(
@@ -510,7 +511,7 @@ class _DashboardReceptionlistState extends State<DashboardReceptionlist> {
                                   width: 100,
                                   height: 35,
                                   child: Text(
-                                    MyLocalizations.of(context).text(""),
+                                    "Reffered Patients",
                                     textAlign: TextAlign.center,
                                     //overflow: TextOverflow.ellipsis,
                                   ),
@@ -524,7 +525,7 @@ class _DashboardReceptionlistState extends State<DashboardReceptionlist> {
                                                         textAlign: TextAlign.center,
                                                       ),
                                                     )),*/
-                              ]),
+                              ])
                         ],
                       ),
                       SizedBox(height: 50),
