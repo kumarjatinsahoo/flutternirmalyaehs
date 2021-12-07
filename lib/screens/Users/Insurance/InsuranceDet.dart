@@ -348,9 +348,11 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
                       scrollDirection: Axis.horizontal,*/
 
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.all(0.0),
                         child: Row(
+
                           children: [
+
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -360,7 +362,7 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
                                       fontSize: 14, color: Colors.black38),
                                 ),
                                 SizedBox(
-                                  height: 5,
+                                  height: 10,
                                 ),
                                 Container(
                                   height: 60,
@@ -369,7 +371,8 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
                                     border: Border.all(color: Colors.black26),
                                     /*color: Colors.blue[50]*/
                                   ),
-                                  child: Row(
+                                  child:Flexible(
+                                child:Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       Text(
@@ -381,7 +384,7 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
                                             color: Colors.black),
                                       ),
                                       SizedBox(
-                                        width: 10,
+                                        width:MediaQuery.of(context).size.height * 0.05
                                       ),
                                       Column(
                                         mainAxisAlignment:
@@ -395,11 +398,11 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
                                                 color: Colors.black38),
                                           ),
                                           SizedBox(
-                                            height: 5,
+                                            height: 10,
                                           ),
-                                          Text(
-                                            insuranceDetailsModel
-                                                .body.strtMonthYear,
+                                          Flexible(
+                                         child: Text(
+                                            insuranceDetailsModel.body.strtMonthYear,
                                             style: TextStyle(
                                               fontSize: 10,
                                               color: Colors.black38,
@@ -407,9 +410,11 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
                                             ),
                                             textAlign: TextAlign.center,
                                           ),
+                                          ),
                                         ],
                                       ),
                                     ],
+                                  ),
                                   ),
                                 ),
                               ],
@@ -448,7 +453,7 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
                                       fontSize: 14, color: Colors.black38),
                                 ),
                                 SizedBox(
-                                  height: 5,
+                                  height: 10,
                                 ),
                                 Container(
                                   height: 60,
@@ -457,7 +462,8 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
                                     border: Border.all(color: Colors.black26),
                                     /*color: Colors.blue[50]*/
                                   ),
-                                  child: Row(
+                                  child:Flexible(
+                                    child: Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       Text(
@@ -468,8 +474,11 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
                                             color: Colors.black),
                                       ),
                                       SizedBox(
-                                        width: 10,
+                                          width:MediaQuery.of(context).size.height * 0.05
                                       ),
+                                     /* SizedBox(
+                                        width: 5,
+                                      ),*/
                                       Column(
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
@@ -484,7 +493,8 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
                                           SizedBox(
                                             height: 5,
                                           ),
-                                          Text(
+                                          Flexible(
+                                            child:Text(
                                             insuranceDetailsModel
                                                 .body.endMonthYear,
                                             style: TextStyle(
@@ -494,9 +504,11 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
                                             ),
                                             textAlign: TextAlign.center,
                                           ),
+                                          ),
                                         ],
                                       ),
                                     ],
+                                  ),
                                   ),
                                 ),
                               ],
