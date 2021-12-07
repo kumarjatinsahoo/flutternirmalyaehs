@@ -76,6 +76,8 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
     // TODO: implement initState
     super.initState();
     loginResponse1 = widget.model.loginResponse1;
+    AddUploadDocument.getdocumentmodel = null;
+
     //callApi();
   }
 

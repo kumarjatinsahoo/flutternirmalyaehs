@@ -13,6 +13,7 @@ import 'package:user/screens/Doctor/registartion/DoctorSignUpForm4.dart';
 import 'package:user/screens/Ngo/Registration/NgoSignUpForm2.dart';
 import 'package:user/screens/Pharmacists/registration/PharmaSignUpForm3.dart';
 import 'package:user/screens/Users/Dashboard/ProfileScreen.dart';
+import 'package:user/screens/Users/EmergencyHelp/SetupContactsPage.dart';
 import 'package:user/screens/Users/FindHealthCare/BookAppointment/DoctorconsultationPage.dart';
 import 'package:user/screens/Users/GenericMedicine/GenericStores.dart';
 import 'package:user/screens/Users/MyMedicalRecord/LifeStyleHistory.dart';
@@ -246,6 +247,13 @@ class DropDown {
           case "admequipment":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
+          case "relation1":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "relation2":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+
           case "gender":
             List<KeyvalueModel> listS = [];
             listS.add(KeyvalueModel(name: "MALE", key: "1"));
@@ -953,7 +961,7 @@ class DropDown {
       padding:
           const EdgeInsets.only(top: 8.0, left: 8.0, right: 8.0, bottom: 0.0),
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 15),
+        padding: EdgeInsets.symmetric(horizontal: 10),
         decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(5),
@@ -1315,6 +1323,10 @@ class DropDown {
           case "risk":
             gender = data;
             break;
+          case "diet":
+            gender = data;
+            break;
+
         }
         //selectbank = data;
       },
@@ -2033,6 +2045,16 @@ class DropDown {
       case "alcohol":
         return  LifeStyleHistory.alcoholmodel;
         break;
+      case "alcohol":
+        return  LifeStyleHistory.alcoholmodel;
+        break;
+      case "relation1":
+        return  SetupContactsPage.relationmodel;
+        break;
+      case "diet":
+        return  LifeStyleHistory.ditemodel;
+        break;
+
     }
   }
 
