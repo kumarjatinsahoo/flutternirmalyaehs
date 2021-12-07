@@ -495,9 +495,9 @@ class _InsuranceListState extends State<InsuranceList> {
           keyboardType: TextInputType.text,
           controller: textEditingController[index],
           textAlignVertical: TextAlignVertical.center,
-          /*inputFormatters: [
-            WhitelistingTextInputFormatter(RegExp("[a-zA-Z 1-10 ]")),
-          ],*/
+          inputFormatters: [
+            WhitelistingTextInputFormatter(RegExp("[a-zA-Z0-9 ]")),
+          ],
         ),
       ),
     );
@@ -715,7 +715,7 @@ class _InsuranceListState extends State<InsuranceList> {
         initialDate: DateTime.now(),
         firstDate: DateTime(1901, 1),
         lastDate:
-            DateTime.now().add(new Duration(days: 5))); //18 years is 6570 days
+            DateTime.now()/*.add(new Duration(days: 5))*/); //18 years is 6570 days
    // if (picked != null && picked != selectedDate)
       setState(() {
         selectedDate = picked;

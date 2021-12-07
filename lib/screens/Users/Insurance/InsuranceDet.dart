@@ -106,7 +106,7 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
                                   height: 5,
                                 ),
                                 Text(
-                                  'Policy No:' +
+                                  'Policy No: ' +
                                       insuranceDetailsModel.body.policyNo??"N/A",
                                   style: TextStyle(
                                       color: Colors.black54, fontSize: 16),
@@ -114,12 +114,12 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
                                 SizedBox(
                                   height: 5,
                                 ),
-                                Text(
+                                /*Text(
                                   'Contact No:9020234567',
                                   overflow: TextOverflow.clip,
                                   style: TextStyle(
                                       color: Colors.black54, fontSize: 16),
-                                ),
+                                ),*/
                               ],
                             ),
                             //Icon(Icons.arrow_forward_ios, size: 30,color: Colors.black),

@@ -98,7 +98,6 @@ class _ImmunizationState extends State<Immunization> {
           });
         });
   }
-
   static String toDate(String date) {
     if (date != null && date != "") {
       DateTime formatter = new DateFormat("yyyy-MM-dd").parse(date);
@@ -160,124 +159,130 @@ class _ImmunizationState extends State<Immunization> {
                               shrinkWrap: true,
                               physics: NeverScrollableScrollPhysics(),
                               itemBuilder: (context, i) {
-                                immunization.Body body =
-                                    immunizationListModel.body[i];
+                                immunization.Body body =immunizationListModel.body[i];
                                 return Padding(
                                   padding: const EdgeInsets.only(
                                       left: 5, right: 5, top: 5),
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(8.0),
+                                child: ClipRRect(
+                                borderRadius: BorderRadius.circular(8.0),
                                     child: InkWell(
                                       onTap: () {
                                         String slno = body.slno;
                                         String status = body.status;
-                                        displayStatushangeDialog(
-                                            context, slno, status);
+                                        displayStatushangeDialog(context,slno,status);
+
+
                                       },
-                                      child: Container(
-                                        decoration: (i % 2 == 0)
-                                            ? BoxDecoration(
-                                                color: Colors.white,
-                                                border: Border(
-                                                    left: BorderSide(
-                                                        color: AppData
-                                                            .kPrimaryRedColor,
-                                                        width: 5)),
-                                                boxShadow: [
-                                                  BoxShadow(
-                                                    color: Colors.grey,
-                                                    offset: Offset(
-                                                        0.0, 1.0), //(x,y)
-                                                    blurRadius: 6.0,
-                                                  ),
-                                                ],
-                                              )
-                                            : BoxDecoration(
-                                                color: Colors.white,
-                                                border: Border(
-                                                    left: BorderSide(
-                                                        color: AppData
-                                                            .kPrimaryColor,
-                                                        width: 5)),
-                                                boxShadow: [
-                                                  BoxShadow(
-                                                    color: Colors.grey,
-                                                    offset: Offset(
-                                                        0.0, 1.0), //(x,y)
-                                                    blurRadius: 6.0,
-                                                  ),
-                                                ],
-                                              ),
-                                        width: double.maxFinite,
-                                        /*height: 80,*/
-                                        child: ListTile(
-                                          leading: InkWell(
-                                              onTap: () {
-                                                // Navigator.pop(context);
-                                              },
-                                              child: Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          left: 10.0,
-                                                          right: 10.0),
-                                                  child: Image.asset(
-                                                    "assets/redinjection40.png",
-                                                    color: Colors.black,
-                                                    height: 40,
-                                                  ))),
-                                          subtitle: Padding(
-                                            padding: const EdgeInsets.only(
-                                                top: 10.0),
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  body.immunizationId,
-                                                  overflow: TextOverflow.clip,
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontSize: 14),
-                                                ),
-                                                SizedBox(
-                                                  height: 5,
-                                                ),
-                                                Text(
-                                                  'Prescribed by: ' +
-                                                      body.doctorName,
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontSize: 14),
-                                                ),
-                                                SizedBox(
-                                                  height: 5,
-                                                ),
-                                                Text(
-                                                  /*body.immunizationDate,*/
-                                                  toDate(body
-                                                          .immunizationDate) ??
-                                                      "N/A",
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontSize: 14),
-                                                ),
-                                              ],
+                                  child:
+
+                                  Container(
+                                    decoration: (i % 2 == 0)
+                                        ?  BoxDecoration(
+                                      color: Colors.white,
+                                      border: Border(
+                                        left: BorderSide(
+                                            color:
+                                            AppData.kPrimaryRedColor,
+                                            width: 5)),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.grey,
+                                          offset: Offset(0.0, 1.0), //(x,y)
+                                          blurRadius: 6.0,
+                                        ),
+                                      ],
+
+                                    ): BoxDecoration(
+                                      color: Colors.white,
+                                      border: Border(
+                                          left: BorderSide(
+                                              color:
+                                              AppData.kPrimaryColor,
+                                              width: 5)),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.grey,
+                                          offset: Offset(0.0, 1.0), //(x,y)
+                                          blurRadius: 6.0,
+                                        ),
+                                      ],
+
+                                    ),
+
+
+                                    width: double.maxFinite,
+                                    /*height: 80,*/
+                                    child: ListTile(
+                                      leading:  InkWell(
+                                          onTap: () {
+                                            // Navigator.pop(context);
+                                          },
+                                          child: Padding(
+                                              padding:
+                                              const EdgeInsets
+                                                  .only(
+                                                  left: 10.0,
+                                                  right: 10.0),
+                                              child: Image.asset(
+                                                "assets/redinjection40.png",
+                                                color: Colors.black,
+                                                height: 40,
+                                              ))),
+                                      subtitle: Padding(
+                                        padding: const EdgeInsets.only(
+                                            top: 10.0),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              body.immunizationId,
+                                              overflow:
+                                              TextOverflow.clip,
+                                              style: TextStyle(
+                                                  fontWeight:
+                                                  FontWeight
+                                                      .bold,
+                                                  fontSize: 14),
                                             ),
-                                          ),
-                                          trailing: Text(
-                                            body.status,
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 14),
-                                          ),
+                                            SizedBox(
+                                              height: 5,
+                                            ),
+                                            Text(
+                                              'Prescribed by: '+
+                                                  body.doctorName,
+                                              style: TextStyle(
+                                                  fontWeight:
+                                                  FontWeight.bold,
+                                                  fontSize: 14),
+                                            ),
+                                            SizedBox(
+                                              height: 5,
+                                            ),
+                                            Text(
+                                              /*body.immunizationDate,*/
+                                              toDate(body.immunizationDate)??
+                                                  "N/A",
+                                              style: TextStyle(
+                                                  fontWeight:
+                                                  FontWeight.bold,
+                                                  fontSize: 14),
+                                            ),
+                                          ],
                                         ),
                                       ),
-                                      /* ),*/
+                                      trailing: Text(
+                                        body.status,
+                                        style: TextStyle(
+                                            fontWeight:
+                                            FontWeight.bold,
+                                            fontSize: 14),
+                                      ),
                                     ),
-                                  ),
+                                ),
+                                 /* ),*/
+                                    ),
+                                ),
                                 );
                               },
                             )
@@ -293,42 +298,24 @@ class _ImmunizationState extends State<Immunization> {
                 ),
     );
   }
+  displayStatushangeDialog(BuildContext context ,String slno, String status
+  ) {
 
-  displayStatushangeDialog(BuildContext context, String slno, String status) {
     showDialog(
         builder: (context) {
           return AlertDialog(
-            contentPadding: EdgeInsets.only(left: 5, right: 5, top: 20),
-            insetPadding: EdgeInsets.only(left: 5, right: 5, top: 20),
+            contentPadding: EdgeInsets.only(left: 5, right: 5, top: 5),
+            insetPadding: EdgeInsets.only(left: 5, right: 5, top: 5),
             content: StatefulBuilder(
               builder: (BuildContext context, StateSetter setState) {
                 return Container(
-                  margin: EdgeInsets.only(left: 0.0, right: 0.0),
-                  child: Stack(
-                    children: <Widget>[
-                      Container(
-                        width: MediaQuery.of(context).size.width * 0.0,
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Center(
-                              child: Text(
-                                "Are you Vaccinated ?",
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 25,
-                                    fontWeight: FontWeight.w400,
-                                    // light
-                                    fontStyle: FontStyle.normal),
-                              ),
-                            ),
-                            SizedBox(height: 10),
-                          ],
-                        ),
-                      ),
+                  width: MediaQuery.of(context).size.width * 0.0,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
                       Positioned(
-                        right: 0.0,
+                        right: 10.0,
                         child: GestureDetector(
                           onTap: () {
                             Navigator.of(context).pop();
@@ -336,13 +323,23 @@ class _ImmunizationState extends State<Immunization> {
                           child: Align(
                             alignment: Alignment.topRight,
                             child: CircleAvatar(
-                              radius: 14.0,
+                              radius: 10.0,
                               backgroundColor: Colors.white,
-                              child: Icon(Icons.close, color: Colors.red),
+                              child: Icon(Icons.close, color: Colors.red,size: 25,),
                             ),
                           ),
                         ),
                       ),
+                      Center(
+                              child: Text(
+                                "Are you Vaccinated ?",
+                                style: TextStyle(
+                                    color: Colors.black, fontSize: 25,fontWeight: FontWeight.w400, // light
+                                  fontStyle: FontStyle.normal ),
+                              ),
+                            ),
+                            SizedBox(height: 10),
+
                     ],
                   ),
                 );
@@ -355,15 +352,17 @@ class _ImmunizationState extends State<Immunization> {
                     style: TextStyle(color: AppData.kPrimaryRedColor)),
                 onPressed: () {
                   widget.model.GETMETHODCALL_TOKEN(
-                      api: ApiFactory.IMMUNIZATION_STATUS +
-                          slno +
-                          "&status=" + /*status*/ "No",
+                      api: ApiFactory
+                          .IMMUNIZATION_STATUS + slno +
+                          "&status=" + /*status*/"No",
                       token: widget.model.token,
                       fun: (Map<String, dynamic> map) {
                         setState(() {
-                          log("Value>>>" + jsonEncode(map));
+                          log("Value>>>" +
+                              jsonEncode(map));
                           String msg = map[Const.MESSAGE];
-                          if (map[Const.CODE] == Const.SUCCESS) {
+                          if (map[Const.CODE] ==
+                              Const.SUCCESS) {
                             setState(() {
                               callApi();
                               Navigator.of(context).pop();
@@ -384,21 +383,23 @@ class _ImmunizationState extends State<Immunization> {
               FlatButton(
                 //textColor: Colors.grey,
                 child: Text(
-                  "Yes",
+                 "Yes",
                   //style: TextStyle(color: Colors.grey),
                   style: TextStyle(color: AppData.matruColor),
                 ),
                 onPressed: () {
                   widget.model.GETMETHODCALL_TOKEN(
-                      api: ApiFactory.IMMUNIZATION_STATUS +
-                          slno +
-                          "&status=" + /*status*/ "yes",
+                      api: ApiFactory
+                          .IMMUNIZATION_STATUS + slno +
+                          "&status=" + /*status*/"yes",
                       token: widget.model.token,
                       fun: (Map<String, dynamic> map) {
                         setState(() {
-                          log("Value>>>" + jsonEncode(map));
+                          log("Value>>>" +
+                              jsonEncode(map));
                           String msg = map[Const.MESSAGE];
-                          if (map[Const.CODE] == Const.SUCCESS) {
+                          if (map[Const.CODE] ==
+                              Const.SUCCESS) {
                             setState(() {
                               callApi();
                               Navigator.of(context).pop();
@@ -411,6 +412,7 @@ class _ImmunizationState extends State<Immunization> {
                           }
                         });
                       });
+
                 },
               ),
             ],
@@ -509,21 +511,14 @@ class _ImmunizationState extends State<Immunization> {
                   style: TextStyle(color: AppData.matruColor),
                 ),
                 onPressed: () {
-                  if (Immunization.immunizationmodel == null ||
-                      Immunization.immunizationmodel == "") {
-                    AppData.showInSnackBar(
-                        context, "Please Select Immunization Type ");
+                  if (Immunization.immunizationmodel == null || Immunization.immunizationmodel == "") {
+                    AppData.showInSnackBar(context, "Please Select Immunization Type ");
                   } else if (_date.text == "" || _date.text == null) {
-                    AppData.showInSnackBar(
-                        context, "Please Enter Immunization Date");
-                  } else if (textEditingController[1].text == "" ||
-                      textEditingController[1].text == null) {
-                    AppData.showInSnackBar(
-                        context, "Please Enter Prescribed By");
-                  } else if (textEditingController[2].text == "" ||
-                      textEditingController[2].text == null) {
-                    AppData.showInSnackBar(
-                        context, "Please Enter Immunization Details ");
+                    AppData.showInSnackBar(context, "Please Enter Immunization Date");
+                  } else if (textEditingController[1].text == "" ||textEditingController[1].text == null) {
+                    AppData.showInSnackBar(context, "Please Enter Prescribed By");
+                  } else if (textEditingController[2].text == ""||textEditingController[2].text == null) {
+                    AppData.showInSnackBar(context, "Please Enter Immunization Details ");
                   } else {
                     MyWidgets.showLoading(context);
                     ImmunizationPostModel immunizationmodel =
@@ -545,13 +540,15 @@ class _ImmunizationState extends State<Immunization> {
                       token: widget.model.token,
                       fun: (Map<String, dynamic> map) {
                         Navigator.pop(context);
-                        if (map["code"] == Const.SUCCESS) {
-                          Navigator.pop(context);
-                          callApi();
-                          AppData.showInSnackDone(context, map["message"]);
-                        } else {
-                          AppData.showInSnackBar(context, map[Const.MESSAGE]);
-                        }
+                          if (map["code"] == Const.SUCCESS) {
+                            Navigator.pop(context);
+                            callApi();
+                            AppData.showInSnackDone(
+                                context,map["message"]);
+                          } else {
+
+                            AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                          }
                       },
                     );
                   }
@@ -626,15 +623,14 @@ class _ImmunizationState extends State<Immunization> {
         locale: Locale("en"),
         initialDate: DateTime.now(),
         firstDate: DateTime(1901, 1),
-        lastDate: DateTime
-            .now() /*.add(new Duration(days: 5)*/); //18 years is 6570 days
+        lastDate: DateTime.now()/*.add(new Duration(days: 5)*/); //18 years is 6570 days
     /*if (picked != null && picked != selectedDate)*/
-    setState(() {
-      selectedDate = picked;
-      error[2] = false;
-      _date.value = TextEditingValue(text: df.format(picked));
-      addBioMedicalModel.bioMDate = df.format(picked);
-    });
+      setState(() {
+        selectedDate = picked;
+        error[2] = false;
+        _date.value = TextEditingValue(text: df.format(picked));
+        addBioMedicalModel.bioMDate = df.format(picked);
+      });
   }
 
   Widget formField(

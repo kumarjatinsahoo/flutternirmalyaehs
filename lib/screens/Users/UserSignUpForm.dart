@@ -68,6 +68,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
 
   String token;
   TypeDob selectDobEn = TypeDob.Age;
+  String _selectedGender = 'male';
 
   List<bool> error = [false, false, false, false, false, false];
 
