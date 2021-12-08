@@ -5,8 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/AddBioMedicalModel.dart';
-import 'package:user/models/BiomedicalModel.dart' as bio;
-import 'package:user/models/DocumentListModel.dart' as document;
+import 'package:user/models/DocumentlistModell.dart' as document;
 import 'package:user/models/KeyvalueModel.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/providers/Const.dart';
@@ -26,7 +25,7 @@ class DocumentList extends StatefulWidget {
 
 class _DocumentListState extends State<DocumentList> {
   LoginResponse1 loginResponse1;
-  document.DocumentListModel documentListModel;
+  document.DocumentlistModell documentListModel;
   bool isDataNoFound = false;
   String valueText = null;
   String selectDob;
@@ -70,7 +69,7 @@ class _DocumentListState extends State<DocumentList> {
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
               setState(() {
-                documentListModel = document.DocumentListModel.fromJson(map);
+                documentListModel = document.DocumentlistModell.fromJson(map);
               });
             } else {
               setState(() {
@@ -171,128 +170,115 @@ class _DocumentListState extends State<DocumentList> {
                                                   BorderRadius.circular(8)),
                                           child: Padding(
                                             padding: const EdgeInsets.all(10.0),
-                                            child: Row(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: [
-                                                Padding(
-                                                  padding: const EdgeInsets.all(5.0),
-                                                  child: Container(
-                                                   // color:AppData.kPrimaryRedColor,
-                                                      decoration: (i % 2 == 0)
-                                                          ? BoxDecoration(
-                                                          color: AppData.kPrimaryRedColor,
-                                                        borderRadius: new BorderRadius.circular(10.0),
-                                                        boxShadow: [
-                                                          BoxShadow(
-                                                            color: Colors.white,
-                                                            offset: const Offset(
-                                                              5.0,
-                                                              5.0,
-                                                            ), //Offset
-                                                            blurRadius: 10.0,
-                                                            spreadRadius: 2.0,
-                                                          ), //BoxShadow
-                                                          BoxShadow(
-                                                            color: Colors.white,
-                                                            offset: const Offset(0.0, 0.0),
-                                                            blurRadius: 0.0,
-                                                            spreadRadius: 0.0,
-                                                          ), //BoxShadow
-                                                        ],
-
-                                                          /*image: new DecorationImage(
-                                                              image: new ExactAssetImage('assets/images/Allergicimg.png'),
-                                                              fit: BoxFit.cover,
-                                                            ),*/
-
-                                                          /*border: Border(
-                                                              left: BorderSide(
-                                                                  color: AppData
-                                                                      .kPrimaryRedColor,
-                                                                  width: 5),right: BorderSide(
-                                                                  color: AppData
-                                                                      .kPrimaryRedColor,
-                                                                  width: 5),top: BorderSide(
-                                                                  color: AppData
-                                                                      .kPrimaryRedColor,
-                                                                  width: 5),bottom: BorderSide(
-                                                                  color: AppData
-                                                                      .kPrimaryRedColor,
-                                                                  width: 5)*/
-                                                          //)
-                                          )
-                                                          : BoxDecoration(
-                                                        color: AppData.kPrimaryColor,
-                                                        borderRadius: new BorderRadius.circular(10.0),
-                                                        boxShadow: [
-                                                          BoxShadow(
-                                                            color: Colors.white,
-                                                            offset: const Offset(
-                                                              5.0,
-                                                              5.0,
-                                                            ), //Offset
-                                                            blurRadius: 10.0,
-                                                            spreadRadius: 2.0,
-                                                          ), //BoxShadow
-                                                          BoxShadow(
-                                                            color: Colors.white,
-                                                            offset: const Offset(0.0, 0.0),
-                                                            blurRadius: 0.0,
-                                                            spreadRadius: 0.0,
-                                                          ), //BoxShadow
-                                                        ],
-
-                                                        /*border: Border(
-                                                              left: BorderSide(
-                                                                  color: AppData
-                                                                      .kPrimaryColor,
-                                                                  width: 5),right: BorderSide(
-                                                              color: AppData
-                                                                  .kPrimaryColor,
-                                                              width: 5),bottom: BorderSide(
-                                                              color: AppData
-                                                                  .kPrimaryColor,
-                                                              width: 5),top: BorderSide(
-                                                              color: AppData
-                                                                  .kPrimaryColor,
-                                                              width: 5)*/
-                                                         // )
-                                          ),
-                                                      //width: double.maxFinite,
-                                                      //color: AppData.kPrimaryBlueColor,
-                                                      padding: EdgeInsets.all(3),
-                                                      child: Image.asset(
-
-                                                        "assets/images/Allergicimg.png",
-                                                        //color: AppData.kPrimaryColor,
-                                                        height: 50,
-                                                      )),
-                                                ),
-                                                SizedBox(
-                                                  width: 5,
-                                                ),
-                                                Expanded(
-                                                  child: Column(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      Text(
-                                                        "Medication",
-                                                        style: TextStyle(
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .normal,
-                                                            fontSize: 15),
-                                                      ),
-                                                    ],
+                                            child: InkWell(
+                                              onTap: (){
+                                                Navigator.pushNamed(
+                                                    context, "/upload");
+                                              },
+                                              child: Row(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.center,
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.all(5.0),
+                                                    child: Container(
+                                                        // color:AppData.kPrimaryRedColor,
+                                                        decoration: (i % 2 == 0)
+                                                            ? BoxDecoration(
+                                                                color: AppData
+                                                                    .kPrimaryRedColor,
+                                                                borderRadius:
+                                                                    new BorderRadius
+                                                                            .circular(
+                                                                        10.0),
+                                                                boxShadow: [
+                                                                  BoxShadow(
+                                                                    color: Colors
+                                                                        .white,
+                                                                    offset:
+                                                                        const Offset(
+                                                                      5.0,
+                                                                      5.0,
+                                                                    ), //Offset
+                                                                    blurRadius:
+                                                                        10.0,
+                                                                    spreadRadius:
+                                                                        2.0,
+                                                                  ), //BoxShadow
+                                                                  BoxShadow(
+                                                                    color: Colors
+                                                                        .white,
+                                                                    offset:
+                                                                        const Offset(
+                                                                            0.0,
+                                                                            0.0),
+                                                                    blurRadius:
+                                                                        0.0,
+                                                                    spreadRadius:
+                                                                        0.0,
+                                                                  ), //BoxShadow
+                                                                ],
+                                                              )
+                                                            : BoxDecoration(
+                                                                color: AppData
+                                                                    .kPrimaryColor,
+                                                                borderRadius:
+                                                                    new BorderRadius
+                                                                            .circular(
+                                                                        10.0),
+                                                                boxShadow: [
+                                                                  BoxShadow(
+                                                                    color: Colors
+                                                                        .white,
+                                                                    offset:
+                                                                        const Offset(
+                                                                      5.0,
+                                                                      5.0,
+                                                                    ), //Offset
+                                                                    blurRadius:
+                                                                        10.0,
+                                                                    spreadRadius:
+                                                                        2.0,
+                                                                  ), //BoxShadow
+                                                                  BoxShadow(
+                                                                    color: Colors
+                                                                        .white,
+                                                                    offset:
+                                                                        const Offset(
+                                                                            0.0,
+                                                                            0.0),
+                                                                    blurRadius:
+                                                                        0.0,
+                                                                    spreadRadius:
+                                                                        0.0,
+                                                                  ), //BoxShadow
+                                                                ],
+                                                              ),
+                                                        //width: double.maxFinite,
+                                                        //color: AppData.kPrimaryBlueColor,
+                                                        padding:
+                                                            EdgeInsets.all(3),
+                                                        child: Image.asset(
+                                                          "assets/images/Allergicimg.png",
+                                                          //color: AppData.kPrimaryColor,
+                                                          height: 50,
+                                                        )),
                                                   ),
-                                                ),
-                                              ],
+                                                  SizedBox(
+                                                    width: 5,
+                                                  ),
+                                                  Expanded(
+                                                    child: Text(
+                                                      body.name,
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.normal,
+                                                          fontSize: 13),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
                                             ),
                                           )),
                                     );
