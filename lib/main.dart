@@ -974,6 +974,8 @@ class _MyAppState extends State<MyApp> {
               ),
               '/uploaddocument': (context) => DocumentList(
                 model: _model,
+              ),'/upload': (context) => UploadDocument(
+                model: _model,
               ),
               '/adduploaddocument': (context) => AddUploadDocument(
                 model: _model,
