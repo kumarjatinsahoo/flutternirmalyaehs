@@ -636,17 +636,26 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                                 TextAlignVertical
                                                     .center,
                                             textInputAction:
-                                                TextInputAction.next,
+                                                TextInputAction.done,
                                             keyboardType: TextInputType.number,
                                             maxLength: 3,
                                             inputFormatters: <TextInputFormatter>[
                                               FilteringTextInputFormatter.digitsOnly
                                             ],
                                             onFieldSubmitted: (value) {
-                                              AppData.fieldFocusChange(context, fnode4, null);
+                                            //  AppData.fieldFocusChange(context, fnode4, null);
                                             },
                                             onChanged:(s){
-                                              textEditingController[4].text=(DateTime.now().year-int.parse(textEditingController[3].text)).toString();
+                                              if(s!=null && s!="") {
+                                                textEditingController[4].text =
+                                                    (DateTime
+                                                        .now()
+                                                        .year - int.parse(
+                                                        textEditingController[3]
+                                                            .text)).toString();
+                                              }else{
+                                                textEditingController[4].text="";
+                                              }
                                             }
                                             //maxLength: 2,
                                           ),
@@ -1243,6 +1252,9 @@ class UserSignUpFormState extends State<UserSignUpForm> {
     } else if (selectDobEn==TypeDob.Age && (textEditingController[3].text =="" || textEditingController[3].text == null) ) {
       AppData.showInSnackBar(context, "Please enter your Age");
       FocusScope.of(context).requestFocus(fnode4);
+    } else if (selectDobEn==TypeDob.Age  && (int.tryParse(textEditingController[3].text)<18) ) {
+      AppData.showInSnackBar(context, "Age should be 18 above");
+      // FocusScope.of(context).requestFocus(fnode4);
     }
     else if (selectDobEn==TypeDob.DOB &&(textEditingController[5].text == "" || textEditingController[5].text == null) ) {
       AppData.showInSnackBar(context, "Please enter your DOB");
@@ -1268,7 +1280,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
       print("API NAME>>>>" + ApiFactory.USER_REGISTRATION);
       print("TO POST>>>>" + jsonEncode(userModel.toJson()));
 
-      MyWidgets.showLoading(context);
+     /* MyWidgets.showLoading(context);
       widget.model.POSTMETHOD(
           api: ApiFactory.USER_REGISTRATION,
           json: userModel.toJson(),
@@ -1279,7 +1291,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
             } else {
               AppData.showInSnackBar(context, map[Const.MESSAGE]);
             }
-          });
+          });*/
     }
   }
 

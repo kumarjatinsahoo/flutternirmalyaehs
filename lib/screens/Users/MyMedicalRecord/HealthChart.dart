@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:share/share.dart';
 import 'package:user/models/LoginResponse1.dart';
+import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -137,16 +138,14 @@ class _HealthChart extends State<HealthChart> {
         // iconTheme: IconThemeData(color: AppData.kPrimaryColor,),
       ),
       body: Builder(builder: (BuildContext context) {
-        print("api......" +
-            'http://192.168.43.248:8061/user/mobile-view-patient-health-chart?id=' +
-            id);
+        print("api......" +ApiFactory.VIEW_PATIENT_HEALTH_API + id);
         return Container(
           width: MediaQuery.of(context).size.width,
           child: SizedBox(
             // width: MediaQuery.of(context).size.height,
             child: InAppWebView(
               initialUrlRequest: URLRequest(
-                  url: Uri.parse('http://192.168.43.248:8061/user/mobile-view-patient-health-chart?id='+id)),
+                  url: Uri.parse(ApiFactory.VIEW_PATIENT_HEALTH_API+id)),
               initialOptions: _options,
               shouldOverrideUrlLoading: (controller, action) {
                 print("override");

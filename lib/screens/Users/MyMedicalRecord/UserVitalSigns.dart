@@ -184,7 +184,7 @@ class _VitalSignsState extends State<VitalSigns> {
                                 height: 5,
                               ),
                               Text(
-                                "Height(Cm)",
+                                "Height(CM)",
                                 style: TextStyle(
                                   color: Colors.black38,
                                   fontWeight: FontWeight.w500,

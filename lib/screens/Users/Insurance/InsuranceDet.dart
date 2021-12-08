@@ -375,8 +375,7 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
                                 child:Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
-                                      Text(
-                                        insuranceDetailsModel
+                                      Text(insuranceDetailsModel
                                             .body.policyStartDt,
                                         style: TextStyle(
                                             fontSize: 20,
@@ -386,12 +385,9 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
                                       SizedBox(
                                         width:MediaQuery.of(context).size.height * 0.05
                                       ),
-                                      Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
+                                      Column(mainAxisAlignment:MainAxisAlignment.center,
                                         children: [
-                                          Text(
-                                            insuranceDetailsModel.body.strtDay,
+                                          Text(insuranceDetailsModel.body.strtDay,
                                             style: TextStyle(
                                                 fontSize: 10,
                                                 fontWeight: FontWeight.w500,
@@ -401,8 +397,7 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
                                             height: 10,
                                           ),
                                           Flexible(
-                                         child: Text(
-                                            insuranceDetailsModel.body.strtMonthYear,
+                                         child: Text(insuranceDetailsModel.body.strtMonthYear,
                                             style: TextStyle(
                                               fontSize: 10,
                                               color: Colors.black38,
