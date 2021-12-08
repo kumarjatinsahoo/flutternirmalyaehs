@@ -37,7 +37,9 @@ class SetReminder extends StatefulWidget {
   @override
   SetReminderState createState() => SetReminderState();
 }
+
 enum PayMode1 { cash, cheque, online }
+
 class SetReminderState extends State<SetReminder> {
   File _image;
   final _formKey = GlobalKey<FormState>();
@@ -53,7 +55,8 @@ class SetReminderState extends State<SetReminder> {
     new TextEditingController(),
     new TextEditingController()
   ];
-
+  TextEditingController stdob = TextEditingController();
+  TextEditingController endate = TextEditingController();
   List<bool> error = [false, false, false, false, false, false];
   bool _isSignUpLoading = false;
 
@@ -110,11 +113,12 @@ class SetReminderState extends State<SetReminder> {
     KeyvalueModel(name: "0.7", key: "3"),
   ];
   List<KeyvalueModel> districtList = [
+    KeyvalueModel(name: "1", key: "1"),
+    KeyvalueModel(name: "2", key: "1"),
     KeyvalueModel(name: "3", key: "1"),
     KeyvalueModel(name: "4", key: "1"),
     KeyvalueModel(name: "5", key: "1"),
     KeyvalueModel(name: "6", key: "1"),
-
   ];
 
   @override
@@ -145,313 +149,356 @@ class SetReminderState extends State<SetReminder> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return SafeArea(
-      child: Scaffold(
-        body: Container(
-          child: Column(
+        child: Scaffold(
+          appBar: AppBar(
+            backgroundColor: AppData.kPrimaryColor,
+            title: Row(
               children: [
-          Container(
-           color:AppData.kPrimaryColor,
-          child: Padding(
-          padding: const EdgeInsets.only( left:15.0,right: 15.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              InkWell(
-                  onTap: (){
-                    Navigator.pop(context);
-                  },
-                  child: Icon(Icons.arrow_back,color:Colors.white , )),
-              Padding(
-                padding: const EdgeInsets.only(left: 70.0, right: 80.0),
-                child: Text('Set Reminder',
-                  style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color:Colors.white),),
-              ),
-              /*Icon(Icons.search,color:Colors.white ),*/
-            ],
+                Text("Set Reminder"),
+                Spacer(),
+                Icon(Icons.search)
+              ],
+            ),
           ),
-        ),
-        height: MediaQuery.of(context).size.height * 0.1,
-        width: MediaQuery.of(context).size.width,
-      ),
-      Expanded(
-        child: ListView(
-          shrinkWrap: true,
+      body: Container(
+        child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.only(left:10.0, right: 10.0,),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                SizedBox(height: 10,),
-              ListView(
+            Expanded(
+              child: ListView(
                 shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
                 children: [
-                    SizedBox(
-                      height: 10,
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: 1.0,
+                      //right: 8.0,
                     ),
-
-                    //   padding: EdgeInsets.only(
-                    //       left: size.width * 0.20, right: size.width * 0.20),
-                    //   child: Image.asset(
-                    //     "assets/icons/sanju-vector.png",
-                    //   ),
-                    // ),
-
-                    // SizedBox(
-                    //   height: 20,
-                    // ),
-                    Form(
-                      key: _formKey,
-                      // ignore: deprecated_member_use
-                      autovalidate: _autovalidate,
-                      /*child: Expanded(*/
-                        child: Column(
-                          children: <Widget>[
-
-                            Padding(
-                              padding:
-                              const EdgeInsets.symmetric(horizontal: 25),
-                              child: TextFormField(
-                                decoration: InputDecoration(
-                                    hintText: "Type",
-                                    hintStyle: TextStyle(color: Colors.grey)),
-                                textInputAction: TextInputAction.next,
-                                keyboardType: TextInputType.text,
-                                inputFormatters: [
-                                  WhitelistingTextInputFormatter(
-                                      RegExp("[a-zA-Z ]")),
-                                ],
-                              ),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 25),
-                              child: TextFormField(
-                                decoration: InputDecoration(
-                                    hintText:
-                                        "Medicine Name",
-                                    hintStyle: TextStyle(color: Colors.grey)),
-                                textInputAction: TextInputAction.next,
-                                keyboardType: TextInputType.text,
-                                inputFormatters: [
-                                  WhitelistingTextInputFormatter(
-                                      RegExp("[a-zA-Z ]")),
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 25),
-                              child: DropDown.staticDropdown2(
-                                 "Dosager",
-                                  "genderSignup",
-                                  genderList, (KeyvalueModel data) {
-                                setState(() {
-                                  SetReminder.genderModel = data;
-                                });
-                              }),
-                            ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 25),
-                        child: Align(
-                              alignment: Alignment.centerLeft,
-                              child: Text('Reminder Time',
-                                  style: TextStyle(fontWeight: FontWeight.w600,color:Colors.black,fontSize: 15),),
-                              ),
-
-                      ),
-                            Padding(
-                              padding:
-                              const EdgeInsets.symmetric(horizontal: 25),
-                              child: DropDown.staticDropdown2(
-                                  'How Many Times a Day  ',
-                                  // MyLocalizations.of(context).text("SELECT_GENDER"),
-                                  "genderSignup",
-                                  districtList, (KeyvalueModel data) {
-                                setState(() {
-                                  SetReminder.districtModel = data;
-                                });
-                              }),
-                            ),
-                            SizedBox(
-                                height:5),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 25),
-                              child: Align(
-                                alignment: Alignment.centerLeft,
-                                child: Text('Timings',
-                                  style: TextStyle(fontWeight: FontWeight.w600,color:Colors.black,fontSize: 15),),
-                              ),
-
-                            ),
-
-                            SizedBox(
-                                height:10),
-                            Padding(
-                                padding:
-                                const EdgeInsets.symmetric(horizontal: 10),
-                                child: Row(
-                                  children: const <Widget>[
-                                    Expanded(
-                                      child: Text('07:25', textAlign: TextAlign.center,style: TextStyle(
-                                        decoration:TextDecoration.underline,color: Colors.blueGrey,
-                                      )),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          height: 10,
+                        ),
+                        ListView(
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+                          children: [
+                            Form(
+                              key: _formKey,
+                              // ignore: deprecated_member_use
+                              autovalidate: _autovalidate,
+                              /*child: Expanded(*/
+                              child: Column(
+                                children: <Widget>[
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 18),
+                                    child: TextFormField(
+                                      decoration: InputDecoration(
+                                          hintText: "Type",
+                                          hintStyle:
+                                              TextStyle(color: Colors.grey)),
+                                      textInputAction: TextInputAction.next,
+                                      keyboardType: TextInputType.text,
+                                      inputFormatters: [
+                                        WhitelistingTextInputFormatter(
+                                            RegExp("[a-zA-Z ]")),
+                                      ],
                                     ),
-                                    Expanded(
-                                      child: Text('08:25', textAlign: TextAlign.center,style: TextStyle(
-                                        decoration:TextDecoration.underline,color: Colors.blueGrey,
-                                      )
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 18),
+                                    child: TextFormField(
+                                      decoration: InputDecoration(
+                                          hintText: "Medicine Name",
+                                          hintStyle:
+                                              TextStyle(color: Colors.grey)),
+                                      textInputAction: TextInputAction.next,
+                                      keyboardType: TextInputType.text,
+                                      inputFormatters: [
+                                        WhitelistingTextInputFormatter(
+                                            RegExp("[a-zA-Z ]")),
+                                      ],
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 18),
+                                    child: DropDown.staticDropdown2(
+                                        "Dosager", "genderSignup", genderList,
+                                        (KeyvalueModel data) {
+                                      setState(() {
+                                        SetReminder.genderModel = data;
+                                      });
+                                    }),
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 18),
+                                    child: Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: Text(
+                                        'Reminder Time',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w600,
+                                            color: Colors.black,
+                                            fontSize: 15),
                                       ),
                                     ),
-                                    Expanded(
-                                      child: Text('09:25', textAlign: TextAlign.center,style: TextStyle(
-                                        decoration:TextDecoration.underline,color: Colors.blueGrey,
-                                      )),
-                                    ),
-                                    /* Expanded(
-                                    child: FittedBox(
-                                      fit: BoxFit.contain, // otherwise the logo will be tiny
-                                      child: FlutterLogo(),
-                                    ),
-                                  ),*/
-                                  ],
-                                )
-                            ),
-                           /* Padding(
-                              padding: const EdgeInsets.only(left: 25, right: 25),
-                              child: Text('Frequency',
-                                style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color:Colors.black),),
-                            ),
-*/                             SizedBox(
-                                height:5),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 25),
-                              child: Align(
-                                alignment: Alignment.centerLeft,
-                                child: Text('Frequency',
-                                  style: TextStyle(fontWeight: FontWeight.w600,color:Colors.black,fontSize: 15),),
-                              ),
-
-                            ),
-                            SizedBox(
-                                height:5),
-                            viewMode(),
-                            SizedBox(
-                                height:5),
-                            Padding(
-                                padding:
-                                const EdgeInsets.symmetric(horizontal: 25),
-                                child: Row(
-                                  children: const <Widget>[
-                                    Expanded(
-                                      child: Text('Start Date',
-                                        style: TextStyle(fontWeight: FontWeight.w600,color:Colors.black,fontSize: 15),),
-                                    ),
-                                    SizedBox(
-                                        width:75),
-                                    Expanded(
-                                      child: Text('End Date',
-                                        style: TextStyle(fontWeight: FontWeight.w600,color:Colors.black,fontSize: 15),),
-                                    ),
-
-                                    /* Expanded(
-                                    child: FittedBox(
-                                      fit: BoxFit.contain, // otherwise the logo will be tiny
-                                      child: FlutterLogo(),
-                                    ),
-                                  ),*/
-                                  ],
-                                )
-                            ),
-                            SizedBox(
-                                height:10),
-                            Padding(
-                                padding:
-                                const EdgeInsets.symmetric(horizontal: 25),
-                                child: Row(
-                                  children: const <Widget>[
-                                    Expanded(
-                                      child: Text('25-Jul-2020', textAlign: TextAlign.start,style: TextStyle(
-                                        decoration:TextDecoration.underline,color: Colors.blueGrey,
-                                      )),
-                                    ),
-                                    Expanded(
-                                      child: Text('26-Jul-2020', textAlign: TextAlign.center,style: TextStyle(
-                                        decoration:TextDecoration.underline,color: Colors.blueGrey,
-                                      )
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 18),
+                                    child: DropDown.staticDropdown2(
+                                        'How Many Times a Day  ',
+                                        // MyLocalizations.of(context).text("SELECT_GENDER"),
+                                        "genderSignup",
+                                        districtList, (KeyvalueModel data) {
+                                      setState(() {
+                                        SetReminder.districtModel = data;
+                                      });
+                                    }),
+                                  ),
+                                  SizedBox(height: 10),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 18),
+                                    child: Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: Text(
+                                        'Timings',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w600,
+                                            color: Colors.black,
+                                            fontSize: 15),
                                       ),
                                     ),
-                                    
-                                    /* Expanded(
-                                    child: FittedBox(
-                                      fit: BoxFit.contain, // otherwise the logo will be tiny
-                                      child: FlutterLogo(),
+                                  ),
+                                  SizedBox(height: 10),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 18.0,right: 10),
+                                    child: Row(
+                                      children: [
+                                        Expanded(
+                                          child: TextFormField(
+                                            decoration: InputDecoration(
+                                                hintText: "Time",
+                                                hintStyle:
+                                                TextStyle(color: Colors.grey)),
+                                            textInputAction: TextInputAction.next,
+                                            keyboardType: TextInputType.text,
+                                            inputFormatters: [
+                                              WhitelistingTextInputFormatter(
+                                                  RegExp("[a-zA-Z0-9 .]")),
+                                            ],
+                                          ),
+                                        ),
+                                        SizedBox(width: 5),
+                                        Expanded(
+                                          child: TextFormField(
+                                            decoration: InputDecoration(
+                                                hintText: "Time",
+                                                hintStyle:
+                                                TextStyle(color: Colors.grey)),
+                                            textInputAction: TextInputAction.next,
+                                            keyboardType: TextInputType.text,
+                                            inputFormatters: [
+                                              WhitelistingTextInputFormatter(
+                                                  RegExp("[a-zA-Z0-9 .]")),
+                                            ],
+                                          ),
+                                        ),
+                                        SizedBox(width: 5),
+                                        Expanded(
+                                          child: TextFormField(
+                                            decoration: InputDecoration(
+                                                hintText: "Time",
+                                                hintStyle:
+                                                TextStyle(color: Colors.grey)),
+                                            textInputAction: TextInputAction.next,
+                                            keyboardType: TextInputType.text,
+                                            inputFormatters: [
+                                              WhitelistingTextInputFormatter(
+                                                  RegExp("[a-zA-Z0-9 .]")),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                      // children: const <Widget>[
+                                      //   Expanded(
+                                      //     child: Text('07:25 PM',
+                                      //         textAlign: TextAlign.center,
+                                      //         style: TextStyle(
+                                      //           decoration:
+                                      //               TextDecoration.underline,
+                                      //           color: Colors.blueGrey,
+                                      //         )),
+                                      //   ),
+                                      //   Expanded(
+                                      //     child: Text('08:25 PM',
+                                      //         textAlign: TextAlign.center,
+                                      //         style: TextStyle(
+                                      //           decoration:
+                                      //               TextDecoration.underline,
+                                      //           color: Colors.blueGrey,
+                                      //         )),
+                                      //   ),
+                                      //   Expanded(
+                                      //     child: Text('09:25 PM',
+                                      //         textAlign: TextAlign.center,
+                                      //         style: TextStyle(
+                                      //           decoration:
+                                      //               TextDecoration.underline,
+                                      //           color: Colors.blueGrey,
+                                      //         )),
+                                      //   ),
+                                      // ],
                                     ),
-                                  ),*/
-                                  ],
-                                )
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 25),
-                              child: TextFormField(
-                                decoration: InputDecoration(
-                                    hintText:
-                                        "Add Docter Instruction",
-                                    hintStyle: TextStyle(color: Colors.grey)),
-                                textInputAction: TextInputAction.next,
-                                keyboardType: TextInputType.text,
-                                inputFormatters: [
-                                  WhitelistingTextInputFormatter(
-                                      RegExp("[a-zA-Z ]")),
+                                  ),
+                                  SizedBox(height: 5),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 18),
+                                    child: Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: Text(
+                                        'Frequency',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w600,
+                                            color: Colors.black,
+                                            fontSize: 15),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(height: 5),
+                                  viewMode(),
+                                  SizedBox(height: 5),
+                                  Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 18),
+                                      child: Row(
+                                        children: const <Widget>[
+                                          Expanded(
+                                            child: Text(
+                                              'Start Date :',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.w600,
+                                                  color: Colors.black,
+                                                  fontSize: 15),
+                                            ),
+                                          ),
+                                          SizedBox(width: 75),
+                                          Expanded(
+                                            child: Text(
+                                              'End Date :',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.w600,
+                                                  color: Colors.black,
+                                                  fontSize: 15),
+                                            ),
+                                          ),
+                                        ],
+                                      )),
+                                  SizedBox(height: 5),
+                                  Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 18),
+                                      child: Row(
+                                        children:[
+                                          
+                                          Expanded(child
+                                              : stdate()),
+                                          // Expanded(
+                                          //   child: TextFormField(
+                                          //     decoration: InputDecoration(
+                                          //         hintText: "Date",
+                                          //         hintStyle:
+                                          //         TextStyle(color: Colors.grey)),
+                                          //     textInputAction: TextInputAction.next,
+                                          //     keyboardType: TextInputType.text,
+                                          //     inputFormatters: [
+                                          //       WhitelistingTextInputFormatter(
+                                          //           RegExp("[a-zA-Z0-9 .]")),
+                                          //     ],
+                                          //   ),
+                                          // ),
+                                          SizedBox(width: 8),
+                                          Expanded(child: stdate()),
+                                          // Expanded(
+                                          //   child: TextFormField(
+                                          //     decoration: InputDecoration(
+                                          //         hintText: "Date",
+                                          //         hintStyle:
+                                          //         TextStyle(color: Colors.grey)),
+                                          //     textInputAction: TextInputAction.next,
+                                          //     keyboardType: TextInputType.text,
+                                          //     inputFormatters: [
+                                          //       WhitelistingTextInputFormatter(
+                                          //           RegExp("[a-zA-Z0-9 .]")),
+                                          //     ],
+                                          //   ),
+                                          // ),
+                                        ],
+                                      )),
+                                  SizedBox(height: 5),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 18),
+                                    child: TextFormField(
+                                      decoration: InputDecoration(
+                                          hintText: "Add Docter Instruction",
+                                          hintStyle:
+                                              TextStyle(color: Colors.grey)),
+                                      textInputAction: TextInputAction.next,
+                                      keyboardType: TextInputType.text,
+                                      inputFormatters: [
+                                        WhitelistingTextInputFormatter(
+                                            RegExp("[a-zA-Z ]")),
+                                      ],
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 10),
+                                    child: _submitButton(),
+                                  ),
+                                  SizedBox(
+                                    height: 25,
+                                  ),
                                 ],
                               ),
                             ),
-                            SizedBox(
-                              height: 5,
-                            ),
-
-                            SizedBox(
-                              height: 20,
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 10),
-                              child: _submitButton(),
-                            ),
-                            SizedBox(
-                              height: 25,
-                            ),
+                            /* )*/
                           ],
                         ),
-                      ),
-                   /* )*/
+                        SizedBox(
+                          height: 10,
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
-
-
-                  SizedBox(height: 10,),
-
-                ],),
             ),
           ],
         ),
       ),
-              ],
-          ),
-        ),
-
-
-      )
-    );
+    ));
   }
-              /*_
+
+  /*_
             ],
           ),
         ),
@@ -473,7 +520,9 @@ class SetReminderState extends State<SetReminder> {
           },
         ),
         Text("Daily"),
-        SizedBox(width: 10,),
+        SizedBox(
+          width: 10,
+        ),
         Radio(
           materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
           value: PayMode1.cheque,
@@ -484,9 +533,10 @@ class SetReminderState extends State<SetReminder> {
             });
           },
         ),
-
         Text("Weekly"),
-        SizedBox(width: 10,),
+        SizedBox(
+          width: 10,
+        ),
         Radio(
           materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
           value: PayMode1.online,
@@ -501,6 +551,7 @@ class SetReminderState extends State<SetReminder> {
       ],
     );
   }
+
   Widget mobileNoOTPSearch() {
     return Row(
       children: <Widget>[
@@ -632,6 +683,7 @@ class SetReminderState extends State<SetReminder> {
       ),
     );
   }
+
   Widget _submitButton() {
     return MyWidgets.nextButton(
       text: "Set Reminder".toUpperCase(),
@@ -649,6 +701,7 @@ class SetReminderState extends State<SetReminder> {
       },
     );
   }
+
   Widget nextButton() {
     return GestureDetector(
       onTap: () {
@@ -857,7 +910,8 @@ class SetReminderState extends State<SetReminder> {
       AppData.showInSnackBar(
           context, MyLocalizations.of(context).text("PLEASE_ENTER_lAST_NAME"));
       FocusScope.of(context).requestFocus(fnode2);
-    } else if (SetReminder.genderModel == null || SetReminder.genderModel == "") {
+    } else if (SetReminder.genderModel == null ||
+        SetReminder.genderModel == "") {
       AppData.showInSnackBar(
           context, MyLocalizations.of(context).text("PLEASE_SELECT_GENDER"));
       FocusScope.of(context).requestFocus(fnode4);
@@ -898,4 +952,91 @@ class SetReminderState extends State<SetReminder> {
       }
     }
   }
+
+
+  Widget stdate() {
+    return Padding(
+      //padding: const EdgeInsets.symmetric(horizontal: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 8),
+      child: GestureDetector(
+        onTap: () => _selectDate(context),
+        child: AbsorbPointer(
+          child: Container(
+            // margin: EdgeInsets.symmetric(vertical: 10),
+            height: 50,
+            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 0),
+            // width: size.width * 0.8,
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(5),
+                border: Border.all(color: Colors.black, width: 0.3)),
+            child: TextFormField(
+              //focusNode: fnode4,
+              enabled:  false,
+              controller: stdob,
+              textAlignVertical: TextAlignVertical.center,
+              keyboardType: TextInputType.datetime,
+              textAlign: TextAlign.left,
+              decoration: InputDecoration(
+                hintText: "Date Of Birth",
+                border: InputBorder.none,
+                //contentPadding: EdgeInsets.symmetric(vertical: 10),
+                prefixIcon: Icon(
+                  Icons.calendar_today,
+                  size: 18,
+                  color: AppData.kPrimaryColor,
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+
+  Widget endatee() {
+    return Padding(
+      //padding: const EdgeInsets.symmetric(horizontal: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 8),
+      child: GestureDetector(
+        onTap: () => _selectDate(context),
+        child: AbsorbPointer(
+          child: Container(
+            // margin: EdgeInsets.symmetric(vertical: 10),
+            height: 50,
+            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 0),
+            // width: size.width * 0.8,
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(5),
+                border: Border.all(color: Colors.black, width: 0.3)),
+            child: TextFormField(
+              //focusNode: fnode4,
+              enabled:  false,
+              controller: endate,
+              textAlignVertical: TextAlignVertical.center,
+              keyboardType: TextInputType.datetime,
+              textAlign: TextAlign.left,
+              decoration: InputDecoration(
+                hintText: "Date Of Birth",
+                border: InputBorder.none,
+                //contentPadding: EdgeInsets.symmetric(vertical: 10),
+                prefixIcon: Icon(
+                  Icons.calendar_today,
+                  size: 18,
+                  color: AppData.kPrimaryColor,
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+
+
+
+
 }

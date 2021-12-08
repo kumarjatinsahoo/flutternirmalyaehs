@@ -69,6 +69,7 @@ dependencies:
   custom_rating_bar: ^1.0.2
   flutter_sms: ^2.3.2
   flutter_pdfview: ^1.2.1
+  calendar_timeline: ^1.0.4
 #  audioplayers: ^0.19.0
 #  flutter_sound_lite: ^8.3.12
 #  audioplayers: ^0.18.2

@@ -1453,8 +1453,8 @@ class MyPage1Widget extends StatelessWidget {
                       //icon: FontAwesomeIcons.accusoft,
                       title: "Medicine Reminder",
                       fun: () {
-                      AppData.showInSnackDone(context, "Coming Soon");
-                      //Navigator.pushNamed(context, "/medicinereminder");
+                      //AppData.showInSnackDone(context, "Coming Soon");
+                      Navigator.pushNamed(context, "/medicinereminder");
                         // AppData.showSnack(
                         //     context, "Coming soon", Colors.green);
                       },

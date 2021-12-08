@@ -1,3 +1,5 @@
+import 'package:calendar_timeline/calendar_timeline.dart';
+import 'package:intl/intl.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
@@ -9,331 +11,88 @@ class MedicineReminder extends StatefulWidget {
 
   MedicineReminder({Key key, this.model}) : super(key: key);
 
+
   @override
   _MedicineReminderState createState() => _MedicineReminderState();
 }
 
 class _MedicineReminderState extends State<MedicineReminder> {
   var selectedMinValue;
+  TextEditingController dob = TextEditingController();
+
+  List<TextEditingController> textEditingController = [
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController()
+  ];
+
+  final df = new DateFormat('dd/MM/yyyy');
+  DateTime _selectedDate;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _resetSelectedDate();
+  }
+
+  void _resetSelectedDate() {
+    _selectedDate = DateTime.now().add(Duration(days: 5));
+  }
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
-      body: Container(
-        child: Column(
+    return Scaffold(
+      backgroundColor: Colors.black,
+      appBar: AppBar(
+        backgroundColor: AppData.kPrimaryColor,
+        title: Row(
           children: [
-            Container(
-              color: AppData.kPrimaryColor,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    InkWell(
-                        onTap: () {
-                          Navigator.pop(context);
-                        },
-                        child: Icon(Icons.arrow_back, color: Colors.white)),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 60.0, right: 40.0),
-                      child: Text(
-                        MyLocalizations.of(context).text("MEDICINE_REMINDER"),
-                        style: TextStyle(
-                            fontWeight: FontWeight.w300,
-                            fontSize: 20,
-                            color: Colors.white),
-                      ),
-                    ),
-                    Icon(Icons.search, color: Colors.white),
-                  ],
-                ),
-              ),
-              height: MediaQuery.of(context).size.height * 0.1,
-              width: MediaQuery.of(context).size.width,
-            ),
-
-            /* Column(
-                   mainAxisAlignment: MainAxisAlignment.center,
-                   children: <Widget>[
-                     DatePicker(
-                       DateTime.now(),
-                       initialSelectedDate: DateTime.now(),
-                       selectionColor: Colors.black,
-                       selectedTextColor: Colors.white,
-                       onDateChange: (date) {
-                         // New date selected
-                         setState(() {
-                           _selectedValue = date;
-                         });
-                       },
-                     ),
-                   ],
-                 )*/
-            /* Container(
-                     child: CalendarStrip(
-                       startDate: startDate,
-                       endDate: endDate,
-                       onDateSelected: onSelect,
-                       dateTileBuilder: dateTileBuilder,
-                       iconColor: Colors.black87,
-                       //monthNameWidget: _monthNameWidget,
-                       markedDates: markedDates,
-                       containerDecoration: BoxDecoration(color: Colors.black12),
-                     )),*/
-
-            Expanded(
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                    left: 25.0,
-                    right: 25.0,
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        height: 10,
-                      ),
-                      ListView(
-                        shrinkWrap: true,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Column(
-                                children: [
-                                  Text(
-                                    'June 1',
-                                    style: TextStyle(),
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    '23',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 18),
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    'Mon',
-                                    style: TextStyle(),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                width: 20,
-                              ),
-                              Column(
-                                children: [
-                                  Text(
-                                    'June 1',
-                                    style: TextStyle(),
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    '24',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 18),
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    'Mon',
-                                    style: TextStyle(),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                width: 20,
-                              ),
-                              Column(
-                                children: [
-                                  Text(
-                                    'June 1',
-                                    style: TextStyle(),
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    '25',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 18),
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    'Mon',
-                                    style: TextStyle(),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                width: 20,
-                              ),
-                              Column(
-                                children: [
-                                  Text(
-                                    'June 1',
-                                    style: TextStyle(),
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    '26',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 18),
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    'Mon',
-                                    style: TextStyle(),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                width: 20,
-                              ),
-                              Column(
-                                children: [
-                                  Text(
-                                    'June 1',
-                                    style: TextStyle(),
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    '27',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 18),
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    'Mon',
-                                    style: TextStyle(),
-                                  ),
-                                ],
-                              ),
-                              //  SizedBox(width: 20,),
-                            ],
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 300,
-                      ),
-                      Column(
-                        children: [
-                          Center(
-                            child: Text(
-                              'Set Reminder for Medicines, Water intake or any other Medical Needs',
-                              style: TextStyle(fontWeight: FontWeight.w600),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Container(),
-                              Container(
-                                  decoration:
-                                      BoxDecoration(color: Colors.grey[200]),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text('Medicine'),
-                                  )),
-                              ElevatedButton(
-                                onPressed: () {
-                                  Navigator.pushNamed(context, "/setreminder");
-                                },
-                                child: Container(
-                                    height: 40,
-                                    child: Icon(
-                                      Icons.mediation,
-                                      color: Colors.white,
-                                      size: 29,
-                                    )),
-                                style: ElevatedButton.styleFrom(
-                                  shape: CircleBorder(),
-                                  primary: AppData.kPrimaryColor,
-                                ),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Container(
-                                  decoration:
-                                      BoxDecoration(color: Colors.grey[200]),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text('Other'),
-                                  )),
-                              ElevatedButton(
-                                onPressed: () {
-                                  Navigator.pushNamed(
-                                      context, "/medicinereminderother");
-                                },
-                                child: Container(
-                                    height: 40,
-                                    child: Icon(
-                                      Icons.library_books_outlined,
-                                      color: Colors.white,
-                                      size: 29,
-                                    )),
-                                style: ElevatedButton.styleFrom(
-                                    shape: CircleBorder(),
-                                    primary: Colors.red[700]),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
+            Text("Medicine Reminder"),
+            Spacer(),
+            Icon(Icons.search)
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: Icon(
-          Icons.delete,
-          color: Colors.white,
-          size: 29,
-        ),
-        backgroundColor: AppData.kPrimaryColor,
-        elevation: 5,
-        splashColor: Colors.grey,
+      body: Column(
+        children: [
+          CalendarTimeline(
+            //showYears: true,
+            initialDate: _selectedDate,
+            firstDate: DateTime.now(),
+            lastDate: DateTime.now().add(Duration(days: 365)),
+            onDateSelected: (date) {
+              setState(() {
+                _selectedDate = date;
+              });
+            },
+            leftMargin: 20,
+            monthColor: Colors.white70,
+            dayColor: Colors.teal[200],
+            dayNameColor: Color(0xFF333A47),
+            activeDayColor: Colors.white,
+            activeBackgroundDayColor: Colors.redAccent[100],
+            dotsColor: Color(0xFF333A47),
+            selectableDayPredicate: (date) => date.day != 23,
+            locale: 'en',
+          ),
+          SizedBox(height: 100),
+          InkWell(
+            onTap: (){
+              Navigator.pushNamed(context, '/setreminder');
+            },
+            child: Text(
+              "Set Reminder for Medicines,Water Intake or any other Medical Needs",
+              style: TextStyle(color: Colors.white, fontSize: 18),
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ],
       ),
-    ));
+    );
   }
 
   Widget _submitButton() {
@@ -347,14 +106,69 @@ class _MedicineReminderState extends State<MedicineReminder> {
         } else if (_loginId.text.length != 10) {
           AppData.showInSnackBar(context, "Please enter 10 digit mobile no");
         } else {*/
-
-        // Navigator.pushNamed(context, "/otpView");
-        //}
-        //        Navigator.push(
-        //   context,
-        //   MaterialPageRoute(builder: (context) => MedicineReminderList()),
-        // );
       },
     );
   }
+
+  // Widget dobBirth() {
+  //   return Padding(
+  //     //padding: const EdgeInsets.symmetric(horizontal: 8),
+  //     padding: const EdgeInsets.symmetric(horizontal: 8),
+  //     child: GestureDetector(
+  //       onTap: () => _selectDate(context),
+  //       child: AbsorbPointer(
+  //         child: Container(
+  //           // margin: EdgeInsets.symmetric(vertical: 10),
+  //           height: 50,
+  //           padding: EdgeInsets.symmetric(horizontal: 15, vertical: 0),
+  //           // width: size.width * 0.8,
+  //           decoration: BoxDecoration(
+  //               color: Colors.white,
+  //               borderRadius: BorderRadius.circular(5),
+  //               border: Border.all(color: Colors.black, width: 0.3)),
+  //           child: TextFormField(
+  //             //focusNode: fnode4,
+  //             enabled:  false,
+  //             controller: dob,
+  //             textAlignVertical: TextAlignVertical.center,
+  //             keyboardType: TextInputType.datetime,
+  //             textAlign: TextAlign.left,
+  //             decoration: InputDecoration(
+  //               hintText: "Date Of Birth",
+  //               border: InputBorder.none,
+  //               //contentPadding: EdgeInsets.symmetric(vertical: 10),
+  //               prefixIcon: Icon(
+  //                 Icons.calendar_today,
+  //                 size: 18,
+  //                 color: AppData.kPrimaryColor,
+  //               ),
+  //             ),
+  //           ),
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
+  //
+  //
+  // Future<Null> _selectDate(BuildContext context) async {
+  //   final DateTime picked = await showDatePicker(
+  //       context: context,
+  //       locale: Locale("en"),
+  //       /*initialDate: DateTime.now(),
+  //       firstDate: DateTime.now().subtract(Duration(days: 100)),
+  //       lastDate: DateTime.now(),*/
+  //       initialDate: DateTime.now().subtract(Duration(days: 6570)),
+  //       firstDate: DateTime(1901, 1),
+  //       lastDate: DateTime.now()
+  //           .subtract(Duration(days: 6570))); //18 years is 6570 days
+  //   // if (picked != null && picked != selectedDate)
+  //     setState(() {
+  //       // selectedDate = picked;
+  //       // error[5] = false;
+  //       textEditingController[5].value =
+  //           TextEditingValue(text: df.format(picked));
+  //     });
+  // }
+
 }
