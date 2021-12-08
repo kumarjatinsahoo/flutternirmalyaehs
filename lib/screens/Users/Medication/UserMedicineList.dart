@@ -270,16 +270,19 @@ class _MedicineList extends State<UserMedicineList> {
                                                         });
                                                       },
                                                     )
-                                                  : /*Container(),*/ Text(
-                                                      medicineListModel.body[i]
-                                                              .medname ??
-                                                          "N/A",
-                                                      style: TextStyle(
-                                                          fontSize: 14,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                          letterSpacing: 0.5),
-                                                    ),
+                                                  : /*Container(),*/ Padding(
+                                                    padding: const EdgeInsets.all(14.0),
+                                                    child: Text(
+                                                        medicineListModel.body[i]
+                                                                .medname ??
+                                                            "N/A",
+                                                        style: TextStyle(
+                                                            fontSize: 14,
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                            letterSpacing: 0.5),
+                                                      ),
+                                                  ),
                                               SizedBox(
                                                 width: 5,
                                               ),
@@ -426,7 +429,36 @@ class _MedicineList extends State<UserMedicineList> {
                                                       body.dosage ?? "",
                                                       style: TextStyle(
                                                           color: Colors.black,
-                                                          fontSize: 13),
+                                                          fontSize: 15),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              Container(
+                                                padding: EdgeInsets.symmetric(
+                                                    horizontal: 15,
+                                                    vertical: 0),
+                                                child: Row(
+                                                  crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      "Remark: ",
+                                                      style: TextStyle(
+                                                          fontSize: 15,
+                                                          fontWeight:
+                                                          FontWeight.bold),
+                                                    ),
+                                                    SizedBox(
+                                                      height: 5,
+                                                    ),
+                                                    Center(
+                                                      child: Text(
+                                                        body.remarks ?? "N/A",
+                                                        style: TextStyle(
+                                                            color: Colors.black,
+                                                            fontSize: 15),
+                                                      ),
                                                     ),
                                                   ],
                                                 ),

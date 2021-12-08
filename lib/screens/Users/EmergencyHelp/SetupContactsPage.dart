@@ -714,6 +714,7 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                 onPressed: () {
                   //AppData.showInSnackBar(context, "click");
                   setState(() {
+
                     updateEmergencyModel = UpdateEmergencyModel();
                     updateEmergencyModel.name = _fname.text;
                     updateEmergencyModel.mobile = _mobile.text;

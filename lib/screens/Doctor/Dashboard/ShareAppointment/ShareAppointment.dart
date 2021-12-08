@@ -64,7 +64,7 @@ class _ShareAppointment extends State<ShareAppointment> {
     // Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Monthly Overview'),
+        title: const Text('Share Appointment'),
         centerTitle: true,
         backgroundColor: AppData.kPrimaryColor,
       ),

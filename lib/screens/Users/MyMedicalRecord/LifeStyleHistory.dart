@@ -126,7 +126,7 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
               } else {
                 LifeStyleHistory.ditemodel = null;
               }
-              // appointModel = lab.LabBookModel.fromJson(map);
+              //appointModel = lab.LabBookModel.fromJson(map);
             } else {
               // isDataNotAvail = true;
               //AppData.showInSnackBar(context, "Data Not Found");
@@ -545,10 +545,9 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
             lifeStyleHistryModel.body.occupation.toString() ?? "N/A"
         : textEditingController[1].text = "N/A";
     lifeStyleHistryModel != null
-        ? textEditingController[2].text =
-            lifeStyleHistryModel.body.pets.toString() ?? "N/A"
+        ? textEditingController[2].text = lifeStyleHistryModel.body.pets.toString() ?? "N/A"
         : textEditingController[2].text = "N/A";
-    LifeStyleHistory.ditemodel=KeyvalueModel(name: lifeStyleHistryModel.body.diet);
+
 
     /* textEditingController[1].text=lifeStyleHistryModel.body.occupation.toString() ?? "N/A";
     textEditingController[2].text=lifeStyleHistryModel.body.pets.toString() ?? "N?A";*/

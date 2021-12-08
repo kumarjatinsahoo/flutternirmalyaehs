@@ -184,7 +184,7 @@ class _VitalSignsState extends State<VitalSigns> {
                                 height: 5,
                               ),
                               Text(
-                                "Height(Cm)",
+                                "Height(cm)",
                                 style: TextStyle(
                                   color: Colors.black38,
                                   fontWeight: FontWeight.w500,
@@ -228,7 +228,7 @@ class _VitalSignsState extends State<VitalSigns> {
                                 height: 5,
                               ),
                               Text(
-                                "Weight(Kg)",
+                                "Weight(kg)",
                                 style: TextStyle(
                                   color: Colors.black38,
                                   fontWeight: FontWeight.w500,
@@ -271,7 +271,7 @@ class _VitalSignsState extends State<VitalSigns> {
                                 height: 5,
                               ),
                               Text(
-                                "BMI(Kg/m)",
+                                "BMI(kg/m)",
                                 style: TextStyle(
                                     fontWeight: FontWeight.w500,
                                     color: Colors.black38),

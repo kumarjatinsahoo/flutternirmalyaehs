@@ -39,6 +39,8 @@ import 'package:user/screens/Pharmacists/MonthlyOverview/MonthlyOverviewPharma.d
 import 'package:user/screens/Pharmacists/MonthlyOverview/MonthlyOverviewPharmalist.dart';
 import 'package:user/screens/Pharmacists/Screens/NewDashboardPharmacy.dart';
 import 'package:user/screens/Receptionlist/Dashboard/DashboardReceptionlist.dart';
+import 'package:user/screens/Receptionlist/Dashboard/RefferedPatients/BookAppointment.dart';
+import 'package:user/screens/Receptionlist/Dashboard/RefferedPatients/RefferedPatients.dart';
 import 'package:user/screens/Receptionlist/registration/ReceptionlistSignUpForm.dart';
 import 'package:user/screens/Receptionlist/registration/ReceptionlistSignUpForm1.dart';
 import 'package:user/screens/Receptionlist/registration/ReceptionlistSignUpForm2.dart';
@@ -970,7 +972,9 @@ class _MyAppState extends State<MyApp> {
               '/myPatientlist': (context) => MyPatientlist(
                 model: _model,
               ),
-              '/uploaddocument': (context) => UploadDocument(
+              '/uploaddocument': (context) => DocumentList(
+                model: _model,
+              ),'/upload': (context) => UploadDocument(
                 model: _model,
               ),
               '/adduploaddocument': (context) => AddUploadDocument(
@@ -1013,6 +1017,11 @@ class _MyAppState extends State<MyApp> {
                 model: _model,
               ),
               '/dashboardreceptionlist': (context) => DashboardReceptionlist(
+                model: _model,
+              ),
+              '/refferedpatientsbookAppoint': (context) => BookAppointment(
+                model: _model,
+              ), '/refferedpatients': (context) => RefferedPatients(
                 model: _model,
               ),
               '/receptionlistsignup1': (context) => ReceptionlistSignupForm1(

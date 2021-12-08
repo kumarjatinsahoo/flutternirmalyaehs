@@ -316,7 +316,7 @@ class _MedicineList extends State<UserTestList> {
                                               body.appno ?? "N/A",
                                               style: TextStyle(
                                                   color: Colors.black,
-                                                  fontSize: 13),
+                                                  fontSize: 15),
                                             ),
                                           ],
                                         ),
@@ -341,7 +341,7 @@ class _MedicineList extends State<UserTestList> {
                                               body.testgroup ?? "N/A",
                                               style: TextStyle(
                                                   color: Colors.black,
-                                                  fontSize: 13),
+                                                  fontSize: 15),
                                             ),
                                           ],
                                         ),
@@ -367,7 +367,7 @@ class _MedicineList extends State<UserTestList> {
                                               body.remarks ?? "N/A",
                                               style: TextStyle(
                                                   color: Colors.black,
-                                                  fontSize: 13),
+                                                  fontSize: 15),
                                             ),
                                           ],
                                         ),
