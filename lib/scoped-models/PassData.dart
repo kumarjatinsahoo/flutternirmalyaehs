@@ -149,4 +149,6 @@ String diesepdf;
 
 String emergencyrelation;
 
+String documentcategories;
+
 }

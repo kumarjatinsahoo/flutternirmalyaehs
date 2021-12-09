@@ -70,6 +70,8 @@ class _DocumentListState extends State<DocumentList> {
             if (map[Const.CODE] == Const.SUCCESS) {
               setState(() {
                 documentListModel = document.DocumentlistModell.fromJson(map);
+
+
               });
             } else {
               setState(() {
@@ -154,8 +156,9 @@ class _DocumentListState extends State<DocumentList> {
                                               ? 2
                                               : 3),
                                   itemBuilder: (context, i) {
-                                    document.Body body =
-                                        documentListModel.body[i];
+                                    document.Body body = documentListModel.body[i];
+                                    //String categories=body.key;
+                                    //print("CCCCCCCCCCCCCCCCCCCAAAAAAAAAAAATTTTTTTT"+ widget.model.documentcategories);
                                     return Card(
                                       elevation: 10,
                                       child: Container(
@@ -172,8 +175,8 @@ class _DocumentListState extends State<DocumentList> {
                                             padding: const EdgeInsets.all(10.0),
                                             child: InkWell(
                                               onTap: (){
-                                                Navigator.pushNamed(
-                                                    context, "/upload");
+                                                widget.model.documentcategories=body.key;
+                                                Navigator.pushNamed(context, "/upload");
                                               },
                                               child: Row(
                                                 crossAxisAlignment:
@@ -259,8 +262,8 @@ class _DocumentListState extends State<DocumentList> {
                                                         //color: AppData.kPrimaryBlueColor,
                                                         padding:
                                                             EdgeInsets.all(3),
-                                                        child: Image.asset(
-                                                          "assets/images/Allergicimg.png",
+                                                        child: Image.network(
+                                                          body.code,
                                                           //color: AppData.kPrimaryColor,
                                                           height: 50,
                                                         )),
