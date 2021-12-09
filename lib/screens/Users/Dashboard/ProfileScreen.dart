@@ -123,6 +123,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
               patientProfileModel = ProfileModel.fromJson(map);
+              loginResponse1.body.userPic=patientProfileModel.body.profileImage;
               if (patientProfileModel?.body?.bloodGroup != null) {
                 ProfileScreen.bloodgroupmodel = KeyvalueModel(
                     key: patientProfileModel.body.bloodGroupId,
