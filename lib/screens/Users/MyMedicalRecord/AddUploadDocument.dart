@@ -255,7 +255,7 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
         "," +
         textEditingController[1].text +
         "," +
-        AddUploadDocument.getdocumentmodel.key +
+        doccategory +
         "," +
         loginResponse1.body.user);
     var formData = FormData();
