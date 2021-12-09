@@ -75,7 +75,7 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
     // TODO: implement initState
     super.initState();
     loginResponse1 = widget.model.loginResponse1;
-    doccategory=widget.model.documentcategories;
+    doccategory = widget.model.documentcategories;
     AddUploadDocument.getdocumentmodel = null;
 
     //callApi();
@@ -119,22 +119,13 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
                     onTap: () {
                       getPdfAndUpload();
                     },
-                    child: Material(
-                      elevation: 5,
-                      color: AppData.kPrimaryColor,
-                      borderRadius: BorderRadius.circular(10.0),
-                      child: MaterialButton(
-                        minWidth: 150,
-                        height: 40.0,
-                        child: Text(
-                          /*'Confirmed'*/
-                          "Click Upload Document",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 15,
-                              color: Colors.white),
-                        ),
-                      ),
+                    child: Text(
+                      /*'Confirmed'*/
+                      "",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15,
+                          color: Colors.white),
                     ),
                   ),
                   //dob(),
@@ -174,71 +165,37 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
                   SizedBox(
                     height: 20,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                        child: InkWell(
-                          onTap: () {
-                            Navigator.pop(context);
-                          },
-                          child: Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
-                                border: Border.all(color: Colors.black12),
-                                color: AppData.kPrimaryColor),
-                            child: RaisedButton(
-                              onPressed: null,
-                              child: Text(
-                                'Cancel',
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w400),
-                              ),
-                              disabledColor: AppData.kPrimaryColor,
-                            ),
-                          ),
+                  InkWell(
+                    onTap: () {
+                      if (textEditingController[1].text == "" ||
+                          textEditingController[1].text == null) {
+                        AppData.showInSnackBar(
+                            context, "Please Enter Document Name");
+                      } else if (_date.text == "" || _date.text == null) {
+                        AppData.showInSnackBar(
+                            context, "Please Enter Document Date");
+                      } else {
+                        postMultiPart();
+                      }
+                    },
+                    child: Container(
+                      width: 370,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5),
+                          border: Border.all(color: AppData.kPrimaryColor),
+                          color: AppData.kPrimaryColor),
+                      child: RaisedButton(
+                        onPressed: null,
+                        child: Text(
+                          'Upload',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w400),
                         ),
+                        disabledColor: AppData.kPrimaryColor,
                       ),
-                      Spacer(),
-                      Expanded(
-                        child: InkWell(
-                          onTap: () {
-                            if (textEditingController[1].text == "" ||
-                                textEditingController[1].text == null) {
-                              AppData.showInSnackBar(
-                                  context, "Please Enter Document Name");
-                            }else if (_date.text == "" || _date.text == null) {
-                              AppData.showInSnackBar(context, "Please Enter Document Date");
-                            } else if (idproof == "" || idproof == null) {
-                              AppData.showInSnackBar(
-                                  context, "Please Upload Document");
-                            } else {
-                              postMultiPart();
-                            }
-                          },
-                          child: Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
-                                border:
-                                    Border.all(color: AppData.kPrimaryColor),
-                                color: AppData.kPrimaryColor),
-                            child: RaisedButton(
-                              onPressed: null,
-                              child: Text(
-                                'Upload',
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w400),
-                              ),
-                              disabledColor: AppData.kPrimaryColor,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
                 ],
               ),
@@ -262,10 +219,21 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
     formData.fields
       ..add(MapEntry('userid', loginResponse1.body.user))
       ..add(MapEntry(
-        'docType', doccategory,))
-      ..add(MapEntry('docName', textEditingController[1].text,))
-      ..add(MapEntry('uploadDate', _date.text,))
-      ..add(MapEntry('extension', extension,));
+        'docType',
+        doccategory,
+      ))
+      ..add(MapEntry(
+        'docName',
+        textEditingController[1].text,
+      ))
+      ..add(MapEntry(
+        'uploadDate',
+        _date.text,
+      ))
+      ..add(MapEntry(
+        'extension',
+        extension,
+      ));
     formData.files.add(MapEntry(
       'mulFile',
       MultipartFile.fromFileSync(
@@ -298,11 +266,11 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
       if (response.data["code"] == "success") {
         //Navigator.pushNamed(context, "/uploaddocument");
 
-         popup(context);
+        popup(context);
       } else {
         AppData.showInSnackBar(context, "Something went wrong");
       }
-    }else{
+    } else {
       Navigator.pop(context);
       AppData.showInSnackBar(context, "Something went wrong");
     }
@@ -439,8 +407,7 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
                 AppData.fieldFocusChange(context, fnode3, fnode4);
               },
               decoration: InputDecoration(
-                hintText:
-                ("Document Date"),
+                hintText: ("Document Date"),
                 border: InputBorder.none,
                 //contentPadding: EdgeInsets.symmetric(vertical: 10),
                 suffixIcon: Icon(
@@ -455,13 +422,15 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
       ),
     );
   }
+
   Future<Null> _selectDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
         context: context,
         locale: Locale("en"),
         initialDate: DateTime.now(),
         firstDate: DateTime.now(),
-        lastDate: DateTime.now().add(new Duration(days: 6570))); //18 years is 6570 days
+        lastDate: DateTime.now()
+            .add(new Duration(days: 6570))); //18 years is 6570 days
     //  if (picked != null && picked != selectedDate)
     setState(() {
       selectedDate = picked;
@@ -470,5 +439,4 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
       //addBioMedicalModel.bioMDate = df.format(picked);
     });
   }
-
 }

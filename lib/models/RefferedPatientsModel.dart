@@ -41,6 +41,7 @@ class Body {
   String refdrname;
   String sdate;
   String stime;
+  String hosid;
 
   Body(
       {this.id,
@@ -52,7 +53,9 @@ class Body {
         this.patientname,
         this.refdrname,
         this.sdate,
-        this.stime});
+        this.stime,
+        this.hosid,
+      });
 
   Body.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -65,6 +68,7 @@ class Body {
     refdrname = json['refdrname'];
     sdate = json['sdate'];
     stime = json['stime'];
+    hosid = json['hosid'];
   }
 
   Map<String, dynamic> toJson() {
@@ -79,6 +83,7 @@ class Body {
     data['refdrname'] = this.refdrname;
     data['sdate'] = this.sdate;
     data['stime'] = this.stime;
+    data['hosid'] = this.hosid;
     return data;
   }
 }

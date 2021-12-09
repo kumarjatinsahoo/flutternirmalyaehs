@@ -494,12 +494,8 @@ class _DashboardReceptionlistState extends State<DashboardReceptionlist> {
                                 _buildTileblue(
                                   icon: "assets/images/medical.png",
                                   fun: () {
-
-                                    // AppData.showInSnackDone(context, "Coming Soon");
-                                   Navigator.pushNamed(context, "/refferedpatients");
-                                    //AppData.showInSnackBar(context, "Coming soon");
+                                    Navigator.pushNamed(context, "/refferedpatients");
                                   },
-                                  //color: AppData.BG2BLUE,
                                   color: AppData.BG2BLUE,
                                   bordercolor: AppData.BG2BLUE,
                                   size: 100 / 3,
