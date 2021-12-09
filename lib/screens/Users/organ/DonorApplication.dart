@@ -138,6 +138,94 @@ class DonorApplicationState extends State<DonorApplication> {
     KeyvalueModel(key: "D", name: "D/o"),
     KeyvalueModel(key: "W", name: "W/o"),
   ];
+  static String toDate(String date) {
+    if (date != null && date != "") {
+      DateTime formatter = new DateFormat("dd-MM-yyyy").parse(date);
+      // final DateTime formatter =
+      //DateFormat("yyyy-MM-dd\'T\'HH:mm:ss.SSSZ\'").parse(date);
+      //DateFormat("dd/MM/yyyy").parse(date);
+
+      DateFormat toNeed = DateFormat("dd/MM/yyyy");
+      final String formatted = toNeed.format(formatter);
+      return formatted;
+    } else {
+      return "";
+    }
+  }
+  calculateAge(DateTime birthDate) {
+    DateTime currentDate = DateTime.now();
+    int age = currentDate.year - birthDate.year;
+    int month1 = currentDate.month;
+    int month2 = birthDate.month;
+    if (month2 > month1) {
+      age--;
+    } else if (month1 == month2) {
+      int day1 = currentDate.day;
+      int day2 = birthDate.day;
+      if (day2 > day1) {
+        age--;
+      }
+    }
+    return age;
+  }
+
+  static String calculateTimeDif (String startDt) {
+    // String format=formatter.format(DateTime.now());
+    /*String a="2021-11-11T11:16:51.083Z";
+    String b="2021-11-11T12:16:51.083Z";*/
+    DateTime startDate=toDateFormat(startDt);
+    DateTime current=DateTime.now();
+    DateTime endDate=DateTime(current.year,current.month,current.day);
+    //DateTime endDate=DateTime.parse(DateTime.now().toIso8601String());
+    int days = endDate.difference(startDate).inDays;
+    log("Start Date: "+startDate.toString());
+    log("End Date: "+endDate.toString());
+    log("Diff day: "+days.toString()+"\n\n\n");
+
+    //double y=days/365;
+    int year1= (days/365).toInt();
+    log("Year day: "+year1.toString()+"\n\n\n");
+    int restDays=0;
+    int month=0;
+    if(year1>0) {
+      restDays = days - (year1 * 365);
+      month=restDays%30;
+    }
+
+    return year1.toString()+" Years and "+month.toString()+" Month";
+  }
+   String calculateTimeDifOne(
+      DateTime startDate) {
+    // String format=formatter.format(DateTime.now());
+    /*String a="2021-11-11T11:16:51.083Z";
+    String b="2021-11-11T12:16:51.083Z";*/
+    //DateTime startDate=toDateFormat(startDt);
+    DateTime current=DateTime.now();
+    DateTime endDate=DateTime(current.year,current.month,current.day);
+    //DateTime endDate=DateTime.parse(DateTime.now().toIso8601String());
+    int days = endDate.difference(startDate).inDays;
+    log("Start Date: "+startDate.toString());
+    log("End Date: "+endDate.toString());
+    log("Diff day: "+days.toString()+"\n\n\n");
+
+    //double y=days/365;
+    int year1= (days/365).toInt();
+    log("Year day: "+year1.toString()+"\n\n\n");
+    int restDays=0;
+    int month=0;
+    if(year1>0) {
+       restDays = days - (year1 * 365);
+       month=restDays%30;
+    }
+
+    return year1.toString()+" Years and "+month.toString()+" Month";
+  }
+
+  static DateTime toDateFormat(String date) {
+    final DateTime formatter = DateFormat("dd-MM-yyyy").parse(date);
+    return formatter;
+  }
+
 
   List<DropdownMenuItem<KeyvalueModel>> _dropdownMenuItems;
   KeyvalueModel _selectedItem;
@@ -163,19 +251,17 @@ class DonorApplicationState extends State<DonorApplication> {
         locale: Locale("en"),
         initialDate: DateTime.now().subtract(Duration(days: 6570)),
         firstDate: DateTime(1901, 1),
-        lastDate: DateTime.now()
-            .subtract(Duration(days: 6570))); //18 years is 6570 days
+        lastDate: DateTime.now().subtract(Duration(days: 6570))); //18 years is 6570 days
     if (picked != null && picked != selectedDate)
       setState(() {
         selectedDate = picked;
         error[2] = false;
-        textEditingController[2].value =
-            TextEditingValue(text: df.format(picked));
+        textEditingController[2].value = TextEditingValue(text: df.format(picked));
+        textEditingController[3].value = TextEditingValue(text:calculateTimeDifOne(selectedDate));
       });
   }
 
   bool fromLogin = false;
-
   StreamSubscription _connectionChangeStream;
   bool isOnline = false;
   List<KeyvalueModel> genderList = [
@@ -261,11 +347,16 @@ class DonorApplicationState extends State<DonorApplication> {
             patientProfileModel = ProfileModel.fromJson(map);
             textEditingController[0].text=patientProfileModel.body.fullName;
             textEditingController[2].text=patientProfileModel.body.dob;
-            textEditingController[3].text=patientProfileModel.body.ageYears;
+
+            //textEditingController[3].text=patientProfileModel.body.ageYears;
             textEditingController[4].text=patientProfileModel.body.mobile;
             textEditingController[5].text=patientProfileModel.body.email;
             textEditingController[6].text=patientProfileModel.body.address+" , "+patientProfileModel.body.pAddress;
             textEditingController[15].text=patientProfileModel.body.bloodGroup;
+            //String dob=patientProfileModel.body.dob;
+            textEditingController[3].value = TextEditingValue(text:calculateTimeDif(patientProfileModel.body.dob));
+            //textEditingController[15].text=patientProfileModel.body.bloodGroupId;
+
           });
         } else {
           setState(() {
@@ -391,8 +482,7 @@ class DonorApplicationState extends State<DonorApplication> {
               SizedBox(
                 height: 8,
               ),
-
-              Padding(
+              (patientProfileModel!= null && patientProfileModel.body.dob!=null)?Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: TextFormField(
                   controller: textEditingController[2],
@@ -410,7 +500,10 @@ class DonorApplicationState extends State<DonorApplication> {
                     WhitelistingTextInputFormatter(RegExp("[0-9 -]")),
                   ],
                 ),
-              ),
+              ): Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: dob(),),
+
               // Padding(
               //   padding: const EdgeInsets.symmetric(horizontal: 20.0),
               //   child: dob(),
@@ -440,6 +533,7 @@ class DonorApplicationState extends State<DonorApplication> {
               SizedBox(
                 height: 8,
               ),
+              (patientProfileModel!= null && patientProfileModel.body.bloodGroup!=null)?
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: TextFormField(
@@ -456,20 +550,20 @@ class DonorApplicationState extends State<DonorApplication> {
                     WhitelistingTextInputFormatter(RegExp("[0-9,a-zA-Z./-]")),
                   ],
                 ),
+              ):
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: DropDown.networkDropdownGetpartUserundreline(
+                    MyLocalizations.of(context).text("BLOODGROUP"),
+                    ApiFactory.BLOODGROUP_API,
+                    "bloodgroupdn", (KeyvalueModel data) {
+                  setState(() {
+                    print(ApiFactory.BLOODGROUP_API);
+                    DonorApplication.bloodgroupModel = data;
+                    //DonorApplication.bloodgroupModel = null;
+                  });
+                }),
               ),
-              // Padding(
-              //   padding: const EdgeInsets.symmetric(horizontal: 20),
-              //   child: DropDown.networkDropdownGetpartUserundreline(
-              //       MyLocalizations.of(context).text("BLOODGROUP"),
-              //       ApiFactory.BLOODGROUP_API,
-              //       "bloodgroupdn", (KeyvalueModel data) {
-              //     setState(() {
-              //       print(ApiFactory.BLOODGROUP_API);
-              //       DonorApplication.bloodgroupModel = data;
-              //       //DonorApplication.bloodgroupModel = null;
-              //     });
-              //   }),
-              // ),
               SizedBox(
                 height: 8,
               ),
@@ -1368,10 +1462,16 @@ class DonorApplicationState extends State<DonorApplication> {
           //Navigator.pushNamed(context, "/addWitness");
           if (textEditingController[0].text == "" ||
               textEditingController[0].text == null) {
-            AppData.showInSnackBar(context, "Please enter Person Name");
+            AppData.showInSnackBar(context, "Please enter Name");
+          } else if (textEditingController[0].text  != "" && textEditingController[0].text .length <= 2) {
+            AppData.showInSnackBar(
+                context, "Please enter a valid  Name");
           } else if (textEditingController[1].text == "" ||
               textEditingController[1].text == null) {
             AppData.showInSnackBar(context, "Please enter S/o,D/o,W/o");
+          } else if (textEditingController[1].text  != "" && textEditingController[1].text .length <= 2) {
+            AppData.showInSnackBar(
+                context, "Please enter a valid  S/o,D/o,W/o");
           } else if (textEditingController[2].text == "" ||
               textEditingController[2].text == null) {
             AppData.showInSnackBar(context, "Please enter DOB");
@@ -1410,13 +1510,15 @@ class DonorApplicationState extends State<DonorApplication> {
             addOrganDonModel.donorName = textEditingController[0].text;
             addOrganDonModel.donorType = _selectedItem.key;
             addOrganDonModel.typeUserName = textEditingController[1].text;
-            addOrganDonModel.dob = textEditingController[2].text;
+            //addOrganDonModel.dob = textEditingController[2].text;
+            addOrganDonModel.dob = toDate(patientProfileModel.body.dob);
             addOrganDonModel.age = textEditingController[3].text;
-            //addOrganDonModel.bldGr = DonorApplication.bloodgroupModel.key;
             addOrganDonModel.mob = textEditingController[4].text;
             addOrganDonModel.email = textEditingController[5].text;
             addOrganDonModel.address = textEditingController[6].text;
-            addOrganDonModel.bldGr = textEditingController[15].text;
+          (patientProfileModel.body.bloodGroup!=null)?
+            addOrganDonModel.bldGr = patientProfileModel.body.bloodGroupId:
+            addOrganDonModel.bldGr = DonorApplication.bloodgroupModel.key;
             addOrganDonModel.witnessList = witnessModle;
             addOrganDonModel.organList = selectedOrganList;
             addOrganDonModel.tissueList = selectedTissueList;
@@ -1750,7 +1852,7 @@ class DonorApplicationState extends State<DonorApplication> {
       //padding: const EdgeInsets.symmetric(horizontal: 8),
       padding: const EdgeInsets.symmetric(horizontal: 0),
       child: GestureDetector(
-        onTap: () => widget.isConfirmPage ? null : _selectDate(context),
+        onTap: () => _selectDate(context),
         child: AbsorbPointer(
           child: Container(
             // margin: EdgeInsets.symmetric(vertical: 10),
@@ -1794,8 +1896,8 @@ class DonorApplicationState extends State<DonorApplication> {
                 AppData.fieldFocusChange(context, fnode3, fnode4);
               },
               decoration: InputDecoration(
-                hintText: patientProfileModel?.body?.dob ?? "N/A",
-                //hintText: MyLocalizations.of(context).text("DOB1"),
+               // hintText: patientProfileModel?.body?.dob ?? "N/A",
+                hintText: MyLocalizations.of(context).text("DOB1"),
                 //"Date of Birth",
                 border: InputBorder.none,
                 //contentPadding: EdgeInsets.symmetric(vertical: 10),

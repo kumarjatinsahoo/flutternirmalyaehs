@@ -49,6 +49,7 @@ class Body {
   String vendorId;
   String otp;
   String token;
+  String userPic;
 
   Body(
       {this.user,
@@ -99,6 +100,7 @@ class Body {
     vendorId = json['vendorId'];
     otp = json['otp'];
     token = json['token'];
+    userPic = json['userPic'];
   }
 
   Map<String, dynamic> toJson() {
@@ -126,6 +128,7 @@ class Body {
     data['vendorId'] = this.vendorId;
     data['otp'] = this.otp;
     data['token'] = this.token;
+    data['userPic'] = this.userPic;
     return data;
   }
 }
