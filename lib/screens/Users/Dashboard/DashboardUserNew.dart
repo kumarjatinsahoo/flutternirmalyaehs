@@ -138,7 +138,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
             if (map[Const.CODE] == Const.SUCCESS) {
               log("Value is>>"+map["body"]["profileImage"]);
               /*setState(() {*/
-                loginResponse1.body.userPic = map["body"]["profileImage"];
+                loginResponse1.body.userpic = map["body"]["profileImage"];
               //});
             }
          // });

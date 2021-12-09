@@ -49,7 +49,7 @@ class Body {
   String vendorId;
   String otp;
   String token;
-  String userPic;
+  String userpic;
 
   Body(
       {this.user,
