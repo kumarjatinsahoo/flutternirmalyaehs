@@ -6,13 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
-import 'package:user/localization/localizations.dart';
 import 'package:user/models/AddBioMedicalModel.dart';
 import 'package:user/models/AddUploadDocumentModel.dart';
 import 'package:user/models/BiomedicalModel.dart' as bio;
 import 'package:user/models/KeyvalueModel.dart';
 import 'package:user/models/LoginResponse1.dart';
-import 'package:user/providers/Const.dart';
 import 'package:user/providers/DropDown.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
@@ -43,6 +41,7 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
   final df = new DateFormat('dd/MM/yyyy');
   String profilePath = null, idproof = null;
   File pathUsr1 = null;
+  String doccategory;
   AddUploadDocumentModel adduploaddocument = AddUploadDocumentModel();
 
   TextEditingController _date = TextEditingController();
@@ -76,6 +75,7 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
     // TODO: implement initState
     super.initState();
     loginResponse1 = widget.model.loginResponse1;
+    doccategory=widget.model.documentcategories;
     AddUploadDocument.getdocumentmodel = null;
 
     //callApi();
@@ -98,7 +98,7 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  DropDown.networkDropdownGetpartUser1(
+                  /*DropDown.networkDropdownGetpartUser1(
                       "Document Category",
                       ApiFactory.GET_DOCUMENT_API,
                       "documentlist",
@@ -109,8 +109,10 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
                       AddUploadDocument.getdocumentmodel = data;
                     });
                   }),
-                  SizedBox(height: 10),
+                  SizedBox(height: 10),*/
                   formField(1, "Document Name"),
+                  SizedBox(height: 10),
+                  dob(),
                   SizedBox(height: 15),
 
                   InkWell(
@@ -203,14 +205,12 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
                       Expanded(
                         child: InkWell(
                           onTap: () {
-                            if (AddUploadDocument.getdocumentmodel == null ||
-                                AddUploadDocument.getdocumentmodel == "") {
-                              AppData.showInSnackBar(
-                                  context, "Please select Document Category ");
-                            } else if (textEditingController[1].text == "" ||
+                            if (textEditingController[1].text == "" ||
                                 textEditingController[1].text == null) {
                               AppData.showInSnackBar(
                                   context, "Please Enter Document Name");
+                            }else if (_date.text == "" || _date.text == null) {
+                              AppData.showInSnackBar(context, "Please Enter Document Date");
                             } else if (idproof == "" || idproof == null) {
                               AppData.showInSnackBar(
                                   context, "Please Upload Document");
@@ -262,17 +262,10 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
     formData.fields
       ..add(MapEntry('userid', loginResponse1.body.user))
       ..add(MapEntry(
-        'docType',
-        AddUploadDocument.getdocumentmodel.key,
-      ))
-      ..add(MapEntry(
-        'docName',
-        textEditingController[1].text,
-      ))
-      ..add(MapEntry(
-        'extension',
-        extension,
-      ));
+        'docType', doccategory,))
+      ..add(MapEntry('docName', textEditingController[1].text,))
+      ..add(MapEntry('uploadDate', _date.text,))
+      ..add(MapEntry('extension', extension,));
     formData.files.add(MapEntry(
       'mulFile',
       MultipartFile.fromFileSync(
@@ -405,4 +398,77 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
           ),
         ]).show();
   }
+
+  Widget dob() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8),
+      child: GestureDetector(
+        onTap: () => _selectDate(context),
+        child: AbsorbPointer(
+          child: Container(
+            height: 50,
+            padding: EdgeInsets.symmetric(horizontal: 10),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(5),
+              border: Border.all(color: Colors.black, width: 0.3),
+            ),
+            child: TextFormField(
+              focusNode: fnode3,
+              // enabled: !widget.isConfirmPage ? false : true,
+              controller: _date,
+              keyboardType: TextInputType.datetime,
+              textAlign: TextAlign.left,
+              onSaved: (value) {
+                //userPersonalForm.dob = value;
+                selectDob = value;
+              },
+              validator: (value) {
+                if (value.isEmpty) {
+                  error[2] = true;
+                  return null;
+                }
+                error[2] = false;
+                return null;
+              },
+              onFieldSubmitted: (value) {
+                error[2] = false;
+                // print("error>>>" + error[2].toString());
+
+                setState(() {});
+                AppData.fieldFocusChange(context, fnode3, fnode4);
+              },
+              decoration: InputDecoration(
+                hintText:
+                ("Document Date"),
+                border: InputBorder.none,
+                //contentPadding: EdgeInsets.symmetric(vertical: 10),
+                suffixIcon: Icon(
+                  Icons.calendar_today,
+                  size: 15,
+                  color: Colors.grey,
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+  Future<Null> _selectDate(BuildContext context) async {
+    final DateTime picked = await showDatePicker(
+        context: context,
+        locale: Locale("en"),
+        initialDate: DateTime.now(),
+        firstDate: DateTime.now(),
+        lastDate: DateTime.now().add(new Duration(days: 6570))); //18 years is 6570 days
+    //  if (picked != null && picked != selectedDate)
+    setState(() {
+      selectedDate = picked;
+      error[2] = false;
+      _date.value = TextEditingValue(text: df.format(picked));
+      //addBioMedicalModel.bioMDate = df.format(picked);
+    });
+  }
+
 }
