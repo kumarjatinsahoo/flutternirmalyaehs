@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/KeyvalueModel.dart';
 import 'package:user/models/LoginResponse1.dart';
@@ -14,6 +15,7 @@ import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
+import 'package:user/widgets/text_field_address.dart';
 
 class BookAppointment extends StatefulWidget {
   MainModel model;
@@ -35,6 +37,7 @@ enum RadioGroup1 { payon_shop, online }
 class _BookAppointment extends State<BookAppointment> {
   DateTime selectedDate = DateTime.now();
   String formattedDate;
+  String receptionhospitalid;
 
   // apnt.AppointmentlistModel appointmentlistModel;
   //LoginResponse1 loginResponse;
@@ -53,6 +56,16 @@ class _BookAppointment extends State<BookAppointment> {
   String roleid = "2";
   TextEditingController appointmentdate = TextEditingController();
   final df1 = new DateFormat('dd-MMM-yyyy');
+  List<TextEditingController> textEditingController = [
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+  ];
+
   List<bool> error = [false, false, false, false, false, false];
   bool isValidtime=false;
 
@@ -80,6 +93,7 @@ class _BookAppointment extends State<BookAppointment> {
   void initState() {
     super.initState();
     loginResponse = widget.model.loginResponse1;
+    receptionhospitalid=widget.model.receptionhospitalid;
   }
 
 
@@ -123,14 +137,8 @@ class _BookAppointment extends State<BookAppointment> {
                 child: SizedBox(
                   height: 58,
                   child: DropDown.networkDropdownGetpartUser11(
-                      "Time",ApiFactory.DOCTER_AVAILABLE +BookAppointment.doctorreceptionmodel.key.toString() + "&date=" + appointmentdate.text.toString(),
-                      /*"Time", ApiFactory.DOCTER_AVAILABLE+
-                                      DoctorconsultationPage.doctorModel.key+
-                                      "&appointdate=" + appointmentdate.text.toString()+
-                                      "&hospitalid="+DoctorconsultationPage.hospitalModel.key ,*/
-                      /* (DoctorconsultationPage.doctorModel.key.toString(),
-                                      formattedDate,
-                                      DoctorconsultationPage.hospitalModel.key.toString()),*/
+                      "Time",ApiFactory.DOCTER_AVAILABLE +BookAppointment.doctorreceptionmodel.key.toString() +
+                      "&date=" + appointmentdate.text.toString(),
                       "time1",
                       widget.model.token, (KeyvalueModel data) {
                     setState(() {
@@ -147,45 +155,29 @@ class _BookAppointment extends State<BookAppointment> {
 
                 ),
               )
-                  : Container(),              SizedBox(height: 30),
+                  : Container(),
+              SizedBox(height: 10,),
+              fromAddress(
+                  1,
+                  "Reason For Choice", TextInputAction.next,
+                  TextInputType.text,
+                  "reasonforDr"),
+              SizedBox(height: 30),
 
               InkWell(
                 onTap: () {
-                  if (BookAppointment.shareappontmentmodel == null ||
-                      BookAppointment.shareappontmentmodel == "") {
-                    AppData.showInSnackBar(context, "Please select UHID ");
-                  } else if (BookAppointment.doctorreceptionmodel == null ||
+                   if (BookAppointment.doctorreceptionmodel == null ||
                       BookAppointment.doctorreceptionmodel == "") {
-                    AppData.showInSnackBar(
-                        context, "Please select Doctor/Receptionlist Name ");
-                  } else if (_reason.text == "" || _reason.text == null) {
-                    AppData.showInSnackBar(context, "Please enter Notes");
+                    AppData.showInSnackBar(context, "Please select Doctor");
+                  } else if (appointmentdate.text == "" || appointmentdate.text == null) {
+                    AppData.showInSnackBar(context, "Please select your Appointment Date");
+                  } else if (BookAppointment.timeModel == null) {
+                    AppData.showInSnackBar(context, "Please select Time");
+                  } else if (!isValidtime) {
+                    AppData.showInSnackBar(context, "Please select valid Time");
                   } else {
-                    MyWidgets.showLoading(context);
-                    ShareModel sharemodel = ShareModel();
-                    sharemodel.drid = BookAppointment.doctorreceptionmodel.key;
-                    sharemodel.patientid =
-                        BookAppointment.shareappontmentmodel.userid;
-                    sharemodel.refdrid = loginResponse.body.user;
-                    sharemodel.appno =
-                        BookAppointment.shareappontmentmodel.appno;
-                    sharemodel.notes = _reason.text;
+                     saveDb();
 
-                    widget.model.POSTMETHOD2(
-                      api: ApiFactory.POST_SHARE_APPOINTMENT,
-                      json: sharemodel.toJson(),
-                      token: widget.model.token,
-                      fun: (Map<String, dynamic> map) {
-                        Navigator.pop(context);
-                        if (map["code"] == Const.SUCCESS) {
-                          Navigator.pop(context);
-                          AppData.showInSnackDone(
-                              context, map[Const.MESSAGE]);
-                        } else {
-                          AppData.showInSnackBar(context, map[Const.MESSAGE]);
-                        }
-                      },
-                    );
                   }
                 },
                 child: Material(
@@ -201,7 +193,7 @@ class _BookAppointment extends State<BookAppointment> {
                     minWidth: 200,
                     height: 50.0,
                     child: Text(
-                      "Share",
+                      "Submit",
                       style: TextStyle(
                           fontWeight:
                           FontWeight
@@ -321,5 +313,84 @@ class _BookAppointment extends State<BookAppointment> {
     );
   }
 
+  saveDb() {
+    Map<String, dynamic> map = {
+      //"regNo": loginRes.ashadtls[0].id,
+      "userid": widget.model.user,
+      "date": appointmentdate.text.toString(),
+      "time": BookAppointment.timeModel.name ,
+      "opdid": BookAppointment.timeModel.code,
+      "doctor": BookAppointment.doctorreceptionmodel.key.toString(),
+      "notes": textEditingController[1].text,
+      "hospitalid": receptionhospitalid,
+    };
+    MyWidgets.showLoading(context);
+    widget.model.POSTMETHOD1(
+        api: ApiFactory.POST_APPOINTMENT,
+        token: widget.model.token,
+        json: map,
+        fun: (Map<String, dynamic> map) {
+          Navigator.pop(context);
+          if (map[Const.STATUS] == Const.SUCCESS) {
+            popup(context, map[Const.MESSAGE]);
+          } else {
+            AppData.showInSnackBar(context, map[Const.MESSAGE]);
+          }
+        });
+  }
+  popup(BuildContext context, String message) {
+    return Alert(
+        context: context,
+        title: message,
+        type: AlertType.success,
+        onWillPopActive: true,
+        closeIcon: Icon(
+          Icons.info,
+          color: Colors.transparent,
+        ),
+        //image: Image.asset("assets/success.png"),
+        closeFunction: () {},
+        buttons: [
+          DialogButton(
+            child: Text(
+              "OK",
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+            onPressed: () {
+              Navigator.pop(context);
+              Navigator.pop(context);
+              Navigator.pop(context);
+            },
+            color: Color.fromRGBO(0, 179, 134, 1.0),
+            radius: BorderRadius.circular(0.0),
+          ),
+        ]).show();
+  }
 
+  Widget fromAddress(int index, String hint, inputAct, keyType, String type) {
+    return TextFieldAddress(
+      child: TextFormField(
+        controller: textEditingController[index],
+        textInputAction: inputAct,
+        inputFormatters: [
+          //UpperCaseTextFormatter(),
+          WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
+        ],
+        keyboardType: keyType,
+        decoration: InputDecoration(
+          border: InputBorder.none,
+          hintText: hint,
+          hintStyle: TextStyle(color: Colors.grey),
+        ),
+        textAlignVertical: TextAlignVertical.center,
+        onChanged: (newValue) {},
+        onFieldSubmitted: (value) {
+          print("ValueValue" + error[index].toString());
+          setState(() {
+            error[index] = false;
+          });
+        },
+      ),
+    );
+  }
 }

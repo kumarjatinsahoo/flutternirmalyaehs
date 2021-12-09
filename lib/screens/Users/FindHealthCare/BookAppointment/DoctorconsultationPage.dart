@@ -120,7 +120,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
   Future<Null> _selectDate(
     BuildContext context,
   ) async {
-   // MyWidgets.showLoading(context);
+    // MyWidgets.showLoading(context);
     final DateTime picked = await showDatePicker(
         context: context,
         locale: Locale("en"),
@@ -161,8 +161,8 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
   bool isOnline = false;
 
   String formattime;
-  bool isValidtime=false;
-String formattedDate;
+  bool isValidtime = false;
+  String formattedDate;
 
   @override
   void initState() {
@@ -209,9 +209,7 @@ String formattedDate;
         selectedTime = picked;
         time = formatTimeOfDay(picked);
         print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n selecteed time$time");
-        setState(() {
-
-        });
+        setState(() {});
       });
   }
 
@@ -223,12 +221,11 @@ String formattedDate;
     return format.format(dt);
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-     /* appBar: AppBar(
+      /* appBar: AppBar(
         title: Text(
           "Doctor Consultation",
           style: TextStyle(color: Colors.white),
@@ -310,7 +307,7 @@ String formattedDate;
                                 child: SizedBox(
                                   height: 58,
                                   child: DropDown.countryList(
-                                     MyLocalizations.of(context).text("STATE"),
+                                      MyLocalizations.of(context).text("STATE"),
                                       ApiFactory.STATE_API +
                                           DoctorconsultationPage
                                               .countryModel.key,
@@ -335,7 +332,7 @@ String formattedDate;
                                 child: SizedBox(
                                   height: 58,
                                   child: DropDown.countryList(
-                                  MyLocalizations.of(context).text("DIST"),
+                                      MyLocalizations.of(context).text("DIST"),
                                       ApiFactory.DISTRICT_API +
                                           DoctorconsultationPage.stateModel.key,
                                       "districtDA",
@@ -362,7 +359,7 @@ String formattedDate;
                                 child: SizedBox(
                                   height: 58,
                                   child: DropDown.countryList(
-                                     MyLocalizations.of(context).text("city"),
+                                      MyLocalizations.of(context).text("city"),
                                       ApiFactory.CITY_API +
                                           DoctorconsultationPage.distrModel.key,
                                       "cityDA",
@@ -385,7 +382,7 @@ String formattedDate;
                           child: SizedBox(
                             height: 58,
                             child: DropDown.networkDropdownGetpartUser(
-                               MyLocalizations.of(context).text("SPECIALITY"),
+                                MyLocalizations.of(context).text("SPECIALITY"),
                                 ApiFactory.SPECIALITY_API,
                                 "specialityapp",
                                 Icons.work_outlined,
@@ -407,11 +404,13 @@ String formattedDate;
                                   height: 58,
                                   child: DropDown.countryList(
                                       "Doctor",
-                                       ApiFactory.DOCTOOR_API +
+                                      ApiFactory.DOCTOOR_API +
                                           DoctorconsultationPage
-                                              .specialistModel.key +"&city=" +
-                                           (DoctorconsultationPage
-                                               ?.cityModel?.key ?? ""),
+                                              .specialistModel.key +
+                                          "&city=" +
+                                          (DoctorconsultationPage
+                                                  ?.cityModel?.key ??
+                                              ""),
                                       /*+
                                           "&city=" +
                                           (DoctorconsultationPage
@@ -421,16 +420,20 @@ String formattedDate;
                                       Icons.person,
                                       23.0, (KeyvalueModel data) {
                                     setState(() {
-                                      print(ApiFactory.DOCTOOR_API+
-                                          DoctorconsultationPage.specialistModel.key+
-                                          "&city="+DoctorconsultationPage.cityModel.key);
+                                      print(ApiFactory.DOCTOOR_API +
+                                          DoctorconsultationPage
+                                              .specialistModel.key +
+                                          "&city=" +
+                                          DoctorconsultationPage.cityModel.key);
                                       DoctorconsultationPage.doctorModel = data;
-                                      DoctorconsultationPage.hospitalModel = null;
+                                      DoctorconsultationPage.hospitalModel =
+                                          null;
                                       // UserSignUpForm.cityModel = null;
                                     });
                                   }),
                                 ),
-                              ) : Container(),
+                              )
+                            : Container(),
                         (DoctorconsultationPage.doctorModel != null)
                             ? Padding(
                                 padding:
@@ -447,12 +450,15 @@ String formattedDate;
                                       23.0, (KeyvalueModel data) {
                                     setState(() {
                                       print(
-                                        ApiFactory.HOSPITAL_API +DoctorconsultationPage
-                                            ?.doctorModel?.key ?? "",
-                                            /*DoctorconsultationPage
+                                        ApiFactory.HOSPITAL_API +
+                                                DoctorconsultationPage
+                                                    ?.doctorModel?.key ??
+                                            "",
+                                        /*DoctorconsultationPage
                                                 .doctorModel.code.toString(),*/
                                       );
-                                      DoctorconsultationPage.hospitalModel = data;
+                                      DoctorconsultationPage.hospitalModel =
+                                          data;
                                       DoctorconsultationPage.timeModel = null;
 
                                       // UserSignUpForm.cityModel = null;
@@ -467,19 +473,26 @@ String formattedDate;
                         appointdate(),
 
                         //comultationTime(),
-                        (appointmentdate.text.toString() != null||appointmentdate.text.toString()  != "")&&( DoctorconsultationPage.doctorModel!=null)
+                        (appointmentdate.text.toString() != null ||
+                                    appointmentdate.text.toString() != "") &&
+                                (DoctorconsultationPage.doctorModel != null)
                             ? Padding(
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 0),
                                 child: SizedBox(
                                   height: 58,
                                   child: DropDown.networkDropdownGetpartUser11(
-                                      "Time",ApiFactory.DOCTER_AVAILABLE +DoctorconsultationPage.doctorModel.key.toString() + "&date=" + appointmentdate.text.toString(),
-                                     /*"Time", ApiFactory.DOCTER_AVAILABLE+
+                                      "Time",
+                                      ApiFactory.DOCTER_AVAILABLE +
+                                          DoctorconsultationPage.doctorModel.key
+                                              .toString() +
+                                          "&date=" +
+                                          appointmentdate.text.toString(),
+                                      /*"Time", ApiFactory.DOCTER_AVAILABLE+
                                       DoctorconsultationPage.doctorModel.key+
                                       "&appointdate=" + appointmentdate.text.toString()+
                                       "&hospitalid="+DoctorconsultationPage.hospitalModel.key ,*/
-                                   /* (DoctorconsultationPage.doctorModel.key.toString(),
+                                      /* (DoctorconsultationPage.doctorModel.key.toString(),
                                       formattedDate,
                                       DoctorconsultationPage.hospitalModel.key.toString()),*/
                                       "time1",
@@ -487,21 +500,24 @@ String formattedDate;
                                     setState(() {
                                       print(ApiFactory.DOCTER_AVAILABLE);
                                       DoctorconsultationPage.timeModel = data;
-                                      isValidtime=(data.key==1)?false:true;
-                                      if(!isValidtime)
-                                        AppData.showInSnackBar(context, "This time is already booked please select another time");
+                                      isValidtime =
+                                          (data.key == 1) ? false : true;
+                                      if (!isValidtime)
+                                        AppData.showInSnackBar(context,
+                                            "This time is already booked please select another time");
                                     });
-                                    if(data.key==1){
-                                      AppData.showInSnackBar(context, "This time is already booked. Please choose another time.");
+                                    if (data.key == 1) {
+                                      AppData.showInSnackBar(context,
+                                          "This time is already booked. Please choose another time.");
                                     }
                                   }, context),
-
                                 ),
                               )
                             : Container(),
                         fromAddress(
                             1,
-                           MyLocalizations.of(context).text("REASON_FOR_DOCTOR"),
+                            MyLocalizations.of(context)
+                                .text("REASON_FOR_DOCTOR"),
                             TextInputAction.next,
                             TextInputType.text,
                             address_,
@@ -610,9 +626,9 @@ String formattedDate;
       AppData.showInSnackBar(context, "Please select Hospital");
     } else if (appointmentdate.text == "" || appointmentdate.text == null) {
       AppData.showInSnackBar(context, "Please select your Appointment Date");
-    } else if ( DoctorconsultationPage.timeModel==null) {
+    } else if (DoctorconsultationPage.timeModel == null) {
       AppData.showInSnackBar(context, "Please select Time");
-    }  else if (!isValidtime) {
+    } else if (!isValidtime) {
       AppData.showInSnackBar(context, "Please select valid Time");
     } else {
       saveDb();
@@ -635,17 +651,12 @@ String formattedDate;
       //"regNo": loginRes.ashadtls[0].id,
       "userid": widget.model.user,
       "date": appointmentdate.text.toString(),
-      "time": DoctorconsultationPage.timeModel.name/*"23:10"*//*time*/,
-      "opdid": DoctorconsultationPage.timeModel.code,//validitytime.text,
+      "time": DoctorconsultationPage.timeModel.name /*"23:10"*/ /*time*/,
+      "opdid": DoctorconsultationPage.timeModel.code, //validitytime.text,
       "doctor": DoctorconsultationPage.doctorModel.key.toString(),
       "notes": textEditingController[1].text,
       "hospitalid": DoctorconsultationPage.hospitalModel.key,
     };
-    // http://localhost/matrujyoti/api/post-childsRegistration?
-    // regNo=9121378234815204&childname=Aryan Sahu&address=Rourkela Town&city=Sundargarh&state=Odisha&
-    // zip=751024&dateofbirth=09/08/2021&birthtime=07:00 AM&gender=Female&birthweight=2.45 Kg&birthlength=30
-    // pediatriciannm=Dr. Ranju Rani&pediatricianphnno=9876543215&motherName=Anjana
-    // Sahu&motherPhoneNo=9623587541&fatherName=Bijaykanta Sahu&fatherPhoneNo=7894561323&othrcaregivernm=xyz
     MyWidgets.showLoading(context);
     widget.model.POSTMETHOD1(
         api: ApiFactory.POST_APPOINTMENT,
@@ -976,13 +987,13 @@ String formattedDate;
                 },
                 decoration: InputDecoration(
                   hintText: //"Last Period Date",
-                     MyLocalizations.of(context).text("APPOINTMENT_DATE"),
+                      MyLocalizations.of(context).text("APPOINTMENT_DATE"),
                   border: InputBorder.none,
                   //contentPadding: EdgeInsets.symmetric(vertical: 10),
                   suffixIcon: Icon(
                     Icons.calendar_today,
                     size: 18,
-                    color:Colors.grey,
+                    color: Colors.grey,
                   ),
                 ),
               ),
