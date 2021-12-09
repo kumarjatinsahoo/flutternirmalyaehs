@@ -192,7 +192,7 @@ class DonorApplicationState extends State<DonorApplication> {
       month=restDays%30;
     }
 
-    return year1.toString()+" Years and "+month.toString()+" Month";
+    return year1.toString()/*+" Years and "+month.toString()+" Month"*/;
   }
    String calculateTimeDifOne(
       DateTime startDate) {
@@ -218,7 +218,7 @@ class DonorApplicationState extends State<DonorApplication> {
        month=restDays%30;
     }
 
-    return year1.toString()+" Years and "+month.toString()+" Month";
+    return year1.toString()/*+" Years "+month.toString()+" Month"*/;
   }
 
   static DateTime toDateFormat(String date) {
@@ -1478,8 +1478,8 @@ class DonorApplicationState extends State<DonorApplication> {
           } else if (textEditingController[3].text == "" ||
               textEditingController[3].text == null) {
             AppData.showInSnackBar(context, "Please enter Age");
-          } else if ( textEditingController[3].text != null  && (int.tryParse(textEditingController[3].text)<18) ) {
-            AppData.showInSnackBar(context, "Age should be 18 above");
+          /*} else if ( textEditingController[3].text != null  && (int.tryParse(textEditingController[3].text)<18) ) {
+            AppData.showInSnackBar(context, "Age should be 18 above");*/
             // FocusScope.of(context).requestFocus(fnode4);
 
           // } else if (DonorApplication.bloodgroupModel == null ||
