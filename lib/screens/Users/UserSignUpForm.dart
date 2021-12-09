@@ -1226,18 +1226,15 @@ class UserSignUpFormState extends State<UserSignUpForm> {
     } else if (UserSignUpForm.genderModel == null ||
         UserSignUpForm.genderModel == "") {
       AppData.showInSnackBar(context, "Please select Gender");
-    }
-    else if (textEditingController[2].text=="" ||
+    }else if (textEditingController[2].text=="" ||
         textEditingController[2].text == null) {
       AppData.showInSnackBar(context, "Please enter Phone Number");
       FocusScope.of(context).requestFocus(fnode3);
-    }
-    else if (textEditingController[2].text.length != 10 ||
+    }else if (textEditingController[2].text.length != 10 ||
         textEditingController[2].text == null) {
       AppData.showInSnackBar(context, "Please enter Valid Phone Number");
       FocusScope.of(context).requestFocus(fnode3);
-    }
-    else if (UserSignUpForm.countryModel == null ||
+    }else if (UserSignUpForm.countryModel == null ||
         UserSignUpForm.countryModel == "") {
       AppData.showInSnackBar(context, "Please select Country");
     } else if (UserSignUpForm.stateModel == null ||

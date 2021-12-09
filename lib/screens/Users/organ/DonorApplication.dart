@@ -138,7 +138,20 @@ class DonorApplicationState extends State<DonorApplication> {
     KeyvalueModel(key: "D", name: "D/o"),
     KeyvalueModel(key: "W", name: "W/o"),
   ];
+  static String toDate(String date) {
+    if (date != null && date != "") {
+      DateTime formatter = new DateFormat("dd-MM-yyyy").parse(date);
+      // final DateTime formatter =
+      //DateFormat("yyyy-MM-dd\'T\'HH:mm:ss.SSSZ\'").parse(date);
+      //DateFormat("dd/MM/yyyy").parse(date);
 
+      DateFormat toNeed = DateFormat("dd/MM/yyyy");
+      final String formatted = toNeed.format(formatter);
+      return formatted;
+    } else {
+      return "";
+    }
+  }
   List<DropdownMenuItem<KeyvalueModel>> _dropdownMenuItems;
   KeyvalueModel _selectedItem;
   List<DropdownMenuItem<KeyvalueModel>> _dropdownMenuItems1;
@@ -261,11 +274,13 @@ class DonorApplicationState extends State<DonorApplication> {
             patientProfileModel = ProfileModel.fromJson(map);
             textEditingController[0].text=patientProfileModel.body.fullName;
             textEditingController[2].text=patientProfileModel.body.dob;
+
             textEditingController[3].text=patientProfileModel.body.ageYears;
             textEditingController[4].text=patientProfileModel.body.mobile;
             textEditingController[5].text=patientProfileModel.body.email;
             textEditingController[6].text=patientProfileModel.body.address+" , "+patientProfileModel.body.pAddress;
             textEditingController[15].text=patientProfileModel.body.bloodGroup;
+            //textEditingController[15].text=patientProfileModel.body.bloodGroupId;
           });
         } else {
           setState(() {
@@ -440,6 +455,7 @@ class DonorApplicationState extends State<DonorApplication> {
               SizedBox(
                 height: 8,
               ),
+              (patientProfileModel!= null && patientProfileModel.body.bloodGroup!=null)?
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: TextFormField(
@@ -456,20 +472,20 @@ class DonorApplicationState extends State<DonorApplication> {
                     WhitelistingTextInputFormatter(RegExp("[0-9,a-zA-Z./-]")),
                   ],
                 ),
+              ):
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: DropDown.networkDropdownGetpartUserundreline(
+                    MyLocalizations.of(context).text("BLOODGROUP"),
+                    ApiFactory.BLOODGROUP_API,
+                    "bloodgroupdn", (KeyvalueModel data) {
+                  setState(() {
+                    print(ApiFactory.BLOODGROUP_API);
+                    DonorApplication.bloodgroupModel = data;
+                    //DonorApplication.bloodgroupModel = null;
+                  });
+                }),
               ),
-              // Padding(
-              //   padding: const EdgeInsets.symmetric(horizontal: 20),
-              //   child: DropDown.networkDropdownGetpartUserundreline(
-              //       MyLocalizations.of(context).text("BLOODGROUP"),
-              //       ApiFactory.BLOODGROUP_API,
-              //       "bloodgroupdn", (KeyvalueModel data) {
-              //     setState(() {
-              //       print(ApiFactory.BLOODGROUP_API);
-              //       DonorApplication.bloodgroupModel = data;
-              //       //DonorApplication.bloodgroupModel = null;
-              //     });
-              //   }),
-              // ),
               SizedBox(
                 height: 8,
               ),
@@ -1368,10 +1384,16 @@ class DonorApplicationState extends State<DonorApplication> {
           //Navigator.pushNamed(context, "/addWitness");
           if (textEditingController[0].text == "" ||
               textEditingController[0].text == null) {
-            AppData.showInSnackBar(context, "Please enter Person Name");
+            AppData.showInSnackBar(context, "Please enter Name");
+          } else if (textEditingController[0].text  != "" && textEditingController[0].text .length <= 2) {
+            AppData.showInSnackBar(
+                context, "Please enter a valid  Name");
           } else if (textEditingController[1].text == "" ||
               textEditingController[1].text == null) {
             AppData.showInSnackBar(context, "Please enter S/o,D/o,W/o");
+          } else if (textEditingController[1].text  != "" && textEditingController[1].text .length <= 2) {
+            AppData.showInSnackBar(
+                context, "Please enter a valid  S/o,D/o,W/o");
           } else if (textEditingController[2].text == "" ||
               textEditingController[2].text == null) {
             AppData.showInSnackBar(context, "Please enter DOB");
@@ -1410,13 +1432,15 @@ class DonorApplicationState extends State<DonorApplication> {
             addOrganDonModel.donorName = textEditingController[0].text;
             addOrganDonModel.donorType = _selectedItem.key;
             addOrganDonModel.typeUserName = textEditingController[1].text;
-            addOrganDonModel.dob = textEditingController[2].text;
+            //addOrganDonModel.dob = textEditingController[2].text;
+            addOrganDonModel.dob = toDate(patientProfileModel.body.dob);
             addOrganDonModel.age = textEditingController[3].text;
-            //addOrganDonModel.bldGr = DonorApplication.bloodgroupModel.key;
             addOrganDonModel.mob = textEditingController[4].text;
             addOrganDonModel.email = textEditingController[5].text;
             addOrganDonModel.address = textEditingController[6].text;
-            addOrganDonModel.bldGr = textEditingController[15].text;
+          (patientProfileModel.body.bloodGroup!=null)?
+            addOrganDonModel.bldGr = patientProfileModel.body.bloodGroupId:
+            addOrganDonModel.bldGr = DonorApplication.bloodgroupModel.key;
             addOrganDonModel.witnessList = witnessModle;
             addOrganDonModel.organList = selectedOrganList;
             addOrganDonModel.tissueList = selectedTissueList;
