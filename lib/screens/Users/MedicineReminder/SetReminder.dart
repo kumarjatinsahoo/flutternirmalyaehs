@@ -85,24 +85,7 @@ class SetReminderState extends State<SetReminder> {
   final df = new DateFormat('dd/MM/yyyy');
   bool ispartnercode = false;
   bool _checkbox = false;
-
-  Future<Null> _selectDate(BuildContext context) async {
-    final DateTime picked = await showDatePicker(
-        context: context,
-        locale: Locale("en"),
-        initialDate: DateTime.now().subtract(Duration(days: 6570)),
-        firstDate: DateTime(1901, 1),
-        lastDate: DateTime.now()
-            .subtract(Duration(days: 6570))); //18 years is 6570 days
-    if (picked != null && picked != selectedDate)
-      setState(() {
-        selectedDate = picked;
-        error[2] = false;
-        textEditingController[2].value =
-            TextEditingValue(text: df.format(picked));
-      });
-  }
-
+  DateTime _selectedDate;
   bool fromLogin = false;
 
   StreamSubscription _connectionChangeStream;
@@ -150,16 +133,12 @@ class SetReminderState extends State<SetReminder> {
     Size size = MediaQuery.of(context).size;
     return SafeArea(
         child: Scaffold(
-          appBar: AppBar(
-            backgroundColor: AppData.kPrimaryColor,
-            title: Row(
-              children: [
-                Text("Set Reminder"),
-                Spacer(),
-                Icon(Icons.search)
-              ],
-            ),
-          ),
+      appBar: AppBar(
+        backgroundColor: AppData.kPrimaryColor,
+        title: Row(
+          children: [Text("Set Reminder"), Spacer(), Icon(Icons.search)],
+        ),
+      ),
       body: Container(
         child: Column(
           children: [
@@ -197,6 +176,7 @@ class SetReminderState extends State<SetReminder> {
                                           hintText: "Type",
                                           hintStyle:
                                               TextStyle(color: Colors.grey)),
+                                      controller: textEditingController[0],
                                       textInputAction: TextInputAction.next,
                                       keyboardType: TextInputType.text,
                                       inputFormatters: [
@@ -216,6 +196,7 @@ class SetReminderState extends State<SetReminder> {
                                           hintText: "Medicine Name",
                                           hintStyle:
                                               TextStyle(color: Colors.grey)),
+                                      controller: textEditingController[1],
                                       textInputAction: TextInputAction.next,
                                       keyboardType: TextInputType.text,
                                       inputFormatters: [
@@ -265,7 +246,7 @@ class SetReminderState extends State<SetReminder> {
                                       });
                                     }),
                                   ),
-                                  SizedBox(height: 10),
+                                  SizedBox(height: 10) ,
                                   Padding(
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 18),
@@ -282,16 +263,19 @@ class SetReminderState extends State<SetReminder> {
                                   ),
                                   SizedBox(height: 10),
                                   Padding(
-                                    padding: const EdgeInsets.only(left: 18.0,right: 10),
+                                    padding: const EdgeInsets.only(
+                                        left: 18.0, right: 10),
                                     child: Row(
                                       children: [
                                         Expanded(
                                           child: TextFormField(
                                             decoration: InputDecoration(
                                                 hintText: "Time",
-                                                hintStyle:
-                                                TextStyle(color: Colors.grey)),
-                                            textInputAction: TextInputAction.next,
+                                                hintStyle: TextStyle(
+                                                    color: Colors.grey)),
+                                            textInputAction:
+                                                TextInputAction.next,
+                                            controller: textEditingController[3],
                                             keyboardType: TextInputType.text,
                                             inputFormatters: [
                                               WhitelistingTextInputFormatter(
@@ -304,9 +288,10 @@ class SetReminderState extends State<SetReminder> {
                                           child: TextFormField(
                                             decoration: InputDecoration(
                                                 hintText: "Time",
-                                                hintStyle:
-                                                TextStyle(color: Colors.grey)),
-                                            textInputAction: TextInputAction.next,
+                                                hintStyle: TextStyle(
+                                                    color: Colors.grey)),
+                                            textInputAction:
+                                                TextInputAction.next,
                                             keyboardType: TextInputType.text,
                                             inputFormatters: [
                                               WhitelistingTextInputFormatter(
@@ -319,9 +304,10 @@ class SetReminderState extends State<SetReminder> {
                                           child: TextFormField(
                                             decoration: InputDecoration(
                                                 hintText: "Time",
-                                                hintStyle:
-                                                TextStyle(color: Colors.grey)),
-                                            textInputAction: TextInputAction.next,
+                                                hintStyle: TextStyle(
+                                                    color: Colors.grey)),
+                                            textInputAction:
+                                                TextInputAction.next,
                                             keyboardType: TextInputType.text,
                                             inputFormatters: [
                                               WhitelistingTextInputFormatter(
@@ -410,27 +396,10 @@ class SetReminderState extends State<SetReminder> {
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 18),
                                       child: Row(
-                                        children:[
-                                          
-                                          Expanded(child
-                                              : stdate()),
-                                          // Expanded(
-                                          //   child: TextFormField(
-                                          //     decoration: InputDecoration(
-                                          //         hintText: "Date",
-                                          //         hintStyle:
-                                          //         TextStyle(color: Colors.grey)),
-                                          //     textInputAction: TextInputAction.next,
-                                          //     keyboardType: TextInputType.text,
-                                          //     inputFormatters: [
-                                          //       WhitelistingTextInputFormatter(
-                                          //           RegExp("[a-zA-Z0-9 .]")),
-                                          //     ],
-                                          //   ),
-                                          // ),
+                                        children: [
+                                          Expanded(child: stdate()),
                                           SizedBox(width: 8),
-                                          Expanded(child:
-                                          endatee()),
+                                          Expanded(child: endatee()),
                                         ],
                                       )),
                                   SizedBox(height: 5),
@@ -451,10 +420,7 @@ class SetReminderState extends State<SetReminder> {
                                     ),
                                   ),
                                   SizedBox(
-                                    height: 5,
-                                  ),
-                                  SizedBox(
-                                    height: 20,
+                                    height: 25,
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.symmetric(
@@ -485,13 +451,6 @@ class SetReminderState extends State<SetReminder> {
     ));
   }
 
-  /*_
-            ],
-          ),
-        ),
-      ),
-    );
-  }*/
   Widget viewMode() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -539,137 +498,6 @@ class SetReminderState extends State<SetReminder> {
     );
   }
 
-  Widget mobileNoOTPSearch() {
-    return Row(
-      children: <Widget>[
-        Expanded(
-          //flex: 8,
-          child: Padding(
-            padding: const EdgeInsets.only(left: 5.0, right: 7.0),
-            child: Container(
-              // padding: EdgeInsets.only(left: 2),
-              height: 50.0,
-              // decoration: BoxDecoration(
-              //     color: AppData.kPrimaryLightColor,
-              //     borderRadius: BorderRadius.circular(20),
-              //     border: Border.all(color: Colors.black, width: 0.3)),
-              child: mobileNumber(),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Future getCerificateImage() async {
-    // ignore: deprecated_member_use
-    var image = await ImagePicker.pickImage(source: ImageSource.gallery);
-    var decodedImage = await decodeImageFromList(image.readAsBytesSync());
-    print(decodedImage.width);
-    print(decodedImage.height);
-
-    setState(() {
-      _imageCertificate = image;
-      selectGallery = true;
-      print('Image Path $_imageCertificate');
-    });
-  }
-
-  Future getImage() async {
-    // ignore: deprecated_member_use
-    var image = await ImagePicker.pickImage(source: ImageSource.gallery);
-    //var decodedImage = await decodeImageFromList(image.readAsBytesSync());
-    var enc = await image.readAsBytes();
-
-    print("size>>>" + AppData.formatBytes(enc.length, 0).toString());
-    if (50000 < enc.length) {
-      /*AppData.showToastMessage(
-          "Please select image with maximum size 50 KB ", Colors.red);*/
-      return;
-    }
-
-    setState(() {
-      _image = image;
-
-      print('Image Path $_image');
-    });
-  }
-
-  Widget errorMsg(text) {
-    return Align(
-        alignment: Alignment.topLeft,
-        child: Padding(
-          padding: const EdgeInsets.only(left: 18),
-          child: Text(
-            text,
-            style: TextStyle(
-                color: Colors.redAccent,
-                fontSize: 10,
-                fontWeight: FontWeight.w500),
-          ),
-        ));
-  }
-
-  Widget inputFieldContainer(child) {
-    return Padding(
-      padding:
-          const EdgeInsets.only(top: 8.0, left: 8.0, right: 8.0, bottom: 0.0),
-      child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 15),
-        // decoration: BoxDecoration(
-        //     // color: AppData.kPrimaryLightColor,
-        //     borderRadius: BorderRadius.circular(29),
-        //     border: Border.all(color: Colors.black, width: 0.3)),
-        child: child,
-      ),
-    );
-  }
-
-  Widget fromField(int index, String hint, bool enb, inputAct, keyType,
-      FocusNode currentfn, FocusNode nextFn, String type) {
-    // print(index);
-    // print(currentfn);
-    return TextFieldContainer(
-      //color: error[index] ? Colors.red : AppData.kPrimaryLightColor,
-      child: TextFormField(
-        enabled: !enb,
-        controller: textEditingController[index],
-        focusNode: currentfn,
-        textInputAction: inputAct,
-        inputFormatters: [
-          //UpperCaseTextFormatter(),
-          // ignore: deprecated_member_use
-          WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
-        ],
-        keyboardType: keyType,
-        decoration: InputDecoration(
-          // border: InputBorder.none,
-          hintText: hint,
-          hintStyle: TextStyle(color: Colors.grey),
-        ),
-        validator: (value) {
-          if (value.isEmpty) {
-            error[index] = true;
-            return null;
-          } else {
-            error[index] = false;
-            return null;
-          }
-        },
-        onFieldSubmitted: (value) {
-          print("ValueValue" + error[index].toString());
-
-          setState(() {
-            error[index] = false;
-          });
-          AppData.fieldFocusChange(context, currentfn, nextFn);
-        },
-        onSaved: (newValue) {
-          print("onsave");
-        },
-      ),
-    );
-  }
 
   Widget _submitButton() {
     return MyWidgets.nextButton(
@@ -714,175 +542,6 @@ class SetReminderState extends State<SetReminder> {
           ),
         ),
       ),
-    );
-  }
-
-  Widget mobileNumber() {
-    return Padding(
-      //padding: const EdgeInsets.all(8.0),
-      padding:
-          const EdgeInsets.only(top: 0.0, left: 10.0, right: 10.0, bottom: 0.0),
-      child: Container(
-        // decoration: BoxDecoration(
-        //   color: AppData.kPrimaryLightColor,
-        //   borderRadius: BorderRadius.circular(29),
-        //   /*border: Border.all(
-        //        color: Colors.black,width: 0.3)*/
-        // ),
-        child: Row(
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(left: 8),
-              child: DropdownButton<String>(
-                // hint: Text("Select Device"),
-                underline: Container(
-                  color: Colors.grey,
-                ),
-                value: AppData.currentSelectedValue,
-                isDense: true,
-                onChanged: (newValue) {
-                  setState(() {
-                    AppData.currentSelectedValue = newValue;
-                  });
-                  print(AppData.currentSelectedValue);
-                },
-                items: AppData.phoneFormat.map((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
-                  );
-                }).toList(),
-              ),
-            ),
-            Container(
-              height: 35.0,
-              width: 1.0,
-              color: Colors.grey.withOpacity(0.5),
-              margin: const EdgeInsets.only(left: 00.0, right: 10.0),
-            ),
-            new Expanded(
-              child: TextFormField(
-                enabled: widget.isConfirmPage ? false : true,
-                controller: textEditingController[4],
-                focusNode: fnode7,
-                cursorColor: AppData.kPrimaryColor,
-                textInputAction: TextInputAction.next,
-                maxLength: 10,
-                keyboardType: TextInputType.number,
-                decoration: InputDecoration(
-                  // border: InputBorder.none,
-                  counterText: "",
-                  hintText:
-                      MyLocalizations.of(context).text("PHONE_NUMBER") + "*",
-                  hintStyle: TextStyle(color: Colors.grey),
-                ),
-                validator: (value) {
-                  if (value.isEmpty) {
-                    error[4] = true;
-                    return null;
-                  }
-                  error[4] = false;
-                  return null;
-                },
-                onFieldSubmitted: (value) {
-                  // print(error[2]);
-                  error[4] = false;
-                  setState(() {});
-                  AppData.fieldFocusChange(context, fnode7, fnode8);
-                },
-                onSaved: (value) {
-                  //userPersonalForm.phoneNumber = value;
-                },
-              ),
-            )
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget dob() {
-    return Padding(
-      //padding: const EdgeInsets.symmetric(horizontal: 8),
-      padding: const EdgeInsets.symmetric(horizontal: 0),
-      child: GestureDetector(
-        onTap: () => widget.isConfirmPage ? null : _selectDate(context),
-        child: AbsorbPointer(
-          child: Container(
-            // margin: EdgeInsets.symmetric(vertical: 10),
-            height: 45,
-            padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-            // width: size.width * 0.8,
-            decoration: BoxDecoration(
-              // color: AppData.kPrimaryLightColor,
-              // borderRadius: BorderRadius.circular(29),
-              border: Border(
-                bottom: BorderSide(
-                  width: 2.0,
-                  color: Colors.grey,
-                ),
-                // border: Border.all(color: Colors.black, width: 0.3)
-              ),
-            ),
-            child: TextFormField(
-              focusNode: fnode3,
-              enabled: !widget.isConfirmPage ? false : true,
-              controller: textEditingController[2],
-              keyboardType: TextInputType.datetime,
-              textAlign: TextAlign.left,
-              onSaved: (value) {
-                //userPersonalForm.dob = value;
-                selectDob = value;
-              },
-              validator: (value) {
-                if (value.isEmpty) {
-                  error[2] = true;
-                  return null;
-                }
-                error[2] = false;
-                return null;
-              },
-              onFieldSubmitted: (value) {
-                error[2] = false;
-                // print("error>>>" + error[2].toString());
-
-                setState(() {});
-                AppData.fieldFocusChange(context, fnode3, fnode4);
-              },
-              decoration: InputDecoration(
-                hintText: MyLocalizations.of(context).text("DATE_OF_BIRTH"),
-                border: InputBorder.none,
-                //contentPadding: EdgeInsets.symmetric(vertical: 10),
-                prefixIcon: Icon(
-                  Icons.calendar_today,
-                  size: 18,
-                  color: AppData.kPrimaryColor,
-                ),
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget continueButton() {
-    return InkWell(
-      child: Center(
-        child: CircleAvatar(
-          radius: 20.0,
-          //backgroundColor: Colors.amber.shade600,
-          backgroundColor: AppData.kPrimaryColor,
-          child: Icon(
-            Icons.arrow_forward,
-            color: Colors.white,
-          ),
-        ),
-      ),
-      onTap: () {
-        setState(() {});
-        validate();
-      },
     );
   }
 
@@ -940,7 +599,6 @@ class SetReminderState extends State<SetReminder> {
     }
   }
 
-
   Widget stdate() {
     return Padding(
       //padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -959,20 +617,14 @@ class SetReminderState extends State<SetReminder> {
                 border: Border.all(color: Colors.black, width: 0.3)),
             child: TextFormField(
               //focusNode: fnode4,
-              enabled:  false,
+              enabled: false,
               controller: stdob,
-              textAlignVertical: TextAlignVertical.center,
+              //textAlignVertical: TextAlignVertical.center,
               keyboardType: TextInputType.datetime,
               textAlign: TextAlign.left,
               decoration: InputDecoration(
                 hintText: "Date ",
                 border: InputBorder.none,
-                //contentPadding: EdgeInsets.symmetric(vertical: 10),
-                prefixIcon: Icon(
-                  Icons.calendar_today,
-                  size: 18,
-                  color: AppData.kPrimaryColor,
-                ),
               ),
             ),
           ),
@@ -981,13 +633,12 @@ class SetReminderState extends State<SetReminder> {
     );
   }
 
-
   Widget endatee() {
     return Padding(
       //padding: const EdgeInsets.symmetric(horizontal: 8),
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: GestureDetector(
-        onTap: () => _selectDate(context),
+        onTap: () => _selectDate1(context),
         child: AbsorbPointer(
           child: Container(
             // margin: EdgeInsets.symmetric(vertical: 10),
@@ -1000,20 +651,20 @@ class SetReminderState extends State<SetReminder> {
                 border: Border.all(color: Colors.black, width: 0.3)),
             child: TextFormField(
               //focusNode: fnode4,
-              enabled:  false,
+              enabled: false,
               controller: endate,
-              textAlignVertical: TextAlignVertical.center,
+              // textAlignVertical: TextAlignVertical.center,
               keyboardType: TextInputType.datetime,
               textAlign: TextAlign.left,
               decoration: InputDecoration(
                 hintText: "Date",
                 border: InputBorder.none,
                 //contentPadding: EdgeInsets.symmetric(vertical: 10),
-                prefixIcon: Icon(
-                  Icons.calendar_today,
-                  size: 18,
-                  color: AppData.kPrimaryColor,
-                ),
+                // prefixIcon: Icon(
+                //   Icons.calendar_today,
+                //   size: 18,
+                //   color: AppData.kPrimaryColor,
+                // ),
               ),
             ),
           ),
@@ -1022,8 +673,43 @@ class SetReminderState extends State<SetReminder> {
     );
   }
 
+  Future<Null> _selectDate(BuildContext context) async {
+    final DateTime picked = await showDatePicker(
+      context: context,
+      locale: Locale("en"),
+      // initialDate: DateTime.now().subtract(Duration(days: 6570)),
+      //firstDate: DateTime(1901, 1),
+      initialDate: DateTime.now(),
+      firstDate: DateTime.now(),
+      lastDate: DateTime.now().add(Duration(days: 365)),
+      // lastDate: DateTime.now()
+      //     .subtract(Duration(days: 6570))
+    ); //18 years is 6570 days
+    if (picked != null && picked != selectedDate)
+      setState(() {
+        selectedDate = picked;
+        error[2] = false;
+        stdob.value = TextEditingValue(text: df.format(picked));
+      });
+  }
 
-
-
-
+  Future<Null> _selectDate1(BuildContext context) async {
+    final DateTime picked = await showDatePicker(
+      context: context,
+      locale: Locale("en"),
+      // initialDate: DateTime.now().subtract(Duration(days: 6570)),
+      //firstDate: DateTime(1901, 1),
+      initialDate: DateTime.now(),
+      firstDate: DateTime.now(),
+      lastDate: DateTime.now().add(Duration(days: 365)),
+      // lastDate: DateTime.now()
+      //     .subtract(Duration(days: 6570))
+    ); //18 years is 6570 days
+    if (picked != null && picked != selectedDate)
+      setState(() {
+        selectedDate = picked;
+        error[2] = false;
+        endate.value = TextEditingValue(text: df.format(picked));
+      });
+  }
 }
