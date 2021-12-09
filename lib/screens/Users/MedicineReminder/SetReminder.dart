@@ -429,21 +429,8 @@ class SetReminderState extends State<SetReminder> {
                                           //   ),
                                           // ),
                                           SizedBox(width: 8),
-                                          Expanded(child: stdate()),
-                                          // Expanded(
-                                          //   child: TextFormField(
-                                          //     decoration: InputDecoration(
-                                          //         hintText: "Date",
-                                          //         hintStyle:
-                                          //         TextStyle(color: Colors.grey)),
-                                          //     textInputAction: TextInputAction.next,
-                                          //     keyboardType: TextInputType.text,
-                                          //     inputFormatters: [
-                                          //       WhitelistingTextInputFormatter(
-                                          //           RegExp("[a-zA-Z0-9 .]")),
-                                          //     ],
-                                          //   ),
-                                          // ),
+                                          Expanded(child:
+                                          endatee()),
                                         ],
                                       )),
                                   SizedBox(height: 5),
@@ -978,7 +965,7 @@ class SetReminderState extends State<SetReminder> {
               keyboardType: TextInputType.datetime,
               textAlign: TextAlign.left,
               decoration: InputDecoration(
-                hintText: "Date Of Birth",
+                hintText: "Date ",
                 border: InputBorder.none,
                 //contentPadding: EdgeInsets.symmetric(vertical: 10),
                 prefixIcon: Icon(
@@ -1019,7 +1006,7 @@ class SetReminderState extends State<SetReminder> {
               keyboardType: TextInputType.datetime,
               textAlign: TextAlign.left,
               decoration: InputDecoration(
-                hintText: "Date Of Birth",
+                hintText: "Date",
                 border: InputBorder.none,
                 //contentPadding: EdgeInsets.symmetric(vertical: 10),
                 prefixIcon: Icon(

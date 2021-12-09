@@ -43,7 +43,7 @@ class _UploadDocumentState extends State<UploadDocument> {
   DateTime selectedDate = DateTime.now();
   final df = new DateFormat('dd/MM/yyyy');
   String profilePath = null, idproof = null;
-
+String doccategory;
   TextEditingController _date = TextEditingController();
   TextEditingController _reason = TextEditingController();
   TextEditingController _name = TextEditingController();
@@ -72,6 +72,7 @@ class _UploadDocumentState extends State<UploadDocument> {
     // TODO: implement initState
     super.initState();
     loginResponse1 = widget.model.loginResponse1;
+    doccategory=widget.model.documentcategories;
     callAPI(currentMax);
     _scrollController.addListener(() {
       if (_scrollController.position.pixels ==
@@ -84,7 +85,7 @@ class _UploadDocumentState extends State<UploadDocument> {
   callAPI(int i) {
     widget.model.GETMETHODCALL_TOKEN(
         api: ApiFactory.UPLOAD_DOCUMENT +
-            loginResponse1.body.user +
+            loginResponse1.body.user +"&typeid=" +doccategory+
             "&page=" +
             i.toString(),
         token: widget.model.token,
@@ -94,6 +95,7 @@ class _UploadDocumentState extends State<UploadDocument> {
             if (map[Const.CODE] == Const.SUCCESS) {
               if (i == 1) {
                 documentListModel = document.DocumentListModel.fromJson(map);
+
                 //Navigator.pop(context);
               } else {
                 //documentListModel.addMore(map);
