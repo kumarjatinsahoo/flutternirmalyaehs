@@ -648,9 +648,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                             onChanged:(s){
                                               if(s!=null && s!="") {
                                                 textEditingController[4].text =
-                                                    (DateTime
-                                                        .now()
-                                                        .year - int.parse(
+                                                    (DateTime.now().year - int.parse(
                                                         textEditingController[3]
                                                             .text)).toString();
                                               }else{

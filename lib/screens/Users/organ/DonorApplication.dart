@@ -152,6 +152,81 @@ class DonorApplicationState extends State<DonorApplication> {
       return "";
     }
   }
+  calculateAge(DateTime birthDate) {
+    DateTime currentDate = DateTime.now();
+    int age = currentDate.year - birthDate.year;
+    int month1 = currentDate.month;
+    int month2 = birthDate.month;
+    if (month2 > month1) {
+      age--;
+    } else if (month1 == month2) {
+      int day1 = currentDate.day;
+      int day2 = birthDate.day;
+      if (day2 > day1) {
+        age--;
+      }
+    }
+    return age;
+  }
+
+  static String calculateTimeDif (String startDt) {
+    // String format=formatter.format(DateTime.now());
+    /*String a="2021-11-11T11:16:51.083Z";
+    String b="2021-11-11T12:16:51.083Z";*/
+    DateTime startDate=toDateFormat(startDt);
+    DateTime current=DateTime.now();
+    DateTime endDate=DateTime(current.year,current.month,current.day);
+    //DateTime endDate=DateTime.parse(DateTime.now().toIso8601String());
+    int days = endDate.difference(startDate).inDays;
+    log("Start Date: "+startDate.toString());
+    log("End Date: "+endDate.toString());
+    log("Diff day: "+days.toString()+"\n\n\n");
+
+    //double y=days/365;
+    int year1= (days/365).toInt();
+    log("Year day: "+year1.toString()+"\n\n\n");
+    int restDays=0;
+    int month=0;
+    if(year1>0) {
+      restDays = days - (year1 * 365);
+      month=restDays%30;
+    }
+
+    return year1.toString()+" Years and "+month.toString()+" Month";
+  }
+   String calculateTimeDifOne(
+      DateTime startDate) {
+    // String format=formatter.format(DateTime.now());
+    /*String a="2021-11-11T11:16:51.083Z";
+    String b="2021-11-11T12:16:51.083Z";*/
+    //DateTime startDate=toDateFormat(startDt);
+    DateTime current=DateTime.now();
+    DateTime endDate=DateTime(current.year,current.month,current.day);
+    //DateTime endDate=DateTime.parse(DateTime.now().toIso8601String());
+    int days = endDate.difference(startDate).inDays;
+    log("Start Date: "+startDate.toString());
+    log("End Date: "+endDate.toString());
+    log("Diff day: "+days.toString()+"\n\n\n");
+
+    //double y=days/365;
+    int year1= (days/365).toInt();
+    log("Year day: "+year1.toString()+"\n\n\n");
+    int restDays=0;
+    int month=0;
+    if(year1>0) {
+       restDays = days - (year1 * 365);
+       month=restDays%30;
+    }
+
+    return year1.toString()+" Years and "+month.toString()+" Month";
+  }
+
+  static DateTime toDateFormat(String date) {
+    final DateTime formatter = DateFormat("dd-MM-yyyy").parse(date);
+    return formatter;
+  }
+
+
   List<DropdownMenuItem<KeyvalueModel>> _dropdownMenuItems;
   KeyvalueModel _selectedItem;
   List<DropdownMenuItem<KeyvalueModel>> _dropdownMenuItems1;
@@ -176,19 +251,17 @@ class DonorApplicationState extends State<DonorApplication> {
         locale: Locale("en"),
         initialDate: DateTime.now().subtract(Duration(days: 6570)),
         firstDate: DateTime(1901, 1),
-        lastDate: DateTime.now()
-            .subtract(Duration(days: 6570))); //18 years is 6570 days
+        lastDate: DateTime.now().subtract(Duration(days: 6570))); //18 years is 6570 days
     if (picked != null && picked != selectedDate)
       setState(() {
         selectedDate = picked;
         error[2] = false;
-        textEditingController[2].value =
-            TextEditingValue(text: df.format(picked));
+        textEditingController[2].value = TextEditingValue(text: df.format(picked));
+        textEditingController[3].value = TextEditingValue(text:calculateTimeDifOne(selectedDate));
       });
   }
 
   bool fromLogin = false;
-
   StreamSubscription _connectionChangeStream;
   bool isOnline = false;
   List<KeyvalueModel> genderList = [
@@ -275,12 +348,15 @@ class DonorApplicationState extends State<DonorApplication> {
             textEditingController[0].text=patientProfileModel.body.fullName;
             textEditingController[2].text=patientProfileModel.body.dob;
 
-            textEditingController[3].text=patientProfileModel.body.ageYears;
+            //textEditingController[3].text=patientProfileModel.body.ageYears;
             textEditingController[4].text=patientProfileModel.body.mobile;
             textEditingController[5].text=patientProfileModel.body.email;
             textEditingController[6].text=patientProfileModel.body.address+" , "+patientProfileModel.body.pAddress;
             textEditingController[15].text=patientProfileModel.body.bloodGroup;
+            //String dob=patientProfileModel.body.dob;
+            textEditingController[3].value = TextEditingValue(text:calculateTimeDif(patientProfileModel.body.dob));
             //textEditingController[15].text=patientProfileModel.body.bloodGroupId;
+
           });
         } else {
           setState(() {
@@ -406,8 +482,7 @@ class DonorApplicationState extends State<DonorApplication> {
               SizedBox(
                 height: 8,
               ),
-
-              Padding(
+              (patientProfileModel!= null && patientProfileModel.body.dob!=null)?Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: TextFormField(
                   controller: textEditingController[2],
@@ -425,7 +500,10 @@ class DonorApplicationState extends State<DonorApplication> {
                     WhitelistingTextInputFormatter(RegExp("[0-9 -]")),
                   ],
                 ),
-              ),
+              ): Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: dob(),),
+
               // Padding(
               //   padding: const EdgeInsets.symmetric(horizontal: 20.0),
               //   child: dob(),
@@ -1774,7 +1852,7 @@ class DonorApplicationState extends State<DonorApplication> {
       //padding: const EdgeInsets.symmetric(horizontal: 8),
       padding: const EdgeInsets.symmetric(horizontal: 0),
       child: GestureDetector(
-        onTap: () => widget.isConfirmPage ? null : _selectDate(context),
+        onTap: () => _selectDate(context),
         child: AbsorbPointer(
           child: Container(
             // margin: EdgeInsets.symmetric(vertical: 10),
@@ -1818,8 +1896,8 @@ class DonorApplicationState extends State<DonorApplication> {
                 AppData.fieldFocusChange(context, fnode3, fnode4);
               },
               decoration: InputDecoration(
-                hintText: patientProfileModel?.body?.dob ?? "N/A",
-                //hintText: MyLocalizations.of(context).text("DOB1"),
+               // hintText: patientProfileModel?.body?.dob ?? "N/A",
+                hintText: MyLocalizations.of(context).text("DOB1"),
                 //"Date of Birth",
                 border: InputBorder.none,
                 //contentPadding: EdgeInsets.symmetric(vertical: 10),
