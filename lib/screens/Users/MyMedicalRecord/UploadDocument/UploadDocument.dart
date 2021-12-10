@@ -294,7 +294,7 @@ class _UploadDocumentState extends State<UploadDocument> {
                                                   child: RaisedButton(
                                                     onPressed: null,
                                                     child: Text(
-                                                      'View Pdf',
+                                                      'VIEW',
                                                       style: TextStyle(
                                                           color: Colors.white,
                                                           fontSize: 16,
