@@ -31,6 +31,7 @@ class _MedicineReminderState extends State<MedicineReminder> {
 
   final df = new DateFormat('dd/MM/yyyy');
   DateTime _selectedDate;
+  var childButtons = List<UnicornButton>();
 
   @override
   void initState() {
@@ -68,7 +69,7 @@ class _MedicineReminderState extends State<MedicineReminder> {
     _selectedDate = DateTime.now().add(Duration(days: 5));
   }
 
-  var childButtons = List<UnicornButton>();
+
 
   @override
   Widget build(BuildContext context) {
