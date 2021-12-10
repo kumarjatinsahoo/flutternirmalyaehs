@@ -807,7 +807,6 @@ class SetReminderState extends State<SetReminder> {
     );
   }
 
-
   _selectTime(BuildContext context) async {
     final TimeOfDay timeOfDay = await showTimePicker(
       context: context,
