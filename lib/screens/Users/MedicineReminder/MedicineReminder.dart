@@ -89,7 +89,7 @@ class _MedicineReminderState extends State<MedicineReminder> {
               style: TextStyle(color: Colors.white, fontSize: 18),
               textAlign: TextAlign.center,
             ),
-          ),
+          )
         ],
       ),
     );
