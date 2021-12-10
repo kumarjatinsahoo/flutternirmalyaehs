@@ -415,9 +415,9 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                 ),
                 selected: _selectedDestination == 0,
                 onTap: () {
-                  //selectDestination(0);
-                  //Navigator.pop(context);
-                  final Event event = Event(
+                  selectDestination(0);
+                  Navigator.pop(context);
+                 /* final Event event = Event(
                     title: 'Event title',
                     description: 'Event description',
                     location: 'Event location',
@@ -430,7 +430,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                       emailInvites: [], // on Android, you can add invite emails to your event.
                     ),
                   );
-                  Add2Calendar.addEvent2Cal(event);
+                  Add2Calendar.addEvent2Cal(event);*/
                 },
               ),
               ListTile(
