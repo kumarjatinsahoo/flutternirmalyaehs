@@ -322,6 +322,7 @@ class _RefferedPatientsState extends State<RefferedPatients> {
                                       InkWell(
                                         onTap: (){
                                           widget.model.receptionhospitalid=body.hosid;
+                                          widget.model.receptionpatientid=body.patientid;
                                           Navigator.pushNamed(context, "/refferedpatientsbookAppoint");
                                         },
                                         child: Material(

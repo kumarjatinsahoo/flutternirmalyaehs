@@ -38,6 +38,7 @@ class _BookAppointment extends State<BookAppointment> {
   DateTime selectedDate = DateTime.now();
   String formattedDate;
   String receptionhospitalid;
+  String receptionpatientid;
 
   // apnt.AppointmentlistModel appointmentlistModel;
   //LoginResponse1 loginResponse;
@@ -94,6 +95,7 @@ class _BookAppointment extends State<BookAppointment> {
     super.initState();
     loginResponse = widget.model.loginResponse1;
     receptionhospitalid=widget.model.receptionhospitalid;
+    receptionpatientid=widget.model.receptionpatientid;
   }
 
 
@@ -316,7 +318,7 @@ class _BookAppointment extends State<BookAppointment> {
   saveDb() {
     Map<String, dynamic> map = {
       //"regNo": loginRes.ashadtls[0].id,
-      "userid": widget.model.user,
+      "userid": receptionpatientid,
       "date": appointmentdate.text.toString(),
       "time": BookAppointment.timeModel.name ,
       "opdid": BookAppointment.timeModel.code,
