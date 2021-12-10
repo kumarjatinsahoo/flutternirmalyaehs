@@ -4,8 +4,10 @@ import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:unicorndial/unicorndial.dart';
 import 'package:user/models/AddBioMedicalModel.dart';
 import 'package:user/models/AddUploadDocumentModel.dart';
 import 'package:user/models/BiomedicalModel.dart' as bio;
@@ -39,7 +41,7 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
   bool isdata = false;
   DateTime selectedDate = DateTime.now();
   final df = new DateFormat('dd/MM/yyyy');
-  //String profilePath = null;
+  String profilePath = null, idproof = null;
   File pathUsr1 = null;
   String doccategory;
   AddUploadDocumentModel adduploaddocument = AddUploadDocumentModel();
@@ -69,7 +71,7 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
   String extension;
   File selectFile;
   var dio = Dio();
-
+  var childButtons = List<UnicornButton>();
   @override
   void initState() {
     // TODO: implement initState
@@ -77,6 +79,45 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
     loginResponse1 = widget.model.loginResponse1;
     doccategory = widget.model.documentcategories;
     AddUploadDocument.getdocumentmodel = null;
+    childButtons.add(UnicornButton(
+        hasLabel: true,
+        labelText: "Image",
+        currentButton: FloatingActionButton(
+          heroTag: "Image",
+          backgroundColor: Colors.amber,
+          mini: true,
+          child: Icon(Icons.photo),
+          onPressed: () {
+            getCerificateImage();
+
+          },
+        )));
+
+    childButtons.add(UnicornButton(
+        hasLabel: true,
+        labelText: "Document",
+        currentButton: FloatingActionButton(
+          heroTag: "Document",
+          backgroundColor:AppData.kPrimaryColor,
+          mini: true,
+          child: Icon(Icons.file_copy),
+          onPressed: () {
+            getPdfAndUpload();
+          },
+        )));
+
+    childButtons.add(UnicornButton(
+        hasLabel: true,
+        labelText: "Video",
+        currentButton: FloatingActionButton(
+          heroTag: "Video",
+          backgroundColor: AppData.kPrimaryRedColor,
+          mini: true,
+          child: Icon(Icons.airplay),
+          onPressed: () {
+            getVideoUpload();
+          },
+        )));
 
     //callApi();
   }
@@ -89,117 +130,126 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
         backgroundColor: AppData.kPrimaryColor,
         title: Text("Upload Document"),
       ),
-/*      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // Add your onPressed code here!
-        },
-        child: Icon(Icons.add,color: Colors.white,),
-        backgroundColor:AppData.kPrimaryColor,
-      ),*/
-      body: Container(
-        child: Padding(
-          padding: const EdgeInsets.all(10),
-          child: Column(
-            //mainAxisSize: MainAxisSize.min,
-            // crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SizedBox(height: 20),
 
-              /*DropDown.networkDropdownGetpartUser1(
-                  "Document Category",
-                  ApiFactory.GET_DOCUMENT_API,
-                  "documentlist",
-                  Icons.location_on_rounded,
-                  23.0, (KeyvalueModel data) {
-                setState(() {
-                  print(ApiFactory.GET_DOCUMENT_API);
-                  AddUploadDocument.getdocumentmodel = data;
-                });
-              }),
-              SizedBox(height: 10),*/
-              formField(1, "Document Name"),
-              SizedBox(height: 10),
-              dob(),
-              SizedBox(height: 15),
+      floatingActionButton: UnicornDialer(
+        childPadding:4.00,
+          backgroundColor: Colors.transparent,
+          // parentButtonBackground: Colors.redAccent,
+          orientation: UnicornOrientation.VERTICAL,
+          parentButton: Icon(Icons.add),
+          childButtons: childButtons),
+     // floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+    body: Container(
+        child: SingleChildScrollView(
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.all(10),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  /*DropDown.networkDropdownGetpartUser1(
+                      "Document Category",
+                      ApiFactory.GET_DOCUMENT_API,
+                      "documentlist",
+                      Icons.location_on_rounded,
+                      23.0, (KeyvalueModel data) {
+                    setState(() {
+                      print(ApiFactory.GET_DOCUMENT_API);
+                      AddUploadDocument.getdocumentmodel = data;
+                    });
+                  }),
+                  SizedBox(height: 10),*/
+                  formField(1, "Document Name"),
+                  SizedBox(height: 10),
+                  dob(),
+                  SizedBox(height: 15),
 
-              Text(
-                /*'Confirmed'*/
-                "",
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15,
-                    color: Colors.white),
-              ),
-              //dob(),
-              SizedBox(height: 8),
-            /*  (idproof != null)
-                  ? Padding(
-                      padding: const EdgeInsets.only(left: 10, right: 10),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            child: Container(
-                              child: Text(
-                                "Report Path :" + idproof,
-                                style: TextStyle(color: Colors.green),
-                              ),
-                            ),
-                          ),
-                          InkWell(
-                            child: SizedBox(
-                                width: 50.0, child: Icon(Icons.clear)),
-                            onTap: () {
-                              setState(() {
-                                idproof = null;
-                                // registrationModel.profilePhotoBase64 =
-                                null;
-                                //registrationModel.profilePhotoExt =
-                                null;
-                              });
-                            },
-                          ),
-                        ],
-                      ),
-                    )
-                  : Container(),
-              SizedBox(
-                height: 20,
-              ),
-*/                InkWell(
-                onTap: () {
-                  if (textEditingController[1].text == "" ||
-                      textEditingController[1].text == null) {
-                    AppData.showInSnackBar(
-                        context, "Please Enter Document Name");
-                  } else if (_date.text == "" || _date.text == null) {
-                    AppData.showInSnackBar(
-                        context, "Please Enter Document Date");
-                  } else {
-                    postMultiPart();
-                  }
-                },
-                child: Container(
-                  width: 370,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      border: Border.all(color: AppData.kPrimaryColor),
-                      color: AppData.kPrimaryColor),
-                  child: RaisedButton(
-                    onPressed: null,
+                  InkWell(
+                    onTap: () {
+                      getPdfAndUpload();
+                    },
                     child: Text(
-                      'Upload',
+                      /*'Confirmed'*/
+                      "",
                       style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w400),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15,
+                          color: Colors.white),
                     ),
-                    disabledColor: AppData.kPrimaryColor,
                   ),
-                ),
+                  //dob(),
+                  SizedBox(height: 8),
+                  (idproof != null)
+                      ? Padding(
+                          padding: const EdgeInsets.only(left: 10, right: 10),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: Container(
+                                  child: Text(
+                                    "Report Path :" + idproof,
+                                    style: TextStyle(color: Colors.green),
+                                  ),
+                                ),
+                              ),
+                              InkWell(
+                                child: SizedBox(
+                                    width: 50.0, child: Icon(Icons.clear)),
+                                onTap: () {
+                                  setState(() {
+                                    idproof = null;
+                                    // registrationModel.profilePhotoBase64 =
+                                    null;
+                                    //registrationModel.profilePhotoExt =
+                                    null;
+                                  });
+                                },
+                              ),
+                            ],
+                          ),
+                        )
+                      : Container(),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  InkWell(
+                    onTap: () {
+                      if (textEditingController[1].text == "" ||
+                          textEditingController[1].text == null) {
+                        AppData.showInSnackBar(
+                            context, "Please Enter Document Name");
+                      } else if (_date.text == "" || _date.text == null) {
+                        AppData.showInSnackBar(
+                            context, "Please Enter Document Date");
+                      } else {
+                        postMultiPart();
+                      }
+                    },
+                    child: Container(
+                      width: 370,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5),
+                          border: Border.all(color: AppData.kPrimaryColor),
+                          color: AppData.kPrimaryColor),
+                      child: RaisedButton(
+                        onPressed: null,
+                        child: Text(
+                          'Upload',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w400),
+                        ),
+                        disabledColor: AppData.kPrimaryColor,
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
         ),
       ),
@@ -307,8 +357,55 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
       ),
     );
   }
+  Future getVideoUpload() async {
+    var video = await ImagePicker.pickVideo(
+      source: ImageSource.gallery,
 
- /* Future<void> getPdfAndUpload() async {
+    );
+    var enc = await video.readAsBytes();
+    String _path = video.path;
+
+    String _fileName = _path != null ? _path.split('/').last : '...';
+    var pos = _fileName.lastIndexOf('.');
+    String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+    print(extName);
+
+    setState(() {
+      selectFile = video;
+      idproof = video.path;
+      adduploaddocument.extension = extName;
+      extension = extName;
+      print("Message is: " +
+          extension); // adduploaddocument.mulFile=file.path as MultipartFile;
+      print("Message isssss: " +
+          extName); // adduploaddocument.mulFile=file.path as MultipartFile;
+    });
+  }
+  Future getCerificateImage() async {
+    var image = await ImagePicker.pickImage(
+      source: ImageSource.gallery,
+      imageQuality: 10,
+    );
+    var enc = await image.readAsBytes();
+    String _path = image.path;
+
+    String _fileName = _path != null ? _path.split('/').last : '...';
+    var pos = _fileName.lastIndexOf('.');
+    String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+    print(extName);
+
+    setState(() {
+      selectFile = image;
+      idproof = image.path;
+      adduploaddocument.extension = extName;
+      extension = extName;
+      print("Message is: " +
+          extension); // adduploaddocument.mulFile=file.path as MultipartFile;
+      print("Message isssss: " +
+          extName); // adduploaddocument.mulFile=file.path as MultipartFile;
+    });
+  }
+  Future<void> getPdfAndUpload() async {
     File file = await FilePicker.getFile(
       type: FileType.custom,
       allowedExtensions: [
@@ -338,7 +435,7 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
       });
     }
   }
-*/
+
   popup(BuildContext context) {
     return Alert(
         context: context,
@@ -439,4 +536,5 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
       //addBioMedicalModel.bioMDate = df.format(picked);
     });
   }
+
 }

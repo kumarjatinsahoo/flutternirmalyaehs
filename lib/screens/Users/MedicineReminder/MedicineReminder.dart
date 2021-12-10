@@ -61,12 +61,15 @@ class _MedicineReminderState extends State<MedicineReminder> {
             heroTag: "directions",
             backgroundColor: Colors.blueAccent,
             mini: true,
-            child: Icon(Icons.directions_car))));
+            child: Icon(Icons.directions_car))
+    )
+    );
     _resetSelectedDate();
   }
 
   void _resetSelectedDate() {
-    _selectedDate = DateTime.now().add(Duration(days: 5));
+    _selectedDate = DateTime.now().add(Duration(days: 5)
+    );
   }
 
 

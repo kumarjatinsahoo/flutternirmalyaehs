@@ -1,10 +1,10 @@
 class ApiFactory {
   //bool isRelease = bool.fromEnvironment("DEV");
   static String REG_DEVICE = "https://cca.medtel.in/Ziniai/manageDeviceId";
- static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
+  static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
   static String MAIN_URL1 = "https://1331.co.in/api";
   static String REPORT_URL1 = "https://ehealthsystem.com/";
-// static String MAIN_URL = "http://192.168.77.208:8062/nirmalyaRest/api/";
+  //static String MAIN_URL = "http://192.168.77.208:8062/nirmalyaRest/api/";
   static String VITALS_REPORT = MAIN_URL + 'medtel-screening-test-report';
   static String COUNTRY_API = MAIN_URL + 'get-country-list';
   static String VIEW_PATIENT_HEALTH_API = REPORT_URL1 + 'user/mobile-view-patient-health-chart?id=';
@@ -18,35 +18,49 @@ class ApiFactory {
   static String TISSUE_API = MAIN_URL + 'get-tissue-list';
   static String ORGANISATION_API = MAIN_URL + 'get-all-organization-list';
   static String PHARMACY_ORGANISATION_API = MAIN_URL + 'get-pharmacy-list';
-  static String AMBULANCE_ORGANISATION_API = MAIN_URL + 'get-ambulance-org-list';
-  static String BlOODBANK_ORGANISATION_API = MAIN_URL + 'get-bloodbank-org-list';
+  static String AMBULANCE_ORGANISATION_API =
+      MAIN_URL + 'get-ambulance-org-list';
+  static String BlOODBANK_ORGANISATION_API =
+      MAIN_URL + 'get-bloodbank-org-list';
   static String NGO_ORGANISATION_API = MAIN_URL + 'get-ngo-org-list';
   static String POST_TEST = MAIN_URL + 'post-user-test-by-doctor';
   static String DELETE_TEST_LIST = MAIN_URL + 'delete-test-by-app-no?appno=';
-  static String BIOMEDICAL_IMPLANTS = MAIN_URL + 'view-user-biomedical-implant-list-api?userid=';
-  static String lab_list_by_searchvalue = MAIN_URL + 'get-lab-list-by-searchvalue?search=';
+  static String BIOMEDICAL_IMPLANTS =
+      MAIN_URL + 'view-user-biomedical-implant-list-api?userid=';
+  static String lab_list_by_searchvalue =
+      MAIN_URL + 'get-lab-list-by-searchvalue?search=';
 
   /*static String BIOMEDICAL_IMPLANTS =
       MAIN_URL + 'view-user-biomedical-implant-list-api?userid=';*/
-  static String UPLOAD_DOCUMENT = MAIN_URL + 'get-medical-upload-details-api?userid=';
+  static String UPLOAD_DOCUMENT =
+      MAIN_URL + 'get-medical-upload-details-api?userid=';
   static String DIESEINFO = MAIN_URL + 'get-disease-info-list';
   static String IMMUNIZATION_LIST =
       MAIN_URL + 'get-immunization-patient-details?userid=';
   static String INSURANCE_list =
       MAIN_URL + 'get-patient-insurance-list-api?userid=';
-  static String INSURANCE_Details = MAIN_URL + 'get-patient-insurance-details-api?key=';
-  static String MONTHLY_OVERVIEW = MAIN_URL + 'get-doctor-month-overviewlist?drid=';
-  static String AMBULANCE_MONTH_OVERVIEW = MAIN_URL + 'get-ambulance-month-overviewlist?ambid=';
-  static String GET_BLDBANK_MONTHOVERVIEW = MAIN_URL + 'get-bldbnk-month-overviewlist?bldbnkid=';
-  static String GET_PHARMACY_MONTHOVERVIEW = MAIN_URL + 'get-pharmacy-month-overviewlist?pharmacyid=';
+  static String INSURANCE_Details =
+      MAIN_URL + 'get-patient-insurance-details-api?key=';
+  static String MONTHLY_OVERVIEW =
+      MAIN_URL + 'get-doctor-month-overviewlist?drid=';
+  static String AMBULANCE_MONTH_OVERVIEW =
+      MAIN_URL + 'get-ambulance-month-overviewlist?ambid=';
+  static String GET_BLDBANK_MONTHOVERVIEW =
+      MAIN_URL + 'get-bldbnk-month-overviewlist?bldbnkid=';
+  static String GET_PHARMACY_MONTHOVERVIEW =
+      MAIN_URL + 'get-pharmacy-month-overviewlist?pharmacyid=';
   static String GENDER_API = MAIN_URL + 'get-gender-list';
-  static String pharmacy_list_by_searchvalue = MAIN_URL + 'get-pharmacy-list-by-searchvalue?search=';
+  static String pharmacy_list_by_searchvalue =
+      MAIN_URL + 'get-pharmacy-list-by-searchvalue?search=';
   static String IMMUNIZATION_STATUS =
       MAIN_URL + 'get-update-immunization-status?slno=';
   static String ADM_EQUIPMENT_API = MAIN_URL + 'get-adm-equipment-list';
-  static String SHARE_APPOINTMENT_UHID = MAIN_URL + 'get-confirmed-patient-list?drid=';
-  static String RECEPTIONLIST_DOCTOR = MAIN_URL + 'get-doctor-list-by-org?userid=';
-  static String SHARE_APPOINTMENT_DOCTORRECEPTIONIST =MAIN_URL + 'get-doctorreceptionist-list?drid=';
+  static String SHARE_APPOINTMENT_UHID =
+      MAIN_URL + 'get-confirmed-patient-list?drid=';
+  static String RECEPTIONLIST_DOCTOR =
+      MAIN_URL + 'get-doctor-list-by-org?userid=';
+  static String SHARE_APPOINTMENT_DOCTORRECEPTIONIST =
+      MAIN_URL + 'get-doctorreceptionist-list?drid=';
   static String GET_DOCUMENT_API = MAIN_URL + 'get-document-type-list';
   static String IMMUNIZATION_API = MAIN_URL + 'get-immunization-type-list';
   static String SPECIALITY_API = MAIN_URL + 'get-doctor-speciality-list';
@@ -61,8 +75,10 @@ class ApiFactory {
   static String LAB_LIST = MAIN_URL + 'get-pathology-list-by-location';
   static String USER_PROFILE_IMAGE = MAIN_URL + 'update-user-profile-image';
   static String USER_DASHBOARD = MAIN_URL + 'user-dashboard?userid=';
-  static String PERSONAL_DETAILS = MAIN_URL + 'user-personal-information-doctor?userid=';
-  static String IABTEST_REPORTDOCTER = MAIN_URL + 'user-labtest-report-doctor?userid=';
+  static String PERSONAL_DETAILS =
+      MAIN_URL + 'user-personal-information-doctor?userid=';
+  static String IABTEST_REPORTDOCTER =
+      MAIN_URL + 'user-labtest-report-doctor?userid=';
   static String MEDICATION_DOCTER = MAIN_URL + 'user-medication-doctor?userid=';
   static String FAMILY_DOCTER = MAIN_URL + 'get-patient-family-details?userid=';
   static String USER_UPDATEPROFILE = MAIN_URL + 'update-user-profile';
@@ -81,7 +97,8 @@ class ApiFactory {
   static String DOCTOOR_API = MAIN_URL + 'get-doctor-list?type=';
   static String HOSPITAL_API = MAIN_URL + 'get-hospital-list?doctor=';
   static String POST_ORGAN_DONOR = MAIN_URL + 'post-organ-donor-details';
-  static String GET_PATIENT_MEDICAL_HISTORY = MAIN_URL + 'get-patient-medical-history?userid=';
+  static String GET_PATIENT_MEDICAL_HISTORY =
+      MAIN_URL + 'get-patient-medical-history?userid=';
 
   //static String SPECIALITY_API2 = MAIN_URL + 'get-speciality-list';
   static String TESTNAME_LIST = MAIN_URL + 'get-testname-list';
@@ -118,8 +135,10 @@ class ApiFactory {
     return MAIN_URL + "login-with-otp?mobileNo=$mob";
   }
 
-  static String ADD_BIOMEDICAL_IMPLANTS = MAIN_URL + 'post-biomedical-implants-api';
-  static String POST_SHARE_APPOINTMENT = MAIN_URL + 'post-share-appointment-api';
+  static String ADD_BIOMEDICAL_IMPLANTS =
+      MAIN_URL + 'post-biomedical-implants-api';
+  static String POST_SHARE_APPOINTMENT =
+      MAIN_URL + 'post-share-appointment-api';
   static String ADD_UPLOAD_DOCUMENT = MAIN_URL + 'post-medical-dataupload-api';
   static String ADD_IMMUNIZATION =
       MAIN_URL + 'post-patient-immunization-details';
@@ -169,12 +188,17 @@ class ApiFactory {
 
   static String POST_SIGNUP = MAIN_URL + 'signup-by-pathologist';
   static String AMBULANCE_ALL = MAIN_URL + 'get-ambulance-actionlist?userid=';
-  static String GET_DOCTEROVERVIEWLIST = MAIN_URL + 'get-doctor-overviewlist-bystatus?drid=';
-  static String GET_AMBULANCE_OVERVIEWLIST= MAIN_URL + 'get-ambulance-overviewlist-bystatus?ambid=';
-  static String GET_BLDBANK_OVERVIEWLIST= MAIN_URL + 'get-bldbnk-overviewlist-bystatus?bldbnkid=';
-  static String GET_Farmacy_OVERVIEWLIST= MAIN_URL + 'get-pharmacy-overviewlist-bystatus?pharmacyid=';
+  static String GET_DOCTEROVERVIEWLIST =
+      MAIN_URL + 'get-doctor-overviewlist-bystatus?drid=';
+  static String GET_AMBULANCE_OVERVIEWLIST =
+      MAIN_URL + 'get-ambulance-overviewlist-bystatus?ambid=';
+  static String GET_BLDBANK_OVERVIEWLIST =
+      MAIN_URL + 'get-bldbnk-overviewlist-bystatus?bldbnkid=';
+  static String GET_Farmacy_OVERVIEWLIST =
+      MAIN_URL + 'get-pharmacy-overviewlist-bystatus?pharmacyid=';
   static String BLOODBANK_ALL = MAIN_URL + 'get-bloodbank-actionlist?userid=';
-  static String AMBULANCE_APPOINTMENT = MAIN_URL + 'get-ambulance-actionlist?userid=';
+  static String AMBULANCE_APPOINTMENT =
+      MAIN_URL + 'get-ambulance-actionlist?userid=';
   static String LAB_SIGNUP = MAIN_URL + 'doctor-registration-details';
   static String GET_BENE_DETAILS = MAIN_URL + 'get-regDetails?regNo=';
   static String POST_HEALTH_SCREEN = MAIN_URL + 'post-addLabAppointment';
@@ -220,13 +244,15 @@ class ApiFactory {
       MAIN_URL + 'view-user-test-details-by-appno?appno=';
   static String user_APPOINTMENT_status =
       MAIN_URL + 'change-user-appointment-status?appid=';
-  static String ambulance_APPOINTMENT_status = MAIN_URL + 'change-ambulance-status?orderid=';
+  static String ambulance_APPOINTMENT_status =
+      MAIN_URL + 'change-ambulance-status?orderid=';
   static String bloodbank_status =
       MAIN_URL + 'change-bloodbank-status?orderid=';
   static String TEST_REPORT_USER = MAIN_URL + 'view-medteltest-list-throughId';
   static String USER_APPOINTMENTS =
       MAIN_URL + 'get-user-appointment-list?userid=';
-  static String ORDER_LIST = MAIN_URL + 'view-user-pharmacy-orderlist-by-id?userid=';
+  static String ORDER_LIST =
+      MAIN_URL + 'view-user-pharmacy-orderlist-by-id?userid=';
 
   static String ORDER_LIST_STATUS =
       MAIN_URL + 'view-status-lab-orderlist-by-id?userid=';
@@ -239,9 +265,11 @@ class ApiFactory {
       MAIN_URL + 'get-patient-ambulance-details?userid=';
 
   //static String AMBULANCE_LIST = MAIN_URL + 'get-patient-ambulance-details?userid=';
-  static String MYPATIENTLIST_LIST = MAIN_URL + 'get-doctor-my-patientlist?drid=';
+  static String MYPATIENTLIST_LIST =
+      MAIN_URL + 'get-doctor-my-patientlist?drid=';
   static String BLDBANK_LIST = MAIN_URL + 'get-patient-bldbank-details?userid=';
   static String REFFERED_LIST = MAIN_URL + 'get-referred-user-list-api?userid=';
+  static String ORGAN_LIST = MAIN_URL + 'view-user-donated-organ-list?userid=';
   static String CHANGE_STATUS_PHARMACY =
       MAIN_URL + 'change-pharmacy-status?orderid=';
   static String CHANGE_STATUS_LAB = MAIN_URL + 'change-lab-status?orderid=';
