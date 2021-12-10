@@ -83,12 +83,12 @@ class _MedicineReminderState extends State<MedicineReminder> {
           child: Icon(Icons.task, color: Colors.white),
         )));
 
-            heroTag: "directions",
+       /*     heroTag: "directions",
             backgroundColor: Colors.blueAccent,
             mini: true,
             child: Icon(Icons.directions_car))
     )
-    );
+    );*/
     _resetSelectedDate();
   }
 
