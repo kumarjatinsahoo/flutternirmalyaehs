@@ -149,7 +149,7 @@ class _MedicineReminderState extends State<MedicineReminder> {
                 ),
               ],
             ),
-          ),
+          )
         ],
       ),
     );

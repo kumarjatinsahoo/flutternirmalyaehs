@@ -151,6 +151,7 @@ String emergencyrelation;
 
 String documentcategories;
 String  receptionhospitalid;
+String  receptionpatientid;
 
 
 }

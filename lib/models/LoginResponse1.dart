@@ -74,7 +74,9 @@ class Body {
       this.dateFormatJS,
       this.vendorId,
       this.otp,
-      this.token});
+      this.token,
+      this.userPic,
+      });
 
   Body.fromJson(Map<String, dynamic> json) {
     user = json['user'];

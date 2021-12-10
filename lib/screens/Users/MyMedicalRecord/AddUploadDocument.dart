@@ -39,7 +39,7 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
   bool isdata = false;
   DateTime selectedDate = DateTime.now();
   final df = new DateFormat('dd/MM/yyyy');
-  String profilePath = null, idproof = null;
+  //String profilePath = null;
   File pathUsr1 = null;
   String doccategory;
   AddUploadDocumentModel adduploaddocument = AddUploadDocumentModel();
@@ -89,117 +89,117 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
         backgroundColor: AppData.kPrimaryColor,
         title: Text("Upload Document"),
       ),
+/*      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // Add your onPressed code here!
+        },
+        child: Icon(Icons.add,color: Colors.white,),
+        backgroundColor:AppData.kPrimaryColor,
+      ),*/
       body: Container(
-        child: SingleChildScrollView(
-          child: Center(
-            child: Padding(
-              padding: const EdgeInsets.all(10),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  /*DropDown.networkDropdownGetpartUser1(
-                      "Document Category",
-                      ApiFactory.GET_DOCUMENT_API,
-                      "documentlist",
-                      Icons.location_on_rounded,
-                      23.0, (KeyvalueModel data) {
-                    setState(() {
-                      print(ApiFactory.GET_DOCUMENT_API);
-                      AddUploadDocument.getdocumentmodel = data;
-                    });
-                  }),
-                  SizedBox(height: 10),*/
-                  formField(1, "Document Name"),
-                  SizedBox(height: 10),
-                  dob(),
-                  SizedBox(height: 15),
+        child: Padding(
+          padding: const EdgeInsets.all(10),
+          child: Column(
+            //mainAxisSize: MainAxisSize.min,
+            // crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(height: 20),
 
-                  InkWell(
-                    onTap: () {
-                      getPdfAndUpload();
-                    },
-                    child: Text(
-                      /*'Confirmed'*/
-                      "",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15,
-                          color: Colors.white),
-                    ),
-                  ),
-                  //dob(),
-                  SizedBox(height: 8),
-                  (idproof != null)
-                      ? Padding(
-                          padding: const EdgeInsets.only(left: 10, right: 10),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Expanded(
-                                child: Container(
-                                  child: Text(
-                                    "Report Path :" + idproof,
-                                    style: TextStyle(color: Colors.green),
-                                  ),
-                                ),
-                              ),
-                              InkWell(
-                                child: SizedBox(
-                                    width: 50.0, child: Icon(Icons.clear)),
-                                onTap: () {
-                                  setState(() {
-                                    idproof = null;
-                                    // registrationModel.profilePhotoBase64 =
-                                    null;
-                                    //registrationModel.profilePhotoExt =
-                                    null;
-                                  });
-                                },
-                              ),
-                            ],
-                          ),
-                        )
-                      : Container(),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  InkWell(
-                    onTap: () {
-                      if (textEditingController[1].text == "" ||
-                          textEditingController[1].text == null) {
-                        AppData.showInSnackBar(
-                            context, "Please Enter Document Name");
-                      } else if (_date.text == "" || _date.text == null) {
-                        AppData.showInSnackBar(
-                            context, "Please Enter Document Date");
-                      } else {
-                        postMultiPart();
-                      }
-                    },
-                    child: Container(
-                      width: 370,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5),
-                          border: Border.all(color: AppData.kPrimaryColor),
-                          color: AppData.kPrimaryColor),
-                      child: RaisedButton(
-                        onPressed: null,
-                        child: Text(
-                          'Upload',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400),
-                        ),
-                        disabledColor: AppData.kPrimaryColor,
-                      ),
-                    ),
-                  ),
-                ],
+              /*DropDown.networkDropdownGetpartUser1(
+                  "Document Category",
+                  ApiFactory.GET_DOCUMENT_API,
+                  "documentlist",
+                  Icons.location_on_rounded,
+                  23.0, (KeyvalueModel data) {
+                setState(() {
+                  print(ApiFactory.GET_DOCUMENT_API);
+                  AddUploadDocument.getdocumentmodel = data;
+                });
+              }),
+              SizedBox(height: 10),*/
+              formField(1, "Document Name"),
+              SizedBox(height: 10),
+              dob(),
+              SizedBox(height: 15),
+
+              Text(
+                /*'Confirmed'*/
+                "",
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 15,
+                    color: Colors.white),
               ),
-            ),
+              //dob(),
+              SizedBox(height: 8),
+            /*  (idproof != null)
+                  ? Padding(
+                      padding: const EdgeInsets.only(left: 10, right: 10),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: Container(
+                              child: Text(
+                                "Report Path :" + idproof,
+                                style: TextStyle(color: Colors.green),
+                              ),
+                            ),
+                          ),
+                          InkWell(
+                            child: SizedBox(
+                                width: 50.0, child: Icon(Icons.clear)),
+                            onTap: () {
+                              setState(() {
+                                idproof = null;
+                                // registrationModel.profilePhotoBase64 =
+                                null;
+                                //registrationModel.profilePhotoExt =
+                                null;
+                              });
+                            },
+                          ),
+                        ],
+                      ),
+                    )
+                  : Container(),
+              SizedBox(
+                height: 20,
+              ),
+*/                InkWell(
+                onTap: () {
+                  if (textEditingController[1].text == "" ||
+                      textEditingController[1].text == null) {
+                    AppData.showInSnackBar(
+                        context, "Please Enter Document Name");
+                  } else if (_date.text == "" || _date.text == null) {
+                    AppData.showInSnackBar(
+                        context, "Please Enter Document Date");
+                  } else {
+                    postMultiPart();
+                  }
+                },
+                child: Container(
+                  width: 370,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      border: Border.all(color: AppData.kPrimaryColor),
+                      color: AppData.kPrimaryColor),
+                  child: RaisedButton(
+                    onPressed: null,
+                    child: Text(
+                      'Upload',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400),
+                    ),
+                    disabledColor: AppData.kPrimaryColor,
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       ),
@@ -308,7 +308,7 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
     );
   }
 
-  Future<void> getPdfAndUpload() async {
+ /* Future<void> getPdfAndUpload() async {
     File file = await FilePicker.getFile(
       type: FileType.custom,
       allowedExtensions: [
@@ -338,7 +338,7 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
       });
     }
   }
-
+*/
   popup(BuildContext context) {
     return Alert(
         context: context,
