@@ -29,6 +29,8 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSCalendarsUsageDescription</key>
+    <string>You need to provide calender access to add event in calender</string>
 	<key>NSCameraUsageDescription</key>
 	<string>You need to provide camera access to upload profile image</string>
 	<key>NSLocationUsageDescription</key>

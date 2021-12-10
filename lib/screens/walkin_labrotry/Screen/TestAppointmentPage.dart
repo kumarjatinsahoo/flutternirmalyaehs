@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:developer';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -102,6 +103,7 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
           setState(() {
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
+              log("Response>>>\n\n\n\n\n\n\n\n\n\n\n"+jsonEncode(map)+"\n\n\n\n\n\n\n\n\n\n\n");
               appointModel = LabBookModel.fromJson(map);
               foundUser = appointModel.body;
             } else {
@@ -537,6 +539,7 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
               String mapping = body.regNo + "," + body.patientName + ","
                   + mob + "," + body.gender + "," + height.text + "," +
                   weight.text + "," + body.age.toString();
+              log("Value>>>"+mapping);
               _callLabApp(mapping.trim());
             }
           },
