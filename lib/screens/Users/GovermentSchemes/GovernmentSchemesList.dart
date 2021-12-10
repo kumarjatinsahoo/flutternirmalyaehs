@@ -4,6 +4,8 @@ import 'package:user/models/GooglePlaceSearchModell.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 
+import 'GovtSchemes.dart';
+
 class GovernmentSchemesList extends StatefulWidget {
   MainModel model;
 
@@ -22,7 +24,7 @@ class _GovernmentSchemesListState extends State<GovernmentSchemesList> {
         title: Text("Government Schemes List"),
       ),
       body: Container(
-        child: SingleChildScrollView(
+        child: (GovtSchemes.stateModel!=null && GovtSchemes.stateModel.name=="Maharashtra")?SingleChildScrollView(
           child: Column(
             children: [
               InkWell(
@@ -433,6 +435,15 @@ class _GovernmentSchemesListState extends State<GovernmentSchemesList> {
                 //   ),
                 // ),
               ),
+            ],
+          ),
+        ):Container(
+          width: double.maxFinite,
+          height: double.maxFinite,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text("No Data Found")
             ],
           ),
         ),

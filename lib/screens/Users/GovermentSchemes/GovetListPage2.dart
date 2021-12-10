@@ -79,7 +79,7 @@ class _AboutUs extends State<GovetListPage2> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Government Schemes List'),
+          title: const Text('Government Schemes'),
           backgroundColor: AppData.kPrimaryColor,
           centerTitle: true,
         ),
