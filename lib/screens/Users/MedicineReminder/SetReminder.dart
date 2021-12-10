@@ -767,21 +767,6 @@ class SetReminderState extends State<SetReminder> {
     );
   }
 
-  _selectTime(BuildContext context) async {
-    final TimeOfDay timeOfDay = await showTimePicker(
-      context: context,
-      initialTime: selectedTime,
-      initialEntryMode: TimePickerEntryMode.input,
-    );
-    if(timeOfDay != null && timeOfDay != selectedTime)
-    {
-      setState(() {
-        selectedTime = timeOfDay;
-        stime.text=timeOfDay.toString();
-      });
-    }
-  }
-
  Widget endTime() {
     return Padding(
       //padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -820,6 +805,22 @@ class SetReminderState extends State<SetReminder> {
         ),
       ),
     );
+  }
+
+
+  _selectTime(BuildContext context) async {
+    final TimeOfDay timeOfDay = await showTimePicker(
+      context: context,
+      initialTime: selectedTime,
+      initialEntryMode: TimePickerEntryMode.input,
+    );
+    if(timeOfDay != null && timeOfDay != selectedTime)
+    {
+      setState(() {
+        selectedTime = timeOfDay;
+        stime.text=timeOfDay.toString();
+      });
+    }
   }
 
   _selectTime1(BuildContext context) async {
