@@ -1,9 +1,11 @@
 import 'package:calendar_timeline/calendar_timeline.dart';
+import 'package:date_format/date_format.dart';
 import 'package:intl/intl.dart';
 import 'package:unicorndial/unicorndial.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
+import 'package:user/screens/Users/MedicineReminder/SetReminder.dart';
 import 'package:user/widgets/MyWidget.dart';
 import 'package:flutter/material.dart';
 
@@ -40,49 +42,65 @@ class _MedicineReminderState extends State<MedicineReminder> {
 
     childButtons.add(UnicornButton(
         hasLabel: true,
-        labelText: "Choo choo",
+        labelText: "Medicine",
         currentButton: FloatingActionButton(
           heroTag: "train",
-          backgroundColor: Colors.redAccent,
+          backgroundColor: AppData.kPrimaryBlueColor,
           mini: true,
-          child: Icon(Icons.train),
-          onPressed: () {},
+          child: Icon(
+            Icons.medical_services_outlined,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            // Navigator.pushNamed(context, '/setreminder');
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) =>
+                    SetReminder(model: widget.model, type: "Medicine"),
+              ),
+            );
+          },
         )));
 
     childButtons.add(UnicornButton(
+        hasLabel: true,
+        labelText: "Other",
         currentButton: FloatingActionButton(
-            heroTag: "airplane",
-            backgroundColor: Colors.greenAccent,
-            mini: true,
-            child: Icon(Icons.airplanemode_active))));
+          heroTag: "other",
+          backgroundColor: AppData.kPrimaryRedColor,
+          mini: true,
+          onPressed: () {
+            // Navigator.pushNamed(context, '/setreminder');
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) =>
+                    SetReminder(model: widget.model, type: "Other"),
+              ),
+            );
+          },
+          child: Icon(Icons.task, color: Colors.white),
+        )));
 
-    childButtons.add(UnicornButton(
-        currentButton: FloatingActionButton(
-            heroTag: "directions",
-            backgroundColor: Colors.blueAccent,
-            mini: true,
-            child: Icon(Icons.directions_car))));
     _resetSelectedDate();
   }
 
   void _resetSelectedDate() {
-    _selectedDate = DateTime.now().add(Duration(days: 5));
+    _selectedDate = DateTime.now();
   }
-
-
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: AppData.kPrimaryColor,
-        title: Row(
-          children: [Text("Medicine Reminder"), Spacer(), Icon(Icons.search)],
-        ),
+        centerTitle: true,
+        title: Text("Medicine Reminder"),
       ),
       floatingActionButton: UnicornDialer(
-           backgroundColor: Colors.transparent,
+          backgroundColor: Colors.transparent,
           // parentButtonBackground: Colors.redAccent,
           orientation: UnicornOrientation.VERTICAL,
           parentButton: Icon(Icons.add),
@@ -92,7 +110,7 @@ class _MedicineReminderState extends State<MedicineReminder> {
         children: [
           CalendarTimeline(
             //showYears: true,
-            initialDate: DateTime.now(),
+            initialDate: _selectedDate,
             firstDate: DateTime.now(),
             lastDate: DateTime.now().add(Duration(days: 365)),
             onDateSelected: (date) {
@@ -101,7 +119,7 @@ class _MedicineReminderState extends State<MedicineReminder> {
               });
             },
             leftMargin: 20,
-            monthColor: Colors.white70,
+            monthColor: Colors.black,
             dayColor: Colors.teal[200],
             dayNameColor: Color(0xFF333A47),
             activeDayColor: Colors.white,
@@ -110,15 +128,26 @@ class _MedicineReminderState extends State<MedicineReminder> {
             selectableDayPredicate: (date) => date.day != 23,
             locale: 'en',
           ),
-          SizedBox(height: 100),
-          InkWell(
-            onTap: () {
-              Navigator.pushNamed(context, '/setreminder');
-            },
-            child: Text(
-              "Set Reminder for Medicines,Water Intake or any other Medical Needs",
-              style: TextStyle(color: Colors.white, fontSize: 18),
-              textAlign: TextAlign.center,
+          //SizedBox(height: 100),
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                InkWell(
+                  onTap: () {
+                    // Navigator.pushNamed(context, '/setreminder');
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                    child: Text(
+                      "Set Reminder for Medicines,Water Intake or any other Medical Needs",
+                      style: TextStyle(color: Colors.black, fontSize: 18),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         ],

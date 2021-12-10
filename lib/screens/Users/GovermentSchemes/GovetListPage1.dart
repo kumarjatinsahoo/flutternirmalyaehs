@@ -57,92 +57,91 @@ class _AboutUs extends State<GovetListPage1> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-    title: const Text('Government Schemes List'),
-    backgroundColor: AppData.kPrimaryColor,
-    centerTitle: true,
+        title: const Text('Government Schemes'),
+        backgroundColor: AppData.kPrimaryColor,
+        centerTitle: true,
       ),
       body: SingleChildScrollView(
-    child: Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 20.0, top: 20),
-            child: Text(
-              "Bal Thackeray Upgath Vima Yojana",
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                  color: Colors.blue),
-              textAlign: TextAlign.center,
-            ),
-
-          ),
-          SizedBox(height: 10),
-          Padding(
-            padding: const EdgeInsets.only(left: 20.0, top: 20),
-            child: Text(
-              "Objective: ",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Container(
-              child: Text(
-                AppData.govtschem1,
-                style: TextStyle(color: Colors.black, fontSize: 16),
-                textAlign: TextAlign.justify,
+        child: Container(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 20.0, top: 20),
+                child: Text(
+                  "Bal Thackeray Upgath Vima Yojana",
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                      color: Colors.blue),
+                  textAlign: TextAlign.center,
+                ),
               ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 20.0, top: 5),
-            child: Text(
-              "Benefits Provided: ",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Container(
-              child: Text(
-                AppData.govtschem11,
-                style: TextStyle(color: Colors.black, fontSize: 16),
-                textAlign: TextAlign.justify,
+              SizedBox(height: 10),
+              Padding(
+                padding: const EdgeInsets.only(left: 20.0, top: 20),
+                child: Text(
+                  "Objective: ",
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                ),
               ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 20.0, top: 5),
-            child: Text(
-              "Contact Details: ",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Container(
-              child: Text(
-                AppData.govtschem12,
-                style: TextStyle(color: Colors.black, fontSize: 16),
-                textAlign: TextAlign.justify,
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Container(
+                  child: Text(
+                    AppData.govtschem1,
+                    style: TextStyle(color: Colors.black, fontSize: 16),
+                    textAlign: TextAlign.justify,
+                  ),
+                ),
               ),
-            ),
+              Padding(
+                padding: const EdgeInsets.only(left: 20.0, top: 5),
+                child: Text(
+                  "Benefits Provided: ",
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Container(
+                  child: Text(
+                    AppData.govtschem11,
+                    style: TextStyle(color: Colors.black, fontSize: 16),
+                    textAlign: TextAlign.justify,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 20.0, top: 5),
+                child: Text(
+                  "Contact Details: ",
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Container(
+                  child: Text(
+                    AppData.govtschem12,
+                    style: TextStyle(color: Colors.black, fontSize: 16),
+                    textAlign: TextAlign.justify,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 20.0),
+                child: Text(
+                  "https://www.sarkariyojna.co.in/bal-thackeray-upgath-vima-yojana-free-treatment-accident-victims/",
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 15,
+                      color: Colors.blue),
+                ),
+              ),
+            ],
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 20.0),
-            child: Text(
-              "https://www.sarkariyojna.co.in/bal-thackeray-upgath-vima-yojana-free-treatment-accident-victims/",
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 15,
-                  color: Colors.blue),
-            ),
-          ),
-        ],
-      ),
-    ),
+        ),
       ),
     );
   }

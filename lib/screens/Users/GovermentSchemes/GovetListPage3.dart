@@ -1,30 +1,8 @@
-import 'dart:convert';
-import 'dart:core';
-import 'dart:core';
-import 'dart:developer';
-import 'dart:ui';
-
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/services.dart';
-import 'package:geolocator/geolocator.dart' as loca;
-import 'package:geolocator/geolocator.dart';
-import 'package:user/models/DocterMedicationlistModel.dart';
 import 'package:user/models/KeyvalueModel.dart';
-import 'package:user/models/LoginResponse1.dart';
-import 'package:user/models/MedicinModel.dart';
-import 'package:user/models/MedicineListModel.dart' as medicine;
-import 'package:user/models/ResultsServer.dart';
-import 'package:user/models/UserListModel.dart' as test;
-import 'package:user/models/UserListModel.dart';
-import 'package:user/providers/Const.dart';
-import 'package:user/providers/DropDown.dart';
-import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
-import 'package:user/widgets/MyWidget.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import 'package:user/widgets/text_field_address.dart';
 
 class GovetListPage3 extends StatefulWidget {
   MainModel model;
@@ -70,7 +48,7 @@ class _AboutUs extends State<GovetListPage3> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Government Schemes List'),
+        title: const Text('Government Schemes'),
         backgroundColor: AppData.kPrimaryColor,
         centerTitle: true,
       ),
