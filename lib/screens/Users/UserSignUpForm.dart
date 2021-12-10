@@ -68,6 +68,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
 
   String token;
   TypeDob selectDobEn = TypeDob.Age;
+  String _selectedGender = 'male';
 
   List<bool> error = [false, false, false, false, false, false];
 
@@ -307,7 +308,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                             child: Container(
                               height: 50,
                               padding:
-                                  EdgeInsets.symmetric(horizontal: 5),
+                                  EdgeInsets.symmetric(horizontal: 0),
                               decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius:
@@ -353,7 +354,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                             child: Container(
                               height: 50,
                               padding:
-                                  EdgeInsets.symmetric(horizontal: 5),
+                                  EdgeInsets.symmetric(horizontal: 0),
                               decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius:
@@ -398,9 +399,9 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                 horizontal: 0),
                             child: SizedBox(
                               height: 58,
-                              child:
-                              DropDown.
-                              networkDropdownGetpartUserundreline1(
+
+
+                              child:DropDown.networkDropdownGetpartUserundreline1(
                                       //"Gender"
                                       MyLocalizations.of(context)
                                           .text("GENDER") +"*",
@@ -422,7 +423,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                           ),
                           Padding(
                             padding: const EdgeInsets.only(
-                                right: 9.0, left: 0),
+                                right: 10.0, left: 0),
                             child: mobileNoOTPSearch(),
                           ),
                           SizedBox(
@@ -635,15 +636,25 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                                 TextAlignVertical
                                                     .center,
                                             textInputAction:
-                                                TextInputAction.next,
+                                                TextInputAction.done,
                                             keyboardType: TextInputType.number,
                                             maxLength: 3,
                                             inputFormatters: <TextInputFormatter>[
                                               FilteringTextInputFormatter.digitsOnly
                                             ],
                                             onFieldSubmitted: (value) {
-                                              AppData.fieldFocusChange(context, fnode4, null);
+                                            //  AppData.fieldFocusChange(context, fnode4, null);
                                             },
+                                            onChanged:(s){
+                                              if(s!=null && s!="") {
+                                                textEditingController[4].text =
+                                                    (DateTime.now().year - int.parse(
+                                                        textEditingController[3]
+                                                            .text)).toString();
+                                              }else{
+                                                textEditingController[4].text="";
+                                              }
+                                            }
                                             //maxLength: 2,
                                           ),
                                         ),
@@ -655,7 +666,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                         onTap: () {
                                           //_selectDate1(context);
 
-                                          showDialog(
+                                          /*showDialog(
                                             context: context,
                                             builder: (BuildContext
                                                 context) {
@@ -699,7 +710,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                                 ),
                                               );
                                             },
-                                          );
+                                          );*/
                                         },
                                         child: Padding(
                                           padding:
@@ -1201,30 +1212,27 @@ class UserSignUpFormState extends State<UserSignUpForm> {
       AppData.showInSnackBar(context, "Please enter First Name");
       FocusScope.of(context).requestFocus(fnode1);
     }else if (textEditingController[0].text != "" &&
-        textEditingController[0].text.length <= 3) {
+        textEditingController[0].text.length <= 2) {
       AppData.showInSnackBar(context, "Please enter a valid First Name");
     }else if (textEditingController[1].text == "" ||
         textEditingController[1].text == null) {
       AppData.showInSnackBar(context, "Please enter Last Name");
       FocusScope.of(context).requestFocus(fnode2);
     }else if (textEditingController[1].text != "" &&
-        textEditingController[1].text.length <= 3) {
+        textEditingController[1].text.length <= 2) {
       AppData.showInSnackBar(context, "Please enter a valid  Last Name");
     } else if (UserSignUpForm.genderModel == null ||
         UserSignUpForm.genderModel == "") {
       AppData.showInSnackBar(context, "Please select Gender");
-    }
-    else if (textEditingController[2].text=="" ||
+    }else if (textEditingController[2].text=="" ||
         textEditingController[2].text == null) {
       AppData.showInSnackBar(context, "Please enter Phone Number");
       FocusScope.of(context).requestFocus(fnode3);
-    }
-    else if (textEditingController[2].text.length != 10 ||
+    }else if (textEditingController[2].text.length != 10 ||
         textEditingController[2].text == null) {
       AppData.showInSnackBar(context, "Please enter Valid Phone Number");
       FocusScope.of(context).requestFocus(fnode3);
-    }
-    else if (UserSignUpForm.countryModel == null ||
+    }else if (UserSignUpForm.countryModel == null ||
         UserSignUpForm.countryModel == "") {
       AppData.showInSnackBar(context, "Please select Country");
     } else if (UserSignUpForm.stateModel == null ||
@@ -1239,6 +1247,9 @@ class UserSignUpFormState extends State<UserSignUpForm> {
     } else if (selectDobEn==TypeDob.Age && (textEditingController[3].text =="" || textEditingController[3].text == null) ) {
       AppData.showInSnackBar(context, "Please enter your Age");
       FocusScope.of(context).requestFocus(fnode4);
+    } else if (selectDobEn==TypeDob.Age  && (int.tryParse(textEditingController[3].text)<18) ) {
+      AppData.showInSnackBar(context, "Age should be 18 above");
+      // FocusScope.of(context).requestFocus(fnode4);
     }
     else if (selectDobEn==TypeDob.DOB &&(textEditingController[5].text == "" || textEditingController[5].text == null) ) {
       AppData.showInSnackBar(context, "Please enter your DOB");
@@ -1264,7 +1275,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
       print("API NAME>>>>" + ApiFactory.USER_REGISTRATION);
       print("TO POST>>>>" + jsonEncode(userModel.toJson()));
 
-      MyWidgets.showLoading(context);
+     /* MyWidgets.showLoading(context);
       widget.model.POSTMETHOD(
           api: ApiFactory.USER_REGISTRATION,
           json: userModel.toJson(),
@@ -1275,7 +1286,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
             } else {
               AppData.showInSnackBar(context, map[Const.MESSAGE]);
             }
-          });
+          });*/
     }
   }
 

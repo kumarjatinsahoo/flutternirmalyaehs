@@ -126,10 +126,10 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
               } else {
                 LifeStyleHistory.ditemodel = null;
               }
-              // appointModel = lab.LabBookModel.fromJson(map);
+              //appointModel = lab.LabBookModel.fromJson(map);
             } else {
               // isDataNotAvail = true;
-              AppData.showInSnackBar(context, "Data Not Found");
+              //AppData.showInSnackBar(context, "Data Not Found");
             }
           });
         });
@@ -172,7 +172,7 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
             SingleChildScrollView(
               child: Container(
                 width: double.infinity,
-                height: double.maxFinite,
+                //height: double.maxFinite,
                 //mainAxisSize:MainAxisSize.max,
                 child: Padding(
                   padding: const EdgeInsets.only(top: 10.0, right: 5, left: 5),
@@ -191,9 +191,7 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                                   icon: "assets/smoking.png",
                                   title: (lifeStyleHistryModel?.body == null ||
                                           lifeStyleHistryModel.body.smokingName
-                                                  .toString() ==
-                                              "")
-                                      ? "N/A"
+                                                  .toString() == "")? "N/A"
                                       : lifeStyleHistryModel.body.smokingName
                                           .toString(),
                                   subtitle: MyLocalizations.of(context)
@@ -216,9 +214,7 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                                   icon: "assets/alcohol.png",
                                   title: (lifeStyleHistryModel?.body == null ||
                                           lifeStyleHistryModel.body.alcoholName
-                                                  .toString() ==
-                                              "0")
-                                      ? "N/A"
+                                                  .toString() == "0") ? "N/A"
                                       : lifeStyleHistryModel.body.alcoholName
                                           .toString(),
                                   subtitle: MyLocalizations.of(context)
@@ -247,11 +243,8 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                                   icon: "assets/diet.png",
                                   title: (lifeStyleHistryModel?.body == null ||
                                           lifeStyleHistryModel.body.diet
-                                                  .toString() ==
-                                              "0")
-                                      ? "N/A"
-                                      : lifeStyleHistryModel.body.diet
-                                          .toString(),
+                                                  .toString() == "0") ? "N/A"
+                                      : lifeStyleHistryModel.body.diet.toString(),
                                   subtitle:
                                       MyLocalizations.of(context).text("DIET"),
                                   fun: () {
@@ -543,7 +536,7 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
     /*lifeStyleHistryModel?.body.exercise.toString()==null?"N/A":textEditingController[0].text=lifeStyleHistryModel?.body.exercise.toString();
     lifeStyleHistryModel?.body.occupation.toString()==null?"N/A": textEditingController[1].text=lifeStyleHistryModel.body.occupation.toString();
     lifeStyleHistryModel?.body.pets.toString()==null?"N/A":textEditingController[2].text=lifeStyleHistryModel.body.pets.toString();*/
-   /* lifeStyleHistryModel != null
+    lifeStyleHistryModel != null
         ? textEditingController[0].text =
             lifeStyleHistryModel.body.exercise.toString() ?? "N/A"
         : textEditingController[0].text = "N/A";
@@ -552,9 +545,10 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
             lifeStyleHistryModel.body.occupation.toString() ?? "N/A"
         : textEditingController[1].text = "N/A";
     lifeStyleHistryModel != null
-        ? textEditingController[2].text =
-            lifeStyleHistryModel.body.pets.toString() ?? "N/A"
-        : textEditingController[2].text = "N/A";*/
+        ? textEditingController[2].text = lifeStyleHistryModel.body.pets.toString() ?? "N/A"
+        : textEditingController[2].text = "N/A";
+
+
     /* textEditingController[1].text=lifeStyleHistryModel.body.occupation.toString() ?? "N/A";
     textEditingController[2].text=lifeStyleHistryModel.body.pets.toString() ?? "N?A";*/
 
@@ -659,12 +653,12 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
             Navigator.of(context).pop();
             // textEditingController[0].text = "";
           },
-          textColor: Theme.of(context).primaryColor,
-          child: Text(MyLocalizations.of(context).text("CANCEL")),
+          child: Text(MyLocalizations.of(context).text("CANCEL"),
+              style: TextStyle(color: AppData.kPrimaryRedColor)),
         ),
         new FlatButton(
           child: Text(
-            'OK',
+            'Update',
             //style: TextStyle(color: Colors.grey),
             style: TextStyle(color: AppData.matruColor),
           ),
@@ -688,7 +682,6 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                   textEditingController[1].text == null ||
                   textEditingController[1].text == "") {
                 AppData.showInSnackBar(context, "Please enter  Occupation");
-
               } else if (textEditingController[2].text == "N/A" ||
                   textEditingController[2].text == null ||
                   textEditingController[2].text == "") {
@@ -713,19 +706,46 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                     token: widget.model.token,
                     fun: (Map<String, dynamic> map) {
                       Navigator.pop(context);
-                      setState(() {
+                      /*setState(() {
                         if (map[Const.STATUS1] == Const.SUCCESS) {
-                          //Navigator.pop(context);
+                          Navigator.pop(context);
+                          Navigator.pop(context);
+                          callAPI();
                           AppData.showInSnackBargreen(
                               context, map[Const.MESSAGE]);
-                          callAPI();
 
                         } else {
                           callAPI();
                           AppData.showInSnackBar(context, map[Const.MESSAGE]);
                         }
+                      });*/
+
+                    /*});*/
+                      setState(() {
+                        if (map[Const.CODE] == Const.SUCCESS) {
+                          //Navigator.pop(context);
+                          callAPI();
+                          //AppData.showInSnackDone(context, map[Const.MESSAGE]);
+                          AppData.showInSnackBargreen(context, map[Const.MESSAGE]);
+                        } else {
+                          AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                        }
                       });
-                    });
+                    },
+                  /*fun: (Map<String, dynamic> map) {
+                    Navigator.pop(context);
+                    callAPI();
+                    if (map[Const.STATUS] == Const.SUCCESS) {
+                      AppData.showInSnackDone(context, map[Const.MESSAGE]);
+
+                    } else {
+                      AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                    }
+                  }*/
+                );
+                callAPI();
+                Navigator.of(context).pop();
+
               }
 
             });
@@ -739,9 +759,13 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
 
   Widget gender() {
     return DropDown.staticDropdown3(
-        MyLocalizations.of(context).text("DIET"), "genderPartner", genderList,
+        MyLocalizations.of(context).text("DIET"), "diet", genderList,
         (KeyvalueModel model) {
-      LifeStyleHistory.ditemodel = model;
+          LifeStyleHistory.ditemodel = model;
+          lifeStyleHistryModel.body.alcoholId = model.key;
+          lifeStyleHistryModel.body.diet = model.name;
+      //lifeStyleHistryModel.body.smokingId = model.key;
+      //LifeStyleHistory.ditemodel = model;
     });
   }
 

@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
@@ -47,7 +50,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
     initialPage: 0,
   );
 
-  /* List<String> imageSliders = [
+ /* List<String> imageSliders = [
     "assets/modiji_banner.jpg",
     "assets/AjitPawarji.PNG",
     "assets/JaiRamThakurji.jpg",
@@ -61,7 +64,10 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
     "assets/images/tmc.png"
   ];*/
   List<String> imageSliders = [
-    "assets/intro/pm1.jpeg",
+    // "assets/intro/pm1.jpeg",
+
+    "assets/images/uk_two.jpeg",
+    "assets/images/uk_one.jpg",
   ];
 
   SharedPref sharedPref = SharedPref();
@@ -79,6 +85,10 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
 
     callApi();
 
+    /*if(loginResponse1.body.userPic==null){
+      callProfApi();
+    }
+*/
     FirebaseMessaging.instance
         .getInitialMessage()
         .then((RemoteMessage message) {
@@ -91,7 +101,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
       RemoteNotification notification = message.notification;
       AndroidNotification android = message.notification?.android;
       if (notification != null && android != null && !kIsWeb) {
-        flutterLocalNotificationsPlugin.show(
+         flutterLocalNotificationsPlugin.show(
             notification.hashCode,
             notification.title,
             notification.body,
@@ -117,6 +127,23 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
       Navigator.pushNamed(context, '/aboutus');
     });
   }
+
+  /*callProfApi() {
+    widget.model.GETMETHODCALL_TOKEN(
+        api: ApiFactory.PATIENT_PROFILE + loginResponse1.body.user,
+        token: widget.model.token,
+        fun: (Map<String, dynamic> map) {
+          //setState(() {
+            log("Value>>>" + jsonEncode(map));
+            if (map[Const.CODE] == Const.SUCCESS) {
+              log("Value is>>"+map["body"]["profileImage"]);
+              *//*setState(() {*//*
+                loginResponse1.body.userPic = map["body"]["profileImage"];
+              //});
+            }
+         // });
+        });
+  }*/
 
   popup(String msg, BuildContext context) {
     return Alert(
@@ -302,8 +329,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
-        title: Text(
-          MyLocalizations.of(context).text("DASHBOARD"),
+        title: Text(MyLocalizations.of(context).text("DASHBOARD"),
           style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
@@ -328,7 +354,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      /*  Container(
+                    /*  Container(
                         height: size.height * 0.07,
                         width: size.width * 0.13,
                         decoration: BoxDecoration(
@@ -346,14 +372,24 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                       ),*/
                       CircleAvatar(
                         radius: 35,
-                        foregroundColor: Colors.white,
+                        foregroundColor:
+                        Colors
+                            .white,
                         backgroundColor: Colors.white,
-                        child: Image.asset(
-                          'assets/images/user.png',
-                          height: size.height * 0.07,
-                          width: size.width * 0.13,
-                          //fit: BoxFit.cover,
-                        ),
+                        child: /*(loginResponse1?.body?.userPic != null &&
+                                loginResponse1?.body?.userPic != "")
+                            ? */Image.asset(
+                                'assets/images/user.png',
+                                height: size.height * 0.07,
+                                width: size.width * 0.13,
+                                //fit: BoxFit.cover,
+                              )
+                            /*: Image.network(
+                                loginResponse1.body.userPic,
+                                height: size.height * 0.07,
+                                width: size.width * 0.13,
+                                //fit: BoxFit.cover,
+                              )*/,
                       ),
                       SizedBox(
                         width: 20,
@@ -403,9 +439,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                   height: 30,
                   //color: Colors.redAccent,
                 ),
-                title: Text(
-                  MyLocalizations.of(context).text("MY_PROFILE"),
-                ),
+                title: Text(MyLocalizations.of(context).text("MY_PROFILE"),),
                 selected: _selectedDestination == 1,
                 onTap: () {
                   selectDestination(1);
@@ -462,8 +496,8 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                   selected: _selectedDestination == 5,
                   onTap: () {
                     selectDestination(5);
-                    //Navigator.pushNamed(context, "/dashboard1");
-                    Navigator.pushNamed(context, "/emergencydetails");
+                     //Navigator.pushNamed(context, "/dashboard1");
+                     Navigator.pushNamed(context, "/emergencydetails");
                   }),
               ListTile(
                   leading: Image.asset(
@@ -587,10 +621,8 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                 selected: _selectedDestination == 16,
                 onTap: () {
                   //FirebaseMessaging.instance.unsubscribeFromTopic(loginResponse1.body.user);
-                  FirebaseMessaging.instance
-                      .unsubscribeFromTopic(loginResponse1.body.user);
-                  FirebaseMessaging.instance
-                      .unsubscribeFromTopic(loginResponse1.body.userMobile);
+                  FirebaseMessaging.instance.unsubscribeFromTopic(loginResponse1.body.user);
+                  FirebaseMessaging.instance.unsubscribeFromTopic(loginResponse1.body.userMobile);
                   selectDestination(16);
                   _exitApp();
                 },
@@ -666,12 +698,12 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                             case 0:
                               /*AppData.launchURL(
                                   "https://www.youtube.com/watch?v=QYcKscyUvuY");*/
-                              AppData.launchURL(
-                                  "https://www.youtube.com/watch?v=CmPGUBJZqlA");
+                              // AppData.launchURL("https://www.youtube.com/watch?v=CmPGUBJZqlA");
+                              AppData.launchURL("https://www.youtube.com/watch?v=cXU3FTZ4UzU");
                               break;
                             case 1:
-                              AppData.launchURL(
-                                  "https://www.youtube.com/embed/-sTLaWKiklM&vs");
+                              // AppData.launchURL("https://www.youtube.com/embed/-sTLaWKiklM&vs");
+                              AppData.launchURL("https://www.youtube.com/watch?v=8RXHYZczFBw");
                               break;
                             case 4:
                               AppData.launchURL(
@@ -1307,8 +1339,7 @@ class MyPage1Widget extends StatelessWidget {
                       width: 100,
                       height: 35,
                       /* child: Expanded(*/
-                      child: Text(
-                        MyLocalizations.of(context).text("MEDICAL_RECORD"),
+                      child: Text(MyLocalizations.of(context).text("MEDICAL_RECORD"),
                         textAlign: TextAlign.center,
                         //overflow: TextOverflow.ellipsis,
                       ),
@@ -1378,8 +1409,7 @@ class MyPage1Widget extends StatelessWidget {
                       width: 100,
                       height: 35,
                       /* child: Expanded(*/
-                      child: Text(
-                        MyLocalizations.of(context).text("APPOINTMENT"),
+                      child: Text(MyLocalizations.of(context).text("APPOINTMENT"),
                         textAlign: TextAlign.center,
                         //overflow: TextOverflow.ellipsis,
                       ),
@@ -1426,8 +1456,7 @@ class MyPage1Widget extends StatelessWidget {
                       width: 100,
                       height: 35,
                       /* child: Expanded(*/
-                      child: Text(
-                        MyLocalizations.of(context).text("EMERGENCY_HELP"),
+                      child: Text(MyLocalizations.of(context).text("EMERGENCY_HELP"),
                         textAlign: TextAlign.center,
                         //overflow: TextOverflow.ellipsis,
                       ),
@@ -1457,8 +1486,8 @@ class MyPage1Widget extends StatelessWidget {
                       //icon: FontAwesomeIcons.accusoft,
                       title: "Medicine Reminder",
                       fun: () {
-                        AppData.showInSnackDone(context, "Coming Soon");
-                        //Navigator.pushNamed(context, "/medicinereminder");
+                        //AppData.showInSnackDone(context, "Coming Soon");
+                        Navigator.pushNamed(context, "/medicinereminder");
                         // AppData.showSnack(
                         //     context, "Coming soon", Colors.green);
                       },
@@ -1566,9 +1595,8 @@ class MyPage1Widget extends StatelessWidget {
                       width: 100,
                       height: 35,
                       /* child: Expanded(*/
-                      child: Text(
-                        MyLocalizations.of(context).text("ORGAN_DONATION"),
-                        textAlign: TextAlign.center,
+                      child: Text(MyLocalizations.of(context).text("ORGAN_DONATION"),
+                         textAlign: TextAlign.center,
                         //overflow: TextOverflow.ellipsis,
                       ),
                     ),
@@ -1612,9 +1640,7 @@ class MyPage1Widget extends StatelessWidget {
                       width: 100,
                       height: 35,
                       /* child: Expanded(*/
-                      child: Text(
-                        MyLocalizations.of(context)
-                            .text("GENERIC_MEDICAL_STORE"),
+                      child: Text(MyLocalizations.of(context).text("GENERIC_MEDICAL_STORE"),
                         textAlign: TextAlign.center,
                         //overflow: TextOverflow.ellipsis,
                       ),
@@ -1637,7 +1663,7 @@ class MyPage1Widget extends StatelessWidget {
                       fun: () {
                         //AppData.showInSnackDone(context, "Coming Soon");
                         Navigator.pushNamed(context, "/govtschemes");
-                        //Navigator.pushNamed(context, "/govetschemeslist");
+                       //Navigator.pushNamed(context, "/govetschemeslist");
                         // AppData.showSnack(
                         //     context, "Coming soon", Colors.green);
                       },
@@ -1692,8 +1718,7 @@ class MyPage1Widget extends StatelessWidget {
                       width: 100,
                       height: 35,
                       /* child: Expanded(*/
-                      child: Text(
-                        MyLocalizations.of(context).text("INSURANCE"),
+                      child: Text(MyLocalizations.of(context).text("INSURANCE"),
                         textAlign: TextAlign.center,
                         //overflow: TextOverflow.ellipsis,
                       ),
@@ -1711,7 +1736,7 @@ class MyPage1Widget extends StatelessWidget {
                       icon: "assets/health_care.png",
                       fun: () {
                         AppData.showInSnackDone(context, "Coming Soon");
-                        // Navigator.pushNamed(context, "/chemistspage");
+                       // Navigator.pushNamed(context, "/chemistspage");
                         // AppData.showSnack(
                         //   context, "Coming soon", Colors.green);
                       },
@@ -1755,7 +1780,7 @@ class MyPage1Widget extends StatelessWidget {
                   _buildTilered(
                     icon: "assets/medipedia.png",
                     fun: () {
-                      // AppData.showInSnackDone(context, "Coming Soon");
+                     // AppData.showInSnackDone(context, "Coming Soon");
                       Navigator.pushNamed(context, "/medipedia");
                       // AppData.showSnack(
                       //     context, "Coming soon", Colors.green);
@@ -1771,9 +1796,8 @@ class MyPage1Widget extends StatelessWidget {
                     width: 100,
                     height: 35,
                     /* child: Expanded(*/
-                    child: Text(
-                      MyLocalizations.of(context).text("MEDIPEDIA"),
-                      textAlign: TextAlign.center,
+                    child: Text(MyLocalizations.of(context).text("MEDIPEDIA"),
+                   textAlign: TextAlign.center,
                       //overflow: TextOverflow.ellipsis,
                     ),
                   ),
@@ -2177,11 +2201,11 @@ class MyPage2Widget extends StatelessWidget {
                 SizedBox(
                   height: 10,
                 ),
-                /*    Row(
+            /*    Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     // crossAxisAlignment: CrossAxisAlignment.center,
-                 */ /*   Column(
+                 *//*   Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -2209,9 +2233,9 @@ class MyPage2Widget extends StatelessWidget {
                               //overflow: TextOverflow.ellipsis,
                             ),
                           ),
-                        ]),*/ /*
+                        ]),*//*
                     Spacer(),
-                  */ /*  Column(
+                  *//*  Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -2240,7 +2264,7 @@ class MyPage2Widget extends StatelessWidget {
                             ),
                           ),
 
-                          */ /**/ /*  Align(
+                          *//**//*  Align(
                                           alignment: Alignment.center,
                                           child:SizedBox(
                                             width:100, child: FittedBox(child:Text(
@@ -2250,8 +2274,8 @@ class MyPage2Widget extends StatelessWidget {
                                           ),
                                           )
                                         ),
-                                        ),*/ /**/ /*
-                        ]),*/ /*
+                                        ),*//**//*
+                        ]),*//*
                     Spacer(),
                     Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -2299,9 +2323,8 @@ class MyPage2Widget extends StatelessWidget {
                             //icon: FontAwesomeIcons.accusoft,
                             title: "Blood Bank",
                             fun: () {
-                              Navigator.pushNamed(
-                                  context, "/bookBloodBanklist");
-                              // Navigator.pushNamed(context, "/healthCheckup");
+                              Navigator.pushNamed(context, "/bookBloodBanklist");
+                             // Navigator.pushNamed(context, "/healthCheckup");
                             },
                             color: AppData.BG1RED,
                             bordercolor: AppData.BG1RED,

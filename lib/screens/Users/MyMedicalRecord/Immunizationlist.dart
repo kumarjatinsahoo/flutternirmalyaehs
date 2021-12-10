@@ -98,6 +98,19 @@ class _ImmunizationState extends State<Immunization> {
           });
         });
   }
+  static String toDate(String date) {
+    if (date != null && date != "") {
+      DateTime formatter = new DateFormat("yyyy-MM-dd").parse(date);
+      // final DateTime formatter =
+      //DateFormat("yyyy-MM-dd\'T\'HH:mm:ss.SSSZ\'").parse(date);
+      //DateFormat("dd/MM/yyyy").parse(date);
+      DateFormat toNeed = DateFormat("dd-MM-yyyy");
+      final String formatted = toNeed.format(formatter);
+      return formatted;
+    } else {
+      return "";
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -111,6 +124,7 @@ class _ImmunizationState extends State<Immunization> {
               padding: EdgeInsets.only(right: 20.0),
               child: InkWell(
                 onTap: () {
+                  _date.text = "";
                   displayTextInputDialog(context);
                 },
                 child: Icon(
@@ -145,8 +159,7 @@ class _ImmunizationState extends State<Immunization> {
                               shrinkWrap: true,
                               physics: NeverScrollableScrollPhysics(),
                               itemBuilder: (context, i) {
-                                immunization.Body body =
-                                    immunizationListModel.body[i];
+                                immunization.Body body =immunizationListModel.body[i];
                                 return Padding(
                                   padding: const EdgeInsets.only(
                                       left: 5, right: 5, top: 5),
@@ -156,30 +169,9 @@ class _ImmunizationState extends State<Immunization> {
                                       onTap: () {
                                         String slno = body.slno;
                                         String status = body.status;
+                                        displayStatushangeDialog(context,slno,status);
 
-                                        widget.model.GETMETHODCALL_TOKEN(
-                                            api: ApiFactory
-                                                .IMMUNIZATION_STATUS + slno +
-                                                "&status=" + status,
-                                            token: widget.model.token,
-                                            fun: (Map<String, dynamic> map) {
-                                              setState(() {
-                                                log("Value>>>" +
-                                                    jsonEncode(map));
-                                                String msg = map[Const.MESSAGE];
-                                                if (map[Const.CODE] ==
-                                                    Const.SUCCESS) {
-                                                  setState(() {
-                                                    Navigator.of(context).pop();
-                                                  });
-                                                } else {
-                                                  setState(() {
-                                                    isDataNoFound = true;
-                                                  });
-                                                  //AppData.showInSnackBar(context, msg);
-                                                }
-                                              });
-                                            });
+
                                       },
                                   child:
 
@@ -257,7 +249,7 @@ class _ImmunizationState extends State<Immunization> {
                                               height: 5,
                                             ),
                                             Text(
-                                              'Prescribed by:' +
+                                              'Prescribed by: '+
                                                   body.doctorName,
                                               style: TextStyle(
                                                   fontWeight:
@@ -268,7 +260,9 @@ class _ImmunizationState extends State<Immunization> {
                                               height: 5,
                                             ),
                                             Text(
-                                              body.immunizationDate,
+                                              /*body.immunizationDate,*/
+                                              toDate(body.immunizationDate)??
+                                                  "N/A",
                                               style: TextStyle(
                                                   fontWeight:
                                                   FontWeight.bold,
@@ -304,9 +298,134 @@ class _ImmunizationState extends State<Immunization> {
                 ),
     );
   }
+  displayStatushangeDialog(BuildContext context ,String slno, String status
+  ) {
+
+    showDialog(
+        builder: (context) {
+          return AlertDialog(
+            contentPadding: EdgeInsets.only(left: 5, right: 5, top: 5),
+            insetPadding: EdgeInsets.only(left: 5, right: 5, top: 5),
+            content: StatefulBuilder(
+              builder: (BuildContext context, StateSetter setState) {
+                return Container(
+                  width: MediaQuery.of(context).size.width * 0.0,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Positioned(
+                        right: 10.0,
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: Align(
+                            alignment: Alignment.topRight,
+                            child: CircleAvatar(
+                              radius: 10.0,
+                              backgroundColor: Colors.white,
+                              child: Icon(Icons.close, color: Colors.red,size: 25,),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Center(
+                              child: Text(
+                                "Are you Vaccinated ?",
+                                style: TextStyle(
+                                    color: Colors.black, fontSize: 25,fontWeight: FontWeight.w400, // light
+                                  fontStyle: FontStyle.normal ),
+                              ),
+                            ),
+                            SizedBox(height: 10),
+
+                    ],
+                  ),
+                );
+              },
+            ),
+            actions: <Widget>[
+              FlatButton(
+                //textColor: Colors.grey,
+                child: Text("No",
+                    style: TextStyle(color: AppData.kPrimaryRedColor)),
+                onPressed: () {
+                  widget.model.GETMETHODCALL_TOKEN(
+                      api: ApiFactory
+                          .IMMUNIZATION_STATUS + slno +
+                          "&status=" + /*status*/"No",
+                      token: widget.model.token,
+                      fun: (Map<String, dynamic> map) {
+                        setState(() {
+                          log("Value>>>" +
+                              jsonEncode(map));
+                          String msg = map[Const.MESSAGE];
+                          if (map[Const.CODE] ==
+                              Const.SUCCESS) {
+                            setState(() {
+                              callApi();
+                              Navigator.of(context).pop();
+                            });
+                          } else {
+                            setState(() {
+                              isDataNoFound = true;
+                            });
+                            //AppData.showInSnackBar(context, msg);
+                          }
+                        });
+                      });
+                  /*setState(() {
+                    Navigator.pop(context);
+                  });*/
+                },
+              ),
+              FlatButton(
+                //textColor: Colors.grey,
+                child: Text(
+                 "Yes",
+                  //style: TextStyle(color: Colors.grey),
+                  style: TextStyle(color: AppData.matruColor),
+                ),
+                onPressed: () {
+                  widget.model.GETMETHODCALL_TOKEN(
+                      api: ApiFactory
+                          .IMMUNIZATION_STATUS + slno +
+                          "&status=" + /*status*/"yes",
+                      token: widget.model.token,
+                      fun: (Map<String, dynamic> map) {
+                        setState(() {
+                          log("Value>>>" +
+                              jsonEncode(map));
+                          String msg = map[Const.MESSAGE];
+                          if (map[Const.CODE] ==
+                              Const.SUCCESS) {
+                            setState(() {
+                              callApi();
+                              Navigator.of(context).pop();
+                            });
+                          } else {
+                            setState(() {
+                              isDataNoFound = true;
+                            });
+                            //AppData.showInSnackBar(context, msg);
+                          }
+                        });
+                      });
+
+                },
+              ),
+            ],
+          );
+        },
+        context: context);
+  }
 
   displayTextInputDialog(BuildContext context) {
-    _date.text = "";
+    //_date.text = "";
+    textEditingController[1].text = "";
+    textEditingController[2].text = "";
+    Immunization.immunizationmodel = null;
     // = "";
     //_reason.text = "";
     showDialog(
@@ -375,7 +494,7 @@ class _ImmunizationState extends State<Immunization> {
             ),
             actions: <Widget>[
               FlatButton(
-                textColor: Colors.grey,
+                //textColor: Colors.grey,
                 child: Text(MyLocalizations.of(context).text("CANCEL"),
                     style: TextStyle(color: AppData.kPrimaryRedColor)),
                 onPressed: () {
@@ -392,20 +511,14 @@ class _ImmunizationState extends State<Immunization> {
                   style: TextStyle(color: AppData.matruColor),
                 ),
                 onPressed: () {
-                  if (Immunization.immunizationmodel == null ||
-                      Immunization.immunizationmodel == "") {
-                    AppData.showInSnackBar(
-                        context, "Please Select Immunization Type ");
+                  if (Immunization.immunizationmodel == null || Immunization.immunizationmodel == "") {
+                    AppData.showInSnackBar(context, "Please Select Immunization Type ");
                   } else if (_date.text == "" || _date.text == null) {
-                    AppData.showInSnackBar(context, "Please Enter Date");
-                  } else if (textEditingController[1].text == "" ||
-                      textEditingController[1].text == null) {
-                    AppData.showInSnackBar(
-                        context, "Please Enter Prescribed By");
-                  } else if (textEditingController[2].text == "" ||
-                      textEditingController[2].text == null) {
-                    AppData.showInSnackBar(
-                        context, "Please Enter Immunization Details ");
+                    AppData.showInSnackBar(context, "Please Enter Immunization Date");
+                  } else if (textEditingController[1].text == "" ||textEditingController[1].text == null) {
+                    AppData.showInSnackBar(context, "Please Enter Prescribed By");
+                  } else if (textEditingController[2].text == ""||textEditingController[2].text == null) {
+                    AppData.showInSnackBar(context, "Please Enter Immunization Details ");
                   } else {
                     MyWidgets.showLoading(context);
                     ImmunizationPostModel immunizationmodel =
@@ -427,17 +540,15 @@ class _ImmunizationState extends State<Immunization> {
                       token: widget.model.token,
                       fun: (Map<String, dynamic> map) {
                         Navigator.pop(context);
-                        setState(() {
-                          if (map[Const.STATUS1] == Const.SUCCESS) {
+                          if (map["code"] == Const.SUCCESS) {
                             Navigator.pop(context);
                             callApi();
                             AppData.showInSnackDone(
-                                context, map[Const.MESSAGE]);
+                                context,map["message"]);
                           } else {
-                            callApi();
+
                             AppData.showInSnackBar(context, map[Const.MESSAGE]);
                           }
-                        });
                       },
                     );
                   }
@@ -512,9 +623,8 @@ class _ImmunizationState extends State<Immunization> {
         locale: Locale("en"),
         initialDate: DateTime.now(),
         firstDate: DateTime(1901, 1),
-        lastDate:
-            DateTime.now().add(new Duration(days: 5))); //18 years is 6570 days
-    if (picked != null && picked != selectedDate)
+        lastDate: DateTime.now()/*.add(new Duration(days: 5)*/); //18 years is 6570 days
+    /*if (picked != null && picked != selectedDate)*/
       setState(() {
         selectedDate = picked;
         error[2] = false;
@@ -543,7 +653,7 @@ class _ImmunizationState extends State<Immunization> {
             hintText: hint,
             /* prefixIcon:
             Icon(Icons.person_rounded),*/
-            hintStyle: TextStyle(color: AppData.hintColor, fontSize: 15),
+            hintStyle: TextStyle(color: AppData.hintColor),
           ),
           textInputAction: TextInputAction.next,
           keyboardType: TextInputType.text,

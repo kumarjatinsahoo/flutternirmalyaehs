@@ -147,4 +147,10 @@ String insuranceid;
 String pdfurl;
 String diesepdf;
 
+String emergencyrelation;
+
+String documentcategories;
+String  receptionhospitalid;
+
+
 }

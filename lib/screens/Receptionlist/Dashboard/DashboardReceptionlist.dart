@@ -1,21 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/SharedPref.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
-import 'package:user/screens/Doctor/Dashboard/NewDashboardDoctor.dart';
-
-class NewDashboardDoctor extends StatefulWidget {
+class DashboardReceptionlist extends StatefulWidget {
   MainModel model;
 
-  NewDashboardDoctor({Key key, this.model}) : super(key: key);
+  DashboardReceptionlist({Key key, this.model}) : super(key: key);
 
   @override
-  _NewDashboardDoctorState createState() => _NewDashboardDoctorState();
+  _DashboardReceptionlistState createState() => _DashboardReceptionlistState();
 }
 
 SharedPref sharedPref = SharedPref();
@@ -105,7 +102,7 @@ Widget _Tilered({IconData icon, String title, Function fun}) {
           ),
           Text(title,
               style: TextStyle(
-                  /*fontWeight: FontWeight.w300,*/
+                /*fontWeight: FontWeight.w300,*/
                   fontSize: 17,
                   color: Colors.black),
               textAlign: TextAlign.center),
@@ -116,7 +113,7 @@ Widget _Tilered({IconData icon, String title, Function fun}) {
   );
 }
 
-class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
+class _DashboardReceptionlistState extends State<DashboardReceptionlist> {
   LoginResponse1 loginResponse;
   PageController _controller = PageController(
     initialPage: 0,
@@ -138,22 +135,22 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
           title: Text(MyLocalizations.of(context).text("DASHBOARD")),
           backgroundColor: AppData.kPrimaryColor),
       body: Stack(
-       // fit: StackFit.expand,
+        // fit: StackFit.expand,
         children: [
           Column(
             mainAxisSize: MainAxisSize.max,
-           mainAxisAlignment: MainAxisAlignment.end,
-           children: [
-             Container(
-               child: Image.asset(
-                 "assets/images/doctorbanner.jpg",
-                 // width: size.width,
-                 // fit: BoxFit.cover,
-               ),
-             ),
-             SizedBox(height:3),
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Container(
+                child: Image.asset(
+                  "assets/images/receptionalist.jpg",
+                  // width: size.width,
+                  // fit: BoxFit.cover,
+                ),
+              ),
+              SizedBox(height:3),
 
-           ],
+            ],
           ),
           Container(
             padding: EdgeInsets.symmetric(horizontal: 7),
@@ -434,7 +431,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                                   width: 100,
                                   height: 35,
                                   child: Text(
-                                   MyLocalizations.of(context).text("MONTHLY_OVERVIEW"),
+                                    MyLocalizations.of(context).text("MONTHLY_OVERVIEW"),
                                     textAlign: TextAlign.center,
                                     //overflow: TextOverflow.ellipsis,
                                   ),
@@ -481,7 +478,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                                   height: 35,
                                   /* child: Expanded(*/
                                   child: Text(
-                                MyLocalizations.of(context).text("VIDEO_CONSULTATION"),
+                                    MyLocalizations.of(context).text("VIDEO_CONSULTATION"),
                                     textAlign: TextAlign.center,
                                     //overflow: TextOverflow.ellipsis,
                                   ),
@@ -729,7 +726,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
             SizedBox(
               height: 8,
             ),
-         /*   ListTile(
+            /*   ListTile(
               leading: Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Row(
@@ -802,11 +799,11 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
 
   Widget _buildTilered(
       {String icon,
-      String title,
-      double size,
-      Color bordercolor,
-      Color color,
-      Function fun}) {
+        String title,
+        double size,
+        Color bordercolor,
+        Color color,
+        Function fun}) {
     return InkWell(
       onTap: fun,
       child: Container(
@@ -817,7 +814,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
         width: 100,
         decoration: BoxDecoration(
 
-            /// borderRadius: BorderRadius.circular(7.0),
+          /// borderRadius: BorderRadius.circular(7.0),
             borderRadius: BorderRadius.only(
               topLeft: Radius.zero,
               topRight: Radius.circular(10.0),
@@ -856,12 +853,12 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
 
   Widget _buildTileblue(
       {String icon,
-      /*IconData icon,*/
-      String title,
-      double size,
-      Color bordercolor,
-      Color color,
-      Function fun}) {
+        /*IconData icon,*/
+        String title,
+        double size,
+        Color bordercolor,
+        Color color,
+        Function fun}) {
     return InkWell(
       onTap: fun,
       child: Container(
@@ -870,7 +867,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
         height: 85,
         width: 100,
         decoration: BoxDecoration(
-            /// borderRadius: BorderRadius.circular(7.0),
+          /// borderRadius: BorderRadius.circular(7.0),
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(10.0),
               topRight: Radius.zero,
@@ -908,12 +905,12 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
 
   Widget _buildTile(
       {String icon,
-      /*IconData icon,*/
-      String title,
-      double size,
-      Color bordercolor,
-      Color color,
-      Function fun}) {
+        /*IconData icon,*/
+        String title,
+        double size,
+        Color bordercolor,
+        Color color,
+        Function fun}) {
     return InkWell(
       onTap: fun,
       child: Container(
@@ -958,12 +955,12 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
 
   Widget _buildTilewhite(
       {String icon,
-      /*IconData icon,*/
-      String title,
-      double size,
-      Color bordercolor,
-      Color color,
-      Function fun}) {
+        /*IconData icon,*/
+        String title,
+        double size,
+        Color bordercolor,
+        Color color,
+        Function fun}) {
     return InkWell(
       onTap: fun,
       child: Container(
@@ -973,7 +970,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
         width: 1,
         decoration: BoxDecoration(
 
-            /// borderRadius: BorderRadius.circular(7.0),
+          /// borderRadius: BorderRadius.circular(7.0),
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(0.0),
               topRight: Radius.zero,

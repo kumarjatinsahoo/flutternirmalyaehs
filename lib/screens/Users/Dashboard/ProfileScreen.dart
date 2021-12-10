@@ -123,6 +123,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
               patientProfileModel = ProfileModel.fromJson(map);
+              loginResponse1.body.userPic=patientProfileModel.body.profileImage;
               if (patientProfileModel?.body?.bloodGroup != null) {
                 ProfileScreen.bloodgroupmodel = KeyvalueModel(
                     key: patientProfileModel.body.bloodGroupId,
@@ -154,9 +155,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   updateProfile(String image, String ext) {
     MyWidgets.showLoading(context);
-    var value = {"profileImageType": ext, "pImage": [image], "eCardNo": loginResponse1.body.user};
+    var value = {
+      "profileImageType": ext,
+      "pImage": [image],
+      "eCardNo": loginResponse1.body.user
+    };
 
-    log("Post data>>\n\n"+jsonEncode(value));
+    log("Post data>>\n\n" + jsonEncode(value));
     widget.model.POSTMETHOD_TOKEN(
         api: ApiFactory.USER_PROFILE_IMAGE,
         token: widget.model.token,
@@ -167,7 +172,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
             log("Value>>>" + jsonEncode(map));
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
-
             } else {
               isDataNotAvail = true;
               AppData.showInSnackBar(context, msg);
@@ -208,7 +212,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 onTap: () {
                   Navigator.pushNamed(context, "/idCard");
                 },
-                child: Text(MyLocalizations.of(context).text("ID_CARD"),
+                child: Text(
+                  MyLocalizations.of(context).text("ID_CARD"),
                   style: TextStyle(
                     fontSize: 14,
                     decoration: TextDecoration.underline,
@@ -504,7 +509,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           tabs: [
                             Padding(
                               padding: const EdgeInsets.symmetric(vertical: 12),
-                              child: Text(MyLocalizations.of(context).text("DETAILS").toUpperCase(),
+                              child: Text(
+                                  MyLocalizations.of(context)
+                                      .text("DETAILS")
+                                      .toUpperCase(),
                                   style: TextStyle(
                                       color: Colors.black,
                                       fontWeight: FontWeight.w900,
@@ -512,7 +520,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             ),
                             Padding(
                               padding: const EdgeInsets.symmetric(vertical: 12),
-                              child: Text(MyLocalizations.of(context).text("EMERGENCY_CONTACT").toUpperCase(),
+                              child: Text(
+                                  MyLocalizations.of(context)
+                                      .text("EMERGENCY_CONTACT")
+                                      .toUpperCase(),
                                   style: TextStyle(
                                       fontWeight: FontWeight.w900,
                                       color: Colors.black,
@@ -520,7 +531,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             ),
                             Padding(
                               padding: const EdgeInsets.symmetric(vertical: 12),
-                              child: Text(MyLocalizations.of(context).text("FAMILY_DOCTORS").toUpperCase(),
+                              child: Text(
+                                  MyLocalizations.of(context)
+                                      .text("FAMILY_DOCTORS")
+                                      .toUpperCase(),
                                   style: TextStyle(
                                       fontWeight: FontWeight.w900,
                                       color: Colors.black,
@@ -554,7 +568,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Card(
       elevation: 0,
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 8.0),
         child: Container(
           /*decoration: BoxDecoration(
             color: Colors.white,
@@ -567,98 +581,100 @@ class _ProfileScreenState extends State<ProfileScreen> {
               borderRadius: BorderRadius.circular(5),
 
     ),*/
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding:
-                    const EdgeInsets.only(left: 10.0, top: 20, right: 10.0),
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.calendar_today,
-                      size: 20,
-                    ),
-                    SizedBox(width: 10),
-                    Expanded(
-                      flex: 1,
-                      child: Text(MyLocalizations.of(context).text("DOB1"),
-                        style: TextStyle(
-                          fontSize: 15
-                          // color: Colors.black54,
-                          ,
-                          fontWeight: FontWeight.w800,
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding:
+                      const EdgeInsets.only(left: 10.0, top: 20, right: 10.0),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.calendar_today,
+                        size: 20,
+                      ),
+                      SizedBox(width: 10),
+                      Expanded(
+                        flex: 1,
+                        child: Text(
+                          MyLocalizations.of(context).text("DOB1"),
+                          style: TextStyle(
+                            fontSize: 15,
+                            // color: Colors.black54,
+                            fontWeight: FontWeight.w800,
+                          ),
                         ),
                       ),
-                    ),
-                    /* SizedBox(
+                      /* SizedBox(
                     width: spaceTab,
                   ),*/
-                    SizedBox(width: 10),
-                    Expanded(
-                      flex: 1,
-                      child: Text(
-                        patientProfileModel?.body?.dob ?? "N/A",
-                        style: TextStyle(fontSize: 14
-                            // fontWeight: FontWeight.w500,
-                            // color: Colors.black54,
-                            ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              /*SizedBox(
-                height: 6,
-              ),*/
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                child: Divider(
-                  color: AppData.lightgreyBorder,
-                  height: 6,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.bloodtype_outlined,
-                      size: 20,
-                    ),
-
-                    //Icon(Icons.bloodtype,size: 20),
-                    SizedBox(width: 10),
-                    Expanded(
-                      flex: 1,
-                      child: Text(MyLocalizations.of(context).text("BLOODGROUP"),
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w800,
+                      SizedBox(width: 10),
+                      Expanded(
+                        flex: 1,
+                        child: Text(
+                          patientProfileModel?.body?.dob ?? "N/A",
+                          style: TextStyle(fontSize: 14
+                              // fontWeight: FontWeight.w500,
+                              // color: Colors.black54,
+                              ),
                         ),
                       ),
-                    ),
-                    SizedBox(width: 10),
-                    Expanded(
-                      flex: 1,
-                      child: Text(
-                        patientProfileModel?.body?.bloodGroup ?? "N/A",
-                        style: TextStyle(fontSize: 14
-                            //fontWeight: FontWeight.w500,
-                            ),
+                    ],
+                  ),
+                ),
+                /*SizedBox(
+                height: 6,
+              ),*/
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: Divider(
+                    color: AppData.lightgreyBorder,
+                    height: 6,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.bloodtype_outlined,
+                        size: 20,
                       ),
-                    ),
-                  ],
+
+                      //Icon(Icons.bloodtype,size: 20),
+                      SizedBox(width: 10),
+                      Expanded(
+                        flex: 1,
+                        child: Text(
+                          MyLocalizations.of(context).text("BLOODGROUP"),
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w800,
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 10),
+                      Expanded(
+                        flex: 1,
+                        child: Text(
+                          patientProfileModel?.body?.bloodGroup ?? "N/A",
+                          style: TextStyle(fontSize: 14
+                              //fontWeight: FontWeight.w500,
+                              ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                child: Divider(
-                  color: AppData.lightgreyBorder,
-                  height: 6,
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: Divider(
+                    color: AppData.lightgreyBorder,
+                    height: 6,
+                  ),
                 ),
-              ),
-              /* Padding(
+                /* Padding(
                 padding: const EdgeInsets.only(left: 10.0, right: 10.0),
                 child: Row(
                   children: [
@@ -691,105 +707,117 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
               ),
               SizedBox(height: 10),*/
-              Padding(
-                padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.person,
-                      size: 20,
-                    ),
-                    SizedBox(width: 10),
-                    Expanded(
-                      flex: 1,
-                      child: Container(
-                        alignment: Alignment.centerLeft,
-                        width: 100,
-                        child: Text(
-                          MyLocalizations.of(context).text("GENDER"),
-                          style: TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.w800,
-                            // color: AppData.kPrimaryColor,
-                            /*fontWeight: FontWeight.w600*/
+                Padding(
+                  padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.person,
+                        size: 20,
+                      ),
+                      SizedBox(width: 10),
+                      Expanded(
+                        flex: 1,
+                        child: Container(
+                          alignment: Alignment.centerLeft,
+                          width: 100,
+                          child: Text(
+                            MyLocalizations.of(context).text("GENDER"),
+                            style: TextStyle(
+                              fontSize: 15, fontWeight: FontWeight.w800,
+                              // color: AppData.kPrimaryColor,
+                              /*fontWeight: FontWeight.w600*/
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    SizedBox(width: 10),
-                    Expanded(
-                      flex: 1,
-                      child: Container(
-                        alignment: Alignment.centerLeft,
-                        width: 100,
+                      SizedBox(width: 10),
+                      Expanded(
+                        flex: 1,
+                        child: Container(
+                          alignment: Alignment.centerLeft,
+                          width: 100,
+                          child: Text(
+                            patientProfileModel?.body?.gender ?? "N/A",
+                            style: TextStyle(fontSize: 14),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                //SizedBox(height: 10),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: Divider(
+                    color: AppData.lightgreyBorder,
+                    height: 6,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.call,
+                        size: 20,
+                      ),
+                      SizedBox(width: 10),
+                      Expanded(
+                        flex: 1,
                         child: Text(
-                          patientProfileModel?.body?.gender ?? "N/A",
-                          style: TextStyle(fontSize: 14),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              //SizedBox(height: 10),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                child: Divider(
-                  color: AppData.lightgreyBorder,
-                  height: 6,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.call,
-                      size: 20,
-                    ),
-                    SizedBox(width: 10),
-                    Expanded(
-                      flex: 1,
-                      child: Text(
-                        MyLocalizations.of(context).text("CONTACT_DETAILS"),
-                        style: TextStyle(
-                          fontSize: 15, fontWeight: FontWeight.w800,
-                          // color: AppData.kPrimaryColor,
-                          //fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
-                    SizedBox(width: 10),
-                    Expanded(
-                      flex: 1,
-                      child: Text(
-                        patientProfileModel?.body?.mobile ?? "N/A",
-                        style: TextStyle(fontSize: 14
-                            //fontWeight: FontWeight.w500,
+                          MyLocalizations.of(context).text("CONTACT_DETAILS"),
+                          style: TextStyle(
+                            fontSize: 15, fontWeight: FontWeight.w800,
                             // color: AppData.kPrimaryColor,
-                            ),
+                            //fontWeight: FontWeight.w600,
+                          ),
+                        ),
                       ),
-                    ),
-                  ],
+                      SizedBox(width: 10),
+                      Expanded(
+                        flex: 1,
+                        child: Text(
+                          patientProfileModel?.body?.mobile ?? "N/A",
+                          style: TextStyle(fontSize: 14
+                              //fontWeight: FontWeight.w500,
+                              // color: AppData.kPrimaryColor,
+                              ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              //SizedBox(height: 10),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                child: Divider(
-                  color: AppData.lightgreyBorder,
-                  height: 6,
+                //SizedBox(height: 10),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: Divider(
+                    color: AppData.lightgreyBorder,
+                    height: 6,
+                  ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.location_on_rounded,
-                      size: 20,
-                    ),
-                    SizedBox(width: 10),
-                    Expanded(
+                Padding(
+                  padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Icon(
+                        Icons.location_on_rounded,
+                        size: 20,
+                      ),
+                      SizedBox(width: 10),
+                      Container(
+                        width: 120,
+                        child: Text(
+                          /*'Confirmed'*/
+                          MyLocalizations.of(context).text("ADDRESS"),
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 15,
+                          ),
+                        ),
+                      ),
+                      /*Expanded(
                       flex: 1,
                       child: Text(
                         MyLocalizations.of(context).text("ADDRESS"),
@@ -799,23 +827,26 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           //fontWeight: FontWeight.w600,
                         ),
                       ),
-                    ),
-                    SizedBox(width: 10),
-                    Expanded(
-                      flex: 1,
-                      child: Text(
-                        patientProfileModel?.body?.address ?? "N/A",
-                        style: TextStyle(fontSize: 14
-                            //fontWeight: FontWeight.w500,
-                            // color: AppData.kPrimaryColor,
-                            ),
+                    ),*/
+                      SizedBox(width: 10),
+                      Expanded(
+                        flex: 1,
+                        child: Text(
+                          (patientProfileModel?.body?.address ?? "N/A") +
+                              " " +
+                              (patientProfileModel?.body?.pAddress ?? "N/A"),
+                          style: TextStyle(fontSize: 14
+                              //fontWeight: FontWeight.w500,
+                              // color: AppData.kPrimaryColor,
+                              ),
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-              SizedBox(height: 10),
-            ],
+                SizedBox(height: 10),
+              ],
+            ),
           ),
         ),
       ),
@@ -1205,8 +1236,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                         SizedBox(height: 10),
-                          Text(MyLocalizations.of(context).text("UPDATE_PROFILE"),
+                          SizedBox(height: 10),
+                          Text(
+                            MyLocalizations.of(context).text("UPDATE_PROFILE"),
                             style: TextStyle(color: Colors.black, fontSize: 20),
                           ),
                           SizedBox(
@@ -1224,7 +1256,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   padding: const EdgeInsets.only(
                                       left: 0, right: 5, bottom: 0),
                                   child: Text(
-                                    MyLocalizations.of(context).text("BLOODGROUP"),
+                                    MyLocalizations.of(context)
+                                        .text("BLOODGROUP"),
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
                                         color: Colors.black,
@@ -1251,7 +1284,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             height: 20,
                           ),
                           formField(
-                              1, MyLocalizations.of(context).text("EMERGENCY_CONTACT_NAME"), fnode1, fnode2),
+                              1,
+                              MyLocalizations.of(context)
+                                  .text("EMERGENCY_CONTACT_NAME"),
+                              fnode1,
+                              fnode2),
                           SizedBox(
                             height: 20,
                           ),
@@ -1263,7 +1300,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   padding: const EdgeInsets.only(
                                       left: 0, right: 5, bottom: 0),
                                   child: Text(
-                                    MyLocalizations.of(context).text("RELATION"),
+                                    MyLocalizations.of(context)
+                                        .text("RELATION"),
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
                                         color: Colors.black,
@@ -1291,11 +1329,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           ),
                           /*   Divider(height: 2, color: Colors.black),*/
                           formFieldMobileno(
-                              2,  MyLocalizations.of(context).text("EMERGENCY_CONTACT_NO"), fnode2, fnode3),
+                              2,
+                              MyLocalizations.of(context)
+                                  .text("EMERGENCY_CONTACT_NO"),
+                              fnode2,
+                              fnode3),
                           SizedBox(
                             height: 20,
                           ),
-                          formField(3,  MyLocalizations.of(context).text("FAMILY_DOCTORS"), fnode3, fnode4),
+                          formField(
+                              3,
+                              MyLocalizations.of(context)
+                                  .text("FAMILY_DOCTORS"),
+                              fnode3,
+                              fnode4),
                           SizedBox(
                             height: 20,
                           ),
@@ -1307,7 +1354,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   padding: const EdgeInsets.only(
                                       left: 0, right: 5, bottom: 0),
                                   child: Text(
-                                    MyLocalizations.of(context).text("SPECIALITY"),
+                                    MyLocalizations.of(context)
+                                        .text("SPECIALITY"),
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
                                         color: Colors.black,
@@ -1335,11 +1383,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             color: Colors.black,
                           ),*/
                           formFieldMobileno(
-                              4,MyLocalizations.of(context).text("DOC_MOBILE"), fnode4, fnode5),
+                              4,
+                              MyLocalizations.of(context).text("DOC_MOBILE"),
+                              fnode4,
+                              fnode5),
                           SizedBox(
                             height: 20,
                           ),
-                          formFieldAddress(5, MyLocalizations.of(context).text("USER_ADDRESS"), fnode5, null),
+                          formFieldAddress(
+                              5,
+                              MyLocalizations.of(context).text("USER_ADDRESS"),
+                              fnode5,
+                              null),
                         ],
                       ),
                     ),
@@ -1360,12 +1415,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 },
               ),
               FlatButton(
+                textColor: Theme.of(context).primaryColor,
+                child: Text(MyLocalizations.of(context).text("UPDATE")),
                 //textColor: Colors.grey,
-                child: Text(
+                /*child: Text(
                   MyLocalizations.of(context).text("SAVE"),
                   //style: TextStyle(color: Colors.grey),
                   style: TextStyle(color: AppData.matruColor),
-                ),
+                ),*/
                 onPressed: () {
                   //AppData.showInSnackBar(context, "click");
                   setState(() {

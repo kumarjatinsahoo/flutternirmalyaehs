@@ -20,6 +20,7 @@ class SetupContactsPage extends StatefulWidget {
   MainModel model;
 
   static KeyvalueModel relationmodel = null;
+  static KeyvalueModel relationmodel1 = null;
 
   SetupContactsPage({Key key, this.model}) : super(key: key);
 
@@ -65,6 +66,7 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
     super.initState();
     loginResponse1 = widget.model.loginResponse1;
     callAPI();
+    // SetupContactsPage.relationmodel=null;
   }
 
   callAPI() {
@@ -204,7 +206,10 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                                                   Text(
                                                     (value1 != null)
                                                         ? value1
-                                                        : MyLocalizations.of(context).text("ADD_EMERGENCY_CONTACT"),
+                                                        : MyLocalizations.of(
+                                                                context)
+                                                            .text(
+                                                                "ADD_EMERGENCY_CONTACT"),
                                                     style: TextStyle(
                                                         fontWeight:
                                                             FontWeight.bold,
@@ -281,7 +286,10 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                                                     Text(
                                                       (value2 != null)
                                                           ? value2
-                                                          :MyLocalizations.of(context).text("ADD_EMERGENCY_CONTACT"),
+                                                          : MyLocalizations.of(
+                                                                  context)
+                                                              .text(
+                                                                  "ADD_EMERGENCY_CONTACT"),
                                                       style: TextStyle(
                                                           fontWeight:
                                                               FontWeight.bold,
@@ -359,7 +367,10 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                                                     Text(
                                                       (value3 != null)
                                                           ? value3
-                                                          : MyLocalizations.of(context).text("ADD_EMERGENCY_CONTACT"),
+                                                          : MyLocalizations.of(
+                                                                  context)
+                                                              .text(
+                                                                  "ADD_EMERGENCY_CONTACT"),
                                                       style: TextStyle(
                                                           fontWeight:
                                                               FontWeight.bold,
@@ -435,7 +446,10 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                                                     Text(
                                                       (value4 != null)
                                                           ? value4
-                                                          :MyLocalizations.of(context).text("ADD_EMERGENCY_CONTACT"),
+                                                          : MyLocalizations.of(
+                                                                  context)
+                                                              .text(
+                                                                  "ADD_EMERGENCY_CONTACT"),
                                                       style: TextStyle(
                                                           fontWeight:
                                                               FontWeight.bold,
@@ -512,7 +526,11 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                                                     Text(
                                                       (value5 != null)
                                                           ? value5
-                                                          : MyLocalizations.of(context).text("ADD_EMERGENCY_CONTACT"),                                                 style: TextStyle(
+                                                          : MyLocalizations.of(
+                                                                  context)
+                                                              .text(
+                                                                  "ADD_EMERGENCY_CONTACT"),
+                                                      style: TextStyle(
                                                           fontWeight:
                                                               FontWeight.bold,
                                                           fontSize: 15),
@@ -621,6 +639,9 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
       BuildContext context, emergencyHelpModel, int index) async {
     _fname.text = emergencyHelpModel.emergency[index].name;
     _mobile.text = emergencyHelpModel.emergency[index].mobile;
+    SetupContactsPage.relationmodel = KeyvalueModel(
+        key: emergencyHelpModel.emergency[index].relId,
+        name: emergencyHelpModel.emergency[index].relation);
     return showDialog(
         context: context,
         builder: (context) {
@@ -675,12 +696,16 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                             hintText: "Emergency Contact No.", counterText: ""),
                       ),
                       DropDown.networkDropdown(
-                          "Relation", ApiFactory.RELATION_API, "relation",
+                          "Relation", ApiFactory.RELATION_API, "relation1",
                           (KeyvalueModel model) {
                         setState(() {
                           // emergencyHelpModel.body.eRelation= model.name;
                           SetupContactsPage.relationmodel = model;
                           updateEmergencyModel.relation = model.key;
+
+                          emergencyHelpModel.emergency[index].relId = model.key;
+                          emergencyHelpModel.emergency[index].relation =
+                              model.name;
                         });
                       }),
                       Divider(height: 2, color: Colors.black),
@@ -692,7 +717,9 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
             actions: <Widget>[
               FlatButton(
                 textColor: Colors.grey,
-                child: Text('CANCEL',
+                /* child: Text('CANCEL',
+                    style: TextStyle(color: AppData.kPrimaryRedColor)),*/
+                child: Text(MyLocalizations.of(context).text("CANCEL"),
                     style: TextStyle(color: AppData.kPrimaryRedColor)),
                 onPressed: () {
                   setState(() {
@@ -703,39 +730,64 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
               FlatButton(
                 //textColor: Colors.grey,
                 child: Text(
-                  'UPDATE',
+                  'Update',
                   style: TextStyle(color: AppData.matruColor),
                 ),
                 onPressed: () {
                   //AppData.showInSnackBar(context, "click");
                   setState(() {
-                    updateEmergencyModel = UpdateEmergencyModel();
-                    updateEmergencyModel.name = _fname.text;
-                    updateEmergencyModel.mobile = _mobile.text;
-                    updateEmergencyModel.id =
-                        emergencyHelpModel.emergency[index].id;
-                    updateEmergencyModel.userid = widget.model.user;
-                    updateEmergencyModel.relation =
-                        emergencyHelpModel.emergency[index].relId;
-                    print("Value json>>" +
-                        updateEmergencyModel.toJson().toString());
-                    widget.model.POSTMETHOD_TOKEN(
-                        api: ApiFactory.UPDATE_EMERGENCY_CONTACT,
-                        json: updateEmergencyModel.toJson(),
-                        token: widget.model.token,
-                        fun: (Map<String, dynamic> map) {
-                          Navigator.pop(context);
-                          if (map[Const.STATUS1] == Const.SUCCESS) {
-                            // popup(context, map[Const.MESSAGE]);
-                            callAPI();
-                            AppData.showInSnackDone(
-                                context, map[Const.MESSAGE]);
-                          } else {
-                            // AppData.showInSnackBar(context, map[Const.MESSAGE]);
-                          }
-                        });
+                    if (_fname.text == null || _fname.text == "") {
+                      AppData.showInSnackBar(context, "Please enter Name");
+                    } else if (_fname.text != "" && _fname.text.length <= 2) {
+                      AppData.showInSnackBar(
+                          context, "Please enter a valid First Name");
+                    } else if (_mobile.text == "" || _mobile.text == null) {
+                      AppData.showInSnackBar(
+                          context, "Please enter Emergency Contact No.");
+                    } else if (_mobile.text != "" &&
+                        _mobile.text.length != 10) {
+                      AppData.showInSnackBar(
+                          context, "Please enter valid Emergency Contact No.");
+                    } else if (SetupContactsPage.relationmodel == "" ||
+                        SetupContactsPage.relationmodel == null) {
+                      AppData.showInSnackBar(
+                          context, "Please Select Relation ");
+                    } else {
+                      updateEmergencyModel = UpdateEmergencyModel();
+                      updateEmergencyModel.name = _fname.text;
+                      updateEmergencyModel.mobile = _mobile.text;
+                      updateEmergencyModel.id =
+                          emergencyHelpModel.emergency[index].id;
+                      updateEmergencyModel.userid = widget.model.user;
+                      updateEmergencyModel.relation =
+                          SetupContactsPage.relationmodel.key;
+                      //updateEmergencyModel.relation =SetupContactsPage.relationmodel.key;
+                      log("Value json>>" +
+                          updateEmergencyModel.toJson().toString());
+                      widget.model.POSTMETHOD_TOKEN(
+                          api: ApiFactory.UPDATE_EMERGENCY_CONTACT,
+                          json: updateEmergencyModel.toJson(),
+                          token: widget.model.token,
+
+                          fun: (Map<String, dynamic> map) {
+                           // Navigator.pop(context);
+
+                            if (map[Const.STATUS1] == Const.SUCCESS) {
+                              Navigator.pop(context);
+                              // popup(context, map[Const.MESSAGE]);
+                              callAPI();
+                              AppData.showInSnackDone(
+                                  context, map[Const.MESSAGE]);
+                            } else {
+                              // AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                            }
+                          });
+                    }
                   });
+
                 },
+
+
               ),
             ],
           );
@@ -748,6 +800,8 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
   ) async {
     _fname.text = "";
     _mobile.text = "";
+    // updateEmergencyModel=null;
+    SetupContactsPage.relationmodel = null;
     return showDialog(
         context: context,
         builder: (context) {
@@ -763,7 +817,8 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                     children: [
                       SizedBox(height: 10),
                       Text(
-                        MyLocalizations.of(context).text("ADD_EMERGENCY_CONTACT"),
+                        MyLocalizations.of(context)
+                            .text("ADD_EMERGENCY_CONTACT"),
                         style: TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.bold,
@@ -784,7 +839,8 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                         inputFormatters: [
                           WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
                         ],
-                        decoration: InputDecoration(hintText:MyLocalizations.of(context).text("NAME")),
+                        decoration: InputDecoration(
+                            hintText: MyLocalizations.of(context).text("NAME")),
                       ),
                       TextField(
                         onChanged: (value) {
@@ -801,13 +857,14 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                         ],
                         maxLength: 10,
                         decoration: InputDecoration(
-                            hintText: MyLocalizations.of(context).text("EMERGENCY_CONTACT_NO"),
+                            hintText: MyLocalizations.of(context)
+                                .text("EMERGENCY_CONTACT_NO"),
                             counterText: ""),
                       ),
                       DropDown.networkDropdown(
                           MyLocalizations.of(context).text("RELATION"),
-                          ApiFactory.RELATION_API, "relation",
-                          (KeyvalueModel model) {
+                          ApiFactory.RELATION_API,
+                          "relation2", (KeyvalueModel model) {
                         setState(() {
                           // patientProfileModel.body.eRelation= model.name;
                           // ProfileScreen.relationmodel = model;
@@ -825,7 +882,7 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
             actions: <Widget>[
               FlatButton(
                 textColor: Colors.grey,
-                child: Text( MyLocalizations.of(context).text("CANCEL"),
+                child: Text(MyLocalizations.of(context).text("CANCEL"),
                     style: TextStyle(color: AppData.kPrimaryRedColor)),
                 onPressed: () {
                   setState(() {
@@ -842,8 +899,25 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                 ),
                 onPressed: () {
                   //AppData.showInSnackBar(context, "click");
+
                   setState(() {
-                    setState(() {
+                    if (_fname.text == null || _fname.text == "") {
+                      AppData.showInSnackBar(context, "Please enter Name");
+                    } else if (_fname.text != "" && _fname.text.length <= 2) {
+                      AppData.showInSnackBar(
+                          context, "Please enter a valid First Name");
+                    } else if (_mobile.text == "" || _mobile.text == null) {
+                      AppData.showInSnackBar(
+                          context, "Please enter Emergency Contact No.");
+                    } else if (_mobile.text != "" &&
+                        _mobile.text.length != 10) {
+                      AppData.showInSnackBar(
+                          context, "Please enter valid Emergency Contact No.");
+                    } else if (SetupContactsPage.relationmodel == "" ||
+                        SetupContactsPage.relationmodel == null) {
+                      AppData.showInSnackBar(
+                          context, "Please Select Relation ");
+                    } else {
                       updateEmergencyModel = UpdateEmergencyModel();
                       updateEmergencyModel.name = _fname.text;
                       updateEmergencyModel.mobile = _mobile.text;
@@ -857,8 +931,9 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                           json: updateEmergencyModel.toJson1(),
                           token: widget.model.token,
                           fun: (Map<String, dynamic> map) {
-                            Navigator.pop(context);
+                           // Navigator.pop(context);
                             if (map[Const.STATUS1] == Const.SUCCESS) {
+                              Navigator.pop(context);
                               // popup(context, map[Const.MESSAGE]);
                               callAPI();
                               AppData.showInSnackDone(
@@ -869,8 +944,10 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                               // AppData.showInSnackBar(context, map[Const.MESSAGE]);
                             }
                           });
-                    });
+                    }
                   });
+                  /*callAPI();
+                  Navigator.of(context).pop();*/
                 },
               ),
             ],
@@ -946,9 +1023,10 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                         json: emergencyMessageModel.toJson(),
                         token: widget.model.token,
                         fun: (Map<String, dynamic> map) {
-                          Navigator.pop(context);
+                          //Navigator.pop(context);
                           if (map[Const.STATUS1] == Const.SUCCESS) {
                             // popup(context, map[Const.MESSAGE]);
+                            Navigator.pop(context);
                             callAPI();
                             AppData.showInSnackDone(
                                 context, map[Const.MESSAGE]);

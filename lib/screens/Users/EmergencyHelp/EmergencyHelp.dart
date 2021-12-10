@@ -174,7 +174,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                                 onTap: () {
                                   AppData.launchURL("tel://" + list[i].mobile);
                                 },
-                                child: Icon(Icons.call, color: Colors.black),
+                                child: Icon(Icons.call, color: Color(0xFF2372B6)),
                               ),
                               onTap: () {
                                 // call setstate
@@ -201,7 +201,6 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
 
 
   showUserList1(BuildContext context, List<Results> results) {
-
     return showDialog(
         context: context,
         barrierDismissible: true,
@@ -241,7 +240,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                         onTap: (){
 
                         },
-                          child: Icon(Icons.call, color: Colors.black)
+                          child: Icon(Icons.call, color: Color(0xFF2372B6) )
                       ),
                       )
                       ),
@@ -315,7 +314,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                   alignment: Alignment.topRight,
                   child: InkWell(
                       onTap: () {
-                        Navigator.pushNamed(context, "/setupcontacts");
+                        Navigator.pushNamed(context, "/setupcontacts").then((value) => callAPI());
                       },
                       child: Icon(Icons.settings))),
               Align(
@@ -453,7 +452,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                                     child: Padding(
                                       padding: const EdgeInsets.only(
                                           left: 10.0, right: 10.0),
-                                      child: Image.asset(
+                                      child:Image.asset(
                                         "assets/images/medical_emergency.png",
                                         height: 30,
                                       ),
@@ -709,7 +708,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                                           const EdgeInsets.only(right: 10.0),
                                       child: Icon(
                                         Icons.phone_in_talk,
-                                        color: Color(0xFF2372B6),
+                                        color:Color(0xFF2372B6),
                                       ),
                                     )),
                                 Container(

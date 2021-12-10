@@ -168,13 +168,13 @@ class _SplashScreenState extends State<SplashScreen> {
 
       setState(() {
 
-        MyWidgets.showLoading(context);
+     //   MyWidgets.showLoading(context);
         /*String phnNostr = sharedPref.getKey("phnNo");
         String passWordstr = sharedPref.getKey("passWord");*/
         widget.model.GETMETHODCALL(
             api: ApiFactory.LOGIN_PASS(phnNostr1,passWordstr1),
             fun: (Map<String, dynamic> map) {
-              Navigator.pop(context);
+              //Navigator.pop(context);
               log("LOGIN RESPONSE>>>>" + jsonEncode(map));
               //AppData.showInSnackBar(context, map[Const.MESSAGE]);
               if (map[Const.CODE] == Const.SUCCESS) {
@@ -248,6 +248,10 @@ class _SplashScreenState extends State<SplashScreen> {
           /*widget.model.token = loginResponse.body.token;widget.model.user = loginResponse.body.user;*/
           Navigator.of(context).pushNamedAndRemoveUntil(
               '/dashDoctor', (Route<dynamic> route) => false);
+        } else if (loginResponse1.body.roles[0] == "5".toLowerCase()) {
+          /*widget.model.token = loginResponse.body.token;widget.model.user = loginResponse.body.user;*/
+          Navigator.of(context).pushNamedAndRemoveUntil(
+              '/dashboardreceptionlist', (Route<dynamic> route) => false);
         } else if (loginResponse1.body.roles[0] == "12".toLowerCase()) {
           /*widget.model.token = loginResponse.body.token;widget.model.user = loginResponse.body.user;*/
           Navigator.of(context).pushNamedAndRemoveUntil(

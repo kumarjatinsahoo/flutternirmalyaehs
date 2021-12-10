@@ -21,12 +21,13 @@ class Immunization extends StatefulWidget {
   MainModel model;
   static KeyvalueModel immunizationmodel = null;
 
+
   Immunization({Key key, this.model}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _Immunization();
 }
-
+enum TypeDob { No, Yes }
 class _Immunization extends State<Immunization> {
   FocusNode _descriptionFocus, _focusNode;
   String eHealthCardno;
@@ -35,6 +36,7 @@ class _Immunization extends State<Immunization> {
   DateTime selectedDate = DateTime.now();
   final df = new DateFormat('dd/MM/yyyy');
   String selectDob;
+
 
   TextEditingController _date = TextEditingController();
 
@@ -58,6 +60,8 @@ class _Immunization extends State<Immunization> {
   FocusNode fnode4 = new FocusNode();
   FocusNode fnode5 = new FocusNode();
   AddBioMedicalModel addBioMedicalModel = AddBioMedicalModel();
+  TypeDob selectDobEn = TypeDob.No;
+  String _selectedGender = 'No';
 
   @override
   void initState() {
@@ -91,6 +95,128 @@ class _Immunization extends State<Immunization> {
             }
           });
         });
+  }
+  displayStatushangeDialog(BuildContext context ,String slno, String status
+      ) {
+
+    showDialog(
+        builder: (context) {
+          return AlertDialog(
+            contentPadding: EdgeInsets.only(left: 5, right: 5, top: 5),
+            insetPadding: EdgeInsets.only(left: 5, right: 5, top: 5),
+            content: StatefulBuilder(
+              builder: (BuildContext context, StateSetter setState) {
+                return Container(
+                  width: MediaQuery.of(context).size.width * 0.0,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Positioned(
+                        right: 10.0,
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: Align(
+                            alignment: Alignment.topRight,
+                            child: CircleAvatar(
+                              radius: 10.0,
+                              backgroundColor: Colors.white,
+                              child: Icon(Icons.close, color: Colors.red,size: 25,),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Center(
+                        child: Text(
+                          "Are you Vaccinated ?",
+                          style: TextStyle(
+                              color: Colors.black, fontSize: 25,fontWeight: FontWeight.w400, // light
+                              fontStyle: FontStyle.normal ),
+                        ),
+                      ),
+                      SizedBox(height: 10),
+
+                    ],
+                  ),
+                );
+              },
+            ),
+            actions: <Widget>[
+              FlatButton(
+                //textColor: Colors.grey,
+                child: Text("No",
+                    style: TextStyle(color: AppData.kPrimaryRedColor)),
+                onPressed: () {
+                  widget.model.GETMETHODCALL_TOKEN(
+                      api: ApiFactory
+                          .IMMUNIZATION_STATUS + slno +
+                          "&status=" + /*status*/"No",
+                      token: widget.model.token,
+                      fun: (Map<String, dynamic> map) {
+                        setState(() {
+                          log("Value>>>" +
+                              jsonEncode(map));
+                          String msg = map[Const.MESSAGE];
+                          if (map[Const.CODE] ==
+                              Const.SUCCESS) {
+                            setState(() {
+                              callApi(eHealthCardno);
+                              Navigator.of(context).pop();
+                            });
+                          } else {
+                            setState(() {
+                              //isDataNoFound = true;
+                            });
+                            //AppData.showInSnackBar(context, msg);
+                          }
+                        });
+                      });
+                  /*setState(() {
+                    Navigator.pop(context);
+                  });*/
+                },
+              ),
+              FlatButton(
+                //textColor: Colors.grey,
+                child: Text(
+                  "Yes",
+                  //style: TextStyle(color: Colors.grey),
+                  style: TextStyle(color: AppData.matruColor),
+                ),
+                onPressed: () {
+                  widget.model.GETMETHODCALL_TOKEN(
+                      api: ApiFactory
+                          .IMMUNIZATION_STATUS + slno +
+                          "&status=" + /*status*/"yes",
+                      token: widget.model.token,
+                      fun: (Map<String, dynamic> map) {
+                        setState(() {
+                          log("Value>>>" +
+                              jsonEncode(map));
+                          String msg = map[Const.MESSAGE];
+                          if (map[Const.CODE] ==
+                              Const.SUCCESS) {
+                            setState(() {
+                              callApi(eHealthCardno);
+                              Navigator.of(context).pop();
+                            });
+                          } else {
+                            setState(() {
+                              //isDataNoFound = true;
+                            });
+                            //AppData.showInSnackBar(context, msg);
+                          }
+                        });
+                      });
+
+                },
+              ),
+            ],
+          );
+        },
+        context: context);
   }
 
 
@@ -173,7 +299,13 @@ class _Immunization extends State<Immunization> {
                 itemBuilder: (BuildContext context, int index) {*/
                   itemBuilder: (context, i) {
                     immunization.Body immunizations = immunizationListModel.body[i];
-                    return Card(
+                    return InkWell(
+                    onTap: () {
+                    String slno = immunizations.slno;
+                    String status = immunizations.status;
+                    displayStatushangeDialog(context,slno,status);
+                    },
+                    child:Card(
                       color: Color(0xFFD2E4FC),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.only(
@@ -202,13 +334,16 @@ class _Immunization extends State<Immunization> {
                                   style: TextStyle(
                                       color: Colors.black, fontSize: 15),
                                 ),
-                                Container(
+                                Expanded(
+                               child:
+                               Container(
                                   width: 200,
                                   child: Text(
                                     immunizations.immunizationId,
                                     style: TextStyle(
                                         color: Colors.black, fontSize: 15),
                                   ),
+                                ),
                                 ),
                               ],
                             ),
@@ -284,6 +419,7 @@ class _Immunization extends State<Immunization> {
                           ],
                         ),
                       ),
+                    ),
                     );
                   },
                   itemCount: immunizationListModel.body.length,
@@ -319,7 +455,7 @@ class _Immunization extends State<Immunization> {
                           child: Column(
                             children: [
                               Center(
-                                child: Text("Add Details",
+                                child: Text("Add Immunization",
                                   style: TextStyle(
                                       color: Colors.black, fontSize: 20),
                                 ),
@@ -355,6 +491,52 @@ class _Immunization extends State<Immunization> {
                         formField(1,"Prescribed By"),
                         SizedBox(height: 8),
                         formField(2,"Immunization Details"),
+                        SizedBox(height: 8),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Align(
+                            alignment: Alignment.topLeft,
+                            child: Text("Status: "),
+                          ),
+                        ),
+
+                        SizedBox(height: 2),
+                        Row(
+                          children: [
+                            Expanded(
+                              child:ListTile(
+                                leading: Radio(
+                                  value: 'No',
+                                  groupValue: _selectedGender,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      _selectedGender = value;
+                                    });
+                                  },
+                                ),
+                                title: Text('No'),
+                              ),
+
+
+                            ),
+                            Expanded(
+
+                              child: ListTile(
+                                leading: Radio(
+                                  value: 'Yes',
+                                  groupValue: _selectedGender,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      _selectedGender = value;
+                                    });
+                                  },
+                                ),
+                                title: Text('Yes'),
+                              ),
+
+                            ),
+                          ],
+                        ),
                       ],
                     ),
                   ),
@@ -405,7 +587,7 @@ class _Immunization extends State<Immunization> {
                         textEditingController[1].text;
                     immunizationmodel.immunizationDetails =
                         textEditingController[2].text;
-                    immunizationmodel.status = "yes";
+                    immunizationmodel.status = _selectedGender;
                     print(">>>>>>>>>>>>>>>>>>>>>>>>>>>" +
                         immunizationmodel.toJson().toString());
                     widget.model.POSTMETHOD2(

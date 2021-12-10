@@ -183,7 +183,7 @@ class _BiomediImplantsState extends State<BiomediImplants> {
             : biomedicalModel == null || biomedicalModel == null
             ? Container(
           child: Center(
-            child: Text(MyLocalizations.of(context).text("NO_DATA_FOUND"),
+            child: Text("No Data Found",
               style:
               TextStyle(color: Colors.black, fontSize: 15),
             ),
@@ -338,7 +338,7 @@ class _BiomediImplantsState extends State<BiomediImplants> {
                           child: Column(
                             children: [
                               Center(
-                                child: Text(MyLocalizations.of(context).text("ADD_DETAILS"),
+                                child: Text("Add Details",
                                   style: TextStyle(
                                       color: Colors.black, fontSize: 20),
                                 ),
@@ -402,9 +402,9 @@ class _BiomediImplantsState extends State<BiomediImplants> {
             ),
             actions: <Widget>[
               FlatButton(
-                textColor: Colors.grey,
-                child: Text(MyLocalizations.of(context).text("CANCEL"),
-                    style: TextStyle(color: AppData.kPrimaryRedColor)),
+                textColor: AppData.kPrimaryRedColor,
+                child:Text(MyLocalizations.of(context).text("CANCEL"),
+                ),
                 onPressed: () {
                   setState(() {
                     BiomediImplants.admequipmentmodel=null;
@@ -416,7 +416,8 @@ class _BiomediImplantsState extends State<BiomediImplants> {
               ),
               FlatButton(
                 //textColor: Colors.grey,
-                child: Text("Ok",
+                child: Text(
+                  MyLocalizations.of(context).text("SUBMIT"),
                   //style: TextStyle(color: Colors.grey),
                   style: TextStyle(color: AppData.matruColor),
                 ),

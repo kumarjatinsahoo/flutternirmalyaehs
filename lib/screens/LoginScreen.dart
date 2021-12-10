@@ -521,6 +521,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     } else if (loginResponse.body.roles[0] == "2".toLowerCase()) {
                       Navigator.of(context).pushNamedAndRemoveUntil(
                           '/dashDoctor', (Route<dynamic> route) => false);
+                    } else if (loginResponse.body.roles[0] == "5".toLowerCase()) {
+                      Navigator.of(context).pushNamedAndRemoveUntil(
+                          '/dashboardreceptionlist', (Route<dynamic> route) => false);
                     } else if(loginResponse.body.roles[0] == "7".toLowerCase()) {
                       Navigator.of(context).pushNamedAndRemoveUntil(
                           '/dashboardpharmacy',(Route<dynamic> route) => false);
@@ -707,6 +710,21 @@ class _LoginScreenState extends State<LoginScreen> {
                           onTap: () {
                             Navigator.pop(context);
                             Navigator.pushNamed(context, "/bloodbank");
+                          },
+                        ),
+                        Divider(),
+                        ListTile(
+                          title: Center(
+                              child: Text("Receptionlist")),
+                          // leading: Icon(
+                          //   CupertinoIcons.calendar_today,
+                          //   size: 40,
+                          // ),
+                          onTap: () {
+                            //Navigator.pop(context);
+                            Navigator.pushNamed(context, "/receptionlistsignUpformm");
+                            // Navigator.pushNamed(context, "/doctorsignupform");
+                            //_validate();
                           },
                         ),
                         Divider(),

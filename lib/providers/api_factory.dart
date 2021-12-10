@@ -1,15 +1,17 @@
 class ApiFactory {
   //bool isRelease = bool.fromEnvironment("DEV");
   static String REG_DEVICE = "https://cca.medtel.in/Ziniai/manageDeviceId";
-  static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
+ static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
   static String MAIN_URL1 = "https://1331.co.in/api";
- // static String MAIN_URL = "http://192.168.43.248:8062/nirmalyaRest/api/";
+  static String REPORT_URL1 = "https://ehealthsystem.com/";
+// static String MAIN_URL = "http://192.168.77.208:8062/nirmalyaRest/api/";
   static String VITALS_REPORT = MAIN_URL + 'medtel-screening-test-report';
   static String COUNTRY_API = MAIN_URL + 'get-country-list';
+  static String VIEW_PATIENT_HEALTH_API = REPORT_URL1 + 'user/mobile-view-patient-health-chart?id=';
+  //static String VIEW_PATIENT_HEALTH_API = MAIN_URL + 'user/mobile-view-patient-health-chart?id=';
   static String AMBULANCE_API = MAIN_URL + 'get-ambulance-orglist';
   static String BLOODBBANKNAME_API = MAIN_URL + 'get-bloodbank-orglist';
   static String TITLE_API = MAIN_URL + 'get-user-title-list';
-
   static String NAME_API = MAIN_URL + 'get-allergy-name-list';
   static String TYPE_API = MAIN_URL + 'get-allergy-type-list';
   static String ORGAN_API = MAIN_URL + 'get-organ-list';
@@ -43,6 +45,7 @@ class ApiFactory {
       MAIN_URL + 'get-update-immunization-status?slno=';
   static String ADM_EQUIPMENT_API = MAIN_URL + 'get-adm-equipment-list';
   static String SHARE_APPOINTMENT_UHID = MAIN_URL + 'get-confirmed-patient-list?drid=';
+  static String RECEPTIONLIST_DOCTOR = MAIN_URL + 'get-doctor-list-by-org?userid=';
   static String SHARE_APPOINTMENT_DOCTORRECEPTIONIST =MAIN_URL + 'get-doctorreceptionist-list?drid=';
   static String GET_DOCUMENT_API = MAIN_URL + 'get-document-type-list';
   static String IMMUNIZATION_API = MAIN_URL + 'get-immunization-type-list';
@@ -236,9 +239,9 @@ class ApiFactory {
       MAIN_URL + 'get-patient-ambulance-details?userid=';
 
   //static String AMBULANCE_LIST = MAIN_URL + 'get-patient-ambulance-details?userid=';
-  static String MYPATIENTLIST_LIST =
-      MAIN_URL + 'get-doctor-my-patientlist?drid=';
+  static String MYPATIENTLIST_LIST = MAIN_URL + 'get-doctor-my-patientlist?drid=';
   static String BLDBANK_LIST = MAIN_URL + 'get-patient-bldbank-details?userid=';
+  static String REFFERED_LIST = MAIN_URL + 'get-referred-user-list-api?userid=';
   static String CHANGE_STATUS_PHARMACY =
       MAIN_URL + 'change-pharmacy-status?orderid=';
   static String CHANGE_STATUS_LAB = MAIN_URL + 'change-lab-status?orderid=';

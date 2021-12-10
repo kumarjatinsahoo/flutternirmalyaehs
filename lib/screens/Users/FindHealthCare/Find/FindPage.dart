@@ -305,14 +305,14 @@ class _FindPageState extends State<FindPage> {
             ),
           ),
         ),
-        Align(
+      /*  Align(
           alignment: Alignment.topRight,
           child: InkWell(
               onTap: () {
                 Navigator.pushNamed(context, "/autoComplete");
               },
               child: Icon(Icons.search)),
-        ),
+        ),*/
         Align(
           alignment: Alignment.topLeft,
           child: InkWell(
@@ -365,9 +365,7 @@ class _FindPageState extends State<FindPage> {
                     //mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
-                      SizedBox(
-                        height: 20.0,
-                      ),
+                      SizedBox(height: 20.0,),
                       Text(
                         'Find Healthcare Provider',
                         style: TextStyle(
@@ -591,8 +589,8 @@ class _FindPageState extends State<FindPage> {
         );
       },
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 12),
-        margin: EdgeInsets.only(left: 8, right: 8, top: 10),
+        padding: EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+        margin: EdgeInsets.only(left: 5, right: 8, top: 10),
         width: double.maxFinite,
         decoration: BoxDecoration(
           color: Colors.white,

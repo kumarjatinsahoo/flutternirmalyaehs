@@ -107,7 +107,19 @@ class _MedicineList extends State<UserTestList1> {
       },
     );
   }
-
+  static String toDate(String date) {
+    if (date != null && date != "") {
+      DateTime formatter = new DateFormat("yyyy-MM-dd").parse(date);
+      // final DateTime formatter =
+      //DateFormat("yyyy-MM-dd\'T\'HH:mm:ss.SSSZ\'").parse(date);
+      //DateFormat("dd/MM/yyyy").parse(date);
+      DateFormat toNeed = DateFormat("dd-MM-yyyy");
+      final String formatted = toNeed.format(formatter);
+      return formatted;
+    } else {
+      return "";
+    }
+  }
   _getLocationName() async {
     Position position = await Geolocator()
         .getCurrentPosition(desiredAccuracy: loca.LocationAccuracy.high);
@@ -244,9 +256,10 @@ class _MedicineList extends State<UserTestList1> {
                                             Spacer(),
                                             Text(
                                               /*'Confirmed'*/
-                                              body
-                                                  .meddate ??
+                                              toDate( body
+                                                  .meddate )??
                                                   "N/A",
+
                                               style: TextStyle(
 
                                                   fontSize: 14,
@@ -274,13 +287,13 @@ class _MedicineList extends State<UserTestList1> {
                                             Spacer(),
                                             Text(
                                               /*'Confirmed'*/
-                                              body.status ??
-                                                  "N/A",
+                                              body.testname!=null?"N/A" /*'Confirmed'*/
+                                                  :body.testname/*:"N/A"*/,
+                                            /*  body.status??
+                                                  "N/A",*/
                                               style: TextStyle(
-
                                                   fontSize: 14,
-                                                  color: Colors
-                                                      .grey),
+                                                  color: Colors.grey),
                                             ),
                                           ],
                                         ),
