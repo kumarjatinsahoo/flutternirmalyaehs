@@ -690,7 +690,7 @@ class _MyAppState extends State<MyApp> {
               '/patientRegistration4': (context) => PatientRegistration4(
                     model: _model,
                   ),
-              '/patientDashboard': (context) => LabDashboard(
+              '/patientDashboard': (context) => DashboardUserNew(
                     model: _model,
                   ),
               '/chemistspage': (context) => ChemistsTabview(

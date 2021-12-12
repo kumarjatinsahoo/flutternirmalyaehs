@@ -1275,7 +1275,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
       print("API NAME>>>>" + ApiFactory.USER_REGISTRATION);
       print("TO POST>>>>" + jsonEncode(userModel.toJson()));
 
-     /* MyWidgets.showLoading(context);
+      MyWidgets.showLoading(context);
       widget.model.POSTMETHOD(
           api: ApiFactory.USER_REGISTRATION,
           json: userModel.toJson(),
@@ -1286,7 +1286,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
             } else {
               AppData.showInSnackBar(context, map[Const.MESSAGE]);
             }
-          });*/
+          });
     }
   }
 
