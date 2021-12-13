@@ -149,7 +149,7 @@ class _ImmunizationState extends State<Immunization> {
                     ),
                   ),
                 )
-              : Padding(
+              :Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10.0),
                   child: Container(
                     child: SingleChildScrollView(
@@ -171,9 +171,7 @@ class _ImmunizationState extends State<Immunization> {
                                         String slno = body.slno;
                                         String status = body.status;
                                         displayStatushangeDialog(context,slno,status);
-
-
-                                      },
+                                        },
                                   child:
 
                                   Container(

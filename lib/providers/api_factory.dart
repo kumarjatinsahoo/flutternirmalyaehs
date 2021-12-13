@@ -1,10 +1,10 @@
 class ApiFactory {
   //bool isRelease = bool.fromEnvironment("DEV");
   static String REG_DEVICE = "https://cca.medtel.in/Ziniai/manageDeviceId";
-  static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
+  //static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
   static String MAIN_URL1 = "https://1331.co.in/api";
   static String REPORT_URL1 = "https://ehealthsystem.com/";
-  //static String MAIN_URL = "http://192.168.77.208:8062/nirmalyaRest/api/";
+  static String MAIN_URL = "http://192.168.29.10:8062/nirmalyaRest/api/";
   static String VITALS_REPORT = MAIN_URL + 'medtel-screening-test-report';
   static String COUNTRY_API = MAIN_URL + 'get-country-list';
   static String VIEW_PATIENT_HEALTH_API = REPORT_URL1 + 'user/mobile-view-patient-health-chart?id=';
@@ -20,8 +20,7 @@ class ApiFactory {
   static String PHARMACY_ORGANISATION_API = MAIN_URL + 'get-pharmacy-list';
   static String AMBULANCE_ORGANISATION_API =
       MAIN_URL + 'get-ambulance-org-list';
-  static String BlOODBANK_ORGANISATION_API =
-      MAIN_URL + 'get-bloodbank-org-list';
+  static String BlOODBANK_ORGANISATION_API = MAIN_URL + 'get-bloodbank-org-list';
   static String NGO_ORGANISATION_API = MAIN_URL + 'get-ngo-org-list';
   static String POST_TEST = MAIN_URL + 'post-user-test-by-doctor';
   static String DELETE_TEST_LIST = MAIN_URL + 'delete-test-by-app-no?appno=';
@@ -37,8 +36,8 @@ class ApiFactory {
   static String DIESEINFO = MAIN_URL + 'get-disease-info-list';
   static String IMMUNIZATION_LIST =
       MAIN_URL + 'get-immunization-patient-details?userid=';
-  static String INSURANCE_list =
-      MAIN_URL + 'get-patient-insurance-list-api?userid=';
+  static String INSURANCE_list = MAIN_URL + 'get-patient-insurance-list-api?userid=';
+  static String UPDATE_DOCTER_PROFILE= MAIN_URL + 'update-doctor-profile';
   static String INSURANCE_Details =
       MAIN_URL + 'get-patient-insurance-details-api?key=';
   static String MONTHLY_OVERVIEW =
