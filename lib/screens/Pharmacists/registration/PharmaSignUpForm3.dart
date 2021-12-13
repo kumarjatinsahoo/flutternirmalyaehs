@@ -784,8 +784,9 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
     return Alert(
         context: context,
         //title: "Success",
-        title: "Success",
-        //type: AlertType.info,
+        title: message,
+        desc: MyLocalizations.of(context).text("REG_SUCCESS_POPUP"),
+        type: AlertType.success, //type: AlertType.info,
         onWillPopActive: true,
         content: Column(
           mainAxisSize: MainAxisSize.min,

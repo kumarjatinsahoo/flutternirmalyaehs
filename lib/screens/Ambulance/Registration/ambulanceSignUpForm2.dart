@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'package:dio/dio.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -780,10 +781,11 @@ class AmbulanceSignUpForm2State extends State<AmbulanceSignUpForm2> {
   popup(BuildContext context, String message) {
     return Alert(
         context: context,
-        //title: "Success",
-        title: "Success",
-        //type: AlertType.info,
+        title: message,
+        desc: MyLocalizations.of(context).text("REG_SUCCESS_POPUP"),
+        type: AlertType.success,
         onWillPopActive: true,
+        //type: AlertType.info,
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -1457,7 +1459,7 @@ class AmbulanceSignUpForm2State extends State<AmbulanceSignUpForm2> {
                     title: new Text('Document'),
                     onTap: () => {
                       Navigator.pop(context),
-                      getCameraImage(),
+                      getPdfAndUpload(),
                     }),
               ],
             ),
@@ -1509,7 +1511,32 @@ class AmbulanceSignUpForm2State extends State<AmbulanceSignUpForm2> {
   //     });
   //   }
   // }
+  Future getPdfAndUpload() async {
+    File file = await FilePicker.getFile(
+      type: FileType.custom,
+      allowedExtensions: [
+        'pdf',
+        'docx'
+      ], //here you can add any of extention what you need to pick
+    );
+    var enc = await file.readAsBytes();
+    String _path = file.path;
 
+    String _fileName = _path != null ? _path.split('/').last : '...';
+    var pos = _fileName.lastIndexOf('.');
+    String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+    print(extName);
+
+    if (file != null) {
+      setState(() {
+        idproof = file.path;
+        //pharmaSignupModel.documentUpload=base64Encode(enc);
+       // pharmaSignupModel.documentExt=extName;
+        //userModel. = base64Encode(enc);
+        //file1 = file; //file1 is a global variable which i created
+      });
+    }
+  }
   Future getCameraImage() async {
     // File pathUsr=null;
     // var image = await ImagePicker.pickImage(source: ImageSource.gallery);

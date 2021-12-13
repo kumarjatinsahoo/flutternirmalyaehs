@@ -94,6 +94,7 @@ import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/DocumentPdfVie
 import 'package:user/screens/Users/MyMedicalRecord/HealthChart.dart';
 import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/DocumentVideoView.dart';
 import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/UploadDocument.dart';
+import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/VideoDetailsPage.dart';
 import 'package:user/screens/Users/organ/Organlist.dart';
 import 'package:user/screens/walkin_labrotry/Screen/LabQrCode.dart';
 import 'screens/Users/MyMedicalRecord/LifeStyleHistory.dart';
@@ -997,7 +998,7 @@ class _MyAppState extends State<MyApp> {
               '/documentimage': (context) => DocumentImage(
                     model: _model,
                   ),
-              '/documentvideo': (context) => DocumentVideo(
+              '/documentvideo': (context) => VideoDetailsPage(
                     model: _model,
                   ),
               '/labqrcode': (context) => LabQrcode(

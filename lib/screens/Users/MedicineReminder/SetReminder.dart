@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:add_2_calendar/add_2_calendar.dart';
+import 'package:device_calendar/device_calendar.dart' as cal;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
@@ -111,8 +112,7 @@ class SetReminderState extends State<SetReminder> {
     SetReminder.districtModel = null;
     SetReminder.blockModel = null;
     SetReminder.genderModel = null;
-    textEditingController[0].text=widget.type;
-
+    textEditingController[0].text = widget.type;
   }
 
   void connectionChanged(dynamic hasConnection) {
@@ -121,24 +121,34 @@ class SetReminderState extends State<SetReminder> {
     });
   }
 
-  setReminder() {
+  setReminder({title}) {
     final Event event = Event(
       title: widget.type,
-      description: 'Event description',
-      location: 'Event location',
+      description: 'Sanjaya Jena',
+      location: 'Home',
       startDate: DateTime.now(),
-      endDate: DateTime.now(),
-      // recurrence: Recurrence(),
+      endDate: DateTime.now().add(Duration(days: 6)),
+      recurrence: Recurrence(
+        frequency: Frequency.daily,
+        ocurrences: 3,
+      ),
       iosParams: IOSParams(
         reminder: Duration(
             minutes:
-                20), // on iOS, you can set alarm notification after your event.
+                10), // on iOS, you can set alarm notification after your event.
       ),
       androidParams: AndroidParams(
         emailInvites: [], // on Android, you can add invite emails to your event.
       ),
     );
     Add2Calendar.addEvent2Cal(event);
+  }
+
+  setReminder1() {
+    cal.Event event = cal.Event(
+      "1",
+    );
+
   }
 
   @override
@@ -175,7 +185,7 @@ class SetReminderState extends State<SetReminder> {
               padding: const EdgeInsets.symmetric(horizontal: 18),
               child: TextFormField(
                 decoration: InputDecoration(
-                    hintText: "Medicine Name",
+                    hintText: "Title",
                     hintStyle: TextStyle(color: Colors.grey)),
                 controller: textEditingController[1],
                 textInputAction: TextInputAction.next,
@@ -459,15 +469,6 @@ class SetReminderState extends State<SetReminder> {
       context: context,
       fun: () {
         validate();
-        //Navigator.pushNamed(context, "/navigation");
-        /*if (_loginId.text == "" || _loginId.text == null) {
-          AppData.showInSnackBar(context, "Please enter mobile no");
-        } else if (_loginId.text.length != 10) {
-          AppData.showInSnackBar(context, "Please enter 10 digit mobile no");
-        } else {*/
-
-        // Navigator.pushNamed(context, "/otpView");
-        //}
       },
     );
   }
@@ -502,7 +503,8 @@ class SetReminderState extends State<SetReminder> {
   }
 
   validate() async {
-    _formKey.currentState.validate();
+    setReminder();
+    /*_formKey.currentState.validate();
     if (textEditingController[0].text == "" ||
         textEditingController[0].text == null) {
       AppData.showInSnackBar(context, "Please enter Typr");
@@ -530,21 +532,9 @@ class SetReminderState extends State<SetReminder> {
         textEditingController[5].text == null) {
       AppData.showInSnackBar(context, "Please enter Doctor Instruction");
     } else {
-      _formKey.currentState.save();
+      // _formKey.currentState.save();
 
-      if (isOnline) {
-        setState(() {
-          _isSignUpLoading = true;
-        });
-        await Future.delayed(const Duration(seconds: 2), () {
-          setState(() {
-            _isSignUpLoading = false;
-          });
-        });
-      } else {
-        AppData.showInSnackBar(context, "INTERNET_CONNECTION");
-      }
-    }
+    }*/
   }
 
   Widget stdate() {
@@ -743,15 +733,15 @@ class SetReminderState extends State<SetReminder> {
 
   _selectTime(BuildContext context) async {
     final TimeOfDay timeOfDay = await showTimePicker(
-      context: context,
-      initialTime: selectedTime,
-      initialEntryMode: TimePickerEntryMode.input,
-      builder: (BuildContext context, Widget child) {
-        return MediaQuery(
-          data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
-          child: child,
-        );}
-    );
+        context: context,
+        initialTime: selectedTime,
+        initialEntryMode: TimePickerEntryMode.input,
+        builder: (BuildContext context, Widget child) {
+          return MediaQuery(
+            data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
+            child: child,
+          );
+        });
     if (timeOfDay != null && timeOfDay != selectedTime) {
       setState(() {
         selectedTime = timeOfDay;
@@ -762,15 +752,15 @@ class SetReminderState extends State<SetReminder> {
 
   _selectTime1(BuildContext context) async {
     final TimeOfDay timeOfDay = await showTimePicker(
-      context: context,
-      initialTime: selectedTime,
-      initialEntryMode: TimePickerEntryMode.dial,
+        context: context,
+        initialTime: selectedTime,
+        initialEntryMode: TimePickerEntryMode.dial,
         builder: (BuildContext context, Widget child) {
           return MediaQuery(
             data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
             child: child,
-          );}
-    );
+          );
+        });
     if (timeOfDay != null && timeOfDay != selectedTime) {
       setState(() {
         selectedTime = timeOfDay;
@@ -778,6 +768,7 @@ class SetReminderState extends State<SetReminder> {
       });
     }
   }
+
   String formatTimeOfDay(TimeOfDay tod) {
     print("Value is>>>>>>\n\n\n\n" + tod.toString());
     final now = new DateTime.now();
