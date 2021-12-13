@@ -38,7 +38,7 @@ class _VideoDetailsPageState extends State<VideoDetailsPage> {
   void initState() {
     // TODO: implement initState
     // isRTL = (AppData.selectedLanguage == "English") ? false : true;
-    videoUrl = widget.model.pdfurl;
+    videoUrl ="https://content.jwplatform.com/videos/6pw4jzx8-z057noEQ.mp4";
     _scrollControl = ScrollController();
     _scrollControl.addListener(() {
       if (_scrollControl.position.pixels > 400) {

@@ -140,15 +140,18 @@ class _RejectAmbulanceState extends State<RejectAmbulance> {
                                 children: [
                                   Row(
                                     children: [
-                                      Text(
-                                        "Name ",
-                                        style: TextStyle(
-                                          fontWeight:
-                                          FontWeight.w600,
-                                          fontSize: 15,
+                                      Container(
+                                        width: 140.00,
+                                        child: Text(
+                                          "Name ",
+                                          style: TextStyle(
+                                            fontWeight:
+                                            FontWeight.w600,
+                                            fontSize: 15,
+                                          ),
                                         ),
                                       ),
-                                      Spacer(),
+                                    //  Spacer(),
                                       Text(
                                         body.patientName,
                                         style: TextStyle(
@@ -163,19 +166,24 @@ class _RejectAmbulanceState extends State<RejectAmbulance> {
                                   ),
                                   Row(
                                     children: [
-                                      Text(
-                                        "From",
-                                        style: TextStyle(
-                                          fontWeight:
-                                          FontWeight.w600,
-                                          fontSize: 15,
+                                      Container(
+                                        width:140.00,
+                                        child: Text(
+                                          "From",
+                                          style: TextStyle(
+                                            fontWeight:
+                                            FontWeight.w600,
+                                            fontSize: 15,
+                                          ),
                                         ),
                                       ),
-                                      Spacer(),
-                                      Text(
-                                        body.fromLocation,
-                                        style: TextStyle(
-                                            fontSize: 15),
+                                     // Spacer(),
+                                      Expanded(
+                                        child: Text(
+                                          body.fromLocation,
+                                          style: TextStyle(
+                                              fontSize: 15),
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -184,19 +192,24 @@ class _RejectAmbulanceState extends State<RejectAmbulance> {
                                   ),
                                   Row(
                                     children: [
-                                      Text(
-                                        "Destination",
-                                        style: TextStyle(
-                                          fontWeight:
-                                          FontWeight.w600,
-                                          fontSize: 15,
+                                      Container(
+                                        width:140.00,
+                                        child: Text(
+                                          "Destination",
+                                          style: TextStyle(
+                                            fontWeight:
+                                            FontWeight.w600,
+                                            fontSize: 15,
+                                          ),
                                         ),
                                       ),
-                                      Spacer(),
-                                      Text(
-                                        body.toDestination,
-                                        style: TextStyle(
-                                            fontSize: 15),
+                                    //  Spacer(),
+                                      Expanded(
+                                        child: Text(
+                                          body.toDestination,
+                                          style: TextStyle(
+                                              fontSize: 15),
+                                        ),
                                       ),
                                     ],
                                   ),

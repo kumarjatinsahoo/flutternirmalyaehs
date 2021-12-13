@@ -32,10 +32,10 @@ class _DocumentImageState extends State<DocumentImage> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return WebviewScaffold(
+    return Scaffold(
       // backgroundColor: Colors.grey[200],
-      clearCookies: true,
-      clearCache: true,
+     // clearCookies: true,
+     // clearCache: true,
       appBar: AppBar(
         title: Text(
           "Image",
@@ -47,10 +47,15 @@ class _DocumentImageState extends State<DocumentImage> {
         backgroundColor: AppData.matruColor,
         elevation: 0,
       ),
+      body: Image.network(
+        pdfurl,
+        //color: AppData.kPrimaryColor,
+       // height: 50,
+      ),
       //  url: ApiFactory.REPORT_URL+loginResponse.ashadtls[0].reg_no,
-      url:widget.model.pdfurl,
-      withZoom: true,
-     scrollBar: true,
+      //url:widget.model.pdfurl,
+     // withZoom: true,
+    // scrollBar: true,
      // useWideViewPort: false,
      // displayZoomControls: true,
     );
