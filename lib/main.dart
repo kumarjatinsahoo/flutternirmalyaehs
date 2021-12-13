@@ -92,7 +92,6 @@ import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/DocumentImageV
 import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/DocumentList.dart';
 import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/DocumentPdfView.dart';
 import 'package:user/screens/Users/MyMedicalRecord/HealthChart.dart';
-import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/DocumentVideoView.dart';
 import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/UploadDocument.dart';
 import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/VideoDetailsPage.dart';
 import 'package:user/screens/Users/organ/Organlist.dart';

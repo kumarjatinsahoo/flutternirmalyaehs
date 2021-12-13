@@ -141,15 +141,18 @@ class _AcceptBloodBankState extends State<AcceptBloodBank> {
                                 children: [
                                   Row(
                                     children: [
-                                      Text(
-                                        "Name ",
-                                        style: TextStyle(
-                                          fontWeight:
-                                          FontWeight.w600,
-                                          fontSize: 15,
+                                      Container(
+                                        width: 140.00,
+                                        child: Text(
+                                          "Name ",
+                                          style: TextStyle(
+                                            fontWeight:
+                                            FontWeight.w600,
+                                            fontSize: 15,
+                                          ),
                                         ),
                                       ),
-                                      Spacer(),
+                                    //  Spacer(),
                                       Text(
                                         body.patientName,
                                         style: TextStyle(
@@ -164,19 +167,24 @@ class _AcceptBloodBankState extends State<AcceptBloodBank> {
                                   ),
                                   Row(
                                     children: [
-                                      Text(
-                                        "Bloodgroup",
-                                        style: TextStyle(
-                                          fontWeight:
-                                          FontWeight.w600,
-                                          fontSize: 15,
+                                      Container(
+                                        width:140,
+                                        child: Text(
+                                          "Bloodgroup",
+                                          style: TextStyle(
+                                            fontWeight:
+                                            FontWeight.w600,
+                                            fontSize: 15,
+                                          ),
                                         ),
                                       ),
-                                      Spacer(),
-                                      Text(
-                                        body.bloodGrName,
-                                        style: TextStyle(
-                                            fontSize: 15),
+                                   //   Spacer(),
+                                      Expanded(
+                                        child: Text(
+                                          body.bloodGrName,
+                                          style: TextStyle(
+                                              fontSize: 15),
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -185,19 +193,24 @@ class _AcceptBloodBankState extends State<AcceptBloodBank> {
                                   ),
                                   Row(
                                     children: [
-                                      Text(
-                                        "Date",
-                                        style: TextStyle(
-                                          fontWeight:
-                                          FontWeight.w600,
-                                          fontSize: 15,
+                                      Container(
+                                        width:140,
+                                        child: Text(
+                                          "Date",
+                                          style: TextStyle(
+                                            fontWeight:
+                                            FontWeight.w600,
+                                            fontSize: 15,
+                                          ),
                                         ),
                                       ),
-                                      Spacer(),
-                                      Text(
-                                        body.bookedDate,
-                                        style: TextStyle(
-                                            fontSize: 15),
+                                     // Spacer(),
+                                      Expanded(
+                                        child: Text(
+                                          body.bookedDate,
+                                          style: TextStyle(
+                                              fontSize: 15),
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -206,19 +219,24 @@ class _AcceptBloodBankState extends State<AcceptBloodBank> {
                                   ),
                                   Row(
                                     children: [
-                                      Text(
-                                        'Patient Notes',
-                                        style: TextStyle(
-                                          fontWeight:
-                                          FontWeight.w600,
-                                          fontSize: 15,
+                                      Container(
+                                        width:140,
+                                        child: Text(
+                                          'Patient Notes',
+                                          style: TextStyle(
+                                            fontWeight:
+                                            FontWeight.w600,
+                                            fontSize: 15,
+                                          ),
                                         ),
                                       ),
-                                      Spacer(),
-                                      Text(
-                                        body.patientNote,
-                                        style: TextStyle(
-                                            fontSize: 15),
+                                    //  Spacer(),
+                                      Expanded(
+                                        child: Text(
+                                          body.patientNote,
+                                          style: TextStyle(
+                                              fontSize: 15),
+                                        ),
                                       ),
                                     ],
                                   ),
