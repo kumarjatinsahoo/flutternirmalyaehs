@@ -40,7 +40,8 @@ class _LoginScreenState extends State<LoginScreen> {
   FocusNode fnode3 = new FocusNode();
   FocusNode fnode4 = new FocusNode();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
-  static final List<String> languageCodesList = application.supportedLanguagesCodes;
+  static final List<String> languageCodesList =
+      application.supportedLanguagesCodes;
   static final List<String> languagesList = application.supportedLanguages;
 
   final Map<dynamic, dynamic> languagesMap = {
@@ -162,7 +163,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       Container(
                         width: size.width,
                         height: 60,
-                        padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 15, vertical: 15),
                         margin: EdgeInsets.only(top: 10.0),
                         decoration: BoxDecoration(
                           // color: Colors.grey.withOpacity(0.5),
@@ -172,7 +174,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: <Widget>[
                             Container(
-                              padding: EdgeInsets.symmetric(horizontal: 5, vertical: 2),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 5, vertical: 2),
                               alignment: Alignment.center,
                               child: DropdownButtonHideUnderline(
                                 child: DropdownButton<String>(
@@ -486,7 +489,7 @@ class _LoginScreenState extends State<LoginScreen> {
           AppData.showInSnackBar(context, "Please enter Password");
         } else {
           widget.model.phnNo = _loginId.text;
-          widget.model.passWord = passController.text ;
+          widget.model.passWord = passController.text;
           MyWidgets.showLoading(context);
           widget.model.GETMETHODCALL(
               api: ApiFactory.LOGIN_PASS(_loginId.text, passController.text),
@@ -495,13 +498,13 @@ class _LoginScreenState extends State<LoginScreen> {
                 log("LOGIN RESPONSE>>>>" + jsonEncode(map));
                 //AppData.showInSnackBar(context, map[Const.MESSAGE]);
                 if (map[Const.CODE] == Const.SUCCESS) {
-                 /*widget.model.phnNo = _loginId.text;
+                  /*widget.model.phnNo = _loginId.text;
                   widget.model.passWord = passController.text ;*/
                   setState(() {
                     widget.model.phnNo = _loginId.text;
                     widget.model.passWord = passController.text;
-                    sharedPref.save(Const.LOGIN_phoneno,_loginId.text);
-                    sharedPref.save(Const.LOGIN_password, passController.text );
+                    sharedPref.save(Const.LOGIN_phoneno, _loginId.text);
+                    sharedPref.save(Const.LOGIN_password, passController.text);
                     LoginResponse1 loginResponse = LoginResponse1.fromJson(map);
                     widget.model.token = loginResponse.body.token;
                     widget.model.user = loginResponse.body.user;
@@ -509,42 +512,61 @@ class _LoginScreenState extends State<LoginScreen> {
                     widget.model.setLoginData1(loginResponse);
                     sharedPref.save(Const.IS_LOGIN, "true");
 
-                    FirebaseMessaging.instance.subscribeToTopic(loginResponse.body.user);
-                    FirebaseMessaging.instance.subscribeToTopic(loginResponse.body.userMobile);
+                    FirebaseMessaging.instance
+                        .subscribeToTopic(loginResponse.body.user);
+                    FirebaseMessaging.instance
+                        .subscribeToTopic(loginResponse.body.userMobile);
 
-                    if (loginResponse.body.roles[0] == "8".toLowerCase()) {
-                      Navigator.of(context).pushNamedAndRemoveUntil(
-                          '/patientDashboard', (Route<dynamic> route) => false);
-                    } else if (loginResponse.body.roles[0] == "1".toLowerCase()) {
+
+                    /////By Sanjaya
+                    //Role 8- Lab Technician
+                    //Role 7- Pharmacy
+                    //Role 1- User
+                    //Role 12- Ambulance
+                    //Role 13- Blood bank
+                    //Role 15- NGO
+                    //Role 2- Doctor
+                    //Role 5- Reception
+
+
+                    if (loginResponse.body.roles[0] == "1".toLowerCase()) {
                       Navigator.of(context).pushNamedAndRemoveUntil(
                           '/dashboard', (Route<dynamic> route) => false);
-                    } else if (loginResponse.body.roles[0] == "2".toLowerCase()) {
+                    } else if (loginResponse.body.roles[0] ==
+                        "2".toLowerCase()) {
                       Navigator.of(context).pushNamedAndRemoveUntil(
                           '/dashDoctor', (Route<dynamic> route) => false);
-                    } else if (loginResponse.body.roles[0] == "5".toLowerCase()) {
+                    } else if (loginResponse.body.roles[0] ==
+                        "5".toLowerCase()) {
                       Navigator.of(context).pushNamedAndRemoveUntil(
-                          '/dashboardreceptionlist', (Route<dynamic> route) => false);
-                    } else if(loginResponse.body.roles[0] == "7".toLowerCase()) {
+                          '/dashboardreceptionlist',
+                          (Route<dynamic> route) => false);
+                    } else if (loginResponse.body.roles[0] ==
+                        "7".toLowerCase()) {
                       Navigator.of(context).pushNamedAndRemoveUntil(
-                          '/dashboardpharmacy',(Route<dynamic> route) => false);
-                    }else if (loginResponse.body.roles[0] == "8".toLowerCase()) {
+                          '/dashboardpharmacy',
+                          (Route<dynamic> route) => false);
+                    } else if (loginResponse.body.roles[0] ==
+                        "8".toLowerCase()) {
                       Navigator.of(context).pushNamedAndRemoveUntil(
-                          '/labDash',(Route<dynamic> route) => false);
-                    }else if (loginResponse.body.roles[0] == "12".toLowerCase()) {
+                          '/labDash', (Route<dynamic> route) => false);
+                    } else if (loginResponse.body.roles[0] ==
+                        "12".toLowerCase()) {
                       Navigator.of(context).pushNamedAndRemoveUntil(
-                          '/ambulancedash',(Route<dynamic> route) => false);
-                    }else if (loginResponse.body.roles[0] == "13".toLowerCase()) {
+                          '/ambulancedash', (Route<dynamic> route) => false);
+                    } else if (loginResponse.body.roles[0] ==
+                        "13".toLowerCase()) {
                       Navigator.of(context).pushNamedAndRemoveUntil(
-                          '/bloodBankDashboard',(Route<dynamic> route) => false);
-
+                          '/bloodBankDashboard',
+                          (Route<dynamic> route) => false);
                     } else {
                       AppData.showInSnackBar(context, "No Role Assign");
                     }
                   });
-    } else {
-    AppData.showInSnackBar(context, map[Const.MESSAGE]);
-    }
-  });
+                } else {
+                  AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                }
+              });
         }
       },
     );
@@ -714,15 +736,15 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         Divider(),
                         ListTile(
-                          title: Center(
-                              child: Text("Receptionlist")),
+                          title: Center(child: Text("Receptionlist")),
                           // leading: Icon(
                           //   CupertinoIcons.calendar_today,
                           //   size: 40,
                           // ),
                           onTap: () {
                             //Navigator.pop(context);
-                            Navigator.pushNamed(context, "/receptionlistsignUpformm");
+                            Navigator.pushNamed(
+                                context, "/receptionlistsignUpformm");
                             // Navigator.pushNamed(context, "/doctorsignupform");
                             //_validate();
                           },

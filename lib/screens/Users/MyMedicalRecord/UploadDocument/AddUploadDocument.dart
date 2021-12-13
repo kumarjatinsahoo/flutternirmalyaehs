@@ -224,7 +224,12 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
                       } else if (_date.text == "" || _date.text == null) {
                         AppData.showInSnackBar(
                             context, "Please Enter Document Date");
-                      } else {
+                      }
+                      else if (_date.text == "" || _date.text == null) {
+                        AppData.showInSnackBar(
+                            context, "Please Enter Document Date");
+                      }
+                      else {
                         postMultiPart();
                       }
                     },
@@ -298,33 +303,49 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
 
   void postMultiPart() async {
     MyWidgets.showLoading(context);
-    Response response;
-    response = await dio.post(
-      ApiFactory.ADD_UPLOAD_DOCUMENT,
-      data: await FormData2(),
-      onSendProgress: (received, total) {
-        if (total != -1) {
-          setState(() {
-            print((received / total * 100).toStringAsFixed(0) + '%');
-          });
-        }
-      },
-    );
-    if (response.statusCode == 200) {
-      Navigator.pop(context);
-      log("value" + jsonEncode(response.data));
-      if (response.data["code"] == "success") {
-        //Navigator.pushNamed(context, "/uploaddocument");
+    try {
+      Response response;
+      response = await dio.post(
+        ApiFactory.ADD_UPLOAD_DOCUMENT,
+        data: await FormData2(),
+        onSendProgress: (received, total) {
+          if (total != -1) {
+            setState(() {
+              print((received / total * 100).toStringAsFixed(0) + '%');
+            });
+          }
+        },
+      );
+      if (response.statusCode == 200) {
+        Navigator.pop(context);
+        log("value" + jsonEncode(response.data));
+        if (response.data["code"] == "success") {
+          //Navigator.pushNamed(context, "/uploaddocument");
 
-        popup(context);
+          popup(context);
+        } else {
+          AppData.showInSnackBar(context, "Something went wrong");
+        }
       } else {
+        Navigator.pop(context);
         AppData.showInSnackBar(context, "Something went wrong");
       }
-    } else {
-      Navigator.pop(context);
-      AppData.showInSnackBar(context, "Something went wrong");
     }
-    print(response);
+   on DioError catch(e){
+       if (e.type == DioErrorType.CONNECT_TIMEOUT) {
+        log(e.response.data);
+      }
+      if (e.type == DioErrorType.RECEIVE_TIMEOUT) {
+        log(e.response.data);
+      }
+      if (e.type == DioErrorType.DEFAULT) {
+        log(e.response.data);
+      }
+      if (e.type == DioErrorType.RESPONSE) {
+        log(e.response.data);
+      }
+    }
+    //print(response);
   }
 
   formField(int index, String hint) {
@@ -528,7 +549,7 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
         firstDate: DateTime.now(),
         lastDate: DateTime.now()
             .add(new Duration(days: 6570))); //18 years is 6570 days
-    //  if (picked != null && picked != selectedDate)
+    if (picked != null && picked != selectedDate)
     setState(() {
       selectedDate = picked;
       error[2] = false;

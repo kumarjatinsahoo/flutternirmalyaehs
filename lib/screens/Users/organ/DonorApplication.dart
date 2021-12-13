@@ -138,7 +138,6 @@ class DonorApplicationState extends State<DonorApplication> {
     KeyvalueModel(key: "D", name: "D/o"),
     KeyvalueModel(key: "W", name: "W/o"),
   ];
-
   static String toDate(String date) {
     if (date != null && date != "") {
       DateTime formatter = new DateFormat("dd-MM-yyyy").parse(date);
@@ -153,7 +152,6 @@ class DonorApplicationState extends State<DonorApplication> {
       return "";
     }
   }
-
   calculateAge(DateTime birthDate) {
     DateTime currentDate = DateTime.now();
     int age = currentDate.year - birthDate.year;
@@ -183,18 +181,17 @@ class DonorApplicationState extends State<DonorApplication> {
     log("Start Date: " + startDate.toString());
     log("End Date: " + endDate.toString());
     log("Diff day: " + days.toString() + "\n\n\n");
-
     //double y=days/365;
-    int year1 = (days / 365).toInt();
-    log("Year day: " + year1.toString() + "\n\n\n");
-
-    int restDays = 0;
-    int month = 0;
-    if (year1 > 0) {
+    int year1= (days/365).toInt();
+    log("Year day: "+year1.toString()+"\n\n\n");
+    int restDays=0;
+    int month=0;
+    if(year1>0) {
       restDays = days - (year1 * 365);
-      month = restDays % 30;
+      month=restDays%30;
     }
 
+    return year1.toString()/*+" Years and "+month.toString()+" Month"*/;
     setState(() => year = year1.toString());
     return year1.toString() + " Years and " + month.toString() + " Month";
   }
@@ -223,13 +220,14 @@ class DonorApplicationState extends State<DonorApplication> {
       month = restDays % 30;
     }
 
-    return year1.toString() + " Years and " + month.toString() + " Month";
+    return year1.toString()/*+" Years "+month.toString()+" Month"*/;
   }
 
   static DateTime toDateFormat(String date) {
     final DateTime formatter = DateFormat("dd-MM-yyyy").parse(date);
     return formatter;
   }
+
 
   List<DropdownMenuItem<KeyvalueModel>> _dropdownMenuItems;
   KeyvalueModel _selectedItem;
@@ -1495,10 +1493,10 @@ class DonorApplicationState extends State<DonorApplication> {
           } else if (textEditingController[3].text == "" ||
               textEditingController[3].text == null) {
             AppData.showInSnackBar(context, "Please enter Age");
-          } else if (textEditingController[3].text != null &&
+          /*} else if (textEditingController[3].text != null &&
               (int.tryParse(year) < 18)) {
             AppData.showInSnackBar(context, "Age should be 18 above");
-          } else if (textEditingController[4].text == "" ||
+          } */}else if (textEditingController[4].text == "" ||
               textEditingController[4].text == null) {
             AppData.showInSnackBar(context, "Please enter Mobile Number");
           } else if (textEditingController[4].text != "" &&
