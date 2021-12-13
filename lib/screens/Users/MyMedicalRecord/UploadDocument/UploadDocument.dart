@@ -43,7 +43,7 @@ class _UploadDocumentState extends State<UploadDocument> {
   DateTime selectedDate = DateTime.now();
   final df = new DateFormat('dd/MM/yyyy');
   String profilePath = null, idproof = null;
-String doccategory;
+  String doccategory;
   TextEditingController _date = TextEditingController();
   TextEditingController _reason = TextEditingController();
   TextEditingController _name = TextEditingController();
@@ -72,7 +72,7 @@ String doccategory;
     // TODO: implement initState
     super.initState();
     loginResponse1 = widget.model.loginResponse1;
-    doccategory=widget.model.documentcategories;
+    doccategory = widget.model.documentcategories;
     callAPI(currentMax);
     _scrollController.addListener(() {
       if (_scrollController.position.pixels ==
@@ -85,7 +85,9 @@ String doccategory;
   callAPI(int i) {
     widget.model.GETMETHODCALL_TOKEN(
         api: ApiFactory.UPLOAD_DOCUMENT +
-            loginResponse1.body.user +"&typeid=" +doccategory+
+            loginResponse1.body.user +
+            "&typeid=" +
+            doccategory +
             "&page=" +
             i.toString(),
         token: widget.model.token,
@@ -122,9 +124,9 @@ String doccategory;
                 onTap: () {
                   Navigator.pushNamed(context, "/adduploaddocument")
                       .then((value) {
-                        setState(() {
-                          currentMax=1;
-                        });
+                    setState(() {
+                      currentMax = 1;
+                    });
                     callAPI(currentMax);
                   });
                   // displayTextInputDialog(context);
@@ -262,14 +264,20 @@ String doccategory;
                                             InkWell(
                                               onTap: () {
                                                 String pdfurl = body.fileName;
+                                                String extension=AppData.getExt(pdfurl);
+                                                print("eeeessssssssstttt"+extension);
                                                 widget.model.pdfurl = pdfurl;
-                                                print("ppppdddddddddddffffff" +
-                                                    pdfurl);
-                                                Navigator.pushNamed(
-                                                  context,
-                                                  "/documentpdf",
-                                                ).then((value) =>
-                                                    widget.model.pdfurl);
+                                                print("ppppdddddddddddffffff" + pdfurl);
+                                                if(extension =="jpg"){
+                                                  Navigator.pushNamed(context,"/documentimage",).then((value) => widget.model.pdfurl);
+
+                                                }else if (extension =="pdf"){
+                                                  Navigator.pushNamed(context,"/documentpdf",).then((value) => widget.model.pdfurl);
+
+                                                }else if(extension =="mp4"){
+                                                  Navigator.pushNamed(context,"/documentvideo",).then((value) => widget.model.pdfurl);
+                                                }
+
                                               },
                                               child: Center(
                                                 child: Container(
@@ -286,7 +294,7 @@ String doccategory;
                                                   child: RaisedButton(
                                                     onPressed: null,
                                                     child: Text(
-                                                      'View Pdf',
+                                                      'VIEW',
                                                       style: TextStyle(
                                                           color: Colors.white,
                                                           fontSize: 16,

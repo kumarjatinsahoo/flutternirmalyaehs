@@ -36,6 +36,24 @@ class _OrganDonationState extends State<OrganDonation> {
           style: TextStyle(
               fontSize: 20, color: Colors.white),
         ),
+          actions: <Widget>[
+            Padding(
+              padding: EdgeInsets.only(right: 20.0),
+              child: InkWell(
+                onTap: () {
+                  Navigator.pushNamed(context, "/organlist")
+                      .then((value) {
+                    setState(() {
+                      //currentMax = 1;
+                    });
+                    //callAPI(currentMax);
+                  });
+                  // displayTextInputDialog(context);
+                },
+                child: Center(child: Text("List",style:TextStyle(fontSize:20,color: Colors.white,fontWeight: FontWeight.bold),)),
+              ),
+            ),
+          ]
       ),
       body: Container(
         height: double.maxFinite,

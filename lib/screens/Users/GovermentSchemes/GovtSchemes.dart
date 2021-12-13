@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/KeyvalueModel.dart';
 import 'package:user/providers/DropDown.dart';
@@ -51,161 +54,153 @@ class _GovtSchemesState extends State<GovtSchemes> {
         title: Text(MyLocalizations.of(context).text("GOVT_SCHEMES")),
         centerTitle: true,
       ),
-      body:
-      SingleChildScrollView(
+      body: SingleChildScrollView(
         child: Container(
-         child: Column(
-           children: [
-             Column(
-               children: [
-                 Container(
-                   child: Image.asset(
-                     "assets/images/govtschemes.jpg",
-                     // width: size.width,
-                     fit: BoxFit.cover,
-                     height: MediaQuery.of(context).size.height*0.30,
-                     width: double.maxFinite,
-                   ),
-                 ),
-                 Text(
-                   MyLocalizations.of(context).text("FIND_HEALTH_SCHEMES"),
-                   style:
-                   TextStyle(fontSize: 25, fontWeight: FontWeight.w600),
-                 ),
-               ],
-
-             ),
-            // SizedBox(height: 70,),
-             Padding(
-               padding: const EdgeInsets.only(
-                 left: 20.0,
-                 right: 20.0,
-               ),
-               child: Column(
-                 children: [
-                   Padding(
-                     padding: const EdgeInsets.only(left: 0, right: 0),
-                     child: SizedBox(
-                       height: 58,
-                       child: DropDown.genericMedicine(
-                           context,
-                           MyLocalizations.of(context).text("COUNTRY"),
-                           ApiFactory.COUNTRY_API,
-                           "country",
-                           Icons.location_on_rounded,
-                           23.0, (KeyvalueModel data) {
-                         setState(() {
-                           print(ApiFactory.COUNTRY_API);
-                           GovtSchemes.countryModel = data;
-                           GovtSchemes.stateModel = null;
-                           GovtSchemes.districtModel = null;
-                           GovtSchemes.cityModel = null;
-                         });
-                       }),
-                     ),
-                   ),
-
-                   Padding(
-                     padding: const EdgeInsets.only(
-                         left: 0, right: 0, bottom: 0),
-                     child: SizedBox(
-                       height: 58,
-                       child: DropDown.genericMedicine(
-                           context,
-                           MyLocalizations.of(context).text("STATE"),
-                           ApiFactory.STATE_API +
-                               (GovtSchemes?.countryModel?.key??""),
-                           "state",
-                           Icons.location_on_rounded,
-                           23.0, (KeyvalueModel data) {
-                         setState(() {
-                           GovtSchemes.stateModel = data;
-                           GovtSchemes.districtModel = null;
-                           GovtSchemes.cityModel = null;
-                         });
-                       }),
-                     ),
-                   )
-                   ,
-
-                   Padding(
-                     padding: const EdgeInsets.only(left: 0, right: 0),
-                     child: SizedBox(
-                       height: 58,
-                       child: DropDown.genericMedicine(
-                           context,
-                           MyLocalizations.of(context).text("DIST"),
-                           ApiFactory.DISTRICT_API +
-                               (GovtSchemes?.stateModel?.key??""),
-                           "district1",
-                           Icons.location_on_rounded,
-                           23.0, (KeyvalueModel data) {
-                         setState(() {
-                           print(ApiFactory.COUNTRY_API);
-                           GovtSchemes.districtModel = data;
-                           GovtSchemes.cityModel = null;
-                         });
-                       }),
-                     ),
-                   )
-                   ,
-
-                   Padding(
-                     padding:
-                     const EdgeInsets.only(left: 0, right: 0, bottom: 0),
-                     child: SizedBox(
-                       height: 58,
-                       child: DropDown.genericMedicine(
-                           context,
-                           MyLocalizations.of(context).text("CITY"),
-                           ApiFactory.CITY_API +
-                               (GovtSchemes?.districtModel?.key??""),
-                           "city",
-                           Icons.location_on_rounded,
-                           23.0, (KeyvalueModel data) {
-                         setState(() {
-                           GovtSchemes.cityModel = data;
-                           /*userModel.state=data.key;
+          child: Column(
+            children: [
+              Column(
+                children: [
+                  Container(
+                    child: Image.asset(
+                      "assets/images/govtschemes.jpg",
+                      // width: size.width,
+                      fit: BoxFit.cover,
+                      height: MediaQuery.of(context).size.height * 0.30,
+                      width: double.maxFinite,
+                    ),
+                  ),
+                  Text(
+                    MyLocalizations.of(context).text("FIND_HEALTH_SCHEMES"),
+                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600),
+                  ),
+                ],
+              ),
+              // SizedBox(height: 70,),
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: 20.0,
+                  right: 20.0,
+                ),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 0, right: 0),
+                      child: SizedBox(
+                        height: 58,
+                        child: DropDown.genericMedicine(
+                            context,
+                            MyLocalizations.of(context).text("COUNTRY"),
+                            ApiFactory.COUNTRY_API,
+                            "country",
+                            Icons.location_on_rounded,
+                            23.0, (KeyvalueModel data) {
+                          setState(() {
+                            print(ApiFactory.COUNTRY_API);
+                            GovtSchemes.countryModel = data;
+                            GovtSchemes.stateModel = null;
+                            GovtSchemes.districtModel = null;
+                            GovtSchemes.cityModel = null;
+                          });
+                        }),
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(left: 0, right: 0, bottom: 0),
+                      child: SizedBox(
+                        height: 58,
+                        child: DropDown.genericMedicine(
+                            context,
+                            MyLocalizations.of(context).text("STATE"),
+                            ApiFactory.STATE_API +
+                                (GovtSchemes?.countryModel?.key ?? ""),
+                            "state",
+                            Icons.location_on_rounded,
+                            23.0, (KeyvalueModel data) {
+                          setState(() {
+                            log("Value>>>" + jsonEncode(data));
+                            GovtSchemes.stateModel = data;
+                            GovtSchemes.districtModel = null;
+                            GovtSchemes.cityModel = null;
+                          });
+                        }),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 0, right: 0),
+                      child: SizedBox(
+                        height: 58,
+                        child: DropDown.genericMedicine(
+                            context,
+                            MyLocalizations.of(context).text("DIST"),
+                            ApiFactory.DISTRICT_API +
+                                (GovtSchemes?.stateModel?.key ?? ""),
+                            "district1",
+                            Icons.location_on_rounded,
+                            23.0, (KeyvalueModel data) {
+                          setState(() {
+                            print(ApiFactory.COUNTRY_API);
+                            GovtSchemes.districtModel = data;
+                            GovtSchemes.cityModel = null;
+                          });
+                        }),
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(left: 0, right: 0, bottom: 0),
+                      child: SizedBox(
+                        height: 58,
+                        child: DropDown.genericMedicine(
+                            context,
+                            MyLocalizations.of(context).text("CITY"),
+                            ApiFactory.CITY_API +
+                                (GovtSchemes?.districtModel?.key ?? ""),
+                            "city",
+                            Icons.location_on_rounded,
+                            23.0, (KeyvalueModel data) {
+                          setState(() {
+                            GovtSchemes.cityModel = data;
+                            /*userModel.state=data.key;
                                      userModel.stateCode=data.code;*/
-                         });
-                       }),
-                     ),
-                   ),
-                   SizedBox(
-                     height: 25,
-                   ),
-                   SizedBox(
-                     height: 60,
-                   ),
-                   _submitButton(),
-                   SizedBox(
-                     height: 10,
-                   ),
-                 ],
-               ),
-             ),
-           ],
-         ),
+                          });
+                        }),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 25,
+                    ),
+                    SizedBox(
+                      height: 60,
+                    ),
+                    _submitButton(),
+                    SizedBox(
+                      height: 10,
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
+        ),
       ),
     );
   }
 
   Widget _submitButton() {
     return MyWidgets.nextButton(
-      text:MyLocalizations.of(context).text("SEARCH").toUpperCase(),
+      text: MyLocalizations.of(context).text("SEARCH").toUpperCase(),
       context: context,
       fun: () {
-        //Navigator.pushNamed(context, "/navigation");
-        /*if (_loginId.text == "" || _loginId.text == null) {
-          AppData.showInSnackBar(context, "Please enter mobile no");
-        } else if (_loginId.text.length != 10) {
-          AppData.showInSnackBar(context, "Please enter 10 digit mobile no");
-        } else {*/
-
-       // Navigator.pushNamed(context, "/govtschemeslist");
-        Navigator.pushNamed(context, "/govetschemeslist");
-        //}
+        if (GovtSchemes.countryModel == null) {
+          AppData.showInSnackBar(context, "Please select country");
+        } else if (GovtSchemes.stateModel == null) {
+          AppData.showInSnackBar(context, "Please select state");
+        } else if (GovtSchemes.districtModel == null) {
+          AppData.showInSnackBar(context, "Please select district");
+        } else {
+          Navigator.pushNamed(context, "/govetschemeslist");
+        }
       },
     );
   }

@@ -494,16 +494,13 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                _buildTilewhite(
-                                  icon: "assets/images/mypatient.png",
+                                _buildTileblue(
+                                  icon: "assets/images/medical.png",
                                   fun: () {
-                                    // AppData.showInSnackDone(context, "Coming Soon");
-                                    // Navigator.pushNamed(context, "/discountoffer");
-                                    //AppData.showInSnackBar(context, "Coming soon");
+                                    Navigator.pushNamed(context, "/refferedpatients");
                                   },
-                                  //color: AppData.BG2BLUE,
-                                  color: AppData.white,
-                                  bordercolor: AppData.white,
+                                  color: AppData.BG2BLUE,
+                                  bordercolor: AppData.BG2BLUE,
                                   size: 100 / 3,
                                 ),
                                 SizedBox(
@@ -513,7 +510,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                                   width: 100,
                                   height: 35,
                                   child: Text(
-                                    MyLocalizations.of(context).text(""),
+                                    "Reffered Patients",
                                     textAlign: TextAlign.center,
                                     //overflow: TextOverflow.ellipsis,
                                   ),
@@ -527,7 +524,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                                                         textAlign: TextAlign.center,
                                                       ),
                                                     )),*/
-                              ]),
+                              ])
                         ],
                       ),
                       SizedBox(height: 50),

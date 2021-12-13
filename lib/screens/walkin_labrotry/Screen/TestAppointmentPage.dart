@@ -1,12 +1,15 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:developer';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:user/localization/localizations.dart';
+import 'package:user/models/KeyvalueModel.dart';
 import 'package:user/models/LabBookModel.dart';
 import 'package:user/providers/Const.dart';
+import 'package:user/providers/DropDown.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
@@ -18,6 +21,7 @@ import '../../CreateAppointmentLab.dart';
 class TestAppointmentPage extends StatefulWidget {
   final bool isConfirmPage;
   MainModel model;
+  static KeyvalueModel relationmodel = null;
 
   TestAppointmentPage({
     Key key,
@@ -99,6 +103,7 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
           setState(() {
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
+              log("Response>>>\n\n\n\n\n\n\n\n\n\n\n"+jsonEncode(map)+"\n\n\n\n\n\n\n\n\n\n\n");
               appointModel = LabBookModel.fromJson(map);
               foundUser = appointModel.body;
             } else {
@@ -488,6 +493,17 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
                     TextInputType.number, "name", height),
                 fromFieldNew("Weight(In KG)", TextInputAction.next,
                     TextInputType.number, "name", weight),
+                Padding(
+                  padding: const EdgeInsets.only(left: 13,right: 13),
+                  child: DropDown.networkDropdownGetpartUserundreline(
+                      "PHC/Center",
+                      ApiFactory.RELATION_API,
+                      "relation3", (KeyvalueModel model) {
+                    setState(() {
+                      TestAppointmentPage.relationmodel = model;
+                    });
+                  }),
+                ),
               ],
             ),
           );
@@ -514,12 +530,16 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
               AppData.showInSnackBar(context, "Please enter height");
             } else if (weight.text == "" || weight.text == null) {
               AppData.showInSnackBar(context, "Please enter weight");
-            } else {
+            } else if (TestAppointmentPage.relationmodel == null ||
+                TestAppointmentPage.relationmodel == "") {
+              AppData.showInSnackBar(context, "Please select PHC/Center ");
+            }else {
               String mob = (body.mob == null || body.mob == "" || body.mob == "null")
                       ? "" : body.mob;
               String mapping = body.regNo + "," + body.patientName + ","
                   + mob + "," + body.gender + "," + height.text + "," +
                   weight.text + "," + body.age.toString();
+              log("Value>>>"+mapping);
               _callLabApp(mapping.trim());
             }
           },

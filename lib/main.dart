@@ -78,7 +78,7 @@ import 'package:user/screens/Users/Medipedia/DieseInfo.dart';
 import 'package:user/screens/Users/Medipedia/Diesepdf.dart';
 import 'package:user/screens/Users/Medipedia/HealthTipsList.dart';
 import 'package:user/screens/Users/Medication/UserMedicineTab.dart';
-import 'package:user/screens/Users/MyMedicalRecord/AddUploadDocument.dart';
+import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/AddUploadDocument.dart';
 import 'package:user/screens/Users/MyMedicalRecord/BiomediImplants.dart';
 import 'package:user/screens/Pharmacists/Screens/Deliverdorder.dart';
 import 'package:user/screens/Pharmacists/Screens/PaymentCollection.dart';
@@ -88,10 +88,13 @@ import 'package:user/screens/Users/EmergencyHelp/CountDownPage.dart';
 import 'package:user/screens/Users/Discount&Offer/DiscountOffersDetails.dart';
 import 'package:user/screens/Users/Dashboard/EmergencyDetails.dart';
 import 'package:user/screens/Users/GenericMedicine/GenericMedicine.dart';
-import 'package:user/screens/Users/MyMedicalRecord/DocumentList.dart';
-import 'package:user/screens/Users/MyMedicalRecord/DocumentPdfView.dart';
+import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/DocumentImageView.dart';
+import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/DocumentList.dart';
+import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/DocumentPdfView.dart';
 import 'package:user/screens/Users/MyMedicalRecord/HealthChart.dart';
-import 'package:user/screens/Users/MyMedicalRecord/UploadDocument.dart';
+import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/DocumentVideoView.dart';
+import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/UploadDocument.dart';
+import 'package:user/screens/Users/organ/Organlist.dart';
 import 'package:user/screens/walkin_labrotry/Screen/LabQrCode.dart';
 import 'screens/Users/MyMedicalRecord/LifeStyleHistory.dart';
 import 'package:user/screens/Users/MyMedicalRecord/Medication/UserMedicineTab1.dart';
@@ -512,7 +515,7 @@ class _MyAppState extends State<MyApp> {
               '/deliveredorder': (context) => SampleTracking(
                     model: _model,
                   ),
-             /* '/pinview': (context) => PinView(
+              /* '/pinview': (context) => PinView(
                     model: _model,
                   ),*/
               '/support': (context) => SupportScreen(
@@ -620,10 +623,10 @@ class _MyAppState extends State<MyApp> {
                   ),
               '/medipedia': (context) => MedipediaPage(
                     model: _model,
-              ),
+                  ),
               '/govetschemeslist': (context) => GovernmentSchemesList(
                     model: _model,
-              ),
+                  ),
               '/discountofferdetails': (context) => DiscountOffersDetails(
                     model: _model,
                   ),
@@ -687,7 +690,7 @@ class _MyAppState extends State<MyApp> {
               '/patientRegistration4': (context) => PatientRegistration4(
                     model: _model,
                   ),
-              '/patientDashboard': (context) => LabDashboard(
+              '/patientDashboard': (context) => DashboardUserNew(
                     model: _model,
                   ),
               '/chemistspage': (context) => ChemistsTabview(
@@ -714,12 +717,12 @@ class _MyAppState extends State<MyApp> {
               '/medicinelisturl': (context) => UserMedicineUrl(
                     model: _model,
                   ),
-                  '/shareappointment': (context) => ShareAppointment(
+              '/shareappointment': (context) => ShareAppointment(
                     model: _model,
                   ),
 
               //////////////////DOCTOR USER//////////////////////
-           /*   '/dashDoctor': (context) => DasboardDoctor(
+              /*   '/dashDoctor': (context) => DasboardDoctor(
                     model: _model,
                   ),*/
               '/dashDoctor': (context) => NewDashboardDoctor(
@@ -817,20 +820,20 @@ class _MyAppState extends State<MyApp> {
                     model: _model,
                   ),
               '/ambulancesignupform2': (context) => AmbulanceSignUpForm2(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
               '/ngo': (context) => NgoSignUpForm(
                     model: _model,
                   ),
               '/ngosignupform2': (context) => NgoSignUpForm2(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
               '/bloodbank': (context) => BloodBankSignUpForm(
                     model: _model,
                   ),
               '/bloodbanksignupform2': (context) => BloodBankSignUpForm2(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
 
               '/covidMobile': (context) => CovidMobilePage(
                     model: _model,
@@ -858,7 +861,7 @@ class _MyAppState extends State<MyApp> {
                   ),
               '/videos': (context) => VideosPage(
                     model: _model,
-              ),
+                  ),
               '/healthtipslist': (context) => HealthTipsList(
                     model: _model,
                   ),
@@ -885,170 +888,197 @@ class _MyAppState extends State<MyApp> {
                   ),
               '/organ4': (context) => Organ4Page(
                     model: _model,
-              ),
+                  ),
               '/govetschem1': (context) => GovetListPage1(
                     model: _model,
-              ),
+                  ),
               '/govetschem2': (context) => GovetListPage2(
                     model: _model,
-              ),
+                  ),
               '/govetschem3': (context) => GovetListPage3(
                     model: _model,
-              ),
+                  ),
               '/govetschem4': (context) => GovetListPage4(
                     model: _model,
-              ),
+                  ),
               '/govetschem5': (context) => GovetListPage5(
                     model: _model,
-              ),
+                  ),
               '/govetschem6': (context) => GovetListPage6(
                     model: _model,
-              ),
+                  ),
               '/govetschem7': (context) => GovetListPage7(
-                    model: _model, ),
+                    model: _model,
+                  ),
               '/govetschem8': (context) => GovetListPage8(
                     model: _model,
                   ),
               '/qrViewExample1': (context) => QRViewExample1(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
               '/labDash': (context) => DashboardLabortory(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
               '/myOrderTest': (context) => MyOrdersLab(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
               '/confirmOrder': (context) => OrdersTabLab(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
               '/ordersPharma': (context) => OrdersTabPharmacy(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
               '/cnfpwd': (context) => ConfirmPassword(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
               '/qrcode': (context) => QrcodePage(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
               '/ambulancedash': (context) => AmbulanceDashboard(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
               '/allambulance': (context) => AllAmbulance(
-                model: _model,
-              ),'/requestambulance': (context) => RequestAmbulance(
-                model: _model,
-              ),'/acceptambulance': (context) => AcceptAmbulance(
-                model: _model,
-              ),'/rejectambulance': (context) => RejectAmbulance(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
+              '/requestambulance': (context) => RequestAmbulance(
+                    model: _model,
+                  ),
+              '/acceptambulance': (context) => AcceptAmbulance(
+                    model: _model,
+                  ),
+              '/rejectambulance': (context) => RejectAmbulance(
+                    model: _model,
+                  ),
               '/allbloodbank': (context) => AllBloodBank(
-                model: _model,
-              ),'/requestbloodbank': (context) => RequestBloodBank(
-                model: _model,
-              ),'/acceptbloodbank': (context) => AcceptBloodBank(
-                model: _model,
-              ),'/rejectbloodbank': (context) => RejectBloodBank(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
+              '/requestbloodbank': (context) => RequestBloodBank(
+                    model: _model,
+                  ),
+              '/acceptbloodbank': (context) => AcceptBloodBank(
+                    model: _model,
+                  ),
+              '/rejectbloodbank': (context) => RejectBloodBank(
+                    model: _model,
+                  ),
               '/bookAmbulancelist': (context) => BookAmbulancelist(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
               '/bookAmbulancePage': (context) => BookAmbulancePage(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
               '/bookBloodBanklist': (context) => BookBloodBanklist(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
               '/bookBloodBankPage': (context) => BookBloodBankPage(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
               '/bloodBankDashboard': (context) => BloodBankDashboard(
-               model: _model,
-               ),
+                    model: _model,
+                  ),
               '/lifeStyleHistory': (context) => LifeStyleHistory(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
               '/myPatientlist': (context) => MyPatientlist(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
               '/uploaddocument': (context) => DocumentList(
-                model: _model,
-              ),'/upload': (context) => UploadDocument(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
+              '/upload': (context) => UploadDocument(
+                    model: _model,
+                  ),
               '/adduploaddocument': (context) => AddUploadDocument(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
               '/documentpdf': (context) => DocumentPdf(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
+              '/documentimage': (context) => DocumentImage(
+                    model: _model,
+                  ),
+              '/documentvideo': (context) => DocumentVideo(
+                    model: _model,
+                  ),
               '/labqrcode': (context) => LabQrcode(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
               '/dieseinfo': (context) => DieseInfo(
-                model: _model,
-              ),'/diesepdf': (context) => Diesepdf(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
+              '/diesepdf': (context) => Diesepdf(
+                    model: _model,
+                  ),
               '/addimmunization': (context) => AddImmunization(
-                model: _model,
-              ),'/termsandConditionPage': (context) => TermsandConditionPage(
-                model: _model,
-              ), '/userMedicineList': (context) => UserMedicineList(
-          model: _model,
-          ),
+                    model: _model,
+                  ),
+              '/termsandConditionPage': (context) => TermsandConditionPage(
+                    model: _model,
+                  ),
+              '/userMedicineList': (context) => UserMedicineList(
+                    model: _model,
+                  ),
               '/userTestList': (context) => UserTestList(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
 
               '/monthlyoverview': (context) => MonthlyOverview(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
               '/healthchart': (context) => HealthChart(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
               '/receptionlistsignup': (context) => MonthlyOverviewlist(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
 ////////////////////////////////////////////////////////////////////////////////
-            // RECEPTIONLIST
-              '/receptionlistsignUpformm': (context) => ReceptionlistSignUpFormm(
-                model: _model,
-              ),
+              // RECEPTIONLIST
+              '/receptionlistsignUpformm': (context) =>
+                  ReceptionlistSignUpFormm(
+                    model: _model,
+                  ),
               '/dashboardreceptionlist': (context) => DashboardReceptionlist(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
               '/refferedpatientsbookAppoint': (context) => BookAppointment(
-                model: _model,
-              ), '/refferedpatients': (context) => RefferedPatients(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
+              '/refferedpatients': (context) => RefferedPatients(
+                    model: _model,
+                  ),
               '/receptionlistsignup1': (context) => ReceptionlistSignupForm1(
-                model: _model,
-              ),
-              '/receptionlistSignupform2': (context) => ReceptionlistSignupForm2(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
+              '/receptionlistSignupform2': (context) =>
+                  ReceptionlistSignupForm2(
+                    model: _model,
+                  ),
               '/monthlyOverviewAmbulanc': (context) => MonthlyOverviewAmbulanc(
-                model: _model,
-              ),
-              '/monthlyOverviewAmbulancelist': (context) => MonthlyOverviewAmbulancelist(
-                model: _model,
-              ),
-              '/monthlyOverviewBloodBank': (context) => MonthlyOverviewBloodBank(
-                model: _model,
-              ),
-              '/monthlyOverviewBloodbanklist': (context) => MonthlyOverviewBloodbanklist(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
+              '/monthlyOverviewAmbulancelist': (context) =>
+                  MonthlyOverviewAmbulancelist(
+                    model: _model,
+                  ),
+              '/monthlyOverviewBloodBank': (context) =>
+                  MonthlyOverviewBloodBank(
+                    model: _model,
+                  ),
+              '/monthlyOverviewBloodbanklist': (context) =>
+                  MonthlyOverviewBloodbanklist(
+                    model: _model,
+                  ),
               '/monthlyOverviewPharma': (context) => MonthlyOverviewPharma(
-                model: _model,
-              ),
-              '/monthlyOverviewPharmaklist': (context) => MonthlyOverviewPharmaklist(
-                model: _model,
-              ),
-
+                    model: _model,
+                  ),
+              '/monthlyOverviewPharmaklist': (context) =>
+                  MonthlyOverviewPharmaklist(
+                    model: _model,
+                  ),
+              '/organlist': (context) =>
+                  Organlist(
+                    model: _model,
+                  ),
             },
             localizationsDelegates: [
               MyLocalizationsDelegate(widget.localizedValues),

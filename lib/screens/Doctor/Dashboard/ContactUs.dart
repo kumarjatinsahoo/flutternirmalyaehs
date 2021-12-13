@@ -2,8 +2,9 @@ import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:maps_launcher/maps_launcher.dart';
+// import 'package:maps_launcher/maps_launcher.dart';
 import 'package:user/models/GooglePlaceSearchModell.dart';
+import 'package:user/providers/map_launcher.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
 
