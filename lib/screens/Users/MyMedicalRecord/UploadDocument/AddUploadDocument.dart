@@ -93,6 +93,7 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
           onPressed: () {
             selectedDocument = "img";
             getCerificateImage();
+
           },
         )));
 
@@ -101,7 +102,7 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
         labelText: "Document",
         currentButton: FloatingActionButton(
           heroTag: "Document",
-          backgroundColor: AppData.kPrimaryColor,
+          backgroundColor:AppData.kPrimaryColor,
           mini: true,
           child: Icon(Icons.file_copy),
           onPressed: () {
@@ -137,14 +138,14 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
       ),
 
       floatingActionButton: UnicornDialer(
-          childPadding: 4.00,
+        childPadding:4.00,
           backgroundColor: Colors.transparent,
           // parentButtonBackground: Colors.redAccent,
           orientation: UnicornOrientation.VERTICAL,
           parentButton: Icon(Icons.add),
           childButtons: childButtons),
-      // floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
-      body: Container(
+     // floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+    body: Container(
         child: SingleChildScrollView(
           child: Center(
             child: Padding(
@@ -229,10 +230,12 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
                       } else if (_date.text == "" || _date.text == null) {
                         AppData.showInSnackBar(
                             context, "Please Enter Document Date");
-                      } else if (_date.text == "" || _date.text == null) {
+                      }
+                      else if (selectFile.path == "" || selectFile.path == null) {
                         AppData.showInSnackBar(
-                            context, "Please Enter Document Date");
-                      } else {
+                            context, "Please Select  at least One Image,Vedio,Document");
+                      }
+                      else {
                         postMultiPart();
                       }
                     },
@@ -327,6 +330,8 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
         Navigator.pop(context);
         log("value" + jsonEncode(response.data));
         if (response.data["code"] == "success") {
+          //Navigator.pushNamed(context, "/uploaddocument");
+
           popup(context);
         } else {
           AppData.showInSnackBar(context, "Something went wrong");
@@ -382,10 +387,10 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
       ),
     );
   }
-
   Future getVideoUpload() async {
     var video = await ImagePicker.pickVideo(
       source: ImageSource.gallery,
+
     );
     var enc = await video.readAsBytes();
     String _path = video.path;
@@ -431,7 +436,6 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
           extName); // adduploaddocument.mulFile=file.path as MultipartFile;
     });
   }
-
   Future<void> getPdfAndUpload() async {
     File file = await FilePicker.getFile(
       type: FileType.custom,
@@ -563,4 +567,5 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
         //addBioMedicalModel.bioMDate = df.format(picked);
       });
   }
+
 }
