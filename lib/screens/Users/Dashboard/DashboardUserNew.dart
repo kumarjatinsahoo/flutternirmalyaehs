@@ -2321,7 +2321,7 @@ class MyPage2Widget extends StatelessWidget {
                             icon: "assets/blooddonationuser.png",
                             //icon: Icons.search,
                             //icon: FontAwesomeIcons.accusoft,
-                            title: "Blood Bank",
+                            title: " Order Blood ",
                             fun: () {
                               Navigator.pushNamed(context, "/bookBloodBanklist");
                              // Navigator.pushNamed(context, "/healthCheckup");
@@ -2337,7 +2337,7 @@ class MyPage2Widget extends StatelessWidget {
                             width: 100,
                             height: 35,
                             child: Text(
-                              MyLocalizations.of(context).text("BLOOD_BANK"),
+                              "Order Blood",
                               textAlign: TextAlign.center,
                               //overflow: TextOverflow.ellipsis,
                             ),

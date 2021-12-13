@@ -827,7 +827,9 @@ class NgoSignUpForm2State extends State<NgoSignUpForm2> {
     return Alert(
         context: context,
         //title: "Success",
-        title: "Success",
+        title: message,
+        desc: MyLocalizations.of(context).text("REG_SUCCESS_POPUP"),
+        type: AlertType.success,
         //type: AlertType.info,
         onWillPopActive: true,
         content: Column(
