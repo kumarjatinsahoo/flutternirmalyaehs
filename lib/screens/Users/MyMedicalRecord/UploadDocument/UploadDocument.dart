@@ -142,6 +142,41 @@ class _UploadDocumentState extends State<UploadDocument> {
     }
   }
 
+  IconData getIconFormat(String ext) {
+    switch (ext.toLowerCase()) {
+      case 'jpg':
+        return Icons.image;
+      case 'png':
+        return Icons.image;
+      case 'jpeg':
+        return Icons.image;
+      case 'heif':
+        return Icons.image;
+
+      case 'pdf':
+        return Icons.document_scanner;
+      case 'doc':
+        return Icons.document_scanner;
+      case 'pdf':
+        return Icons.document_scanner;
+
+      case 'mp4':
+        return Icons.video_collection;
+      case 'mkv':
+        return Icons.video_collection;
+      case '3gp':
+        return Icons.video_collection;
+      case 'mov':
+        return Icons.video_collection;
+      case 'avp':
+        return Icons.video_collection;
+      case 'avi':
+        return Icons.video_collection;
+      default:
+        return Icons.image;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery
@@ -217,6 +252,8 @@ class _UploadDocumentState extends State<UploadDocument> {
             physics: NeverScrollableScrollPhysics(),
             itemBuilder: (context, i) {
               document.Body body = documentListModel.body[i];
+              // String docTyp=getFormatType(body.extension);
+
               return Padding(
                 padding: const EdgeInsets.only(
                     left: 10.0, right: 10, top: 5, bottom: 5),
@@ -245,19 +282,11 @@ class _UploadDocumentState extends State<UploadDocument> {
                               height: 10,
                             ),
                             Container(
-                                child: ClipRRect(
-                                    borderRadius:
-                                    BorderRadius.circular(
-                                        55),
-                                    child: Icon(
-                                      Icons
-                                          .picture_as_pdf_rounded,
-                                      color: AppData
-                                          .kPrimaryRedColor,
-                                      size: 100,
-                                    )
-                                  // height: 95,
-
+                                child: Icon(
+                                  getIconFormat(AppData.getExt(body.fileName)),
+                                  color: AppData
+                                      .kPrimaryRedColor,
+                                  size: 100,
                                 )),
                             SizedBox(
                               height: 20,

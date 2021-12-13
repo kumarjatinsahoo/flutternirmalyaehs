@@ -38,7 +38,7 @@ class _VideoDetailsPageState extends State<VideoDetailsPage> {
   void initState() {
     // TODO: implement initState
     // isRTL = (AppData.selectedLanguage == "English") ? false : true;
-    videoUrl ="https://content.jwplatform.com/videos/6pw4jzx8-z057noEQ.mp4";
+    videoUrl ="http://192.168.43.248:8062/nirmalyaRest/document/record/9121211263207075_1639392496813.mp4";
     _scrollControl = ScrollController();
     _scrollControl.addListener(() {
       if (_scrollControl.position.pixels > 400) {
@@ -73,6 +73,7 @@ class _VideoDetailsPageState extends State<VideoDetailsPage> {
     // Ensure disposing of the VideoPlayerController to free up resources.
     // _controller.dispose();
     _videoPlayerController1.dispose();
+    if(_chewieController!=null)
     _chewieController.dispose();
 
     super.dispose();
