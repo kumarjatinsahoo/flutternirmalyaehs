@@ -150,6 +150,7 @@ String diesepdf;
 String emergencyrelation;
 
 String documentcategories;
+String emrdocumentcategories;
 String  receptionhospitalid;
 String  receptionpatientid;
 

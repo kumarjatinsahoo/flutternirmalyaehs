@@ -41,7 +41,8 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
   bool isdata = false;
   DateTime selectedDate = DateTime.now();
   final df = new DateFormat('dd/MM/yyyy');
-  String profilePath = null, idproof = null;
+  String profilePath = null,
+      idproof = null;
   File pathUsr1 = null;
   String doccategory;
   AddUploadDocumentModel adduploaddocument = AddUploadDocumentModel();
@@ -93,7 +94,6 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
           onPressed: () {
             selectedDocument = "img";
             getCerificateImage();
-
           },
         )));
 
@@ -102,7 +102,7 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
         labelText: "Document",
         currentButton: FloatingActionButton(
           heroTag: "Document",
-          backgroundColor:AppData.kPrimaryColor,
+          backgroundColor: AppData.kPrimaryColor,
           mini: true,
           child: Icon(Icons.file_copy),
           onPressed: () {
@@ -138,14 +138,14 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
       ),
 
       floatingActionButton: UnicornDialer(
-        childPadding:4.00,
+          childPadding: 4.00,
           backgroundColor: Colors.transparent,
           // parentButtonBackground: Colors.redAccent,
           orientation: UnicornOrientation.VERTICAL,
           parentButton: Icon(Icons.add),
           childButtons: childButtons),
-     // floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
-    body: Container(
+      // floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+      body: Container(
         child: SingleChildScrollView(
           child: Center(
             child: Padding(
@@ -188,35 +188,35 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
                   SizedBox(height: 8),
                   (idproof != null)
                       ? Padding(
-                          padding: const EdgeInsets.only(left: 10, right: 10),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Expanded(
-                                child: Container(
-                                  child: Text(
-                                    "Report Path :" + idproof,
-                                    style: TextStyle(color: Colors.green),
-                                  ),
-                                ),
-                              ),
-                              InkWell(
-                                child: SizedBox(
-                                    width: 50.0, child: Icon(Icons.clear)),
-                                onTap: () {
-                                  setState(() {
-                                    idproof = null;
-                                    // registrationModel.profilePhotoBase64 =
-                                    null;
-                                    //registrationModel.profilePhotoExt =
-                                    null;
-                                  });
-                                },
-                              ),
-                            ],
+                    padding: const EdgeInsets.only(left: 10, right: 10),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: Container(
+                            child: Text(
+                              "Report Path :" + idproof,
+                              style: TextStyle(color: Colors.green),
+                            ),
                           ),
-                        )
+                        ),
+                        InkWell(
+                          child: SizedBox(
+                              width: 50.0, child: Icon(Icons.clear)),
+                          onTap: () {
+                            setState(() {
+                              idproof = null;
+                              // registrationModel.profilePhotoBase64 =
+                              null;
+                              //registrationModel.profilePhotoExt =
+                              null;
+                            });
+                          },
+                        ),
+                      ],
+                    ),
+                  )
                       : Container(),
                   SizedBox(
                     height: 20,
@@ -233,7 +233,8 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
                       }
                       else if (idproof == "" || idproof == null) {
                         AppData.showInSnackBar(
-                            context, "Please Select  at least One Image,Vedio,Document");
+                            context,
+                            "Please Select  at least One Image,Vedio,Document");
                       }
                       else {
                         postMultiPart();
@@ -277,28 +278,23 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
         "," +
         loginResponse1.body.user);
     var formData = FormData();
-    formData.fields
-      ..add(MapEntry('userid', loginResponse1.body.user))
-      ..add(MapEntry(
-        'docType',
-        doccategory,
-      ))
-      ..add(MapEntry(
-        'docName',
-        textEditingController[1].text,
-      ))
-      ..add(MapEntry(
-        'uploadDate',
-        _date.text,
-      ))
-      ..add(MapEntry(
-        'filetype',
-        selectedDocument,
-      ))
-      ..add(MapEntry(
-        'extension',
-        extension,
-      ));
+    formData.fields..add(MapEntry('userid', loginResponse1.body.user))..add(
+        MapEntry(
+          'docType',
+          doccategory,
+        ))..add(MapEntry(
+      'docName',
+      textEditingController[1].text,
+    ))..add(MapEntry(
+      'uploadDate',
+      _date.text,
+    ))..add(MapEntry(
+      'filetype',
+      selectedDocument,
+    ))..add(MapEntry(
+      'extension',
+      extension,
+    ));
     formData.files.add(MapEntry(
       'mulFile',
       MultipartFile.fromFileSync(
@@ -387,6 +383,7 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
       ),
     );
   }
+
   Future getVideoUpload() async {
     var video = await ImagePicker.pickVideo(
       source: ImageSource.gallery,
@@ -395,7 +392,9 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
     var enc = await video.readAsBytes();
     String _path = video.path;
 
-    String _fileName = _path != null ? _path.split('/').last : '...';
+    String _fileName = _path != null ? _path
+        .split('/')
+        .last : '...';
     var pos = _fileName.lastIndexOf('.');
     String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
     print(extName);
@@ -420,7 +419,9 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
     var enc = await image.readAsBytes();
     String _path = image.path;
 
-    String _fileName = _path != null ? _path.split('/').last : '...';
+    String _fileName = _path != null ? _path
+        .split('/')
+        .last : '...';
     var pos = _fileName.lastIndexOf('.');
     String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
     print(extName);
@@ -436,6 +437,7 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
           extName); // adduploaddocument.mulFile=file.path as MultipartFile;
     });
   }
+
   Future<void> getPdfAndUpload() async {
     File file = await FilePicker.getFile(
       type: FileType.custom,
@@ -447,7 +449,9 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
     var enc = await file.readAsBytes();
     String _path = file.path;
 
-    String _fileName = _path != null ? _path.split('/').last : '...';
+    String _fileName = _path != null ? _path
+        .split('/')
+        .last : '...';
     var pos = _fileName.lastIndexOf('.');
     String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
     print(extName);
@@ -556,16 +560,15 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
         context: context,
         locale: Locale("en"),
         initialDate: DateTime.now(),
-        firstDate: DateTime.now(),
-        lastDate: DateTime.now()
-            .add(new Duration(days: 6570))); //18 years is 6570 days
-    if (picked != null && picked != selectedDate)
-      setState(() {
-        selectedDate = picked;
-        error[2] = false;
-        _date.value = TextEditingValue(text: df.format(picked));
-        //addBioMedicalModel.bioMDate = df.format(picked);
-      });
+        firstDate: DateTime(1901, 1),
+        lastDate:
+        DateTime.now() /*.add(new Duration(days: 5))*/); //18 years is 6570 days
+    // if (picked != null && picked != selectedDate)
+    setState(() {
+      selectedDate = picked;
+      error[2] = false;
+      _date.value = TextEditingValue(text: df.format(picked));
+      //addBioMedicalModel.bioMDate = df.format(picked);
+    });
   }
-
 }

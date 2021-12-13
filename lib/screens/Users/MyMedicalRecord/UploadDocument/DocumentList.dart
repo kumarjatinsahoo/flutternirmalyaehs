@@ -100,7 +100,7 @@ class _DocumentListState extends State<DocumentList> {
               ? Container(
                   child: Center(
                     child: Text(
-                      MyLocalizations.of(context).text("NO_DATA_FOUND"),
+                      "No Data Found",
                       style: TextStyle(color: Colors.black, fontSize: 15),
                     ),
                   ),

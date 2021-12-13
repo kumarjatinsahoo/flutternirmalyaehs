@@ -198,7 +198,7 @@ class _DoctorAppointmentRequestedState
                           physics: NeverScrollableScrollPhysics(),
                           itemBuilder: (context, i) {
                             Body appointmentlist = doctorAppointmment.body[i];
-                            String date=appointmentlist.appdate+appointmentlist.appmonth+appointmentlist.appyear;
+                            String date=appointmentlist.appdate+"/"+appointmentlist.appmonth+"/"+appointmentlist.appyear;
                             String name=appointmentlist.patname;
                             return InkWell(
                               onTap: () {
@@ -555,12 +555,8 @@ class _DoctorAppointmentRequestedState
                                                                   },
                                                                   child:
                                                                       Container(
-                                                                    height: size
-                                                                            .height *
-                                                                        0.06,
-                                                                    width: size
-                                                                            .height *
-                                                                        0.20,
+                                                                    height: size.height * 0.06,
+                                                                    width: size.height * 0.20,
                                                                     decoration: BoxDecoration(
                                                                         borderRadius:
                                                                             BorderRadius.circular(

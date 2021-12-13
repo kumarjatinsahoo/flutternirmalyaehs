@@ -15,9 +15,7 @@ import 'package:user/providers/DropDown.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
-import 'package:user/widgets/MyWidget.dart';
-import 'package:file_picker/file_picker.dart';
-import 'dart:io';
+import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/AddUploadDocument.dart';
 
 class UploadDocument extends StatefulWidget {
   final MainModel model;
@@ -42,8 +40,7 @@ class _UploadDocumentState extends State<UploadDocument> {
   bool isdata = false;
   DateTime selectedDate = DateTime.now();
   final df = new DateFormat('dd/MM/yyyy');
-  String profilePath = null,
-      idproof = null;
+  String profilePath = null, idproof = null;
   String doccategory;
   TextEditingController _date = TextEditingController();
   TextEditingController _reason = TextEditingController();
@@ -67,12 +64,15 @@ class _UploadDocumentState extends State<UploadDocument> {
   FocusNode fnode4 = new FocusNode();
   FocusNode fnode5 = new FocusNode();
   AddBioMedicalModel addBioMedicalModel = AddBioMedicalModel();
+  String eHealthCardno;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     loginResponse1 = widget.model.loginResponse1;
+    eHealthCardno = widget.model.patientseHealthCard;
+
     doccategory = widget.model.documentcategories;
     callAPI(currentMax);
     _scrollController.addListener(() {
@@ -192,7 +192,9 @@ class _UploadDocumentState extends State<UploadDocument> {
               padding: EdgeInsets.only(right: 20.0),
               child: InkWell(
                 onTap: () {
-                  Navigator.pushNamed(context, "/adduploaddocument")
+                  Navigator.push(context,MaterialPageRoute(builder: (context)=>AddUploadDocument(model:widget.model)))
+
+                 /* Navigator.pushNamed(context, "/adduploaddocument")*/
                       .then((value) {
                     setState(() {
                       currentMax = 1;
