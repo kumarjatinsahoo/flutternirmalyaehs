@@ -517,7 +517,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     FirebaseMessaging.instance
                         .subscribeToTopic(loginResponse.body.userMobile);
 
-
                     /////By Sanjaya
                     //Role 8- Lab Technician
                     //Role 7- Pharmacy
@@ -527,7 +526,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     //Role 15- NGO
                     //Role 2- Doctor
                     //Role 5- Reception
-
 
                     if (loginResponse.body.roles[0] == "1".toLowerCase()) {
                       Navigator.of(context).pushNamedAndRemoveUntil(

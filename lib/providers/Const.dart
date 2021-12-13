@@ -101,6 +101,7 @@ class Const {
   }
 
   static DateTime getExpireDate(String date, String month) {
+    month=month.replaceAll("  ", " ");
     List<String> split = month.split(" ");
     switch (split[0]) {
       case "JANUARY":

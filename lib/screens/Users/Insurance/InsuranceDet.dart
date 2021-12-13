@@ -65,9 +65,9 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
   }
 
   calculate(date, month) {
-    return Const.getExpireDate(date, month)
+    return ((Const.getExpireDate(date, month)
         .difference(DateTime.now())
-        .inDays
+        .inDays)+1)
         .toString();
   }
 
@@ -76,8 +76,10 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
     int totalDif = Const.getExpireDate(date, month)
         .difference(Const.getExpireDate(date1, month1))
         .inDays;
+    log("Total Differnece>>>>"+totalDif.toString());
     int difFromCurr =
         Const.getExpireDate(date, month).difference(DateTime.now()).inDays;
+    log("Differnece from current>>>>"+difFromCurr.toString());
     return (difFromCurr / totalDif);
   }
 
