@@ -30,14 +30,14 @@ class Const {
   static String REGISTRATION = "registrationForm";
   static String LOGIN_DATA = "loginResponse";
   static String LOGIN_phoneno = 'phoneno';
-  static String LOGIN_password= 'password';
+  static String LOGIN_password = 'password';
   static String IS_LOGIN = "IS_LOGIN";
   static String IS_REGISTRATION = "IS_REGISTRATION";
   static String IS_DETAIL_VIEW = "IS_VIEW_SHOWING";
   static String IS_REG_SERVER = "is_already_register";
 
   static const String DEATH = "DEATH BENEFIT";
-  static const String TRUE="true";
+  static const String TRUE = "true";
   static const String FUNERAL = "FUNERAL EXPENSES";
   static const String MARRIAGE = "ASSISTANCE FOR MARRIAGE";
   static const String EDUCATION = "ASSISTANCE FOR THE EDUCATION OF CHILDREN";
@@ -97,6 +97,47 @@ class Const {
         return "Cheque";
       case "3":
         return "Online";
+    }
+  }
+
+  static DateTime getExpireDate(String date, String month) {
+    List<String> split = month.split(" ");
+    switch (split[0]) {
+      case "JANUARY":
+        return DateTime(int.tryParse(split[1]),1,int.tryParse(date));
+      case "FEBRUARY":
+        return DateTime(int.tryParse(split[1]),2,int.tryParse(date));
+        // return [date, '2', split[1]];
+      case "MARCH":
+        return DateTime(int.tryParse(split[1]),3,int.tryParse(date));
+        // return [date, '3', split[1]];
+      case "APRIL":
+        // return [date, '4', split[1]];
+        return DateTime(int.tryParse(split[1]),4,int.tryParse(date));
+      case "MAY":
+        // return [date, '5', split[1]];
+        return DateTime(int.tryParse(split[1]),5,int.tryParse(date));
+      case "JUNE":
+        // return [date, '6', split[1]];
+        return DateTime(int.tryParse(split[1]),6,int.tryParse(date));
+      case "JULY":
+        return DateTime(int.tryParse(split[1]),7,int.tryParse(date));
+        // return [date, '7', split[1]];
+      case "AUGUST":
+        // return [date, '8', split[1]];
+        return DateTime(int.tryParse(split[1]),8,int.tryParse(date));
+      case "SEPTEMBER":
+        // return [date, '9', split[1]];
+        return DateTime(int.tryParse(split[1]),9,int.tryParse(date));
+      case "OCTOBER":
+        // return [date, '10', split[1]];
+        return DateTime(int.tryParse(split[1]),10,int.tryParse(date));
+      case "NOVEMBER":
+        // return [date, '11', split[1]];
+        return DateTime(int.tryParse(split[1]),11,int.tryParse(date));
+      case "DECEMBER":
+        // return [date, '12', split[1]];
+        return DateTime(int.tryParse(split[1]),12,int.tryParse(date));
     }
   }
 }
