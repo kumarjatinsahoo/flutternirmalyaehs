@@ -24,7 +24,7 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
   String insuranceid;
   insurancedetails.InsuranceDetailsModel insuranceDetailsModel;
   bool isdata = true;
-  double value=0.0;
+  double value = 0.0;
 
   @override
   void initState() {
@@ -47,8 +47,12 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
               setState(() {
                 insuranceDetailsModel =
                     insurancedetails.InsuranceDetailsModel.fromJson(map);
-                value=calDifYear(insuranceDetailsModel.body.policyEndDt,insuranceDetailsModel.body.endMonthYear,insuranceDetailsModel.body.policyStartDt,insuranceDetailsModel.body.strtMonthYear);
-                log("Value>>>>>>>>>>>>>>"+value.toString());
+                value = calDifYear(
+                    insuranceDetailsModel.body.policyEndDt,
+                    insuranceDetailsModel.body.endMonthYear,
+                    insuranceDetailsModel.body.policyStartDt,
+                    insuranceDetailsModel.body.strtMonthYear);
+                log("Value>>>>>>>>>>>>>>" + value.toString());
               });
             } else {
               setState(() {
@@ -60,16 +64,23 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
         });
   }
 
-  calculate(date,month){
-    return Const.getExpireDate(date,month).difference(DateTime.now()).inDays.toString();
+  calculate(date, month) {
+    return Const.getExpireDate(date, month)
+        .difference(DateTime.now())
+        .inDays
+        .toString();
   }
 
-  calDifYear(date,month,date1,month1){
+  calDifYear(date, month, date1, month1) {
     // return Const.getExpireDate(date,month).difference(Const.getExpireDate(date1,month1)).inDays.toString();
-    int totalDif=Const.getExpireDate(date,month).difference(Const.getExpireDate(date1,month1)).inDays;
-    int difFromCurr=Const.getExpireDate(date,month).difference(DateTime.now()).inDays;
-    return (difFromCurr/totalDif);
+    int totalDif = Const.getExpireDate(date, month)
+        .difference(Const.getExpireDate(date1, month1))
+        .inDays;
+    int difFromCurr =
+        Const.getExpireDate(date, month).difference(DateTime.now()).inDays;
+    return (difFromCurr / totalDif);
   }
+
 /*
   calculateDifference(){
     int year=calDifYear
@@ -211,7 +222,7 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          'Insurance Type',
+                                          'Health Insurance Type',
                                           style: TextStyle(
                                               color: Colors.black54,
                                               fontSize: 16),
@@ -220,7 +231,7 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
                                           height: 5,
                                         ),
                                         Text(
-                                          insuranceDetailsModel.body.insType,
+                                          insuranceDetailsModel.body.healthInsType??"N/A",
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold,
                                               fontSize: 16),
@@ -242,11 +253,6 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
                                 ),
                               ),
                               Container(
-/*
-                      height: 70,
-                      width: double.maxFinite,
-*/
-                                  /*  margin: const EdgeInsets.only(top: 6.0),*/
                                   child: Padding(
                                 padding: const EdgeInsets.all(10.0),
                                 child: Row(
@@ -268,6 +274,131 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
                                         Text(
                                           insuranceDetailsModel
                                               .body.thirdPartyAdm,
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 16),
+                                        ),
+                                      ],
+                                    ),
+                                    //Icon(Icons.arrow_forward_ios, size: 30,color: Colors.black),
+                                  ],
+                                ),
+                              )),
+                              Container(
+                                decoration: BoxDecoration(
+                                  border: Border(
+                                    bottom: BorderSide(
+                                      color: Colors.grey,
+                                      width: 1.0, // Underline thickness
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                  child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          'Insurance Type',
+                                          style: TextStyle(
+                                              color: Colors.black54,
+                                              fontSize: 16),
+                                        ),
+                                        SizedBox(
+                                          height: 5,
+                                        ),
+                                        Text(
+                                          insuranceDetailsModel
+                                              .body.insType??"N/A",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 16),
+                                        ),
+                                      ],
+                                    ),
+                                    //Icon(Icons.arrow_forward_ios, size: 30,color: Colors.black),
+                                  ],
+                                ),
+                              )),
+                              Container(
+                                decoration: BoxDecoration(
+                                  border: Border(
+                                    bottom: BorderSide(
+                                      color: Colors.grey,
+                                      width: 1.0, // Underline thickness
+                                    ),
+                                  ),
+                                ),
+                              ),Container(
+                                  child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          'Premium Due  Date',
+                                          style: TextStyle(
+                                              color: Colors.black54,
+                                              fontSize: 16),
+                                        ),
+                                        SizedBox(
+                                          height: 5,
+                                        ),
+                                        Text(
+                                          insuranceDetailsModel
+                                              .body.premiumDueDt??"N/A",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 16),
+                                        ),
+                                      ],
+                                    ),
+                                    //Icon(Icons.arrow_forward_ios, size: 30,color: Colors.black),
+                                  ],
+                                ),
+                              )),
+                              Container(
+                                decoration: BoxDecoration(
+                                  border: Border(
+                                    bottom: BorderSide(
+                                      color: Colors.grey,
+                                      width: 1.0, // Underline thickness
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                  child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          'Premium Amount',
+                                          style: TextStyle(
+                                              color: Colors.black54,
+                                              fontSize: 16),
+                                        ),
+                                        SizedBox(
+                                          height: 5,
+                                        ),
+                                        Text(
+                                          insuranceDetailsModel
+                                              .body.premiumDueDt??"N/A",
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold,
                                               fontSize: 16),
@@ -390,7 +521,7 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
                                   Expanded(
                                     child: Column(
                                       mainAxisAlignment:
-                                      MainAxisAlignment.start,
+                                          MainAxisAlignment.start,
                                       // crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         Text(
@@ -406,29 +537,29 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
                                           height: 60,
                                           decoration: BoxDecoration(
                                             borderRadius:
-                                            BorderRadius.circular(5),
+                                                BorderRadius.circular(5),
                                             border: Border.all(
                                                 color: Colors.black26),
                                             /*color: Colors.blue[50]*/
                                           ),
                                           child: Row(
                                             mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
+                                                MainAxisAlignment.spaceBetween,
                                             children: [
-                                              SizedBox(width: 3,),
+                                              SizedBox(
+                                                width: 3,
+                                              ),
                                               Text(
                                                 insuranceDetailsModel
                                                     .body.policyStartDt,
                                                 style: TextStyle(
                                                     fontSize: 20,
-                                                    fontWeight:
-                                                    FontWeight.bold,
+                                                    fontWeight: FontWeight.bold,
                                                     color: Colors.black),
                                               ),
                                               Column(
                                                 mainAxisAlignment:
-                                                MainAxisAlignment
-                                                    .center,
+                                                    MainAxisAlignment.center,
                                                 children: [
                                                   Text(
                                                     insuranceDetailsModel
@@ -436,30 +567,28 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
                                                     style: TextStyle(
                                                         fontSize: 10,
                                                         fontWeight:
-                                                        FontWeight.w500,
-                                                        color:
-                                                        Colors.black38),
+                                                            FontWeight.w500,
+                                                        color: Colors.black38),
                                                   ),
                                                   SizedBox(
                                                     height: 10,
                                                   ),
                                                   Text(
                                                     insuranceDetailsModel
-                                                        .body
-                                                        .strtMonthYear,
+                                                        .body.strtMonthYear,
                                                     style: TextStyle(
                                                       fontSize: 10,
-                                                      color:
-                                                      Colors.black38,
+                                                      color: Colors.black38,
                                                       fontWeight:
-                                                      FontWeight.w500,
+                                                          FontWeight.w500,
                                                     ),
-                                                    textAlign:
-                                                    TextAlign.center,
+                                                    textAlign: TextAlign.center,
                                                   ),
                                                 ],
                                               ),
-                                              SizedBox(width: 3,),
+                                              SizedBox(
+                                                width: 3,
+                                              ),
                                             ],
                                           ),
                                         ),
@@ -474,9 +603,17 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
                                     lineWidth: 10.0,
                                     percent: value,
                                     // header: new Text("Icon header"),
-                                    center: Text(calculate(insuranceDetailsModel
-                                        .body.policyEndDt,insuranceDetailsModel
-                                        .body.endMonthYear)+" Days\nLeft",style: TextStyle(fontWeight: FontWeight.bold),textAlign: TextAlign.center,),
+                                    center: Text(
+                                      calculate(
+                                              insuranceDetailsModel
+                                                  .body.policyEndDt,
+                                              insuranceDetailsModel
+                                                  .body.endMonthYear) +
+                                          " Days\nLeft",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
+                                      textAlign: TextAlign.center,
+                                    ),
                                     backgroundColor: Colors.grey,
                                     progressColor: Colors.blue,
                                   ),
@@ -486,7 +623,7 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
                                   Expanded(
                                     child: Column(
                                       mainAxisAlignment:
-                                      MainAxisAlignment.start,
+                                          MainAxisAlignment.start,
                                       // crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         Text(
@@ -502,29 +639,29 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
                                           height: 60,
                                           decoration: BoxDecoration(
                                             borderRadius:
-                                            BorderRadius.circular(5),
+                                                BorderRadius.circular(5),
                                             border: Border.all(
                                                 color: Colors.black26),
                                             /*color: Colors.blue[50]*/
                                           ),
                                           child: Row(
                                             mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
+                                                MainAxisAlignment.spaceBetween,
                                             children: [
-                                              SizedBox(width: 3,),
+                                              SizedBox(
+                                                width: 3,
+                                              ),
                                               Text(
                                                 insuranceDetailsModel
                                                     .body.policyEndDt,
                                                 style: TextStyle(
                                                     fontSize: 20,
-                                                    fontWeight:
-                                                    FontWeight.bold,
+                                                    fontWeight: FontWeight.bold,
                                                     color: Colors.black),
                                               ),
                                               Column(
                                                 mainAxisAlignment:
-                                                MainAxisAlignment
-                                                    .center,
+                                                    MainAxisAlignment.center,
                                                 children: [
                                                   Text(
                                                     insuranceDetailsModel
@@ -532,9 +669,8 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
                                                     style: TextStyle(
                                                         fontSize: 10,
                                                         fontWeight:
-                                                        FontWeight.w500,
-                                                        color:
-                                                        Colors.black38),
+                                                            FontWeight.w500,
+                                                        color: Colors.black38),
                                                   ),
                                                   SizedBox(
                                                     height: 10,
@@ -544,21 +680,20 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
                                                         .body.endMonthYear,
                                                     style: TextStyle(
                                                       fontSize: 10,
-                                                      color:
-                                                      Colors.black38,
+                                                      color: Colors.black38,
                                                       fontWeight:
-                                                      FontWeight.w500,
+                                                          FontWeight.w500,
                                                     ),
-                                                    textAlign:
-                                                    TextAlign.center,
+                                                    textAlign: TextAlign.center,
                                                   ),
                                                 ],
                                               ),
-                                              SizedBox(width: 3,),
+                                              SizedBox(
+                                                width: 3,
+                                              ),
                                             ],
                                           ),
                                         ),
-
                                       ],
                                     ),
                                   ),
