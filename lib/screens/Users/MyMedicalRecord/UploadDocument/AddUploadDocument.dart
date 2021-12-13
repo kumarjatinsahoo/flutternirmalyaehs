@@ -225,9 +225,9 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
                         AppData.showInSnackBar(
                             context, "Please Enter Document Date");
                       }
-                      else if (_date.text == "" || _date.text == null) {
+                      else if (selectFile.path == "" || selectFile.path == null) {
                         AppData.showInSnackBar(
-                            context, "Please Enter Document Date");
+                            context, "Please Select  at least One Image,Vedio,Document");
                       }
                       else {
                         postMultiPart();

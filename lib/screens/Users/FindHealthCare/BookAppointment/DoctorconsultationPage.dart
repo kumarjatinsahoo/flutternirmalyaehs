@@ -669,7 +669,8 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
           } else {
             AppData.showInSnackBar(context, map[Const.MESSAGE]);
           }
-        });
+        }
+        );
     /*widget.model.POSTMETHOD(api: ApiFactory.POST_APPOINTMENT,
         json: map,
         fun: (Map<String, dynamic> map) {
