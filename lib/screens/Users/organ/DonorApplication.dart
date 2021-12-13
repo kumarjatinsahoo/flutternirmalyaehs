@@ -181,7 +181,6 @@ class DonorApplicationState extends State<DonorApplication> {
     log("Start Date: " + startDate.toString());
     log("End Date: " + endDate.toString());
     log("Diff day: " + days.toString() + "\n\n\n");
-
     //double y=days/365;
     int year1= (days/365).toInt();
     log("Year day: "+year1.toString()+"\n\n\n");
@@ -1494,10 +1493,10 @@ class DonorApplicationState extends State<DonorApplication> {
           } else if (textEditingController[3].text == "" ||
               textEditingController[3].text == null) {
             AppData.showInSnackBar(context, "Please enter Age");
-          } else if (textEditingController[3].text != null &&
+          /*} else if (textEditingController[3].text != null &&
               (int.tryParse(year) < 18)) {
             AppData.showInSnackBar(context, "Age should be 18 above");
-          } else if (textEditingController[4].text == "" ||
+          } */}else if (textEditingController[4].text == "" ||
               textEditingController[4].text == null) {
             AppData.showInSnackBar(context, "Please enter Mobile Number");
           } else if (textEditingController[4].text != "" &&
