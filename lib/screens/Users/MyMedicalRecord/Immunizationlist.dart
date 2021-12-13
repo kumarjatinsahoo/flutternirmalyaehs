@@ -149,20 +149,21 @@ class _ImmunizationState extends State<Immunization> {
                     ),
                   ),
                 )
-              : Padding(
-                  padding: const EdgeInsets.all(5.0),
+              :Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
                   child: Container(
                     child: SingleChildScrollView(
-                      child: (immunizationListModel != null)
-                          ? ListView.builder(
+                      child: (immunizationListModel != null)//builder
+                          ? ListView.separated(
                               itemCount: immunizationListModel.body.length,
                               shrinkWrap: true,
                               physics: NeverScrollableScrollPhysics(),
+                              separatorBuilder: (BuildContext context, int index) => const Divider(color: Colors.grey),
                               itemBuilder: (context, i) {
                                 immunization.Body body =immunizationListModel.body[i];
                                 return Padding(
                                   padding: const EdgeInsets.only(
-                                      left: 5, right: 5, top: 5),
+                                      left: 5, right: 5, top: 0),
                                 child: ClipRRect(
                                 borderRadius: BorderRadius.circular(8.0),
                                     child: InkWell(
@@ -170,13 +171,11 @@ class _ImmunizationState extends State<Immunization> {
                                         String slno = body.slno;
                                         String status = body.status;
                                         displayStatushangeDialog(context,slno,status);
-
-
-                                      },
+                                        },
                                   child:
 
                                   Container(
-                                    decoration: (i % 2 == 0)
+                                  /*decoration: (i % 2 == 0)
                                         ?  BoxDecoration(
                                       color: Colors.white,
                                       border: Border(
@@ -207,7 +206,7 @@ class _ImmunizationState extends State<Immunization> {
                                         ),
                                       ],
 
-                                    ),
+                                    ),*/
 
 
                                     width: double.maxFinite,
@@ -217,16 +216,29 @@ class _ImmunizationState extends State<Immunization> {
                                           onTap: () {
                                             // Navigator.pop(context);
                                           },
-                                          child: Padding(
+                                          child:(body.status=="No")
+                                          ?Padding(
                                               padding:
                                               const EdgeInsets
                                                   .only(
-                                                  left: 10.0,
-                                                  right: 10.0),
+                                                  left: 0.0,
+                                                  right: 0.0),
                                               child: Image.asset(
                                                 "assets/redinjection40.png",
-                                                color: Colors.black,
-                                                height: 40,
+                                                color:AppData.kPrimaryRedColor,
+                                                height: 35,
+                                              )):Padding(
+                                              padding:
+                                              const EdgeInsets
+                                                  .only(
+                                                  left: 0.0,
+                                                  right: 0.0),
+                                              child: Image.asset(
+                                                "assets/redinjection40.png",
+                                                color:
+                                                Colors.green,
+
+                                                height: 35,
                                               ))),
                                       subtitle: Padding(
                                         padding: const EdgeInsets.only(
@@ -235,20 +247,20 @@ class _ImmunizationState extends State<Immunization> {
                                           crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                           children: [
+
                                             Text(
-                                              body.immunizationId,
-                                              overflow:
-                                              TextOverflow.clip,
+                                              'Prescribed by: '+
+                                                  body.doctorName,
                                               style: TextStyle(
-                                                  fontWeight:
-                                                  FontWeight
-                                                      .bold,
+                                                  fontWeight:FontWeight.bold,
+                                                  color: Colors.black,
                                                   fontSize: 14),
                                             ),
                                             SizedBox(
                                               height: 5,
                                             ),
-                                            Text(
+
+                                           /* Text(
                                               'Prescribed by: '+
                                                   body.doctorName,
                                               style: TextStyle(
@@ -258,7 +270,7 @@ class _ImmunizationState extends State<Immunization> {
                                             ),
                                             SizedBox(
                                               height: 5,
-                                            ),
+                                            ),*/
                                             Text(
                                               /*body.immunizationDate,*/
                                               toDate(body.immunizationDate)??
@@ -266,21 +278,52 @@ class _ImmunizationState extends State<Immunization> {
                                               style: TextStyle(
                                                   fontWeight:
                                                   FontWeight.bold,
+
                                                   fontSize: 14),
+                                            ),
+                                            (body.status=="No")
+                                                ? Text(
+                                              body.immunizationId,
+                                              overflow:
+                                              TextOverflow.clip,
+                                              style: TextStyle(
+                                                  fontWeight:
+                                                  FontWeight
+                                                      .bold,
+                                                  color:AppData.kPrimaryRedColor,
+                                                  fontSize: 14),
+                                            ): Text(
+                                              body.immunizationId,
+                                              overflow:
+                                              TextOverflow.clip,
+                                              style: TextStyle(
+                                                  fontWeight:
+                                                  FontWeight
+                                                      .bold,
+                                                  color:
+                                                  Colors.green,
+                                                  fontSize: 14),
+                                            ),
+                                            SizedBox(
+                                              height: 5,
                                             ),
                                           ],
                                         ),
                                       ),
-                                      trailing: Text(
-                                        body.status,
-                                        style: TextStyle(
-                                            fontWeight:
-                                            FontWeight.bold,
-                                            fontSize: 14),
+                                      trailing: (body.status=="No")
+                                          ?Icon(
+                                        Icons.cancel_rounded,
+                                        color:AppData.kPrimaryRedColor,
+                                        size: 26.0,
+                                      ):Icon(
+                                        Icons.check_circle_rounded,
+                                        color:Colors.green,
+                                        size: 26.0,
                                       ),
                                     ),
-                                ),
-                                 /* ),*/
+                                  ),
+
+
                                     ),
                                 ),
                                 );

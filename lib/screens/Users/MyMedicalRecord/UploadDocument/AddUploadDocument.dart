@@ -72,6 +72,9 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
   File selectFile;
   var dio = Dio();
   var childButtons = List<UnicornButton>();
+
+  String selectedDocument;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -88,6 +91,7 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
           mini: true,
           child: Icon(Icons.photo),
           onPressed: () {
+            selectedDocument = "img";
             getCerificateImage();
 
           },
@@ -102,6 +106,7 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
           mini: true,
           child: Icon(Icons.file_copy),
           onPressed: () {
+            selectedDocument = "doc";
             getPdfAndUpload();
           },
         )));
@@ -115,6 +120,7 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
           mini: true,
           child: Icon(Icons.airplay),
           onPressed: () {
+            selectedDocument = "vdo";
             getVideoUpload();
           },
         )));
@@ -286,6 +292,10 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
         _date.text,
       ))
       ..add(MapEntry(
+        'filetype',
+        selectedDocument,
+      ))
+      ..add(MapEntry(
         'extension',
         extension,
       ));
@@ -330,9 +340,8 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
         Navigator.pop(context);
         AppData.showInSnackBar(context, "Something went wrong");
       }
-    }
-   on DioError catch(e){
-       if (e.type == DioErrorType.CONNECT_TIMEOUT) {
+    } on DioError catch (e) {
+      if (e.type == DioErrorType.CONNECT_TIMEOUT) {
         log(e.response.data);
       }
       if (e.type == DioErrorType.RECEIVE_TIMEOUT) {
@@ -402,6 +411,7 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
           extName); // adduploaddocument.mulFile=file.path as MultipartFile;
     });
   }
+
   Future getCerificateImage() async {
     var image = await ImagePicker.pickImage(
       source: ImageSource.gallery,
@@ -550,12 +560,12 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
         lastDate: DateTime.now()
             .add(new Duration(days: 6570))); //18 years is 6570 days
     if (picked != null && picked != selectedDate)
-    setState(() {
-      selectedDate = picked;
-      error[2] = false;
-      _date.value = TextEditingValue(text: df.format(picked));
-      //addBioMedicalModel.bioMDate = df.format(picked);
-    });
+      setState(() {
+        selectedDate = picked;
+        error[2] = false;
+        _date.value = TextEditingValue(text: df.format(picked));
+        //addBioMedicalModel.bioMDate = df.format(picked);
+      });
   }
 
 }

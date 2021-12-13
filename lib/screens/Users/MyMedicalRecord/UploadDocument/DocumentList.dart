@@ -70,8 +70,6 @@ class _DocumentListState extends State<DocumentList> {
             if (map[Const.CODE] == Const.SUCCESS) {
               setState(() {
                 documentListModel = document.DocumentlistModell.fromJson(map);
-
-
               });
             } else {
               setState(() {
