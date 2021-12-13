@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:add_2_calendar/add_2_calendar.dart';
-import 'package:device_calendar/device_calendar.dart' as cal;
+// import 'package:device_calendar/device_calendar.dart' as cal;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
@@ -145,9 +145,9 @@ class SetReminderState extends State<SetReminder> {
   }
 
   setReminder1() {
-    cal.Event event = cal.Event(
+    /*cal.Event event = cal.Event(
       "1",
-    );
+    );*/
 
   }
 

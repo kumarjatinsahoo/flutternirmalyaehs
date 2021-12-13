@@ -72,7 +72,7 @@ dependencies:
   calendar_timeline: ^1.0.4
   add_2_calendar: ^2.1.2
   unicorndial: ^1.1.5
-  device_calendar: ^3.1.0
+#  device_calendar: ^3.1.0
   video_player: ^2.1.5
   chewie: ^1.2.2
 

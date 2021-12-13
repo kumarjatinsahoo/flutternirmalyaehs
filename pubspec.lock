@@ -155,13 +155,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.2.3"
-  device_calendar:
-    dependency: "direct main"
-    description:
-      name: device_calendar
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.9.0"
   dio:
     dependency: "direct main"
     description:
@@ -677,13 +670,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.8.1"
-  sprintf:
-    dependency: transitive
-    description:
-      name: sprintf
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "6.0.0"
   stack_trace:
     dependency: transitive
     description:
