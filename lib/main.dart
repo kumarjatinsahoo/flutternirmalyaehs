@@ -95,6 +95,7 @@ import 'package:user/screens/Users/MyMedicalRecord/HealthChart.dart';
 import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/UploadDocument.dart';
 import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/VideoDetailsPage.dart';
 import 'package:user/screens/Users/organ/Organlist.dart';
+import 'package:user/screens/walkin_labrotry/LabDashboard.dart';
 import 'package:user/screens/walkin_labrotry/Screen/LabQrCode.dart';
 import 'screens/Users/MyMedicalRecord/LifeStyleHistory.dart';
 import 'package:user/screens/Users/MyMedicalRecord/Medication/UserMedicineTab1.dart';
@@ -177,7 +178,6 @@ import 'package:user/screens/Users/FindHealthCare/Find/HealthProviderTabview.dar
 import 'package:user/screens/Users/FindHealthCare/Find/GoogleSearchDetails.dart';
 import 'package:user/screens/Users/Dashboard/IdcardPage.dart';
 import 'package:user/screens/Users/FindHealthCare/MyAppointment/UserMyAppointments.dart';
-import 'package:user/screens/walkin_labrotry/LabDashboard.dart';
 import 'package:user/screens/Patient/PatientRegistration.dart';
 import 'package:user/screens/Patient/PatientRegistration2.dart';
 import 'package:user/screens/Patient/PatientRegistration3.dart';
@@ -916,7 +916,7 @@ class _MyAppState extends State<MyApp> {
               '/qrViewExample1': (context) => QRViewExample1(
                     model: _model,
                   ),
-              '/labDash': (context) => DashboardLabortory(
+              '/labDash': (context) => LabDashboard(
                     model: _model,
                   ),
               '/myOrderTest': (context) => MyOrdersLab(
