@@ -10,6 +10,8 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:intl/intl.dart';
 import 'package:pageview_indicator_plugins/pageview_indicator_plugins.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:user/localization/application.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/models/UserDashboardModel.dart';
@@ -39,6 +41,28 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
   int _selectedDestination = -1;
   UserDashboardModel userDashboardModel;
   bool isDataNotAvail = false;
+
+
+  static final List<String> languageCodesList = application.supportedLanguagesCodes;
+  static final List<String> languagesList = application.supportedLanguages;
+  final Map<dynamic, dynamic> languagesMap = {
+    languagesList[0]: languageCodesList[0],
+    languagesList[1]: languageCodesList[1],
+    languagesList[2]: languageCodesList[2],
+    languagesList[3]: languageCodesList[3],
+  };
+  final Map<dynamic, dynamic> languageCodeMap = {
+    languageCodesList[0]: languagesList[0],
+    languageCodesList[1]: languagesList[1],
+    languageCodesList[2]: languagesList[3],
+    languageCodesList[3]: languagesList[3],
+  };
+
+  void _update(Locale locale) async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    preferences.setString("Lan", locale.toString());
+    application.onLocaleChanged(locale.toString());
+  }
 
   void selectDestination(int index) {
     setState(() {
@@ -344,69 +368,119 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
           scrollDirection: Axis.vertical,
           child: Column(
             children: [
-              Container(
-                // height: 120,
-                color: AppData.kPrimaryColor,
-                width: double.infinity,
-                child: Padding(
-                  padding: EdgeInsets.only(left: 20.0, top: 40.0, bottom: 20.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                    /*  Container(
-                        height: size.height * 0.07,
-                        width: size.width * 0.13,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(55),
-                            border: Border.all(color: Colors.white, width: 0.5),
-                            color: Colors.white),
-                        child: ClipRRect(
-                            borderRadius: BorderRadius.circular(55),
-                            child: Image.asset(
-                              'assets/images/user.png',
-                              height: size.height * 0.07,
-                              width: size.width * 0.13,
-                              //fit: BoxFit.cover,
-                            )),
-                      ),*/
-                      CircleAvatar(
-                        radius: 35,
-                        foregroundColor:
-                        Colors
-                            .white,
-                        backgroundColor: Colors.white,
-                        child: /*(loginResponse1?.body?.userPic != null &&
-                                loginResponse1?.body?.userPic != "")
-                            ? */Image.asset(
-                                'assets/images/user.png',
-                                height: size.height * 0.07,
-                                width: size.width * 0.13,
-                                //fit: BoxFit.cover,
-                              )
-                            /*: Image.network(
-                                loginResponse1.body.userPic,
-                                height: size.height * 0.07,
-                                width: size.width * 0.13,
-                                //fit: BoxFit.cover,
-                              )*/,
+              Stack(
+                children: [
+                  Container(
+                    // height: 120,
+                    color: AppData.kPrimaryColor,
+                    width: double.infinity,
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 20.0, top: 40.0, bottom: 20.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                        /*  Container(
+                            height: size.height * 0.07,
+                            width: size.width * 0.13,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(55),
+                                border: Border.all(color: Colors.white, width: 0.5),
+                                color: Colors.white),
+                            child: ClipRRect(
+                                borderRadius: BorderRadius.circular(55),
+                                child: Image.asset(
+                                  'assets/images/user.png',
+                                  height: size.height * 0.07,
+                                  width: size.width * 0.13,
+                                  //fit: BoxFit.cover,
+                                )),
+                          ),*/
+                          CircleAvatar(
+                            radius: 35,
+                            foregroundColor:
+                            Colors
+                                .white,
+                            backgroundColor: Colors.white,
+                            child: /*(loginResponse1?.body?.userPic != null &&
+                                    loginResponse1?.body?.userPic != "")
+                                ? */Image.asset(
+                                    'assets/images/user.png',
+                                    height: size.height * 0.07,
+                                    width: size.width * 0.13,
+                                    //fit: BoxFit.cover,
+                                  )
+                                /*: Image.network(
+                                    loginResponse1.body.userPic,
+                                    height: size.height * 0.07,
+                                    width: size.width * 0.13,
+                                    //fit: BoxFit.cover,
+                                  )*/,
+                          ),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Expanded(
+                            child: Text(
+                              "Hi " + loginResponse1.body.userName ?? "N/A",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                          ),
+                        ],
                       ),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Expanded(
-                        child: Text(
-                          "Hi " + loginResponse1.body.userName ?? "N/A",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w500),
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
-                ),
+                  Positioned(right: 0,
+                    child:  Container(
+                      width: size.width,
+                      height: 60,
+                      padding: EdgeInsets.symmetric(horizontal: 0, vertical: 15),
+                      margin: EdgeInsets.only(top: 10.0),
+                      decoration: BoxDecoration(
+                        // color: Colors.grey.withOpacity(0.5),
+                        borderRadius: BorderRadius.circular(0),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: <Widget>[
+                          Container(
+                            padding: EdgeInsets.symmetric(horizontal: 5, vertical: 2),
+                            alignment: Alignment.center,
+                            child: DropdownButtonHideUnderline(
+                              child: DropdownButton<String>(
+                                value: AppData.selectedLanguage,
+                                iconEnabledColor: Colors.white,
+                                isDense: true,
+                                onChanged: (newValue) {
+                                  setState(() {
+                                    AppData.setSelectedLan(newValue);
+                                    _update(Locale(languagesMap[newValue]));
+                                  });
+                                  print(AppData.selectedLanguage);
+                                },
+                                dropdownColor: Colors.black,
+                                items: languagesList.map((String value) {
+                                  return DropdownMenuItem<String>(
+                                    value: value,
+                                    child: Text(
+                                      value,
+                                      style: TextStyle(color: Colors.white),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  );
+                                }).toList(),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),)
+                ],
               ),
+
               ListTile(
                 leading: Icon(Icons.dashboard,
                     color: AppData.menublueColor, size: 27),

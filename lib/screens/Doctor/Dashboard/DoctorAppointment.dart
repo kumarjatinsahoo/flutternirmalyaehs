@@ -34,7 +34,7 @@ class _DoctorAppointmentState extends State<DoctorAppointment> {
       child: Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title:Text(MyLocalizations.of(context).text("MY_APPOINTMENT")),
+          title:Text("Doctor Appointment"),
           backgroundColor: AppData.kPrimaryColor,
           actions: <Widget>[
            /* IconButton(
