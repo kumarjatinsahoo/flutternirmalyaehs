@@ -916,7 +916,10 @@ class _MyAppState extends State<MyApp> {
               '/qrViewExample1': (context) => QRViewExample1(
                     model: _model,
                   ),
-              '/labDash': (context) => DashboardLabortory(
+             /* '/labDash': (context) => DashboardLabortory(
+                    model: _model,
+                  ),*/
+              '/labDash': (context) => LabDashboard(
                     model: _model,
                   ),
               '/myOrderTest': (context) => MyOrdersLab(
