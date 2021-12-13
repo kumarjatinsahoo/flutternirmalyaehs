@@ -198,6 +198,8 @@ class _DoctorAppointmentRequestedState
                           physics: NeverScrollableScrollPhysics(),
                           itemBuilder: (context, i) {
                             Body appointmentlist = doctorAppointmment.body[i];
+                            String date=appointmentlist.appdate+appointmentlist.appmonth+appointmentlist.appyear;
+                            String name=appointmentlist.patname;
                             return InkWell(
                               onTap: () {
                                 /* showDialog(
@@ -488,6 +490,10 @@ class _DoctorAppointmentRequestedState
                                                                 const EdgeInsets
                                                                     .all(5.0),
                                                             child: Row(
+                                                              // mainAxisAlignment: MainAxisAlignment.center,
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .end,
                                                               children: [
                                                                 /*Column(
                                                                   children: [
@@ -513,33 +519,31 @@ class _DoctorAppointmentRequestedState
 
                                                                 Spacer(),
 */
-                                                                Expanded(
-                                                                  child
-                                                                      : InkWell(
-                                                                    onTap: () {
-                                                                      widget.model.GETMETHODCALL_TOKEN(
-                                                                          api: ApiFactory.user_APPOINTMENT_status + appointmentlist.doctorName + "&appstatus=" + "4",
-                                                                          token: widget.model.token,
-                                                                          fun: (Map<String, dynamic> map) {
-                                                                            Navigator.pop(context);
-                                                                            if (map[Const.CODE] == Const.SUCCESS) {
-                                                                              popup(context, map[Const.MESSAGE]);
-                                                                            } else {
-                                                                              AppData.showInSnackBar(context, map[Const.MESSAGE]);
-                                                                            }
+                                                                InkWell(
+                                                                  onTap: () {
+                                                                    widget.model.GETMETHODCALL_TOKEN(
+                                                                        api: ApiFactory.user_APPOINTMENT_status + appointmentlist.doctorName + "&appstatus=" + "4",
+                                                                        token: widget.model.token,
+                                                                        fun: (Map<String, dynamic> map) {
+                                                                          Navigator.pop(context);
+                                                                          if (map[Const.CODE] == Const.SUCCESS) {
+                                                          popupp(context, map[Const.MESSAGE],name,date);
+                                                                          } else {
+                                                                            AppData.showInSnackBar(context, map[Const.MESSAGE]);
                                                                           }
-                                                                          /*fun: (Map<String, dynamic> map) {
-                                                                            log(">>>>>>>reject response<<<<<<<" +
-                                                                                jsonEncode(map));
-                                                                            setState(
-                                                                                () {
-                                                                              String
-                                                                                  msg =
-                                                                                  map[Const.MESSAGE];
-                                                                              if (map[Const.CODE] ==
-                                                                                  Const.SUCCESS) {
-                                                                                Navigator.of(context).pop();
-                                                                                popup(context, map[Const.MESSAGE]);
+                                                                        }
+                                                                        /*fun: (Map<String, dynamic> map) {
+                                                                          log(">>>>>>>reject response<<<<<<<" +
+                                                                              jsonEncode(map));
+                                                                          setState(
+                                                                              () {
+                                                                            String
+                                                                                msg =
+                                                                                map[Const.MESSAGE];
+                                                                            if (map[Const.CODE] ==
+                                                                                Const.SUCCESS) {
+                                                                              Navigator.of(context).pop();
+                                                                              popup(context, map[Const.MESSAGE]);
 
                                                                                 doctorAppointmment = DoctorAppointmment.fromJson(map);
                                                                               } else {
@@ -594,61 +598,50 @@ class _DoctorAppointmentRequestedState
                                                                           fun: (Map<String, dynamic> map) {
                                                                             setState(
                                                                                 () {
-                                                                              String
-                                                                                  msg =
-                                                                                  map[Const.MESSAGE];
-                                                                              if (map[Const.CODE] ==
-                                                                                  Const.SUCCESS) {
-                                                                                Navigator.of(context).pop();
-                                                                                //Navigator.of(context).pop();
-                                                                                doctorAppointmment = DoctorAppointmment.fromJson(map);
-                                                                                // AppData.showInSnackBar(context, msg);
-                                                                                popup(context, map[Const.MESSAGE]);
-
-                                                                                //Navigator.of(context).pop();
-
-                                                                                // Navigator.pushNamed(context, "/dashDoctor");
-
-                                                                                // appointModel = lab.LabBookModel.fromJson(map);
-                                                                              } else {
-                                                                                // isDataNotAvail = true;
-                                                                                //AppData.showInSnackBar(context, msg);
-                                                                              }
-                                                                            });
+                                                                                  if (map[Const.CODE] == Const.SUCCESS) {
+                                                                                    popup(context, map[Const.MESSAGE],name,date);
+                                                                                  } else {
+                                                                                    AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                                                                                  }
                                                                           });
-                                                                    },
+                                                                        });
+                                                                  },
+                                                                  child:
+                                                                      Container(
+                                                                    height: size
+                                                                            .height *
+                                                                        0.06,
+                                                                    width: size
+                                                                            .height *
+                                                                        0.20,
+                                                                    decoration: BoxDecoration(
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(
+                                                                                5),
+                                                                        border: Border.all(
+                                                                            color: Colors
+                                                                                .black12),
+                                                                        color: Colors
+                                                                            .blue),
                                                                     child:
-                                                                        Container(
-                                                                      height:50,
-                                                                      decoration: BoxDecoration(
-                                                                          borderRadius:
-                                                                              BorderRadius.circular(
-                                                                                  5),
-                                                                          border: Border.all(
-                                                                              color: Colors
-                                                                                  .black12),
-                                                                          color: Colors
-                                                                              .blue),
+                                                                        RaisedButton(
+                                                                      onPressed:
+                                                                          null,
                                                                       child:
-                                                                          RaisedButton(
-                                                                        onPressed:
-                                                                            null,
-                                                                        child:
-                                                                            Text(
-                                                                          MyLocalizations.of(context)
-                                                                              .text("ACCEPT"),
-                                                                          style: TextStyle(
-                                                                              color: Colors
-                                                                                  .white,
-                                                                              fontSize:
-                                                                                  16,
-                                                                              fontWeight:
-                                                                                  FontWeight.w400),
-                                                                        ),
-                                                                        disabledColor:
-                                                                            Colors
-                                                                                .blue[600],
+                                                                          Text(
+                                                                        MyLocalizations.of(context)
+                                                                            .text("ACCEPT"),
+                                                                        style: TextStyle(
+                                                                            color: Colors
+                                                                                .white,
+                                                                            fontSize:
+                                                                                16,
+                                                                            fontWeight:
+                                                                                FontWeight.w400),
                                                                       ),
+                                                                      disabledColor:
+                                                                          Colors
+                                                                              .blue[600],
                                                                     ),
                                                                   ),
                                                                 ),
@@ -1031,10 +1024,10 @@ class _DoctorAppointmentRequestedState
     );
   }
 
-  popup(BuildContext context, String message) {
+  popup(BuildContext context, String message,String name,String date) {
     return Alert(
         context: context,
-        title: message,
+        title:"Appointment for"+" "+name+"on"+" "+date+" "+"is Accepted",
         type: AlertType.success,
         onWillPopActive: true,
         closeIcon: Icon(
@@ -1050,9 +1043,45 @@ class _DoctorAppointmentRequestedState
               style: TextStyle(color: Colors.white, fontSize: 20),
             ),
             onPressed: () {
+              //Navigator.pop(context);
+              //Navigator.pop(context);
+              //Navigator.pop(context);
               Navigator.pop(context);
               Navigator.pop(context);
+             // Navigator.of(context).pop();
+              //Navigator.of(context).pop();
+            },
+            color: Color.fromRGBO(0, 179, 134, 1.0),
+            radius: BorderRadius.circular(0.0),
+          ),
+        ]).show();
+  }
+  popupp(BuildContext context, String message,String name,String date) {
+    return Alert(
+        context: context,
+        title:"Appointment for"+" "+name+"on"+" "+date+" "+"is Accepted",
+        type: AlertType.success,
+        onWillPopActive: true,
+        closeIcon: Icon(
+          Icons.info,
+          color: Colors.transparent,
+        ),
+        //image: Image.asset("assets/success.png"),
+        closeFunction: () {},
+        buttons: [
+          DialogButton(
+            child: Text(
+              "OK",
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+            onPressed: () {
+              //Navigator.pop(context);
+              //Navigator.pop(context);
+              //Navigator.pop(context);
               Navigator.pop(context);
+              Navigator.pop(context);
+             // Navigator.of(context).pop();
+              //Navigator.of(context).pop();
             },
             color: Color.fromRGBO(0, 179, 134, 1.0),
             radius: BorderRadius.circular(0.0),
