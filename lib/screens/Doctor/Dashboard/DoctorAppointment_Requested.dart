@@ -198,6 +198,8 @@ class _DoctorAppointmentRequestedState
                           physics: NeverScrollableScrollPhysics(),
                           itemBuilder: (context, i) {
                             Body appointmentlist = doctorAppointmment.body[i];
+                            String date=appointmentlist.appdate+appointmentlist.appmonth+appointmentlist.appyear;
+                            String name=appointmentlist.patname;
                             return InkWell(
                               onTap: () {
                                 /* showDialog(
@@ -523,12 +525,13 @@ class _DoctorAppointmentRequestedState
                                                                         api: ApiFactory.user_APPOINTMENT_status + appointmentlist.doctorName + "&appstatus=" + "4",
                                                                         token: widget.model.token,
                                                                         fun: (Map<String, dynamic> map) {
-                                                                          Navigator.pop(context);
+                                                                         // Navigator.pop(context);
                                                                           if (map[Const.CODE] == Const.SUCCESS) {
-                                                                            popup(context, map[Const.MESSAGE]);
+                                                                            popupp(context, map[Const.MESSAGE],name,date);
                                                                           } else {
                                                                             AppData.showInSnackBar(context, map[Const.MESSAGE]);
                                                                           }
+
                                                                         }
                                                                         /*fun: (Map<String, dynamic> map) {
                                                                           log(">>>>>>>reject response<<<<<<<" +
@@ -596,6 +599,14 @@ class _DoctorAppointmentRequestedState
                                                                         api: ApiFactory.user_APPOINTMENT_status + appointmentlist.doctorName + "&appstatus=" + "2",
                                                                         token: widget.model.token,
                                                                         fun: (Map<String, dynamic> map) {
+                                                                          // Navigator.pop(context);
+                                                                          if (map[Const.CODE] == Const.SUCCESS) {
+                                                                            popup(context, map[Const.MESSAGE],name,date);
+                                                                          } else {
+                                                                            AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                                                                          }
+                                                                        }
+                                                                       /* fun: (Map<String, dynamic> map) {
                                                                           setState(
                                                                               () {
                                                                             String
@@ -619,7 +630,9 @@ class _DoctorAppointmentRequestedState
                                                                               //AppData.showInSnackBar(context, msg);
                                                                             }
                                                                           });
-                                                                        });
+                                                                        }*/
+
+                                                                        );
                                                                   },
                                                                   child:
                                                                       Container(
@@ -1039,10 +1052,10 @@ class _DoctorAppointmentRequestedState
     );
   }
 
-  popup(BuildContext context, String message) {
+  popup(BuildContext context, String message,String name,String date) {
     return Alert(
         context: context,
-        title: message,
+        title:"Appointment for"+" "+name+"on"+" "+date+" "+"is Accepted",
         type: AlertType.success,
         onWillPopActive: true,
         closeIcon: Icon(
@@ -1058,9 +1071,45 @@ class _DoctorAppointmentRequestedState
               style: TextStyle(color: Colors.white, fontSize: 20),
             ),
             onPressed: () {
+              //Navigator.pop(context);
+              //Navigator.pop(context);
+              //Navigator.pop(context);
               Navigator.pop(context);
               Navigator.pop(context);
+             // Navigator.of(context).pop();
+              //Navigator.of(context).pop();
+            },
+            color: Color.fromRGBO(0, 179, 134, 1.0),
+            radius: BorderRadius.circular(0.0),
+          ),
+        ]).show();
+  }
+  popupp(BuildContext context, String message,String name,String date) {
+    return Alert(
+        context: context,
+        title:"Appointment for"+" "+name+"on"+" "+date+" "+"is Accepted",
+        type: AlertType.success,
+        onWillPopActive: true,
+        closeIcon: Icon(
+          Icons.info,
+          color: Colors.transparent,
+        ),
+        //image: Image.asset("assets/success.png"),
+        closeFunction: () {},
+        buttons: [
+          DialogButton(
+            child: Text(
+              "OK",
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+            onPressed: () {
+              //Navigator.pop(context);
+              //Navigator.pop(context);
+              //Navigator.pop(context);
               Navigator.pop(context);
+              Navigator.pop(context);
+             // Navigator.of(context).pop();
+              //Navigator.of(context).pop();
             },
             color: Color.fromRGBO(0, 179, 134, 1.0),
             radius: BorderRadius.circular(0.0),
