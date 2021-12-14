@@ -18,6 +18,7 @@ import 'package:user/providers/text_field_container.dart';
 
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/models/PatientListModel.dart';
+import 'package:user/widgets/TextFormatter.dart';
 
 class DocMyProfile extends StatefulWidget {
   MainModel model;
@@ -81,8 +82,8 @@ class _DocMyProfileState extends State<DocMyProfile> {
 
               if (profileModel1?.body?.gender != null) {
                 DocMyProfile.gendermodel = KeyvalueModel(
-                  // key: lifeStyleHistryModel.body.,
-                    name: profileModel1.body.gender);
+                     key: profileModel1.body.gender,
+                    name: profileModel1.body.gendername);
               } else {
                 DocMyProfile.gendermodel = null;
               }
@@ -103,14 +104,14 @@ class _DocMyProfileState extends State<DocMyProfile> {
         return "Female";
         break;
       case "3":
-        return "Transgender";
+        return "Other";
         break;
     }
   }
   List<KeyvalueModel> genderList = [
     KeyvalueModel(key: "1", name: "Male"),
     KeyvalueModel(key: "2", name: "Female"),
-    KeyvalueModel(key: "3", name: "Transgender"),
+    KeyvalueModel(key: "3", name: "Other"),
   ];
   @override
   Widget build(BuildContext context) {
@@ -137,6 +138,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
                   padding: const EdgeInsets.only(right:10.0),
                   child: InkWell(
                     onTap: () {
+                     // _displayTextInputDialog(context);
                       if (profileModel1 != null) {
                         _displayTextInputDialog(context);
                       } else {
@@ -249,7 +251,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
                                         leading: Icon(Icons.wc),
                                         title: Text(MyLocalizations.of(context).text("GENDER").toUpperCase()),
                                         subtitle: Text(
-                                            profileModel1.body.gender ?? "N/A"),
+                                            profileModel1.body.gendername ?? "N/A"),
                                       ),
                                       ListTile(
                                         leading: Icon(Icons.book),
@@ -316,8 +318,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
                                         title: Text("blooddgroup".toUpperCase(),
                                         ),
                                         subtitle: Text(
-                                            profileModel1.body.licenceno ??
-                                                "N/A"),
+                                            profileModel1.body.bldGrname?? "N/A"),
                                       ),
                                     ],
                                   ),
@@ -346,7 +347,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
   }
   Future<void> _displayTextInputDialog(BuildContext context) async {
 
-    textEditingController[0].text = profileModel1.body.birthdate?? "";
+    textEditingController[0].text = toDate(profileModel1.body.birthdate)??"";
     textEditingController[1].text =  profileModel1.body.education ??"";
     textEditingController[2].text =  profileModel1.body.imano ?? "";
     textEditingController[3].text = profileModel1.body.aadhaar ?? "";
@@ -405,7 +406,6 @@ class _DocMyProfileState extends State<DocMyProfile> {
                                 gender(),
 
                               ]),
-
 
                           SizedBox(
                             height: 10,
@@ -488,23 +488,26 @@ class _DocMyProfileState extends State<DocMyProfile> {
               FlatButton(
                 textColor: Theme.of(context).primaryColor,
                 child: Text(MyLocalizations.of(context).text("UPDATE")),
-                //textColor: Colors.grey,
-                /*child: Text(
-                  MyLocalizations.of(context).text("SAVE"),
-                  //style: TextStyle(color: Colors.grey),
-                  style: TextStyle(color: AppData.matruColor),
-                ),*/
+
                 onPressed: () {
                   //AppData.showInSnackBar(context, "click");
                   setState(() {
 
-                    if (textEditingController[0].text == "N/A" ||
+                 /*   if (textEditingController[0].text == "N/A" ||
                         textEditingController[0].text == null ||
                         textEditingController[0].text == "") {
-                      //AppData.showInSnackBar(context, "Please enter Emergency Contact No.");
-                      AppData.showInSnackBar(context, "Please enter DOB");
 
-                    /*} else if (textEditingController[1].text == "N/A" ||
+                      AppData.showInSnackBar(context, "Please enter DOB");*/
+                 bool isAllBlank = true;
+                 textEditingController.forEach((element) {
+          if (element.text != "") isAllBlank = false;
+          });if (isAllBlank) {
+          //AppData.showInSnackBar(context, "Please select Smoking");
+          AppData.showInSnackBar(
+          context, "Please Fill Up Atleast One Field ");
+
+
+          /*} else if (textEditingController[1].text == "N/A" ||
                         textEditingController[1].text == null ||
                         textEditingController[1].text == "") {
                       AppData.showInSnackBar(
@@ -602,6 +605,16 @@ class _DocMyProfileState extends State<DocMyProfile> {
           );
         });
   }
+  static String toDate(String date) {
+    if (date != null && date != "") {
+      DateTime formatter = new DateFormat("dd-MM-yyyy").parse(date);
+      DateFormat toNeed = DateFormat("dd/MM/yyyy");
+      final String formatted = toNeed.format(formatter);
+      return formatted;
+    } else {
+      return "";
+    }
+  }
   Future<Null> _selectDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
         context: context,
@@ -614,8 +627,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
       setState(() {
         selectedDate = picked;
 
-        textEditingController[0].value =
-            TextEditingValue(text: df.format(picked));
+        textEditingController[0].value = TextEditingValue(text: df.format(picked));
         //updateProfileModel.dob = df.format(picked);
       });
   }
@@ -624,8 +636,8 @@ class _DocMyProfileState extends State<DocMyProfile> {
         "Gender", "gender1", genderList,
             (KeyvalueModel model) {
           DocMyProfile.gendermodel = model;
-        //  lifeStyleHistryModel.body.alcoholId = model.key;
-          profileModel1.body.gender = model.name;
+          profileModel1.body.gender = model.key;
+          profileModel1.body.gendername = model.name;
         });
   }
 
@@ -840,10 +852,10 @@ class _DocMyProfileState extends State<DocMyProfile> {
               textInputAction: TextInputAction.done,
               keyboardType: TextInputType.text,
               focusNode: currentfn,
+
               inputFormatters: [
-                WhitelistingTextInputFormatter(
-                  RegExp("[0-9A-Z]"),
-                ),
+                UpperCaseTextFormatter(),
+                WhitelistingTextInputFormatter(RegExp("[a-zA-Z0-9 ]")),
               ],
               maxLength: 10,
               // Validator.getKeyboardTyp(validateModel.fieldType.toLowerCase()),
@@ -866,6 +878,35 @@ class _DocMyProfileState extends State<DocMyProfile> {
       ],
     );
   }
+  /*Widget IdNoFieldNew(String hint, bool enb, inputAct, keyType,
+      FocusNode currentfn, FocusNode nextFn, String type, int index) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 13.0, right: 13.0, bottom: 7.0),
+      child: TextFormField(
+        autofocus: false,
+        controller: textEditingController[controller],
+        focusNode: currentfn,
+        textInputAction: inputAct,
+        //inputFormatters: [AppData.filtterInputType(format: "0-9")],
+        inputFormatters: [
+          UpperCaseTextFormatter(),
+          WhitelistingTextInputFormatter(RegExp("[a-zA-Z0-9 ]")),
+        ],
+        decoration: InputDecoration(
+          //prefixIcon: Icon(Icons.insert_drive_file_outlined),
+          floatingLabelBehavior: FloatingLabelBehavior.always,
+          hintText: hint,
+          labelText: hint,
+          alignLabelWithHint: false,
+          //border: ,
+          contentPadding: EdgeInsets.only(left: 10, top: 4, right: 4),
+        ),
+        onSaved: (newValue) {
+          print("onsave");
+        },
+      ),
+    );
+  }*/
   Widget formFieldEducation(
       int controller, String hint, FocusNode currentfn, FocusNode nextFn) {
     return Column(
@@ -892,7 +933,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
               focusNode: currentfn,
               inputFormatters: [
                 WhitelistingTextInputFormatter(
-                  RegExp("[a-zA-Z]"),
+                  RegExp("[a-zA-Z0-9.]"),
                 ),
               ],
              //maxLength: 10,
