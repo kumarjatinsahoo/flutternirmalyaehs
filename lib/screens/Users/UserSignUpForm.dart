@@ -319,10 +319,8 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                               child: TextFormField(
                                 decoration: InputDecoration(
                                   border: InputBorder.none,
-                                  hintText:
-                                      MyLocalizations.of(context)
-                                              .text("FIRST_NAME") +
-                                          "*",
+                                  hintText: MyLocalizations.of(context)
+                                              .text("FIRST_NAME") + "*",
                                   prefixIcon:
                                       Icon(Icons.person_rounded),
                                   hintStyle: TextStyle(

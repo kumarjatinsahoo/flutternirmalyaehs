@@ -31,11 +31,11 @@ class AppointmentlistModel {
 }
 
 class Body {
-   String doctorid;
-   String docedu;
-   String docexp;
-   String docrate;
-   String dochospital;
+  String doctorid;
+  String docedu;
+  String docexp;
+  String docrate;
+  String dochospital;
   String userid;
   String doctorName;
   String speciality;
@@ -48,25 +48,24 @@ class Body {
   String patname;
   String appno;
 
-  Body(
-      {
-        this.doctorid,
-        this.docedu,
-        this.docexp,
-        this.docrate,
-        this.dochospital,
-        this.userid,
-        this.doctorName,
-        this.speciality,
-        this.appdate,
-        this.apptime,
-        this.notes,
-        this.status,
-        this.appmonth,
-        this.appyear,
-        this.patname,
-        this.appno,
-      });
+  Body({
+    this.doctorid,
+    this.docedu,
+    this.docexp,
+    this.docrate,
+    this.dochospital,
+    this.userid,
+    this.doctorName,
+    this.speciality,
+    this.appdate,
+    this.apptime,
+    this.notes,
+    this.status,
+    this.appmonth,
+    this.appyear,
+    this.patname,
+    this.appno,
+  });
 
   Body.fromJson(Map<String, dynamic> json) {
     doctorid = json['doctorid'].toString();
@@ -75,7 +74,9 @@ class Body {
     docrate = json['docrate'].toString();
     dochospital = json['dochospital'].toString();
     userid = json['userid'].toString();
-    doctorName = (json.containsKey("doctorname"))?json['doctorname'].toString():json['doctorName'].toString();
+    doctorName = (json.containsKey("doctorname"))
+        ? json['doctorname'].toString()
+        : json['doctorName'].toString();
     speciality = json['speciality'].toString();
     appdate = json['appdate'].toString();
     apptime = json['apptime'].toString();

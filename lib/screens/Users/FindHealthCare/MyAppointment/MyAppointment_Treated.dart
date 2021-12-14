@@ -100,6 +100,7 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
 
               // appointModel = lab.LabBookModel.fromJson(map);
             } else {
+              appointmentlistModel=null;
               isdata = false;
               // isDataNotAvail = true;
               // AppData.showInSnackBar(context, msg);
