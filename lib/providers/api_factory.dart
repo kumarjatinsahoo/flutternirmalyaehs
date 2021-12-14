@@ -3,8 +3,8 @@ class ApiFactory {
   static String REG_DEVICE = "https://cca.medtel.in/Ziniai/manageDeviceId";
    static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
   //static String MAIN_URL = "http://192.168.43.248:8062/nirmalyaRest/api/";
-  static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
-  //static String MAIN_URL = "http://192.168.43.248:8062/nirmalyaRest/api/";
+ // static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
+ // static String MAIN_URL = "http://192.168.77.208:8062/nirmalyaRest/api/";
   static String MAIN_URL1 = "https://1331.co.in/api";
   static String REPORT_URL1 = "https://ehealthsystem.com/";
   //static String MAIN_URL = "http://192.168.77.208:8062/nirmalyaRest/api/";
@@ -67,6 +67,7 @@ class ApiFactory {
   static String GET_DOCUMENT_API = MAIN_URL + 'get-document-type-list';
   static String IMMUNIZATION_API = MAIN_URL + 'get-immunization-type-list';
   static String SPECIALITY_API = MAIN_URL + 'get-doctor-speciality-list';
+  static String MARITAL_API = 'http://api.ehealthsystem.com/nirmalyaRest/user/getmaritalstatusListnew';
   static String BLOODGROUP_API = MAIN_URL + 'get-bloodgroup-list';
   static String MEDICINE_API = MAIN_URL + 'get-medicine-list-with-type';
   static String USER_REGISTRATION = MAIN_URL + 'user-self-registration';
