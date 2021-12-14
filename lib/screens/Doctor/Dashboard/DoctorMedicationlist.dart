@@ -528,7 +528,7 @@ class _MedicationlistState extends State<Medicationlist> {
                     ],
                   ),
                 ),
-                fromfild(1, "Duration", TextInputAction.next,
+                fromfild(1, "Duration (In Days)", TextInputAction.next,
                     TextInputType.text, "duration"),
                 fromAddress(2, "Remark", TextInputAction.next,
                     TextInputType.text, "remark"),
@@ -906,7 +906,7 @@ class _MedicationlistState extends State<Medicationlist> {
             maxLength: 3,
             keyboardType: TextInputType.number,
             inputFormatters: [
-              WhitelistingTextInputFormatter(RegExp("[0-9 ]")),
+              WhitelistingTextInputFormatter(RegExp("[0-9]")),
             ],
 
             decoration: InputDecoration(
