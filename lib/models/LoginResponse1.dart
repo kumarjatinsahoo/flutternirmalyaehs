@@ -50,6 +50,7 @@ class Body {
   String otp;
   String token;
   String userPic;
+  String calenderId;
 
   Body(
       {this.user,

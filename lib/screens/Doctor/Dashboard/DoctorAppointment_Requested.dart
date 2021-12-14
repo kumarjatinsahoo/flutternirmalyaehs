@@ -198,8 +198,12 @@ class _DoctorAppointmentRequestedState
                           physics: NeverScrollableScrollPhysics(),
                           itemBuilder: (context, i) {
                             Body appointmentlist = doctorAppointmment.body[i];
-                            String date=appointmentlist.appdate+appointmentlist.appmonth+appointmentlist.appyear;
-                            String name=appointmentlist.patname;
+                            String date = appointmentlist.appdate +
+                                " " +
+                                appointmentlist.appmonth +
+                                " " +
+                                appointmentlist.appyear;
+                            String name = appointmentlist.patname;
                             return InkWell(
                               onTap: () {
                                 /* showDialog(
@@ -495,75 +499,34 @@ class _DoctorAppointmentRequestedState
                                                                   CrossAxisAlignment
                                                                       .end,
                                                               children: [
-                                                                /*Column(
-                                                                  children: [
-                                                                    Text(
-                                                                      */ /*'Confirmed'*/ /*
-                                                                      appointmentlist
-                                                                          .status ??
-                                                                          "N/A",
-                                                                      style: TextStyle(
-                                                                          fontWeight:
-                                                                          FontWeight
-                                                                              .bold,
-                                                                          fontSize:
-                                                                          15,
-                                                                          color: Colors
-                                                                              .yellow[700]),
-                                                                    ),
-                                                                    SizedBox(
-                                                                      height: 20,
-                                                                    )
-                                                                  ],
-                                                                ),
+                                                                Expanded(
+                                                                  child:
+                                                                      InkWell(
+                                                                    onTap: () {
 
-                                                                Spacer(),
-*/
-                                                                InkWell(
-                                                                  onTap: () {
-                                                                    widget.model.GETMETHODCALL_TOKEN(
-                                                                        api: ApiFactory.user_APPOINTMENT_status + appointmentlist.doctorName + "&appstatus=" + "4",
-                                                                        token: widget.model.token,
-                                                                        fun: (Map<String, dynamic> map) {
-                                                                          Navigator.pop(context);
-                                                                          if (map[Const.CODE] == Const.SUCCESS) {
-                                                          popupp(context, map[Const.MESSAGE],name,date);
-                                                                          } else {
-                                                                            AppData.showInSnackBar(context, map[Const.MESSAGE]);
-                                                                          }
-                                                                        }
-                                                                        /*fun: (Map<String, dynamic> map) {
-                                                                          log(">>>>>>>reject response<<<<<<<" +
-                                                                              jsonEncode(map));
-                                                                          setState(
-                                                                              () {
-                                                                            String
-                                                                                msg =
-                                                                                map[Const.MESSAGE];
+                                                                      widget.model.GETMETHODCALL_TOKEN(
+                                                                          api: ApiFactory.user_APPOINTMENT_status + appointmentlist.doctorName + "&appstatus=" + "4",
+                                                                          token: widget.model.token,
+                                                                          fun: (Map<String, dynamic> map) {
+                                                                            //Navigator.pop(context);
                                                                             if (map[Const.CODE] ==
                                                                                 Const.SUCCESS) {
-                                                                              Navigator.of(context).pop();
-                                                                              popup(context, map[Const.MESSAGE]);
-
-                                                                                doctorAppointmment = DoctorAppointmment.fromJson(map);
-                                                                              } else {
-                                                                              }
-                                                                            });
-                                                                          }*/
-                                                                          );
+                                                                              rejectedPopup(context, map[Const.MESSAGE], name, date);
+                                                                            } else {
+                                                                              AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                                                                            }
+                                                                          });
                                                                     },
                                                                     child:
                                                                         Container(
-                                                                      height: 50,
+                                                                      height:
+                                                                          50,
                                                                       decoration: BoxDecoration(
-                                                                          borderRadius:
-                                                                              BorderRadius.circular(
-                                                                                  5),
-                                                                          border: Border.all(
-                                                                              color: Colors
-                                                                                  .black12),
-                                                                          color: Colors
-                                                                              .red[900]),
+                                                                          borderRadius: BorderRadius.circular(
+                                                                              5),
+                                                                          border:
+                                                                              Border.all(color: Colors.black12),
+                                                                          color: Colors.red[900]),
                                                                       child:
                                                                           RaisedButton(
                                                                         onPressed:
@@ -573,78 +536,70 @@ class _DoctorAppointmentRequestedState
                                                                           MyLocalizations.of(context)
                                                                               .text("REJECT"),
                                                                           style: TextStyle(
-                                                                              color: Colors
-                                                                                  .white,
-                                                                              fontSize:
-                                                                                  16,
-                                                                              fontWeight:
-                                                                                  FontWeight.w400),
+                                                                              color: Colors.white,
+                                                                              fontSize: 16,
+                                                                              fontWeight: FontWeight.w400),
                                                                         ),
                                                                         disabledColor:
-                                                                            Colors
-                                                                                .red[900],
+                                                                            Colors.red[900],
                                                                       ),
                                                                     ),
                                                                   ),
                                                                 ),
-                                                               // Spacer(),
-                                                                SizedBox(width: 10,),
+                                                                // Spacer(),
+                                                                SizedBox(
+                                                                  width: 10,
+                                                                ),
                                                                 Expanded(
-                                                                  child: InkWell(
+                                                                  child:
+                                                                      InkWell(
                                                                     onTap: () {
                                                                       widget.model.GETMETHODCALL_TOKEN(
                                                                           api: ApiFactory.user_APPOINTMENT_status + appointmentlist.doctorName + "&appstatus=" + "2",
                                                                           token: widget.model.token,
                                                                           fun: (Map<String, dynamic> map) {
-                                                                            setState(
-                                                                                () {
-                                                                                  if (map[Const.CODE] == Const.SUCCESS) {
-                                                                                    popup(context, map[Const.MESSAGE],name,date);
-                                                                                  } else {
-                                                                                    AppData.showInSnackBar(context, map[Const.MESSAGE]);
-                                                                                  }
+                                                                            setState(() {
+                                                                              if (map[Const.CODE] == Const.SUCCESS) {
+                                                                                popup(context, map[Const.MESSAGE], name, date);
+                                                                              } else {
+                                                                                AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                                                                              }
+                                                                            });
                                                                           });
-                                                                        });
-                                                                  },
-                                                                  child:
-                                                                      Container(
-                                                                    height: size
-                                                                            .height *
-                                                                        0.06,
-                                                                    width: size
-                                                                            .height *
-                                                                        0.20,
-                                                                    decoration: BoxDecoration(
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(
-                                                                                5),
-                                                                        border: Border.all(
-                                                                            color: Colors
-                                                                                .black12),
-                                                                        color: Colors
-                                                                            .blue),
+                                                                    },
                                                                     child:
-                                                                        RaisedButton(
-                                                                      onPressed:
-                                                                          null,
+                                                                        Container(
+                                                                      height: size
+                                                                              .height *
+                                                                          0.06,
+                                                                      width: size
+                                                                              .height *
+                                                                          0.20,
+                                                                      decoration: BoxDecoration(
+                                                                          borderRadius: BorderRadius.circular(
+                                                                              5),
+                                                                          border:
+                                                                              Border.all(color: Colors.black12),
+                                                                          color: Colors.blue),
                                                                       child:
-                                                                          Text(
-                                                                        MyLocalizations.of(context)
-                                                                            .text("ACCEPT"),
-                                                                        style: TextStyle(
-                                                                            color: Colors
-                                                                                .white,
-                                                                            fontSize:
-                                                                                16,
-                                                                            fontWeight:
-                                                                                FontWeight.w400),
+                                                                          RaisedButton(
+                                                                        onPressed:
+                                                                            null,
+                                                                        child:
+                                                                            Text(
+                                                                          MyLocalizations.of(context)
+                                                                              .text("ACCEPT"),
+                                                                          style: TextStyle(
+                                                                              color: Colors.white,
+                                                                              fontSize: 16,
+                                                                              fontWeight: FontWeight.w400),
+                                                                        ),
+                                                                        disabledColor:
+                                                                            Colors.blue[600],
                                                                       ),
-                                                                      disabledColor:
-                                                                          Colors
-                                                                              .blue[600],
                                                                     ),
                                                                   ),
-                                                                ),
+                                                                )
                                                               ],
                                                             ),
                                                           ),
@@ -1024,10 +979,16 @@ class _DoctorAppointmentRequestedState
     );
   }
 
-  popup(BuildContext context, String message,String name,String date) {
+  popup(BuildContext context, String message, String name, String date) {
     return Alert(
         context: context,
-        title:"Appointment for"+" "+name+"on"+" "+date+" "+"is Accepted",
+        title: "Appointment for" +
+            " " +
+            name +
+            " on " +
+            date +
+            " " +
+            "is Accepted",
         type: AlertType.success,
         onWillPopActive: true,
         closeIcon: Icon(
@@ -1043,24 +1004,27 @@ class _DoctorAppointmentRequestedState
               style: TextStyle(color: Colors.white, fontSize: 20),
             ),
             onPressed: () {
-              //Navigator.pop(context);
-              //Navigator.pop(context);
-              //Navigator.pop(context);
               Navigator.pop(context);
               Navigator.pop(context);
-             // Navigator.of(context).pop();
-              //Navigator.of(context).pop();
             },
             color: Color.fromRGBO(0, 179, 134, 1.0),
             radius: BorderRadius.circular(0.0),
           ),
         ]).show();
   }
-  popupp(BuildContext context, String message,String name,String date) {
+
+  rejectedPopup(
+      BuildContext context, String message, String name, String date) {
     return Alert(
         context: context,
-        title:"Appointment for"+" "+name+"on"+" "+date+" "+"is Accepted",
-        type: AlertType.success,
+        title: "Appointment for" +
+            " " +
+            name +
+            " on " +
+            date +
+            " " +
+            "is Rejected",
+        type: AlertType.error,
         onWillPopActive: true,
         closeIcon: Icon(
           Icons.info,
@@ -1080,7 +1044,7 @@ class _DoctorAppointmentRequestedState
               //Navigator.pop(context);
               Navigator.pop(context);
               Navigator.pop(context);
-             // Navigator.of(context).pop();
+              // Navigator.of(context).pop();
               //Navigator.of(context).pop();
             },
             color: Color.fromRGBO(0, 179, 134, 1.0),
