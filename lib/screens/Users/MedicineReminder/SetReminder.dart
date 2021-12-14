@@ -1,11 +1,14 @@
 import 'dart:async';
+import 'dart:developer';
 import 'dart:io';
-import 'package:add_2_calendar/add_2_calendar.dart';
+// import 'package:add_2_calendar/add_2_calendar.dart';
 import 'package:device_calendar/device_calendar.dart' as cal;
+import 'package:device_calendar/device_calendar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:user/providers/DropDown.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
@@ -106,6 +109,8 @@ class SetReminderState extends State<SetReminder> {
     KeyvalueModel(name: "6", key: "1"),
   ];
 
+  DeviceCalendarPlugin _deviceCalendarPlugin = new DeviceCalendarPlugin();
+
   @override
   void initState() {
     super.initState();
@@ -122,7 +127,7 @@ class SetReminderState extends State<SetReminder> {
   }
 
   setReminder({title}) {
-    final Event event = Event(
+   /* final Event event = Event(
       title: widget.type,
       description: 'Sanjaya Jena',
       location: 'Home',
@@ -141,13 +146,40 @@ class SetReminderState extends State<SetReminder> {
         emailInvites: [], // on Android, you can add invite emails to your event.
       ),
     );
-    Add2Calendar.addEvent2Cal(event);
+    Add2Calendar.addEvent2Cal(event);*/
   }
 
-  setReminder1() {
-    cal.Event event = cal.Event(
-      "1",
+  setReminder1() async {
+    /*Result<String> result = await _deviceCalendarPlugin.createCalendar(
+      'eHealthSystem',
+      calendarColor: AppData.kPrimaryRedColor,
+      localAccountName: (Platform.isAndroid)?'eHealthSystem':'',
     );
+    log("Calender value"+result.data);*/
+    cal.Event event = cal.Event(
+      "4124D94E-5E3D-433B-B5EB-95FDA035D853",
+    );
+
+    event.start=DateTime.now().add(Duration(minutes: 15));
+    event.end=DateTime.now().add(Duration(minutes: 35));
+    event.title="By Sanjaya";
+    event.description="By Description";
+    event.location="Bhubaneswar,Odisha";
+    event.url=Uri(path: "https://pub.dev/packages/device_calendar/versions");
+
+    var fightString = new StringBuffer('');
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    final createEventResult =
+        await _deviceCalendarPlugin.createOrUpdateEvent(event);
+    if (createEventResult.isSuccess &&
+        (createEventResult.data?.isNotEmpty ?? false)) {
+      AppData.showInSnackDone(context, "Added done");
+      // prefs.setString(mmaEvent.getPrefKey(), createEventResult.data);
+      // fightString.write(mmaEvent.eventName + '\n');
+    }else{
+      AppData.showInSnackBar(context, "Something went wrong");
+    }
 
   }
 
@@ -503,7 +535,8 @@ class SetReminderState extends State<SetReminder> {
   }
 
   validate() async {
-    setReminder();
+    //setReminder();
+    setReminder1();
     /*_formKey.currentState.validate();
     if (textEditingController[0].text == "" ||
         textEditingController[0].text == null) {

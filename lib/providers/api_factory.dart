@@ -1,10 +1,8 @@
 class ApiFactory {
   //bool isRelease = bool.fromEnvironment("DEV");
   static String REG_DEVICE = "https://cca.medtel.in/Ziniai/manageDeviceId";
-   static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
-  //static String MAIN_URL = "http://192.168.43.248:8062/nirmalyaRest/api/";
- // static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
- // static String MAIN_URL = "http://192.168.77.208:8062/nirmalyaRest/api/";
+  static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
+   //static String MAIN_URL = "http://192.168.43.248:8062/nirmalyaRest/api/";
   static String MAIN_URL1 = "https://1331.co.in/api";
   static String REPORT_URL1 = "https://ehealthsystem.com/";
   //static String MAIN_URL = "http://192.168.77.208:8062/nirmalyaRest/api/";
@@ -153,6 +151,12 @@ class ApiFactory {
       String city, String healthpro, String type) {
     return MAIN_URL +
         "find-health-provider-details?longi=$longi&lati=$lati&addr=$addr&city=$city&healthpro=$healthpro&type=$type";
+  }
+
+  static String GOVET_SCHEMES_LIST(String contry, String state, String dist,
+      String city) {
+    return MAIN_URL +
+        "view-government-scheme-list?country=$contry&state=$state&dist=$dist&city=$city";
   }
 
   static String GOOGLE_QUERY_API(

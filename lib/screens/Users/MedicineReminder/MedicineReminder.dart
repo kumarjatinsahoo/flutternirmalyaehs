@@ -1,5 +1,6 @@
 import 'package:calendar_timeline/calendar_timeline.dart';
 import 'package:date_format/date_format.dart';
+import 'package:device_calendar/device_calendar.dart';
 import 'package:intl/intl.dart';
 import 'package:unicorndial/unicorndial.dart';
 import 'package:user/localization/localizations.dart';
@@ -34,12 +35,14 @@ class _MedicineReminderState extends State<MedicineReminder> {
   final df = new DateFormat('dd/MM/yyyy');
   DateTime _selectedDate;
   var childButtons = List<UnicornButton>();
+  DeviceCalendarPlugin _deviceCalendarPlugin = new DeviceCalendarPlugin();
+  List<Calendar> _calendars;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-
+    _retrieveCalendars();
     childButtons.add(UnicornButton(
         hasLabel: true,
         labelText: "Medicine",
@@ -83,7 +86,7 @@ class _MedicineReminderState extends State<MedicineReminder> {
           child: Icon(Icons.task, color: Colors.white),
         )));
 
-       /*     heroTag: "directions",
+    /*     heroTag: "directions",
             backgroundColor: Colors.blueAccent,
             mini: true,
             child: Icon(Icons.directions_car))
@@ -93,9 +96,29 @@ class _MedicineReminderState extends State<MedicineReminder> {
   }
 
   void _resetSelectedDate() {
-    _selectedDate = DateTime.now().add(Duration(days: 5)
-    );
+    _selectedDate = DateTime.now().add(Duration(days: 5));
     _selectedDate = DateTime.now();
+  }
+
+  void _retrieveCalendars() async {
+    //Retrieve user's calendars from mobile device
+    //Request permissions first if they haven't been granted
+    try {
+      var permissionsGranted = await _deviceCalendarPlugin.hasPermissions();
+      if (permissionsGranted.isSuccess && !permissionsGranted.data) {
+        permissionsGranted = await _deviceCalendarPlugin.requestPermissions();
+        if (!permissionsGranted.isSuccess || !permissionsGranted.data) {
+          return;
+        }
+      }
+
+      final calendarsResult = await _deviceCalendarPlugin.retrieveCalendars();
+      setState(() {
+        _calendars = calendarsResult?.data;
+      });
+    } catch (e) {
+      print(e);
+    }
   }
 
   @override
@@ -137,27 +160,43 @@ class _MedicineReminderState extends State<MedicineReminder> {
             locale: 'en',
           ),
           //SizedBox(height: 100),
-          Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                InkWell(
-                  onTap: () {
-                    // Navigator.pushNamed(context, '/setreminder');
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                    child: Text(
-                      "Set Reminder for Medicines,Water Intake or any other Medical Needs",
-                      style: TextStyle(color: Colors.black, fontSize: 18),
-                      textAlign: TextAlign.center,
-                    ),
+          (_calendars == null || _calendars.isEmpty)
+              ? Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          // Navigator.pushNamed(context, '/setreminder');
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                          child: Text(
+                            "Set Reminder for Medicines,Water Intake or any other Medical Needs",
+                            style: TextStyle(color: Colors.black, fontSize: 18),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-              ],
-            ),
-          )
+                )
+              : Expanded(
+                  child: ListView.builder(
+                    itemBuilder: (c, i) {
+                      return ListTile(
+                        title: Text(_calendars[i].name),
+                        onTap: (){
+                          widget.model.title=_calendars[i].id;
+                          Navigator.pushNamed(context, '/setreminder');
+                        },
+                      );
+                    },
+                    itemCount: _calendars.length,
+                    shrinkWrap: true,
+                  ),
+                )
         ],
       ),
     );

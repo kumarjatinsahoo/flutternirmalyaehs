@@ -65,10 +65,13 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
   }
 
   calculate(date, month) {
-    return ((Const.getExpireDate(date, month)
-        .difference(DateTime.now())
-        .inDays)+1)
-        .toString();
+    int days =
+        ((Const.getExpireDate(date, month).difference(DateTime.now()).inDays) +
+            1);
+    if (days > 0) {
+      return days.toString();
+    } else
+      return 0;
   }
 
   calDifYear(date, month, date1, month1) {
@@ -76,11 +79,15 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
     int totalDif = Const.getExpireDate(date, month)
         .difference(Const.getExpireDate(date1, month1))
         .inDays;
-    log("Total Differnece>>>>"+totalDif.toString());
+    log("Total Differnece>>>>" + totalDif.toString());
     int difFromCurr =
         Const.getExpireDate(date, month).difference(DateTime.now()).inDays;
-    log("Differnece from current>>>>"+difFromCurr.toString());
-    return (difFromCurr / totalDif);
+    log("Differnece from current>>>>" + difFromCurr.toString());
+    if(difFromCurr<0){
+      return 0.0;
+    }
+    double v = (difFromCurr / totalDif);
+    return (v > 0) ? v : 0.0;
   }
 
 /*
@@ -97,8 +104,8 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
           centerTitle: true,
         ),
         body: (insuranceDetailsModel != null)
-            ? SingleChildScrollView(
-              child: Container(
+            ? Container(
+                child: SingleChildScrollView(
                   child: Column(
                     children: [
                       Padding(
@@ -175,10 +182,10 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
                                     ),
                                   ),
                                 ),
-                              /*  Container(
-*//*                            height: 70,
-                        width: double.maxFinite,*//*
-                                    *//*  margin: const EdgeInsets.only(top: 6.0),*//*
+                                Container(
+/*                            height: 70,
+                        width: double.maxFinite,*/
+                                    /*  margin: const EdgeInsets.only(top: 6.0),*/
                                     child: Padding(
                                   padding: const EdgeInsets.all(10.0),
                                   child: Column(
@@ -210,7 +217,7 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
                                       ),
                                     ),
                                   ),
-                                ),*/
+                                ),
                                 Container(
 /*                      height: 70,
                         width: double.maxFinite,*/
@@ -234,7 +241,9 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
                                             height: 5,
                                           ),
                                           Text(
-                                            insuranceDetailsModel.body.healthInsType??"N/A",
+                                            insuranceDetailsModel
+                                                    .body.healthInsType ??
+                                                "N/A",
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 16),
@@ -317,8 +326,8 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
                                             height: 5,
                                           ),
                                           Text(
-                                            insuranceDetailsModel
-                                                .body.insType??"N/A",
+                                            insuranceDetailsModel.body.insType ??
+                                                "N/A",
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 16),
@@ -338,7 +347,8 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
                                       ),
                                     ),
                                   ),
-                                ),Container(
+                                ),
+                                Container(
                                     child: Padding(
                                   padding: const EdgeInsets.all(10.0),
                                   child: Row(
@@ -359,7 +369,8 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
                                           ),
                                           Text(
                                             insuranceDetailsModel
-                                                .body.premiumDueDt??"N/A",
+                                                    .body.premiumDueDt ??
+                                                "N/A",
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 16),
@@ -401,7 +412,8 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
                                           ),
                                           Text(
                                             insuranceDetailsModel
-                                                .body.premiumDueDt??"N/A",
+                                                    .body.premiumDueDt ??
+                                                "N/A",
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 16),
@@ -611,7 +623,7 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
                                                 insuranceDetailsModel
                                                     .body.policyEndDt,
                                                 insuranceDetailsModel
-                                                    .body.endMonthYear) +
+                                                    .body.endMonthYear).toString() +
                                             " Days\nLeft",
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold),
@@ -710,7 +722,7 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
                     ],
                   ),
                 ),
-            )
+              )
             : Container());
   }
 
