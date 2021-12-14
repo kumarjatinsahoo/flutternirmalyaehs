@@ -137,7 +137,6 @@ class _InsuranceListState extends State<InsuranceList> {
               child: SingleChildScrollView(
                 child: ListView.builder(
                   physics: NeverScrollableScrollPhysics(),
-
                   itemCount: insuranceModel.body.length,
                   // itemCount: 4,
                   shrinkWrap: true,

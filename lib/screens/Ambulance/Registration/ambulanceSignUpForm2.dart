@@ -789,11 +789,11 @@ class AmbulanceSignUpForm2State extends State<AmbulanceSignUpForm2> {
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(
+          /*  Icon(
               Icons.check_circle_outline_outlined,
               size: 140,
               color: Colors.green,
-            ),
+            ),*/
             SizedBox(
               height: 5,
             ),

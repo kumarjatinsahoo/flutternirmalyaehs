@@ -571,6 +571,9 @@ class DropDown {
           case "speciality":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
+            case "marital":
+            list = KeyvalueModel.fromJsonList(response.data);
+            break;
           case "admequipment":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
