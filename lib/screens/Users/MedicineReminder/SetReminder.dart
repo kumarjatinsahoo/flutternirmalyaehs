@@ -200,14 +200,14 @@ class SetReminderState extends State<SetReminder> {
         selectedStartDate.day,
         selectedStartTime.hour,
         selectedStartTime.minute);
-    event.end = DateTime(selectedStartDate.year, selectedStartDate.month,
-        selectedStartDate.day, selectedEndTime.hour, selectedEndTime.minute);
+    event.end = DateTime(selectedEndDate.year, selectedEndDate.month,
+        selectedEndDate.day, selectedEndTime.hour, selectedEndTime.minute);
     // event.end=DateTime.now().add(Duration(minutes: 35));
     event.title = widget.type;
     event.description = descrption +
         " " +
         SetReminder.dosageModel.name +
-        "dosage " +
+        " dosage " +
         textEditingController[5].text;
     event.location = "Home";
     event.allDay = false;
@@ -648,6 +648,7 @@ class SetReminderState extends State<SetReminder> {
       AppData.showInSnackBar(context, "Please enter End Date");
     } else {
       // _formKey.currentState.save();
+      Navigator.pop(context);
       setReminder1(
         textEditingController[1].text,
       );
