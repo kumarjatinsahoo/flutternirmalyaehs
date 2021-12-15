@@ -117,7 +117,10 @@ class _IdCardPageState extends State<IdCardPage> {
             Align(
               alignment: Alignment.topRight,
               child: InkWell(
-                onTap: () {},
+                onTap: () {
+                  AppData.launchURL('https://ehealthsystem.com/download-ehealthcard?userid='+id);
+
+                },
                 child: Icon(Icons.download),
               ),
             ),
