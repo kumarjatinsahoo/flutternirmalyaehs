@@ -479,6 +479,7 @@ class _MedicalRecordPageState extends State<MedicalRecordPage> {
                             ),
                             GestureDetector(
                               onTap: () {
+                                widget.model.patientseHealthCard=widget.model.loginResponse1.body.user;
                                 Navigator.pushNamed(
                                     context, "/uploaddocument");
                                 /*AppData.launchURL(
