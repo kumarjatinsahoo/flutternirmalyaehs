@@ -38,7 +38,7 @@ class _VideoDetailsPageState extends State<VideoDetailsPage> {
   void initState() {
     // TODO: implement initState
     // isRTL = (AppData.selectedLanguage == "English") ? false : true;
-    videoUrl ="http://192.168.43.248:8062/nirmalyaRest/document/record/9121211263207075_1639392496813.mp4";
+    videoUrl =widget.model.pdfurl;
     _scrollControl = ScrollController();
     _scrollControl.addListener(() {
       if (_scrollControl.position.pixels > 400) {

@@ -4,6 +4,7 @@ import 'package:device_calendar/device_calendar.dart';
 import 'package:intl/intl.dart';
 import 'package:unicorndial/unicorndial.dart';
 import 'package:user/localization/localizations.dart';
+import 'package:user/models/LoginResponse1.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/screens/Users/MedicineReminder/SetReminder.dart';
@@ -37,12 +38,17 @@ class _MedicineReminderState extends State<MedicineReminder> {
   var childButtons = List<UnicornButton>();
   DeviceCalendarPlugin _deviceCalendarPlugin = new DeviceCalendarPlugin();
   List<Calendar> _calendars;
+  List<Event> _calendarEvents;
+
+  LoginResponse1 loginResponse;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    _retrieveCalendars();
+    // _retrieveCalendars();
+    loginResponse=widget.model.loginResponse1;
+    // _retrieveCalendarEvents();
     childButtons.add(UnicornButton(
         hasLabel: true,
         labelText: "Medicine",
@@ -96,8 +102,9 @@ class _MedicineReminderState extends State<MedicineReminder> {
   }
 
   void _resetSelectedDate() {
-    _selectedDate = DateTime.now().add(Duration(days: 5));
+    // _selectedDate = DateTime.now().add(Duration(days: 5));
     _selectedDate = DateTime.now();
+    _retrieveCalendarEvents();
   }
 
   void _retrieveCalendars() async {
@@ -118,6 +125,22 @@ class _MedicineReminderState extends State<MedicineReminder> {
       });
     } catch (e) {
       print(e);
+    }
+  }
+
+  Future _retrieveCalendarEvents() async {
+    if(loginResponse.body.calenderId!=null) {
+      DateTime startDate = DateTime(_selectedDate.year,_selectedDate.month,_selectedDate.day,0,0);
+      DateTime endDate = DateTime(_selectedDate.year,_selectedDate.month,_selectedDate.day,23,59);
+    // DateTime endDate = DateTime.now().add(Duration(days: 30));
+      var calendarEventsResult = await _deviceCalendarPlugin.retrieveEvents(
+          loginResponse.body.calenderId,
+          RetrieveEventsParams(startDate: startDate,endDate:endDate));
+      setState(() {
+        _calendarEvents = calendarEventsResult.data as List<Event>;
+      });
+    }else{
+
     }
   }
 
@@ -147,6 +170,7 @@ class _MedicineReminderState extends State<MedicineReminder> {
             onDateSelected: (date) {
               setState(() {
                 _selectedDate = date;
+                _retrieveCalendarEvents();
               });
             },
             leftMargin: 20,
@@ -160,7 +184,7 @@ class _MedicineReminderState extends State<MedicineReminder> {
             locale: 'en',
           ),
           //SizedBox(height: 100),
-          (_calendars == null || _calendars.isEmpty)
+          (_calendarEvents == null || _calendarEvents.isEmpty)
               ? Expanded(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -186,14 +210,15 @@ class _MedicineReminderState extends State<MedicineReminder> {
                   child: ListView.builder(
                     itemBuilder: (c, i) {
                       return ListTile(
-                        title: Text(_calendars[i].name),
+                        title: Text(_calendarEvents[i].title),
+                        subtitle: Text(_calendarEvents[i].description??""),
                         onTap: (){
                           widget.model.title=_calendars[i].id;
                           Navigator.pushNamed(context, '/setreminder');
                         },
                       );
                     },
-                    itemCount: _calendars.length,
+                    itemCount: _calendarEvents.length,
                     shrinkWrap: true,
                   ),
                 )
