@@ -193,8 +193,6 @@ class _UploadDocumentState extends State<UploadDocument> {
               child: InkWell(
                 onTap: () {
                   Navigator.push(context,MaterialPageRoute(builder: (context)=>AddUploadDocument(model:widget.model)))
-
-                 /* Navigator.pushNamed(context, "/adduploaddocument")*/
                       .then((value) {
                     setState(() {
                       currentMax = 1;

@@ -65,6 +65,7 @@ class ApiFactory {
   static String GET_DOCUMENT_API = MAIN_URL + 'get-document-type-list';
   static String IMMUNIZATION_API = MAIN_URL + 'get-immunization-type-list';
   static String SPECIALITY_API = MAIN_URL + 'get-doctor-speciality-list';
+  static String MARITAL_API = 'http://api.ehealthsystem.com/nirmalyaRest/user/getmaritalstatusListnew';
   static String BLOODGROUP_API = MAIN_URL + 'get-bloodgroup-list';
   static String MEDICINE_API = MAIN_URL + 'get-medicine-list-with-type';
   static String USER_REGISTRATION = MAIN_URL + 'user-self-registration';
@@ -150,6 +151,12 @@ class ApiFactory {
       String city, String healthpro, String type) {
     return MAIN_URL +
         "find-health-provider-details?longi=$longi&lati=$lati&addr=$addr&city=$city&healthpro=$healthpro&type=$type";
+  }
+
+  static String GOVET_SCHEMES_LIST(String contry, String state, String dist,
+      String city) {
+    return MAIN_URL +
+        "view-government-scheme-list?country=$contry&state=$state&dist=$dist&city=$city";
   }
 
   static String GOOGLE_QUERY_API(

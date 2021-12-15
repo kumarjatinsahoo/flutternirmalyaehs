@@ -1,21 +1,28 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:intl/intl.dart';
 import 'package:user/localization/localizations.dart';
+import 'package:user/models/KeyvalueModel.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/models/ProfileModel1.dart';
+import 'package:user/models/UpdateDocProfileModel.dart';
 import 'package:user/providers/Const.dart';
+import 'package:user/providers/DropDown.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/providers/text_field_container.dart';
 
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/models/PatientListModel.dart';
+import 'package:user/widgets/TextFormatter.dart';
 
 class DocMyProfile extends StatefulWidget {
   MainModel model;
+  static KeyvalueModel gendermodel = null;
 
   DocMyProfile({Key key, this.model}) : super(key: key);
 
@@ -24,8 +31,10 @@ class DocMyProfile extends StatefulWidget {
 }
 
 class _DocMyProfileState extends State<DocMyProfile> {
+
   String loAd = "Loading..";
   List<TextEditingController> textEditingController = [
+    new TextEditingController(),
     new TextEditingController(),
     new TextEditingController(),
     new TextEditingController(),
@@ -46,7 +55,10 @@ class _DocMyProfileState extends State<DocMyProfile> {
   FocusNode fnode4 = new FocusNode();
   FocusNode fnode5 = new FocusNode();
   FocusNode fnode6 = new FocusNode();
-
+  FocusNode fnode7 = new FocusNode();
+  final df = new DateFormat('dd/MM/yyyy');
+  DateTime selectedDate = DateTime.now();
+  UpdateDocProfileModel updateProfileModel = UpdateDocProfileModel();
   @override
   void initState() {
     super.initState();
@@ -67,6 +79,14 @@ class _DocMyProfileState extends State<DocMyProfile> {
             if (map[Const.CODE] == Const.SUCCESS) {
               // pocReportModel = PocReportModel.fromJson(map);
               profileModel1 = ProfileModel1.fromJson(map);
+
+              if (profileModel1?.body?.gender != null) {
+                DocMyProfile.gendermodel = KeyvalueModel(
+                     key: profileModel1.body.gender,
+                    name: profileModel1.body.gendername);
+              } else {
+                DocMyProfile.gendermodel = null;
+              }
             } else {
               isDataNotAvail = true;
               AppData.showInSnackBar(context, msg);
@@ -77,18 +97,22 @@ class _DocMyProfileState extends State<DocMyProfile> {
 
   getGender(String gender) {
     switch (gender) {
-      case "0":
+      case "1":
         return "Male";
         break;
-      case "1":
+      case "2":
         return "Female";
         break;
-      case "2":
-        return "Transgender";
+      case "3":
+        return "Other";
         break;
     }
   }
-
+  List<KeyvalueModel> genderList = [
+    KeyvalueModel(key: "1", name: "Male"),
+    KeyvalueModel(key: "2", name: "Female"),
+    KeyvalueModel(key: "3", name: "Other"),
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -114,6 +138,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
                   padding: const EdgeInsets.only(right:10.0),
                   child: InkWell(
                     onTap: () {
+                     // _displayTextInputDialog(context);
                       if (profileModel1 != null) {
                         _displayTextInputDialog(context);
                       } else {
@@ -226,7 +251,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
                                         leading: Icon(Icons.wc),
                                         title: Text(MyLocalizations.of(context).text("GENDER").toUpperCase()),
                                         subtitle: Text(
-                                            profileModel1.body.gender ?? "N/A"),
+                                            profileModel1.body.gendername ?? "N/A"),
                                       ),
                                       ListTile(
                                         leading: Icon(Icons.book),
@@ -288,6 +313,13 @@ class _DocMyProfileState extends State<DocMyProfile> {
                                             profileModel1.body.licenceno ??
                                                 "N/A"),
                                       ),
+                                      ListTile(
+                                        leading: Icon(Icons.bloodtype_outlined),
+                                        title: Text("blooddgroup".toUpperCase(),
+                                        ),
+                                        subtitle: Text(
+                                            profileModel1.body.bldGrname?? "N/A"),
+                                      ),
                                     ],
                                   ),
                                 ],
@@ -314,53 +346,18 @@ class _DocMyProfileState extends State<DocMyProfile> {
               ));
   }
   Future<void> _displayTextInputDialog(BuildContext context) async {
-    /*ProfileScreen.relationmodel.key=patientProfileModel.body.eRelation.toString()??"N/A";
-    ProfileScreen.specialitymodel.key=patientProfileModel.body.speciality.toString()??"N/A";
-    ProfileScreen.bloodgroupmodel.key=patientProfileModel.body.bloodGroup.toString()??"N/A";*/
 
-    //_fDoctor.text =(patientProfileModel != null)||(patientProfileModel.body.fDoctor==null)?"N/A":patientProfileModel.body.fDoctor.toString();
-    //_eName.text =(patientProfileModel != null)||(patientProfileModel.body.eName!=null)? patientProfileModel.body.eName.toString():"N/A";
-    //_docMobile.text =(patientProfileModel != null)||(patientProfileModel.body.docMobile == null)?patientProfileModel.body.docMobile:"N/A";
-    //_eMobile.text = (patientProfileModel != null)||(patientProfileModel.body.eMobile==null)?"N/A":patientProfileModel.body.eMobile.toString();
+    textEditingController[0].text = toDate(profileModel1.body.birthdate)??"";
+    textEditingController[1].text =  profileModel1.body.education ??"";
+    textEditingController[2].text =  profileModel1.body.imano ?? "";
+    textEditingController[3].text = profileModel1.body.aadhaar ?? "";
+    textEditingController[4].text = profileModel1.body.passportno ??"";
+    textEditingController[5].text = profileModel1.body.votercardno ?? "";
+    textEditingController[6].text = profileModel1.body.licenceno ??"";
+    textEditingController[7].text = profileModel1.body.pancardno ?? "";
 
-    //patientProfileModel.body.eMobile.toString() == null?"N/A":_eMobile.text =patientProfileModel.body.eMobile.toString();
-    //textEditingController[1].text = (patientProfileModel != null)||(patientProfileModel.body.eName == null)?patientProfileModel.body.eName.toString(): "N/A";
-    //patientProfileModel.body.fDoctor.toString() == null?"N/A":_fDoctor.text =patientProfileModel.body.fDoctor.toString();
-    //patientProfileModel.body.eName.toString() == null?"N/A":_eName.text =patientProfileModel.body.eName.toString();
-    // patientProfileModel.body.docMobile.toString() == null?"N/A":_docMobile.text == patientProfileModel.body.docMobile;
-    //textEditingController[5].text = (patientProfileModel != null)||(patientProfileModel.body.address == null)?patientProfileModel.body.address.toString(): "N/A";
-  /*  textEditingController[5].text = patientProfileModel.body.address ?? "";
-    textEditingController[1].text = patientProfileModel.body.eName ?? "";
-    textEditingController[2].text = patientProfileModel.body.eMobile ?? "";
-    textEditingController[3].text = patientProfileModel.body.fDoctor ?? "";
-    textEditingController[4].text = patientProfileModel.body.docMobile ?? "";
-    textEditingController[0].text = (patientProfileModel != null)
-        ? myFormatDate(patientProfileModel.body.dob.toString())
-        : "";
-    updateProfileModel.eCardNo = patientProfileModel.body.id.toString();
 
-    updateProfileModel.id = patientProfileModel.body.id.toString();
-    if (patientProfileModel?.body?.bloodGroup == null ||
-        patientProfileModel?.body?.bloodGroup == "") {
-      ProfileScreen.bloodgroupmodel = null;
-    }
-    if (patientProfileModel?.body?.eRelation == null ||
-        patientProfileModel?.body?.eRelation == "") {
-      ProfileScreen.relationmodel = null;
-    }
-    if (patientProfileModel?.body?.speciality == null ||
-        patientProfileModel?.body?.speciality == "") {
-      ProfileScreen.specialitymodel = null;
-    }
-    if (patientProfileModel?.body?.eMobile == null ||
-        patientProfileModel?.body?.eMobile == "") {
-      textEditingController[2].text = "";
-    }
-    if (patientProfileModel?.body?.docMobile == null ||
-        patientProfileModel?.body?.docMobile == "") {
-      textEditingController[4].text = "";
-    }
-*/
+
     return showDialog(
         context: context,
         builder: (context) {
@@ -387,63 +384,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
                           ),
                           dob(MyLocalizations.of(context).text("DOB")),
                           SizedBox(
-                            height: 20,
-                          ),
-                          /*Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 0, right: 5, bottom: 0),
-                                  child: Text(
-                                    MyLocalizations.of(context)
-                                        .text("BLOODGROUP"),
-                                    textAlign: TextAlign.left,
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 13,
-                                        fontFamily: "",
-                                        fontWeight: FontWeight.w400),
-                                  ),
-                                ),
-                                DropDown.networkDropdownlabler1(
-                                    "Blood Group",
-                                    ApiFactory.BLOODGROUP_API,
-                                    "bloodgroup", (KeyvalueModel model) {
-                                  setState(() {
-                                    ProfileScreen.bloodgroupmodel = model;
-                                    patientProfileModel.body.bloodGroupId =
-                                        model.key;
-                                    patientProfileModel.body.bloodGroup =
-                                        model.name;
-                                    // updateProfileModel.bloodGroup = model.key;
-                                  });
-                                }),
-                              ]),*/
-
-
-                          SizedBox(
-                            height: 20,
-                          ),
-                          /*   Divider(height: 2, color: Colors.black),*/
-                          formFieldMobileno(
-                              2,
-                              MyLocalizations.of(context)
-                                  .text("EMERGENCY_CONTACT_NO"),
-                              fnode2,
-                              fnode3),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          formField(
-                              3,
-                              MyLocalizations.of(context)
-                                  .text("FAMILY_DOCTORS"),
-                              fnode3,
-                              fnode4),
-                          SizedBox(
-                            height: 20,
+                            height: 10,
                           ),
                           Column(
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -453,8 +394,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
                                   padding: const EdgeInsets.only(
                                       left: 0, right: 5, bottom: 0),
                                   child: Text(
-                                    MyLocalizations.of(context)
-                                        .text("SPECIALITY"),
+                                   "Gender",
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
                                         color: Colors.black,
@@ -463,37 +403,69 @@ class _DocMyProfileState extends State<DocMyProfile> {
                                         fontWeight: FontWeight.w400),
                                   ),
                                 ),
-                                /*DropDown.networkDropdownlabler1(
-                                    "Speciality",
-                                    ApiFactory.SPECIALITY_API,
-                                    "speciality", (KeyvalueModel model) {
-                                  setState(() {
-                                    ProfileScreen.specialitymodel = model;
+                                gender(),
 
-                                    //updateProfileModel.speciality = model.key;
-                                  });
-                                }),*/
                               ]),
+
                           SizedBox(
-                            height: 20,
+                            height: 10,
                           ),
-                          /*Divider(
-                            height: 2,
-                            color: Colors.black,
-                          ),*/
+                          formFieldEducation(
+                              1,
+                              "Education Name",
+                              fnode1,
+                              fnode2),
+                          SizedBox(
+                            height: 10,
+                          ),
                           formFieldMobileno(
-                              4,
-                              MyLocalizations.of(context).text("DOC_MOBILE"),
+                              2,
+                             "IMA No",
+                              fnode2,
+                              fnode3),
+
+                          SizedBox(
+                            height: 10,
+                          ),
+                          formFieldAadhaaerno(
+                              3,
+                              "Aadhaar No",
+                              fnode3,
+                              fnode4),
+                          SizedBox(
+                            height: 10,
+                          ),
+
+                          formFieldPassPortno(
+                              4,"Passport No",
                               fnode4,
                               fnode5),
                           SizedBox(
-                            height: 20,
+                            height: 10,
                           ),
-                         /* formFieldAddress(
+                          formFieldPassPortno(
                               5,
-                              MyLocalizations.of(context).text("USER_ADDRESS"),
+                              "Voter Card No",
                               fnode5,
-                              null),*/
+                              fnode6),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          formFieldPassPortno(
+                              6,
+                              "Licenece No",
+                              fnode6,
+                              fnode7),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          formFieldPassPortno(
+                              7,"Pan No",
+                              fnode7,
+                              null),
+                          SizedBox(
+                            height: 10,
+                          ),
                         ],
                       ),
                     ),
@@ -516,26 +488,26 @@ class _DocMyProfileState extends State<DocMyProfile> {
               FlatButton(
                 textColor: Theme.of(context).primaryColor,
                 child: Text(MyLocalizations.of(context).text("UPDATE")),
-                //textColor: Colors.grey,
-                /*child: Text(
-                  MyLocalizations.of(context).text("SAVE"),
-                  //style: TextStyle(color: Colors.grey),
-                  style: TextStyle(color: AppData.matruColor),
-                ),*/
+
                 onPressed: () {
                   //AppData.showInSnackBar(context, "click");
                   setState(() {
-                    /*  if (_eMobile.text != "" && _eMobile.text.length != 10) {
-           ScaffoldMessenger.of(context)
-               .showSnackBar(SnackBar(content: Text("My amazing message! O.o")));
-*/
-                    if (textEditingController[0].text == "N/A" ||
+
+                 /*   if (textEditingController[0].text == "N/A" ||
                         textEditingController[0].text == null ||
                         textEditingController[0].text == "") {
-                      //AppData.showInSnackBar(context, "Please enter Emergency Contact No.");
-                      AppData.showInSnackBar(context, "Please enter DOB");
 
-                    } else if (textEditingController[1].text == "N/A" ||
+                      AppData.showInSnackBar(context, "Please enter DOB");*/
+                 bool isAllBlank = true;
+                 textEditingController.forEach((element) {
+          if (element.text != "") isAllBlank = false;
+          });if (isAllBlank) {
+          //AppData.showInSnackBar(context, "Please select Smoking");
+          AppData.showInSnackBar(
+          context, "Please Fill Up Atleast One Field ");
+
+
+          /*} else if (textEditingController[1].text == "N/A" ||
                         textEditingController[1].text == null ||
                         textEditingController[1].text == "") {
                       AppData.showInSnackBar(
@@ -569,10 +541,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
                       AppData.showInSnackBar(
                           context, "Please enter valid Family Doctor Name ");
                       FocusScope.of(context).requestFocus(fnode3);
-                    /*} else if (ProfileScreen.specialitymodel == null ||
-                        ProfileScreen.specialitymodel == "") {
-                      AppData.showInSnackBar(
-                          context, "Please select Speciality");*/
+
                     } else if (textEditingController[4].text == "N/A" ||
                         textEditingController[4].text == null ||
                         textEditingController[4].text == "") {
@@ -594,50 +563,40 @@ class _DocMyProfileState extends State<DocMyProfile> {
                         textEditingController[5].text.length <= 2) {
                       AppData.showInSnackBar(
                           context, "Please enter valid Address");
-                      FocusScope.of(context).requestFocus(fnode5);
+                      FocusScope.of(context).requestFocus(fnode5);*/
                     } else {
-                    /*  updateProfileModel.dob = textEditingController[0].text;
-                      updateProfileModel.bloodGroup =
-                          ProfileScreen.bloodgroupmodel.key;
-                      updateProfileModel.address =
-                          textEditingController[5].text;
+                      updateProfileModel.dctrid = loginResponse.body.user;
+                      updateProfileModel.dob = textEditingController[0].text;
+                      updateProfileModel.gender = DocMyProfile.gendermodel.key;
+                      updateProfileModel.educationid = textEditingController[1].text;
+                      updateProfileModel.imaNo = textEditingController[2].text;
                       //Emergency
-                      updateProfileModel.eName = *//*_eName.text*//*
-                      textEditingController[1].text;
-                      updateProfileModel.eMobile = *//*_eMobile.text*//*
-                      textEditingController[2].text;
-                      updateProfileModel.eRelation =
-                          ProfileScreen.relationmodel.key;
-                      //doctor
-                      updateProfileModel.fDoctor = *//* _fDoctor.text*//*
-                      textEditingController[3].text;
-                      updateProfileModel.speciality =
-                          ProfileScreen.specialitymodel.key;
-                      updateProfileModel.docMobile = *//*_docMobile.text*//*
-                      textEditingController[4].text;
-*/
-                    /*  log("Post json>>>>" +
-                          jsonEncode(updateProfileModel.toJson()));
-*/
-                     /* widget.model.POSTMETHOD_TOKEN(
-                          api: ApiFactory.USER_UPDATEPROFILE,
+                      updateProfileModel.adhaarNo = textEditingController[3].text;
+                      updateProfileModel.passportNo = textEditingController[4].text;
+                      updateProfileModel.votterId = textEditingController[5].text;
+
+                      updateProfileModel.liceneceNo = textEditingController[6].text;
+                      updateProfileModel.panNo = textEditingController[7].text;
+                      log("Post json2>>>>" + jsonEncode(updateProfileModel.toJson()));
+                      log("Post api>>>>" +ApiFactory.UPDATE_DOCTER_PROFILE);
+                      widget.model.POSTMETHOD_TOKEN(
+                          api: ApiFactory.UPDATE_DOCTER_PROFILE,
                           json: updateProfileModel.toJson(),
                           token: widget.model.token,
                           fun: (Map<String, dynamic> map) {
                             Navigator.pop(context);
                             if (map[Const.STATUS] == Const.SUCCESS) {
                               // popup(context, map[Const.MESSAGE]);
-                              //print("Post json>>>>"+jsonEncode(updateProfileModel.toJson()));
+                              print("Post json>>>>"+jsonEncode(updateProfileModel.toJson()));
                               AppData.showInSnackDone(
                                   context, map[Const.MESSAGE]);
 
-                              callApi();
+                              callAPI();
                             } else {
-                              AppData.showInSnackBar(
-                                  context, map[Const.MESSAGE]);
-                              callApi();
+                              AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                              callAPI();
                             }
-                          });*/
+                          });
                     }
                   });
                 },
@@ -646,14 +605,50 @@ class _DocMyProfileState extends State<DocMyProfile> {
           );
         });
   }
+  static String toDate(String date) {
+    if (date != null && date != "") {
+      DateTime formatter = new DateFormat("dd-MM-yyyy").parse(date);
+      DateFormat toNeed = DateFormat("dd/MM/yyyy");
+      final String formatted = toNeed.format(formatter);
+      return formatted;
+    } else {
+      return "";
+    }
+  }
+  Future<Null> _selectDate(BuildContext context) async {
+    final DateTime picked = await showDatePicker(
+        context: context,
+        locale: Locale("en"),
+        initialDate: DateTime.now().subtract(Duration(days: 6570)),
+        firstDate: DateTime(1901, 1),
+        lastDate: DateTime.now()
+            .subtract(Duration(days: 6570))); //18 years is 6570 days
+    if (picked != null && picked != selectedDate)
+      setState(() {
+        selectedDate = picked;
+
+        textEditingController[0].value = TextEditingValue(text: df.format(picked));
+        //updateProfileModel.dob = df.format(picked);
+      });
+  }
+  Widget gender() {
+    return DropDown.staticDropdown4(
+        "Gender", "gender1", genderList,
+            (KeyvalueModel model) {
+          DocMyProfile.gendermodel = model;
+          profileModel1.body.gender = model.key;
+          profileModel1.body.gendername = model.name;
+        });
+  }
+
   Widget dob(String hint) {
     return Padding(
       //padding: const EdgeInsets.symmetric(horizontal: 8),
       padding: const EdgeInsets.symmetric(horizontal: 0),
       child: GestureDetector(
-        /*onTap: () => _selectDate(
+        onTap: () => _selectDate(
           context,
-        ),*/
+        ),
         child: AbsorbPointer(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -715,7 +710,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
                     },
                     decoration: InputDecoration(
                       hintText: //"Last Period Date",
-                      "Appointment Date",
+                      "DOB",
                       border: InputBorder.none,
                       //contentPadding: EdgeInsets.symmetric(vertical: 10),
                       suffixIcon: Icon(
@@ -813,6 +808,185 @@ class _DocMyProfileState extends State<DocMyProfile> {
                 ),
               ],
               maxLength: 10,
+              // Validator.getKeyboardTyp(validateModel.fieldType.toLowerCase()),
+              style: TextStyle(fontSize: 15),
+
+              decoration: InputDecoration(
+                //hintText: hint,
+                  hintStyle: TextStyle(color: Colors.grey, fontSize: 13),
+                  border: InputBorder.none,
+                  counterText: '',
+                  contentPadding:
+                  EdgeInsets.symmetric(vertical: 2, horizontal: 0)),
+              onChanged: (newValue) {},
+              onFieldSubmitted: (value) {
+                AppData.fieldFocusChange(context, currentfn, nextFn);
+              },
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+  Widget formFieldPassPortno(
+      int controller, String hint, FocusNode currentfn, FocusNode nextFn) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 0, right: 5),
+          child: Text(
+            hint,
+            style: TextStyle(
+                color: Colors.black,
+                fontSize: 13,
+                fontFamily: "",
+                fontWeight: FontWeight.w400),
+          ),
+        ),
+        TextFieldContainer(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: TextFormField(
+              controller: textEditingController[controller],
+              textInputAction: TextInputAction.done,
+              keyboardType: TextInputType.text,
+              focusNode: currentfn,
+
+              inputFormatters: [
+                UpperCaseTextFormatter(),
+                WhitelistingTextInputFormatter(RegExp("[a-zA-Z0-9 ]")),
+              ],
+              maxLength: 10,
+              // Validator.getKeyboardTyp(validateModel.fieldType.toLowerCase()),
+              style: TextStyle(fontSize: 15),
+
+              decoration: InputDecoration(
+                //hintText: hint,
+                  hintStyle: TextStyle(color: Colors.grey, fontSize: 13),
+                  border: InputBorder.none,
+                  counterText: '',
+                  contentPadding:
+                  EdgeInsets.symmetric(vertical: 2, horizontal: 0)),
+              onChanged: (newValue) {},
+              onFieldSubmitted: (value) {
+                AppData.fieldFocusChange(context, currentfn, nextFn);
+              },
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+  /*Widget IdNoFieldNew(String hint, bool enb, inputAct, keyType,
+      FocusNode currentfn, FocusNode nextFn, String type, int index) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 13.0, right: 13.0, bottom: 7.0),
+      child: TextFormField(
+        autofocus: false,
+        controller: textEditingController[controller],
+        focusNode: currentfn,
+        textInputAction: inputAct,
+        //inputFormatters: [AppData.filtterInputType(format: "0-9")],
+        inputFormatters: [
+          UpperCaseTextFormatter(),
+          WhitelistingTextInputFormatter(RegExp("[a-zA-Z0-9 ]")),
+        ],
+        decoration: InputDecoration(
+          //prefixIcon: Icon(Icons.insert_drive_file_outlined),
+          floatingLabelBehavior: FloatingLabelBehavior.always,
+          hintText: hint,
+          labelText: hint,
+          alignLabelWithHint: false,
+          //border: ,
+          contentPadding: EdgeInsets.only(left: 10, top: 4, right: 4),
+        ),
+        onSaved: (newValue) {
+          print("onsave");
+        },
+      ),
+    );
+  }*/
+  Widget formFieldEducation(
+      int controller, String hint, FocusNode currentfn, FocusNode nextFn) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 0, right: 5),
+          child: Text(
+            hint,
+            style: TextStyle(
+                color: Colors.black,
+                fontSize: 13,
+                fontFamily: "",
+                fontWeight: FontWeight.w400),
+          ),
+        ),
+        TextFieldContainer(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: TextFormField(
+              controller: textEditingController[controller],
+              textInputAction: TextInputAction.done,
+              keyboardType: TextInputType.text,
+              focusNode: currentfn,
+              inputFormatters: [
+                WhitelistingTextInputFormatter(
+                  RegExp("[a-zA-Z0-9.]"),
+                ),
+              ],
+             //maxLength: 10,
+              // Validator.getKeyboardTyp(validateModel.fieldType.toLowerCase()),
+              style: TextStyle(fontSize: 15),
+
+              decoration: InputDecoration(
+                //hintText: hint,
+                  hintStyle: TextStyle(color: Colors.grey, fontSize: 13),
+                  border: InputBorder.none,
+                  counterText: '',
+                  contentPadding:
+                  EdgeInsets.symmetric(vertical: 2, horizontal: 0)),
+              onChanged: (newValue) {},
+              onFieldSubmitted: (value) {
+                AppData.fieldFocusChange(context, currentfn, nextFn);
+              },
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+  Widget formFieldAadhaaerno(
+      int controller, String hint, FocusNode currentfn, FocusNode nextFn) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 0, right: 5),
+          child: Text(
+            hint,
+            style: TextStyle(
+                color: Colors.black,
+                fontSize: 13,
+                fontFamily: "",
+                fontWeight: FontWeight.w400),
+          ),
+        ),
+        TextFieldContainer(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: TextFormField(
+              controller: textEditingController[controller],
+              textInputAction: TextInputAction.done,
+              keyboardType: TextInputType.number,
+              focusNode: currentfn,
+              inputFormatters: [
+                WhitelistingTextInputFormatter(
+                  RegExp("[0-9]"),
+                ),
+              ],
+              maxLength: 12,
               // Validator.getKeyboardTyp(validateModel.fieldType.toLowerCase()),
               style: TextStyle(fontSize: 15),
 
