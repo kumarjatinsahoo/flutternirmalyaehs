@@ -68,8 +68,16 @@ class Body {
   String specialityId;
   String bloodGroupId;
   String profileImage;
-
-
+  String maritialstatus;
+  String occupation;
+  String qualification;
+  String specialization;
+  String pancardno;
+  String passportno;
+  String adharno;
+  String votercardno;
+  String licenceno;
+  String licenceauthority;
   Body(
       {
         this.id,
@@ -113,7 +121,19 @@ class Body {
         this.eRelationId,
         this.specialityId,
         this.bloodGroupId,
-        this.ageYears});
+        this.ageYears,
+  this.maritialstatus,
+  this.occupation,
+  this. qualification,
+  this. specialization,
+  this .pancardno,
+  this. passportno,
+  this. adharno,
+  this. votercardno,
+  this. licenceno,
+  this. licenceauthority,
+
+      });
 
   Body.fromJson(Map<String, dynamic> json) {
     id = json['eCardNo'];
@@ -142,7 +162,6 @@ class Body {
     enteredBy = json['enteredBy'];
     genderId = json['genderId'];
     eRelationId = json['eRelationId'];
-    specialityId = json['specialityId'];
     bloodGroupId = json['bloodGroupId'];
 
     /*if (json['profileImage'] != null) {
@@ -164,6 +183,17 @@ class Body {
     genderName = json['genderName'];
     dob = json['dob'];
     ageYears = json['ageYears'];
+    maritialstatus = json['maritialstatus'];
+    occupation = json['occupation'];
+    qualification = json['qualification'];
+    specialization = json['specialization'];
+    pancardno = json['pancardno'];
+    passportno = json['passportno'];
+    adharno = json['adharno'];
+    votercardno = json['votercardno'];
+    licenceno = json['licenceno'];
+    licenceauthority = json['licenceauthority'];
+
   }
 
   Map<String, dynamic> toJson() {
@@ -195,6 +225,7 @@ class Body {
     data['eRelationId'] = this.eRelationId;
     data['specialityId'] = this.specialityId;
     data['bloodGroupId'] = this.bloodGroupId;
+
     /*if (this.profileImage != null) {
       //data['profileImage'] = this.profileImage.map((v) => v.toJson()).toList();
     }*/
@@ -208,7 +239,17 @@ class Body {
     data['stateName'] = this.stateName;
     data['genderName'] = this.genderName;
     data['dob'] = this.dob;
-    data['ageYears'] = this.ageYears;
+    data['maritialstatus'] = this.maritialstatus;
+    data['occupation'] = this.occupation;
+    data['qualification'] = this.qualification;
+    data['specialization'] = this.specialization;
+    data['pancardno'] = this.pancardno;
+    data['passportno'] = this.passportno;
+    data['adharno'] = this.adharno;
+    data['passportno'] = this.passportno;
+    data['votercardno'] = this.votercardno;
+    data['licenceno'] = this.licenceno;
+    data['licenceauthority'] = this.licenceauthority;
     return data;
   }
 }

@@ -840,9 +840,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       Expanded(
                         flex: 1,
                         child: Text(
-                          (patientProfileModel?.body?.address ?? "N/A") +
-                              " " +
-                              (patientProfileModel?.body?.pAddress ?? "N/A"),
+                          (patientProfileModel?.body?.occupation ?? "N/A"),
                           style: TextStyle(fontSize: 14
                               //fontWeight: FontWeight.w500,
                               // color: AppData.kPrimaryColor,
@@ -873,7 +871,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         width: 120,
                         child: Text(
                           /*'Confirmed'*/
-                          "Education",
+                          "Qualification",
                           style: TextStyle(
                             fontWeight: FontWeight.w600,
                             fontSize: 15,
@@ -884,9 +882,302 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       Expanded(
                         flex: 1,
                         child: Text(
-                          (patientProfileModel?.body?.address ?? "N/A") +
-                              " " +
-                              (patientProfileModel?.body?.pAddress ?? "N/A"),
+                          (patientProfileModel?.body?.qualification ?? "N/A"),
+                          style: TextStyle(fontSize: 14
+                            //fontWeight: FontWeight.w500,
+                            // color: AppData.kPrimaryColor,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: Divider(
+                    color: AppData.lightgreyBorder,
+                    height: 6,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Icon(
+                        Icons.book,
+                        size: 20,
+                      ),
+                      SizedBox(width: 10),
+                      Container(
+                        width: 120,
+                        child: Text(
+                          /*'Confirmed'*/
+                          "Specilazation",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 15,
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 10),
+                      Expanded(
+                        flex: 1,
+                        child: Text(
+                          (patientProfileModel?.body?.specialization ?? "N/A"),
+                          style: TextStyle(fontSize: 14
+                            //fontWeight: FontWeight.w500,
+                            // color: AppData.kPrimaryColor,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: Divider(
+                    color: AppData.lightgreyBorder,
+                    height: 6,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Icon(
+                        Icons.book,
+                        size: 20,
+                      ),
+                      SizedBox(width: 10),
+                      Container(
+                        width: 120,
+                        child: Text(
+                          /*'Confirmed'*/
+                          "PAN Card No",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 15,
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 10),
+                      Expanded(
+                        flex: 1,
+                        child: Text(
+                          (patientProfileModel?.body?.pancardno ?? "N/A")
+                          ,
+                          style: TextStyle(fontSize: 14
+                            //fontWeight: FontWeight.w500,
+                            // color: AppData.kPrimaryColor,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: Divider(
+                    color: AppData.lightgreyBorder,
+                    height: 6,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Icon(
+                        Icons.book,
+                        size: 20,
+                      ),
+                      SizedBox(width: 10),
+                      Container(
+                        width: 120,
+                        child: Text(
+                          /*'Confirmed'*/
+                          "Passport No",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 15,
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 10),
+                      Expanded(
+                        flex: 1,
+                        child: Text(
+                          (patientProfileModel?.body?.passportno ?? "N/A"),
+                          style: TextStyle(fontSize: 14
+                            //fontWeight: FontWeight.w500,
+                            // color: AppData.kPrimaryColor,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: Divider(
+                    color: AppData.lightgreyBorder,
+                    height: 6,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Icon(
+                        Icons.book,
+                        size: 20,
+                      ),
+                      SizedBox(width: 10),
+                      Container(
+                        width: 120,
+                        child: Text(
+                          /*'Confirmed'*/
+                          "Aadhaar No",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 15,
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 10),
+                      Expanded(
+                        flex: 1,
+                        child: Text(
+                          (patientProfileModel?.body?.adharno ?? "N/A"),
+                        style: TextStyle(fontSize: 14
+                            //fontWeight: FontWeight.w500,
+                            // color: AppData.kPrimaryColor,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: Divider(
+                    color: AppData.lightgreyBorder,
+                    height: 6,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Icon(
+                        Icons.book,
+                        size: 20,
+                      ),
+                      SizedBox(width: 10),
+                      Container(
+                        width: 120,
+                        child: Text(
+                          /*'Confirmed'*/
+                          "Voter Card No",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 15,
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 10),
+                      Expanded(
+                        flex: 1,
+                        child: Text(
+                          (patientProfileModel?.body?.votercardno ?? "N/A"),
+                          style: TextStyle(fontSize: 14
+                            //fontWeight: FontWeight.w500,
+                            // color: AppData.kPrimaryColor,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: Divider(
+                    color: AppData.lightgreyBorder,
+                    height: 6,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Icon(
+                        Icons.book,
+                        size: 20,
+                      ),
+                      SizedBox(width: 10),
+                      Container(
+                        width: 120,
+                        child: Text(
+                          /*'Confirmed'*/
+                          "License No ",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 15,
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 10),
+                      Expanded(
+                        flex: 1,
+                        child: Text(
+                          (patientProfileModel?.body?.licenceno ?? "N/A"),
+                          style: TextStyle(fontSize: 14
+                            //fontWeight: FontWeight.w500,
+                            // color: AppData.kPrimaryColor,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: Divider(
+                    color: AppData.lightgreyBorder,
+                    height: 6,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Icon(
+                        Icons.book,
+                        size: 20,
+                      ),
+                      SizedBox(width: 10),
+                      Container(
+                        width: 120,
+                        child: Text(
+                          /*'Confirmed'*/
+                          "License Authority ",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 15,
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 10),
+                      Expanded(
+                        flex: 1,
+                        child: Text(
+                          (patientProfileModel?.body?.licenceauthority ?? "N/A"),
                           style: TextStyle(fontSize: 14
                             //fontWeight: FontWeight.w500,
                             // color: AppData.kPrimaryColor,
