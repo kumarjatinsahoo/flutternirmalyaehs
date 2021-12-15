@@ -254,6 +254,13 @@ class _DocMyProfileState extends State<DocMyProfile> {
                                             profileModel1.body.gendername ?? "N/A"),
                                       ),
                                       ListTile(
+                                        leading: Icon(Icons.call),
+                                        title: Text("Mobile No.".toUpperCase()),
+                                        //subtitle: Text("NIRMALYA"),
+                                        subtitle: Text(profileModel1.body.organization ??
+                                            "N/A"),
+                                      ),
+                                      ListTile(
                                         leading: Icon(Icons.book),
                                         title: Text(MyLocalizations.of(context).text("EDUCATION").toUpperCase(),
                                         ),
@@ -272,6 +279,13 @@ class _DocMyProfileState extends State<DocMyProfile> {
                                       ListTile(
                                         leading: Icon(Icons.home_work_sharp),
                                         title: Text(MyLocalizations.of(context).text("ORGANIZATION").toUpperCase()),
+                                        //subtitle: Text("NIRMALYA"),
+                                        subtitle: Text(profileModel1.body.organization ??
+                                            "N/A"),
+                                      ),
+                                      ListTile(
+                                        leading: Icon(Icons.call),
+                                        title: Text("Mobile No.".toUpperCase()),
                                         //subtitle: Text("NIRMALYA"),
                                         subtitle: Text(profileModel1.body.organization ??
                                             "N/A"),
