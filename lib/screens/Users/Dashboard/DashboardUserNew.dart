@@ -87,11 +87,18 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
     "assets/images/thumb.jpg",
     "assets/images/tmc.png"
   ];*/
-  List<String> imageSliders = [
+  /*List<String> imageSliders = [
     // "assets/intro/pm1.jpeg",
 
     "assets/images/uk_two.jpeg",
     "assets/images/uk_one.jpg",
+  ];*/
+
+  List<String> imageSliders = [
+    // "assets/intro/pm1.jpeg",
+
+    "assets/intro/mah1.jpeg",
+    "assets/intro/mah2.png",
   ];
 
   SharedPref sharedPref = SharedPref();
@@ -773,11 +780,13 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                               /*AppData.launchURL(
                                   "https://www.youtube.com/watch?v=QYcKscyUvuY");*/
                               // AppData.launchURL("https://www.youtube.com/watch?v=CmPGUBJZqlA");
-                              AppData.launchURL("https://www.youtube.com/watch?v=cXU3FTZ4UzU");
+                              // AppData.launchURL("https://www.youtube.com/watch?v=cXU3FTZ4UzU");
+                              // AppData.launchURL("https://www.youtube.com/watch?v=dPTSG6GZEJw");
+                              AppData.launchURL("https://www.youtube.com/watch?v=O8lZfZ1CTyA");
                               break;
                             case 1:
                               // AppData.launchURL("https://www.youtube.com/embed/-sTLaWKiklM&vs");
-                              AppData.launchURL("https://www.youtube.com/watch?v=8RXHYZczFBw");
+                              AppData.launchURL("https://www.youtube.com/watch?v=dPTSG6GZEJw");
                               break;
                             case 4:
                               AppData.launchURL(

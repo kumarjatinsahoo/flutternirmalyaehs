@@ -471,7 +471,7 @@ class _PinViewState extends State<PinView> with SingleTickerProviderStateMixin {
                             FirebaseMessaging.instance.subscribeToTopic(widget.loginData.body.userMobile);
                             if(widget.loginData.body.roles[0] == "8".toLowerCase()) {
                             Navigator.of(context).pushNamedAndRemoveUntil(
-                            '/patientDashboard', (Route<dynamic> route) => false);
+                            '/labDash', (Route<dynamic> route) => false);
                             } else if (widget.loginData.body.roles[0] == "1".toLowerCase()) {
                             Navigator.of(context).pushNamedAndRemoveUntil(
                                 '/dashboard', (Route<dynamic> route) => false);
