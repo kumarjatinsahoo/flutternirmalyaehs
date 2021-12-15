@@ -1,9 +1,14 @@
 import 'dart:convert';
 import 'dart:developer';
+// import 'dart:html';
+import 'dart:typed_data';
 
 import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import 'dart:ui' as ui;
+import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/KeyvalueModel.dart';
@@ -15,10 +20,13 @@ import 'package:user/providers/DropDown.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/providers/text_field_container.dart';
+import 'package:flutter/rendering.dart';
+
 
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/models/PatientListModel.dart';
 import 'package:user/widgets/TextFormatter.dart';
+import 'package:user/widgets/signature.dart';
 
 class DocMyProfile extends StatefulWidget {
   MainModel model;
@@ -59,6 +67,17 @@ class _DocMyProfileState extends State<DocMyProfile> {
   final df = new DateFormat('dd/MM/yyyy');
   DateTime selectedDate = DateTime.now();
   UpdateDocProfileModel updateProfileModel = UpdateDocProfileModel();
+
+  bool selectGallery = false;
+
+  var image;
+  var pngBytes;
+  //File _imageSign;
+
+  final _sign = GlobalKey<Signature1State>();
+
+  String signImg, signExt, signBase64;
+
   @override
   void initState() {
     super.initState();
@@ -67,6 +86,18 @@ class _DocMyProfileState extends State<DocMyProfile> {
     //model = widget.model.model;
   }
 
+  static final List colors = [
+  Colors.black,
+  Colors.purple,
+  Colors.green,
+  ];
+  static final List lineWidths = [3.0, 5.0, 8.0];
+  // File imageFile;
+  int selectedLine = 0;
+  Color selectedColor = colors[0];
+
+  int curFrame = 0;
+  bool isClear = false;
   callAPI() {
     widget.model.GETMETHODCALL_TOKEN_FORM(
         api: ApiFactory.USER_PROFILE + loginResponse.body.user,
@@ -257,8 +288,14 @@ class _DocMyProfileState extends State<DocMyProfile> {
                                         leading: Icon(Icons.call),
                                         title: Text("Mobile No.".toUpperCase()),
                                         //subtitle: Text("NIRMALYA"),
-                                        subtitle: Text(profileModel1.body.organization ??
+                                        subtitle: Text(profileModel1.body.mobile ??
                                             "N/A"),
+                                      ),
+                                      ListTile(
+                                        leading: Icon(Icons.call),
+                                        title: Text("Email.".toUpperCase()),
+                                        //subtitle: Text("NIRMALYA"),
+                                        subtitle: Text(profileModel1.body.email?? "N/A"),
                                       ),
                                       ListTile(
                                         leading: Icon(Icons.book),
@@ -270,8 +307,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
                                       ),
                                       ListTile(
                                         leading: Icon(Icons.work_outlined),
-                                        title: Text(MyLocalizations.of(context).text("SPECIALITY").toUpperCase(),
-                                        ),
+                                        title: Text(MyLocalizations.of(context).text("SPECIALITY").toUpperCase(),),
                                         subtitle: Text(
                                             profileModel1.body.speciality ??
                                                 "N/A"),
@@ -284,10 +320,10 @@ class _DocMyProfileState extends State<DocMyProfile> {
                                             "N/A"),
                                       ),
                                       ListTile(
-                                        leading: Icon(Icons.call),
-                                        title: Text("Mobile No.".toUpperCase()),
+                                        leading: Icon(Icons.work_outlined),
+                                        title: Text("Experience".toUpperCase()),
                                         //subtitle: Text("NIRMALYA"),
-                                        subtitle: Text(profileModel1.body.organization ??
+                                        subtitle: Text(profileModel1.body.experience ??
                                             "N/A"),
                                       ),
                                       ListTile(
@@ -319,6 +355,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
                                             profileModel1.body.votercardno ??
                                                 "N/A"),
                                       ),
+
                                       ListTile(
                                         leading: Icon(Icons.credit_card_rounded),
                                         title: Text(MyLocalizations.of(context).text("LICENCE_NO").toUpperCase(),
@@ -328,15 +365,60 @@ class _DocMyProfileState extends State<DocMyProfile> {
                                                 "N/A"),
                                       ),
                                       ListTile(
+                                        leading: Icon(Icons.credit_card_rounded),
+                                        title: Text("License authority".toUpperCase(),
+                                        ),
+                                        subtitle: Text(
+                                            profileModel1.body.licenseauthority ??
+                                                "N/A"),
+                                      ),
+                                      ListTile(
                                         leading: Icon(Icons.bloodtype_outlined),
-                                        title: Text("blooddgroup".toUpperCase(),
+                                        title: Text("bloodgroup".toUpperCase(),
                                         ),
                                         subtitle: Text(
                                             profileModel1.body.bldGrname?? "N/A"),
                                       ),
+                                      ListTile(
+                                        leading: Icon(Icons.location_on_rounded),
+                                        title: Text("Address".toUpperCase(),
+                                        ),
+                                        subtitle: Text(
+                                            profileModel1.body.address+profileModel1.body.address1?? "N/A"),
+                                      ),
+                                      InkWell(
+                                        onTap: () {
+                                        //  _displayTextInputDialog(context);
+                                          openSignaturePage();
+
+
+                                        },
+                                      child:ListTile(
+
+                                        leading:Icon(Icons.satellite_outlined),
+                                        title:Text("Digital Signature".toUpperCase(),
+                                        ),
+                                        /*subtitle: Text(
+                                            profileModel1.body.address+profileModel1.body.address1?? "N/A"),*/
+                                          trailing:Icon(Icons.edit),
+                                      ),
+                                      ),
                                     ],
                                   ),
+
+                                  Container(
+                                    width: 100,
+                                    height: 70,
+                                    child: pngBytes != null
+                                        ? Image.memory(
+                                      Uint8List.view(pngBytes.buffer),
+                                      height: 80.0,
+                                    )
+                                        : null,
+                                  ),
+
                                 ],
+
                               )
                             ],
                           ),
@@ -619,6 +701,147 @@ class _DocMyProfileState extends State<DocMyProfile> {
           );
         });
   }
+
+
+
+
+
+  openSignaturePage() async {
+    Size size = MediaQuery.of(context).size;
+
+    var color = Colors.black;
+    var strokeWidth = 3.0;
+    print("signature");
+    showGeneralDialog(
+      barrierLabel: "Barrier",
+      barrierDismissible: false,
+      barrierColor: Colors.black.withOpacity(0.5),
+      transitionDuration: Duration(milliseconds: 700),
+      context: context,
+      pageBuilder: (_, __, ___) {
+        return Stack(
+          children: <Widget>[
+            Align(
+              alignment: Alignment.center,
+              child: Container(
+                height: 290,
+                child: SizedBox.expand(
+                    child: Signature1(
+                      color: color,
+                      key: _sign,
+                      strokeWidth: strokeWidth,
+                    )),
+                margin: EdgeInsets.only(bottom: 40, left: 12, right: 12),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+            ),
+            Positioned(
+              top: size.height / 1.65,
+              left: 12,
+              right: 12,
+              child: Material(
+                type: MaterialType.transparency,
+                child: Container(
+                  color: Colors.white,
+                  child: Row(
+                    children: <Widget>[
+                      Expanded(
+                        child: RaisedButton(
+                          child: Text("Clear"),
+                          onPressed: () {
+                            //_sign.currentState.clear();
+                          },
+                        ),
+                      ),
+                      Expanded(
+                        child: RaisedButton(
+                          child: Text("Save"),
+                          onPressed: () {
+                            var img = _sign.currentState.getData();
+                            print(img);
+                            setRenderedImage(context);
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        );
+      },
+      transitionBuilder: (_, anim, __, child) {
+        return SlideTransition(
+          position: Tween(begin: Offset(0, 1), end: Offset(0, 0)).animate(anim),
+          child: child,
+        );
+      },
+    );
+
+  }
+
+  setRenderedImage(BuildContext context) async {
+    ui.Image renderedImage = await _sign.currentState.getData();
+
+    setState(() {
+      image = renderedImage;
+      print(image);
+    });
+
+    showImage(context);
+  }
+
+  Future<Null> showImage(BuildContext context) async {
+    pngBytes = await image.toByteData(format: ui.ImageByteFormat.png);
+    ByteData data = pngBytes;
+    var list = data.buffer.asUint8List();
+
+    signBase64 = base64.encode(list);
+    /*registrationModel.signUploadBase64 = signBase64;
+    registrationModel.signUploadExt = "png";
+*/
+    //log(">>>>" + base);
+    setState(() {
+
+      selectGallery = false;
+    });
+  }
+ /* Future getSignatureImage() async {
+    var image = await ImagePicker.pickImage(source: ImageSource.gallery);
+    var enc = await image.readAsBytes();
+
+    print(
+        "size>>>" + AppData.formatBytes(enc.length, 0).split('')[1].toString());
+    var ext = AppData.formatBytes(enc.length, 0).split(' ')[1];
+    int size = int.parse(AppData.formatBytes(enc.length, 0).split(' ')[0]);
+    int requiredSize = int.parse(AppData.formatBytes(15000, 0).split(' ')[0]);
+
+    if (ext == "KB" && size <= requiredSize) {
+      var decodedImage = await decodeImageFromList(image.readAsBytesSync());
+      print(decodedImage.width);
+      print(decodedImage.height);
+      setState(() {
+        _imageSignature = image;
+        selectGallery = true;
+        pngBytes = null;
+        print('Image Path $_imageSignature');
+      });
+    } else {
+      AppData.showToastMessage(
+          MyLocalizations.of(context).text("SELECT_IMAGE_WITH_MAXIMUM_SIZE"),
+          *//* "Please select image with maximum size 15 KB "*//* Colors.red);
+      return;
+    }
+  }*/
+
+
+
+
   static String toDate(String date) {
     if (date != null && date != "") {
       DateTime formatter = new DateFormat("dd-MM-yyyy").parse(date);
@@ -654,6 +877,9 @@ class _DocMyProfileState extends State<DocMyProfile> {
           profileModel1.body.gendername = model.name;
         });
   }
+
+
+
 
   Widget dob(String hint) {
     return Padding(

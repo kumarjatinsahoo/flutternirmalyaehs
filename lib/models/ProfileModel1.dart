@@ -172,6 +172,7 @@ class Body {
   String bldGrname;
   String licenseauthority;
   String address;
+  String address1;
   String experience;
 
   Body(
@@ -200,6 +201,7 @@ class Body {
         this.bldGrname,
         this.licenseauthority,
         this.address,
+        this.address1,
         this.experience});
 
   Body.fromJson(Map<String, dynamic> json) {
@@ -228,6 +230,7 @@ class Body {
     bldGrname = json['bldGrname'];
     licenseauthority = json['licenseauthority'];
     address = json['address'];
+    address1 = json['address1'];
     experience = json['experience'];
   }
 
@@ -258,6 +261,7 @@ class Body {
     data['bldGrname'] = this.bldGrname;
     data['licenseauthority'] = this.licenseauthority;
     data['address'] = this.address;
+    data['address1'] = this.address1;
     data['experience'] = this.experience;
     return data;
   }
