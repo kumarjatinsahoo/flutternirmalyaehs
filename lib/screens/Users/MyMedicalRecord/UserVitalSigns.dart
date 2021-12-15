@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -27,6 +28,9 @@ class VitalSigns extends StatefulWidget {
 class _VitalSignsState extends State<VitalSigns> {
   int _selectedDestination = -1;
   int count = 0;
+  int height;
+  int weight;
+  int bmi;
   VitalsignsModel vitalsignsModel;
   List<String> strOrders = [
     'My Orders',
@@ -670,6 +674,10 @@ class _VitalSignsState extends State<VitalSigns> {
         ? "N/A"
         : textEditingController[8].text =
             vitalsignsModel.body[0].oxygen.toString();
+  /*  height=(int.parse(textEditingController[0].toString()));
+    weight=(int.parse(textEditingController[1].toString()));
+    bmi=pow(height/weight, 2);
+    print("teeesssstingg"+bmi.toString());*/
     //Nomine
     return AlertDialog(
       contentPadding: EdgeInsets.only(left: 5, right: 5, top: 30),
@@ -707,6 +715,8 @@ class _VitalSignsState extends State<VitalSigns> {
                   SizedBox(
                     height: 5,
                   ),
+                  Text(bmi.toString()),
+
                   formFieldMobile(2, MyLocalizations.of(context).text("BMI")),
                   SizedBox(
                     height: 5,
@@ -790,7 +800,7 @@ class _VitalSignsState extends State<VitalSigns> {
                   },
                   {
                     "key": "1",
-                    "code": textEditingController[3].text,
+                    "code": bmi.toString(),
                     "name": widget.model.user
                   },
                   {
@@ -819,8 +829,8 @@ class _VitalSignsState extends State<VitalSigns> {
                     "name": widget.model.user
                   }
                 ];
-                log("API NAME>>>>" + ApiFactory.UPDATE_VITAL_SIGN);
-                log("TO POST>>>>" + jsonEncode(sendData));
+                //log("API NAME>>>>" + ApiFactory.UPDATE_VITAL_SIGN);
+                //log("TO POST>>>>" + jsonEncode(sendData));
                 MyWidgets.showLoading(context);
                 widget.model.POSTMETHOD_TOKEN(
                   api: ApiFactory.UPDATE_VITAL_SIGN,
@@ -898,9 +908,12 @@ class _VitalSignsState extends State<VitalSigns> {
                   ),
 
                   onFieldSubmitted: (value) {
+
                     // print(error[2]);
                     //error[4] = false;
-                    setState(() {});
+                    setState(() {
+
+                    });
                     // AppData.fieldFocusChange(context, fnode7, fnode8);
                   },
                   onSaved: (value) {
