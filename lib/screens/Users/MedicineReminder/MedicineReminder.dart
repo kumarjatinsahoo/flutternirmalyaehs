@@ -1,6 +1,7 @@
 import 'package:calendar_timeline/calendar_timeline.dart';
 import 'package:date_format/date_format.dart';
 import 'package:device_calendar/device_calendar.dart';
+import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:unicorndial/unicorndial.dart';
 import 'package:user/localization/localizations.dart';
@@ -47,7 +48,7 @@ class _MedicineReminderState extends State<MedicineReminder> {
     // TODO: implement initState
     super.initState();
     // _retrieveCalendars();
-    loginResponse=widget.model.loginResponse1;
+    loginResponse = widget.model.loginResponse1;
     // _retrieveCalendarEvents();
     childButtons.add(UnicornButton(
         hasLabel: true,
@@ -129,18 +130,30 @@ class _MedicineReminderState extends State<MedicineReminder> {
   }
 
   Future _retrieveCalendarEvents() async {
-    if(loginResponse.body.calenderId!=null) {
-      DateTime startDate = DateTime(_selectedDate.year,_selectedDate.month,_selectedDate.day,0,0);
-      DateTime endDate = DateTime(_selectedDate.year,_selectedDate.month,_selectedDate.day,23,59);
-    // DateTime endDate = DateTime.now().add(Duration(days: 30));
-      var calendarEventsResult = await _deviceCalendarPlugin.retrieveEvents(
-          loginResponse.body.calenderId,
-          RetrieveEventsParams(startDate: startDate,endDate:endDate));
-      setState(() {
-        _calendarEvents = calendarEventsResult.data as List<Event>;
-      });
-    }else{
+    try {
+      var permissionsGranted = await _deviceCalendarPlugin.hasPermissions();
+      if (permissionsGranted.isSuccess && !permissionsGranted.data) {
+        permissionsGranted = await _deviceCalendarPlugin.requestPermissions();
+        if (!permissionsGranted.isSuccess || !permissionsGranted.data) {
+          return;
+        }
+      }
 
+      if (loginResponse.body.calenderId != null) {
+        DateTime startDate = DateTime(
+            _selectedDate.year, _selectedDate.month, _selectedDate.day, 0, 0);
+        DateTime endDate = DateTime(
+            _selectedDate.year, _selectedDate.month, _selectedDate.day, 23, 59);
+        // DateTime endDate = DateTime.now().add(Duration(days: 30));
+        var calendarEventsResult = await _deviceCalendarPlugin.retrieveEvents(
+            loginResponse.body.calenderId,
+            RetrieveEventsParams(startDate: startDate, endDate: endDate));
+        setState(() {
+          _calendarEvents = calendarEventsResult.data as List<Event>;
+        });
+      } else {}
+    } on PlatformException catch (e) {
+      print(e);
     }
   }
 
@@ -211,9 +224,9 @@ class _MedicineReminderState extends State<MedicineReminder> {
                     itemBuilder: (c, i) {
                       return ListTile(
                         title: Text(_calendarEvents[i].title),
-                        subtitle: Text(_calendarEvents[i].description??""),
-                        onTap: (){
-                          widget.model.title=_calendars[i].id;
+                        subtitle: Text(_calendarEvents[i].description ?? ""),
+                        onTap: () {
+                          widget.model.title = _calendars[i].id;
                           Navigator.pushNamed(context, '/setreminder');
                         },
                       );
