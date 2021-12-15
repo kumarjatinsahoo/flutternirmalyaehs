@@ -276,9 +276,9 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
         "," +
         doccategory +
         "," +
-        loginResponse1.body.user);
+        widget.model.patientseHealthCard);
     var formData = FormData();
-    formData.fields..add(MapEntry('userid', loginResponse1.body.user))..add(
+    formData.fields..add(MapEntry('userid', widget.model.patientseHealthCard))..add(
         MapEntry(
           'docType',
           doccategory,

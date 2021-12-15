@@ -176,7 +176,10 @@ class _MobileUploadState extends State<MobileUpload> {
                               onTap: (){
                                 widget.model.documentcategories=body.key;
                                // Navigator.pushNamed(context, "/upload");,
-                                Navigator.push(context,MaterialPageRoute(builder: (context)=>UploadDocument(model:widget.model)));
+                               //  widget.model.patientseHealthCard=widget.model.loginResponse1.body.user;
+                                Navigator.push(context,MaterialPageRoute(builder:
+                                    (context)=>UploadDocument(model:widget.model,
+                                    )));
                               },
                               child: Row(
                                 crossAxisAlignment:
