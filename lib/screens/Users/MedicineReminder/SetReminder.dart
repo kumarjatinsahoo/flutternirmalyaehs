@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:developer';
 import 'dart:io';
+
 // import 'package:add_2_calendar/add_2_calendar.dart';
 import 'package:device_calendar/device_calendar.dart' as cal;
 import 'package:device_calendar/device_calendar.dart';
@@ -9,7 +10,11 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:syncfusion_flutter_calendar/calendar.dart';
+import 'package:user/models/LoginResponse1.dart';
+import 'package:user/providers/Const.dart';
 import 'package:user/providers/DropDown.dart';
+import 'package:user/providers/SharedPref.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
 
@@ -21,9 +26,9 @@ import '../../../providers/app_data.dart';
 class SetReminder extends StatefulWidget {
   final MainModel model;
   final String type;
-  static KeyvalueModel districtModel = null;
+  static KeyvalueModel timeDayModel = null;
   static KeyvalueModel blockModel = null;
-  static KeyvalueModel genderModel = null;
+  static KeyvalueModel dosageModel = null;
 
   SetReminder({
     Key key,
@@ -41,8 +46,14 @@ class SetReminderState extends State<SetReminder> {
   final _formKey = GlobalKey<FormState>();
   bool _autovalidate = false;
   DateTime selectedDate = DateTime.now();
+  DateTime selectedStartDate;
+  DateTime selectedEndDate;
   PayMode1 payMode1 = PayMode1.cash;
   TimeOfDay selectedTime = TimeOfDay.now();
+  TimeOfDay selectedStartTime;
+  TimeOfDay selectedEndTime;
+  SharedPref sharedPref = SharedPref();
+  LoginResponse1 loginResponse;
 
   List<TextEditingController> textEditingController = [
     new TextEditingController(),
@@ -54,6 +65,16 @@ class SetReminderState extends State<SetReminder> {
     new TextEditingController(),
     new TextEditingController(),
     new TextEditingController()
+  ];
+
+  List<TextEditingController> timePicker = [
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
   ];
   TextEditingController stdob = TextEditingController();
   TextEditingController endate = TextEditingController();
@@ -114,9 +135,10 @@ class SetReminderState extends State<SetReminder> {
   @override
   void initState() {
     super.initState();
-    SetReminder.districtModel = null;
+    loginResponse = widget.model.loginResponse1;
+    SetReminder.timeDayModel = null;
     SetReminder.blockModel = null;
-    SetReminder.genderModel = null;
+    SetReminder.dosageModel = null;
     textEditingController[0].text = widget.type;
   }
 
@@ -127,7 +149,7 @@ class SetReminderState extends State<SetReminder> {
   }
 
   setReminder({title}) {
-   /* final Event event = Event(
+    /* final Event event = Event(
       title: widget.type,
       description: 'Sanjaya Jena',
       location: 'Home',
@@ -149,23 +171,52 @@ class SetReminderState extends State<SetReminder> {
     Add2Calendar.addEvent2Cal(event);*/
   }
 
-  setReminder1() async {
-    /*Result<String> result = await _deviceCalendarPlugin.createCalendar(
-      'eHealthSystem',
-      calendarColor: AppData.kPrimaryRedColor,
-      localAccountName: (Platform.isAndroid)?'eHealthSystem':'',
-    );
-    log("Calender value"+result.data);*/
-    cal.Event event = cal.Event(
-      "4124D94E-5E3D-433B-B5EB-95FDA035D853",
-    );
+  setReminder1(descrption) async {
+    String calenderId;
+    if (loginResponse.body.calenderId == null) {
+      Result<String> result = await _deviceCalendarPlugin.createCalendar(
+        'eHealthSystem',
+        calendarColor: AppData.kPrimaryRedColor,
+        localAccountName: (Platform.isAndroid) ? 'eHealthSystem' : '',
+      );
+      log("Calender value" + result.data);
+      loginResponse.body.calenderId = result.data.toString();
+      sharedPref.save(Const.LOGIN_DATA, loginResponse);
+      calenderId = result.data;
+    } else {
+      calenderId = loginResponse.body.calenderId;
+    }
 
-    event.start=DateTime.now().add(Duration(minutes: 15));
-    event.end=DateTime.now().add(Duration(minutes: 35));
-    event.title="By Sanjaya";
-    event.description="By Description";
-    event.location="Bhubaneswar,Odisha";
-    event.url=Uri(path: "https://pub.dev/packages/device_calendar/versions");
+    cal.Event event = cal.Event(
+      calenderId,
+    );
+    RecurrenceRule recurrenceRule =
+        cal.RecurrenceRule(RecurrenceFrequency.Daily);
+    //recurrenceRule.
+    // event.start=DateTime.now().add(Duration(minutes: 15));
+    event.start = DateTime(
+        selectedStartDate.year,
+        selectedStartDate.month,
+        selectedStartDate.day,
+        selectedStartTime.hour,
+        selectedStartTime.minute);
+    event.end = DateTime(selectedStartDate.year, selectedStartDate.month,
+        selectedStartDate.day, selectedEndTime.hour, selectedEndTime.minute);
+    // event.end=DateTime.now().add(Duration(minutes: 35));
+    event.title = widget.type;
+    event.description = descrption +
+        " " +
+        SetReminder.dosageModel.name +
+        "dosage " +
+        textEditingController[5].text;
+    event.location = "Home";
+    event.allDay = false;
+    // event.recurrenceRule=recurrenceRule;
+    //event.n="Home";
+    // event.url=Uri(path: "https://pub.dev/packages/device_calendar/versions");
+    // event.recurrenceRule=RecurrenceRange.noEndDate;
+    event.reminders = [cal.Reminder(minutes: 20)];
+    // event.
 
     var fightString = new StringBuffer('');
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -177,11 +228,22 @@ class SetReminderState extends State<SetReminder> {
       AppData.showInSnackDone(context, "Added done");
       // prefs.setString(mmaEvent.getPrefKey(), createEventResult.data);
       // fightString.write(mmaEvent.eventName + '\n');
-    }else{
+    } else {
       AppData.showInSnackBar(context, "Something went wrong");
     }
-
   }
+
+  /* Future _retrieveCalendarEvents() async {
+    final startDate = DateTime.now().add(Duration(days: -30));
+    final endDate = DateTime.now().add(Duration(days: 30));
+    var calendarEventsResult = await _deviceCalendarPlugin.retrieveEvents(
+        _calendar.id,
+        RetrieveEventsParams(startDate: startDate, endDate: endDate));
+    setState(() {
+      _calendarEvents = calendarEventsResult.data as List<Event>;
+      _isLoading = false;
+    });
+  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -193,7 +255,7 @@ class SetReminderState extends State<SetReminder> {
         centerTitle: true,
         title: Text("Set Reminder"),
       ),
-      body: Container(
+      body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
             Padding(
@@ -232,7 +294,7 @@ class SetReminderState extends State<SetReminder> {
               child: DropDown.staticDropdown2(
                   "Dosager", "genderSignup", dosageList, (KeyvalueModel data) {
                 setState(() {
-                  SetReminder.genderModel = data;
+                  SetReminder.dosageModel = data;
                 });
               }),
             ),
@@ -255,12 +317,12 @@ class SetReminderState extends State<SetReminder> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 18),
               child: DropDown.staticDropdown2(
-                  'How Many Times a Day  ',
+                  'How Many Times a Day',
                   // MyLocalizations.of(context).text("SELECT_GENDER"),
                   "genderSignup",
                   districtList, (KeyvalueModel data) {
                 setState(() {
-                  SetReminder.districtModel = data;
+                  SetReminder.timeDayModel = data;
                 });
               }),
             ),
@@ -303,21 +365,45 @@ class SetReminderState extends State<SetReminder> {
                   ],
                 )),
             SizedBox(height: 10),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 18),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  'Timings',
-                  style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black,
-                      fontSize: 15),
-                ),
-              ),
-            ),
-            SizedBox(height: 10),
-            Padding(
+
+            (SetReminder.timeDayModel != null)
+                ? Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 18),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          'Timings',
+                          style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black,
+                              fontSize: 15),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 18),
+                      child: GridView.builder(
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+                          itemCount: int.tryParse(SetReminder.timeDayModel.name),
+                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 3,
+                              crossAxisSpacing: 0.0,
+                              // childAspectRatio: 2.8,
+                              mainAxisExtent: 50,
+                              mainAxisSpacing: 15.0),
+                          itemBuilder: (BuildContext context, int i) {
+                            return dynamicTiming(i);
+                          },
+                        ),
+                    ),
+                  ],
+                )
+                : Container(),
+            /* Padding(
               padding: const EdgeInsets.only(left: 18.0, right: 10),
               child: Row(
                 children: [
@@ -364,7 +450,7 @@ class SetReminderState extends State<SetReminder> {
                   ),
                 ],
               ),
-            ),
+            ),*/
             SizedBox(height: 5),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 18),
@@ -386,6 +472,7 @@ class SetReminderState extends State<SetReminder> {
                 padding: const EdgeInsets.symmetric(horizontal: 18),
                 child: Row(
                   children: const <Widget>[
+                    SizedBox(width: 8),
                     Expanded(
                       child: Text(
                         'Start Date :',
@@ -395,7 +482,8 @@ class SetReminderState extends State<SetReminder> {
                             fontSize: 15),
                       ),
                     ),
-                    SizedBox(width: 75),
+                    // SizedBox(width: 75),
+                    SizedBox(width: 16),
                     Expanded(
                       child: Text(
                         'End Date :',
@@ -422,7 +510,7 @@ class SetReminderState extends State<SetReminder> {
               padding: const EdgeInsets.symmetric(horizontal: 18),
               child: TextFormField(
                 decoration: InputDecoration(
-                    hintText: "Add Docter Instruction",
+                    hintText: "Add Doctor Instruction",
                     hintStyle: TextStyle(color: Colors.grey)),
                 textInputAction: TextInputAction.next,
                 controller: textEditingController[5],
@@ -536,24 +624,24 @@ class SetReminderState extends State<SetReminder> {
 
   validate() async {
     //setReminder();
-    setReminder1();
-    /*_formKey.currentState.validate();
+    //setReminder1(textEditingController[1].text);
+    // _formKey.currentState.validate();
     if (textEditingController[0].text == "" ||
         textEditingController[0].text == null) {
-      AppData.showInSnackBar(context, "Please enter Typr");
+      AppData.showInSnackBar(context, "Please enter type");
     } else if (textEditingController[1].text == "" ||
         textEditingController[1].text == null) {
-      AppData.showInSnackBar(context, "Please enter Medicine Name");
-    } else if (SetReminder.genderModel == null) {
+      AppData.showInSnackBar(context, "Please enter title");
+    } else if (SetReminder.dosageModel == null) {
       AppData.showInSnackBar(context, "Please Select Dosage");
-    } else if (SetReminder.districtModel == null) {
+    } else if (SetReminder.timeDayModel == null) {
       AppData.showInSnackBar(context, "Please Select How Many Times");
     } else if (textEditingController[2].text == "" ||
         textEditingController[2].text == null) {
-      AppData.showInSnackBar(context, "Please enter Time 1");
+      AppData.showInSnackBar(context, "Please enter start time");
     } else if (textEditingController[3].text == "" ||
         textEditingController[3].text == null) {
-      AppData.showInSnackBar(context, "Please enter Time 2");
+      AppData.showInSnackBar(context, "Please enter end time");
     } else if (textEditingController[4].text == "" ||
         textEditingController[4].text == null) {
       AppData.showInSnackBar(context, "Please enter Time 3");
@@ -566,8 +654,44 @@ class SetReminderState extends State<SetReminder> {
       AppData.showInSnackBar(context, "Please enter Doctor Instruction");
     } else {
       // _formKey.currentState.save();
+      setReminder1(
+        textEditingController[1].text,
+      );
+    }
+  }
 
-    }*/
+  Widget dynamicTiming(v) {
+    return Padding(
+      //padding: const EdgeInsets.symmetric(horizontal: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 8),
+      child: GestureDetector(
+        onTap: () => _selectDynamicTime(context, v),
+        child: AbsorbPointer(
+          child: Container(
+            // margin: EdgeInsets.symmetric(vertical: 10),
+            height: 50,
+            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 0),
+            // width: size.width * 0.8,
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(5),
+                border: Border.all(color: Colors.black, width: 0.3)),
+            child: TextFormField(
+              //focusNode: fnode4,
+              enabled: false,
+              controller: timePicker[v],
+              //textAlignVertical: TextAlignVertical.center,
+              keyboardType: TextInputType.datetime,
+              textAlign: TextAlign.left,
+              decoration: InputDecoration(
+                hintText: "Time",
+                border: InputBorder.none,
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
   }
 
   Widget stdate() {
@@ -644,6 +768,7 @@ class SetReminderState extends State<SetReminder> {
     );
   }
 
+
   Future<Null> _selectDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
       context: context,
@@ -659,6 +784,7 @@ class SetReminderState extends State<SetReminder> {
     if (picked != null && picked != selectedDate)
       setState(() {
         selectedDate = picked;
+        selectedStartDate = picked;
         error[2] = false;
         stdob.value = TextEditingValue(text: df.format(picked));
       });
@@ -679,6 +805,7 @@ class SetReminderState extends State<SetReminder> {
     if (picked != null && picked != selectedDate)
       setState(() {
         selectedDate = picked;
+        selectedEndDate = picked;
         error[2] = false;
         endate.value = TextEditingValue(text: df.format(picked));
       });
@@ -768,7 +895,7 @@ class SetReminderState extends State<SetReminder> {
     final TimeOfDay timeOfDay = await showTimePicker(
         context: context,
         initialTime: selectedTime,
-        initialEntryMode: TimePickerEntryMode.input,
+        initialEntryMode: TimePickerEntryMode.dial,
         builder: (BuildContext context, Widget child) {
           return MediaQuery(
             data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
@@ -778,7 +905,28 @@ class SetReminderState extends State<SetReminder> {
     if (timeOfDay != null && timeOfDay != selectedTime) {
       setState(() {
         selectedTime = timeOfDay;
+        selectedStartTime = timeOfDay;
         stime.text = formatTimeOfDay(timeOfDay);
+      });
+    }
+  }
+
+  _selectDynamicTime(BuildContext context,v) async {
+    final TimeOfDay timeOfDay = await showTimePicker(
+        context: context,
+        initialTime: selectedTime,
+        initialEntryMode: TimePickerEntryMode.dial,
+        builder: (BuildContext context, Widget child) {
+          return MediaQuery(
+            data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
+            child: child,
+          );
+        });
+    if (timeOfDay != null && timeOfDay != selectedTime) {
+      setState(() {
+        // selectedTime = timeOfDay;
+        // selectedStartTime = timeOfDay;
+        timePicker[v].text = formatTimeOfDay(timeOfDay);
       });
     }
   }
@@ -797,6 +945,7 @@ class SetReminderState extends State<SetReminder> {
     if (timeOfDay != null && timeOfDay != selectedTime) {
       setState(() {
         selectedTime = timeOfDay;
+        selectedEndTime = timeOfDay;
         endtime.text = formatTimeOfDay(timeOfDay);
       });
     }

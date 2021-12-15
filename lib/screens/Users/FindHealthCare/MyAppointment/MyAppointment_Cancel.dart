@@ -96,7 +96,7 @@ class _MyAppointmentCancleState extends State<MyAppointmentCancle> {
               // appointModel = lab.LabBookModel.fromJson(map);
             } else {
               isdata = false;
-
+              appointmentlistModel=null;
               // isDataNotAvail = true;
               //  AppData.showInSnackBar(context, msg);
             }
