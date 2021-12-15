@@ -636,22 +636,16 @@ class SetReminderState extends State<SetReminder> {
       AppData.showInSnackBar(context, "Please Select Dosage");
     } else if (SetReminder.timeDayModel == null) {
       AppData.showInSnackBar(context, "Please Select How Many Times");
-    } else if (textEditingController[2].text == "" ||
-        textEditingController[2].text == null) {
+    } else if (stime.text == "" ||
+        stime.text == null) {
       AppData.showInSnackBar(context, "Please enter start time");
-    } else if (textEditingController[3].text == "" ||
-        textEditingController[3].text == null) {
+    } else if (endtime.text == "" ||
+        endtime.text == null) {
       AppData.showInSnackBar(context, "Please enter end time");
-    } else if (textEditingController[4].text == "" ||
-        textEditingController[4].text == null) {
-      AppData.showInSnackBar(context, "Please enter Time 3");
     } else if (stdob.text == "" || stdob.text == null) {
       AppData.showInSnackBar(context, "Please enter Start Date");
     } else if (endate.text == "" || endate.text == null) {
       AppData.showInSnackBar(context, "Please enter End Date");
-    } else if (textEditingController[5].text == "" ||
-        textEditingController[5].text == null) {
-      AppData.showInSnackBar(context, "Please enter Doctor Instruction");
     } else {
       // _formKey.currentState.save();
       setReminder1(
