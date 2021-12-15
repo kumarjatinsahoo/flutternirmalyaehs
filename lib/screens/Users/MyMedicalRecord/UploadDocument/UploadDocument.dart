@@ -21,7 +21,7 @@ class UploadDocument extends StatefulWidget {
   final MainModel model;
   static KeyvalueModel admequipmentmodel = null;
 
-  const UploadDocument({Key key, this.model}) : super(key: key);
+  const UploadDocument({Key key, this.model,}) : super(key: key);
 
   @override
   _UploadDocumentState createState() => _UploadDocumentState();
@@ -72,6 +72,7 @@ class _UploadDocumentState extends State<UploadDocument> {
     super.initState();
     loginResponse1 = widget.model.loginResponse1;
     eHealthCardno = widget.model.patientseHealthCard;
+    //loginResponse1=widget.eHealthCardno;
 
     doccategory = widget.model.documentcategories;
     callAPI(currentMax);
@@ -86,7 +87,7 @@ class _UploadDocumentState extends State<UploadDocument> {
   callAPI(int i) {
     widget.model.GETMETHODCALL_TOKEN(
         api: ApiFactory.UPLOAD_DOCUMENT +
-            loginResponse1.body.user +
+            widget.model.patientseHealthCard +
             "&typeid=" +
             doccategory +
             "&page=" +

@@ -356,7 +356,7 @@ class DonorApplicationState extends State<DonorApplication> {
 
             //textEditingController[3].text=patientProfileModel.body.ageYears;
             textEditingController[4].text = patientProfileModel.body.mobile;
-            textEditingController[5].text = patientProfileModel.body.email;
+           // textEditingController[5].text = patientProfileModel.body.email;
             textEditingController[6].text = patientProfileModel.body.address +
                 " , " +
                 patientProfileModel.body.pAddress;
