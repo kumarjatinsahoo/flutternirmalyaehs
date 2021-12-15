@@ -200,14 +200,14 @@ class SetReminderState extends State<SetReminder> {
         selectedStartDate.day,
         selectedStartTime.hour,
         selectedStartTime.minute);
-    event.end = DateTime(selectedStartDate.year, selectedStartDate.month,
-        selectedStartDate.day, selectedEndTime.hour, selectedEndTime.minute);
+    event.end = DateTime(selectedEndDate.year, selectedEndDate.month,
+        selectedEndDate.day, selectedEndTime.hour, selectedEndTime.minute);
     // event.end=DateTime.now().add(Duration(minutes: 35));
     event.title = widget.type;
     event.description = descrption +
         " " +
         SetReminder.dosageModel.name +
-        "dosage " +
+        " dosage " +
         textEditingController[5].text;
     event.location = "Home";
     event.allDay = false;
@@ -636,24 +636,19 @@ class SetReminderState extends State<SetReminder> {
       AppData.showInSnackBar(context, "Please Select Dosage");
     } else if (SetReminder.timeDayModel == null) {
       AppData.showInSnackBar(context, "Please Select How Many Times");
-    } else if (textEditingController[2].text == "" ||
-        textEditingController[2].text == null) {
+    } else if (stime.text == "" ||
+        stime.text == null) {
       AppData.showInSnackBar(context, "Please enter start time");
-    } else if (textEditingController[3].text == "" ||
-        textEditingController[3].text == null) {
+    } else if (endtime.text == "" ||
+        endtime.text == null) {
       AppData.showInSnackBar(context, "Please enter end time");
-    } else if (textEditingController[4].text == "" ||
-        textEditingController[4].text == null) {
-      AppData.showInSnackBar(context, "Please enter Time 3");
     } else if (stdob.text == "" || stdob.text == null) {
       AppData.showInSnackBar(context, "Please enter Start Date");
     } else if (endate.text == "" || endate.text == null) {
       AppData.showInSnackBar(context, "Please enter End Date");
-    } else if (textEditingController[5].text == "" ||
-        textEditingController[5].text == null) {
-      AppData.showInSnackBar(context, "Please enter Doctor Instruction");
     } else {
       // _formKey.currentState.save();
+      Navigator.pop(context);
       setReminder1(
         textEditingController[1].text,
       );
