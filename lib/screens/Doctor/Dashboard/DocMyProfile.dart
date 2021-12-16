@@ -560,7 +560,6 @@ class _DocMyProfileState extends State<DocMyProfile> {
                           SizedBox(
                             height: 10,
                           ),
-
                           formFieldPassPortno(
                               4,"Passport No",
                               fnode4,
