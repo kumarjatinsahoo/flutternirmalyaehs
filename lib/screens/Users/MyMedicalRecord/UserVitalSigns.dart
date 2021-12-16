@@ -322,7 +322,7 @@ class _VitalSignsState extends State<VitalSigns> {
                                             vitalsignsModel.body[0].tempfar
                                                 .toString(),
                                     subtitle: MyLocalizations.of(context)
-                                        .text("TEMPERATURE"),
+                                        .text("TEMPERATUREE"),
                                     fun: () {
                                       /*Navigator.pushNamed(
                                       context, "/patientRegistration");*/
@@ -591,7 +591,9 @@ class _VitalSignsState extends State<VitalSigns> {
                           children: [
 
                             Container(
-                              */ /* count % 2 == 1 ??*/ /*
+                              */
+        /* count % 2 == 1 ??*/
+        /*
                                 color:choices[index].color,
                                 padding: EdgeInsets.all(3),
                                 child: Image.asset(choices[index].icon,height: 40,)
@@ -674,11 +676,11 @@ class _VitalSignsState extends State<VitalSigns> {
         ? "N/A"
         : textEditingController[8].text =
             vitalsignsModel.body[0].oxygen.toString();
-  /*  height=(int.parse(textEditingController[0].toString()));
-    weight=(int.parse(textEditingController[1].toString()));
-    bmi=pow(height/weight, 2);
-    print("teeesssstingg"+bmi.toString());*/
-    //Nomine
+    vitalsignsModel.body[0].tempfar.toString() == "0"
+        ? "N/A"
+        : textEditingController[9].text =
+            vitalsignsModel.body[0].tempfar.toString();
+
     return AlertDialog(
       contentPadding: EdgeInsets.only(left: 5, right: 5, top: 30),
       insetPadding: EdgeInsets.only(left: 5, right: 5, top: 30),
@@ -715,14 +717,19 @@ class _VitalSignsState extends State<VitalSigns> {
                   SizedBox(
                     height: 5,
                   ),
-                  Text(bmi.toString()),
-
-                  formFieldMobile(2, MyLocalizations.of(context).text("BMI")),
-                  SizedBox(
-                    height: 5,
+                  Row(
+                    children: [
+                      Expanded(
+                        child: formFieldMobile(
+                            3, MyLocalizations.of(context).text("TEMPERATURE")),
+                      ),
+                      Expanded(
+                        child: formFieldMobile(9,
+                            MyLocalizations.of(context).text("TEMPERATURE1")),
+                      ),
+                    ],
                   ),
-                  formFieldMobile(
-                      3, MyLocalizations.of(context).text("TEMPERATURE")),
+                  //(C*9/5)+32=F
                   SizedBox(
                     height: 5,
                   ),
@@ -798,11 +805,11 @@ class _VitalSignsState extends State<VitalSigns> {
                     "code": textEditingController[2].text,
                     "name": widget.model.user
                   },
-                  {
-                    "key": "1",
-                    "code": bmi.toString(),
-                    "name": widget.model.user
-                  },
+                  // {
+                  //   "key": "1",
+                  //   "code": bmi.toString(),
+                  //   "name": widget.model.user
+                  // },
                   {
                     "key": "4001",
                     "code": textEditingController[4].text,
@@ -877,53 +884,80 @@ class _VitalSignsState extends State<VitalSigns> {
       //padding: const EdgeInsets.all(8.0),
       padding:
           const EdgeInsets.only(top: 0.0, left: 8.0, right: 8.0, bottom: 0.0),
-      child: Container(
-        decoration: BoxDecoration(
-            color: AppData.white,
-            borderRadius: BorderRadius.circular(5),
-            border: Border.all(color: Colors.black, width: 0.3)),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10.0),
-          child: Row(
-            children: <Widget>[
-              new Expanded(
-                child: TextFormField(
-                  enabled: widget.isConfirmPage ? false : true,
-                  controller: textEditingController[index],
-                  //focusNode: fnode7,
-                  cursorColor: AppData.kPrimaryColor,
-                  textInputAction: TextInputAction.next,
-                  maxLength: 6,
-                  keyboardType: TextInputType.number,
-                  inputFormatters: [
-                    WhitelistingTextInputFormatter(RegExp("[0-9 .]")),
-                  ],
-                  decoration: InputDecoration(
-                    //suffixIcon: Icon(Icons.phone),
-                    border: InputBorder.none,
-                    counterText: "",
-                    hintText: hint,
-                    hintStyle:
-                        TextStyle(color: AppData.hintColor, fontSize: 15),
-                  ),
-
-                  onFieldSubmitted: (value) {
-
-                    // print(error[2]);
-                    //error[4] = false;
-                    setState(() {
-
-                    });
-                    // AppData.fieldFocusChange(context, fnode7, fnode8);
-                  },
-                  onSaved: (value) {
-                    //userPersonalForm.phoneNumber = value;
-                  },
-                ),
-              )
-            ],
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(hint),
+          SizedBox(
+            height: 5,
           ),
-        ),
+          Container(
+            decoration: BoxDecoration(
+                color: AppData.white,
+                borderRadius: BorderRadius.circular(5),
+                border: Border.all(color: Colors.black, width: 0.3)),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              child: Row(
+                children: <Widget>[
+                  new Expanded(
+                    child: TextFormField(
+                      enabled: widget.isConfirmPage ? false : true,
+                      controller: textEditingController[index],
+                      //focusNode: fnode7,
+                      cursorColor: AppData.kPrimaryColor,
+                      textInputAction: TextInputAction.next,
+                      maxLength: 6,
+                      keyboardType: TextInputType.number,
+                      inputFormatters: [
+                        WhitelistingTextInputFormatter(RegExp("[0-9 .]")),
+                      ],
+                      decoration: InputDecoration(
+                        //suffixIcon: Icon(Icons.phone),
+                        border: InputBorder.none,
+                        counterText: "",
+                        //hintText: hint,
+                        hintStyle:
+                            TextStyle(color: AppData.hintColor, fontSize: 15),
+                      ),
+
+                      onFieldSubmitted: (value) {
+                        // print(error[2]);
+                        //error[4] = false;
+                        setState(() {});
+                        // AppData.fieldFocusChange(context, fnode7, fnode8);
+                      },
+                      onSaved: (value) {
+                        //userPersonalForm.phoneNumber = value;
+                      },
+                      onChanged: (s) {
+                        if (index == 3) {
+                          if (s != "") {
+                            double value = double.tryParse(s);
+                            double result = (value * 9 / 5) + 32;
+                            textEditingController[9].text = result.toString();
+                          } else {
+                            textEditingController[9].text = '';
+                          }
+                        }
+                        if (index == 9) {
+                          if (s != "") {
+                            double value = double.tryParse(s);
+                            double result = (value - 32) * 5 / 9;
+                            textEditingController[3].text =
+                                result.toStringAsFixed(2);
+                          } else {
+                            textEditingController[3].text = '';
+                          }
+                        }
+                      },
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

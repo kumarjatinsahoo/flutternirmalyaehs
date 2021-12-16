@@ -147,33 +147,8 @@ class _BiomediImplantsState extends State<BiomediImplants> {
             Icons.add_circle_outline_sharp,
             size: 26.0,
           ),),
-      /* GestureDetector(
-          onTap: () {
-            showDialog(
-              context: context,
-              builder: (BuildContext context) =>
-                  displayTextInputDialog(context),
-            );
-            // callAPI();
-          },
-          child: Icon(
-            Icons.add_circle_outline_sharp,
-            size: 26.0,
-          ),
-        )*/),
+      ),
   ]
-          /* Row(
-
-            children: [
-             ),
-              *//*Spacer(),*//*
-              InkWell(
-                  onTap: () {
-                    displayTextInputDialog(context);
-                  },
-                  child: Icon(Icons.add_circle_outline)),
-            ],
-          ),*/
         ),
         body:
         isdata == true
