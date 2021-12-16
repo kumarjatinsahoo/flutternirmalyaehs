@@ -25,6 +25,7 @@ import 'package:flutter/rendering.dart';
 
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/models/PatientListModel.dart';
+import 'package:user/widgets/MyWidget.dart';
 import 'package:user/widgets/TextFormatter.dart';
 import 'package:user/widgets/signature.dart';
 
@@ -173,8 +174,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
                       if (profileModel1 != null) {
                         _displayTextInputDialog(context);
                       } else {
-                        AppData.showInSnackBar(context,
-                            "Please wait until we are fetching your data");
+                        AppData.showInSnackBar(context,"Please wait until we are fetching your data");
                       }
                     },
                     child: Icon(Icons.edit),
@@ -298,6 +298,48 @@ class _DocMyProfileState extends State<DocMyProfile> {
                                         subtitle: Text(profileModel1.body.email?? "N/A"),
                                       ),
                                       ListTile(
+                                        leading: Icon(Icons.bloodtype_outlined),
+                                        title: Text("bloodgroup".toUpperCase(),
+                                        ),
+                                        subtitle: Text(
+                                            profileModel1.body.bldGrname?? "N/A"),
+                                      ),
+                                      ListTile(
+                                        leading: Icon(Icons.location_on_rounded),
+                                        title: Text("Address".toUpperCase(),
+                                        ),
+                                        subtitle: Text(
+                                            profileModel1.body.address?? "N/A"),
+                                      ),
+                                      ListTile(
+                                        leading: Icon(Icons.location_on_rounded),
+                                        title: Text("country".toUpperCase(),
+                                        ),
+                                        subtitle: Text(
+                                            profileModel1.body.countryName?? "N/A"),
+                                      ),
+                                      ListTile(
+                                        leading: Icon(Icons.location_on_rounded),
+                                        title: Text("state".toUpperCase(),
+                                        ),
+                                        subtitle: Text(
+                                            profileModel1.body.stateName?? "N/A"),
+                                      ),
+                                      ListTile(
+                                        leading: Icon(Icons.location_on_rounded),
+                                        title: Text("district".toUpperCase(),
+                                        ),
+                                        subtitle: Text(
+                                            profileModel1.body.districtName?? "N/A"),
+                                      ),
+                                      ListTile(
+                                        leading: Icon(Icons.location_on_rounded),
+                                        title: Text("city".toUpperCase(),
+                                        ),
+                                        subtitle: Text(
+                                            profileModel1.body.cityName?? "N/A"),
+                                      ),
+                                      ListTile(
                                         leading: Icon(Icons.book),
                                         title: Text(MyLocalizations.of(context).text("EDUCATION").toUpperCase(),
                                         ),
@@ -372,20 +414,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
                                             profileModel1.body.licenseauthority ??
                                                 "N/A"),
                                       ),
-                                      ListTile(
-                                        leading: Icon(Icons.bloodtype_outlined),
-                                        title: Text("bloodgroup".toUpperCase(),
-                                        ),
-                                        subtitle: Text(
-                                            profileModel1.body.bldGrname?? "N/A"),
-                                      ),
-                                      ListTile(
-                                        leading: Icon(Icons.location_on_rounded),
-                                        title: Text("Address".toUpperCase(),
-                                        ),
-                                        subtitle: Text(
-                                            profileModel1.body.address+profileModel1.body.address1?? "N/A"),
-                                      ),
+
                                       InkWell(
                                         onTap: () {
                                         //  _displayTextInputDialog(context);
@@ -394,7 +423,6 @@ class _DocMyProfileState extends State<DocMyProfile> {
 
                                         },
                                       child:ListTile(
-
                                         leading:Icon(Icons.satellite_outlined),
                                         title:Text("Digital Signature".toUpperCase(),
                                         ),
@@ -402,6 +430,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
                                             profileModel1.body.address+profileModel1.body.address1?? "N/A"),*/
                                           trailing:Icon(Icons.edit),
                                       ),
+
                                       ),
                                     ],
                                   ),
@@ -409,9 +438,9 @@ class _DocMyProfileState extends State<DocMyProfile> {
                                   Container(
                                     width: 100,
                                     height: 70,
-                                    child: pngBytes != null
-                                        ? Image.memory(
-                                      Uint8List.view(pngBytes.buffer),
+                                    child: profileModel1.body.digsign!= null
+                                        ? Image.network(
+                                      profileModel1.body.digsign,
                                       height: 80.0,
                                     )
                                         : null,
@@ -752,7 +781,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
                         child: RaisedButton(
                           child: Text("Clear"),
                           onPressed: () {
-                            //_sign.currentState.clear();
+                            _sign.currentState.clear();
                           },
                         ),
                       ),
@@ -800,8 +829,11 @@ class _DocMyProfileState extends State<DocMyProfile> {
     pngBytes = await image.toByteData(format: ui.ImageByteFormat.png);
     ByteData data = pngBytes;
     var list = data.buffer.asUint8List();
-
+   /* String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+    print(extName);*/
+    String extName  = "png";
     signBase64 = base64.encode(list);
+    updateProfile(base64Encode(list), extName);
     /*registrationModel.signUploadBase64 = signBase64;
     registrationModel.signUploadExt = "png";
 */
@@ -810,6 +842,37 @@ class _DocMyProfileState extends State<DocMyProfile> {
 
       selectGallery = false;
     });
+  }
+
+
+  updateProfile(String image, String ext) {
+    MyWidgets.showLoading(context);
+    var value = {
+      "digSignType": ext,
+      "digSign": [image],
+      "dctrid": loginResponse.body.user
+    };
+
+    log("Post data>>\n\n" + jsonEncode(value));
+    widget.model.POSTMETHOD_TOKEN(
+        api: ApiFactory.OTHER_PROFILE_SIGN,
+        token: widget.model.token,
+        json: value,
+        fun: (Map<String, dynamic> map) {
+          Navigator.pop(context);
+          setState(() {
+            log("Value>>>" + jsonEncode(map));
+            String msg = map[Const.MESSAGE];
+            if (map[Const.CODE] == Const.SUCCESS) {
+              AppData.showInSnackDone(context, msg);
+              callAPI();
+            } else {
+              isDataNotAvail = true;
+              AppData.showInSnackBar(context, msg);
+              callAPI();
+            }
+          });
+        });
   }
  /* Future getSignatureImage() async {
     var image = await ImagePicker.pickImage(source: ImageSource.gallery);
