@@ -138,6 +138,32 @@ class _DocMyProfileState extends State<DocMyProfile> {
               } else {
                 DocMyProfile.gendermodel = null;
               }
+              if (profileModel1?.body?.country != null) {
+                DocMyProfile.countrymodel = KeyvalueModel(
+                    key: profileModel1.body.country,
+                    name: profileModel1.body.countryName);
+              } else {
+                DocMyProfile.countrymodel = null;
+              }
+              if (profileModel1?.body?.state != null) {
+                DocMyProfile.statemodel = KeyvalueModel(
+                    key: profileModel1.body.state,
+                    name: profileModel1.body.stateName);
+              }if (profileModel1?.body?.district != null) {
+                DocMyProfile.districtmodel= KeyvalueModel(
+                    key: profileModel1.body.district,
+                    name: profileModel1.body.districtName);
+              }if (profileModel1?.body?.city != null) {
+                DocMyProfile.countrymodel = KeyvalueModel(
+                    key: profileModel1.body.city,
+                    name: profileModel1.body.cityName);
+              } else {
+
+
+                DocMyProfile.statemodel = null;
+                DocMyProfile.districtmodel = null;
+                DocMyProfile.citymodel = null;
+              }
             } else {
               isDataNotAvail = true;
               AppData.showInSnackBar(context, msg);
@@ -577,78 +603,90 @@ class _DocMyProfileState extends State<DocMyProfile> {
                           SizedBox(
                             height: 10,
                           ),
-                          formFieldMobileno(
+                          formFieldEducation(
                               2,
-                             "IMA No",
+                              "Experience",
                               fnode2,
                               fnode3),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          formFieldMobileno(
+                              3,
+                             "IMA No",
+                              fnode3,
+                              fnode4),
 
                           SizedBox(
                             height: 10,
                           ),
                           formFieldAadhaaerno(
-                              3,
+                              4,
                               "Aadhaar No",
-                              fnode3,
-                              fnode4),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          formFieldPassPortno(
-                              4,"Passport No",
                               fnode4,
                               fnode5),
                           SizedBox(
                             height: 10,
                           ),
                           formFieldPassPortno(
-                              5,
-                              "Voter Card No",
-                              fnode5,
+                              5,"Passport No",
+                              fnode4,
                               fnode6),
                           SizedBox(
                             height: 10,
                           ),
                           formFieldPassPortno(
                               6,
-                              "Licenece No",
+                              "Voter Card No",
                               fnode6,
                               fnode7),
                           SizedBox(
                             height: 10,
                           ),
                           formFieldPassPortno(
-                              7,"Pan No",
+                              7,
+                              "Licenece No",
                               fnode7,
                               fnode8),
                           SizedBox(
                             height: 10,
                           ),
-                      formField(
-                          8,
-                          "Licence Authority",
-                          fnode8,
-                          fnode9),
-                      SizedBox(height: 10),
-
-                      formField(
-                          9,
-                          "Email",
-                          fnode9,
-                          fnode10),
-                      SizedBox(height: 10),
-
-                      formField(
+                          formField(
+                              8,
+                              "Licence Authority",
+                              fnode8,
+                              fnode9),
+                          SizedBox(height: 10),
+                          formFieldPassPortno(
+                              9,"Pan No",
+                              fnode9,
+                              fnode10),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          formField(
                           10,
-                          "Pincode",
+                          "Email",
                           fnode10,
                           fnode11),
                       SizedBox(height: 10),
-                      formField(
+
+                          formFieldZipno(
                           11,
                           "Pincode",
                           fnode11,
                           fnode12),
+                      SizedBox(height: 10),
+                          formFieldMoileno(
+                          12,
+                          "Moile no",
+                          fnode12,
+                          fnode13),
+                          formFieldAddress(
+                              13,
+                              MyLocalizations.of(context).text("USER_ADDRESS"),
+                              fnode13,
+                              null),
                       SizedBox(height: 20),
 
                       Column(
@@ -672,7 +710,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
                             DropDown.networkDropdownlabler1(
                                 "Country",
                                 ApiFactory.COUNTRY_API,
-                                "country", (KeyvalueModel model) {
+                                "country1", (KeyvalueModel model) {
                               setState(() {
                                 DocMyProfile.countrymodel = model;
                                 profileModel1.body.country =
@@ -706,7 +744,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
                             DropDown.networkDropdownlabler1(
                                 "State",
                                 ApiFactory.STATE_API,
-                                "state", (KeyvalueModel model) {
+                                "state1", (KeyvalueModel model) {
                               setState(() {
                                 DocMyProfile.statemodel = model;
                                 profileModel1.body.state =
@@ -740,7 +778,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
                             DropDown.networkDropdownlabler1(
                                 "District",
                                 ApiFactory.DISTRICT_API,
-                                "district", (KeyvalueModel model) {
+                                "district1", (KeyvalueModel model) {
                               setState(() {
                                 DocMyProfile.districtmodel = model;
                                 profileModel1.body.district =
@@ -774,7 +812,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
                           DropDown.networkDropdownlabler1(
                               "City",
                               ApiFactory.CITY_API,
-                              "city", (KeyvalueModel model) {
+                              "city1", (KeyvalueModel model) {
                             setState(() {
                               DocMyProfile.citymodel = model;
                               profileModel1.body.city =
@@ -889,14 +927,28 @@ class _DocMyProfileState extends State<DocMyProfile> {
                       updateProfileModel.dob = textEditingController[0].text;
                       updateProfileModel.gender = DocMyProfile.gendermodel.key;
                       updateProfileModel.educationid = textEditingController[1].text;
-                      updateProfileModel.imaNo = textEditingController[2].text;
+                      updateProfileModel.experience = textEditingController[2].text;
+                      updateProfileModel.imaNo = textEditingController[3].text;
                       //Emergency
-                      updateProfileModel.adhaarNo = textEditingController[3].text;
-                      updateProfileModel.passportNo = textEditingController[4].text;
-                      updateProfileModel.votterId = textEditingController[5].text;
+                      updateProfileModel.adhaarNo = textEditingController[4].text;
+                      updateProfileModel.passportNo = textEditingController[5].text;
+                      updateProfileModel.votterId = textEditingController[6].text;
+                      updateProfileModel.liceneceNo = textEditingController[7].text;
+                      updateProfileModel.liceneceAuthority = textEditingController[8].text;
+                      updateProfileModel.panNo = textEditingController[9].text;
+                      updateProfileModel.email = textEditingController[10].text;
+                      updateProfileModel.pincode = textEditingController[11].text;
+                      updateProfileModel.mobno = textEditingController[12].text;
+                      updateProfileModel.address = textEditingController[13].text;
+                      updateProfileModel.countryid =  DocMyProfile.countrymodel.key;
+                      updateProfileModel.stateid =  DocMyProfile.statemodel.key;
+                      updateProfileModel.districtid =  DocMyProfile.districtmodel.key;
+                      updateProfileModel.cityid =  DocMyProfile.citymodel.key;
 
-                      updateProfileModel.liceneceNo = textEditingController[6].text;
-                      updateProfileModel.panNo = textEditingController[7].text;
+
+
+
+
                       log("Post json2>>>>" + jsonEncode(updateProfileModel.toJson()));
                       log("Post api>>>>" +ApiFactory.UPDATE_DOCTER_PROFILE);
                       widget.model.POSTMETHOD_TOKEN(
@@ -927,6 +979,61 @@ class _DocMyProfileState extends State<DocMyProfile> {
   }
 
 
+  Widget formFieldAddress(
+      int controller,
+      String hint,
+      FocusNode currentfn,
+      FocusNode nextFn,
+      ) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 0, right: 5),
+          child: Text(
+            hint,
+            style: TextStyle(
+                color: Colors.black,
+                fontSize: 13,
+                fontFamily: "",
+                fontWeight: FontWeight.w400),
+          ),
+        ),
+        TextFieldContainer(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: TextFormField(
+              controller: textEditingController[controller],
+              textInputAction: TextInputAction.done,
+              keyboardType: TextInputType.text,
+              focusNode: currentfn,
+              /*inputFormatters: [
+                WhitelistingTextInputFormatter(
+                  RegExp("[0-9]"),
+                ),
+              ],*/
+
+              ///maxLength: 10,
+              // Validator.getKeyboardTyp(validateModel.fieldType.toLowerCase()),
+              style: TextStyle(fontSize: 15),
+
+              decoration: InputDecoration(
+                //hintText: hint,
+                  hintStyle: TextStyle(color: Colors.grey, fontSize: 13),
+                  border: InputBorder.none,
+                  counterText: '',
+                  contentPadding:
+                  EdgeInsets.symmetric(vertical: 2, horizontal: 0)),
+              onChanged: (newValue) {},
+              onFieldSubmitted: (value) {
+                AppData.fieldFocusChange(context, currentfn, nextFn);
+              },
+            ),
+          ),
+        ),
+      ],
+    );
+  }
 
 
 
@@ -1219,7 +1326,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
                     ),
                   ),
                 ),
-              ),
+              )/*,*/
             ],
           ),
         ),
@@ -1250,9 +1357,9 @@ class _DocMyProfileState extends State<DocMyProfile> {
               textInputAction: TextInputAction.done,
               focusNode: currentfn,
               keyboardType: TextInputType.text,
-              inputFormatters: [
+              /*inputFormatters: [
                 WhitelistingTextInputFormatter(RegExp("[a-zA-Z .]")),
-              ],
+              ],*/
               // Validator.getKeyboardTyp(validateModel.fieldType.toLowerCase()),
               style: TextStyle(fontSize: 15),
               decoration: InputDecoration(
@@ -1485,6 +1592,106 @@ class _DocMyProfileState extends State<DocMyProfile> {
                 ),
               ],
               maxLength: 12,
+              // Validator.getKeyboardTyp(validateModel.fieldType.toLowerCase()),
+              style: TextStyle(fontSize: 15),
+
+              decoration: InputDecoration(
+                //hintText: hint,
+                  hintStyle: TextStyle(color: Colors.grey, fontSize: 13),
+                  border: InputBorder.none,
+                  counterText: '',
+                  contentPadding:
+                  EdgeInsets.symmetric(vertical: 2, horizontal: 0)),
+              onChanged: (newValue) {},
+              onFieldSubmitted: (value) {
+                AppData.fieldFocusChange(context, currentfn, nextFn);
+              },
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+  Widget formFieldMoileno(
+      int controller, String hint, FocusNode currentfn, FocusNode nextFn) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 0, right: 5),
+          child: Text(
+            hint,
+            style: TextStyle(
+                color: Colors.black,
+                fontSize: 13,
+                fontFamily: "",
+                fontWeight: FontWeight.w400),
+          ),
+        ),
+        TextFieldContainer(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: TextFormField(
+              controller: textEditingController[controller],
+              textInputAction: TextInputAction.done,
+              keyboardType: TextInputType.number,
+              focusNode: currentfn,
+              inputFormatters: [
+                WhitelistingTextInputFormatter(
+                  RegExp("[0-9]"),
+                ),
+              ],
+              maxLength: 10,
+              // Validator.getKeyboardTyp(validateModel.fieldType.toLowerCase()),
+              style: TextStyle(fontSize: 15),
+
+              decoration: InputDecoration(
+                //hintText: hint,
+                  hintStyle: TextStyle(color: Colors.grey, fontSize: 13),
+                  border: InputBorder.none,
+                  counterText: '',
+                  contentPadding:
+                  EdgeInsets.symmetric(vertical: 2, horizontal: 0)),
+              onChanged: (newValue) {},
+              onFieldSubmitted: (value) {
+                AppData.fieldFocusChange(context, currentfn, nextFn);
+              },
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+  Widget formFieldZipno(
+      int controller, String hint, FocusNode currentfn, FocusNode nextFn) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 0, right: 5),
+          child: Text(
+            hint,
+            style: TextStyle(
+                color: Colors.black,
+                fontSize: 13,
+                fontFamily: "",
+                fontWeight: FontWeight.w400),
+          ),
+        ),
+        TextFieldContainer(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: TextFormField(
+              controller: textEditingController[controller],
+              textInputAction: TextInputAction.done,
+              keyboardType: TextInputType.number,
+              focusNode: currentfn,
+              inputFormatters: [
+                WhitelistingTextInputFormatter(
+                  RegExp("[0-9]"),
+                ),
+              ],
+              maxLength: 6,
               // Validator.getKeyboardTyp(validateModel.fieldType.toLowerCase()),
               style: TextStyle(fontSize: 15),
 

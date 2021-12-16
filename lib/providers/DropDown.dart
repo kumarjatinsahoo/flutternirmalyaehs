@@ -570,7 +570,6 @@ class DropDown {
           case "bloodgroup":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
-            break;
           case "speciality":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
@@ -589,7 +588,18 @@ class DropDown {
           case "alcohol":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
-
+          case "country1":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "state1":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "district1":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "city1":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
           case "gender":
             List<KeyvalueModel> listS = [];
             listS.add(KeyvalueModel(name: "MALE", key: "1"));
@@ -2148,7 +2158,21 @@ class DropDown {
       case "gender1":
         return DocMyProfile.gendermodel;
         break;
-    }
+      case "country1":
+        return DocMyProfile.countrymodel;
+        break;
+      case "state1":
+        return DocMyProfile.statemodel;
+        break;
+      case "district1":
+        return DocMyProfile.districtmodel;
+        break;
+      case "city1":
+        return DocMyProfile.citymodel;
+        break;
+        //city1,district1,state1,country1
+
+  }
   }
 
   static KeyvalueModel getData11(String callFor) {
