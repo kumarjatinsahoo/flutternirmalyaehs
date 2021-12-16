@@ -32,6 +32,10 @@ import 'package:user/widgets/signature.dart';
 class DocMyProfile extends StatefulWidget {
   MainModel model;
   static KeyvalueModel gendermodel = null;
+  static KeyvalueModel countrymodel = null;
+  static KeyvalueModel statemodel = null;
+  static KeyvalueModel districtmodel = null;
+  static KeyvalueModel citymodel = null;
 
   DocMyProfile({Key key, this.model}) : super(key: key);
 
@@ -43,6 +47,14 @@ class _DocMyProfileState extends State<DocMyProfile> {
 
   String loAd = "Loading..";
   List<TextEditingController> textEditingController = [
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
     new TextEditingController(),
     new TextEditingController(),
     new TextEditingController(),
@@ -65,6 +77,13 @@ class _DocMyProfileState extends State<DocMyProfile> {
   FocusNode fnode5 = new FocusNode();
   FocusNode fnode6 = new FocusNode();
   FocusNode fnode7 = new FocusNode();
+  FocusNode fnode8 = new FocusNode();
+  FocusNode fnode9 = new FocusNode();
+  FocusNode fnode10 = new FocusNode();
+  FocusNode fnode11 = new FocusNode();
+  FocusNode fnode12 = new FocusNode();
+  FocusNode fnode13 = new FocusNode();
+
   final df = new DateFormat('dd/MM/yyyy');
   DateTime selectedDate = DateTime.now();
   UpdateDocProfileModel updateProfileModel = UpdateDocProfileModel();
@@ -481,7 +500,22 @@ class _DocMyProfileState extends State<DocMyProfile> {
     textEditingController[6].text = profileModel1.body.licenceno ??"";
     textEditingController[7].text = profileModel1.body.pancardno ?? "";
 
-
+    if (profileModel1?.body?.country == null ||
+        profileModel1?.body?.country == "") {
+      DocMyProfile.countrymodel = null;
+    }
+    if (profileModel1?.body?.state == null ||
+        profileModel1?.body?.state == "") {
+      DocMyProfile.statemodel = null;
+    }
+    if (profileModel1?.body?.district == null ||
+        profileModel1?.body?.district == "") {
+      DocMyProfile.districtmodel = null;
+    }
+    if (profileModel1?.body?.city == null ||
+        profileModel1?.body?.city == "") {
+      DocMyProfile.countrymodel = null;
+    }
 
     return showDialog(
         context: context,
@@ -586,12 +620,174 @@ class _DocMyProfileState extends State<DocMyProfile> {
                           formFieldPassPortno(
                               7,"Pan No",
                               fnode7,
-                              null),
+                              fnode8),
                           SizedBox(
                             height: 10,
                           ),
+                      formField(
+                          8,
+                          "Licence Authority",
+                          fnode8,
+                          fnode9),
+                      SizedBox(height: 10),
+
+                      formField(
+                          9,
+                          "Email",
+                          fnode9,
+                          fnode10),
+                      SizedBox(height: 10),
+
+                      formField(
+                          10,
+                          "Pincode",
+                          fnode10,
+                          fnode11),
+                      SizedBox(height: 10),
+                      formField(
+                          11,
+                          "Pincode",
+                          fnode11,
+                          fnode12),
+                      SizedBox(height: 20),
+
+                      Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 0, right: 5, bottom: 0),
+                              child: Text(
+                                MyLocalizations.of(context)
+                                    .text("COUNTRY"),
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 13,
+                                    fontFamily: "",
+                                    fontWeight: FontWeight.w400),
+                              ),
+                            ),
+                            DropDown.networkDropdownlabler1(
+                                "Country",
+                                ApiFactory.COUNTRY_API,
+                                "country", (KeyvalueModel model) {
+                              setState(() {
+                                DocMyProfile.countrymodel = model;
+                                profileModel1.body.country =
+                                    model.key;
+                                profileModel1.body.countryName =
+                                    model.name;
+                                // updateProfileModel.bloodGroup = model.key;
+                              });
+                            }),
+                          ]),
+                      SizedBox(height: 20),
+
+                      Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 0, right: 5, bottom: 0),
+                              child: Text(
+                                MyLocalizations.of(context)
+                                    .text("STATE"),
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 13,
+                                    fontFamily: "",
+                                    fontWeight: FontWeight.w400),
+                              ),
+                            ),
+                            DropDown.networkDropdownlabler1(
+                                "State",
+                                ApiFactory.STATE_API,
+                                "state", (KeyvalueModel model) {
+                              setState(() {
+                                DocMyProfile.statemodel = model;
+                                profileModel1.body.state =
+                                    model.key;
+                                profileModel1.body.stateName=
+                                    model.name;
+                                // updateProfileModel.bloodGroup = model.key;
+                              });
+                            }),
+                          ]),
+                      SizedBox(height: 20),
+
+                      Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 0, right: 5, bottom: 0),
+                              child: Text(
+                                MyLocalizations.of(context)
+                                    .text("District"),
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 13,
+                                    fontFamily: "",
+                                    fontWeight: FontWeight.w400),
+                              ),
+                            ),
+                            DropDown.networkDropdownlabler1(
+                                "District",
+                                ApiFactory.DISTRICT_API,
+                                "district", (KeyvalueModel model) {
+                              setState(() {
+                                DocMyProfile.districtmodel = model;
+                                profileModel1.body.district =
+                                    model.key;
+                                profileModel1.body.districtName=
+                                    model.name;
+                                // updateProfileModel.bloodGroup = model.key;
+                              });
+                            }),
+                          ]),
+                      SizedBox(height: 20),
+
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 0, right: 5, bottom: 0),
+                            child: Text(
+                              MyLocalizations.of(context)
+                                  .text("CITY"),
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 13,
+                                  fontFamily: "",
+                                  fontWeight: FontWeight.w400),
+                            ),
+                          ),
+                          DropDown.networkDropdownlabler1(
+                              "City",
+                              ApiFactory.CITY_API,
+                              "city", (KeyvalueModel model) {
+                            setState(() {
+                              DocMyProfile.citymodel = model;
+                              profileModel1.body.city =
+                                  model.key;
+                              profileModel1.body.cityName =
+                                  model.name;
+                              // updateProfileModel.bloodGroup = model.key;
+                            });
+                          }),
                         ],
                       ),
+                        ]),
+
                     ),
                   ),
                 );
