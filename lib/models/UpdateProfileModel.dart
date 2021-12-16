@@ -1,89 +1,103 @@
 class UpdateProfileModel {
   String eCardNo;
-  String fName;
-  String lName;
+  String fname;
+  String lname;
   String dob;
-  String gender;
   String bloodGroup;
-  String eName;
-  String eRelation;
   String address;
-  String eMobile;
-  String fDoctor;
-  String speciality;
-  String docMobile;
-  String id;
-  List<Null> profileImage;
-  String profileImageName;
-  String profileImageType;
-
+  String maritialstatus;
+  String occupation;
+  String qualification;
+  String specialization;
+  String pancardno;
+  String passportno;
+  String adharno;
+  String votercardno;
+  String licenceno;
+  String licenceauthority;
+  String email;
+  String pincode;
+  String cityid;
+  String distid;
+  String stateid;
+  String countryid;
+  String mobile;
 
   UpdateProfileModel(
       {this.eCardNo,
-        this.fName,
-        this.lName,
-        this.dob,
-        this.gender,
-        this.bloodGroup,
-        this.eName,
-        this.eRelation,
-        this.eMobile,
-        this.fDoctor,
-        this.address,
-        this.speciality,
-        this.id,
-        this.docMobile,
-        this.profileImage,
-        this.profileImageName,
-        this.profileImageType,
-      });
+      this.fname,
+      this.lname,
+      this.dob,
+      this.bloodGroup,
+      this.address,
+      this.maritialstatus,
+      this.occupation,
+      this.qualification,
+      this.specialization,
+      this.pancardno,
+      this.passportno,
+      this.adharno,
+      this.votercardno,
+      this.licenceno,
+      this.licenceauthority,
+      this.email,
+      this.pincode,
+      this.cityid,
+      this.stateid,
+      this.distid,
+      this.countryid,this.mobile});
 
   UpdateProfileModel.fromJson(Map<String, dynamic> json) {
     eCardNo = json['eCardNo'];
-    fName = json['fName'];
-    lName = json['lName'];
     dob = json['dob'];
-    gender = json['gender'];
+    fname = json['fname'];
+    lname = json['lname'];
     bloodGroup = json['bloodGroup'];
-    eName = json['eName'];
-    eRelation = json['eRelation'];
-    eMobile = json['eMobile'];
-    fDoctor = json['fDoctor'];
     address = json['address'];
-    id = json['id'];
-    speciality = json['speciality'];
-    docMobile = json['docMobile'];
-    if (json['profileImage'] != null) {
-      profileImage = new List<Null>();
-      json['profileImage'].forEach((v) {
-        //profileImage.add(new Null.fromJson(v));
-      });
-    }
-    profileImageName = json['profileImageName'];
-    profileImageType = json['profileImageType'];
+    maritialstatus = json['maritialstatus'];
+    occupation = json['occupation'];
+    qualification = json['qualification'];
+    specialization = json['specialization'];
+    pancardno = json['pancardno'];
+    passportno = json['passportno'];
+    adharno = json['adharno'];
+    votercardno = json['votercardno'];
+    licenceno = json['licenceno'];
+    licenceauthority = json['licenceauthority'];
+    email = json['email'];
+    pincode = json['pincode'];
+    cityid = json['cityid'];
+    distid = json['distid'];
+    stateid = json['stateid'];
+    countryid = json['countryid'];
+    mobile = json['mobile'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['eCardNo'] = this.eCardNo;
-    data['fName'] = this.fName;
-    data['lName'] = this.lName;
     data['dob'] = this.dob;
-    data['gender'] = this.gender;
-    data['address'] = this.address;
+    data['fname'] = this.fname;
+    data['lname'] = this.lname;
     data['bloodGroup'] = this.bloodGroup;
-    data['eName'] = this.eName;
-    data['eRelation'] = this.eRelation;
-    data['eMobile'] = this.eMobile;
-    data['fDoctor'] = this.fDoctor;
-    data['id'] = this.id;
-    data['speciality'] = this.speciality;
-    data['docMobile'] = this.docMobile;
-    if (this.profileImage != null) {
-      //data['profileImage'] = this.profileImage.map((v) => v.toJson()).toList();
-    }
-    data['profileImageName'] = this.profileImageName;
-    data['profileImageType'] = this.profileImageType;
+    data['address'] = this.address;
+    data['maritialstatus'] = this.maritialstatus;
+    data['occupation'] = this.occupation;
+    data['qualification'] = this.qualification;
+    data['specialization'] = this.specialization;
+    data['pancardno'] = this.pancardno;
+    data['passportno'] = this.passportno;
+    data['adharno'] = this.adharno;
+    data['votercardno'] = this.votercardno;
+    data['licenceno'] = this.licenceno;
+    data['licenceauthority'] = this.licenceauthority;
+    data['email'] = this.email;
+    data['pincode'] = this.pincode;
+    data['cityid'] = this.cityid;
+    data['distid'] = this.distid;
+    data['cityid'] = this.cityid;
+    data['countryid'] = this.countryid;
+    data['mobile'] = this.mobile;
     return data;
   }
 }

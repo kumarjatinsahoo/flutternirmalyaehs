@@ -546,6 +546,9 @@ class DropDown {
         var list;
         // var list = List<KeyvalueModel>.from(jsonResponse.map((i) => KeyvalueModel.fromsJson(i)));
         switch (callFrom) {
+          case "city":
+            list = KeyvalueModel.fromJsonList(response.data);
+            break;
           case "district":
             list = KeyvalueModel.fromJsonList(response.data);
             break;
