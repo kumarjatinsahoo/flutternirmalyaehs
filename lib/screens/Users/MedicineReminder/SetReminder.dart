@@ -76,6 +76,16 @@ class SetReminderState extends State<SetReminder> {
     new TextEditingController(),
     new TextEditingController(),
   ];
+
+  List<TimeOfDay> actualTime = [
+    new TimeOfDay(minute: null, hour: null),
+    new TimeOfDay(minute: null, hour: null),
+    new TimeOfDay(minute: null, hour: null),
+    new TimeOfDay(minute: null, hour: null),
+    new TimeOfDay(minute: null, hour: null),
+    new TimeOfDay(minute: null, hour: null),
+    new TimeOfDay(minute: null, hour: null),
+  ];
   TextEditingController stdob = TextEditingController();
   TextEditingController endate = TextEditingController();
   TextEditingController stime = TextEditingController();
@@ -132,6 +142,8 @@ class SetReminderState extends State<SetReminder> {
 
   DeviceCalendarPlugin _deviceCalendarPlugin = new DeviceCalendarPlugin();
 
+  List<KeyvalueModel> days=[];
+
   @override
   void initState() {
     super.initState();
@@ -140,8 +152,17 @@ class SetReminderState extends State<SetReminder> {
     SetReminder.blockModel = null;
     SetReminder.dosageModel = null;
     textEditingController[0].text = widget.type;
+    getList();
   }
 
+  getList(){
+    for(int i=1;i<=31;i++){
+      days.add(KeyvalueModel(key: i,name: i.toString()));
+    }
+    setState(() {
+      days;
+    });
+  }
   void connectionChanged(dynamic hasConnection) {
     setState(() {
       isOnline = hasConnection;
@@ -194,14 +215,6 @@ class SetReminderState extends State<SetReminder> {
         cal.RecurrenceRule(RecurrenceFrequency.Daily);
     //recurrenceRule.
     // event.start=DateTime.now().add(Duration(minutes: 15));
-    event.start = DateTime(
-        selectedStartDate.year,
-        selectedStartDate.month,
-        selectedStartDate.day,
-        selectedStartTime.hour,
-        selectedStartTime.minute);
-    event.end = DateTime(selectedEndDate.year, selectedEndDate.month,
-        selectedEndDate.day, selectedEndTime.hour, selectedEndTime.minute);
     // event.end=DateTime.now().add(Duration(minutes: 35));
     event.title = widget.type;
     event.description = descrption +
@@ -218,18 +231,24 @@ class SetReminderState extends State<SetReminder> {
     event.reminders = [cal.Reminder(minutes: 20)];
     // event.
 
-    var fightString = new StringBuffer('');
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+    for (int i = 0; i < int.tryParse(SetReminder.timeDayModel.name); i++) {
+      event.start = DateTime(
+          selectedStartDate.year,
+          selectedStartDate.month,
+          selectedStartDate.day,
+          actualTime[i].hour,
+          actualTime[i].minute);
+      event.end = DateTime(selectedEndDate.year, selectedEndDate.month,
+          selectedEndDate.day, actualTime[i].hour, actualTime[i].minute);
 
-    final createEventResult =
-        await _deviceCalendarPlugin.createOrUpdateEvent(event);
-    if (createEventResult.isSuccess &&
-        (createEventResult.data?.isNotEmpty ?? false)) {
-      AppData.showInSnackDone(context, "Added done");
-      // prefs.setString(mmaEvent.getPrefKey(), createEventResult.data);
-      // fightString.write(mmaEvent.eventName + '\n');
-    } else {
-      AppData.showInSnackBar(context, "Something went wrong");
+      final createEventResult =
+          await _deviceCalendarPlugin.createOrUpdateEvent(event);
+      if (createEventResult.isSuccess &&
+          (createEventResult.data?.isNotEmpty ?? false)) {
+        AppData.showInSnackDone(context, "Added done");
+      } else {
+        AppData.showInSnackBar(context, "Something went wrong");
+      }
     }
   }
 
@@ -292,7 +311,7 @@ class SetReminderState extends State<SetReminder> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 18),
               child: DropDown.staticDropdown2(
-                  "Dosager", "genderSignup", dosageList, (KeyvalueModel data) {
+                  "Dosage", "genderSignup", dosageList, (KeyvalueModel data) {
                 setState(() {
                   SetReminder.dosageModel = data;
                 });
@@ -323,6 +342,9 @@ class SetReminderState extends State<SetReminder> {
                   districtList, (KeyvalueModel data) {
                 setState(() {
                   SetReminder.timeDayModel = data;
+                  timePicker.forEach((element) {
+                    element.text = "";
+                  });
                 });
               }),
             ),
@@ -365,43 +387,44 @@ class SetReminderState extends State<SetReminder> {
                   ],
                 )),
             SizedBox(height: 10),
-
             (SetReminder.timeDayModel != null)
                 ? Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 18),
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          'Timings',
-                          style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              color: Colors.black,
-                              fontSize: 15),
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 18),
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            'Timings',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                color: Colors.black,
+                                fontSize: 15),
+                          ),
                         ),
                       ),
-                    ),
-                    SizedBox(height: 10),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 18),
-                      child: GridView.builder(
+                      SizedBox(height: 10),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 18),
+                        child: GridView.builder(
                           shrinkWrap: true,
                           physics: NeverScrollableScrollPhysics(),
-                          itemCount: int.tryParse(SetReminder.timeDayModel.name),
-                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 3,
-                              crossAxisSpacing: 0.0,
-                              // childAspectRatio: 2.8,
-                              mainAxisExtent: 50,
-                              mainAxisSpacing: 15.0),
+                          itemCount:
+                              int.tryParse(SetReminder.timeDayModel.name),
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 3,
+                                  crossAxisSpacing: 0.0,
+                                  // childAspectRatio: 2.8,
+                                  mainAxisExtent: 50,
+                                  mainAxisSpacing: 15.0),
                           itemBuilder: (BuildContext context, int i) {
                             return dynamicTiming(i);
                           },
                         ),
-                    ),
-                  ],
-                )
+                      ),
+                    ],
+                  )
                 : Container(),
             /* Padding(
               padding: const EdgeInsets.only(left: 18.0, right: 10),
@@ -506,6 +529,16 @@ class SetReminderState extends State<SetReminder> {
                   ],
                 )),
             SizedBox(height: 5),
+           /* Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 18),
+              child: DropDown.staticDropdown2(
+                  "Days", "genderSignup", days, (KeyvalueModel data) {
+                setState(() {
+                  SetReminder.dosageModel = data;
+                });
+              }),
+            ),
+            SizedBox(height: 5),*/
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 18),
               child: TextFormField(
@@ -636,11 +669,9 @@ class SetReminderState extends State<SetReminder> {
       AppData.showInSnackBar(context, "Please Select Dosage");
     } else if (SetReminder.timeDayModel == null) {
       AppData.showInSnackBar(context, "Please Select How Many Times");
-    } else if (stime.text == "" ||
-        stime.text == null) {
+    } else if (stime.text == "" || stime.text == null) {
       AppData.showInSnackBar(context, "Please enter start time");
-    } else if (endtime.text == "" ||
-        endtime.text == null) {
+    } else if (endtime.text == "" || endtime.text == null) {
       AppData.showInSnackBar(context, "Please enter end time");
     } else if (stdob.text == "" || stdob.text == null) {
       AppData.showInSnackBar(context, "Please enter Start Date");
@@ -648,10 +679,20 @@ class SetReminderState extends State<SetReminder> {
       AppData.showInSnackBar(context, "Please enter End Date");
     } else {
       // _formKey.currentState.save();
-      Navigator.pop(context);
-      setReminder1(
-        textEditingController[1].text,
-      );
+      // Navigator.pop(context);
+      bool isAllAccept = true;
+      for (int i = 0; i < int.tryParse(SetReminder.timeDayModel.name); i++) {
+        if (timePicker[i].text == "") {
+          isAllAccept = false;
+        }
+      }
+      if (isAllAccept) {
+        setReminder1(
+          textEditingController[1].text,
+        );
+      } else {
+        AppData.showInSnackBar(context, "Please input timings");
+      }
     }
   }
 
@@ -762,7 +803,6 @@ class SetReminderState extends State<SetReminder> {
       ),
     );
   }
-
 
   Future<Null> _selectDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
@@ -906,7 +946,7 @@ class SetReminderState extends State<SetReminder> {
     }
   }
 
-  _selectDynamicTime(BuildContext context,v) async {
+  _selectDynamicTime(BuildContext context, v) async {
     final TimeOfDay timeOfDay = await showTimePicker(
         context: context,
         initialTime: selectedTime,
@@ -917,13 +957,14 @@ class SetReminderState extends State<SetReminder> {
             child: child,
           );
         });
-    if (timeOfDay != null && timeOfDay != selectedTime) {
-      setState(() {
-        // selectedTime = timeOfDay;
-        // selectedStartTime = timeOfDay;
-        timePicker[v].text = formatTimeOfDay(timeOfDay);
-      });
-    }
+    // if (timeOfDay != null && timeOfDay != selectedTime) {
+    setState(() {
+      // selectedTime = timeOfDay;
+      // selectedStartTime = timeOfDay;
+      actualTime[v] = timeOfDay;
+      timePicker[v].text = formatTimeOfDay(timeOfDay);
+    });
+    // }
   }
 
   _selectTime1(BuildContext context) async {

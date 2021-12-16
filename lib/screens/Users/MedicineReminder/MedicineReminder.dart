@@ -154,6 +154,17 @@ class _MedicineReminderState extends State<MedicineReminder> {
       } else {}
     } on PlatformException catch (e) {
       print(e);
+      AppData.showInSnackDone(context, "Please accept permission");
+    }
+  }
+
+  Future _deleteEvent(String eventId) async {
+    try {
+        var calendarEventsResult = await _deviceCalendarPlugin.deleteEvent(loginResponse.body.calenderId, eventId);
+        AppData.showInSnackDone(context, "Deleted Successfully");
+    } on PlatformException catch (e) {
+      print(e);
+      AppData.showInSnackDone(context, "Something went wrong");
     }
   }
 
@@ -229,6 +240,44 @@ class _MedicineReminderState extends State<MedicineReminder> {
                           widget.model.title = _calendars[i].id;
                           Navigator.pushNamed(context, '/setreminder');
                         },
+                        trailing:  SizedBox(
+                          height: 30,
+                          width: 30,
+                          child: PopupMenuButton(
+                            icon: Icon(
+                              Icons.more_vert,
+                              color: Colors.grey,
+                              size: 26,
+                            ),
+                            padding: EdgeInsets.zero,
+                            onSelected: (value) {
+                              switch (value) {
+                                case 1:
+
+                                  break;
+                                case 2:
+                                  _deleteEvent(_calendarEvents[i].eventId);
+                                  break;
+                                default:
+                                  AppData.showInSnackBar(
+                                      context, "Hey1");
+                              }
+                            },
+                            //elevation: 50,
+                            itemBuilder: (context) => [
+                              PopupMenuItem(
+                                child: Text("EDIT"),
+                                value: 1,
+                                height: 30,
+                              ),
+                              PopupMenuItem(
+                                child: Text("DELETE"),
+                                value: 2,
+                                height: 30,
+                              ),
+                            ],
+                          ),
+                        ),
                       );
                     },
                     itemCount: _calendarEvents.length,
