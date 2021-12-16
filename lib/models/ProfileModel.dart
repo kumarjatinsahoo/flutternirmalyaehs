@@ -1,8 +1,10 @@
+import 'package:user/models/FamilyDetailsModel.dart';
+
 class ProfileModel {
   Body body;
   String message;
   String code;
-  Null total;
+  String total;
 
   ProfileModel({this.body, this.message, this.code, this.total});
 
@@ -61,9 +63,20 @@ class Body {
   String votercardno;
   String licenceno;
   String licenceauthority;
+  String email;
+  String pincode;
+  String countryid;
+  String stateid;
+  String distid;
+  String cityid;
+  String country;
+  String city;
+  String dist;
+  String state;
   List<EmergenceList> emergenceList;
   List<FamilyDoctorList> familyDoctorList;
   List<FamilyDetailsList> familyDetailsList;
+
 
   Body(
       {this.eCardNo,
@@ -101,9 +114,20 @@ class Body {
         this.votercardno,
         this.licenceno,
         this.licenceauthority,
+        this.email,
+        this.pincode,
+         this. countryid,
+         this. stateid,
+         this. distid,
+        this. cityid,
+        this.country,
+        this.state,
+        this.dist,
+        this.city,
         this.emergenceList,
         this.familyDoctorList,
-        this.familyDetailsList});
+        this.familyDetailsList
+      });
 
   Body.fromJson(Map<String, dynamic> json) {
     eCardNo = json['eCardNo'];
@@ -116,6 +140,7 @@ class Body {
     eName = json['eName'];
     eRelation = json['eRelation'];
     eMobile = json['eMobile'];
+
     fDoctor = json['fDoctor'];
     speciality = json['speciality'];
     docMobile = json['docMobile'];
@@ -146,6 +171,15 @@ class Body {
     votercardno = json['votercardno'];
     licenceno = json['licenceno'];
     licenceauthority = json['licenceauthority'];
+    email = json['email'];
+    countryid = json['countryid'];
+    stateid = json['stateid'];
+    distid = json['distid'];
+    cityid = json['cityid'];
+    country = json['country'];
+    dist = json['dist'];
+    state = json['state'];
+    city = json['city'];
     if (json['emergenceList'] != null) {
       emergenceList = new List<EmergenceList>();
       json['emergenceList'].forEach((v) {
@@ -158,10 +192,16 @@ class Body {
         familyDoctorList.add(new FamilyDoctorList.fromJson(v));
       });
     }
+    if (json['familyDetailsList'] != null) {
+      familyDetailsList = new List<FamilyDetailsList>();
+      json['familyDetailsList'].forEach((v) {
+        familyDetailsList.add(new FamilyDetailsList.fromJson(v));
+      });
+    }
     /*if (json['familyDetailsList'] != null) {
       familyDetailsList = new List<Null>();
       json['familyDetailsList'].forEach((v) {
-        familyDetailsList.add(new Null.fromJson(v));
+        familyDetailsList.add(new FamilyDetailsList.fromJson(v));
       });
     }*/
   }
@@ -205,6 +245,15 @@ class Body {
     data['votercardno'] = this.votercardno;
     data['licenceno'] = this.licenceno;
     data['licenceauthority'] = this.licenceauthority;
+    data['email'] = this.email;
+    data['countryid'] = this.countryid;
+    data['stateid'] = this.stateid;
+    data['distid'] = this.distid;
+    data['cityid'] = this.cityid;
+    data['country'] = this.country;
+    data['state'] = this.state;
+    data['dist'] = this.dist;
+    data['city'] = this.city;
     if (this.emergenceList != null) {
       data['emergenceList'] =
           this.emergenceList.map((v) => v.toJson()).toList();
@@ -212,6 +261,12 @@ class Body {
     if (this.familyDoctorList != null) {
       data['familyDoctorList'] =
           this.familyDoctorList.map((v) => v.toJson()).toList();
+    }if (this.familyDoctorList != null) {
+      data['familyDoctorList'] =
+          this.familyDoctorList.map((v) => v.toJson()).toList();
+    }if (this.familyDetailsList != null) {
+      data['familyDetailsList'] =
+          this.familyDetailsList.map((v) => v.toJson()).toList();
     }
    /* if (this.familyDetailsList != null) {
       data['familyDetailsList'] =
@@ -222,6 +277,36 @@ class Body {
 }
 
 class FamilyDetailsList {
+  String memeberName;
+  String relation;
+  String age;
+  String userid;
+  String famid;
+  String relid;
+
+  FamilyDetailsList({this.memeberName, this.relation, this.age, this.userid, this.famid,this.relid});
+
+  FamilyDetailsList.fromJson(Map<String, dynamic> json) {
+    memeberName = json['memeberName'];
+    relation = json['relation'];
+    age = json['age'];
+    userid = json['userid'];
+    famid = json['famid'];
+    relid = json['relid'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['memeberName'] = this.memeberName;
+    data['relation'] = this.relation;
+    data['age'] = this.age;
+    data['userid'] = this.userid;
+    data['famid'] = this.famid;
+    data['relid'] = this.relid;
+    return data;
+  }
+
+
 }
 
 class FamilyDoctorList {
