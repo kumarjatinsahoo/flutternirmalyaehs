@@ -589,16 +589,16 @@ class DropDown {
           case "alcohol":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
-          case "country1":
+          case "countrydocp":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
-          case "state1":
+          case "statedocp":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
-          case "district1":
+          case "districtdocp":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
-          case "city1":
+          case "citydocp":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
           case "gender":

@@ -2262,7 +2262,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                           ApiFactory.DISTRICT_API +
                                               (ProfileScreen?.statemodel?.key ??
                                                   ""),
-                                          "district1", (KeyvalueModel model) {
+                                          "districtdocp", (KeyvalueModel model) {
                                         setState(() {
                                           print(ApiFactory.DISTRICT_API);
                                           ProfileScreen.districtmodel = model;

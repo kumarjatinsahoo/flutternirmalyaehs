@@ -536,7 +536,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
     }
     if (profileModel1?.body?.city == null ||
         profileModel1?.body?.city == "") {
-      DocMyProfile.countrymodel = null;
+      DocMyProfile.citymodel = null;
     }
 
     return showDialog(
@@ -678,148 +678,156 @@ class _DocMyProfileState extends State<DocMyProfile> {
                           "Moile no",
                           fnode12,
                           fnode13),
+                          SizedBox(height: 10),
                           formFieldAddress(
                               13,
                               MyLocalizations.of(context).text("USER_ADDRESS"),
                               fnode13,
                               null),
-                      SizedBox(height: 20),
-
-                      Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 0, right: 5, bottom: 0),
-                              child: Text(
-                                MyLocalizations.of(context)
-                                    .text("COUNTRY"),
-                                textAlign: TextAlign.left,
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 13,
-                                    fontFamily: "",
-                                    fontWeight: FontWeight.w400),
-                              ),
-                            ),
-                            DropDown.networkDropdownlabler1(
-                                "Country",
-                                ApiFactory.COUNTRY_API,
-                                "country1", (KeyvalueModel model) {
-                              setState(() {
-                                DocMyProfile.countrymodel = model;
-                                profileModel1.body.country =
-                                    model.key;
-                                profileModel1.body.countryName =
-                                    model.name;
-                                // updateProfileModel.bloodGroup = model.key;
-                              });
-                            }),
-                          ]),
-                      SizedBox(height: 20),
-
-                      Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 0, right: 5, bottom: 0),
-                              child: Text(
-                                MyLocalizations.of(context)
-                                    .text("STATE"),
-                                textAlign: TextAlign.left,
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 13,
-                                    fontFamily: "",
-                                    fontWeight: FontWeight.w400),
-                              ),
-                            ),
-                            DropDown.networkDropdownlabler1(
-                                "State",
-                                ApiFactory.STATE_API,
-                                "state1", (KeyvalueModel model) {
-                              setState(() {
-                                DocMyProfile.statemodel = model;
-                                profileModel1.body.state =
-                                    model.key;
-                                profileModel1.body.stateName=
-                                    model.name;
-                                // updateProfileModel.bloodGroup = model.key;
-                              });
-                            }),
-                          ]),
-                      SizedBox(height: 20),
-
-                      Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 0, right: 5, bottom: 0),
-                              child: Text(
-                                MyLocalizations.of(context)
-                                    .text("District"),
-                                textAlign: TextAlign.left,
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 13,
-                                    fontFamily: "",
-                                    fontWeight: FontWeight.w400),
-                              ),
-                            ),
-                            DropDown.networkDropdownlabler1(
-                                "District",
-                                ApiFactory.DISTRICT_API,
-                                "district1", (KeyvalueModel model) {
-                              setState(() {
-                                DocMyProfile.districtmodel = model;
-                                profileModel1.body.district =
-                                    model.key;
-                                profileModel1.body.districtName=
-                                    model.name;
-                                // updateProfileModel.bloodGroup = model.key;
-                              });
-                            }),
-                          ]),
-                      SizedBox(height: 20),
-
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(
-                                left: 0, right: 5, bottom: 0),
-                            child: Text(
-                              MyLocalizations.of(context)
-                                  .text("CITY"),
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 13,
-                                  fontFamily: "",
-                                  fontWeight: FontWeight.w400),
-                            ),
-                          ),
-                          DropDown.networkDropdownlabler1(
-                              "City",
-                              ApiFactory.CITY_API,
-                              "city1", (KeyvalueModel model) {
-                            setState(() {
-                              DocMyProfile.citymodel = model;
-                              profileModel1.body.city =
-                                  model.key;
-                              profileModel1.body.cityName =
-                                  model.name;
-                              // updateProfileModel.bloodGroup = model.key;
-                            });
-                          }),
-                        ],
-                      ),
+                      SizedBox(height: 10),
+                          Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment:
+                              CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 0, right: 5, bottom: 0),
+                                  child: Text(
+                                    MyLocalizations.of(context)
+                                        .text("COUNTRY"),
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 13,
+                                        fontFamily: "",
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                ),
+                                DropDown.networkDropdownlabler1(
+                                    "Country",
+                                    ApiFactory.COUNTRY_API,
+                                    "country1", (KeyvalueModel model) {
+                                  setState(() {
+                                    print(ApiFactory.COUNTRY_API);
+                                    DocMyProfile.countrymodel = model;
+                                    profileModel1.body.country = model.key;
+                                    profileModel1.body.countryName = model.name;
+                                    // updateProfileModel.bloodGroup = model.key;
+                                  });
+                                }),
+                              ]),
+                          SizedBox(height: 10),
+                          Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment:
+                              CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 0, right: 5, bottom: 0),
+                                  child: Text(
+                                    MyLocalizations.of(context)
+                                        .text("STATE"),
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 13,
+                                        fontFamily: "",
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                ),
+                                DropDown.networkDropdownlabler1(
+                                    "State",
+                                    ApiFactory.STATE_API +
+                                        (DocMyProfile?.countrymodel?.key ??
+                                            ""),
+                                    "statedocp", (KeyvalueModel model) {
+                                  setState(() {
+                                    print(ApiFactory.STATE_API);
+                                    DocMyProfile.statemodel = model;
+                                    profileModel1.body.state =
+                                        model.key;
+                                    profileModel1.body.stateName=
+                                        model.name;
+                                    // updateProfileModel.bloodGroup = model.key;
+                                  });
+                                }),
+                              ]),
+                          SizedBox(height: 10),
+                          Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment:
+                              CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 0, right: 5, bottom: 0),
+                                  child: Text(
+                                    "District",
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 13,
+                                        fontFamily: "",
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                ),
+                                DropDown.networkDropdownlabler1(
+                                    "District",
+                                    ApiFactory.DISTRICT_API +
+                                        (DocMyProfile?.statemodel?.key ??
+                                            ""),
+                                    "statedocp", (KeyvalueModel model) {
+                                  setState(() {
+                                    print(ApiFactory.DISTRICT_API);
+                                    DocMyProfile.districtmodel = model;
+                                    profileModel1.body.district =
+                                        model.key;
+                                    profileModel1.body.districtName=
+                                        model.name;
+                                    // updateProfileModel.bloodGroup = model.key;
+                                  });
+                                }),
+                              ]),
+                          SizedBox(height: 10),
+                          Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment:
+                              CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 0, right: 5, bottom: 0),
+                                  child: Text(
+                                    MyLocalizations.of(context)
+                                        .text("CITY"),
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 13,
+                                        fontFamily: "",
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                ),
+                                DropDown.networkDropdownlabler1(
+                                    "City",
+                                    ApiFactory.CITY_API +
+                                        (DocMyProfile?.districtmodel?.key ??
+                                            ""),
+                                    "citydocp",
+                                        (KeyvalueModel model) {
+                                      setState(() {
+                                        print(ApiFactory.CITY_API);
+                                        DocMyProfile.citymodel = model;
+                                        profileModel1.body.city =
+                                            model.key;
+                                        profileModel1.body.cityName =
+                                            model.name;
+                                        // updateProfileModel.bloodGroup = model.key;
+                                      });
+                                    }),
+                              ]),
                         ]),
 
                     ),
