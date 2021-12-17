@@ -834,6 +834,16 @@ class _VitalSignsState extends State<VitalSigns> {
                     "key": "3",
                     "code": textEditingController[8].text,
                     "name": widget.model.user
+                  },
+                  {
+                    "key": "1",
+                    "code": textEditingController[3].text,
+                    "name": widget.model.user
+                  },
+                  {
+                    "key": "7",
+                    "code": textEditingController[9].text,
+                    "name": widget.model.user
                   }
                 ];
                 //log("API NAME>>>>" + ApiFactory.UPDATE_VITAL_SIGN);
@@ -920,6 +930,7 @@ class _VitalSignsState extends State<VitalSigns> {
                         hintStyle:
                             TextStyle(color: AppData.hintColor, fontSize: 15),
                       ),
+
                       onFieldSubmitted: (value) {
                         // print(error[2]);
                         //error[4] = false;
