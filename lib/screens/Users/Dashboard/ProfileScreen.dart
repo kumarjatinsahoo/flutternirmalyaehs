@@ -2191,7 +2191,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       DropDown.networkDropdownlabler1(
                                           "Country",
                                           ApiFactory.COUNTRY_API,
-                                          "country", (KeyvalueModel model) {
+                                          "country1", (KeyvalueModel model) {
                                         setState(() {
                                           print(ApiFactory.COUNTRY_API);
                                           ProfileScreen.countrymodel = model;
@@ -2223,8 +2223,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       ),
                                       DropDown.networkDropdownlabler1(
                                           "State",
-                                          ApiFactory.STATE_API,
-                                          "state", (KeyvalueModel model) {
+                                          ApiFactory.STATE_API +
+                                              (ProfileScreen?.countrymodel?.key ??
+                                                  ""),
+                                          "state1", (KeyvalueModel model) {
                                         setState(() {
                                           print(ApiFactory.STATE_API);
                                           ProfileScreen.statemodel = model;
@@ -2257,8 +2259,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       ),
                                       DropDown.networkDropdownlabler1(
                                           "District",
-                                          ApiFactory.DISTRICT_API,
-                                          "district", (KeyvalueModel model) {
+                                          ApiFactory.DISTRICT_API +
+                                              (ProfileScreen?.statemodel?.key ??
+                                                  ""),
+                                          "district1", (KeyvalueModel model) {
                                         setState(() {
                                           print(ApiFactory.DISTRICT_API);
                                           ProfileScreen.districtmodel = model;
@@ -2291,7 +2295,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         ),
                                       ),
                                       DropDown.networkDropdownlabler1(
-                                          "City", ApiFactory.CITY_API, "city",
+                                          "City",
+                                          ApiFactory.CITY_API +
+                                              (ProfileScreen?.districtmodel?.key ??
+                                                  ""),
+                                          "city1",
                                           (KeyvalueModel model) {
                                         setState(() {
                                           print(ApiFactory.CITY_API);
