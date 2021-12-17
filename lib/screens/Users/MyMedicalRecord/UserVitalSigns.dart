@@ -920,7 +920,6 @@ class _VitalSignsState extends State<VitalSigns> {
                         hintStyle:
                             TextStyle(color: AppData.hintColor, fontSize: 15),
                       ),
-
                       onFieldSubmitted: (value) {
                         // print(error[2]);
                         //error[4] = false;
