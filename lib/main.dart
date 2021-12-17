@@ -74,6 +74,7 @@ import 'package:user/screens/Users/GovermentSchemes/GovetListPage7.dart';
 import 'package:user/screens/Users/GovermentSchemes/GovetListPage8.dart';
 import 'package:user/screens/Users/Medication/UserMedicineList.dart';
 import 'package:user/screens/Users/Medication/UserTestList.dart';
+import 'package:user/screens/Users/MedicineReminder/EditReminder.dart';
 import 'package:user/screens/Users/Medipedia/DieseInfo.dart';
 import 'package:user/screens/Users/Medipedia/Diesepdf.dart';
 import 'package:user/screens/Users/Medipedia/HealthTipsList.dart';
@@ -543,6 +544,9 @@ class _MyAppState extends State<MyApp> {
                     model: _model,
                   ),
               '/setreminder': (context) => SetReminder(
+                    model: _model,
+                  ),
+              '/editReminder': (context) => EditReminder(
                     model: _model,
                   ),
               '/setreminderother': (context) => SetReminderOther(

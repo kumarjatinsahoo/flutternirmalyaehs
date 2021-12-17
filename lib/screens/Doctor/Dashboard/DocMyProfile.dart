@@ -25,12 +25,17 @@ import 'package:flutter/rendering.dart';
 
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/models/PatientListModel.dart';
+import 'package:user/widgets/MyWidget.dart';
 import 'package:user/widgets/TextFormatter.dart';
 import 'package:user/widgets/signature.dart';
 
 class DocMyProfile extends StatefulWidget {
   MainModel model;
   static KeyvalueModel gendermodel = null;
+  static KeyvalueModel countrymodel = null;
+  static KeyvalueModel statemodel = null;
+  static KeyvalueModel districtmodel = null;
+  static KeyvalueModel citymodel = null;
 
   DocMyProfile({Key key, this.model}) : super(key: key);
 
@@ -42,6 +47,14 @@ class _DocMyProfileState extends State<DocMyProfile> {
 
   String loAd = "Loading..";
   List<TextEditingController> textEditingController = [
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
     new TextEditingController(),
     new TextEditingController(),
     new TextEditingController(),
@@ -64,6 +77,13 @@ class _DocMyProfileState extends State<DocMyProfile> {
   FocusNode fnode5 = new FocusNode();
   FocusNode fnode6 = new FocusNode();
   FocusNode fnode7 = new FocusNode();
+  FocusNode fnode8 = new FocusNode();
+  FocusNode fnode9 = new FocusNode();
+  FocusNode fnode10 = new FocusNode();
+  FocusNode fnode11 = new FocusNode();
+  FocusNode fnode12 = new FocusNode();
+  FocusNode fnode13 = new FocusNode();
+
   final df = new DateFormat('dd/MM/yyyy');
   DateTime selectedDate = DateTime.now();
   UpdateDocProfileModel updateProfileModel = UpdateDocProfileModel();
@@ -117,6 +137,32 @@ class _DocMyProfileState extends State<DocMyProfile> {
                     name: profileModel1.body.gendername);
               } else {
                 DocMyProfile.gendermodel = null;
+              }
+              if (profileModel1?.body?.country != null) {
+                DocMyProfile.countrymodel = KeyvalueModel(
+                    key: profileModel1.body.country,
+                    name: profileModel1.body.countryName);
+              } else {
+                DocMyProfile.countrymodel = null;
+              }
+              if (profileModel1?.body?.state != null) {
+                DocMyProfile.statemodel = KeyvalueModel(
+                    key: profileModel1.body.state,
+                    name: profileModel1.body.stateName);
+              }if (profileModel1?.body?.district != null) {
+                DocMyProfile.districtmodel= KeyvalueModel(
+                    key: profileModel1.body.district,
+                    name: profileModel1.body.districtName);
+              }if (profileModel1?.body?.city != null) {
+                DocMyProfile.countrymodel = KeyvalueModel(
+                    key: profileModel1.body.city,
+                    name: profileModel1.body.cityName);
+              } else {
+
+
+                DocMyProfile.statemodel = null;
+                DocMyProfile.districtmodel = null;
+                DocMyProfile.citymodel = null;
               }
             } else {
               isDataNotAvail = true;
@@ -173,8 +219,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
                       if (profileModel1 != null) {
                         _displayTextInputDialog(context);
                       } else {
-                        AppData.showInSnackBar(context,
-                            "Please wait until we are fetching your data");
+                        AppData.showInSnackBar(context,"Please wait until we are fetching your data");
                       }
                     },
                     child: Icon(Icons.edit),
@@ -298,6 +343,48 @@ class _DocMyProfileState extends State<DocMyProfile> {
                                         subtitle: Text(profileModel1.body.email?? "N/A"),
                                       ),
                                       ListTile(
+                                        leading: Icon(Icons.bloodtype_outlined),
+                                        title: Text("bloodgroup".toUpperCase(),
+                                        ),
+                                        subtitle: Text(
+                                            profileModel1.body.bldGrname?? "N/A"),
+                                      ),
+                                      ListTile(
+                                        leading: Icon(Icons.location_on_rounded),
+                                        title: Text("Address".toUpperCase(),
+                                        ),
+                                        subtitle: Text(
+                                            profileModel1.body.address?? "N/A"),
+                                      ),
+                                      ListTile(
+                                        leading: Icon(Icons.location_on_rounded),
+                                        title: Text("country".toUpperCase(),
+                                        ),
+                                        subtitle: Text(
+                                            profileModel1.body.countryName?? "N/A"),
+                                      ),
+                                      ListTile(
+                                        leading: Icon(Icons.location_on_rounded),
+                                        title: Text("state".toUpperCase(),
+                                        ),
+                                        subtitle: Text(
+                                            profileModel1.body.stateName?? "N/A"),
+                                      ),
+                                      ListTile(
+                                        leading: Icon(Icons.location_on_rounded),
+                                        title: Text("district".toUpperCase(),
+                                        ),
+                                        subtitle: Text(
+                                            profileModel1.body.districtName?? "N/A"),
+                                      ),
+                                      ListTile(
+                                        leading: Icon(Icons.location_on_rounded),
+                                        title: Text("city".toUpperCase(),
+                                        ),
+                                        subtitle: Text(
+                                            profileModel1.body.cityName?? "N/A"),
+                                      ),
+                                      ListTile(
                                         leading: Icon(Icons.book),
                                         title: Text(MyLocalizations.of(context).text("EDUCATION").toUpperCase(),
                                         ),
@@ -372,20 +459,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
                                             profileModel1.body.licenseauthority ??
                                                 "N/A"),
                                       ),
-                                      ListTile(
-                                        leading: Icon(Icons.bloodtype_outlined),
-                                        title: Text("bloodgroup".toUpperCase(),
-                                        ),
-                                        subtitle: Text(
-                                            profileModel1.body.bldGrname?? "N/A"),
-                                      ),
-                                      ListTile(
-                                        leading: Icon(Icons.location_on_rounded),
-                                        title: Text("Address".toUpperCase(),
-                                        ),
-                                        subtitle: Text(
-                                            profileModel1.body.address+profileModel1.body.address1?? "N/A"),
-                                      ),
+
                                       InkWell(
                                         onTap: () {
                                         //  _displayTextInputDialog(context);
@@ -394,7 +468,6 @@ class _DocMyProfileState extends State<DocMyProfile> {
 
                                         },
                                       child:ListTile(
-
                                         leading:Icon(Icons.satellite_outlined),
                                         title:Text("Digital Signature".toUpperCase(),
                                         ),
@@ -402,6 +475,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
                                             profileModel1.body.address+profileModel1.body.address1?? "N/A"),*/
                                           trailing:Icon(Icons.edit),
                                       ),
+
                                       ),
                                     ],
                                   ),
@@ -409,9 +483,9 @@ class _DocMyProfileState extends State<DocMyProfile> {
                                   Container(
                                     width: 100,
                                     height: 70,
-                                    child: pngBytes != null
-                                        ? Image.memory(
-                                      Uint8List.view(pngBytes.buffer),
+                                    child: profileModel1.body.digsign!= null
+                                        ? Image.network(
+                                      profileModel1.body.digsign,
                                       height: 80.0,
                                     )
                                         : null,
@@ -452,7 +526,22 @@ class _DocMyProfileState extends State<DocMyProfile> {
     textEditingController[6].text = profileModel1.body.licenceno ??"";
     textEditingController[7].text = profileModel1.body.pancardno ?? "";
 
-
+    if (profileModel1?.body?.country == null ||
+        profileModel1?.body?.country == "") {
+      DocMyProfile.countrymodel = null;
+    }
+    if (profileModel1?.body?.state == null ||
+        profileModel1?.body?.state == "") {
+      DocMyProfile.statemodel = null;
+    }
+    if (profileModel1?.body?.district == null ||
+        profileModel1?.body?.district == "") {
+      DocMyProfile.districtmodel = null;
+    }
+    if (profileModel1?.body?.city == null ||
+        profileModel1?.body?.city == "") {
+      DocMyProfile.countrymodel = null;
+    }
 
     return showDialog(
         context: context,
@@ -514,56 +603,229 @@ class _DocMyProfileState extends State<DocMyProfile> {
                           SizedBox(
                             height: 10,
                           ),
-                          formFieldMobileno(
+                          formFieldEducation(
                               2,
-                             "IMA No",
+                              "Experience",
                               fnode2,
                               fnode3),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          formFieldMobileno(
+                              3,
+                             "IMA No",
+                              fnode3,
+                              fnode4),
 
                           SizedBox(
                             height: 10,
                           ),
                           formFieldAadhaaerno(
-                              3,
+                              4,
                               "Aadhaar No",
-                              fnode3,
-                              fnode4),
-                          SizedBox(
-                            height: 10,
-                          ),
-
-                          formFieldPassPortno(
-                              4,"Passport No",
                               fnode4,
                               fnode5),
                           SizedBox(
                             height: 10,
                           ),
                           formFieldPassPortno(
-                              5,
-                              "Voter Card No",
-                              fnode5,
+                              5,"Passport No",
+                              fnode4,
                               fnode6),
                           SizedBox(
                             height: 10,
                           ),
                           formFieldPassPortno(
                               6,
-                              "Licenece No",
+                              "Voter Card No",
                               fnode6,
                               fnode7),
                           SizedBox(
                             height: 10,
                           ),
                           formFieldPassPortno(
-                              7,"Pan No",
+                              7,
+                              "Licenece No",
                               fnode7,
-                              null),
+                              fnode8),
                           SizedBox(
                             height: 10,
                           ),
+                          formField(
+                              8,
+                              "Licence Authority",
+                              fnode8,
+                              fnode9),
+                          SizedBox(height: 10),
+                          formFieldPassPortno(
+                              9,"Pan No",
+                              fnode9,
+                              fnode10),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          formField(
+                          10,
+                          "Email",
+                          fnode10,
+                          fnode11),
+                      SizedBox(height: 10),
+
+                          formFieldZipno(
+                          11,
+                          "Pincode",
+                          fnode11,
+                          fnode12),
+                      SizedBox(height: 10),
+                          formFieldMoileno(
+                          12,
+                          "Moile no",
+                          fnode12,
+                          fnode13),
+                          formFieldAddress(
+                              13,
+                              MyLocalizations.of(context).text("USER_ADDRESS"),
+                              fnode13,
+                              null),
+                      SizedBox(height: 20),
+
+                      Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 0, right: 5, bottom: 0),
+                              child: Text(
+                                MyLocalizations.of(context)
+                                    .text("COUNTRY"),
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 13,
+                                    fontFamily: "",
+                                    fontWeight: FontWeight.w400),
+                              ),
+                            ),
+                            DropDown.networkDropdownlabler1(
+                                "Country",
+                                ApiFactory.COUNTRY_API,
+                                "country1", (KeyvalueModel model) {
+                              setState(() {
+                                DocMyProfile.countrymodel = model;
+                                profileModel1.body.country =
+                                    model.key;
+                                profileModel1.body.countryName =
+                                    model.name;
+                                // updateProfileModel.bloodGroup = model.key;
+                              });
+                            }),
+                          ]),
+                      SizedBox(height: 20),
+
+                      Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 0, right: 5, bottom: 0),
+                              child: Text(
+                                MyLocalizations.of(context)
+                                    .text("STATE"),
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 13,
+                                    fontFamily: "",
+                                    fontWeight: FontWeight.w400),
+                              ),
+                            ),
+                            DropDown.networkDropdownlabler1(
+                                "State",
+                                ApiFactory.STATE_API,
+                                "state1", (KeyvalueModel model) {
+                              setState(() {
+                                DocMyProfile.statemodel = model;
+                                profileModel1.body.state =
+                                    model.key;
+                                profileModel1.body.stateName=
+                                    model.name;
+                                // updateProfileModel.bloodGroup = model.key;
+                              });
+                            }),
+                          ]),
+                      SizedBox(height: 20),
+
+                      Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 0, right: 5, bottom: 0),
+                              child: Text(
+                                MyLocalizations.of(context)
+                                    .text("District"),
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 13,
+                                    fontFamily: "",
+                                    fontWeight: FontWeight.w400),
+                              ),
+                            ),
+                            DropDown.networkDropdownlabler1(
+                                "District",
+                                ApiFactory.DISTRICT_API,
+                                "district1", (KeyvalueModel model) {
+                              setState(() {
+                                DocMyProfile.districtmodel = model;
+                                profileModel1.body.district =
+                                    model.key;
+                                profileModel1.body.districtName=
+                                    model.name;
+                                // updateProfileModel.bloodGroup = model.key;
+                              });
+                            }),
+                          ]),
+                      SizedBox(height: 20),
+
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 0, right: 5, bottom: 0),
+                            child: Text(
+                              MyLocalizations.of(context)
+                                  .text("CITY"),
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 13,
+                                  fontFamily: "",
+                                  fontWeight: FontWeight.w400),
+                            ),
+                          ),
+                          DropDown.networkDropdownlabler1(
+                              "City",
+                              ApiFactory.CITY_API,
+                              "city1", (KeyvalueModel model) {
+                            setState(() {
+                              DocMyProfile.citymodel = model;
+                              profileModel1.body.city =
+                                  model.key;
+                              profileModel1.body.cityName =
+                                  model.name;
+                              // updateProfileModel.bloodGroup = model.key;
+                            });
+                          }),
                         ],
                       ),
+                        ]),
+
                     ),
                   ),
                 );
@@ -665,14 +927,28 @@ class _DocMyProfileState extends State<DocMyProfile> {
                       updateProfileModel.dob = textEditingController[0].text;
                       updateProfileModel.gender = DocMyProfile.gendermodel.key;
                       updateProfileModel.educationid = textEditingController[1].text;
-                      updateProfileModel.imaNo = textEditingController[2].text;
+                      updateProfileModel.experience = textEditingController[2].text;
+                      updateProfileModel.imaNo = textEditingController[3].text;
                       //Emergency
-                      updateProfileModel.adhaarNo = textEditingController[3].text;
-                      updateProfileModel.passportNo = textEditingController[4].text;
-                      updateProfileModel.votterId = textEditingController[5].text;
+                      updateProfileModel.adhaarNo = textEditingController[4].text;
+                      updateProfileModel.passportNo = textEditingController[5].text;
+                      updateProfileModel.votterId = textEditingController[6].text;
+                      updateProfileModel.liceneceNo = textEditingController[7].text;
+                      updateProfileModel.liceneceAuthority = textEditingController[8].text;
+                      updateProfileModel.panNo = textEditingController[9].text;
+                      updateProfileModel.email = textEditingController[10].text;
+                      updateProfileModel.pincode = textEditingController[11].text;
+                      updateProfileModel.mobno = textEditingController[12].text;
+                      updateProfileModel.address = textEditingController[13].text;
+                      updateProfileModel.countryid =  DocMyProfile.countrymodel.key;
+                      updateProfileModel.stateid =  DocMyProfile.statemodel.key;
+                      updateProfileModel.districtid =  DocMyProfile.districtmodel.key;
+                      updateProfileModel.cityid =  DocMyProfile.citymodel.key;
 
-                      updateProfileModel.liceneceNo = textEditingController[6].text;
-                      updateProfileModel.panNo = textEditingController[7].text;
+
+
+
+
                       log("Post json2>>>>" + jsonEncode(updateProfileModel.toJson()));
                       log("Post api>>>>" +ApiFactory.UPDATE_DOCTER_PROFILE);
                       widget.model.POSTMETHOD_TOKEN(
@@ -703,6 +979,61 @@ class _DocMyProfileState extends State<DocMyProfile> {
   }
 
 
+  Widget formFieldAddress(
+      int controller,
+      String hint,
+      FocusNode currentfn,
+      FocusNode nextFn,
+      ) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 0, right: 5),
+          child: Text(
+            hint,
+            style: TextStyle(
+                color: Colors.black,
+                fontSize: 13,
+                fontFamily: "",
+                fontWeight: FontWeight.w400),
+          ),
+        ),
+        TextFieldContainer(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: TextFormField(
+              controller: textEditingController[controller],
+              textInputAction: TextInputAction.done,
+              keyboardType: TextInputType.text,
+              focusNode: currentfn,
+              /*inputFormatters: [
+                WhitelistingTextInputFormatter(
+                  RegExp("[0-9]"),
+                ),
+              ],*/
+
+              ///maxLength: 10,
+              // Validator.getKeyboardTyp(validateModel.fieldType.toLowerCase()),
+              style: TextStyle(fontSize: 15),
+
+              decoration: InputDecoration(
+                //hintText: hint,
+                  hintStyle: TextStyle(color: Colors.grey, fontSize: 13),
+                  border: InputBorder.none,
+                  counterText: '',
+                  contentPadding:
+                  EdgeInsets.symmetric(vertical: 2, horizontal: 0)),
+              onChanged: (newValue) {},
+              onFieldSubmitted: (value) {
+                AppData.fieldFocusChange(context, currentfn, nextFn);
+              },
+            ),
+          ),
+        ),
+      ],
+    );
+  }
 
 
 
@@ -752,7 +1083,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
                         child: RaisedButton(
                           child: Text("Clear"),
                           onPressed: () {
-                            //_sign.currentState.clear();
+                            _sign.currentState.clear();
                           },
                         ),
                       ),
@@ -800,8 +1131,11 @@ class _DocMyProfileState extends State<DocMyProfile> {
     pngBytes = await image.toByteData(format: ui.ImageByteFormat.png);
     ByteData data = pngBytes;
     var list = data.buffer.asUint8List();
-
+   /* String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+    print(extName);*/
+    String extName  = "png";
     signBase64 = base64.encode(list);
+    updateProfile(base64Encode(list), extName);
     /*registrationModel.signUploadBase64 = signBase64;
     registrationModel.signUploadExt = "png";
 */
@@ -810,6 +1144,37 @@ class _DocMyProfileState extends State<DocMyProfile> {
 
       selectGallery = false;
     });
+  }
+
+
+  updateProfile(String image, String ext) {
+    MyWidgets.showLoading(context);
+    var value = {
+      "digSignType": ext,
+      "digSign": [image],
+      "dctrid": loginResponse.body.user
+    };
+
+    log("Post data>>\n\n" + jsonEncode(value));
+    widget.model.POSTMETHOD_TOKEN(
+        api: ApiFactory.OTHER_PROFILE_SIGN,
+        token: widget.model.token,
+        json: value,
+        fun: (Map<String, dynamic> map) {
+          Navigator.pop(context);
+          setState(() {
+            log("Value>>>" + jsonEncode(map));
+            String msg = map[Const.MESSAGE];
+            if (map[Const.CODE] == Const.SUCCESS) {
+              AppData.showInSnackDone(context, msg);
+              callAPI();
+            } else {
+              isDataNotAvail = true;
+              AppData.showInSnackBar(context, msg);
+              callAPI();
+            }
+          });
+        });
   }
  /* Future getSignatureImage() async {
     var image = await ImagePicker.pickImage(source: ImageSource.gallery);
@@ -961,7 +1326,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
                     ),
                   ),
                 ),
-              ),
+              )/*,*/
             ],
           ),
         ),
@@ -992,9 +1357,9 @@ class _DocMyProfileState extends State<DocMyProfile> {
               textInputAction: TextInputAction.done,
               focusNode: currentfn,
               keyboardType: TextInputType.text,
-              inputFormatters: [
+              /*inputFormatters: [
                 WhitelistingTextInputFormatter(RegExp("[a-zA-Z .]")),
-              ],
+              ],*/
               // Validator.getKeyboardTyp(validateModel.fieldType.toLowerCase()),
               style: TextStyle(fontSize: 15),
               decoration: InputDecoration(
@@ -1227,6 +1592,106 @@ class _DocMyProfileState extends State<DocMyProfile> {
                 ),
               ],
               maxLength: 12,
+              // Validator.getKeyboardTyp(validateModel.fieldType.toLowerCase()),
+              style: TextStyle(fontSize: 15),
+
+              decoration: InputDecoration(
+                //hintText: hint,
+                  hintStyle: TextStyle(color: Colors.grey, fontSize: 13),
+                  border: InputBorder.none,
+                  counterText: '',
+                  contentPadding:
+                  EdgeInsets.symmetric(vertical: 2, horizontal: 0)),
+              onChanged: (newValue) {},
+              onFieldSubmitted: (value) {
+                AppData.fieldFocusChange(context, currentfn, nextFn);
+              },
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+  Widget formFieldMoileno(
+      int controller, String hint, FocusNode currentfn, FocusNode nextFn) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 0, right: 5),
+          child: Text(
+            hint,
+            style: TextStyle(
+                color: Colors.black,
+                fontSize: 13,
+                fontFamily: "",
+                fontWeight: FontWeight.w400),
+          ),
+        ),
+        TextFieldContainer(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: TextFormField(
+              controller: textEditingController[controller],
+              textInputAction: TextInputAction.done,
+              keyboardType: TextInputType.number,
+              focusNode: currentfn,
+              inputFormatters: [
+                WhitelistingTextInputFormatter(
+                  RegExp("[0-9]"),
+                ),
+              ],
+              maxLength: 10,
+              // Validator.getKeyboardTyp(validateModel.fieldType.toLowerCase()),
+              style: TextStyle(fontSize: 15),
+
+              decoration: InputDecoration(
+                //hintText: hint,
+                  hintStyle: TextStyle(color: Colors.grey, fontSize: 13),
+                  border: InputBorder.none,
+                  counterText: '',
+                  contentPadding:
+                  EdgeInsets.symmetric(vertical: 2, horizontal: 0)),
+              onChanged: (newValue) {},
+              onFieldSubmitted: (value) {
+                AppData.fieldFocusChange(context, currentfn, nextFn);
+              },
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+  Widget formFieldZipno(
+      int controller, String hint, FocusNode currentfn, FocusNode nextFn) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 0, right: 5),
+          child: Text(
+            hint,
+            style: TextStyle(
+                color: Colors.black,
+                fontSize: 13,
+                fontFamily: "",
+                fontWeight: FontWeight.w400),
+          ),
+        ),
+        TextFieldContainer(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: TextFormField(
+              controller: textEditingController[controller],
+              textInputAction: TextInputAction.done,
+              keyboardType: TextInputType.number,
+              focusNode: currentfn,
+              inputFormatters: [
+                WhitelistingTextInputFormatter(
+                  RegExp("[0-9]"),
+                ),
+              ],
+              maxLength: 6,
               // Validator.getKeyboardTyp(validateModel.fieldType.toLowerCase()),
               style: TextStyle(fontSize: 15),
 

@@ -17,6 +17,7 @@ import 'package:user/screens/Users/Dashboard/ProfileScreen.dart';
 import 'package:user/screens/Users/EmergencyHelp/SetupContactsPage.dart';
 import 'package:user/screens/Users/FindHealthCare/BookAppointment/DoctorconsultationPage.dart';
 import 'package:user/screens/Users/GenericMedicine/GenericStores.dart';
+import 'package:user/screens/Users/MedicineReminder/EditReminder.dart';
 import 'package:user/screens/Users/MyMedicalRecord/LifeStyleHistory.dart';
 import 'package:user/screens/Users/UserSignUpForm.dart';
 import 'package:user/screens/walkin_labrotry/registration/LabSignUpForm3.dart';
@@ -588,7 +589,18 @@ class DropDown {
           case "alcohol":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
-
+          case "country1":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "state1":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "district1":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "city1":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
           case "gender":
             List<KeyvalueModel> listS = [];
             listS.add(KeyvalueModel(name: "MALE", key: "1"));
@@ -2112,6 +2124,9 @@ class DropDown {
 
   static KeyvalueModel getData(String callFor) {
     switch (callFor) {
+      case "dosage":
+        return EditReminder.dosageModel;
+        break;
       case "speciality":
         return ProfileScreen.specialitymodel;
         break;
@@ -2147,7 +2162,21 @@ class DropDown {
       case "gender1":
         return DocMyProfile.gendermodel;
         break;
-    }
+      case "country1":
+        return DocMyProfile.countrymodel;
+        break;
+      case "state1":
+        return DocMyProfile.statemodel;
+        break;
+      case "district1":
+        return DocMyProfile.districtmodel;
+        break;
+      case "city1":
+        return DocMyProfile.citymodel;
+        break;
+        //city1,district1,state1,country1
+
+  }
   }
 
   static KeyvalueModel getData11(String callFor) {
