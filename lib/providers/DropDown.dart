@@ -601,6 +601,10 @@ class DropDown {
           case "citydocp":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
+          case "bloodgroupdop":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+
           case "gender":
             List<KeyvalueModel> listS = [];
             listS.add(KeyvalueModel(name: "MALE", key: "1"));
@@ -2168,19 +2172,21 @@ class DropDown {
       case "gender1":
         return DocMyProfile.gendermodel;
         break;
-      case "country1":
+      case "countrydocp":
         return DocMyProfile.countrymodel;
         break;
-      case "state1":
+      case "statedocp":
         return DocMyProfile.statemodel;
         break;
-      case "district1":
+      case "districtdocp":
         return DocMyProfile.districtmodel;
         break;
-      case "city1":
+      case "citydocp":
         return DocMyProfile.citymodel;
         break;
-        //city1,district1,state1,country1
+      case "bloodgroupdop":
+        return DocMyProfile.bloodgroupmodel;
+        break;
 
   }
   }

@@ -565,8 +565,12 @@ class _AmbulanceDashboardState extends State<AmbulanceDashboard> {
                 selected: _selectedDestination == 1,
                 onTap: () {
                   selectDestination(1);
-                  Navigator.pushNamed(context, "/labprofile");
+                  Navigator.pushNamed(context, "/docMyProf");
                 },
+                /*onTap: () {
+                  selectDestination(1);
+                  Navigator.pushNamed(context, "/labprofile");
+                },*/
               ),
               /* ListTile(
                 leading: Image.asset(

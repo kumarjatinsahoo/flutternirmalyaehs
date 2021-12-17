@@ -75,6 +75,7 @@ class ApiFactory {
   static String LAB_LIST = MAIN_URL + 'get-pathology-list-by-location';
   static String USER_PROFILE_IMAGE = MAIN_URL + 'update-user-profile-image';
   static String OTHER_PROFILE_SIGN= MAIN_URL + 'update-doctor-digitalsignature';
+  static String OTHER_PROFILE_IMAGE= MAIN_URL + 'update-other-profileimage';
   static String USER_DASHBOARD = MAIN_URL + 'user-dashboard?userid=';
   static String PERSONAL_DETAILS =
       MAIN_URL + 'user-personal-information-doctor?userid=';

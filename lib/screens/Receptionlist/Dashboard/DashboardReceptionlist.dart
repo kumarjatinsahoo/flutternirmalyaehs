@@ -196,6 +196,7 @@ class _DashboardReceptionlistState extends State<DashboardReceptionlist> {
                                   fun: () {
                                     //AppData.showInSnackBar(context, "Coming soon");
                                     // Navigator.pushNamed(context, "/medicalrecordpage");
+
                                     Navigator.pushNamed(context, "/docMyProf");
                                   },
                                   color: AppData.BG2BLUE,
