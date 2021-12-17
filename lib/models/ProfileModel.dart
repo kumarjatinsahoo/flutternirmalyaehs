@@ -175,6 +175,7 @@ class Body {
     licenceno = json['licenceno'];
     licenceauthority = json['licenceauthority'];
     email = json['email'];
+    pincode = json['pincode'];
     countryid = json['countryid'];
     stateid = json['stateid'];
     distid = json['distid'];
@@ -250,6 +251,7 @@ class Body {
     data['licenceno'] = this.licenceno;
     data['licenceauthority'] = this.licenceauthority;
     data['email'] = this.email;
+    data['pincode'] = this.pincode;
     data['countryid'] = this.countryid;
     data['stateid'] = this.stateid;
     data['distid'] = this.distid;

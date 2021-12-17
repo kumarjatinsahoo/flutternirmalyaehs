@@ -535,7 +535,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                 selected: _selectedDestination == 1,
                 onTap: () {
                   selectDestination(1);
-                 // Navigator.pushNamed(context, "/profile");
+                  Navigator.pushNamed(context, "/profile");
                 },
               ),
               /* ListTile(

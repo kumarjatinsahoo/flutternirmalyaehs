@@ -1,7 +1,7 @@
 class UpdateProfileModel {
   String eCardNo;
-  String fname;
-  String lname;
+  String fName;
+  String lName;
   String dob;
   String bloodGroup;
   String address;
@@ -26,8 +26,8 @@ class UpdateProfileModel {
 
   UpdateProfileModel(
       {this.eCardNo,
-      this.fname,
-      this.lname,
+      this.fName,
+      this.lName,
       this.dob,
       this.bloodGroup,
       this.address,
@@ -54,8 +54,8 @@ class UpdateProfileModel {
   UpdateProfileModel.fromJson(Map<String, dynamic> json) {
     eCardNo = json['eCardNo'];
     dob = json['dob'];
-    fname = json['fname'];
-    lname = json['lname'];
+    fName = json['fName'];
+    lName = json['lName'];
     bloodGroup = json['bloodGroup'];
     address = json['address'];
     maritialstatus = json['maritialstatus'];
@@ -82,8 +82,8 @@ class UpdateProfileModel {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['eCardNo'] = this.eCardNo;
     data['dob'] = this.dob;
-    data['fname'] = this.fname;
-    data['lname'] = this.lname;
+    data['fName'] = this.fName;
+    data['lName'] = this.lName;
     data['bloodGroup'] = this.bloodGroup;
     data['address'] = this.address;
     data['maritialstatus'] = this.maritialstatus;
@@ -100,7 +100,7 @@ class UpdateProfileModel {
     data['pincode'] = this.pincode;
     data['cityid'] = this.cityid;
     data['distid'] = this.distid;
-    data['cityid'] = this.cityid;
+    data['stateid'] = this.stateid;
     data['countryid'] = this.countryid;
     data['mobile'] = this.mobile;
     data['gender'] = this.gender;

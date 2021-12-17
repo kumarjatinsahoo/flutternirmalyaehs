@@ -3721,6 +3721,9 @@ class DropDown {
           case "doctorrecipt":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
+            case "relation":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
         }
         return list;
       },

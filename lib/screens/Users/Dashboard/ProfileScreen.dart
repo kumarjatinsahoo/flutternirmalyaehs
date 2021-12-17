@@ -14,6 +14,7 @@ import 'package:user/models/LoginResponse1.dart';
 import 'package:user/models/PatientListModel.dart';
 import 'package:user/models/ProfileModel.dart';
 import 'package:user/models/ProfileModel.dart';
+import 'package:user/models/UpdateEmergencyModel.dart';
 import 'package:user/models/UpdateProfileModel.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/DropDown.dart';
@@ -233,16 +234,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
               /*else {
                 ProfileScreen.materialmodel = null;
               }*/
-              else {
+             /* else {
                 ProfileScreen.specialitymodel = null;
                 ProfileScreen.countrymodel = null;
                 ProfileScreen.statemodel = null;
                 ProfileScreen.districtmodel = null;
                 ProfileScreen.citymodel = null;
-              }
+              }*/
             } else {
               isDataNotAvail = true;
-              AppData.showInSnackBar(context, msg);
+              AppData.showInSnackBar(context, "Something Went Wrong");
             }
           });
         });
@@ -1395,7 +1396,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             children: [
                               InkWell(
                                 onTap: () {
-                                  //  _displayTextInputDialog(context);
+                                  EmergencydisplayDialog(context,patientProfileModel,0);
                                 },
                                 child: Row(
                                   children: [
@@ -2397,20 +2398,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       updateProfileModel.licenceauthority =
                           textEditingController[10].text;
                       updateProfileModel.email = textEditingController[11].text;
-                      updateProfileModel.pincode =
-                          textEditingController[12].text;
-                      updateProfileModel.countryid =
-                          ProfileScreen.countrymodel.key;
+                      updateProfileModel.pincode = textEditingController[12].text;
+                      updateProfileModel.countryid = ProfileScreen.countrymodel.key;
                       updateProfileModel.stateid = ProfileScreen.statemodel.key;
-                      updateProfileModel.distid =
-                          ProfileScreen.districtmodel.key;
+                      updateProfileModel.distid = ProfileScreen.districtmodel.key;
                       updateProfileModel.cityid = ProfileScreen.citymodel.key;
-                      updateProfileModel.mobile =
-                          patientProfileModel.body.mobile;
-                      updateProfileModel.fname = patientProfileModel.body.fName;
-                      updateProfileModel.lname = patientProfileModel.body.lName;
-                      updateProfileModel.gender =
-                          patientProfileModel.body.genderId;
+                      updateProfileModel.mobile = patientProfileModel.body.mobile;
+                      updateProfileModel.fName = patientProfileModel.body.fName;
+                      updateProfileModel.lName = patientProfileModel.body.lName;
+                      updateProfileModel.gender = patientProfileModel.body.genderId;
 
                       log("Post json>>>>" +
                           jsonEncode(updateProfileModel.toJson()));
@@ -2975,7 +2971,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   void displayDialog(BuildContext context) {
-    //_date.text = "";
+    textEditingController[13].text = "";
+    textEditingController[14].text = "";
+    ProfileScreen.relationmodel=null;
 
     showDialog(
         builder: (context) {
@@ -3009,22 +3007,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         SizedBox(
                           height: 15,
                         ),
-                        formField1(1, " Name"),
+                        formField1(13, " Name"),
                         SizedBox(height: 8),
                         DropDown.networkDropdownGetpartUser1(
                             "Relation",
                             ApiFactory.RELATION_API,
                             "relation",
                             Icons.people_alt_rounded,
-                            23.0, (KeyvalueModel model) {
+                            23.0, (KeyvalueModel data) {
                           setState(() {
-                            ProfileScreen.relationmodel = model;
-                            patientProfileModel.body.eRelationId = model.key;
-                            patientProfileModel.body.eRelation = model.name;
+                            print(ApiFactory.RELATION_API);
+                            ProfileScreen.relationmodel = data;
+                            ProfileScreen.relationmodel = data.key;
                           });
                         }),
                         SizedBox(height: 8),
-                        formField1(2, "Mobile No"),
+                        mobileformField1(14, "Mobile No"),
                       ],
                     ),
                   ),
@@ -3050,47 +3048,185 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   style: TextStyle(color: AppData.matruColor),
                 ),
                 onPressed: () {
-                  /*if (Immunization.immunizationmodel == null || Immunization.immunizationmodel == "") {
-                      AppData.showInSnackBar(context, "Please Select Immunization Type ");
-                    } else if (_date.text == "" || _date.text == null) {
-                      AppData.showInSnackBar(context, "Please Enter Immunization Date");
-                    } else if (textEditingController[1].text == "" ||textEditingController[1].text == null) {
-                      AppData.showInSnackBar(context, "Please Enter Prescribed By");
-                    } else if (textEditingController[2].text == ""||textEditingController[2].text == null) {
-                      AppData.showInSnackBar(context, "Please Enter Immunization Details ");
-                    } else {
-                      MyWidgets.showLoading(context);
-                      ImmunizationPostModel immunizationmodel =
-                      ImmunizationPostModel();
-                      immunizationmodel.patientId = loginResponse1.body.user;
-                      immunizationmodel.immunizationId =
-                          Immunization.immunizationmodel.key;
-                      immunizationmodel.immunizationDate = _date.text;
-                      immunizationmodel.doctorName =
-                          textEditingController[1].text;
-                      immunizationmodel.immunizationDetails =
-                          textEditingController[2].text;
-                      immunizationmodel.status = "yes";
-                      print(">>>>>>>>>>>>>>>>>>>>>>>>>>>" +
-                          immunizationmodel.toJson().toString());
-                      widget.model.POSTMETHOD2(
-                        api: ApiFactory.ADD_IMMUNIZATION,
-                        json: immunizationmodel.toJson(),
-                        token: widget.model.token,
-                        fun: (Map<String, dynamic> map) {
-                          Navigator.pop(context);
-                          if (map["code"] == Const.SUCCESS) {
-                            Navigator.pop(context);
-                            callApi();
-                            AppData.showInSnackDone(
-                                context,map["message"]);
-                          } else {
+                  setState(() {
+          if (textEditingController[13].text == null || textEditingController[13].text == "") {
+          AppData.showInSnackBar(context, "Please enter Name");
+          } else if (textEditingController[13].text != "" && textEditingController[13].text.length <= 2) {
+          AppData.showInSnackBar(
+          context, "Please enter a valid First Name");
+          } else if (ProfileScreen.relationmodel == "" ||
+          ProfileScreen.relationmodel == null) {
+          AppData.showInSnackBar(
+          context, "Please Select Relation ");
+          }else if (textEditingController[14].text == "" || textEditingController[14].text == null) {
+            AppData.showInSnackBar(
+                context, "Please enter Emergency Contact No.");
+          } else if (textEditingController[14] != "" &&
+              textEditingController[14].text.length != 10) {
+            AppData.showInSnackBar(
+                context, "Please enter valid Emergency Contact No.");
+          }
+          else {
+            UpdateEmergencyModel  updateEmergencyModel = UpdateEmergencyModel();
+            updateEmergencyModel.name = textEditingController[13].text;
+            updateEmergencyModel.mobile = textEditingController[14].text;
+            updateEmergencyModel.userid = widget.model.user;
+            updateEmergencyModel.relation = ProfileScreen.relationmodel.key;
+            log("Value json>>" +
+                updateEmergencyModel.toJson().toString());
+            widget.model.POSTMETHOD_TOKEN(
+                api: ApiFactory.UPDATE_EMERGENCY_CONTACT,
+                json: updateEmergencyModel.toJson(),
+                token: widget.model.token,
 
-                            AppData.showInSnackBar(context, map[Const.MESSAGE]);
-                          }
-                        },
-                      );
-                    }*/
+                fun: (Map<String, dynamic> map) {
+                  // Navigator.pop(context);
+
+                  if (map[Const.STATUS1] == Const.SUCCESS) {
+                    Navigator.pop(context);
+                    // popup(context, map[Const.MESSAGE]);
+                    callApi();
+                    AppData.showInSnackDone(
+                        context, map[Const.MESSAGE]);
+                  } else {
+                    // AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                  }
+                });
+          }
+                  });
+
+                },
+              ),
+            ],
+          );
+        },
+        context: context);
+  }
+  void EmergencydisplayDialog(BuildContext context,patientProfileModel, int index) {
+    //_date.text = "";
+    textEditingController[13].text=patientProfileModel?.body?.emergenceList[index].name??"";
+    textEditingController[14].text=patientProfileModel?.body?.emergenceList[index].mobile??"";
+    showDialog(
+        builder: (context) {
+          return AlertDialog(
+            contentPadding: EdgeInsets.only(left: 5, right: 5, top: 30),
+            insetPadding: EdgeInsets.only(left: 5, right: 5, top: 30),
+            content: StatefulBuilder(
+              builder: (BuildContext context, StateSetter setState) {
+                return Container(
+                  width: MediaQuery.of(context).size.width * 0.86,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SizedBox(height: 10),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 0, right: 0),
+                          child: Column(
+                            children: [
+                              Center(
+                                child: Text(
+                                  "Update Emergency Contact",
+                                  style: TextStyle(
+                                      color: Colors.black, fontSize: 20),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        formField1(13, " Name"),
+                        SizedBox(height: 8),
+                        DropDown.networkDropdownGetpartUser1(
+                            "Relation",
+                            ApiFactory.RELATION_API,
+                            "relation",
+                            Icons.people_alt_rounded,
+                            23.0, (KeyvalueModel data) {
+                          setState(() {
+                            print(ApiFactory.RELATION_API);
+                            ProfileScreen.relationmodel = data;
+                            ProfileScreen.relationmodel = data.key;
+                          });
+                        }),
+                        SizedBox(height: 8),
+                        mobileformField1(14, "Mobile No"),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            ),
+            actions: <Widget>[
+              FlatButton(
+                //textColor: Colors.grey,
+                child: Text(MyLocalizations.of(context).text("CANCEL"),
+                    style: TextStyle(color: AppData.kPrimaryRedColor)),
+                onPressed: () {
+                  setState(() {
+                    Navigator.pop(context);
+                  });
+                },
+              ),
+              FlatButton(
+                //textColor: Colors.grey,
+                child: Text(
+                  MyLocalizations.of(context).text("UPDATE"),
+                  //style: TextStyle(color: Colors.grey),
+                  style: TextStyle(color: AppData.matruColor),
+                ),
+                onPressed: () {
+                  setState(() {
+                    if (textEditingController[13].text == null || textEditingController[13].text == "") {
+                      AppData.showInSnackBar(context, "Please enter Name");
+                    } else if (textEditingController[13].text != "" && textEditingController[13].text.length <= 2) {
+                      AppData.showInSnackBar(
+                          context, "Please enter a valid First Name");
+                    } else if (ProfileScreen.relationmodel == "" ||
+                        ProfileScreen.relationmodel == null) {
+                      AppData.showInSnackBar(
+                          context, "Please Select Relation ");
+                    }else if (textEditingController[14].text == "" || textEditingController[14].text == null) {
+                      AppData.showInSnackBar(
+                          context, "Please enter Emergency Contact No.");
+                    } else if (textEditingController[14] != "" &&
+                        textEditingController[14].text.length != 10) {
+                      AppData.showInSnackBar(
+                          context, "Please enter valid Emergency Contact No.");
+                    }
+                    else {
+                      UpdateEmergencyModel  updateEmergencyModel = UpdateEmergencyModel();
+                      updateEmergencyModel.name = textEditingController[13].text;
+                      updateEmergencyModel.mobile = textEditingController[14].text;
+                      updateEmergencyModel.id = patientProfileModel?.body?.emergenceList[index].id;
+                      updateEmergencyModel.userid = widget.model.user;
+                      updateEmergencyModel.relation = ProfileScreen.relationmodel.key;
+                      log("Value json>>" +
+                          updateEmergencyModel.toJson().toString());
+                      widget.model.POSTMETHOD_TOKEN(
+                          api: ApiFactory.UPDATE_EMERGENCY_CONTACT,
+                          json: updateEmergencyModel.toJson(),
+                          token: widget.model.token,
+
+                          fun: (Map<String, dynamic> map) {
+                            // Navigator.pop(context);
+
+                            if (map[Const.STATUS1] == Const.SUCCESS) {
+                              Navigator.pop(context);
+                              // popup(context, map[Const.MESSAGE]);
+                              callApi();
+                              AppData.showInSnackDone(
+                                  context, map[Const.MESSAGE]);
+                            } else {
+                              // AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                            }
+                          });
+                    }
+                  });
+
                 },
               ),
             ],
@@ -3504,6 +3640,44 @@ class _ProfileScreenState extends State<ProfileScreen> {
           inputFormatters: [
             WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
           ],
+        ),
+      ),
+    );
+  }
+  Widget mobileformField1(
+    int index,
+    String hint,
+  ) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8),
+      child: Container(
+        height: 50,
+        padding: EdgeInsets.symmetric(horizontal: 10),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(5),
+          border: Border.all(color: Colors.black, width: 0.3),
+        ),
+        child: TextFormField(
+
+          decoration: InputDecoration(
+            border: InputBorder.none,
+            hintText: hint,
+counterText: "",
+            /* prefixIcon:
+            Icon(Icons.person_rounded),*/
+            hintStyle: TextStyle(color: AppData.hintColor),
+          ),
+          keyboardType: TextInputType.number,
+
+          inputFormatters: [
+            WhitelistingTextInputFormatter(RegExp("[0-9]")),
+          ],
+          maxLength: 10,
+          textInputAction: TextInputAction.next,
+          // controller: _reason,
+          controller: textEditingController[index],
+          textAlignVertical: TextAlignVertical.center,
         ),
       ),
     );
