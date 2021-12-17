@@ -198,25 +198,42 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ProfileScreen.bloodgroupmodel = null;
               }
               if (patientProfileModel?.body?.country != null) {
-                ProfileScreen.relationmodel = KeyvalueModel(
+                ProfileScreen.countrymodel = KeyvalueModel(
                     key: patientProfileModel.body.countryid,
                     name: patientProfileModel.body.country);
               } else {
-                ProfileScreen.relationmodel = null;
+                ProfileScreen.countrymodel = null;
               }
               if (patientProfileModel?.body?.state != null) {
-                ProfileScreen.specialitymodel = KeyvalueModel(
+                ProfileScreen.statemodel = KeyvalueModel(
                     key: patientProfileModel.body.stateid,
                     name: patientProfileModel.body.state);
-              }if (patientProfileModel?.body?.dist != null) {
-                ProfileScreen.specialitymodel = KeyvalueModel(
+              } else {
+                ProfileScreen.statemodel = null;
+              }
+              if (patientProfileModel?.body?.dist != null) {
+                ProfileScreen.districtmodel = KeyvalueModel(
                     key: patientProfileModel.body.distid,
                     name: patientProfileModel.body.dist);
-              }if (patientProfileModel?.body?.city != null) {
-                ProfileScreen.specialitymodel = KeyvalueModel(
+              } else {
+                ProfileScreen.districtmodel = null;
+              }
+              if (patientProfileModel?.body?.city != null) {
+                ProfileScreen.citymodel = KeyvalueModel(
                     key: patientProfileModel.body.cityid,
                     name: patientProfileModel.body.city);
               } else {
+                ProfileScreen.citymodel = null;
+              }
+              if (patientProfileModel?.body?.maritialstatus != null) {
+                ProfileScreen.materialmodel = KeyvalueModel(
+                    key: patientProfileModel.body.mstausid,
+                    name: patientProfileModel.body.maritialstatus);
+              }
+              /*else {
+                ProfileScreen.materialmodel = null;
+              }*/
+              else {
                 ProfileScreen.specialitymodel = null;
                 ProfileScreen.countrymodel = null;
                 ProfileScreen.statemodel = null;
@@ -2007,16 +2024,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
         patientProfileModel?.body?.maritialstatus == "") {
       ProfileScreen.materialmodel = null;
     }
-     if (patientProfileModel?.body?.country == null ||
+    if (patientProfileModel?.body?.country == null ||
         patientProfileModel?.body?.country == "") {
       ProfileScreen.countrymodel = null;
-    } if (patientProfileModel?.body?.state == null ||
+    }
+    if (patientProfileModel?.body?.state == null ||
         patientProfileModel?.body?.state == "") {
       ProfileScreen.statemodel = null;
-    } if (patientProfileModel?.body?.dist == null ||
+    }
+    if (patientProfileModel?.body?.dist == null ||
         patientProfileModel?.body?.dist == "") {
       ProfileScreen.districtmodel = null;
-    } if (patientProfileModel?.body?.city == null ||
+    }
+    if (patientProfileModel?.body?.city == null ||
         patientProfileModel?.body?.city == "") {
       ProfileScreen.citymodel = null;
     }
@@ -2128,7 +2148,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     "marital", (KeyvalueModel model) {
                                   setState(() {
                                     print(ApiFactory.MARITAL_API);
-                                     patientProfileModel.body.mstausid =
+                                    patientProfileModel.body.mstausid =
                                         model.key;
                                     patientProfileModel.body.maritialstatus =
                                         model.name;
@@ -2191,12 +2211,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       DropDown.networkDropdownlabler1(
                                           "Country",
                                           ApiFactory.COUNTRY_API,
-                                          "country1", (KeyvalueModel model) {
+                                          "pcountry", (KeyvalueModel model) {
                                         setState(() {
                                           print(ApiFactory.COUNTRY_API);
                                           ProfileScreen.countrymodel = model;
-                                          patientProfileModel.body.countryid = model.key;
-                                          patientProfileModel.body.country = model.name;
+                                          patientProfileModel.body.countryid =
+                                              model.key;
+                                          patientProfileModel.body.country =
+                                              model.name;
                                           // updateProfileModel.bloodGroup = model.key;
                                         });
                                       }),
@@ -2224,9 +2246,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       DropDown.networkDropdownlabler1(
                                           "State",
                                           ApiFactory.STATE_API +
-                                              (ProfileScreen?.countrymodel?.key ??
+                                              (ProfileScreen
+                                                      ?.countrymodel?.key ??
                                                   ""),
-                                          "state1", (KeyvalueModel model) {
+                                          "pstate", (KeyvalueModel model) {
                                         setState(() {
                                           print(ApiFactory.STATE_API);
                                           ProfileScreen.statemodel = model;
@@ -2262,7 +2285,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                           ApiFactory.DISTRICT_API +
                                               (ProfileScreen?.statemodel?.key ??
                                                   ""),
-                                          "district1", (KeyvalueModel model) {
+                                          "pdistrict", (KeyvalueModel model) {
                                         setState(() {
                                           print(ApiFactory.DISTRICT_API);
                                           ProfileScreen.districtmodel = model;
@@ -2297,10 +2320,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       DropDown.networkDropdownlabler1(
                                           "City",
                                           ApiFactory.CITY_API +
-                                              (ProfileScreen?.districtmodel?.key ??
+                                              (ProfileScreen
+                                                      ?.districtmodel?.key ??
                                                   ""),
-                                          "city1",
-                                          (KeyvalueModel model) {
+                                          "pcity", (KeyvalueModel model) {
                                         setState(() {
                                           print(ApiFactory.CITY_API);
                                           ProfileScreen.citymodel = model;
@@ -2346,9 +2369,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       AppData.showInSnackBar(
                           context, "Please Fill Up Atleast One Field ");
                     } else {
+                      updateProfileModel.eCardNo =
+                          patientProfileModel.body.eCardNo;
                       updateProfileModel.dob = textEditingController[0].text;
-                      updateProfileModel.bloodGroup = ProfileScreen.bloodgroupmodel.key;
-                      updateProfileModel.maritialstatus = ProfileScreen.materialmodel.key;
+                      updateProfileModel.bloodGroup =
+                          ProfileScreen.bloodgroupmodel.key;
+                      updateProfileModel.maritialstatus =
+                          ProfileScreen.materialmodel.key;
                       updateProfileModel.address =
                           textEditingController[1].text;
                       updateProfileModel.occupation =
@@ -2372,13 +2399,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       updateProfileModel.email = textEditingController[11].text;
                       updateProfileModel.pincode =
                           textEditingController[12].text;
-                      /*updateProfileModel.countryid = ProfileScreen.countrymodel.key;
+                      updateProfileModel.countryid =
+                          ProfileScreen.countrymodel.key;
                       updateProfileModel.stateid = ProfileScreen.statemodel.key;
-                      updateProfileModel.distid = ProfileScreen.districtmodel.key;
+                      updateProfileModel.distid =
+                          ProfileScreen.districtmodel.key;
                       updateProfileModel.cityid = ProfileScreen.citymodel.key;
-                      updateProfileModel.mobile = patientProfileModel.body.mobile;
+                      updateProfileModel.mobile =
+                          patientProfileModel.body.mobile;
                       updateProfileModel.fname = patientProfileModel.body.fName;
-                      updateProfileModel.lname = patientProfileModel.body.lName;*/
+                      updateProfileModel.lname = patientProfileModel.body.lName;
+                      updateProfileModel.gender =
+                          patientProfileModel.body.genderId;
 
                       log("Post json>>>>" +
                           jsonEncode(updateProfileModel.toJson()));
@@ -3557,7 +3589,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   RegExp("[0-9]"),
                 ),
               ],
-              maxLength: 1,
+              maxLength: 6,
               // Validator.getKeyboardTyp(validateModel.fieldType.toLowerCase()),
               style: TextStyle(fontSize: 15),
 

@@ -22,6 +22,7 @@ class UpdateProfileModel {
   String stateid;
   String countryid;
   String mobile;
+  String gender;
 
   UpdateProfileModel(
       {this.eCardNo,
@@ -45,7 +46,10 @@ class UpdateProfileModel {
       this.cityid,
       this.stateid,
       this.distid,
-      this.countryid,this.mobile});
+      this.countryid,
+        this.mobile,
+        this.gender
+      });
 
   UpdateProfileModel.fromJson(Map<String, dynamic> json) {
     eCardNo = json['eCardNo'];
@@ -71,6 +75,7 @@ class UpdateProfileModel {
     stateid = json['stateid'];
     countryid = json['countryid'];
     mobile = json['mobile'];
+    gender = json['gender'];
   }
 
   Map<String, dynamic> toJson() {
@@ -98,6 +103,7 @@ class UpdateProfileModel {
     data['cityid'] = this.cityid;
     data['countryid'] = this.countryid;
     data['mobile'] = this.mobile;
+    data['gender'] = this.gender;
     return data;
   }
 }

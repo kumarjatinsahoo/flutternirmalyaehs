@@ -601,6 +601,18 @@ class DropDown {
           case "city1":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
+            case "pcountry":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "pstate":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "pdistrict":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "pcity":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
           case "gender":
             List<KeyvalueModel> listS = [];
             listS.add(KeyvalueModel(name: "MALE", key: "1"));
@@ -2179,6 +2191,21 @@ class DropDown {
         break;
       case "city1":
         return DocMyProfile.citymodel;
+        break;
+        case "pcountry":
+        return ProfileScreen.countrymodel;
+        break;
+      case "pstate":
+        return ProfileScreen.statemodel;
+        break;
+      case "pdistrict":
+        return ProfileScreen.districtmodel;
+        break;
+      case "pcity":
+        return ProfileScreen.citymodel;
+        break;
+        case "marital":
+        return ProfileScreen.materialmodel;
         break;
         //city1,district1,state1,country1
 
