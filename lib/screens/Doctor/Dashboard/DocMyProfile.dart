@@ -36,15 +36,11 @@ class DocMyProfile extends StatefulWidget {
   static KeyvalueModel statemodel = null;
   static KeyvalueModel districtmodel = null;
   static KeyvalueModel citymodel = null;
-
   DocMyProfile({Key key, this.model}) : super(key: key);
-
   @override
   _DocMyProfileState createState() => _DocMyProfileState();
 }
-
 class _DocMyProfileState extends State<DocMyProfile> {
-
   String loAd = "Loading..";
   List<TextEditingController> textEditingController = [
     new TextEditingController(),
