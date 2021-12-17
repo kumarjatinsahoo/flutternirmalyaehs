@@ -54,6 +54,7 @@ class Body {
   String specialityId;
   String bloodGroupId;
   String maritialstatus;
+  String mstausid;
   String occupation;
   String qualification;
   String specialization;
@@ -105,6 +106,7 @@ class Body {
         this.specialityId,
         this.bloodGroupId,
         this.maritialstatus,
+        this.mstausid,
         this.occupation,
         this.qualification,
         this.specialization,
@@ -162,6 +164,7 @@ class Body {
     specialityId = json['specialityId'];
     bloodGroupId = json['bloodGroupId'];
     maritialstatus = json['maritialstatus'];
+    mstausid = json['mstausid'];
     occupation = json['occupation'];
     qualification = json['qualification'];
     specialization = json['specialization'];
@@ -236,6 +239,7 @@ class Body {
     data['specialityId'] = this.specialityId;
     data['bloodGroupId'] = this.bloodGroupId;
     data['maritialstatus'] = this.maritialstatus;
+    data['mstausid'] = this.mstausid;
     data['occupation'] = this.occupation;
     data['qualification'] = this.qualification;
     data['specialization'] = this.specialization;

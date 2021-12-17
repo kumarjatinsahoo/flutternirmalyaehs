@@ -1,3 +1,4 @@
+import 'package:device_calendar/device_calendar.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:user/models/ForgetUseridModel.dart'as forgotuser;
 import 'package:user/models/PharmacyorderModel.dart'as cnfrm;
@@ -153,6 +154,9 @@ String documentcategories;
 String emrdocumentcategories;
 String  receptionhospitalid;
 String  receptionpatientid;
+
+Event selectEvent;
+
 
 
 }

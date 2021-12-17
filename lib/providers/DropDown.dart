@@ -17,6 +17,7 @@ import 'package:user/screens/Users/Dashboard/ProfileScreen.dart';
 import 'package:user/screens/Users/EmergencyHelp/SetupContactsPage.dart';
 import 'package:user/screens/Users/FindHealthCare/BookAppointment/DoctorconsultationPage.dart';
 import 'package:user/screens/Users/GenericMedicine/GenericStores.dart';
+import 'package:user/screens/Users/MedicineReminder/EditReminder.dart';
 import 'package:user/screens/Users/MyMedicalRecord/LifeStyleHistory.dart';
 import 'package:user/screens/Users/UserSignUpForm.dart';
 import 'package:user/screens/walkin_labrotry/registration/LabSignUpForm3.dart';
@@ -629,7 +630,10 @@ class DropDown {
           case "ageproof":
             ageProof = data;
             break;
-          case "bloodgroup":
+          case "marital":
+            marital = data;
+            break;
+            case "bloodgroup":
             bloodgroupmodel = data;
             break;
           case "relation":
@@ -2123,6 +2127,12 @@ class DropDown {
 
   static KeyvalueModel getData(String callFor) {
     switch (callFor) {
+      case "marital":
+        return ProfileScreen.materialmodel;
+        break;
+        case "dosage":
+        return EditReminder.dosageModel;
+        break;
       case "speciality":
         return ProfileScreen.specialitymodel;
         break;

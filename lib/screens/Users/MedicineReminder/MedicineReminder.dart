@@ -160,8 +160,14 @@ class _MedicineReminderState extends State<MedicineReminder> {
 
   Future _deleteEvent(String eventId) async {
     try {
-        var calendarEventsResult = await _deviceCalendarPlugin.deleteEvent(loginResponse.body.calenderId, eventId);
+      var calendarEventsResult = await _deviceCalendarPlugin.deleteEvent(
+          loginResponse.body.calenderId, eventId);
+      if (calendarEventsResult.data) {
         AppData.showInSnackDone(context, "Deleted Successfully");
+        _retrieveCalendarEvents();
+      } else {
+        AppData.showInSnackBar(context, "Something went wrong");
+      }
     } on PlatformException catch (e) {
       print(e);
       AppData.showInSnackDone(context, "Something went wrong");
@@ -204,7 +210,7 @@ class _MedicineReminderState extends State<MedicineReminder> {
             activeDayColor: Colors.white,
             activeBackgroundDayColor: Colors.redAccent[100],
             dotsColor: Color(0xFF333A47),
-            selectableDayPredicate: (date) => date.day != 23,
+            //selectableDayPredicate: (date) => date.day != 23,
             locale: 'en',
           ),
           //SizedBox(height: 100),
@@ -237,10 +243,10 @@ class _MedicineReminderState extends State<MedicineReminder> {
                         title: Text(_calendarEvents[i].title),
                         subtitle: Text(_calendarEvents[i].description ?? ""),
                         onTap: () {
-                          widget.model.title = _calendars[i].id;
+                          // widget.model.title = _calendars[i].id;
                           Navigator.pushNamed(context, '/setreminder');
                         },
-                        trailing:  SizedBox(
+                        trailing: SizedBox(
                           height: 30,
                           width: 30,
                           child: PopupMenuButton(
@@ -253,14 +259,14 @@ class _MedicineReminderState extends State<MedicineReminder> {
                             onSelected: (value) {
                               switch (value) {
                                 case 1:
-
+                                  widget.model.selectEvent = _calendarEvents[i];
+                                  Navigator.pushNamed(context, '/editReminder');
                                   break;
                                 case 2:
                                   _deleteEvent(_calendarEvents[i].eventId);
                                   break;
                                 default:
-                                  AppData.showInSnackBar(
-                                      context, "Hey1");
+                                  AppData.showInSnackBar(context, "Hey1");
                               }
                             },
                             //elevation: 50,
