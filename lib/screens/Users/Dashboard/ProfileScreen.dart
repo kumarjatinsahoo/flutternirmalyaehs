@@ -2003,7 +2003,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
         patientProfileModel?.body?.bloodGroup == "") {
       ProfileScreen.bloodgroupmodel = null;
     }
-    /* if (patientProfileModel?.body?.country == null ||
+    if (patientProfileModel?.body?.maritialstatus == null ||
+        patientProfileModel?.body?.maritialstatus == "") {
+      ProfileScreen.materialmodel = null;
+    }
+     if (patientProfileModel?.body?.country == null ||
         patientProfileModel?.body?.country == "") {
       ProfileScreen.countrymodel = null;
     } if (patientProfileModel?.body?.state == null ||
@@ -2011,11 +2015,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ProfileScreen.statemodel = null;
     } if (patientProfileModel?.body?.dist == null ||
         patientProfileModel?.body?.dist == "") {
-      ProfileScreen.countrymodel = null;
+      ProfileScreen.districtmodel = null;
     } if (patientProfileModel?.body?.city == null ||
         patientProfileModel?.body?.city == "") {
-      ProfileScreen.countrymodel = null;
-    }*/
+      ProfileScreen.citymodel = null;
+    }
 
     /* if (patientProfileModel?.body?.speciality == null ||
         patientProfileModel?.body?.speciality == "") {
@@ -2124,8 +2128,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     "marital", (KeyvalueModel model) {
                                   setState(() {
                                     print(ApiFactory.MARITAL_API);
-                                    /* patientProfileModel.body.id =
-                                        model.key;*/
+                                     patientProfileModel.body.mstausid =
+                                        model.key;
                                     patientProfileModel.body.maritialstatus =
                                         model.name;
                                     //updateProfileModel.speciality = model.key;

@@ -570,7 +570,6 @@ class DropDown {
           case "bloodgroup":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
-            break;
           case "speciality":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
