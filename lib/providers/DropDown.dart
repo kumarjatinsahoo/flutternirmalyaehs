@@ -630,7 +630,10 @@ class DropDown {
           case "ageproof":
             ageProof = data;
             break;
-          case "bloodgroup":
+          case "marital":
+            marital = data;
+            break;
+            case "bloodgroup":
             bloodgroupmodel = data;
             break;
           case "relation":
@@ -2124,7 +2127,10 @@ class DropDown {
 
   static KeyvalueModel getData(String callFor) {
     switch (callFor) {
-      case "dosage":
+      case "marital":
+        return ProfileScreen.materialmodel;
+        break;
+        case "dosage":
         return EditReminder.dosageModel;
         break;
       case "speciality":
