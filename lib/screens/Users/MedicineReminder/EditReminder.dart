@@ -23,26 +23,26 @@ import '../../../models/KeyvalueModel.dart';
 import '../../../providers/app_data.dart';
 
 // ignore: must_be_immutable
-class SetReminder extends StatefulWidget {
+class EditReminder extends StatefulWidget {
   final MainModel model;
   final String type;
   static KeyvalueModel timeDayModel = null;
   static KeyvalueModel blockModel = null;
   static KeyvalueModel dosageModel = null;
 
-  SetReminder({
+  EditReminder({
     Key key,
     this.model,
     this.type,
   }) : super(key: key);
 
   @override
-  SetReminderState createState() => SetReminderState();
+  EditReminderState createState() => EditReminderState();
 }
 
 enum PayMode1 { cash, cheque, online }
 
-class SetReminderState extends State<SetReminder> {
+class EditReminderState extends State<EditReminder> {
   final _formKey = GlobalKey<FormState>();
   bool _autovalidate = false;
   DateTime selectedDate = DateTime.now();
@@ -148,11 +148,19 @@ class SetReminderState extends State<SetReminder> {
   void initState() {
     super.initState();
     loginResponse = widget.model.loginResponse1;
-    SetReminder.timeDayModel = null;
-    SetReminder.blockModel = null;
-    SetReminder.dosageModel = null;
+    EditReminder.timeDayModel = null;
+    EditReminder.blockModel = null;
+    EditReminder.dosageModel = null;
     textEditingController[0].text = widget.type;
     getList();
+    getStaticValue();
+  }
+
+  getStaticValue(){
+    Event event=widget.model.selectEvent;
+    textEditingController[0].text=event.title;
+    textEditingController[1].text=event.description.split(", ")[0];
+    EditReminder.dosageModel=KeyvalueModel(key: event.description.split(", ")[0].replaceAll(" dosage", ''),name: event.description.split(", ")[1].replaceAll(" dosage", ''));
   }
 
   getList(){
@@ -218,9 +226,9 @@ class SetReminderState extends State<SetReminder> {
     // event.end=DateTime.now().add(Duration(minutes: 35));
     event.title = widget.type;
     event.description = descrption +
-        ", " +
-        SetReminder.dosageModel.name +
-        " dosage, " +
+        " " +
+        EditReminder.dosageModel.name +
+        " dosage " +
         textEditingController[5].text;
     event.location = "Home";
     event.allDay = false;
@@ -231,8 +239,7 @@ class SetReminderState extends State<SetReminder> {
     event.reminders = [cal.Reminder(minutes: 20)];
     // event.
 
-    bool isAllAdded=false;
-    for (int i = 0; i < int.tryParse(SetReminder.timeDayModel.name); i++) {
+    for (int i = 0; i < int.tryParse(EditReminder.timeDayModel.name); i++) {
       event.start = DateTime(
           selectedStartDate.year,
           selectedStartDate.month,
@@ -246,16 +253,10 @@ class SetReminderState extends State<SetReminder> {
           await _deviceCalendarPlugin.createOrUpdateEvent(event);
       if (createEventResult.isSuccess &&
           (createEventResult.data?.isNotEmpty ?? false)) {
-        //AppData.showInSnackDone(context, "Added done");
-        isAllAdded=true;
+        AppData.showInSnackDone(context, "Added done");
       } else {
         AppData.showInSnackBar(context, "Something went wrong");
-        isAllAdded=false;
       }
-    }
-    if(isAllAdded) {
-      Navigator.pop(context);
-      AppData.showInSnackDone(context, "Added successfully");
     }
   }
 
@@ -279,7 +280,7 @@ class SetReminderState extends State<SetReminder> {
       appBar: AppBar(
         backgroundColor: AppData.kPrimaryColor,
         centerTitle: true,
-        title: Text("Set Reminder"),
+        title: Text("Edit Reminder"),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -318,9 +319,9 @@ class SetReminderState extends State<SetReminder> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 18),
               child: DropDown.staticDropdown2(
-                  "Dosage", "genderSignup", dosageList, (KeyvalueModel data) {
+                  "Dosage", "dosage", dosageList, (KeyvalueModel data) {
                 setState(() {
-                  SetReminder.dosageModel = data;
+                  EditReminder.dosageModel = data;
                 });
               }),
             ),
@@ -348,7 +349,7 @@ class SetReminderState extends State<SetReminder> {
                   "genderSignup",
                   districtList, (KeyvalueModel data) {
                 setState(() {
-                  SetReminder.timeDayModel = data;
+                  EditReminder.timeDayModel = data;
                   timePicker.forEach((element) {
                     element.text = "";
                   });
@@ -394,7 +395,7 @@ class SetReminderState extends State<SetReminder> {
                   ],
                 )),
             SizedBox(height: 10),
-            (SetReminder.timeDayModel != null)
+            (EditReminder.timeDayModel != null)
                 ? Column(
                     children: [
                       Padding(
@@ -417,7 +418,7 @@ class SetReminderState extends State<SetReminder> {
                           shrinkWrap: true,
                           physics: NeverScrollableScrollPhysics(),
                           itemCount:
-                              int.tryParse(SetReminder.timeDayModel.name),
+                              int.tryParse(EditReminder.timeDayModel.name),
                           gridDelegate:
                               SliverGridDelegateWithFixedCrossAxisCount(
                                   crossAxisCount: 3,
@@ -672,9 +673,9 @@ class SetReminderState extends State<SetReminder> {
     } else if (textEditingController[1].text == "" ||
         textEditingController[1].text == null) {
       AppData.showInSnackBar(context, "Please enter title");
-    } else if (SetReminder.dosageModel == null) {
+    } else if (EditReminder.dosageModel == null) {
       AppData.showInSnackBar(context, "Please Select Dosage");
-    } else if (SetReminder.timeDayModel == null) {
+    } else if (EditReminder.timeDayModel == null) {
       AppData.showInSnackBar(context, "Please Select How Many Times");
     } else if (stime.text == "" || stime.text == null) {
       AppData.showInSnackBar(context, "Please enter start time");
@@ -688,7 +689,7 @@ class SetReminderState extends State<SetReminder> {
       // _formKey.currentState.save();
       // Navigator.pop(context);
       bool isAllAccept = true;
-      for (int i = 0; i < int.tryParse(SetReminder.timeDayModel.name); i++) {
+      for (int i = 0; i < int.tryParse(EditReminder.timeDayModel.name); i++) {
         if (timePicker[i].text == "") {
           isAllAccept = false;
         }
