@@ -94,8 +94,7 @@ class _MedicineList extends State<UserMedicineList1> {
           setState(() {
             log("Response from sagar>>>>>" + jsonEncode(map));
             medicineListModel = MedicalPrescriptionModel.fromJson(map);
-            print(
-                "location>>>>>>>>>>>>>>>>>>"+medicineListModel.body[0].meddate);
+            print("location>>>>>>>>>>>>>>>>>>"+medicineListModel.body[0].meddate);
           });
         } else {
           setState(() {
@@ -256,10 +255,7 @@ class _MedicineList extends State<UserMedicineList1> {
                                             Spacer(),
                                             Text(
                                               toDate(body.meddate)??"N/A",
-
-
                                               style: TextStyle(
-
                                                   fontSize: 14,
                                                   color: Colors
                                                       .grey),
@@ -279,7 +275,6 @@ class _MedicineList extends State<UserMedicineList1> {
                                             Text(
                                               "Dosage",
                                               style: TextStyle(
-
                                                   fontSize: 14,color: Colors
                                                   .grey),
                                             ),

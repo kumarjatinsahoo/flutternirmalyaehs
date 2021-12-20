@@ -66,8 +66,7 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
 
   calculate(date, month) {
     int days =
-        ((Const.getExpireDate(date, month).difference(DateTime.now()).inDays) +
-            1);
+        ((Const.getExpireDate(date, month).difference(DateTime.now()).inDays) + 1);
     if (days > 0) {
       return days.toString();
     } else

@@ -2322,8 +2322,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       DropDown.networkDropdownlabler1(
                                           "City",
                                           ApiFactory.CITY_API +
-                                              (ProfileScreen
-                                                      ?.districtmodel?.key ??
+                                              (ProfileScreen?.districtmodel?.key ??
                                                   ""),
                                           "pcity", (KeyvalueModel model) {
                                         setState(() {
@@ -2376,7 +2375,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       updateProfileModel.dob = textEditingController[0].text;
                       updateProfileModel.bloodGroup = ProfileScreen?.bloodgroupmodel?.key??null;
                       updateProfileModel.maritialstatus = ProfileScreen?.materialmodel?.key??null;
-                      updateProfileModel.address = textEditingController[1].text;
+                      if(textEditingController[1].text!="") {
+                        updateProfileModel.address =
+                            textEditingController[1].text;
+                      }
                       updateProfileModel.occupation = textEditingController[2].text;
                       updateProfileModel.qualification = textEditingController[3].text;
                       updateProfileModel.specialization =
