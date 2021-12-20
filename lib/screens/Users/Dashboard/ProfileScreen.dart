@@ -566,8 +566,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),*/
                       //TabBar(tabs: [Tab(text: 'DETAILS',), Tab(text: 'CONTACTS'),Tab(text: 'FAMILY DOCTORS')]),
                       Container(
-                          // height: MediaQuery.of(context).size.height * 10,
-                          height: 400,
+                          //height: MediaQuery.of(context).size.height * 100,
+                          height: 300,
                           child: TabBarView(
                             children: [
                               rowValue(),
@@ -2154,6 +2154,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     "marital", (KeyvalueModel model) {
                                   setState(() {
                                     print(ApiFactory.MARITAL_API);
+                                    ProfileScreen.materialmodel = model;
                                     patientProfileModel.body.mstausid =
                                         model.key;
                                     patientProfileModel.body.maritialstatus =
@@ -2177,7 +2178,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     5, "PanCard No", fnode6, fnode7),
                                 SizedBox(height: 20),
                                 formFieldPassPortno(
-                                    6, "Passport No", fnode6, fnode7),
+                                    6, "Passport No", fnode7, fnode8),
                                 SizedBox(height: 20),
                                 formFieldAadhaaerno(
                                     7, "Aadhar No", fnode8, fnode9),
@@ -2191,7 +2192,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 formField(
                                     10, "Licence Authority", fnode11, fnode12),
                                 SizedBox(height: 20),
-                                formField(11, "Email", fnode12, fnode13),
+                                formFieldemail(11, "Email", fnode12, fnode13),
                                 SizedBox(height: 20),
                                 formFieldPinno(12, "Pincode", fnode13, fnode14),
                                 SizedBox(height: 20),
@@ -2378,16 +2379,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       updateProfileModel.eCardNo =
                           patientProfileModel.body.eCardNo;
                       updateProfileModel.dob = textEditingController[0].text;
-                      updateProfileModel.bloodGroup =
-                          ProfileScreen.bloodgroupmodel.key;
-                      updateProfileModel.maritialstatus =
-                          ProfileScreen.materialmodel.key;
-                      updateProfileModel.address =
-                          textEditingController[1].text;
-                      updateProfileModel.occupation =
-                          textEditingController[2].text;
-                      updateProfileModel.qualification =
-                          textEditingController[3].text;
+                      updateProfileModel.bloodGroup = ProfileScreen?.bloodgroupmodel?.key??null;
+                      updateProfileModel.maritialstatus = ProfileScreen?.materialmodel?.key??null;
+                      updateProfileModel.address = textEditingController[1].text;
+                      updateProfileModel.occupation = textEditingController[2].text;
+                      updateProfileModel.qualification = textEditingController[3].text;
                       updateProfileModel.specialization =
                           textEditingController[4].text;
                       updateProfileModel.pancardno =
@@ -2620,6 +2616,56 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   border: InputBorder.none,
                   contentPadding:
                       EdgeInsets.symmetric(vertical: 2, horizontal: 0)),
+              onChanged: (newValue) {},
+              onFieldSubmitted: (value) {
+                print("ValueValue" + error[index].toString());
+
+                setState(() {
+                  error[index] = false;
+                });
+                AppData.fieldFocusChange(context, currentfn, nextFn);
+              },
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+  Widget formFieldemail(
+      int index, String hint, FocusNode currentfn, FocusNode nextFn) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 0, right: 5),
+          child: Text(
+            hint,
+            style: TextStyle(
+                color: Colors.black,
+                fontSize: 13,
+                fontFamily: "",
+                fontWeight: FontWeight.w400),
+          ),
+        ),
+        TextFieldContainer(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: TextFormField(
+              controller: textEditingController[index],
+              textInputAction: TextInputAction.done,
+              focusNode: currentfn,
+              keyboardType: TextInputType.text,
+              /*inputFormatters: [
+                WhitelistingTextInputFormatter(RegExp("[a-zA-Z .]")),
+              ],*/
+              // Validator.getKeyboardTyp(validateModel.fieldType.toLowerCase()),
+              style: TextStyle(fontSize: 15),
+              decoration: InputDecoration(
+                //hintText: hint,
+                  hintStyle: TextStyle(color: Colors.grey, fontSize: 13),
+                  border: InputBorder.none,
+                  contentPadding:
+                  EdgeInsets.symmetric(vertical: 2, horizontal: 0)),
               onChanged: (newValue) {},
               onFieldSubmitted: (value) {
                 print("ValueValue" + error[index].toString());

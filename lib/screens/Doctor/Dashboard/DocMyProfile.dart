@@ -601,12 +601,12 @@ class _DocMyProfileState extends State<DocMyProfile> {
                                   Container(
                                     width: 100,
                                     height: 70,
-                                    child: profileModel1.body.digsign!="N/A"
+                                    child: profileModel1.body.digsign!=""
                                         ? Image.network(/*"http://192.168.34.208:8062/document/profile/35_1639748020550.jpg"*/
                                       profileModel1.body.digsign,
                                       height: 80.0,
                                     )
-                                        : null,
+                                        : /*null*/Container(),
                                   ),
 
                                 ],
