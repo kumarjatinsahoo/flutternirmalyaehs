@@ -641,7 +641,7 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
     _mobile.text = emergencyHelpModel.emergency[index].mobile;
     SetupContactsPage.relationmodel = KeyvalueModel(
         key: emergencyHelpModel.emergency[index].relId,
-        name: emergencyHelpModel.emergency[index].relation);
+        name: emergencyHelpModel.emergency[index].type);
     return showDialog(
         context: context,
         builder: (context) {
@@ -704,7 +704,7 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                           updateEmergencyModel.relation = model.key;
 
                           emergencyHelpModel.emergency[index].relId = model.key;
-                          emergencyHelpModel.emergency[index].relation =
+                          emergencyHelpModel.emergency[index].type =
                               model.name;
                         });
                       }),
