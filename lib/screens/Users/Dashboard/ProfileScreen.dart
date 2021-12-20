@@ -562,8 +562,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),*/
                       //TabBar(tabs: [Tab(text: 'DETAILS',), Tab(text: 'CONTACTS'),Tab(text: 'FAMILY DOCTORS')]),
                       Container(
-                          // height: MediaQuery.of(context).size.height * 10,
-                          height: 400,
+                          //height: MediaQuery.of(context).size.height * 100,
+                          height: 300,
                           child: TabBarView(
                             children: [
                               rowValue(),
