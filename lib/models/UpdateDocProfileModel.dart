@@ -19,6 +19,7 @@ class UpdateDocProfileModel {
   String pincode;
   String mobno;
   String email;
+  String bloodgroup;
 
   /*List<Null> profileImage;
   String profileImageName;
@@ -45,6 +46,7 @@ class UpdateDocProfileModel {
         this.pincode,
         this.mobno,
         this.email,
+        this.bloodgroup,
 
       });
 
@@ -69,6 +71,7 @@ class UpdateDocProfileModel {
     pincode  = json['pincode'];
     mobno  = json['mobno'];
     email  = json['email'];
+    bloodgroup  = json['bloodgroup'];
 
     /*if (json['profileImage'] != null) {
       profileImage = new List<Null>();
@@ -93,7 +96,8 @@ class UpdateDocProfileModel {
     data['votterId'] = this.votterId;
     data['liceneceNo'] = this.liceneceNo;
     data['liceneceAuthority'] = this.liceneceAuthority;
-    data['panNo'] = this.countryid;
+    data['panNo'] = this.panNo;
+    data['countryid'] = this.countryid;
     data['stateid'] = this.stateid;
     data['districtid'] = this.districtid;
     data['cityid'] = this.cityid;
@@ -101,6 +105,7 @@ class UpdateDocProfileModel {
     data['pincode'] = this.pincode;
     data['mobno'] = this.mobno;
     data['email'] = this.email;
+    data['bloodgroup'] = this.bloodgroup;
     /*  if (this.profileImage != null) {
       //data['profileImage'] = this.profileImage.map((v) => v.toJson()).toList();
     }

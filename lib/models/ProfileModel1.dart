@@ -47,6 +47,7 @@ class Body {
   String passportno;
   String votercardno;
   String licenceno;
+  String pincode;
   String role;
   String bldGr;
   String gendername;
@@ -56,6 +57,7 @@ class Body {
   String experience;
   String address1;
   String digsign;
+
   String stateName;
   String countryName;
   String cityName;
@@ -73,6 +75,7 @@ class Body {
         this.state,
         this.country,
         this.city,
+        this.pincode,
         this.district,
         this.education,
         this.speciality,
@@ -95,43 +98,46 @@ class Body {
         this.stateName,
         this.countryName,
         this.cityName,
+
         this.districtName});
 
   Body.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    useraccount = json['useraccount'];
-    name = json['name'];
-    profileimage = json['profileimage'];
-    gender = json['gender'];
-    mobile = json['mobile'];
-    birthdate = json['birthdate'];
-    email = json['email'];
-    state = json['state'];
-    country = json['country'];
-    city = json['city'];
-    district = json['district'];
-    education = json['education'];
-    speciality = json['speciality'];
-    organization = json['organization'];
-    aadhaar = json['aadhaar'];
-    imano = json['imano'];
-    pancardno = json['pancardno'];
-    passportno = json['passportno'];
-    votercardno = json['votercardno'];
-    licenceno = json['licenceno'];
-    role = json['role'];
-    bldGr = json['bldGr'];
-    gendername = json['gendername'];
-    bldGrname = json['bldGrname'];
-    licenseauthority = json['licenseauthority'];
-    address = json['address'];
-    experience = json['experience'];
-    address1 = json['address1'];
-    digsign = json['digsign'];
-    stateName = json['stateName'];
-    countryName = json['countryName'];
-    cityName = json['cityName'];
-    districtName = json['districtName'];
+    id = json['id'].toString();
+    useraccount = json['useraccount'].toString();
+    name = json['name'].toString();
+    profileimage = json['profileimage'].toString();
+    gender = json['gender'].toString();
+    mobile = json['mobile'].toString();
+    birthdate = json['birthdate'].toString();
+    email = json['email'].toString();
+    pincode = json['pincode'].toString();
+    state = json['state'].toString();
+    country = json['country'].toString();
+    city = json['city'].toString();
+    district = json['district'].toString();
+    education = json['education'].toString();
+    speciality = json['speciality'].toString();
+    organization = json['organization'].toString();
+    aadhaar = json['aadhaar'].toString();
+    imano = json['imano'].toString();
+    pancardno = json['pancardno'].toString();
+    passportno = json['passportno'].toString();
+    votercardno = json['votercardno'].toString();
+    licenceno = json['licenceno'].toString();
+    role = json['role'].toString();
+    bldGr = json['bldGr'].toString();
+    gendername = json['gendername'].toString();
+    bldGrname = json['bldGrname'].toString();
+    licenseauthority = json['licenseauthority'].toString();
+    address = json['address'].toString();
+    experience = json['experience'].toString();
+    address1 = json['address1'].toString();
+    digsign = json['digsign'].toString();
+    stateName = json['stateName'].toString();
+    countryName = json['countryName'].toString();
+    cityName = json['cityName'].toString();
+    districtName = json['districtName'].toString();
+
   }
 
   Map<String, dynamic> toJson() {
@@ -153,6 +159,7 @@ class Body {
     data['organization'] = this.organization;
     data['aadhaar'] = this.aadhaar;
     data['imano'] = this.imano;
+    data['pincode'] = this.pincode;
     data['pancardno'] = this.pancardno;
     data['passportno'] = this.passportno;
     data['votercardno'] = this.votercardno;
@@ -170,6 +177,7 @@ class Body {
     data['countryName'] = this.countryName;
     data['cityName'] = this.cityName;
     data['districtName'] = this.districtName;
+
     return data;
   }
 }
