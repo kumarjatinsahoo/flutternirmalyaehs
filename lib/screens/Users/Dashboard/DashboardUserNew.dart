@@ -1494,7 +1494,7 @@ class MyPage1Widget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     _buildTileblue(
-                      icon: "assets/health_checkup.png",
+                      icon: "assets/AppmntF.png",
                       fun: () {
                         //chooseAppointment(context, model);
                         //Navigator.pushNamed(context, "/userAppoint");
@@ -1807,7 +1807,7 @@ class MyPage1Widget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     _buildTilered(
-                      icon: "assets/insurance.png",
+                      icon: "assets/insuranceF.png",
                       //icon: Icons.drive_folder_upload,
                       //icon: FontAwesomeIcons.accusoft,
                       title: "Upload Medical Data",
@@ -1845,7 +1845,7 @@ class MyPage1Widget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     _buildTileblue(
-                      icon: "assets/health_care.png",
+                      icon: "assets/health-careF.png",
                       fun: () {
                         //AppData.showInSnackDone(context, "Coming Soon");
                          Navigator.pushNamed(context, "/vdo");

@@ -155,6 +155,7 @@ class PharmaSignUpForm2State extends State<PharmaSignUpForm2> {
     PharmaSignUpForm2.districtModel = null;
     PharmaSignUpForm2.blockModel = null;
     PharmaSignUpForm2.genderModel = null;
+    PharmaSignUpForm2.bloodgroupModel = null;
     /*setState(() {
       masterClass = widget.model.masterDataResponse;
     });

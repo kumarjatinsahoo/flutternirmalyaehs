@@ -154,9 +154,9 @@ class LabSignUpForm2State extends State<LabSignUpForm2> {
     super.initState();
     LabSignUpForm2.districtModel = null;
     LabSignUpForm2.blockModel = null;
-
     LabSignUpForm2.bloodgroupModel = null;
     LabSignUpForm2.genderModel = null;
+
     /*setState(() {
       masterClass = widget.model.masterDataResponse;
     });
@@ -296,7 +296,6 @@ class LabSignUpForm2State extends State<LabSignUpForm2> {
                                     height: 8,
                                   ),
                                   dob(),
-
                                   // Padding(
                                   //   padding: const EdgeInsets.symmetric(horizontal: 0),
                                   //   child: DropDown.staticDropdown3(
