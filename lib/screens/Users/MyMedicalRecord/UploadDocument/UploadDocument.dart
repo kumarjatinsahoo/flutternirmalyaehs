@@ -16,6 +16,9 @@ import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/AddUploadDocument.dart';
+import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/DocumentImageView.dart';
+import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/DocumentPdfView.dart';
+import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/VideoDetailsPage.dart';
 
 class UploadDocument extends StatefulWidget {
   final MainModel model;
@@ -341,15 +344,25 @@ class _UploadDocumentState extends State<UploadDocument> {
                                 print("ppppdddddddddddffffff" + pdfurl);
                                 String format=getFormatType(extension);
                                 if (format == "img") {
-                                  Navigator.pushNamed(
-                                    context, "/documentimage",).then((
+                                  Navigator.push(context,MaterialPageRoute(builder:
+                                      (context)=>DocumentImage(model:widget.model,))).then((
                                       value) => widget.model.pdfurl);
+
+                                /*  Navigator.pushNamed(context, "/documentimage",).then((
+                                      value) => widget.model.pdfurl);*/
                                 } else if (format == "doc") {
-                                  Navigator.pushNamed(context, "/documentpdf",)
-                                      .then((value) => widget.model.pdfurl);
-                                } else if (format == "vdo") {
-                                  Navigator.pushNamed(
-                                    context, "/documentvideo",);
+                                  Navigator.push(context,MaterialPageRoute(builder:
+                                      (context)=>DocumentPdf(model:widget.model,))).then((
+                                      value) => widget.model.pdfurl);
+/*                                  Navigator.pushNamed(context, "/documentpdf",)
+                                      .then((value) => widget.model.pdfurl);*/
+                                }
+                                else if (format == "vdo") {
+                                  Navigator.push(context,MaterialPageRoute(builder:
+                                      (context)=>VideoDetailsPage(model:widget.model,))).then((
+                                      value) => widget.model.pdfurl);
+                                 /* Navigator.pushNamed(
+                                    context, "/documentvideo",);*/
                                 }
                               },
                               child: Center(
