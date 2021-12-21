@@ -708,7 +708,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
         } else if (DoctorSignUpForm4.cityModel == null ||
             DoctorSignUpForm4.cityModel == "") {
           AppData.showInSnackBar(context, "Please select City");
-        } else if (textEditingController[5].text != "" &&
+        } else if (textEditingController[5].text == "" ||
             textEditingController[5].text.length != 6) {
           AppData.showInSnackBar(context, "Please enter a valid Zip/Pin Code");
           FocusScope.of(context).requestFocus(fnode2);

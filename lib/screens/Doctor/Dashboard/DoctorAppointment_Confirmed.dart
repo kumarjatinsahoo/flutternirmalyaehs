@@ -543,7 +543,7 @@ class _DoctorAppointmentConfirmedState
                                                                         height: 40.0,
                                                                         child: Text(
                                                                           /*'Confirmed'*/
-                                                                          "Give prescription",
+                                                                          "Give Prescription",
                                                                           style: TextStyle(
                                                                               fontWeight:
                                                                               FontWeight

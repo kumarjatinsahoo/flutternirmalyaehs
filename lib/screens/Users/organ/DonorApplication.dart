@@ -678,10 +678,10 @@ class DonorApplicationState extends State<DonorApplication> {
                           activeColor: Colors.blue[300],
                           dense: true,
                           title: new Text(
-                            MyLocalizations.of(context).text("ALL_ORGAN"),
+                            MyLocalizations.of(context).text("ALL_ORGAN").toUpperCase(),
                             style: TextStyle(
                                 fontSize: 14,
-                                fontWeight: FontWeight.w600,
+                                fontWeight: FontWeight.bold,
                                 letterSpacing: 0.5),
                           ),
                           value: isChecked,
@@ -712,10 +712,10 @@ class DonorApplicationState extends State<DonorApplication> {
                               activeColor: Colors.blue[300],
                               dense: true,
                               title: new Text(
-                                MyLocalizations.of(context).text("ALL_TISUES"),
+                                MyLocalizations.of(context).text("ALL_TISUES").toUpperCase(),
                                 style: TextStyle(
                                     fontSize: 14,
-                                    fontWeight: FontWeight.w600,
+                                    fontWeight: FontWeight.bold,
                                     letterSpacing: 0.5),
                               ),
                               value: isTissueChecked,
@@ -742,6 +742,7 @@ class DonorApplicationState extends State<DonorApplication> {
                 ),
               ),
               Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   (organModel != null)
                       ? Flexible(
@@ -994,6 +995,8 @@ class DonorApplicationState extends State<DonorApplication> {
     textEditingController[10].text = "";
     textEditingController[11].text = "";
     textEditingController[12].text = "";
+    DonorApplication.relationmodel = null;
+
     return AlertDialog(
       contentPadding: EdgeInsets.only(left: 5, right: 5, top: 30),
       //title: const Text(''),
@@ -1140,6 +1143,7 @@ class DonorApplicationState extends State<DonorApplication> {
                       "relation3", (KeyvalueModel model) {
                     setState(() {
                       DonorApplication.relationmodel = model;
+
                     });
                   }),
                 ),
@@ -1228,12 +1232,9 @@ class DonorApplicationState extends State<DonorApplication> {
                   textEditingController[7].text.length <= 2) {
                 AppData.showInSnackBar(
                     context, "Please enter a valid Person Name");
-              } else if (textEditingController[8].text != "" &&
+              } else if (textEditingController[8].text == "" ||
                   textEditingController[8].text == null) {
                 AppData.showInSnackBar(context, "Please enter S/o,D/o,W/o");
-                /*  } else if (textEditingController[9].text == "" ||
-                  textEditingController[9].text == null) {
-                AppData.showInSnackBar(context, "Please enter Dob");*/
               } else if (textEditingController[9].text == "" ||
                   textEditingController[9].text == null) {
                 AppData.showInSnackBar(context, "Please enter Age");
@@ -1243,13 +1244,19 @@ class DonorApplicationState extends State<DonorApplication> {
               } else if (DonorApplication.relationmodel == null ||
                   DonorApplication.relationmodel == "") {
                 AppData.showInSnackBar(context, "Please select Relation");
+              } else if (textEditingController[10].text == "" ||
+                  textEditingController[10].text == null) {
+                AppData.showInSnackBar(context, "Please enter Mobile Number");
               } else if (textEditingController[10].text != "" &&
                   textEditingController[10].text.length != 10) {
-                AppData.showInSnackBar(context, "Please enter Mobile No");
-              } else if (textEditingController[11].text != '' &&
+                AppData.showInSnackBar(context, "Please enter a valid Mobile No");
+              } else if (textEditingController[11].text == "" ||
+                  textEditingController[11].text == null) {
+                AppData.showInSnackBar(context, "Please enter Email Id");
+              } else if (textEditingController[11].text != "" &&
                   !AppData.isValidEmail(textEditingController[11].text)) {
                 AppData.showInSnackBar(context, "Please enter a valid E-mail");
-              } else if (textEditingController[12].text != "" &&
+              } else if (textEditingController[12].text == "" ||
                   textEditingController[12].text == null) {
                 AppData.showInSnackBar(context, "Please enter Address");
               } else {
