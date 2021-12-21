@@ -674,34 +674,38 @@ class DonorApplicationState extends State<DonorApplication> {
                     children: [
                       Expanded(
                           child: Column(children: [
-                        CheckboxListTile(
-                          activeColor: Colors.blue[300],
-                          dense: true,
-                          title: new Text(
-                            MyLocalizations.of(context).text("ALL_ORGAN").toUpperCase(),
-                            style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
-                                letterSpacing: 0.5),
-                          ),
-                          value: isChecked,
-                          onChanged: (val) {
-                            setState(() {
-                              isChecked = val;
-                              //selectedOrganList.clear();
-                              organModel.body.forEach((element) {
-                                element.isChecked = val;
-                                if (val) {
-                                  selectedorgan.add(element);
-                                  selectedOrganList.add(element.key.toString());
-                                } else {
-                                  selectedorgan.remove(element);
-                                  selectedOrganList
-                                      .remove(element.key.toString());
-                                }
+                        Padding(
+                          padding: const EdgeInsets.only(right: 3.0),
+                          child: CheckboxListTile(
+                            activeColor: Colors.blue[300],
+                            dense: true,
+                            title: new Text(
+                              MyLocalizations.of(context).text("ALL_ORGAN").toUpperCase(),
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  letterSpacing: 0.5),
+                            ),
+
+                            value: isChecked,
+                            onChanged: (val) {
+                              setState(() {
+                                isChecked = val;
+                                //selectedOrganList.clear();
+                                organModel.body.forEach((element) {
+                                  element.isChecked = val;
+                                  if (val) {
+                                    selectedorgan.add(element);
+                                    selectedOrganList.add(element.key.toString());
+                                  } else {
+                                    selectedorgan.remove(element);
+                                    selectedOrganList
+                                        .remove(element.key.toString());
+                                  }
+                                });
                               });
-                            });
-                          },
+                            },
+                          ),
                         ),
                       ])),
                       Expanded(
@@ -741,6 +745,7 @@ class DonorApplicationState extends State<DonorApplication> {
                   ),
                 ),
               ),
+              SizedBox(height: 10),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -1125,7 +1130,7 @@ class DonorApplicationState extends State<DonorApplication> {
                         hintStyle: TextStyle(color: Colors.grey)),
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.number,
-                    maxLength: 3,
+                    maxLength: 2,
                     inputFormatters: [
                       WhitelistingTextInputFormatter(RegExp("[0-9]")),
                     ],

@@ -99,6 +99,7 @@ import 'package:user/screens/Users/organ/Organlist.dart';
 import 'package:user/screens/VideoCall/VideoCallPage.dart';
 import 'package:user/screens/walkin_labrotry/LabDashboard.dart';
 import 'package:user/screens/walkin_labrotry/Screen/LabQrCode.dart';
+import 'package:user/widgets/PdfViewPage.dart';
 import 'screens/Users/MyMedicalRecord/LifeStyleHistory.dart';
 import 'package:user/screens/Users/MyMedicalRecord/Medication/UserMedicineTab1.dart';
 import 'package:user/screens/Users/MyMedicalRecord/Medication/UserMedicineUrl.dart';
@@ -1002,7 +1003,7 @@ class _MyAppState extends State<MyApp> {
               '/adduploaddocument': (context) => AddUploadDocument(
                     model: _model,
                   ),
-              '/documentpdf': (context) => DocumentPdf(
+              '/documentpdf': (context) => PdfViewPage(
                     model: _model,
                   ),
               '/documentimage': (context) => DocumentImage(
