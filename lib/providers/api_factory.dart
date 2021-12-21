@@ -1,11 +1,11 @@
 class ApiFactory {
   //bool isRelease = bool.fromEnvironment("DEV");
   static String REG_DEVICE = "https://cca.medtel.in/Ziniai/manageDeviceId";
-  static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
+  //static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
   //static String MAIN_URL = "http://api-demo.ehealthsystem.com/nirmalyaRest/api/";
   static String MAIN_URL1 = "https://1331.co.in/api";
   static String REPORT_URL1 = "https://ehealthsystem.com/";
-   //static String MAIN_URL = "http://192.168.43.248:8062/nirmalyaRest/api/";
+   static String MAIN_URL = "http://192.168.34.208:8062/nirmalyaRest/api/";
   static String VITALS_REPORT = MAIN_URL + 'medtel-screening-test-report';
   static String COUNTRY_API = MAIN_URL + 'get-country-list';
   static String VIEW_PATIENT_HEALTH_API = REPORT_URL1 + 'user/mobile-view-patient-health-chart?id=';
@@ -75,11 +75,11 @@ class ApiFactory {
   static String LAB_LIST = MAIN_URL + 'get-pathology-list-by-location';
   static String USER_PROFILE_IMAGE = MAIN_URL + 'update-user-profile-image';
   static String OTHER_PROFILE_SIGN= MAIN_URL + 'update-doctor-digitalsignature';
+  static String OTHER_PROFILE_IMAGE= MAIN_URL + 'update-other-profileimage';
   static String USER_DASHBOARD = MAIN_URL + 'user-dashboard?userid=';
   static String PERSONAL_DETAILS =
       MAIN_URL + 'user-personal-information-doctor?userid=';
-  static String IABTEST_REPORTDOCTER =
-      MAIN_URL + 'user-labtest-report-doctor?userid=';
+  static String IABTEST_REPORTDOCTER = MAIN_URL + 'user-labtest-report-doctor?userid=';
   static String MEDICATION_DOCTER = MAIN_URL + 'user-medication-doctor?userid=';
   static String FAMILY_DOCTER = MAIN_URL + 'get-patient-family-details?userid=';
   static String USER_UPDATEPROFILE = MAIN_URL + 'update-user-profile';
@@ -201,8 +201,7 @@ class ApiFactory {
       MAIN_URL + 'get-ambulance-overviewlist-bystatus?ambid=';
   static String GET_BLDBANK_OVERVIEWLIST =
       MAIN_URL + 'get-bldbnk-overviewlist-bystatus?bldbnkid=';
-  static String GET_Farmacy_OVERVIEWLIST =
-      MAIN_URL + 'get-pharmacy-overviewlist-bystatus?pharmacyid=';
+  static String GET_Farmacy_OVERVIEWLIST = MAIN_URL + 'get-pharmacy-overviewlist-bystatus?pharmacyid=';
   static String BLOODBANK_ALL = MAIN_URL + 'get-bloodbank-actionlist?userid=';
   static String AMBULANCE_APPOINTMENT =
       MAIN_URL + 'get-ambulance-actionlist?userid=';
@@ -217,8 +216,9 @@ class ApiFactory {
   // static String POC_REPORT_LISTT = MAIN_URL + 'view-medteltest-list?userid=';
   static String POC_REPORT_LISTT = MAIN_URL + 'view-medteltest-list?userid=';
   static String POC_REPORT_SMS = MAIN_URL + 'post-update-report-sms-status';
-  static String UPDATE_EMERGENCY_CONTACT =
-      MAIN_URL + 'post-emergency-contact-api';
+  static String UPDATE_EMERGENCY_CONTACT = MAIN_URL + 'post-emergency-contact-api';
+  static String UPDATE_DOCTOR_CONTACT = MAIN_URL + 'post-family-doctor-api';
+  static String UPDATE_FAMILY_CONTACT = MAIN_URL + 'post-family-details-api';
   static String EMERGENCY_HELP =
       MAIN_URL + 'view-user-emergency-details-api?userid=';
   static String CHANGE_STATUS_CHKUP = MAIN_URL + "post-chkupAppointmentStatus";
@@ -247,8 +247,8 @@ class ApiFactory {
       MAIN_URL + 'view-user-medical-prescription?userid=';
   static String TEST_PRESCRIPTION =
       MAIN_URL + 'view-user-test-prescription?userid=';
-  static String doctor_TEST_LIST =
-      MAIN_URL + 'view-user-test-details-by-appno?appno=';
+  static String doctor_TEST_LIST = MAIN_URL + 'view-user-test-details-by-appno?appno=';
+  static String UHID_LIST = MAIN_URL + 'get-ehealth-user?search=';
   static String user_APPOINTMENT_status =
       MAIN_URL + 'change-user-appointment-status?appid=';
   static String ambulance_APPOINTMENT_status =

@@ -356,12 +356,11 @@ class DonorApplicationState extends State<DonorApplication> {
 
             //textEditingController[3].text=patientProfileModel.body.ageYears;
             textEditingController[4].text = patientProfileModel.body.mobile;
-           // textEditingController[5].text = patientProfileModel.body.email;
+            textEditingController[5].text = patientProfileModel.body.email;
             textEditingController[6].text = patientProfileModel.body.address +
                 " , " +
                 patientProfileModel.body.pAddress;
-            textEditingController[15].text =
-                patientProfileModel.body.bloodGroup;
+            textEditingController[15].text = patientProfileModel.body.bloodGroup;
             //String dob=patientProfileModel.body.dob;
             textEditingController[3].value = TextEditingValue(
                 text: calculateTimeDif(patientProfileModel.body.dob));
@@ -528,10 +527,10 @@ class DonorApplicationState extends State<DonorApplication> {
                       //hintText: patientProfileModel?.body?.ageYears??"N/A",
                       hintText: MyLocalizations.of(context).text("AGE"),
                       hintStyle: TextStyle(color: Colors.grey)),
-                  textInputAction: TextInputAction.next,
-                  maxLength: 3,
-                  // enabled: false,
-                  // autofocus: false,
+                      textInputAction: TextInputAction.next,
+                      maxLength: 3,
+                   enabled: false,
+                  autofocus: false,
                   keyboardType: TextInputType.number,
                   inputFormatters: [
                     WhitelistingTextInputFormatter(RegExp("[0-9]")),
@@ -549,8 +548,7 @@ class DonorApplicationState extends State<DonorApplication> {
                         controller: textEditingController[15],
                         decoration: InputDecoration(
                             // hintText: patientProfileModel?.body?.bloodGroup??"N/A",
-                            hintText:
-                                MyLocalizations.of(context).text("Blood Group"),
+                            hintText: MyLocalizations.of(context).text("Blood Group"),
                             hintStyle: TextStyle(color: Colors.grey)),
                         textInputAction: TextInputAction.next,
                         keyboardType: TextInputType.text,
@@ -561,8 +559,7 @@ class DonorApplicationState extends State<DonorApplication> {
                               RegExp("[0-9,a-zA-Z./-]")),
                         ],
                       ),
-                    )
-                  : Padding(
+                    ) : Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: DropDown.networkDropdownGetpartUserundreline(
                           MyLocalizations.of(context).text("BLOODGROUP"),
@@ -610,8 +607,8 @@ class DonorApplicationState extends State<DonorApplication> {
                       hintStyle: TextStyle(color: Colors.grey)),
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.emailAddress,
-                  // enabled: false,
-                  // autofocus: false,
+                  enabled: false,
+                  autofocus: false,
                   inputFormatters: [
                     WhitelistingTextInputFormatter(RegExp("[a-zA-Z@.]")),
                   ],
@@ -748,6 +745,7 @@ class DonorApplicationState extends State<DonorApplication> {
                 children: <Widget>[
                   (organModel != null)
                       ? Flexible(
+                    fit: FlexFit.tight,
                           child: ListView.builder(
                             itemBuilder: (context, i) {
                               organ.Body body = organModel.body[i];
@@ -791,6 +789,7 @@ class DonorApplicationState extends State<DonorApplication> {
                       : Container(),
                   (tissueModel != null)
                       ? Flexible(
+                    fit: FlexFit.tight,
                           child: ListView.builder(
                             itemBuilder: (context, i) {
                               tissue.Body body = tissueModel.body[i];
@@ -1174,7 +1173,7 @@ class DonorApplicationState extends State<DonorApplication> {
                         hintText: MyLocalizations.of(context).text("EMAILID"),
                         hintStyle: TextStyle(color: Colors.grey)),
                     textInputAction: TextInputAction.next,
-                    keyboardType: TextInputType.emailAddress,
+                    keyboardType: TextInputType.text,
                     //           inputFormatters: [
                     //  WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
                     //           ],

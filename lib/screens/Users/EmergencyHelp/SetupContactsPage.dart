@@ -641,7 +641,7 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
     _mobile.text = emergencyHelpModel.emergency[index].mobile;
     SetupContactsPage.relationmodel = KeyvalueModel(
         key: emergencyHelpModel.emergency[index].relId,
-        name: emergencyHelpModel.emergency[index].relation);
+        name: emergencyHelpModel.emergency[index].type);
     return showDialog(
         context: context,
         builder: (context) {
@@ -704,7 +704,7 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                           updateEmergencyModel.relation = model.key;
 
                           emergencyHelpModel.emergency[index].relId = model.key;
-                          emergencyHelpModel.emergency[index].relation =
+                          emergencyHelpModel.emergency[index].type =
                               model.name;
                         });
                       }),
@@ -756,11 +756,9 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                       updateEmergencyModel = UpdateEmergencyModel();
                       updateEmergencyModel.name = _fname.text;
                       updateEmergencyModel.mobile = _mobile.text;
-                      updateEmergencyModel.id =
-                          emergencyHelpModel.emergency[index].id;
+                      updateEmergencyModel.id = emergencyHelpModel.emergency[index].id;
                       updateEmergencyModel.userid = widget.model.user;
-                      updateEmergencyModel.relation =
-                          SetupContactsPage.relationmodel.key;
+                      updateEmergencyModel.relation = SetupContactsPage.relationmodel.key;
                       //updateEmergencyModel.relation =SetupContactsPage.relationmodel.key;
                       log("Value json>>" +
                           updateEmergencyModel.toJson().toString());
@@ -922,8 +920,7 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                       updateEmergencyModel.name = _fname.text;
                       updateEmergencyModel.mobile = _mobile.text;
                       updateEmergencyModel.userid = widget.model.user;
-                      updateEmergencyModel.relation =
-                          SetupContactsPage.relationmodel.key;
+                      updateEmergencyModel.relation = SetupContactsPage.relationmodel.key;
                       print("Value json>>" +
                           updateEmergencyModel.toJson1().toString());
                       widget.model.POSTMETHOD_TOKEN(

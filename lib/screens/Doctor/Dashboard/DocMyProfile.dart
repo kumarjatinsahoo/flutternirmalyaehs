@@ -1,5 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'dart:io';
+
 // import 'dart:html';
 import 'dart:typed_data';
 
@@ -36,15 +38,13 @@ class DocMyProfile extends StatefulWidget {
   static KeyvalueModel statemodel = null;
   static KeyvalueModel districtmodel = null;
   static KeyvalueModel citymodel = null;
-
+  static KeyvalueModel bloodgroupmodel = null;
   DocMyProfile({Key key, this.model}) : super(key: key);
-
   @override
   _DocMyProfileState createState() => _DocMyProfileState();
 }
 
 class _DocMyProfileState extends State<DocMyProfile> {
-
   String loAd = "Loading..";
   List<TextEditingController> textEditingController = [
     new TextEditingController(),
@@ -65,6 +65,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
     new TextEditingController(),
   ];
   //Body model;
+  File pathUsr = null;
   LoginResponse1 loginResponse;
   bool isDataNotAvail = false;
   ProfileModel1 profileModel1;
@@ -105,7 +106,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
     callAPI();
     //model = widget.model.model;
   }
-
+  String birthdatestr;
   static final List colors = [
   Colors.black,
   Colors.purple,
@@ -129,6 +130,12 @@ class _DocMyProfileState extends State<DocMyProfile> {
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
               // pocReportModel = PocReportModel.fromJson(map);
+             /* if (profileModel1?.body?.birthdate != null) {
+                birthdatestr = toDate(profileModel1.body.birthdate);
+              }else{
+                birthdatestr="";
+              }
+              */
               profileModel1 = ProfileModel1.fromJson(map);
 
               if (profileModel1?.body?.gender != null) {
@@ -149,12 +156,39 @@ class _DocMyProfileState extends State<DocMyProfile> {
                 DocMyProfile.statemodel = KeyvalueModel(
                     key: profileModel1.body.state,
                     name: profileModel1.body.stateName);
+              } else {
+                DocMyProfile.statemodel = null;
+              }if (profileModel1?.body?.district != null) {
+                  DocMyProfile.districtmodel = KeyvalueModel(
+                      key: profileModel1.body.district,
+                      name: profileModel1.body.districtName);
+                      } else {
+                      DocMyProfile.districtmodel = null;
+                      }
+            if (profileModel1?.body?.city != null) {
+            DocMyProfile.citymodel = KeyvalueModel(
+            key: profileModel1.body.city,
+            name: profileModel1.body.cityName);
+            } else {
+            DocMyProfile.citymodel = null;
+            }
+              if (profileModel1?.body?.bldGr != null) {
+                DocMyProfile.bloodgroupmodel = KeyvalueModel(
+                    key: profileModel1.body.bldGr,
+                    name: profileModel1.body.bldGrname);
+              } else {
+                DocMyProfile.bloodgroupmodel = null;
+              }
+             /* if (profileModel1?.body?.state != null) {
+                DocMyProfile.statemodel = KeyvalueModel(
+                    key: profileModel1.body.state,
+                    name: profileModel1.body.stateName);
               }if (profileModel1?.body?.district != null) {
                 DocMyProfile.districtmodel= KeyvalueModel(
                     key: profileModel1.body.district,
                     name: profileModel1.body.districtName);
               }if (profileModel1?.body?.city != null) {
-                DocMyProfile.countrymodel = KeyvalueModel(
+                DocMyProfile.citymodel = KeyvalueModel(
                     key: profileModel1.body.city,
                     name: profileModel1.body.cityName);
               } else {
@@ -163,7 +197,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
                 DocMyProfile.statemodel = null;
                 DocMyProfile.districtmodel = null;
                 DocMyProfile.citymodel = null;
-              }
+              }*/
             } else {
               isDataNotAvail = true;
               AppData.showInSnackBar(context, msg);
@@ -185,6 +219,87 @@ class _DocMyProfileState extends State<DocMyProfile> {
         break;
     }
   }
+  void _settingModalBottomSheet(context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext bc) {
+          return Container(
+            child: new Wrap(
+              children: <Widget>[
+                new ListTile(
+                    leading: new Icon(Icons.camera),
+                    title: new Text('Camera'),
+                    onTap: () => {
+                      Navigator.pop(context),
+                      getCameraImage(),
+                    }),
+                new ListTile(
+                  leading: new Icon(Icons.folder),
+                  title: new Text('Gallery'),
+                  onTap: () => {
+                    Navigator.pop(context),
+                    getGalleryImage(),
+                  },
+                ),
+              ],
+            ),
+          );
+        });
+  }
+  Future getCameraImage() async {
+    var image = await ImagePicker.pickImage(
+        source: ImageSource.camera, imageQuality: 45);
+    // var decodedImage = await decodeImageFromList(image.readAsBytesSync());
+    if (image != null) {
+      var enc = await image.readAsBytes();
+      String _path = image.path;
+      setState(() => pathUsr = File(_path));
+
+      String _fileName = _path != null ? _path.split('/').last : '...';
+      var pos = _fileName.lastIndexOf('.');
+      String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+      print(extName);
+
+      print("size>>>" + AppData.formatBytes(enc.length, 0).toString());
+      setState(() {
+        pathUsr = File(_path);
+        // callApii();
+        // widget.model.patientimg =base64Encode(enc);
+        //widget.model.patientimgtype =extName;
+        //updateProfileModel.profileImage = base64Encode(enc) as List<Null>;
+        //updateProfileModel.profileImageType = extName;
+        updateProfile(base64Encode(enc), extName);
+      });
+    }
+  }
+
+  Future getGalleryImage() async {
+    var image = await ImagePicker.pickImage(
+        source: ImageSource.gallery, imageQuality: 45);
+    // var decodedImage = await decodeImageFromList(image.readAsBytesSync());
+    if (image != null) {
+      var enc = await image.readAsBytes();
+      String _path = image.path;
+      setState(() => pathUsr = File(image.path)); /*File(_path));*/
+
+      String _fileName = _path != null ? _path.split('/').last : '...';
+      var pos = _fileName.lastIndexOf('.');
+      String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+      print(extName);
+      print("size>>>" + AppData.formatBytes(enc.length, 0).toString());
+      setState(() {
+        pathUsr = File(_path);
+        //widget.model.patientimg =base64Encode(enc);
+        //widget.model.patientimgtype =extName;
+        //updateProfileModel.profileImage = base64Encode(enc) as List<Null>;
+        //updateProfileModel.profileImageType = extName;
+        updateProfile(base64Encode(enc), extName);
+      });
+    }
+  }
+
+
+
   List<KeyvalueModel> genderList = [
     KeyvalueModel(key: "1", name: "Male"),
     KeyvalueModel(key: "2", name: "Female"),
@@ -318,7 +433,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
                                         leading: Icon(Icons.calendar_today),
                                         title: Text(MyLocalizations.of(context).text("DOB1").toUpperCase()),
                                         subtitle: Text(
-                                            profileModel1.body.birthdate ??
+                                            profileModel1?.body?.birthdate!="" ?profileModel1.body.birthdate:
                                                 "N/A"),
                                       ),
                                       ListTile(
@@ -327,119 +442,125 @@ class _DocMyProfileState extends State<DocMyProfile> {
                                         leading: Icon(Icons.wc),
                                         title: Text(MyLocalizations.of(context).text("GENDER").toUpperCase()),
                                         subtitle: Text(
-                                            profileModel1.body.gendername ?? "N/A"),
+                                            profileModel1?.body?.gendername!="" ?profileModel1.body.gendername:"N/A"),
                                       ),
                                       ListTile(
                                         leading: Icon(Icons.call),
                                         title: Text("Mobile No.".toUpperCase()),
                                         //subtitle: Text("NIRMALYA"),
-                                        subtitle: Text(profileModel1.body.mobile ??
+                                        subtitle: Text(profileModel1?.body.mobile!="" ?profileModel1.body.mobile:
                                             "N/A"),
                                       ),
                                       ListTile(
                                         leading: Icon(Icons.call),
                                         title: Text("Email.".toUpperCase()),
                                         //subtitle: Text("NIRMALYA"),
-                                        subtitle: Text(profileModel1.body.email?? "N/A"),
+                                        subtitle: Text(profileModel1?.body?.email!=""?profileModel1.body.email:"N/A"),
                                       ),
                                       ListTile(
                                         leading: Icon(Icons.bloodtype_outlined),
                                         title: Text("bloodgroup".toUpperCase(),
                                         ),
                                         subtitle: Text(
-                                            profileModel1.body.bldGrname?? "N/A"),
+                                            profileModel1?.body?.bldGrname!="" ?profileModel1.body.bldGrname: "N/A"),
                                       ),
                                       ListTile(
                                         leading: Icon(Icons.location_on_rounded),
                                         title: Text("Address".toUpperCase(),
                                         ),
                                         subtitle: Text(
-                                            profileModel1.body.address?? "N/A"),
+                                            profileModel1?.body?.address!="" ?profileModel1.body.address:"N/A"),
                                       ),
                                       ListTile(
                                         leading: Icon(Icons.location_on_rounded),
                                         title: Text("country".toUpperCase(),
                                         ),
                                         subtitle: Text(
-                                            profileModel1.body.countryName?? "N/A"),
+                                            profileModel1?.body?.countryName!="" ?profileModel1.body.countryName:"N/A"),
                                       ),
                                       ListTile(
                                         leading: Icon(Icons.location_on_rounded),
                                         title: Text("state".toUpperCase(),
                                         ),
                                         subtitle: Text(
-                                            profileModel1.body.stateName?? "N/A"),
+                                            profileModel1?.body?.stateName!="" ?profileModel1.body.stateName: "N/A"),
                                       ),
                                       ListTile(
                                         leading: Icon(Icons.location_on_rounded),
                                         title: Text("district".toUpperCase(),
                                         ),
                                         subtitle: Text(
-                                            profileModel1.body.districtName?? "N/A"),
+                                            profileModel1?.body?.districtName!=""?profileModel1.body.districtName: "N/A"),
                                       ),
                                       ListTile(
                                         leading: Icon(Icons.location_on_rounded),
                                         title: Text("city".toUpperCase(),
                                         ),
                                         subtitle: Text(
-                                            profileModel1.body.cityName?? "N/A"),
+                                            profileModel1?.body?.cityName!=""?profileModel1.body.cityName: "N/A"),
+                                      ),
+                                      ListTile(
+                                        leading: Icon(Icons.location_on_rounded),
+                                        title: Text("pincode".toUpperCase(),
+                                        ),
+                                        subtitle: Text(
+                                            profileModel1?.body?.pincode!=""? profileModel1.body.pincode: "N/A"),
                                       ),
                                       ListTile(
                                         leading: Icon(Icons.book),
                                         title: Text(MyLocalizations.of(context).text("EDUCATION").toUpperCase(),
                                         ),
                                         subtitle: Text(
-                                            profileModel1.body.education ??
-                                                "N/A"),
+                                            profileModel1?.body?.education !=""? profileModel1.body.education:
+                                            "N/A"),
                                       ),
                                       ListTile(
                                         leading: Icon(Icons.work_outlined),
                                         title: Text(MyLocalizations.of(context).text("SPECIALITY").toUpperCase(),),
                                         subtitle: Text(
-                                            profileModel1.body.speciality ??
-                                                "N/A"),
+                                            profileModel1?.body?.speciality !=""?  profileModel1.body.speciality:
+                                            "N/A"),
                                       ),
                                       ListTile(
                                         leading: Icon(Icons.home_work_sharp),
                                         title: Text(MyLocalizations.of(context).text("ORGANIZATION").toUpperCase()),
                                         //subtitle: Text("NIRMALYA"),
-                                        subtitle: Text(profileModel1.body.organization ??
-                                            "N/A"),
+                                        subtitle: Text(profileModel1?.body?.organization !=""?profileModel1.body.organization:
+                                        "N/A"),
                                       ),
                                       ListTile(
                                         leading: Icon(Icons.work_outlined),
-                                        title: Text("Experience".toUpperCase()),
+                                        title: Text("Experience (In Year)".toUpperCase()),
                                         //subtitle: Text("NIRMALYA"),
-                                        subtitle: Text(profileModel1.body.experience ??
+                                        subtitle: Text(profileModel1?.body?.experience!=""?profileModel1.body.experience:
                                             "N/A"),
                                       ),
                                       ListTile(
                                         leading: Icon(Icons.contact_phone),
                                         title: Text(MyLocalizations.of(context).text("IMA_NO").toUpperCase()),
                                         subtitle: Text(
-                                            profileModel1.body.imano ?? "N/A"),
+                                            profileModel1?.body?.imano!=""?profileModel1.body.imano:"N/A"),
                                       ),
                                       ListTile(
                                         leading: Icon(Icons.credit_card_rounded),
                                         title: Text(MyLocalizations.of(context).text("PAN_CARD_NO").toUpperCase(),
                                         ),
                                         subtitle:
-                                            Text(profileModel1.body.pancardno),
+                                            Text(profileModel1?.body?.pancardno!=""?profileModel1.body.pancardno:"N/A"),
                                       ),
                                       ListTile(
                                         leading: Icon(Icons.credit_card_rounded),
                                         title: Text(MyLocalizations.of(context).text("PASSPORT_NO").toUpperCase(),
                                         ),
                                         subtitle: Text(
-                                            profileModel1.body.passportno ??
-                                                "N/A"),
+                                            profileModel1?.body?.passportno!=""?profileModel1.body.passportno:"N/A"),
                                       ),
                                       ListTile(
                                         leading: Icon(Icons.credit_card_rounded),
                                         title: Text(MyLocalizations.of(context).text("VOTER_CARD_NO").toUpperCase(),
                                         ),
                                         subtitle: Text(
-                                            profileModel1.body.votercardno ??
+                                            profileModel1?.body?.votercardno!=""?profileModel1.body.votercardno:
                                                 "N/A"),
                                       ),
 
@@ -448,16 +569,14 @@ class _DocMyProfileState extends State<DocMyProfile> {
                                         title: Text(MyLocalizations.of(context).text("LICENCE_NO").toUpperCase(),
                                         ),
                                         subtitle: Text(
-                                            profileModel1.body.licenceno ??
-                                                "N/A"),
+                                            profileModel1?.body?.licenceno!=""?profileModel1.body.licenceno: "N/A"),
                                       ),
                                       ListTile(
                                         leading: Icon(Icons.credit_card_rounded),
                                         title: Text("License authority".toUpperCase(),
                                         ),
                                         subtitle: Text(
-                                            profileModel1.body.licenseauthority ??
-                                                "N/A"),
+                                            profileModel1?.body?.licenseauthority!=""? profileModel1.body.licenseauthority: "N/A"),
                                       ),
 
                                       InkWell(
@@ -479,16 +598,15 @@ class _DocMyProfileState extends State<DocMyProfile> {
                                       ),
                                     ],
                                   ),
-
                                   Container(
                                     width: 100,
                                     height: 70,
-                                    child: profileModel1.body.digsign!= null
-                                        ? Image.network(
+                                    child: profileModel1.body.digsign!=""
+                                        ? Image.network(/*"http://192.168.34.208:8062/document/profile/35_1639748020550.jpg"*/
                                       profileModel1.body.digsign,
                                       height: 80.0,
                                     )
-                                        : null,
+                                        : /*null*/Container(),
                                   ),
 
                                 ],
@@ -516,16 +634,25 @@ class _DocMyProfileState extends State<DocMyProfile> {
               ));
   }
   Future<void> _displayTextInputDialog(BuildContext context) async {
-
-    textEditingController[0].text = toDate(profileModel1.body.birthdate)??"";
+    textEditingController[0].text = profileModel1.body.birthdate !=""?toDate(profileModel1.body.birthdate):"";
     textEditingController[1].text =  profileModel1.body.education ??"";
-    textEditingController[2].text =  profileModel1.body.imano ?? "";
-    textEditingController[3].text = profileModel1.body.aadhaar ?? "";
-    textEditingController[4].text = profileModel1.body.passportno ??"";
-    textEditingController[5].text = profileModel1.body.votercardno ?? "";
-    textEditingController[6].text = profileModel1.body.licenceno ??"";
-    textEditingController[7].text = profileModel1.body.pancardno ?? "";
-
+    textEditingController[2].text =  profileModel1.body.experience ?? "";
+    textEditingController[3].text =  profileModel1.body.imano ?? "";
+   // textEditingController[2].text =  profileModel1.body.imano ?? "";
+    textEditingController[4].text = profileModel1.body.aadhaar ?? "";
+    textEditingController[5].text = profileModel1.body.passportno ??"";
+    textEditingController[6].text = profileModel1.body.votercardno ?? "";
+    textEditingController[7].text = profileModel1.body.licenceno ??"";
+    textEditingController[8].text = profileModel1.body.licenseauthority ??"";
+    textEditingController[9].text = profileModel1.body.pancardno ?? "";
+    textEditingController[10].text = profileModel1.body.email ?? "";
+    textEditingController[11].text = profileModel1.body.pincode ?? "";
+    textEditingController[12].text = profileModel1.body.mobile ?? "";
+    textEditingController[13].text = profileModel1.body.address ?? "";
+    if (profileModel1?.body?.gender == null ||
+        profileModel1?.body?.gender == "") {
+      DocMyProfile.gendermodel = null;
+    }
     if (profileModel1?.body?.country == null ||
         profileModel1?.body?.country == "") {
       DocMyProfile.countrymodel = null;
@@ -540,7 +667,11 @@ class _DocMyProfileState extends State<DocMyProfile> {
     }
     if (profileModel1?.body?.city == null ||
         profileModel1?.body?.city == "") {
-      DocMyProfile.countrymodel = null;
+      DocMyProfile.citymodel = null;
+    }
+    if (profileModel1?.body?.bldGr == null ||
+        profileModel1?.body?.bldGr == "") {
+      DocMyProfile.bloodgroupmodel = null;
     }
 
     return showDialog(
@@ -591,6 +722,40 @@ class _DocMyProfileState extends State<DocMyProfile> {
                                 gender(),
 
                               ]),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment:
+                              CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 0, right: 5, bottom: 0),
+                                  child: Text(
+                                   "Blood Group",
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 13,
+                                        fontFamily: "",
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                ),
+                                DropDown.networkDropdownlabler1(
+                                    "Blood Group",
+                                    ApiFactory.BLOODGROUP_API,
+                                    "bloodgroupdop", (KeyvalueModel model) {
+                                  setState(() {
+                                    DocMyProfile.bloodgroupmodel = model;
+                                    profileModel1.body.bldGr = model.key;
+                                    profileModel1.body.bldGrname =
+                                        model.name;
+                                    // updateProfileModel.bloodGroup = model.key;
+                                  });
+                                }),
+                              ]),
 
                           SizedBox(
                             height: 10,
@@ -605,7 +770,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
                           ),
                           formFieldEducation(
                               2,
-                              "Experience",
+                              "Experience(In Year)",
                               fnode2,
                               fnode3),
                           SizedBox(
@@ -630,7 +795,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
                           ),
                           formFieldPassPortno(
                               5,"Passport No",
-                              fnode4,
+                              fnode5,
                               fnode6),
                           SizedBox(
                             height: 10,
@@ -679,151 +844,156 @@ class _DocMyProfileState extends State<DocMyProfile> {
                       SizedBox(height: 10),
                           formFieldMoileno(
                           12,
-                          "Moile no",
+                          "Mobile no",
                           fnode12,
                           fnode13),
+                          SizedBox(height: 10),
                           formFieldAddress(
                               13,
                               MyLocalizations.of(context).text("USER_ADDRESS"),
                               fnode13,
                               null),
-                      SizedBox(height: 20),
+                      SizedBox(height: 10),
+                          Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment:
+                              CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 0, right: 5, bottom: 0),
+                                  child: Text(
+                                    MyLocalizations.of(context)
+                                        .text("COUNTRY"),
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 13,
+                                        fontFamily: "",
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                ),
+                                DropDown.networkDropdownlabler1(
+                                    "Country",
+                                    ApiFactory.COUNTRY_API,
+                                    "countrydocp", (KeyvalueModel model) {
+                                  setState(() {
+                                    print(ApiFactory.COUNTRY_API);
+                                    DocMyProfile.countrymodel = model;
+                                    profileModel1.body.country = model.key;
+                                    profileModel1.body.countryName = model.name;
+                                    // updateProfileModel.bloodGroup = model.key;
+                                  });
+                                }),
+                              ]),
+                          SizedBox(height: 10),
 
-                      Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 0, right: 5, bottom: 0),
-                              child: Text(
-                                MyLocalizations.of(context)
-                                    .text("COUNTRY"),
-                                textAlign: TextAlign.left,
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 13,
-                                    fontFamily: "",
-                                    fontWeight: FontWeight.w400),
-                              ),
-                            ),
-                            DropDown.networkDropdownlabler1(
-                                "Country",
-                                ApiFactory.COUNTRY_API,
-                                "country1", (KeyvalueModel model) {
-                              setState(() {
-                                DocMyProfile.countrymodel = model;
-                                profileModel1.body.country =
-                                    model.key;
-                                profileModel1.body.countryName =
-                                    model.name;
-                                // updateProfileModel.bloodGroup = model.key;
-                              });
-                            }),
-                          ]),
-                      SizedBox(height: 20),
-
-                      Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 0, right: 5, bottom: 0),
-                              child: Text(
-                                MyLocalizations.of(context)
-                                    .text("STATE"),
-                                textAlign: TextAlign.left,
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 13,
-                                    fontFamily: "",
-                                    fontWeight: FontWeight.w400),
-                              ),
-                            ),
-                            DropDown.networkDropdownlabler1(
-                                "State",
-                                ApiFactory.STATE_API,
-                                "state1", (KeyvalueModel model) {
-                              setState(() {
-                                DocMyProfile.statemodel = model;
-                                profileModel1.body.state =
-                                    model.key;
-                                profileModel1.body.stateName=
-                                    model.name;
-                                // updateProfileModel.bloodGroup = model.key;
-                              });
-                            }),
-                          ]),
-                      SizedBox(height: 20),
-
-                      Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 0, right: 5, bottom: 0),
-                              child: Text(
-                                MyLocalizations.of(context)
-                                    .text("District"),
-                                textAlign: TextAlign.left,
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 13,
-                                    fontFamily: "",
-                                    fontWeight: FontWeight.w400),
-                              ),
-                            ),
-                            DropDown.networkDropdownlabler1(
-                                "District",
-                                ApiFactory.DISTRICT_API,
-                                "district1", (KeyvalueModel model) {
-                              setState(() {
-                                DocMyProfile.districtmodel = model;
-                                profileModel1.body.district =
-                                    model.key;
-                                profileModel1.body.districtName=
-                                    model.name;
-                                // updateProfileModel.bloodGroup = model.key;
-                              });
-                            }),
-                          ]),
-                      SizedBox(height: 20),
-
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(
-                                left: 0, right: 5, bottom: 0),
-                            child: Text(
-                              MyLocalizations.of(context)
-                                  .text("CITY"),
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 13,
-                                  fontFamily: "",
-                                  fontWeight: FontWeight.w400),
-                            ),
-                          ),
-                          DropDown.networkDropdownlabler1(
-                              "City",
-                              ApiFactory.CITY_API,
-                              "city1", (KeyvalueModel model) {
-                            setState(() {
-                              DocMyProfile.citymodel = model;
-                              profileModel1.body.city =
-                                  model.key;
-                              profileModel1.body.cityName =
-                                  model.name;
-                              // updateProfileModel.bloodGroup = model.key;
-                            });
-                          }),
-                        ],
-                      ),
+                          Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment:
+                              CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 0, right: 5, bottom: 0),
+                                  child: Text(
+                                    MyLocalizations.of(context)
+                                        .text("STATE"),
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 13,
+                                        fontFamily: "",
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                ),
+                                DropDown.networkDropdownlabler1(
+                                    "State",
+                                    ApiFactory.STATE_API +
+                                        (DocMyProfile?.countrymodel?.key ??
+                                            ""),
+                                    "statedocp", (KeyvalueModel model) {
+                                  setState(() {
+                                    print(ApiFactory.STATE_API);
+                                    DocMyProfile.statemodel = model;
+                                    profileModel1.body.state =
+                                        model.key;
+                                    profileModel1.body.stateName=
+                                        model.name;
+                                    // updateProfileModel.bloodGroup = model.key;
+                                  });
+                                }),
+                              ]),
+                          SizedBox(height: 10),
+                          Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment:
+                              CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 0, right: 5, bottom: 0),
+                                  child: Text(
+                                    "District",
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 13,
+                                        fontFamily: "",
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                ),
+                                DropDown.networkDropdownlabler1(
+                                    "District",
+                                    ApiFactory.DISTRICT_API +
+                                        (DocMyProfile?.statemodel?.key ??
+                                            ""),
+                                    "districtdocp", (KeyvalueModel model) {
+                                  setState(() {
+                                    print(ApiFactory.DISTRICT_API);
+                                    DocMyProfile.districtmodel = model;
+                                    profileModel1.body.district = model.key;
+                                    profileModel1.body.districtName=model.name;
+                                    // updateProfileModel.bloodGroup = model.key;
+                                  });
+                                }),
+                              ]),
+                          SizedBox(height: 10),
+                          Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment:
+                              CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 0, right: 5, bottom: 0),
+                                  child: Text(
+                                    MyLocalizations.of(context)
+                                        .text("CITY"),
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 13,
+                                        fontFamily: "",
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                ),
+                                DropDown.networkDropdownlabler1(
+                                    "City",
+                                    ApiFactory.CITY_API +
+                                        (DocMyProfile?.districtmodel?.key ??
+                                            ""),
+                                    "citydocp",
+                                        (KeyvalueModel model) {
+                                      setState(() {
+                                        print(ApiFactory.CITY_API);
+                                        DocMyProfile.citymodel = model;
+                                        profileModel1.body.city = model.key;
+                                        profileModel1.body.cityName = model.name;
+                                        // updateProfileModel.bloodGroup = model.key;
+                                      });
+                                    }),
+                              ]),
                         ]),
 
                     ),
@@ -944,10 +1114,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
                       updateProfileModel.stateid =  DocMyProfile.statemodel.key;
                       updateProfileModel.districtid =  DocMyProfile.districtmodel.key;
                       updateProfileModel.cityid =  DocMyProfile.citymodel.key;
-
-
-
-
+                      updateProfileModel.bloodgroup =  DocMyProfile.bloodgroupmodel.key;
 
                       log("Post json2>>>>" + jsonEncode(updateProfileModel.toJson()));
                       log("Post api>>>>" +ApiFactory.UPDATE_DOCTER_PROFILE);
@@ -1135,7 +1302,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
     print(extName);*/
     String extName  = "png";
     signBase64 = base64.encode(list);
-    updateProfile(base64Encode(list), extName);
+    updateSign(base64Encode(list), extName);
     /*registrationModel.signUploadBase64 = signBase64;
     registrationModel.signUploadExt = "png";
 */
@@ -1147,7 +1314,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
   }
 
 
-  updateProfile(String image, String ext) {
+  updateSign(String image, String ext) {
     MyWidgets.showLoading(context);
     var value = {
       "digSignType": ext,
@@ -1158,6 +1325,35 @@ class _DocMyProfileState extends State<DocMyProfile> {
     log("Post data>>\n\n" + jsonEncode(value));
     widget.model.POSTMETHOD_TOKEN(
         api: ApiFactory.OTHER_PROFILE_SIGN,
+        token: widget.model.token,
+        json: value,
+        fun: (Map<String, dynamic> map) {
+          Navigator.pop(context);
+          setState(() {
+            log("Value>>>" + jsonEncode(map));
+            String msg = map[Const.MESSAGE];
+            if (map[Const.CODE] == Const.SUCCESS) {
+              AppData.showInSnackDone(context, msg);
+              callAPI();
+            } else {
+              isDataNotAvail = true;
+              AppData.showInSnackBar(context, msg);
+              callAPI();
+            }
+          });
+        });
+  }
+  updateProfile(String image, String ext) {
+    MyWidgets.showLoading(context);
+    var value = {
+      "profileImageType": ext,
+      "profileImage": [image],
+      "dctrid": loginResponse.body.user
+    };
+
+    log("Post data>>\n\n" + jsonEncode(value));
+    widget.model.POSTMETHOD_TOKEN(
+        api: ApiFactory.OTHER_PROFILE_IMAGE,
         token: widget.model.token,
         json: value,
         fun: (Map<String, dynamic> map) {
@@ -1768,7 +1964,51 @@ class _DocMyProfileState extends State<DocMyProfile> {
             ),
             // ),
           ),
-          Row(
+          Align(
+            alignment: Alignment.topCenter,
+            child: Container(
+              height: 83,
+              width: 83,
+              child: Stack(
+                //mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  (pathUsr != null)
+                      ? Material(
+                    elevation: 5.0,
+                    shape: CircleBorder(),
+                    child: CircleAvatar(
+                      radius: 40.0,
+                      backgroundImage: FileImage(pathUsr),
+                    ),
+                  )
+                      : Material(
+                    elevation: 5.0,
+                    shape: CircleBorder(),
+                    child: CircleAvatar(
+                      radius: 40.0,
+                      backgroundImage: NetworkImage(/*"http://192.168.34.208:8062/document/profile/35_1639748020550.jpg"*/
+                          (profileModel1?.body?.profileimage !="")
+                              ? profileModel1?.body?.profileimage
+                              : AppData.defaultImgUrl),
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.bottomRight,
+                    child: InkWell(
+                      onTap: () {
+                        _settingModalBottomSheet(context);
+                      },
+                      child: Icon(
+                        Icons.camera_alt,
+                        color: AppData.grey,
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+         /* Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Material(
@@ -1780,7 +2020,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
                 ),
               ),
             ],
-          ),
+          ),*/
         ],
       ),
     );

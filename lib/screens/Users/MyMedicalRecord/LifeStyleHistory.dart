@@ -101,10 +101,12 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
         api: ApiFactory.IIFESTYLE_DETAIS + widget.model.user,
         token: widget.model.token,
         fun: (Map<String, dynamic> map) {
+          log("Response >>>>"+jsonEncode(map));
           setState(() {
-            String msg = map[Const.MESSAGE];
+            //String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
               lifeStyleHistryModel = LifeStyleHistryModel.fromJson(map);
+
               if (lifeStyleHistryModel?.body?.smokingName != null) {
                 LifeStyleHistory.smokingmodel = KeyvalueModel(
                     key: lifeStyleHistryModel.body.smokingId,
@@ -563,7 +565,7 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
             child: SingleChildScrollView(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   //_buildAboutText(),
                   //_buildLogoAttribution(),
@@ -578,19 +580,17 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                   SizedBox(
                     height: 15,
                   ),
-
+                  Text("  Smoking"),
                   Padding(
                     //padding: const EdgeInsets.all(8.0),
                     padding: const EdgeInsets.only(
                         top: 0.0, left: 8.0, right: 8.0, bottom: 0.0),
-
                     child: DropDown.networkDropdownlabler1(
                         MyLocalizations.of(context).text("SMOKING"),
                         ApiFactory.smoking_API,
                         "smoking", (KeyvalueModel model) {
                       print(ApiFactory.smoking_API);
                       setState(() {
-
                         LifeStyleHistory.smokingmodel = model;
                         lifeStyleHistryModel.body.smokingId = model.key;
                         lifeStyleHistryModel.body.smokingName = model.name;
@@ -598,7 +598,7 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                       });
                     }),
                   ),
-
+                  Text("  Alcohol"),
                   Padding(
                     //padding: const EdgeInsets.all(8.0),
                     padding: const EdgeInsets.only(
@@ -615,6 +615,7 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                       });
                     }),
                   ),
+                  Text("  Diet"),
                   gender(),
                   /* Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 0),
@@ -633,10 +634,10 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                   SizedBox(
                     height: 8,
                   ),
-                  formField(1, MyLocalizations.of(context).text("OCCUPATION")),
-                  SizedBox(
-                    height: 8,
-                  ),
+                  // formField(1, MyLocalizations.of(context).text("OCCUPATION")),
+                  // SizedBox(
+                  //   height: 8,
+                  // ),
                   formField(2, MyLocalizations.of(context).text("PETS")),
                   SizedBox(
                     height: 5,
@@ -777,49 +778,58 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
       //padding: const EdgeInsets.all(8.0),
       padding:
           const EdgeInsets.only(top: 0.0, left: 8.0, right: 8.0, bottom: 0.0),
-      child: Container(
-        decoration: BoxDecoration(
-            color: AppData.white,
-            borderRadius: BorderRadius.circular(2),
-            border: Border.all(color: Colors.grey, width: 1)),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10.0),
-          child: Row(
-            children: <Widget>[
-              new Expanded(
-                child: TextFormField(
-                  //enabled: widget.isConfirmPage ? false : true,
-                  controller: textEditingController[index],
-                  //focusNode: fnode7,
-                  cursorColor: AppData.kPrimaryColor,
-                  textInputAction: TextInputAction.done,
-                  keyboardType: TextInputType.text,
-                  inputFormatters: [
-                    WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
-                  ],
-                  decoration: InputDecoration(
-                    //suffixIcon: Icon(Icons.phone),
-                    border: InputBorder.none,
-                    counterText: "",
-                    hintText: hint,
-                    hintStyle:
-                        TextStyle(color: AppData.hintColor, fontSize: 15),
-                  ),
-
-                  onFieldSubmitted: (value) {
-                    // print(error[2]);
-                    //error[4] = false;
-                    setState(() {});
-                    // AppData.fieldFocusChange(context, fnode7, fnode8);
-                  },
-                  onSaved: (value) {
-                    //userPersonalForm.phoneNumber = value;
-                  },
-                ),
-              )
-            ],
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(hint),
+          SizedBox(
+            height: 5,
           ),
-        ),
+          Container(
+            decoration: BoxDecoration(
+                color: AppData.white,
+                borderRadius: BorderRadius.circular(2),
+                border: Border.all(color: Colors.grey, width: 1)),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              child: Row(
+                children: <Widget>[
+                  new Expanded(
+                    child: TextFormField(
+                      //enabled: widget.isConfirmPage ? false : true,
+                      controller: textEditingController[index],
+                      //focusNode: fnode7,
+                      cursorColor: AppData.kPrimaryColor,
+                      textInputAction: TextInputAction.done,
+                      keyboardType: TextInputType.text,
+                      inputFormatters: [
+                        WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
+                      ],
+                      decoration: InputDecoration(
+                        //suffixIcon: Icon(Icons.phone),
+                        border: InputBorder.none,
+                        counterText: "",
+                        hintText: hint,
+                        hintStyle:
+                            TextStyle(color: AppData.hintColor, fontSize: 15),
+                      ),
+
+                      onFieldSubmitted: (value) {
+                        // print(error[2]);
+                        //error[4] = false;
+                        setState(() {});
+                        // AppData.fieldFocusChange(context, fnode7, fnode8);
+                      },
+                      onSaved: (value) {
+                        //userPersonalForm.phoneNumber = value;
+                      },
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -832,50 +842,59 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
       //padding: const EdgeInsets.all(8.0),
       padding:
           const EdgeInsets.only(top: 0.0, left: 8.0, right: 8.0, bottom: 0.0),
-      child: Container(
-        decoration: BoxDecoration(
-            color: AppData.white,
-            borderRadius: BorderRadius.circular(2),
-            border: Border.all(color: Colors.grey, width: 1)),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10.0),
-          child: Row(
-            children: <Widget>[
-              new Expanded(
-                child: TextFormField(
-                  //enabled: widget.isConfirmPage ? false : true,
-                  controller: textEditingController[index],
-                  //focusNode: fnode7,
-                  cursorColor: AppData.kPrimaryColor,
-                  textInputAction: TextInputAction.next,
-                  maxLength: 2,
-                  keyboardType: TextInputType.number,
-                  inputFormatters: [
-                    WhitelistingTextInputFormatter(RegExp("[0-9 .]")),
-                  ],
-                  decoration: InputDecoration(
-                    //suffixIcon: Icon(Icons.phone),
-                    border: InputBorder.none,
-                    counterText: "",
-                    hintText: hint,
-                    hintStyle:
-                        TextStyle(color: AppData.hintColor, fontSize: 15),
-                  ),
-
-                  onFieldSubmitted: (value) {
-                    // print(error[2]);
-                    //error[4] = false;
-                    setState(() {});
-                    // AppData.fieldFocusChange(context, fnode7, fnode8);
-                  },
-                  onSaved: (value) {
-                    //userPersonalForm.phoneNumber = value;
-                  },
-                ),
-              )
-            ],
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(hint),
+          SizedBox(
+            height: 5,
           ),
-        ),
+          Container(
+            decoration: BoxDecoration(
+                color: AppData.white,
+                borderRadius: BorderRadius.circular(2),
+                border: Border.all(color: Colors.grey, width: 1)),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              child: Row(
+                children: <Widget>[
+                  new Expanded(
+                    child: TextFormField(
+                      //enabled: widget.isConfirmPage ? false : true,
+                      controller: textEditingController[index],
+                      //focusNode: fnode7,
+                      cursorColor: AppData.kPrimaryColor,
+                      textInputAction: TextInputAction.next,
+                      maxLength: 2,
+                      keyboardType: TextInputType.number,
+                      inputFormatters: [
+                        WhitelistingTextInputFormatter(RegExp("[0-9 .]")),
+                      ],
+                      decoration: InputDecoration(
+                        //suffixIcon: Icon(Icons.phone),
+                        border: InputBorder.none,
+                        counterText: "",
+                        hintText: hint,
+                        hintStyle:
+                            TextStyle(color: AppData.hintColor, fontSize: 15),
+                      ),
+
+                      onFieldSubmitted: (value) {
+                        // print(error[2]);
+                        //error[4] = false;
+                        setState(() {});
+                        // AppData.fieldFocusChange(context, fnode7, fnode8);
+                      },
+                      onSaved: (value) {
+                        //userPersonalForm.phoneNumber = value;
+                      },
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

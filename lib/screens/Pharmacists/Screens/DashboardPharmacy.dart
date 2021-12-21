@@ -186,9 +186,13 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
                 selected: _selectedDestination == 1,
                 onTap: () {
                   selectDestination(1);
+                  Navigator.pushNamed(context, "/docMyProf");
+                },
+                /*onTap: () {
+                  selectDestination(1);
                   Navigator.pushNamed(context, "/pharmaprofile");
                   //Navigator.pushNamed(context, "/profileScreen1");
-                },
+                },*/
               ),
              // Divider(),
            /*   ListTile(

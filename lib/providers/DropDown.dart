@@ -589,16 +589,31 @@ class DropDown {
           case "alcohol":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
-          case "country1":
+          case "countrydocp":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
-          case "state1":
+          case "statedocp":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
-          case "district1":
+          case "districtdocp":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
-          case "city1":
+          case "citydocp":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "bloodgroupdop":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+            case "pcountry":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "pstate":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "pdistrict":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "pcity":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
           case "gender":
@@ -630,7 +645,10 @@ class DropDown {
           case "ageproof":
             ageProof = data;
             break;
-          case "bloodgroup":
+          case "marital":
+            marital = data;
+            break;
+            case "bloodgroup":
             bloodgroupmodel = data;
             break;
           case "relation":
@@ -2124,7 +2142,10 @@ class DropDown {
 
   static KeyvalueModel getData(String callFor) {
     switch (callFor) {
-      case "dosage":
+      case "marital":
+        return ProfileScreen.materialmodel;
+        break;
+        case "dosage":
         return EditReminder.dosageModel;
         break;
       case "speciality":
@@ -2162,17 +2183,35 @@ class DropDown {
       case "gender1":
         return DocMyProfile.gendermodel;
         break;
-      case "country1":
+      case "countrydocp":
         return DocMyProfile.countrymodel;
         break;
-      case "state1":
+      case "statedocp":
         return DocMyProfile.statemodel;
         break;
-      case "district1":
+      case "districtdocp":
         return DocMyProfile.districtmodel;
         break;
-      case "city1":
+      case "citydocp":
         return DocMyProfile.citymodel;
+        break;
+      case "bloodgroupdop":
+        return DocMyProfile.bloodgroupmodel;
+        break;
+        case "pcountry":
+        return ProfileScreen.countrymodel;
+        break;
+      case "pstate":
+        return ProfileScreen.statemodel;
+        break;
+      case "pdistrict":
+        return ProfileScreen.districtmodel;
+        break;
+      case "pcity":
+        return ProfileScreen.citymodel;
+        break;
+        case "marital":
+        return ProfileScreen.materialmodel;
         break;
         //city1,district1,state1,country1
 
@@ -3686,6 +3725,9 @@ class DropDown {
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
           case "doctorrecipt":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+            case "relation":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
         }

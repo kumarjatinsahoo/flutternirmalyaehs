@@ -504,7 +504,7 @@ class _NewDashboardPharmacyState extends State<NewDashboardPharmacy> {
                 selected: _selectedDestination == 1,
                 onTap: () {
                   selectDestination(1);
-                  Navigator.pushNamed(context, "/pharmaprofile");
+                  Navigator.pushNamed(context, "/docMyProf");
                 },
               ),
               ListTile(
