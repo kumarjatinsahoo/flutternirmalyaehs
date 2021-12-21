@@ -3964,7 +3964,7 @@ class DropDown {
         // filled: true,
         isDense: true,
         floatingLabelBehavior: FloatingLabelBehavior.never,
-        contentPadding: EdgeInsets.only(left: 12),
+        contentPadding: EdgeInsets.only(left: 2),
       ),
       //label: label,
       showSearchBox: true,
