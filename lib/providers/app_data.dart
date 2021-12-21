@@ -51,6 +51,25 @@ class AppData {
   static String currency = "₹";
   static const channel = const MethodChannel("com.eHealthSystem/goAnotherApp");
 
+
+  /////Agora//////
+  /// Get your own App ID at https://dashboard.agora.io/
+  static const String appId = 'fb2d58904b944dd597b1fe5b4b13a754';
+
+  /// Please refer to https://docs.agora.io/en/Agora%20Platform/token
+  static const String token = '006fb2d58904b944dd597b1fe5b4b13a754IAAXNkeIQ3CoLkztKxSXcocu2nvsZyuq0uG+HEkPfDpigeWvmVoAAAAAEACAl3NzIIzCYQEAAQAgjMJh';
+
+  /// Your channel ID
+  static const String channelId = 'TestEhs';
+
+  /// Your int user ID
+  static const int uid = 0;
+
+  /// Your string user ID
+  static const String stringUid = '0';
+  ////////////////
+
+
   static Color grey100 = Color(0xFFF4F4F4);
   static Color greyBorder = Color(0xFFD7D7D7);
   static Color lightgreyBorder = Color(0xFF949494);
@@ -119,6 +138,7 @@ class AppData {
       dev.log('Could not launch ' + url);
     }
   }
+
 
   static getMonth(String monthNumber) {
     switch (monthNumber) {

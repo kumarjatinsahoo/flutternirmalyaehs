@@ -1,4 +1,8 @@
 PODS:
+  - agora_rtc_engine (4.0.7):
+    - AgoraRtcEngine_iOS (= 3.5.0.3)
+    - Flutter
+  - AgoraRtcEngine_iOS (3.5.0.3)
   - connectivity (0.0.1):
     - Flutter
     - Reachability
@@ -133,6 +137,8 @@ PODS:
     - Flutter
   - path_provider (0.0.1):
     - Flutter
+  - "permission_handler (5.1.0+2)":
+    - Flutter
   - PromisesObjC (2.0.0)
   - qr_code_scanner (0.2.0):
     - Flutter
@@ -158,6 +164,7 @@ PODS:
     - Flutter
 
 DEPENDENCIES:
+  - agora_rtc_engine (from `.symlinks/plugins/agora_rtc_engine/ios`)
   - connectivity (from `.symlinks/plugins/connectivity/ios`)
   - device_calendar (from `.symlinks/plugins/device_calendar/ios`)
   - file_picker (from `.symlinks/plugins/file_picker/ios`)
@@ -177,6 +184,7 @@ DEPENDENCIES:
   - multi_select_item (from `.symlinks/plugins/multi_select_item/ios`)
   - pageview_indicator_plugins (from `.symlinks/plugins/pageview_indicator_plugins/ios`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
+  - permission_handler (from `.symlinks/plugins/permission_handler/ios`)
   - qr_code_scanner (from `.symlinks/plugins/qr_code_scanner/ios`)
   - share (from `.symlinks/plugins/share/ios`)
   - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
@@ -188,6 +196,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - AgoraRtcEngine_iOS
     - DKImagePickerController
     - DKPhotoGallery
     - Firebase
@@ -206,6 +215,8 @@ SPEC REPOS:
     - SwiftyGif
 
 EXTERNAL SOURCES:
+  agora_rtc_engine:
+    :path: ".symlinks/plugins/agora_rtc_engine/ios"
   connectivity:
     :path: ".symlinks/plugins/connectivity/ios"
   device_calendar:
@@ -244,6 +255,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/pageview_indicator_plugins/ios"
   path_provider:
     :path: ".symlinks/plugins/path_provider/ios"
+  permission_handler:
+    :path: ".symlinks/plugins/permission_handler/ios"
   qr_code_scanner:
     :path: ".symlinks/plugins/qr_code_scanner/ios"
   share:
@@ -262,6 +275,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/webview_flutter/ios"
 
 SPEC CHECKSUMS:
+  agora_rtc_engine: 0820b82b3a71a8fcaf8b27c000622e671349f0ba
+  AgoraRtcEngine_iOS: ff8e085161ea98c917173783a899882f884dd9ef
   connectivity: c4130b2985d4ef6fd26f9702e886bd5260681467
   device_calendar: 23b28a5f1ab3bf77e34542fb1167e1b8b29a98f5
   DKImagePickerController: b5eb7f7a388e4643264105d648d01f727110fc3d
@@ -293,6 +308,7 @@ SPEC CHECKSUMS:
   OrderedSet: aaeb196f7fef5a9edf55d89760da9176ad40b93c
   pageview_indicator_plugins: b9368b8dbbaf1f6999de221af4443220b126e345
   path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
+  permission_handler: ccb20a9fad0ee9b1314a52b70b76b473c5f8dab0
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
   qr_code_scanner: bb67d64904c3b9658ada8c402e8b4d406d5d796e
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96

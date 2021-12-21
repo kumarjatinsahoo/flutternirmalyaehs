@@ -1847,8 +1847,8 @@ class MyPage1Widget extends StatelessWidget {
                     _buildTileblue(
                       icon: "assets/health_care.png",
                       fun: () {
-                        AppData.showInSnackDone(context, "Coming Soon");
-                        // Navigator.pushNamed(context, "/chemistspage");
+                        //AppData.showInSnackDone(context, "Coming Soon");
+                         Navigator.pushNamed(context, "/vdo");
                         // AppData.showSnack(
                         //   context, "Coming soon", Colors.green);
                       },
