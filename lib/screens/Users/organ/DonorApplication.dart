@@ -837,41 +837,41 @@ class DonorApplicationState extends State<DonorApplication> {
                       : Container(),
                 ],
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  color: Colors.black26,
-                  height: 40,
-                  child: Row(
-                    //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                        child: Text(
-                          MyLocalizations.of(context).text("ADD_WITNESS"),
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 17,
-                              fontWeight: FontWeight.bold),
-                          textAlign: TextAlign.center,
+              InkWell(
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) =>
+                        dialogaddnomination(context),
+                  );
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    color: Colors.black26,
+                    height: 40,
+                    child: Row(
+                      //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: Text(
+                            MyLocalizations.of(context).text("ADD_WITNESS"),
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 17,
+                                fontWeight: FontWeight.bold),
+                            textAlign: TextAlign.center,
+                          ),
                         ),
-                      ),
-                      //Spacer(),
-                      InkWell(
-                        onTap: () {
-                          showDialog(
-                            context: context,
-                            builder: (BuildContext context) =>
-                                dialogaddnomination(context),
-                          );
-                        },
-                        child: Padding(
+                        //Spacer(),
+                        Padding(
                           padding: const EdgeInsets.only(right: 10.0),
                           child: Icon(
                             Icons.add_box,
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
