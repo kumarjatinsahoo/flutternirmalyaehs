@@ -65,7 +65,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
   File _camImage;
   String imgValue;
   String selectDob;
-  UserFamilyDetailsModel userfamilydetails ;
+  UserFamilyDetailsModel userfamilydetails;
+  bool emeradd = true;
+
   final df = new DateFormat('dd/MM/yyyy');
   DateTime selectedDate = DateTime.now();
 
@@ -235,6 +237,32 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     key: patientProfileModel.body.mstausid,
                     name: patientProfileModel.body.maritialstatus);
               }
+              if (patientProfileModel.body.emergenceList[0].type != null) {
+                ProfileScreen.relationmodel = KeyvalueModel(
+                  key: patientProfileModel.body.emergenceList[0].typeid,
+                  name: patientProfileModel.body.emergenceList[0].type,
+                );
+              }
+              if (patientProfileModel.body.familyDoctorList[0].type != null) {
+                ProfileScreen.relationmodel = KeyvalueModel(
+                  key: patientProfileModel.body.familyDoctorList[0].typeid,
+                  name: patientProfileModel.body.familyDoctorList[0].type,
+                );
+              }
+              if (patientProfileModel.body.familyDetailsList[0].relation !=
+                  null) {
+                ProfileScreen.relationmodel = KeyvalueModel(
+                  key: patientProfileModel.body.familyDetailsList[0].relid,
+                  name: patientProfileModel.body.familyDetailsList[0].relation,
+                );
+              }
+/*
+              if (patientProfileModel?.body?.emergenceList[i].type != null) {
+                ProfileScreen.materialmodel = KeyvalueModel(
+                    key: patientProfileModel.body.emergenceList[i].typeid,
+                    name: patientProfileModel.body.emergenceList[i].type);
+              }
+*/
               /*else {
                 ProfileScreen.materialmodel = null;
               }*/
@@ -869,7 +897,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         flex: 1,
                         child: Text(
                           /*'Confirmed'*/
-                          MyLocalizations.of(context).text("EMAIL"),
+                          "Email",
                           style: TextStyle(
                             fontWeight: FontWeight.w600,
                             fontSize: 15,
@@ -911,7 +939,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         flex: 1,
                         child: Text(
                           /*'Confirmed'*/
-                          MyLocalizations.of(context).text("PINCODE"),
+                          "Pin Code",
                           style: TextStyle(
                             fontWeight: FontWeight.w600,
                             fontSize: 15,
@@ -955,7 +983,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         flex: 1,
                         child: Text(
                           /*'Confirmed'*/
-                          MyLocalizations.of(context).text("MARITAL STATUS"),
+                          "Marital Status",
                           style: TextStyle(
                             fontWeight: FontWeight.w600,
                             fontSize: 15,
@@ -1375,7 +1403,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 Spacer(),
                 InkWell(
                   onTap: () {
-                    displayDialog(context);
+                    /* if (patientProfileModel.body.emergenceList.length != "" &&
+                         patientProfileModel.body.emergenceList.length != 5)
+                     {
+
+
+                    }else{*/
+                       displayDialog(context);
+                     //}
+
                   },
                   child: Icon(
                     Icons.add_circle_outline_sharp,
@@ -1401,7 +1437,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               InkWell(
                                 onTap: () {
                                   EmergencydisplayDialog(
-                                      context, patientProfileModel, 0);
+                                      context, patientProfileModel, index);
                                 },
                                 child: Row(
                                   children: [
@@ -1553,7 +1589,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                     );
                   },
-                  itemCount: patientProfileModel.body.emergenceList.length,
+                 // itemCount: patientProfileModel.body.emergenceList.length,
+                  itemCount: 5,
                 )
               : Container()
         ],
@@ -1603,7 +1640,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   children: [
                                     InkWell(
                                       onTap: () {
-                                        doctordisplayDialog(context, patientProfileModel, index);
+                                        doctordisplayDialog(context,
+                                            patientProfileModel, index);
                                       },
                                       child: Row(
                                         children: [
@@ -1761,7 +1799,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                     );
                   },
-                  itemCount: patientProfileModel.body.familyDoctorList.length,
+                  itemCount: 5,
                 )
               : Container()
         ],
@@ -1809,20 +1847,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     left: 10.0, top: 20, right: 10.0),
                                 child: Column(
                                   children: [
-                                    InkWell(
-                                      onTap: () {
-                                        //  _displayTextInputDialog(context);
-                                      },
-                                      child: Row(
-                                        children: [
-                                          Text(" "),
-                                          Spacer(),
-                                          Icon(
+                                    Row(
+                                      children: [
+                                        Text(" "),
+                                        Spacer(),
+                                        InkWell(
+                                          onTap: () {
+                                            familydetailsdisplayDialog(context,
+                                                patientProfileModel, index);
+                                          },
+                                          child: Icon(
                                             Icons.edit,
                                             size: 20,
                                           ),
-                                        ],
-                                      ),
+                                        ),
+                                      ],
                                     ),
                                     Row(
                                       children: [
@@ -1968,7 +2007,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                     );
                   },
-                  itemCount: patientProfileModel.body.familyDetailsList.length,
+                  itemCount:5,
                 )
               : Container()
         ],
@@ -2016,6 +2055,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
         patientProfileModel.body.licenceauthority ?? "";
     textEditingController[11].text = patientProfileModel.body.email ?? "";
     textEditingController[12].text = patientProfileModel.body.pincode ?? "";
+    textEditingController[13].text = patientProfileModel.body.mobile ?? "";
+    textEditingController[14].text = patientProfileModel.body.fName ?? "";
+    textEditingController[15].text = patientProfileModel.body.lName ?? "";
+    textEditingController[16].text = patientProfileModel.body.gender ?? "";
+
+/*
+    updateProfileModel.mobile = patientProfileModel.body.mobile;
+    updateProfileModel.fName = patientProfileModel.body.fName;
+    updateProfileModel.lName = patientProfileModel.body.lName;
+    updateProfileModel.gender = patientProfileModel.body.genderId;
+*/
+
     textEditingController[0].text = (patientProfileModel != null)
         ? myFormatDate(patientProfileModel.body.dob.toString())
         : "";
@@ -2045,6 +2096,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
     if (patientProfileModel?.body?.city == null ||
         patientProfileModel?.body?.city == "") {
       ProfileScreen.citymodel = null;
+    }if (patientProfileModel?.body?.gender == null ||
+        patientProfileModel?.body?.gender == "") {
+      ProfileScreen.gendermodel = null;
+    }
+    else{
+      ProfileScreen.gendermodel=KeyvalueModel(key: patientProfileModel.body.genderId,name:patientProfileModel.body.gender);
+
     }
 
     /* if (patientProfileModel?.body?.speciality == null ||
@@ -2175,7 +2233,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 formField(4, "Specialization", fnode5, fnode6),
                                 SizedBox(height: 20),
                                 formFieldPassPortno(
-                                    5, "PanCard No", fnode6, fnode7),
+                                    5, "Pan Card No", fnode6, fnode7),
                                 SizedBox(height: 20),
                                 formFieldPassPortno(
                                     6, "Passport No", fnode7, fnode8),
@@ -2194,7 +2252,41 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 SizedBox(height: 20),
                                 formFieldemail(11, "Email", fnode12, fnode13),
                                 SizedBox(height: 20),
-                                formFieldPinno(12, "Pincode", fnode13, fnode14),
+                                formFieldPinno(12, "Pin Code", fnode13, fnode14),
+                                SizedBox(height: 20),
+                                formFieldemail(13, "Mobile", fnode14, fnode15),
+                                SizedBox(height: 20),
+                                formFieldemail(14, "Fname", fnode15, fnode16),
+                                SizedBox(height: 20),
+                                formFieldemail(15, "Lname", fnode16, fnode17),
+                                SizedBox(height: 20),
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 0, right: 5, bottom: 0),
+                                  child: Text(
+                                    "Gender",
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 13,
+                                        fontFamily: "",
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                ),
+                                DropDown.networkDropdownlabler1(
+                                    "Gender",
+                                    ApiFactory.MARITAL_API,
+                                    "gender", (KeyvalueModel model) {
+                                  setState(() {
+                                    print(ApiFactory.GENDER_API);
+                                    ProfileScreen.gendermodel = model;
+                                    patientProfileModel.body.genderId =
+                                        model.key;
+                                    patientProfileModel.body.gender =
+                                        model.name;
+                                    //updateProfileModel.speciality = model.key;
+                                  });
+                                }),
                                 SizedBox(height: 20),
                                 Column(
                                     mainAxisAlignment: MainAxisAlignment.start,
@@ -2327,7 +2419,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       DropDown.networkDropdownlabler1(
                                           "City",
                                           ApiFactory.CITY_API +
-                                              (ProfileScreen?.districtmodel?.key ??
+                                              (ProfileScreen
+                                                      ?.districtmodel?.key ??
                                                   ""),
                                           "pcity", (KeyvalueModel model) {
                                         setState(() {
@@ -2366,26 +2459,116 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 child: Text(MyLocalizations.of(context).text("UPDATE")),
                 onPressed: () {
                   setState(() {
-                    bool isAllBlank = true;
+                    /* bool isAllBlank = true;
                     textEditingController.forEach((element) {
                       if (element.text != "") isAllBlank = false;
-                    });
-                    if (isAllBlank) {
+                    });*/
+                    /* if (isAllBlank) {
                       //AppData.showInSnackBar(context, "Please select Smoking");
                       AppData.showInSnackBar(
                           context, "Please Fill Up Atleast One Field ");
+                    }*/
+                    if (textEditingController[0].text == null ||
+                        textEditingController[0].text == "") {
+                      AppData.showInSnackBar(context, "Please Enter  Dob");
+                    } else if (ProfileScreen.bloodgroupmodel == null ||
+                        ProfileScreen.bloodgroupmodel == "") {
+                      AppData.showInSnackBar(
+                          context, "Please select Bloodgroup");
+                    } else if (textEditingController[1].text == "" ||
+                        textEditingController[1].text == null) {
+                      AppData.showInSnackBar(context, "Please enter Address");
+                    } else if (ProfileScreen.materialmodel == null ||
+                        ProfileScreen.materialmodel == "") {
+                      AppData.showInSnackBar(
+                          context, "Please select Marital Status");
+                    } else if (textEditingController[2].text == "" ||
+                        textEditingController[2].text.length == null) {
+                      AppData.showInSnackBar(
+                          context, "Please enter Occupation");
+                      // FocusScope.of(context).requestFocus(fnode2);
+                    } else if (textEditingController[3].text == "" ||
+                        textEditingController[3].text.length == null) {
+                      AppData.showInSnackBar(
+                          context, "Please enter Qualification");
+                      // FocusScope.of(context).requestFocus(fnode3);
+                    } else if (textEditingController[4].text == "" &&
+                        textEditingController[4].text.length == null) {
+                      AppData.showInSnackBar(
+                          context, "Please enter  Specialization");
+                      // FocusScope.of(context).requestFocus(fnode4);
+                    } else if (textEditingController[5].text == "" ||
+                        textEditingController[5].text == null) {
+                      AppData.showInSnackBar(
+                          context, "Please enter Pan Card No");
+                      // FocusScope.of(context).requestFocus(fnode5);
+                    } else if (textEditingController[6].text == "" ||
+                        textEditingController[6].text.length == null) {
+                      AppData.showInSnackBar(
+                          context, "Please enter a Passport No");
+                      FocusScope.of(context).requestFocus(fnode5);
+                    } else if (textEditingController[7].text == "" ||
+                        textEditingController[7].text == null) {
+                      AppData.showInSnackBar(context, "Please enter Aadhar No");
+                      FocusScope.of(context).requestFocus(fnode6);
+                    } else if (textEditingController[8].text == "" ||
+                        textEditingController[8].text == null) {
+                      AppData.showInSnackBar(
+                          context, "Please enter Votor Card No");
+                    } else if (textEditingController[9].text == "" ||
+                        textEditingController[9].text == null) {
+                      AppData.showInSnackBar(
+                          context, "Please enter Licence No.");
+                    } else if (textEditingController[10].text == "" ||
+                        textEditingController[10].text == null) {
+                      AppData.showInSnackBar(
+                          context, "Please enter Licence Authority");
+                    } else if (textEditingController[11].text == "" ||
+                        textEditingController[11].text == null) {
+                      AppData.showInSnackBar(context, "Please enter Email");
+                    } else if (textEditingController[12].text == "" ||
+                        textEditingController[12].text == null) {
+                      AppData.showInSnackBar(context, "Please enter PinCode");
+                    } else if (textEditingController[13].text == "" ||
+                        textEditingController[13].text == null) {
+                      AppData.showInSnackBar(context, "Please enter Mobile no");
+                    } else if (textEditingController[14].text == "" ||
+                        textEditingController[14].text == null) {
+                      AppData.showInSnackBar(context, "Please enter Fname");
+                    } else if (textEditingController[15].text == "" ||
+                        textEditingController[15].text == null) {
+                      AppData.showInSnackBar(context, "Please enter Lname");
+                    } else if (textEditingController[16].text == "" ||
+                        textEditingController[16].text == null) {
+                      AppData.showInSnackBar(context, "Please enter gender");
+                    } else if (ProfileScreen.countrymodel == null ||
+                        ProfileScreen.countrymodel == "") {
+                      AppData.showInSnackBar(context, "Please select Country");
+                    } else if (ProfileScreen.statemodel == null ||
+                        ProfileScreen.statemodel == "") {
+                      AppData.showInSnackBar(context, "Please select State");
+                    } else if (ProfileScreen.districtmodel == null ||
+                        ProfileScreen.districtmodel == "") {
+                      AppData.showInSnackBar(context, "Please select District");
+                    } else if (ProfileScreen.citymodel == null ||
+                        ProfileScreen.citymodel == "") {
+                      AppData.showInSnackBar(context, "Please select City");
                     } else {
                       updateProfileModel.eCardNo =
                           patientProfileModel.body.eCardNo;
                       updateProfileModel.dob = textEditingController[0].text;
-                      updateProfileModel.bloodGroup = ProfileScreen?.bloodgroupmodel?.key??null;
-                      updateProfileModel.maritialstatus = ProfileScreen?.materialmodel?.key??null;
-                      if(textEditingController[1].text!="") {
+                      updateProfileModel.bloodGroup =
+                          ProfileScreen?.bloodgroupmodel?.key ?? null;
+                      updateProfileModel.maritialstatus =
+                          ProfileScreen?.materialmodel?.key ?? null;
+                      if (textEditingController[1].text != "") {
                         updateProfileModel.address =
                             textEditingController[1].text;
                       }
-                      updateProfileModel.occupation = textEditingController[2].text;
-                      updateProfileModel.qualification = textEditingController[3].text;
+                      updateProfileModel.occupation =
+                          textEditingController[2].text;
+                      updateProfileModel.qualification =
+                          textEditingController[3].text;
                       updateProfileModel.specialization =
                           textEditingController[4].text;
                       updateProfileModel.pancardno =
@@ -2403,18 +2586,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       updateProfileModel.email = textEditingController[11].text;
                       updateProfileModel.pincode =
                           textEditingController[12].text;
+                      updateProfileModel.mobile =
+                          textEditingController[13].text;
+                      updateProfileModel.fName = textEditingController[14].text;
+                      updateProfileModel.lName = textEditingController[15].text;
+                      updateProfileModel.gender = ProfileScreen.gendermodel.key;
                       updateProfileModel.countryid =
                           ProfileScreen.countrymodel.key;
                       updateProfileModel.stateid = ProfileScreen.statemodel.key;
                       updateProfileModel.distid =
                           ProfileScreen.districtmodel.key;
                       updateProfileModel.cityid = ProfileScreen.citymodel.key;
-                      updateProfileModel.mobile =
-                          patientProfileModel.body.mobile;
+                      /*updateProfileModel.mobile = patientProfileModel.body.mobile;
                       updateProfileModel.fName = patientProfileModel.body.fName;
                       updateProfileModel.lName = patientProfileModel.body.lName;
-                      updateProfileModel.gender =
-                          patientProfileModel.body.genderId;
+                      updateProfileModel.gender = patientProfileModel.body.genderId;*/
 
                       log("Post json>>>>" +
                           jsonEncode(updateProfileModel.toJson()));
@@ -2568,11 +2754,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   border: InputBorder.none,
                   counterText: '',
                   contentPadding:
-                      EdgeInsets.symmetric(vertical: 2, horizontal: 0)
-              ),
-              onChanged: (newValue) {
-
-              },
+                      EdgeInsets.symmetric(vertical: 2, horizontal: 0)),
+              onChanged: (newValue) {},
               onFieldSubmitted: (value) {
                 AppData.fieldFocusChange(context, currentfn, nextFn);
               },
@@ -2633,6 +2816,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ],
     );
   }
+
   Widget formFieldemail(
       int index, String hint, FocusNode currentfn, FocusNode nextFn) {
     return Column(
@@ -2663,11 +2847,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
               // Validator.getKeyboardTyp(validateModel.fieldType.toLowerCase()),
               style: TextStyle(fontSize: 15),
               decoration: InputDecoration(
-                //hintText: hint,
+                  //hintText: hint,
                   hintStyle: TextStyle(color: Colors.grey, fontSize: 13),
                   border: InputBorder.none,
                   contentPadding:
-                  EdgeInsets.symmetric(vertical: 2, horizontal: 0)),
+                      EdgeInsets.symmetric(vertical: 2, horizontal: 0)),
               onChanged: (newValue) {},
               onFieldSubmitted: (value) {
                 print("ValueValue" + error[index].toString());
@@ -3068,7 +3252,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         SizedBox(
                           height: 15,
                         ),
-                        formField1(13, " Name"),
+                        formField1(13, "Name"),
                         SizedBox(height: 8),
                         DropDown.networkDropdownGetpartUser1(
                             "Relation",
@@ -3124,11 +3308,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     } else if (textEditingController[14].text == "" ||
                         textEditingController[14].text == null) {
                       AppData.showInSnackBar(
-                          context, "Please enter Emergency Contact No.");
+                          context, "Please enter  Mobile No.");
                     } else if (textEditingController[14] != "" &&
                         textEditingController[14].text.length != 10) {
                       AppData.showInSnackBar(
-                          context, "Please enter valid Emergency Contact No.");
+                          context, "Please enter valid  Mobile No.");
                     } else {
                       UpdateEmergencyModel updateEmergencyModel =
                           UpdateEmergencyModel();
@@ -3171,10 +3355,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
   void EmergencydisplayDialog(
       BuildContext context, patientProfileModel, int index) {
     //_date.text = "";
-    textEditingController[13].text =
-        patientProfileModel?.body?.emergenceList[index].name ?? "";
-    textEditingController[14].text =
-        patientProfileModel?.body?.emergenceList[index].mobile ?? "";
+    textEditingController[13].text = patientProfileModel?.body?.emergenceList[index].name ?? "";
+    textEditingController[14].text = patientProfileModel?.body?.emergenceList[index].mobile ?? "";
+    if (patientProfileModel?.body?.emergenceList[index].type == null ||
+        patientProfileModel.body.emergenceList[index].type == "") {
+      ProfileScreen.relationmodel = null;
+    }else{
+      ProfileScreen.relationmodel=KeyvalueModel(key: patientProfileModel.body.emergenceList[index].typeid,name:patientProfileModel.body.emergenceList[index].type);
+    }
     showDialog(
         builder: (context) {
           return AlertDialog(
@@ -3207,12 +3395,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         SizedBox(
                           height: 15,
                         ),
-                        formField1(13, " Name"),
+                        formField1(13, "Name"),
                         SizedBox(height: 8),
                         DropDown.networkDropdownGetpartUser1(
                             "Relation",
                             ApiFactory.RELATION_API,
-                            "relation",
+                            "rln",
                             Icons.people_alt_rounded,
                             23.0, (KeyvalueModel data) {
                           setState(() {
@@ -3255,7 +3443,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     } else if (textEditingController[13].text != "" &&
                         textEditingController[13].text.length <= 2) {
                       AppData.showInSnackBar(
-                          context, "Please enter a valid First Name");
+                          context, "Please enter a valid  Name");
                     } else if (ProfileScreen.relationmodel == "" ||
                         ProfileScreen.relationmodel == null) {
                       AppData.showInSnackBar(
@@ -3282,15 +3470,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           ProfileScreen.relationmodel.key;
                       log("Value json>>" +
                           updateEmergencyModel.toJson().toString());
+
                       widget.model.POSTMETHOD_TOKEN(
                           api: ApiFactory.UPDATE_EMERGENCY_CONTACT,
                           json: updateEmergencyModel.toJson(),
                           token: widget.model.token,
                           fun: (Map<String, dynamic> map) {
-                            // Navigator.pop(context);
+                             Navigator.pop(context);
 
                             if (map[Const.STATUS1] == Const.SUCCESS) {
                               Navigator.pop(context);
+                            //  Navigator.pop(context);
                               // popup(context, map[Const.MESSAGE]);
                               callApi();
                               AppData.showInSnackDone(
@@ -3347,7 +3537,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         SizedBox(
                           height: 15,
                         ),
-                        formField1(15, " Name"),
+                        formField1(15, "Name"),
                         SizedBox(height: 8),
                         DropDown.networkDropdownGetpartUser1(
                             "Speciality",
@@ -3403,17 +3593,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     } else if (textEditingController[16].text == "" ||
                         textEditingController[16].text == null) {
                       AppData.showInSnackBar(
-                          context, "Please enter Family Doctor's Contact No.");
+                          context, "Please enter  Mobile No.");
                     } else if (textEditingController[16] != "" &&
                         textEditingController[16].text.length != 10) {
                       AppData.showInSnackBar(context,
-                          "Please enter valid Family Doctor's Contact No.");
+                          "Please enter valid Mobile No.");
                     } else {
-                      FamilyDoctorModel familydoctormodel =
-                      FamilyDoctorModel();
+                      FamilyDoctorModel familydoctormodel = FamilyDoctorModel();
                       familydoctormodel.name = textEditingController[15].text;
-                      familydoctormodel.mobile =
-                          textEditingController[16].text;
+                      familydoctormodel.mobile = textEditingController[16].text;
                       familydoctormodel.userid = widget.model.user;
                       familydoctormodel.type =
                           ProfileScreen.specialitymodel.key;
@@ -3462,7 +3650,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   width: MediaQuery.of(context).size.width * 0.86,
                   child: SingleChildScrollView(
                     child: Column(
-                    //  mainAxisSize: MainAxisSize.min,
+                      //  mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         //SizedBox(height: 10),
@@ -3482,8 +3670,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                         Column(
                           children: [
-                            SizedBox(height: 20,),
-
+                            SizedBox(
+                              height: 20,
+                            ),
                             Padding(
                               padding: const EdgeInsets.all(5.0),
                               child: TextField(
@@ -3491,15 +3680,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 maxLength: 16,
                                 keyboardType: TextInputType.number,
                                 decoration: InputDecoration(
-                                  border:  OutlineInputBorder(), hintText: 'UHID NO ', counterText: "",
+                                  border: OutlineInputBorder(),
+                                  hintText: 'UHID NO ',
+                                  counterText: "",
                                 ),
                               ),
                             ),
-                                SizedBox(height: 20,),
-
+                            SizedBox(
+                              height: 20,
+                            ),
                           ],
                         ),
-
                       ],
                     ),
                   ),
@@ -3507,7 +3698,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               },
             ),
             actions: <Widget>[
-                 FlatButton(
+              FlatButton(
                 //textColor: Colors.grey,
                 child: Text(MyLocalizations.of(context).text("CANCEL"),
                     style: TextStyle(color: AppData.kPrimaryRedColor)),
@@ -3517,7 +3708,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   });
                 },
               ),
-                FlatButton(
+              FlatButton(
                 //textColor: Colors.grey,
                 child: Text(
                   MyLocalizations.of(context).text("SEARCH"),
@@ -3525,38 +3716,37 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   style: TextStyle(color: AppData.matruColor),
                 ),
                 onPressed: () {
-                 setState(() {
-                   if (textEditingController[19].text == null ||
-                       textEditingController[19].text == "") {
-                     AppData.showInSnackBar(context, "Please enter UHID no");
-                   }
-                   else{
-                     MyWidgets.showLoading(context);
-                     widget.model.GETMETHODCALL_TOKEN(
-                         api: ApiFactory.UHID_LIST +
-                             textEditingController[19].text  ,
-                         token: widget.model.token,
-                         fun: (Map<String, dynamic> map) {
-                           Navigator.pop(context);
-                           setState(() {
-                             String msg = map[Const.MESSAGE];
-                             if (map["code"] == Const.SUCCESS) {
-                               setState(() {
-                                 // isdata = false;
-                                 userfamilydetails = UserFamilyDetailsModel.fromJson(map);
-                                 display(context,userfamilydetails);
-                               });
-                               // appointModel = lab.LabBookModel.fromJson(map);
-                             } else {
-                               // isdata = false;
-                               // isDataNotAvail = true;
-                               AppData.showInSnackBar(context, msg);
-                             }
-                           });
-                         });
-                   }
-
-                 });
+                  setState(() {
+                    if (textEditingController[19].text == null ||
+                        textEditingController[19].text == "") {
+                      AppData.showInSnackBar(context, "Please enter UHID no");
+                    } else {
+                      MyWidgets.showLoading(context);
+                      widget.model.GETMETHODCALL_TOKEN(
+                          api: ApiFactory.UHID_LIST +
+                              textEditingController[19].text,
+                          token: widget.model.token,
+                          fun: (Map<String, dynamic> map) {
+                            Navigator.pop(context);
+                            setState(() {
+                              String msg = map[Const.MESSAGE];
+                              if (map["code"] == Const.SUCCESS) {
+                                setState(() {
+                                  // isdata = false;
+                                  userfamilydetails =
+                                      UserFamilyDetailsModel.fromJson(map);
+                                  display(context, userfamilydetails);
+                                });
+                                // appointModel = lab.LabBookModel.fromJson(map);
+                              } else {
+                                // isdata = false;
+                                // isDataNotAvail = true;
+                                AppData.showInSnackBar(context, msg);
+                              }
+                            });
+                          });
+                    }
+                  });
                 },
               ),
             ],
@@ -3564,6 +3754,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         },
         context: context);
   }
+
   Widget formField1(
     int index,
     String hint,
@@ -3636,6 +3827,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ),
     );
   }
+
   Widget uhidformField1(
     int index,
     String hint,
@@ -3827,11 +4019,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
-  void doctordisplayDialog(BuildContext context, ProfileModel patientProfileModel, int index) {
+  void doctordisplayDialog(
+      BuildContext context, ProfileModel patientProfileModel, int index) {
     textEditingController[15].text =
         patientProfileModel?.body?.familyDoctorList[index].name ?? "";
     textEditingController[16].text =
         patientProfileModel?.body?.familyDoctorList[index].mobile ?? "";
+    if (patientProfileModel?.body?.familyDoctorList[0].type == null ||
+        patientProfileModel.body.familyDoctorList[0].type == "") {
+      ProfileScreen.specialitymodel = null;
+    }else{
+      ProfileScreen.specialitymodel=KeyvalueModel(key: patientProfileModel.body.familyDoctorList[index].typeid,name:patientProfileModel.body.familyDoctorList[index].type);
+    }
     showDialog(
         builder: (context) {
           return AlertDialog(
@@ -3853,7 +4052,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             children: [
                               Center(
                                 child: Text(
-                                  "Add Family Doctor's Name",
+                                  "Update Family Doctor's Name",
                                   style: TextStyle(
                                       color: Colors.black, fontSize: 20),
                                 ),
@@ -3864,12 +4063,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         SizedBox(
                           height: 15,
                         ),
-                        formField1(15, " Name"),
+                        formField1(15, "Name"),
                         SizedBox(height: 8),
                         DropDown.networkDropdownGetpartUser1(
                             "Speciality",
                             ApiFactory.SPECIALITY_API,
-                            "speciality",
+                            "spl",
                             Icons.people_alt_rounded,
                             23.0, (KeyvalueModel model) {
                           setState(() {
@@ -3900,7 +4099,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               FlatButton(
                 //textColor: Colors.grey,
                 child: Text(
-                  MyLocalizations.of(context).text("SUBMIT"),
+                  MyLocalizations.of(context).text("UPDATE"),
                   //style: TextStyle(color: Colors.grey),
                   style: TextStyle(color: AppData.matruColor),
                 ),
@@ -3920,18 +4119,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     } else if (textEditingController[16].text == "" ||
                         textEditingController[16].text == null) {
                       AppData.showInSnackBar(
-                          context, "Please enter Family Doctor's Contact No.");
+                          context, "Please enter  Mobile No.");
                     } else if (textEditingController[16] != "" &&
                         textEditingController[16].text.length != 10) {
                       AppData.showInSnackBar(context,
-                          "Please enter valid Family Doctor's Contact No.");
+                          "Please enter valid  Mobile No.");
                     } else {
                       FamilyDoctorModel familydoctormodel = FamilyDoctorModel();
-                      familydoctormodel.name =textEditingController[15].text;
+                      familydoctormodel.name = textEditingController[15].text;
                       familydoctormodel.mobile = textEditingController[16].text;
                       familydoctormodel.userid = widget.model.user;
-                      familydoctormodel.type = ProfileScreen.specialitymodel.key;
-                      familydoctormodel.id = patientProfileModel?.body?.familyDoctorList[index].id;
+                      familydoctormodel.type =
+                          ProfileScreen.specialitymodel.key;
+                      familydoctormodel.id =
+                          patientProfileModel?.body?.familyDoctorList[index].id;
 
                       log("Value json>>" +
                           familydoctormodel.toJson().toString());
@@ -3962,10 +4163,175 @@ class _ProfileScreenState extends State<ProfileScreen> {
         context: context);
   }
 
+  void familydetailsdisplayDialog(
+      BuildContext context, ProfileModel patientProfileModel, int index) {
+    if (patientProfileModel?.body?.familyDetailsList[index].relation == null ||
+        patientProfileModel.body.familyDetailsList[index].relation == "") {
+      ProfileScreen.relationmodel = null;
+    }else{
+      ProfileScreen.relationmodel=KeyvalueModel(key: patientProfileModel.body.familyDetailsList[index].relid,name:patientProfileModel.body.familyDetailsList[index].relation);
+    }
+
+    showDialog(
+        builder: (context) {
+          return AlertDialog(
+            contentPadding: EdgeInsets.only(left: 5, right: 5, top: 30),
+            insetPadding: EdgeInsets.only(left: 5, right: 5, top: 30),
+            content: StatefulBuilder(
+              builder: (BuildContext context, StateSetter setState) {
+                return Container(
+                  width: MediaQuery.of(context).size.width * 0.86,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SizedBox(height: 10),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 0, right: 0),
+                          child: Column(
+                            children: [
+                              Center(
+                                child: Text(
+                                  "Update Family Detail's Name",
+                                  style: TextStyle(
+                                      color: Colors.black, fontSize: 20),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            width: 350,
+                            height: 50,
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: Colors.grey,
+                              ),
+                              borderRadius: BorderRadius.circular(5.0),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                patientProfileModel
+                                    .body.familyDetailsList[index].memeberName,
+                              ),
+                            ),//////
+                          ),
+                        ),
+                        SizedBox(height: 8),
+                        DropDown.networkDropdownGetpartUser1(
+                            "Relation",
+                            ApiFactory.RELATION_API,
+                            "rlnn",
+                            Icons.people_alt_rounded,
+                            23.0, (KeyvalueModel model) {
+                          setState(() {
+                            ProfileScreen.relationmodel = model;
+                            patientProfileModel.body.eRelationId = model.key;
+                            patientProfileModel.body.eRelation = model.name;
+                          });
+                        }),
+                        SizedBox(height: 8),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            width: 350,
+                            height: 50,
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: Colors.grey,
+                              ),
+                              borderRadius: BorderRadius.circular(5.0),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                patientProfileModel
+                                    .body.familyDetailsList[index].age,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            ),
+            actions: <Widget>[
+              FlatButton(
+                //textColor: Colors.grey,
+                child: Text(MyLocalizations.of(context).text("CANCEL"),
+                    style: TextStyle(color: AppData.kPrimaryRedColor)),
+                onPressed: () {
+                  setState(() {
+                    Navigator.pop(context);
+                  });
+                },
+              ),
+              FlatButton(
+                //textColor: Colors.grey,
+                child: Text(
+                  MyLocalizations.of(context).text("UPDATE"),
+                  //style: TextStyle(color: Colors.grey),
+                  style: TextStyle(color: AppData.matruColor),
+                ),
+                onPressed: () {
+                  // setState(() {
+                  if (ProfileScreen.relationmodel == "" ||
+                      ProfileScreen.relationmodel == null) {
+                    AppData.showInSnackBar(context, "Please Select Relation ");
+                  } else {
+                    AddUserFamilyDetailsModel Addfamilydetailsmodel =
+                        AddUserFamilyDetailsModel();
+                    Addfamilydetailsmodel.userid = widget.model.user;
+                    Addfamilydetailsmodel.memberid = patientProfileModel
+                        .body.familyDetailsList[index].userid;
+                    Addfamilydetailsmodel.famid =
+                        patientProfileModel.body.familyDetailsList[index].famid;
+                    Addfamilydetailsmodel.relation =
+                        ProfileScreen.relationmodel.key;
+                    log("Value json>>" +
+                        Addfamilydetailsmodel.toJson().toString());
+                    MyWidgets.showLoading(context);
+                    widget.model.POSTMETHOD_TOKEN(
+                        api: ApiFactory.UPDATE_FAMILY_CONTACT,
+                        json: Addfamilydetailsmodel.toJson(),
+                        token: widget.model.token,
+                        fun: (Map<String, dynamic> map) {
+                          Navigator.pop(context);
+
+                          if (map[Const.STATUS1] == Const.SUCCESS) {
+                            Navigator.pop(context);
+                            // popup(context, map[Const.MESSAGE]);
+                            callApi();
+                            AppData.showInSnackDone(
+                                context, map[Const.MESSAGE]);
+                            Navigator.pop(context);
+                          } else {
+                            // AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                          }
+                        });
+                  }
+                  // });
+                },
+              ),
+            ],
+          );
+        },
+        context: context);
+  }
+
   void display(BuildContext context, UserFamilyDetailsModel userfamilydetails) {
-   // userfamilydetails.body.code="";
+    // userfamilydetails.body.code="";
     //userfamilydetails.body.name="";
-   // ProfileScreen.relationmodel=null;
+    // ProfileScreen.relationmodel=null;
 
     showDialog(
         builder: (context) {
@@ -4003,17 +4369,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           padding: const EdgeInsets.all(8.0),
                           child: Container(
                             width: 350,
-                            height:50,
+                            height: 50,
                             decoration: BoxDecoration(
                               border: Border.all(
                                 color: Colors.grey,
                               ),
-
                               borderRadius: BorderRadius.circular(5.0),
                             ),
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: Text(userfamilydetails.body.name,),
+                              child: Text(
+                                userfamilydetails.body.name,
+                              ),
                             ),
                           ),
                         ),
@@ -4035,17 +4402,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           padding: const EdgeInsets.all(8.0),
                           child: Container(
                             width: 350,
-                            height:50,
+                            height: 50,
                             decoration: BoxDecoration(
                               border: Border.all(
                                 color: Colors.grey,
                               ),
-
                               borderRadius: BorderRadius.circular(5.0),
                             ),
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: Text(userfamilydetails.body.code,),
+                              child: Text(
+                                userfamilydetails.body.code,
+                              ),
                             ),
                           ),
                         ),
@@ -4076,21 +4444,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
                 onPressed: () {
                   setState(() {
-                     if (ProfileScreen.relationmodel == "" ||
+                    if (ProfileScreen.relationmodel == "" ||
                         ProfileScreen.relationmodel == null) {
                       AppData.showInSnackBar(
-                          context, "Please Select Speciallity ");
+                          context, "Please Select Relation ");
                     } else {
-                       AddUserFamilyDetailsModel Addfamilydetailsmodel =
-                       AddUserFamilyDetailsModel();
-                       Addfamilydetailsmodel.userid = widget.model.user;
-                       Addfamilydetailsmodel.memberid = userfamilydetails.body.key;
-                       Addfamilydetailsmodel.famid = null;
-                       Addfamilydetailsmodel.relation = ProfileScreen.relationmodel.key;
+                      AddUserFamilyDetailsModel Addfamilydetailsmodel =
+                          AddUserFamilyDetailsModel();
+                      Addfamilydetailsmodel.userid = widget.model.user;
+                      Addfamilydetailsmodel.memberid =
+                          userfamilydetails.body.key;
+                      Addfamilydetailsmodel.famid = null;
+                      Addfamilydetailsmodel.relation =
+                          ProfileScreen.relationmodel.key;
                       log("Value json>>" +
                           Addfamilydetailsmodel.toJson().toString());
-                       MyWidgets.showLoading(context);
-                       widget.model.POSTMETHOD_TOKEN(
+                      MyWidgets.showLoading(context);
+                      widget.model.POSTMETHOD_TOKEN(
                           api: ApiFactory.UPDATE_FAMILY_CONTACT,
                           json: Addfamilydetailsmodel.toJson(),
                           token: widget.model.token,
@@ -4104,7 +4474,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               AppData.showInSnackDone(
                                   context, map[Const.MESSAGE]);
                               Navigator.pop(context);
-
                             } else {
                               // AppData.showInSnackBar(context, map[Const.MESSAGE]);
                             }
@@ -4117,6 +4486,5 @@ class _ProfileScreenState extends State<ProfileScreen> {
           );
         },
         context: context);
-
   }
 }

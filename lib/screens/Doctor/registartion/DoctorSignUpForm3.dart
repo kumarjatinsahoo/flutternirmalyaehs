@@ -169,7 +169,6 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
     title = widget.model.title;
     DoctorSignUpForm3.districtModel = null;
     DoctorSignUpForm3.blockModel = null;
-
     DoctorSignUpForm3.genderModel = null;
     DoctorSignUpForm3.specialistModel = null;
     DoctorSignUpForm3.bloodgroupModel = null;

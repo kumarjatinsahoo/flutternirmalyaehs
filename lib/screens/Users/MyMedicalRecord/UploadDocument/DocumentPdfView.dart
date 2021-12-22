@@ -24,7 +24,7 @@ class _DocumentPdfState extends State<DocumentPdf> {
   void initState() {
     loginResponse = widget.model.loginResponse1;
     pdfurl=widget.model.pdfurl;
-    print("PPPPPPPPPPPPPPPPDDDDDDDDDFFFFFF"+pdfurl);
+    print("PPPPPPPPPPPPPPPPDDDDDDDDDFFFFFF https://docs.google.com/viewer?url="+pdfurl);
     super.initState();
    // print(ApiFactory.REPORT_URL+loginResponse.ashadtls[0].reg_no);
   }
@@ -58,6 +58,9 @@ class _DocumentPdfState extends State<DocumentPdf> {
       withZoom: true,
       useWideViewPort: false,
       displayZoomControls: true,
+      allowFileURLs: true,
+      //appCacheEnabled: false,
+
     );
   }
 
