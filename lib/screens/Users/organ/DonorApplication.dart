@@ -837,41 +837,41 @@ class DonorApplicationState extends State<DonorApplication> {
                       : Container(),
                 ],
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  color: Colors.black26,
-                  height: 40,
-                  child: Row(
-                    //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                        child: Text(
-                          MyLocalizations.of(context).text("ADD_WITNESS"),
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 17,
-                              fontWeight: FontWeight.bold),
-                          textAlign: TextAlign.center,
+              InkWell(
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) =>
+                        dialogaddnomination(context),
+                  );
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    color: Colors.black26,
+                    height: 40,
+                    child: Row(
+                      //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: Text(
+                            MyLocalizations.of(context).text("ADD_WITNESS"),
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 17,
+                                fontWeight: FontWeight.bold),
+                            textAlign: TextAlign.center,
+                          ),
                         ),
-                      ),
-                      //Spacer(),
-                      InkWell(
-                        onTap: () {
-                          showDialog(
-                            context: context,
-                            builder: (BuildContext context) =>
-                                dialogaddnomination(context),
-                          );
-                        },
-                        child: Padding(
+                        //Spacer(),
+                        Padding(
                           padding: const EdgeInsets.only(right: 10.0),
                           child: Icon(
                             Icons.add_box,
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -949,11 +949,12 @@ class DonorApplicationState extends State<DonorApplication> {
                                     ),
                                   ),
                                   //Icon(Icons.arrow_forward_ios, size: 30,color: Colors.black),
-
                                   /*Image.asset(
                                 "assets/forwardarrow.png",
                                 fit: BoxFit.fitWidth,
-                                */ /*width: 50,*/ /*
+                                */
+                                  /*width: 50,*/
+                                  /*
                                 height: 30,
                               ),*/
                                   SizedBox(
@@ -1368,7 +1369,6 @@ class DonorApplicationState extends State<DonorApplication> {
       ],
     );
   }
-
   Future getCerificateImage() async {
     // ignore: deprecated_member_use
     var image = await ImagePicker.pickImage(source: ImageSource.gallery);
