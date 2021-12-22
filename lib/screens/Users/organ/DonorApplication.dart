@@ -949,11 +949,12 @@ class DonorApplicationState extends State<DonorApplication> {
                                     ),
                                   ),
                                   //Icon(Icons.arrow_forward_ios, size: 30,color: Colors.black),
-
                                   /*Image.asset(
                                 "assets/forwardarrow.png",
                                 fit: BoxFit.fitWidth,
-                                */ /*width: 50,*/ /*
+                                */
+                                  /*width: 50,*/
+                                  /*
                                 height: 30,
                               ),*/
                                   SizedBox(
@@ -1368,7 +1369,6 @@ class DonorApplicationState extends State<DonorApplication> {
       ],
     );
   }
-
   Future getCerificateImage() async {
     // ignore: deprecated_member_use
     var image = await ImagePicker.pickImage(source: ImageSource.gallery);
