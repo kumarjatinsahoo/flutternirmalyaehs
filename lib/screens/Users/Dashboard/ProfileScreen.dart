@@ -123,6 +123,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
     new TextEditingController(),
     new TextEditingController(),
     new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
   ];
 
   List<bool> error = [false, false, false, false, false, false];
@@ -618,781 +621,785 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
-  Widget rowValue() {
-    return Card(
-      elevation: 0,
-      child: Padding(
-        padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 8.0),
-        child: Container(
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding:
-                      const EdgeInsets.only(left: 10.0, top: 20, right: 10.0),
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.calendar_today,
-                        size: 20,
-                      ),
-                      SizedBox(width: 10),
-                      Expanded(
-                        flex: 1,
-                        child: Text(
-                          MyLocalizations.of(context).text("DOB1"),
-                          style: TextStyle(
-                            fontSize: 15,
-                            // color: Colors.black54,
-                            fontWeight: FontWeight.w800,
+   Widget rowValue() {
+    return
+      (patientProfileModel != null)?SingleChildScrollView(
+        child: Card(
+        elevation: 0,
+        child: Padding(
+          padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 8.0),
+          child: Container(
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 10.0, top: 20, right: 10.0),
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.calendar_today,
+                          size: 20,
+                        ),
+                        SizedBox(width: 10),
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            MyLocalizations.of(context).text("DOB1"),
+                            style: TextStyle(
+                              fontSize: 15,
+                              // color: Colors.black54,
+                              fontWeight: FontWeight.w800,
+                            ),
                           ),
                         ),
-                      ),
-                      /* SizedBox(
-                    width: spaceTab,
-                  ),*/
-                      SizedBox(width: 10),
-                      Expanded(
-                        flex: 1,
-                        child: Text(
-                          patientProfileModel?.body?.dob ?? "N/A",
-                          style: TextStyle(fontSize: 14
-                              // fontWeight: FontWeight.w500,
-                              // color: Colors.black54,
-                              ),
+                        /* SizedBox(
+                      width: spaceTab,
+                    ),*/
+                        SizedBox(width: 10),
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            patientProfileModel?.body?.dob ?? "N/A",
+                            style: TextStyle(fontSize: 14
+                                // fontWeight: FontWeight.w500,
+                                // color: Colors.black54,
+                                ),
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-                /*SizedBox(
-                height: 6,
-              ),*/
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  child: Divider(
-                    color: AppData.lightgreyBorder,
-                    height: 6,
+                  /*SizedBox(
+                  height: 6,
+                ),*/
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    child: Divider(
+                      color: AppData.lightgreyBorder,
+                      height: 6,
+                    ),
                   ),
-                ),
-                Padding(
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.bloodtype_outlined,
+                          size: 20,
+                        ),
+
+                        //Icon(Icons.bloodtype,size: 20),
+                        SizedBox(width: 10),
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            MyLocalizations.of(context).text("BLOODGROUP"),
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w800,
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 10),
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            patientProfileModel?.body?.bloodGroup ?? "N/A",
+                            style: TextStyle(fontSize: 14
+                                //fontWeight: FontWeight.w500,
+                                ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    child: Divider(
+                      color: AppData.lightgreyBorder,
+                      height: 6,
+                    ),
+                  ),
+                  /* Padding(
                   padding: const EdgeInsets.only(left: 10.0, right: 10.0),
                   child: Row(
                     children: [
                       Icon(
-                        Icons.bloodtype_outlined,
+                        Icons.credit_card_outlined,
                         size: 20,
                       ),
-
-                      //Icon(Icons.bloodtype,size: 20),
                       SizedBox(width: 10),
                       Expanded(
                         flex: 1,
                         child: Text(
-                          MyLocalizations.of(context).text("BLOODGROUP"),
-                          style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.w800,
-                          ),
+                          'UHID ',
+                          style: TextStyle(fontSize: 15
+                            ,fontWeight: FontWeight.w800,
+                              ),
                         ),
                       ),
                       SizedBox(width: 10),
                       Expanded(
                         flex: 1,
                         child: Text(
-                          patientProfileModel?.body?.bloodGroup ?? "N/A",
+                          patientProfileModel?.body?.id ?? "N/A",
                           style: TextStyle(fontSize: 14
                               //fontWeight: FontWeight.w500,
+                              // color: AppData.kPrimaryColor,
                               ),
                         ),
                       ),
                     ],
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  child: Divider(
-                    color: AppData.lightgreyBorder,
-                    height: 6,
+                SizedBox(height: 10),*/
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.person,
+                          size: 20,
+                        ),
+                        SizedBox(width: 10),
+                        Expanded(
+                          flex: 1,
+                          child: Container(
+                            alignment: Alignment.centerLeft,
+                            width: 100,
+                            child: Text(
+                              MyLocalizations.of(context).text("GENDER"),
+                              style: TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.w800,
+                                // color: AppData.kPrimaryColor,
+                                /*fontWeight: FontWeight.w600*/
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 10),
+                        Expanded(
+                          flex: 1,
+                          child: Container(
+                            alignment: Alignment.centerLeft,
+                            width: 100,
+                            child: Text(
+                              patientProfileModel?.body?.gender ?? "N/A",
+                              style: TextStyle(fontSize: 14),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                /* Padding(
-                padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.credit_card_outlined,
-                      size: 20,
+                  //SizedBox(height: 10),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    child: Divider(
+                      color: AppData.lightgreyBorder,
+                      height: 6,
                     ),
-                    SizedBox(width: 10),
-                    Expanded(
-                      flex: 1,
-                      child: Text(
-                        'UHID ',
-                        style: TextStyle(fontSize: 15
-                          ,fontWeight: FontWeight.w800,
-                            ),
-                      ),
-                    ),
-                    SizedBox(width: 10),
-                    Expanded(
-                      flex: 1,
-                      child: Text(
-                        patientProfileModel?.body?.id ?? "N/A",
-                        style: TextStyle(fontSize: 14
-                            //fontWeight: FontWeight.w500,
-                            // color: AppData.kPrimaryColor,
-                            ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(height: 10),*/
-                Padding(
-                  padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.person,
-                        size: 20,
-                      ),
-                      SizedBox(width: 10),
-                      Expanded(
-                        flex: 1,
-                        child: Container(
-                          alignment: Alignment.centerLeft,
-                          width: 100,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.call,
+                          size: 20,
+                        ),
+                        SizedBox(width: 10),
+                        Expanded(
+                          flex: 1,
                           child: Text(
-                            MyLocalizations.of(context).text("GENDER"),
+                            MyLocalizations.of(context).text("CONTACT_DETAILS"),
                             style: TextStyle(
                               fontSize: 15, fontWeight: FontWeight.w800,
                               // color: AppData.kPrimaryColor,
-                              /*fontWeight: FontWeight.w600*/
+                              //fontWeight: FontWeight.w600,
                             ),
                           ),
                         ),
-                      ),
-                      SizedBox(width: 10),
-                      Expanded(
-                        flex: 1,
-                        child: Container(
-                          alignment: Alignment.centerLeft,
-                          width: 100,
+                        SizedBox(width: 10),
+                        Expanded(
+                          flex: 1,
                           child: Text(
-                            patientProfileModel?.body?.gender ?? "N/A",
-                            style: TextStyle(fontSize: 14),
+                            patientProfileModel?.body?.mobile ?? "N/A",
+                            style: TextStyle(fontSize: 14
+                                //fontWeight: FontWeight.w500,
+                                // color: AppData.kPrimaryColor,
+                                ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-                //SizedBox(height: 10),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  child: Divider(
-                    color: AppData.lightgreyBorder,
-                    height: 6,
+                  //SizedBox(height: 10),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    child: Divider(
+                      color: AppData.lightgreyBorder,
+                      height: 6,
+                    ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.call,
-                        size: 20,
-                      ),
-                      SizedBox(width: 10),
-                      Expanded(
-                        flex: 1,
-                        child: Text(
-                          MyLocalizations.of(context).text("CONTACT_DETAILS"),
-                          style: TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.w800,
-                            // color: AppData.kPrimaryColor,
-                            //fontWeight: FontWeight.w600,
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Icon(
+                          Icons.location_on_rounded,
+                          size: 20,
+                        ),
+                        SizedBox(width: 10),
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            /*'Confirmed'*/
+                            MyLocalizations.of(context).text("ADDRESS"),
+                            style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 15,
+                            ),
                           ),
                         ),
-                      ),
-                      SizedBox(width: 10),
-                      Expanded(
-                        flex: 1,
-                        child: Text(
-                          patientProfileModel?.body?.mobile ?? "N/A",
-                          style: TextStyle(fontSize: 14
-                              //fontWeight: FontWeight.w500,
-                              // color: AppData.kPrimaryColor,
-                              ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                //SizedBox(height: 10),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  child: Divider(
-                    color: AppData.lightgreyBorder,
-                    height: 6,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Icon(
-                        Icons.location_on_rounded,
-                        size: 20,
-                      ),
-                      SizedBox(width: 10),
-                      Expanded(
-                        flex: 1,
-                        child: Text(
-                          /*'Confirmed'*/
-                          MyLocalizations.of(context).text("ADDRESS"),
-                          style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 15,
+                        SizedBox(width: 10),
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            (patientProfileModel?.body?.address ?? "N/A") +
+                                " " +
+                                (patientProfileModel?.body?.pAddress ?? "N/A"),
+                            style: TextStyle(fontSize: 14
+                                //fontWeight: FontWeight.w500,
+                                // color: AppData.kPrimaryColor,
+                                ),
                           ),
                         ),
-                      ),
-                      SizedBox(width: 10),
-                      Expanded(
-                        flex: 1,
-                        child: Text(
-                          (patientProfileModel?.body?.address ?? "N/A") +
-                              " " +
-                              (patientProfileModel?.body?.pAddress ?? "N/A"),
-                          style: TextStyle(fontSize: 14
-                              //fontWeight: FontWeight.w500,
-                              // color: AppData.kPrimaryColor,
-                              ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    child: Divider(
+                      color: AppData.lightgreyBorder,
+                      height: 6,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Icon(
+                          Icons.email,
+                          size: 20,
                         ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  child: Divider(
-                    color: AppData.lightgreyBorder,
-                    height: 6,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Icon(
-                        Icons.email,
-                        size: 20,
-                      ),
-                      SizedBox(width: 10),
-                      Expanded(
-                        flex: 1,
-                        child: Text(
-                          /*'Confirmed'*/
-                          "Email",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 15,
+                        SizedBox(width: 10),
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            /*'Confirmed'*/
+                            "Email",
+                            style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 15,
+                            ),
                           ),
                         ),
-                      ),
-                      SizedBox(width: 10),
-                      Expanded(
-                        flex: 1,
-                        child: Text(
-                          (patientProfileModel?.body?.email ?? "N/A"),
-                          style: TextStyle(fontSize: 14
-                              //fontWeight: FontWeight.w500,
-                              // color: AppData.kPrimaryColor,
-                              ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  child: Divider(
-                    color: AppData.lightgreyBorder,
-                    height: 6,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Icon(
-                        Icons.location_on,
-                        size: 20,
-                      ),
-                      SizedBox(width: 10),
-                      Expanded(
-                        flex: 1,
-                        child: Text(
-                          /*'Confirmed'*/
-                          "Pin Code",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 15,
+                        SizedBox(width: 10),
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            (patientProfileModel?.body?.email ?? "N/A"),
+                            style: TextStyle(fontSize: 14
+                                //fontWeight: FontWeight.w500,
+                                // color: AppData.kPrimaryColor,
+                                ),
                           ),
                         ),
-                      ),
-                      SizedBox(width: 10),
-                      Expanded(
-                        flex: 1,
-                        child: Text(
-                          (patientProfileModel?.body?.pincode ?? "N/A"),
-                          style: TextStyle(fontSize: 14
-                              //fontWeight: FontWeight.w500,
-                              // color: AppData.kPrimaryColor,
-                              ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    child: Divider(
+                      color: AppData.lightgreyBorder,
+                      height: 6,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Icon(
+                          Icons.location_on,
+                          size: 20,
                         ),
-                      ),
-                    ],
+                        SizedBox(width: 10),
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            /*'Confirmed'*/
+                            "Pin Code",
+                            style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 15,
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 10),
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            (patientProfileModel?.body?.pincode ?? "N/A"),
+                            style: TextStyle(fontSize: 14
+                                //fontWeight: FontWeight.w500,
+                                // color: AppData.kPrimaryColor,
+                                ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                // SizedBox(height: 10),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  child: Divider(
-                    color: AppData.lightgreyBorder,
-                    height: 6,
+                  // SizedBox(height: 10),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    child: Divider(
+                      color: AppData.lightgreyBorder,
+                      height: 6,
+                    ),
                   ),
-                ),
 
-                Padding(
-                  padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Icon(
-                        Icons.wc,
-                        size: 20,
-                      ),
-                      SizedBox(width: 10),
-                      Expanded(
-                        flex: 1,
-                        child: Text(
-                          /*'Confirmed'*/
-                          "Marital Status",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 15,
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Icon(
+                          Icons.wc,
+                          size: 20,
+                        ),
+                        SizedBox(width: 10),
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            /*'Confirmed'*/
+                            "Marital Status",
+                            style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 15,
+                            ),
                           ),
                         ),
-                      ),
-                      SizedBox(width: 10),
-                      Expanded(
-                        flex: 1,
-                        child: Text(
-                          (patientProfileModel?.body?.maritialstatus ?? "N/A"),
-                          style: TextStyle(fontSize: 14
-                              //fontWeight: FontWeight.w500,
-                              // color: AppData.kPrimaryColor,
-                              ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  child: Divider(
-                    color: AppData.lightgreyBorder,
-                    height: 6,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Icon(
-                        Icons.work_sharp,
-                        size: 20,
-                      ),
-                      SizedBox(width: 10),
-                      Expanded(
-                        flex: 1,
-                        child: Text(
-                          /*'Confirmed'*/
-                          MyLocalizations.of(context).text("OCCUPATION"),
-                          style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 15,
+                        SizedBox(width: 10),
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            (patientProfileModel?.body?.maritialstatus ?? "N/A"),
+                            style: TextStyle(fontSize: 14
+                                //fontWeight: FontWeight.w500,
+                                // color: AppData.kPrimaryColor,
+                                ),
                           ),
                         ),
-                      ),
-                      SizedBox(width: 10),
-                      Expanded(
-                        flex: 1,
-                        child: Text(
-                          (patientProfileModel?.body?.occupation ?? "N/A"),
-                          style: TextStyle(fontSize: 14
-                              //fontWeight: FontWeight.w500,
-                              // color: AppData.kPrimaryColor,
-                              ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    child: Divider(
+                      color: AppData.lightgreyBorder,
+                      height: 6,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Icon(
+                          Icons.work_sharp,
+                          size: 20,
                         ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  child: Divider(
-                    color: AppData.lightgreyBorder,
-                    height: 6,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Icon(
-                        Icons.book,
-                        size: 20,
-                      ),
-                      SizedBox(width: 10),
-                      Expanded(
-                        flex: 1,
-                        child: Text(
-                          /*'Confirmed'*/
-                          "Qualification",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 15,
+                        SizedBox(width: 10),
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            /*'Confirmed'*/
+                            MyLocalizations.of(context).text("OCCUPATION"),
+                            style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 15,
+                            ),
                           ),
                         ),
-                      ),
-                      SizedBox(width: 10),
-                      Expanded(
-                        flex: 1,
-                        child: Text(
-                          (patientProfileModel?.body?.qualification ?? "N/A"),
-                          style: TextStyle(fontSize: 14
-                              //fontWeight: FontWeight.w500,
-                              // color: AppData.kPrimaryColor,
-                              ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  child: Divider(
-                    color: AppData.lightgreyBorder,
-                    height: 6,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Icon(
-                        Icons.work_sharp,
-                        size: 20,
-                      ),
-                      SizedBox(width: 10),
-                      Expanded(
-                        flex: 1,
-                        child: Text(
-                          /*'Confirmed'*/
-                          "Specilazation",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 15,
+                        SizedBox(width: 10),
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            (patientProfileModel?.body?.occupation ?? "N/A"),
+                            style: TextStyle(fontSize: 14
+                                //fontWeight: FontWeight.w500,
+                                // color: AppData.kPrimaryColor,
+                                ),
                           ),
                         ),
-                      ),
-                      SizedBox(width: 10),
-                      Expanded(
-                        flex: 1,
-                        child: Text(
-                          (patientProfileModel?.body?.specialization ?? "N/A"),
-                          style: TextStyle(fontSize: 14
-                              //fontWeight: FontWeight.w500,
-                              // color: AppData.kPrimaryColor,
-                              ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    child: Divider(
+                      color: AppData.lightgreyBorder,
+                      height: 6,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Icon(
+                          Icons.book,
+                          size: 20,
                         ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  child: Divider(
-                    color: AppData.lightgreyBorder,
-                    height: 6,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Icon(
-                        Icons.credit_card,
-                        size: 20,
-                      ),
-                      SizedBox(width: 10),
-                      Expanded(
-                        flex: 1,
-                        child: Text(
-                          /*'Confirmed'*/
-                          "PAN Card No",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 15,
+                        SizedBox(width: 10),
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            /*'Confirmed'*/
+                            "Qualification",
+                            style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 15,
+                            ),
                           ),
                         ),
-                      ),
-                      SizedBox(width: 10),
-                      Expanded(
-                        flex: 1,
-                        child: Text(
-                          (patientProfileModel?.body?.pancardno ?? "N/A"),
-                          style: TextStyle(fontSize: 14
-                              //fontWeight: FontWeight.w500,
-                              // color: AppData.kPrimaryColor,
-                              ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  child: Divider(
-                    color: AppData.lightgreyBorder,
-                    height: 6,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Icon(
-                        Icons.credit_card,
-                        size: 20,
-                      ),
-                      SizedBox(width: 10),
-                      Expanded(
-                        flex: 1,
-                        child: Text(
-                          /*'Confirmed'*/
-                          "Passport No",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 15,
+                        SizedBox(width: 10),
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            (patientProfileModel?.body?.qualification ?? "N/A"),
+                            style: TextStyle(fontSize: 14
+                                //fontWeight: FontWeight.w500,
+                                // color: AppData.kPrimaryColor,
+                                ),
                           ),
                         ),
-                      ),
-                      SizedBox(width: 10),
-                      Expanded(
-                        flex: 1,
-                        child: Text(
-                          (patientProfileModel?.body?.passportno ?? "N/A"),
-                          style: TextStyle(fontSize: 14
-                              //fontWeight: FontWeight.w500,
-                              // color: AppData.kPrimaryColor,
-                              ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    child: Divider(
+                      color: AppData.lightgreyBorder,
+                      height: 6,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Icon(
+                          Icons.work_sharp,
+                          size: 20,
                         ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  child: Divider(
-                    color: AppData.lightgreyBorder,
-                    height: 6,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Icon(
-                        Icons.credit_card,
-                        size: 20,
-                      ),
-                      SizedBox(width: 10),
-                      Expanded(
-                        flex: 1,
-                        child: Text(
-                          /*'Confirmed'*/
-                          "Aadhaar No",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 15,
+                        SizedBox(width: 10),
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            /*'Confirmed'*/
+                            "Specilazation",
+                            style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 15,
+                            ),
                           ),
                         ),
-                      ),
-                      SizedBox(width: 10),
-                      Expanded(
-                        flex: 1,
-                        child: Text(
-                          (patientProfileModel?.body?.adharno ?? "N/A"),
-                          style: TextStyle(fontSize: 14
-                              //fontWeight: FontWeight.w500,
-                              // color: AppData.kPrimaryColor,
-                              ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  child: Divider(
-                    color: AppData.lightgreyBorder,
-                    height: 6,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Icon(
-                        Icons.credit_card_sharp,
-                        size: 20,
-                      ),
-                      SizedBox(width: 10),
-                      Expanded(
-                        flex: 1,
-                        child: Text(
-                          /*'Confirmed'*/
-                          "Voter Card No",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 15,
+                        SizedBox(width: 10),
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            (patientProfileModel?.body?.specialization ?? "N/A"),
+                            style: TextStyle(fontSize: 14
+                                //fontWeight: FontWeight.w500,
+                                // color: AppData.kPrimaryColor,
+                                ),
                           ),
                         ),
-                      ),
-                      SizedBox(width: 10),
-                      Expanded(
-                        flex: 1,
-                        child: Text(
-                          (patientProfileModel?.body?.votercardno ?? "N/A"),
-                          style: TextStyle(fontSize: 14
-                              //fontWeight: FontWeight.w500,
-                              // color: AppData.kPrimaryColor,
-                              ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    child: Divider(
+                      color: AppData.lightgreyBorder,
+                      height: 6,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Icon(
+                          Icons.credit_card,
+                          size: 20,
                         ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  child: Divider(
-                    color: AppData.lightgreyBorder,
-                    height: 6,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Icon(
-                        Icons.credit_card,
-                        size: 20,
-                      ),
-                      SizedBox(width: 10),
-                      Expanded(
-                        flex: 1,
-                        child: Text(
-                          /*'Confirmed'*/
-                          "License No ",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 15,
+                        SizedBox(width: 10),
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            /*'Confirmed'*/
+                            "PAN Card No",
+                            style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 15,
+                            ),
                           ),
                         ),
-                      ),
-                      SizedBox(width: 10),
-                      Expanded(
-                        flex: 1,
-                        child: Text(
-                          (patientProfileModel?.body?.licenceno ?? "N/A"),
-                          style: TextStyle(fontSize: 14
-                              //fontWeight: FontWeight.w500,
-                              // color: AppData.kPrimaryColor,
-                              ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  child: Divider(
-                    color: AppData.lightgreyBorder,
-                    height: 6,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Icon(
-                        Icons.credit_card,
-                        size: 20,
-                      ),
-                      SizedBox(width: 10),
-                      Expanded(
-                        flex: 1,
-                        child: Text(
-                          /*'Confirmed'*/
-                          "License Authority ",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 15,
+                        SizedBox(width: 10),
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            (patientProfileModel?.body?.pancardno ?? "N/A"),
+                            style: TextStyle(fontSize: 14
+                                //fontWeight: FontWeight.w500,
+                                // color: AppData.kPrimaryColor,
+                                ),
                           ),
                         ),
-                      ),
-                      SizedBox(width: 10),
-                      Expanded(
-                        flex: 1,
-                        child: Text(
-                          (patientProfileModel?.body?.licenceauthority ??
-                              "N/A"),
-                          style: TextStyle(fontSize: 14
-                              //fontWeight: FontWeight.w500,
-                              // color: AppData.kPrimaryColor,
-                              ),
-                        ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    child: Divider(
+                      color: AppData.lightgreyBorder,
+                      height: 6,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Icon(
+                          Icons.credit_card,
+                          size: 20,
+                        ),
+                        SizedBox(width: 10),
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            /*'Confirmed'*/
+                            "Passport No",
+                            style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 15,
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 10),
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            (patientProfileModel?.body?.passportno ?? "N/A"),
+                            style: TextStyle(fontSize: 14
+                                //fontWeight: FontWeight.w500,
+                                // color: AppData.kPrimaryColor,
+                                ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    child: Divider(
+                      color: AppData.lightgreyBorder,
+                      height: 6,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Icon(
+                          Icons.credit_card,
+                          size: 20,
+                        ),
+                        SizedBox(width: 10),
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            /*'Confirmed'*/
+                            "Aadhaar No",
+                            style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 15,
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 10),
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            (patientProfileModel?.body?.adharno ?? "N/A"),
+                            style: TextStyle(fontSize: 14
+                                //fontWeight: FontWeight.w500,
+                                // color: AppData.kPrimaryColor,
+                                ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    child: Divider(
+                      color: AppData.lightgreyBorder,
+                      height: 6,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Icon(
+                          Icons.credit_card_sharp,
+                          size: 20,
+                        ),
+                        SizedBox(width: 10),
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            /*'Confirmed'*/
+                            "Voter Card No",
+                            style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 15,
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 10),
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            (patientProfileModel?.body?.votercardno ?? "N/A"),
+                            style: TextStyle(fontSize: 14
+                                //fontWeight: FontWeight.w500,
+                                // color: AppData.kPrimaryColor,
+                                ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    child: Divider(
+                      color: AppData.lightgreyBorder,
+                      height: 6,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Icon(
+                          Icons.credit_card,
+                          size: 20,
+                        ),
+                        SizedBox(width: 10),
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            /*'Confirmed'*/
+                            "License No ",
+                            style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 15,
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 10),
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            (patientProfileModel?.body?.licenceno ?? "N/A"),
+                            style: TextStyle(fontSize: 14
+                                //fontWeight: FontWeight.w500,
+                                // color: AppData.kPrimaryColor,
+                                ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    child: Divider(
+                      color: AppData.lightgreyBorder,
+                      height: 6,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Icon(
+                          Icons.credit_card,
+                          size: 20,
+                        ),
+                        SizedBox(width: 10),
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            /*'Confirmed'*/
+                            "License Authority ",
+                            style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 15,
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 10),
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            (patientProfileModel?.body?.licenceauthority ??
+                                "N/A"),
+                            style: TextStyle(fontSize: 14
+                                //fontWeight: FontWeight.w500,
+                                // color: AppData.kPrimaryColor,
+                                ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
-      ),
-    );
+    ),
+      ):Container();
   }
 
   Widget backUp() {
-    return SingleChildScrollView(
+    return
+      (patientProfileModel != null)?SingleChildScrollView(
       child: Column(
         children: [
           Padding(
@@ -1409,9 +1416,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
 
                     }else{*/
-                       displayDialog(context);
-                     //}
-
+                    displayDialog(context);
+                    //}
                   },
                   child: Icon(
                     Icons.add_circle_outline_sharp,
@@ -1434,21 +1440,32 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              InkWell(
-                                onTap: () {
-                                  EmergencydisplayDialog(
-                                      context, patientProfileModel, index);
-                                },
-                                child: Row(
-                                  children: [
-                                    Text(" "),
-                                    Spacer(),
-                                    Icon(
+                              Row(
+                                children: [
+                                  Text(" "),
+                                  Spacer(),
+                                  InkWell(
+                                    onTap: () {
+                                      EmergencydisplayDialog(
+                                          context, patientProfileModel, index);
+                                    },
+                                    child: Icon(
                                       Icons.edit,
                                       size: 20,
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                  SizedBox(width: 20),
+                                  InkWell(
+                                    onTap: (){
+                                      emergencydetailsdisplayDialog(context, patientProfileModel, index);
+
+                                    },
+                                    child: Icon(
+                                      Icons.delete,
+                                      size: 20,
+                                    ),
+                                  ),
+                                ],
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(
@@ -1589,17 +1606,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                     );
                   },
-                 // itemCount: patientProfileModel.body.emergenceList.length,
-                  itemCount: 5,
+                   itemCount: patientProfileModel.body.emergenceList.length,
+                  //itemCount: 5,
                 )
               : Container()
         ],
       ),
-    );
+    ):Container();
   }
 
   Widget rowValue2() {
-    return SingleChildScrollView(
+    return (patientProfileModel != null)?SingleChildScrollView(
       child: Column(
         children: [
           Padding(
@@ -1638,21 +1655,34 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     left: 10.0, top: 20, right: 10.0),
                                 child: Column(
                                   children: [
-                                    InkWell(
-                                      onTap: () {
-                                        doctordisplayDialog(context,
-                                            patientProfileModel, index);
-                                      },
-                                      child: Row(
-                                        children: [
-                                          Text(" "),
-                                          Spacer(),
-                                          Icon(
+                                    Row(
+                                      children: [
+                                        Text(" "),
+                                        Spacer(),
+                                        InkWell(
+                                          onTap: () {
+                                            doctordisplayDialog(context,
+                                                patientProfileModel, index);
+                                          },
+                                          child: Icon(
                                             Icons.edit,
                                             size: 20,
                                           ),
-                                        ],
-                                      ),
+                                        ),
+                                        SizedBox(
+                                          width: 20,
+                                        ),
+                                        InkWell(
+                                          onTap: () {
+                                            deletedoctordetailsdisplayDialog(context, patientProfileModel, index);
+
+                                          },
+                                          child: Icon(
+                                            Icons.delete,
+                                            size: 20,
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                     Row(
                                       children: [
@@ -1799,16 +1829,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                     );
                   },
-                  itemCount: 5,
+                  itemCount: patientProfileModel.body.familyDoctorList.length,
+                  //itemCount: 5,
                 )
               : Container()
         ],
       ),
-    );
+    ):Container();
   }
 
   Widget rowValue3() {
-    return SingleChildScrollView(
+    return (patientProfileModel != null)?SingleChildScrollView(
       child: Column(
         children: [
           Padding(
@@ -1853,16 +1884,28 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         Spacer(),
                                         InkWell(
                                           onTap: () {
-                                            familydetailsdisplayDialog(context,
-                                                patientProfileModel, index);
+                                            familydetailsdisplayDialog(context, patientProfileModel, index);
                                           },
                                           child: Icon(
                                             Icons.edit,
                                             size: 20,
                                           ),
                                         ),
+                                        SizedBox(
+                                          width: 20,
+                                        ),
+                                        InkWell(
+                                          onTap: () {
+                                            deletefamilydetailsdisplayDialog(context, patientProfileModel, index);
+                                          },
+                                          child: Icon(
+                                            Icons.delete,
+                                            size: 20,
+                                          ),
+                                        ),
                                       ],
                                     ),
+                                    SizedBox(height:10),
                                     Row(
                                       children: [
                                         Icon(
@@ -2007,12 +2050,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                     );
                   },
-                  itemCount:5,
+                  itemCount: patientProfileModel.body.familyDetailsList.length,
                 )
               : Container()
         ],
       ),
-    );
+    ):Container();
   }
 
   myFormatDate(String date) {
@@ -2096,13 +2139,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
     if (patientProfileModel?.body?.city == null ||
         patientProfileModel?.body?.city == "") {
       ProfileScreen.citymodel = null;
-    }if (patientProfileModel?.body?.gender == null ||
+    }
+    if (patientProfileModel?.body?.gender == null ||
         patientProfileModel?.body?.gender == "") {
       ProfileScreen.gendermodel = null;
-    }
-    else{
-      ProfileScreen.gendermodel=KeyvalueModel(key: patientProfileModel.body.genderId,name:patientProfileModel.body.gender);
-
+    } else {
+      ProfileScreen.gendermodel = KeyvalueModel(
+          key: patientProfileModel.body.genderId,
+          name: patientProfileModel.body.gender);
     }
 
     /* if (patientProfileModel?.body?.speciality == null ||
@@ -2252,7 +2296,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 SizedBox(height: 20),
                                 formFieldemail(11, "Email", fnode12, fnode13),
                                 SizedBox(height: 20),
-                                formFieldPinno(12, "Pin Code", fnode13, fnode14),
+                                formFieldPinno(
+                                    12, "Pin Code", fnode13, fnode14),
                                 SizedBox(height: 20),
                                 formFieldemail(13, "Mobile", fnode14, fnode15),
                                 SizedBox(height: 20),
@@ -2274,9 +2319,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   ),
                                 ),
                                 DropDown.networkDropdownlabler1(
-                                    "Gender",
-                                    ApiFactory.MARITAL_API,
-                                    "gender", (KeyvalueModel model) {
+                                    "Gender", ApiFactory.MARITAL_API, "gender",
+                                    (KeyvalueModel model) {
                                   setState(() {
                                     print(ApiFactory.GENDER_API);
                                     ProfileScreen.gendermodel = model;
@@ -3355,13 +3399,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
   void EmergencydisplayDialog(
       BuildContext context, patientProfileModel, int index) {
     //_date.text = "";
-    textEditingController[13].text = patientProfileModel?.body?.emergenceList[index].name ?? "";
-    textEditingController[14].text = patientProfileModel?.body?.emergenceList[index].mobile ?? "";
+    textEditingController[13].text =
+        patientProfileModel?.body?.emergenceList[index].name ?? "";
+    textEditingController[14].text =
+        patientProfileModel?.body?.emergenceList[index].mobile ?? "";
     if (patientProfileModel?.body?.emergenceList[index].type == null ||
         patientProfileModel.body.emergenceList[index].type == "") {
       ProfileScreen.relationmodel = null;
-    }else{
-      ProfileScreen.relationmodel=KeyvalueModel(key: patientProfileModel.body.emergenceList[index].typeid,name:patientProfileModel.body.emergenceList[index].type);
+    } else {
+      ProfileScreen.relationmodel = KeyvalueModel(
+          key: patientProfileModel.body.emergenceList[index].typeid,
+          name: patientProfileModel.body.emergenceList[index].type);
     }
     showDialog(
         builder: (context) {
@@ -3476,11 +3524,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           json: updateEmergencyModel.toJson(),
                           token: widget.model.token,
                           fun: (Map<String, dynamic> map) {
-                             Navigator.pop(context);
+                            Navigator.pop(context);
 
                             if (map[Const.STATUS1] == Const.SUCCESS) {
                               Navigator.pop(context);
-                            //  Navigator.pop(context);
+                              //  Navigator.pop(context);
                               // popup(context, map[Const.MESSAGE]);
                               callApi();
                               AppData.showInSnackDone(
@@ -3596,8 +3644,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           context, "Please enter  Mobile No.");
                     } else if (textEditingController[16] != "" &&
                         textEditingController[16].text.length != 10) {
-                      AppData.showInSnackBar(context,
-                          "Please enter valid Mobile No.");
+                      AppData.showInSnackBar(
+                          context, "Please enter valid Mobile No.");
                     } else {
                       FamilyDoctorModel familydoctormodel = FamilyDoctorModel();
                       familydoctormodel.name = textEditingController[15].text;
@@ -4028,8 +4076,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
     if (patientProfileModel?.body?.familyDoctorList[0].type == null ||
         patientProfileModel.body.familyDoctorList[0].type == "") {
       ProfileScreen.specialitymodel = null;
-    }else{
-      ProfileScreen.specialitymodel=KeyvalueModel(key: patientProfileModel.body.familyDoctorList[index].typeid,name:patientProfileModel.body.familyDoctorList[index].type);
+    } else {
+      ProfileScreen.specialitymodel = KeyvalueModel(
+          key: patientProfileModel.body.familyDoctorList[index].typeid,
+          name: patientProfileModel.body.familyDoctorList[index].type);
     }
     showDialog(
         builder: (context) {
@@ -4122,8 +4172,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           context, "Please enter  Mobile No.");
                     } else if (textEditingController[16] != "" &&
                         textEditingController[16].text.length != 10) {
-                      AppData.showInSnackBar(context,
-                          "Please enter valid  Mobile No.");
+                      AppData.showInSnackBar(
+                          context, "Please enter valid  Mobile No.");
                     } else {
                       FamilyDoctorModel familydoctormodel = FamilyDoctorModel();
                       familydoctormodel.name = textEditingController[15].text;
@@ -4163,13 +4213,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
         context: context);
   }
 
-  void familydetailsdisplayDialog(
-      BuildContext context, ProfileModel patientProfileModel, int index) {
+  void familydetailsdisplayDialog(BuildContext context, ProfileModel patientProfileModel, int index) {
     if (patientProfileModel?.body?.familyDetailsList[index].relation == null ||
         patientProfileModel.body.familyDetailsList[index].relation == "") {
       ProfileScreen.relationmodel = null;
-    }else{
-      ProfileScreen.relationmodel=KeyvalueModel(key: patientProfileModel.body.familyDetailsList[index].relid,name:patientProfileModel.body.familyDetailsList[index].relation);
+    } else {
+      ProfileScreen.relationmodel = KeyvalueModel(
+          key: patientProfileModel.body.familyDetailsList[index].relid,
+          name: patientProfileModel.body.familyDetailsList[index].relation);
     }
 
     showDialog(
@@ -4221,7 +4272,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 patientProfileModel
                                     .body.familyDetailsList[index].memeberName,
                               ),
-                            ),//////
+                            ), //////
                           ),
                         ),
                         SizedBox(height: 8),
@@ -4466,9 +4517,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           token: widget.model.token,
                           fun: (Map<String, dynamic> map) {
                             Navigator.pop(context);
-
                             if (map[Const.STATUS1] == Const.SUCCESS) {
                               Navigator.pop(context);
+                             // Navigator.pop(context);
+                              //Navigator.pop(context);
                               // popup(context, map[Const.MESSAGE]);
                               callApi();
                               AppData.showInSnackDone(
@@ -4486,5 +4538,198 @@ class _ProfileScreenState extends State<ProfileScreen> {
           );
         },
         context: context);
+  }
+
+  void deletefamilydetailsdisplayDialog(BuildContext context, ProfileModel patientProfileModel, int index) {
+
+   // showAlertDialog(BuildContext context) {
+
+      // set up the buttons
+      Widget cancelButton = TextButton(
+        child: Text("No"),
+        onPressed:  () {
+          Navigator.pop(context);
+        },
+      );
+      Widget continueButton = TextButton(
+        child: Text("Yes"),
+        onPressed:  () {
+          String listid = patientProfileModel.body.familyDetailsList[index].famid;
+          String familydetails="3";
+
+          FamilyDeleteApi(listid,familydetails);
+
+        },
+      );
+
+      // set up the AlertDialog
+      AlertDialog alert = AlertDialog(
+        title: Text("Delete"),
+        content: Text("Do You Want to Delete ?"),
+        actions: [
+          cancelButton,
+          continueButton,
+        ],
+      );
+
+      // show the dialog
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return alert;
+        },
+      );
+    }
+
+  void FamilyDeleteApi(String listid, String familydetails) {
+            MyWidgets.showLoading(context);
+            widget.model.DELETEMETHODCALL_TOKEN(
+                api: ApiFactory.Delete_profile_CONTACT + listid+"&type="+familydetails,
+                token: widget.model.token,
+                fun: (Map<String, dynamic> map) {
+                  Navigator.pop(context);
+                  setState(() {
+                    String msg = map[Const.MESSAGE];
+                    if (map["message"] == Const.SUCCESS) {
+                      Navigator.pop(context);
+                      Navigator.pop(context);
+                      // popup(context, map[Const.MESSAGE]);
+                      callApi();
+                      AppData.showInSnackDone(context, map[Const.MESSAGE]);
+                    } else {
+                      // isdata = false;
+                      // isDataNotAvail = true;
+                      AppData.showInSnackBar(context, msg);
+                    }
+                  });
+
+        });
+  }
+
+  void deletedoctordetailsdisplayDialog(BuildContext context, ProfileModel patientProfileModel, int index) {
+    Widget cancelButton = TextButton(
+      child: Text("No"),
+      onPressed:  () {
+        Navigator.pop(context);
+      },
+    );
+    Widget continueButton = TextButton(
+      child: Text("Yes"),
+      onPressed:  () {
+        String listid = patientProfileModel.body.familyDoctorList[index].id;
+        String famdoctor="2";
+
+        FamilydoctorDeleteApi(listid,famdoctor);
+
+      },
+    );
+
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Text("Delete"),
+      content: Text("Do You Want to Delete ?"),
+      actions: [
+        cancelButton,
+        continueButton,
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
+  void FamilydoctorDeleteApi(String listid, String famdoctor) {
+    MyWidgets.showLoading(context);
+    widget.model.DELETEMETHODCALL_TOKEN(
+        api: ApiFactory.Delete_profile_CONTACT + listid+"&type="+famdoctor,
+        token: widget.model.token,
+        fun: (Map<String, dynamic> map) {
+          Navigator.pop(context);
+          setState(() {
+            String msg = map[Const.MESSAGE];
+            if (map["message"] == Const.SUCCESS) {
+              Navigator.pop(context);
+              Navigator.pop(context);
+              // Navigator.pop(context);
+              // popup(context, map[Const.MESSAGE]);
+             callApi();
+              AppData.showInSnackDone(context, map[Const.MESSAGE]);
+            } else {
+              // isdata = false;
+              // isDataNotAvail = true;
+              AppData.showInSnackBar(context, msg);
+            }
+          });
+
+        });
+  }
+
+  void emergencydetailsdisplayDialog(BuildContext context, ProfileModel patientProfileModel, int index) {
+    Widget cancelButton = TextButton(
+      child: Text("No"),
+      onPressed:  () {
+        Navigator.pop(context);
+      },
+    );
+    Widget continueButton = TextButton(
+      child: Text("Yes"),
+      onPressed:  () {
+        String listid = patientProfileModel.body.familyDoctorList[index].id;
+        String emergency="1";
+
+        emergencydoctorDeleteApi(listid,emergency);
+
+      },
+    );
+
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Text("Delete"),
+      content: Text("Do You Want to Delete ?"),
+      actions: [
+        cancelButton,
+        continueButton,
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
+  void emergencydoctorDeleteApi(String listid, String emergency) {
+
+    MyWidgets.showLoading(context);
+    widget.model.DELETEMETHODCALL_TOKEN(
+        api: ApiFactory.Delete_profile_CONTACT + listid+"&type="+emergency,
+        token: widget.model.token,
+        fun: (Map<String, dynamic> map) {
+          Navigator.pop(context);
+          setState(() {
+            String msg = map[Const.MESSAGE];
+            if (map["message"] == Const.SUCCESS) {
+              Navigator.pop(context);
+               Navigator.pop(context);
+              // Navigator.pop(context);
+               //popup(context, map[Const.MESSAGE]);
+              callApi();
+              AppData.showInSnackDone(context, map[Const.MESSAGE]);
+            } else {
+              // isdata = false;
+              // isDataNotAvail = true;
+              AppData.showInSnackBar(context, msg);
+            }
+          });
+
+        });
   }
 }
