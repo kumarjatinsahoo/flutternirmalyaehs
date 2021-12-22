@@ -69,16 +69,15 @@ class _WalkinRegisterListPageState extends State<WalkinRegisterListPage> {
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
-        /*title: Text(
-          "Patient List",
-          style: TextStyle(color: Colors.white),
-        ),*/
         title: Row(
           children: [
-            Text(MyLocalizations.of(context).text("BENEFICIARY_LIST"),
-              style: TextStyle(color: Colors.white),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(MyLocalizations.of(context).text("BENEFICIARY_LIST"),
+                style: TextStyle(color: Colors.white),
+              ),
             ),
-            Spacer(),
+           Spacer(),
             IconButton(
                 icon: Icon(Icons.add_box_rounded),
                 onPressed: () {
@@ -165,11 +164,11 @@ class _WalkinRegisterListPageState extends State<WalkinRegisterListPage> {
                           style: TextStyle(color: Colors.grey),
                           textAlign: TextAlign.end,
                         ),
-                        Text(
-                          patient.enteredBy??"N/A",
-                          style: TextStyle(color: Colors.grey),
-                          textAlign: TextAlign.end,
-                        ),
+                        // Text(
+                        //   patient.enteredBy??"N/A",
+                        //   style: TextStyle(color: Colors.grey),
+                        //   textAlign: TextAlign.end,
+                        // ),
                       ],
                     ),
                     trailing: Icon(Icons.arrow_right_outlined),

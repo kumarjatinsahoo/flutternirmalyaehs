@@ -147,17 +147,11 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
         leading: BackButton(
           color: bgColor,
         ),
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-
-            Text(MyLocalizations.of(context).text("APPOINTMENT"),
-              style: TextStyle(color: bgColor),
-            ),
-          ],
+        title: Text(MyLocalizations.of(context).text("APPOINTMENT"),
+          style: TextStyle(color: bgColor),
         ),
-
-        titleSpacing: 2,
+        centerTitle: true,
+        //titleSpacing: 2,
         backgroundColor: AppData.matruColor,
       ),
       body: Container(

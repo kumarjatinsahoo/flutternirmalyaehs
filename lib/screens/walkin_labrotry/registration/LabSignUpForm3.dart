@@ -736,6 +736,9 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
             textEditingController[8].text == null) {
           AppData.showInSnackBar(context, "Please enter Address");
           FocusScope.of(context).requestFocus(fnode1);
+        } else if (textEditingController[8].text.length < 3) {
+          AppData.showInSnackBar(context, "Please enter valid Address ");
+          FocusScope.of(context).requestFocus(fnode1);
         } else if (LabSignUpForm3.countryModel == null ||
             LabSignUpForm3.countryModel == "") {
           AppData.showInSnackBar(context, "Please select Country");
@@ -748,9 +751,9 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
         } else if (LabSignUpForm3.citymodel == null ||
             LabSignUpForm3.citymodel == "") {
           AppData.showInSnackBar(context, "Please select City");
-        } else if (textEditingController[5].text == "" ||
-            textEditingController[5].text == null) {
-          AppData.showInSnackBar(context, "Please enter Zip/Pin Code");
+        } else if (textEditingController[5].text != "" &&
+            textEditingController[5].text.length != 6) {
+          AppData.showInSnackBar(context, "Please enter Valid Zip/Pin Code");
           FocusScope.of(context).requestFocus(fnode2);
         } else if (textEditingController[4].text != "" &&
             textEditingController[4].text.length != 10) {
@@ -770,7 +773,7 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
           FocusScope.of(context).requestFocus(fnode5);
         } else if (textEditingController[11].text == "" ||
             textEditingController[11].text == null) {
-          AppData.showInSnackBar(context, "Please enter E-mail Id");
+          AppData.showInSnackBar(context, "Please enter Email Id");
           FocusScope.of(context).requestFocus(fnode6);
         } else if (textEditingController[11].text != "" &&
             !AppData.isValidEmail(textEditingController[11].text)) {
@@ -781,7 +784,7 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
           AppData.showInSnackBar(
               context, "Please enter a valid alternate E-mail Id");
           FocusScope.of(context).requestFocus(fnode7);
-        } else if (textEditingController[13].text == "" ||
+        } else if (textEditingController[13].text != "" ||
             textEditingController[13].text == null) {
           AppData.showInSnackBar(context, "Please enter Experience");
           FocusScope.of(context).requestFocus(fnode8);

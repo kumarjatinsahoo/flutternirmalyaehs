@@ -281,7 +281,7 @@ class LabSignUpForm2State extends State<LabSignUpForm2> {
                                           style: TextStyle(
                                               fontSize: 20, color: Colors.black),
                                         ),
-                                        SizedBox(width: 35),
+                                        SizedBox(width: 38),
                                         Text(
                                           MyLocalizations.of(context)
                                               .text("PATHOLOGIST"),
@@ -686,7 +686,7 @@ class LabSignUpForm2State extends State<LabSignUpForm2> {
   Widget dob() {
     return Padding(
       //padding: const EdgeInsets.symmetric(horizontal: 8),
-      padding: const EdgeInsets.symmetric(horizontal: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 8),
       child: GestureDetector(
         onTap: () => widget.isConfirmPage ? null : _selectDate(context),
         child: AbsorbPointer(
