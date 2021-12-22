@@ -10,20 +10,6 @@ import 'package:user/scoped-models/MainModel.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:user/widgets/MyWidget.dart';
 import 'package:user/widgets/text_field_container.dart';
-/*
-import 'package:matrujyoti/models/UserDetailsModel.dart';
-import 'package:matrujyoti/pages/CreateAppointmentLab.dart';
-import 'package:matrujyoti/pages/PatientListPage.dart';
-import 'package:matrujyoti/pages/QrSearchListPage.dart';
-import 'package:matrujyoti/providers/Contsants.dart';
-import 'package:matrujyoti/providers/api_factory.dart';
-import 'package:matrujyoti/providers/app_data.dart';
-import 'package:matrujyoti/scoped-model/MainModel.dart';
-import 'package:matrujyoti/widgets/MyWidget.dart';
-import 'package:matrujyoti/widgets/TextFormatter.dart';
-import 'package:matrujyoti/widgets/text_field_container.dart';
-import 'package:qr_code_scanner/qr_code_scanner.dart';
-*/
 
 class QRViewExample1 extends StatefulWidget {
   MainModel model;
