@@ -8,10 +8,11 @@ import 'dart:typed_data';
 import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-import 'dart:ui' as ui;
+import 'package:image_crop/image_crop.dart';
 import 'package:image_picker/image_picker.dart';
+import 'dart:ui' as ui;
 import 'package:intl/intl.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/KeyvalueModel.dart';
 import 'package:user/models/LoginResponse1.dart';
@@ -27,9 +28,12 @@ import 'package:flutter/rendering.dart';
 
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/models/PatientListModel.dart';
+import 'package:user/screens/Doctor/Dashboard/CropimageProfile.dart';
 import 'package:user/widgets/MyWidget.dart';
 import 'package:user/widgets/TextFormatter.dart';
 import 'package:user/widgets/signature.dart';
+
+import '../../../main.dart';
 
 class DocMyProfile extends StatefulWidget {
   MainModel model;
@@ -43,6 +47,10 @@ class DocMyProfile extends StatefulWidget {
   @override
   _DocMyProfileState createState() => _DocMyProfileState();
 }
+/*late AppState state;*/
+File imageFile;
+File _pickedImage;
+String _imagepath;
 
 class _DocMyProfileState extends State<DocMyProfile> {
   String loAd = "Loading..";
@@ -90,6 +98,10 @@ class _DocMyProfileState extends State<DocMyProfile> {
   UpdateDocProfileModel updateProfileModel = UpdateDocProfileModel();
 
   bool selectGallery = false;
+  final cropKey = GlobalKey<CropState>();
+  File _file;
+  File _sample;
+  File _lastCropped;
 
   var image;
   var pngBytes;
@@ -205,6 +217,12 @@ class _DocMyProfileState extends State<DocMyProfile> {
           });
         });
   }
+  void dispose() {
+    super.dispose();
+    _file?.delete();
+    _sample?.delete();
+    _lastCropped?.delete();
+  }
 
   getGender(String gender) {
     switch (gender) {
@@ -236,9 +254,20 @@ class _DocMyProfileState extends State<DocMyProfile> {
                 new ListTile(
                   leading: new Icon(Icons.folder),
                   title: new Text('Gallery'),
-                  onTap: () => {
-                    Navigator.pop(context),
-                    getGalleryImage(),
+                  onTap: (){
+                    //Navigator.pop(context);
+                  _openImage();
+                   // _loadPicker(ImageSource.camera);
+                    //_buildOpenImage(),
+                  /*Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Cropimage()),
+                  ),*/
+                    //_sample == null ? _buildOpeningImage() : _buildCroppingImage(),
+                    //_buildCroppingImage(),
+                   // getGalleryImage(),
+                    //_openImage(),
+                    //_cropImage(),
                   },
                 ),
               ],
@@ -246,6 +275,136 @@ class _DocMyProfileState extends State<DocMyProfile> {
           );
         });
   }
+  /*_loadPicker(ImageSource source) async {
+    File picked = await ImagePicker.pickImage(source: source);
+
+    if (picked != null) {
+      _cropImage(picked).then(File cropped){
+        SaveImage(cropped.path);
+      }
+
+    }
+    LoadImage();
+    Navigator.pop(context);
+  }*/
+ /* Future<File> _cropImage(File picked) async {
+    File cropped = await ImageCropper.cropImage(
+      androidUiSettings: AndroidUiSettings(
+        toolbarTitle: "Modifica immagine",
+        statusBarColor: Colors.green,
+        toolbarColor: Colors.green,
+        toolbarWidgetColor: Colors.white,
+      ),
+      sourcePath: picked.path,
+//      aspectRatioPresets: [
+//        CropAspectRatioPreset.original,
+//        CropAspectRatioPreset.ratio16x9,
+//        CropAspectRatioPreset.ratio4x3,
+//      ],
+      maxWidth: 800,
+    );
+    if (cropped != null) {
+      setState(() {
+        _pickedImage = cropped;
+      });
+    }
+    return cropped;
+  }*/
+
+  Widget _buildCroppingImage() {
+    return Column(
+      children: <Widget>[
+        Expanded(
+          child: Crop.file(_sample, key: cropKey),
+        ),
+        Container(
+          padding: const EdgeInsets.only(top: 20.0),
+          color: Colors.black,
+          alignment: AlignmentDirectional.center,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[
+              TextButton(
+                child: Text(
+                  'Crop Image',
+                  style: Theme.of(context)
+                      .textTheme
+                      .button
+                      .copyWith(color: Colors.white),
+                ),
+                onPressed: () => _cropImage(),
+              ),
+              //_buildOpenImage(),
+            ],
+          ),
+        )
+      ],
+    );
+  }
+
+  Future<void> _openImage() async {
+    final pickedFile = await ImagePicker.pickImage(source: ImageSource.gallery);
+    final file = File(pickedFile.path);
+    final sample = await ImageCrop.sampleImage(
+      file: file,
+      preferredSize: context.size.longestSide.ceil(),
+    );
+
+    setState(() {
+      _sample?.delete();
+      _file?.delete();
+      _sample = sample;
+      _file = file;
+    });
+  }
+
+  Future<void> _cropImage() async {
+    final scale = cropKey.currentState.scale;
+    final area = cropKey.currentState.area;
+    if (area == null) {
+      // cannot crop, widget is not setup
+      return;
+    }
+
+    // scale up to use maximum possible number of pixels
+    // this will sample image in higher resolution to make cropped image larger
+    final sample = await ImageCrop.sampleImage(
+      file: _file,
+      preferredSize: (2000 / scale).round(),
+    );
+
+    final file = await ImageCrop.cropImage(
+      file: sample,
+      area: area,
+    );
+
+
+    setState(() {
+      sample.delete();
+      _lastCropped?.delete();
+      _lastCropped = file;
+      pathUsr = file;
+    });
+
+    debugPrint('$file');
+  }
+
+
+
+  void SaveImage(path) async {
+    SharedPreferences saveimage = await SharedPreferences.getInstance();
+    saveimage.setString("imagepath", path);
+  }
+
+  void LoadImage() async {
+    SharedPreferences saveimage = await SharedPreferences.getInstance();
+    setState(() {
+      _imagepath = saveimage.getString("imagepath");
+    });
+  }
+  // Widget _buildOpeningImage() {
+  //   return Center(child: _buildOpenImage());
+  // }
   Future getCameraImage() async {
     var image = await ImagePicker.pickImage(
         source: ImageSource.camera, imageQuality: 45);
@@ -273,6 +432,62 @@ class _DocMyProfileState extends State<DocMyProfile> {
     }
   }
 
+  // Widget _buildOpenImage() {
+  //   return TextButton(
+  //     child: Text(
+  //       'Open Image',
+  //       style: Theme.of(context).textTheme.button.copyWith(color: Colors.white),
+  //     ),
+  //     onPressed: () => _openImage(),
+  //   );
+  // }
+  //
+  // Future<void> _openImage() async {
+  //   var image = await ImagePicker.pickImage(
+  //       source: ImageSource.gallery, imageQuality: 45);
+  //   final file = File(image.path);
+  //   final sample = await ImageCrop.sampleImage(
+  //     file: file,
+  //     preferredSize: context.size.longestSide.ceil(),
+  //   );
+  //
+  //   _sample?.delete();
+  //   _file?.delete();
+  //
+  //   setState(() {
+  //     _sample = sample;
+  //     _file = file;
+  //   });
+  // }
+  //
+  //
+  // Future<void> _cropImage() async {
+  //   final scale = cropKey.currentState.scale;
+  //   final area = cropKey.currentState.area;
+  //   if (area == null) {
+  //     // cannot crop, widget is not setup
+  //     return;
+  //   }
+  //
+  //   // scale up to use maximum possible number of pixels
+  //   // this will sample image in higher resolution to make cropped image larger
+  //   final sample = await ImageCrop.sampleImage(
+  //     file: _file,
+  //     preferredSize: (2000 / scale).round(),
+  //   );
+  //
+  //   final file = await ImageCrop.cropImage(
+  //     file: sample,
+  //     area: area,
+  //   );
+  //
+  //   sample.delete();
+  //
+  //   _lastCropped?.delete();
+  //   _lastCropped = file;
+  //
+  //   debugPrint('$file');
+  // }
   Future getGalleryImage() async {
     var image = await ImagePicker.pickImage(
         source: ImageSource.gallery, imageQuality: 45);
@@ -289,6 +504,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
       print("size>>>" + AppData.formatBytes(enc.length, 0).toString());
       setState(() {
         pathUsr = File(_path);
+        //_cropImage();
         //widget.model.patientimg =base64Encode(enc);
         //widget.model.patientimgtype =extName;
         //updateProfileModel.profileImage = base64Encode(enc) as List<Null>;
@@ -298,7 +514,24 @@ class _DocMyProfileState extends State<DocMyProfile> {
     }
   }
 
-
+  /*_getFromGallery() async {
+    var image = await ImagePicker.pickImage(
+        source: ImageSource.gallery, imageQuality: 45);
+      source: ImageSource.gallery,
+      maxWidth: 1800,
+      maxHeight: 1800,
+    );
+    _cropImage(pickedFile.path);
+  }
+*/
+  /// Crop Image
+  /*_cropImage(filePath) async {
+    File croppedImage = await f.cropImage(
+      sourcePath: filePath,
+      maxWidth: 1080,
+      maxHeight: 1080,
+    );
+  }*/
 
   List<KeyvalueModel> genderList = [
     KeyvalueModel(key: "1", name: "Male"),
@@ -317,10 +550,15 @@ class _DocMyProfileState extends State<DocMyProfile> {
           automaticallyImplyLeading: false,
           title: Stack(
             children: [
-              Center(
-                child: Text(
-                  MyLocalizations.of(context).text("MY_PROFILE"),
-                  style: TextStyle(color: Colors.white),
+              InkWell(
+                onTap:(){
+                  _cropImage();
+                },
+                child: Center(
+                  child: Text(
+                    MyLocalizations.of(context).text("MY_PROFILE"),
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
               ),
               //Spacer(),
@@ -386,7 +624,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
           ),
         ),*/
         body: (profileModel1 != null)
-            ? Container(
+            ?(_sample == null)? Container(
                 height: double.maxFinite,
                 child: SingleChildScrollView(
                   child: Column(
@@ -625,7 +863,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
                     ],
                   ),
                 ),
-              )
+              ):_buildCroppingImage()
             : Center(
                 child: Text(
                   loAd,

@@ -46,6 +46,7 @@
             android:showWhenLocked="true"
             android:theme="@style/LaunchTheme"
             android:turnScreenOn="true"
+            android:screenOrientation="portrait"
             android:usesCleartextTraffic="true"
             android:windowSoftInputMode="adjustResize">
 
