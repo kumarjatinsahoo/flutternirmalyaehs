@@ -292,8 +292,8 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                                                 context, "/medipedia");*/
                                     // AppData.showSnack(
                                     //     context, "Coming soon", Colors.green);
-                                    Navigator.pushNamed(
-                                        context, "/docWalkInReg");
+                                    widget.model.regNoValue="";
+                                    Navigator.pushNamed(context, "/docWalkInReg");
                                   },
                                   color: AppData.BG2BLUE,
                                   bordercolor: AppData.BG2BLUE,

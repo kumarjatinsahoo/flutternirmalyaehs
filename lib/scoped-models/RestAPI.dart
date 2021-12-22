@@ -123,6 +123,45 @@ class RestAPI extends Model {
       fun(failedMap);
     }
   }
+  DELETEMETHODCALL_TOKEN(
+      {@required String api, @required Function fun, String token}) async {
+    print("<<>>>>>API CALL>>>>>>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" + api);
+    try {
+      Response response = await dio.delete(
+        api,
+        options: Options(
+          headers: {
+            "Authorization": token,
+          },
+        ),
+      );
+      if (response.statusCode == 200) {
+        try {
+          print("RESPONSE CALL>>>>" +
+              JsonEncoder().convert(response.data).toString());
+          fun(response.data);
+        } catch (e) {
+          print("Message is: " + e.toString());
+        }
+      } else {
+        fun(failedMap);
+      }
+    } on DioError catch (e) {
+     /* if (e.type == DioErrorType.CONNECT_TIMEOUT) {
+        fun(failedMap);
+      }
+      if (e.type == DioErrorType.RECEIVE_TIMEOUT) {
+        fun(failedMap);
+      }
+      if (e.type == DioErrorType.DEFAULT) {
+        fun(failedMap);
+      }
+      if (e.type == DioErrorType.RESPONSE) {
+        fun(failedMap);
+      }*/
+      fun(failedMap);
+    }
+  }
 
   GETMETHODCALL_TOKEN_FORM(
       {@required String api, @required Function fun, String token,@required String userId}) async {

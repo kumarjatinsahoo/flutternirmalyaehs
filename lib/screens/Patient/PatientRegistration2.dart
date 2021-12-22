@@ -163,7 +163,7 @@ class _PatientRegistration2State extends State<PatientRegistration2> {
             //focusNode: fnode7,
             cursorColor: AppData.kPrimaryColor,
             textInputAction: TextInputAction.next,
-            maxLength: 3,
+            maxLength: 2,
             keyboardType: TextInputType.number,
             inputFormatters: [
               WhitelistingTextInputFormatter(
