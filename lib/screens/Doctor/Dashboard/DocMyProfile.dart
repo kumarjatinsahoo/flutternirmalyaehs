@@ -8,7 +8,8 @@ import 'dart:typed_data';
 import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:image_crop/image_crop.dart';
+import 'package:image_cropper/image_cropper.dart';
+/*import 'package:image_crop/image_crop.dart';*/
 import 'package:image_picker/image_picker.dart';
 import 'dart:ui' as ui;
 import 'package:intl/intl.dart';
@@ -28,7 +29,7 @@ import 'package:flutter/rendering.dart';
 
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/models/PatientListModel.dart';
-import 'package:user/screens/Doctor/Dashboard/CropimageProfile.dart';
+//import 'package:user/screens/Doctor/Dashboard/CropimageProfile.dart';
 import 'package:user/widgets/MyWidget.dart';
 import 'package:user/widgets/TextFormatter.dart';
 import 'package:user/widgets/signature.dart';
@@ -49,7 +50,7 @@ class DocMyProfile extends StatefulWidget {
 }
 /*late AppState state;*/
 File imageFile;
-File _pickedImage;
+File _selectedFile;
 String _imagepath;
 
 class _DocMyProfileState extends State<DocMyProfile> {
@@ -74,6 +75,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
   ];
   //Body model;
   File pathUsr = null;
+  bool _inProcess = false;
   LoginResponse1 loginResponse;
   bool isDataNotAvail = false;
   ProfileModel1 profileModel1;
@@ -98,7 +100,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
   UpdateDocProfileModel updateProfileModel = UpdateDocProfileModel();
 
   bool selectGallery = false;
-  final cropKey = GlobalKey<CropState>();
+  //final cropKey = GlobalKey<CropState>();
   File _file;
   File _sample;
   File _lastCropped;
@@ -247,16 +249,18 @@ class _DocMyProfileState extends State<DocMyProfile> {
                 new ListTile(
                     leading: new Icon(Icons.camera),
                     title: new Text('Camera'),
-                    onTap: () => {
-                      Navigator.pop(context),
-                      getCameraImage(),
+                    onTap: () {
+                      Navigator.pop(context);
+                    getImage(ImageSource.camera);
+                      //getCameraImage(),
                     }),
                 new ListTile(
                   leading: new Icon(Icons.folder),
                   title: new Text('Gallery'),
                   onTap: (){
-                    //Navigator.pop(context);
-                  _openImage();
+                    Navigator.pop(context);
+                    getImage(ImageSource.gallery);
+                  //_openImage();
                    // _loadPicker(ImageSource.camera);
                     //_buildOpenImage(),
                   /*Navigator.push(
@@ -272,124 +276,70 @@ class _DocMyProfileState extends State<DocMyProfile> {
                 ),
               ],
             ),
+
           );
+
+
         });
   }
-  /*_loadPicker(ImageSource source) async {
-    File picked = await ImagePicker.pickImage(source: source);
 
-    if (picked != null) {
-      _cropImage(picked).then(File cropped){
-        SaveImage(cropped.path);
+  getImage(ImageSource source) async {
+    this.setState((){
+      _inProcess = true;
+    });
+    File image = await ImagePicker.pickImage(source: source);
+    if(image != null){
+      File cropped = await ImageCropper.cropImage(
+          sourcePath: image.path,
+          aspectRatio: CropAspectRatio(
+              ratioX: 1, ratioY: 1),
+          compressQuality: 100,
+          maxWidth: 700,
+          maxHeight: 700,
+          compressFormat: ImageCompressFormat.jpg,
+          androidUiSettings: AndroidUiSettings(
+            toolbarColor: AppData.kPrimaryColor,
+            toolbarTitle: "Image Cropper",
+            toolbarWidgetColor: Colors.white,
+
+            //toolbar.setTitleTextColor(Color.RED);
+            ///statusBarColor: Colors.deepOrange.shade900,
+            backgroundColor: Colors.white,
+          )
+      );
+      if (cropped != null) {
+        var enc = await cropped.readAsBytes();
+        String _path = image.path;
+        setState(() => pathUsr = cropped);
+
+        String _fileName = _path != null ? _path.split('/').last : '...';
+        var pos = _fileName.lastIndexOf('.');
+        String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+        print(extName);
+        print("size>>>" + AppData.formatBytes(enc.length, 0).toString());
+        setState(() {
+          pathUsr = cropped;
+          _inProcess = false;
+
+          // callApii();
+          // widget.model.patientimg =base64Encode(enc);
+          //widget.model.patientimgtype =extName;
+          //updateProfileModel.profileImage = base64Encode(enc) as List<Null>;
+          //updateProfileModel.profileImageType = extName;
+          updateProfile(base64Encode(enc), extName);
+        });
       }
-
-    }
-    LoadImage();
-    Navigator.pop(context);
-  }*/
- /* Future<File> _cropImage(File picked) async {
-    File cropped = await ImageCropper.cropImage(
-      androidUiSettings: AndroidUiSettings(
-        toolbarTitle: "Modifica immagine",
-        statusBarColor: Colors.green,
-        toolbarColor: Colors.green,
-        toolbarWidgetColor: Colors.white,
-      ),
-      sourcePath: picked.path,
-//      aspectRatioPresets: [
-//        CropAspectRatioPreset.original,
-//        CropAspectRatioPreset.ratio16x9,
-//        CropAspectRatioPreset.ratio4x3,
-//      ],
-      maxWidth: 800,
-    );
-    if (cropped != null) {
-      setState(() {
-        _pickedImage = cropped;
+      /*this.setState((){
+        pathUsr = cropped;
+        //updateProfile(base64Encode(cropped), extName);
+        _inProcess = false;
+      });*/
+    } else {
+      this.setState((){
+        _inProcess = false;
       });
     }
-    return cropped;
-  }*/
-
-  Widget _buildCroppingImage() {
-    return Column(
-      children: <Widget>[
-        Expanded(
-          child: Crop.file(_sample, key: cropKey),
-        ),
-        Container(
-          padding: const EdgeInsets.only(top: 20.0),
-          color: Colors.black,
-          alignment: AlignmentDirectional.center,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: <Widget>[
-              TextButton(
-                child: Text(
-                  'Crop Image',
-                  style: Theme.of(context)
-                      .textTheme
-                      .button
-                      .copyWith(color: Colors.white),
-                ),
-                onPressed: () => _cropImage(),
-              ),
-              //_buildOpenImage(),
-            ],
-          ),
-        )
-      ],
-    );
   }
-
-  Future<void> _openImage() async {
-    final pickedFile = await ImagePicker.pickImage(source: ImageSource.gallery);
-    final file = File(pickedFile.path);
-    final sample = await ImageCrop.sampleImage(
-      file: file,
-      preferredSize: context.size.longestSide.ceil(),
-    );
-
-    setState(() {
-      _sample?.delete();
-      _file?.delete();
-      _sample = sample;
-      _file = file;
-    });
-  }
-
-  Future<void> _cropImage() async {
-    final scale = cropKey.currentState.scale;
-    final area = cropKey.currentState.area;
-    if (area == null) {
-      // cannot crop, widget is not setup
-      return;
-    }
-
-    // scale up to use maximum possible number of pixels
-    // this will sample image in higher resolution to make cropped image larger
-    final sample = await ImageCrop.sampleImage(
-      file: _file,
-      preferredSize: (2000 / scale).round(),
-    );
-
-    final file = await ImageCrop.cropImage(
-      file: sample,
-      area: area,
-    );
-
-
-    setState(() {
-      sample.delete();
-      _lastCropped?.delete();
-      _lastCropped = file;
-      pathUsr = file;
-    });
-
-    debugPrint('$file');
-  }
-
-
 
   void SaveImage(path) async {
     SharedPreferences saveimage = await SharedPreferences.getInstance();
@@ -432,62 +382,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
     }
   }
 
-  // Widget _buildOpenImage() {
-  //   return TextButton(
-  //     child: Text(
-  //       'Open Image',
-  //       style: Theme.of(context).textTheme.button.copyWith(color: Colors.white),
-  //     ),
-  //     onPressed: () => _openImage(),
-  //   );
-  // }
-  //
-  // Future<void> _openImage() async {
-  //   var image = await ImagePicker.pickImage(
-  //       source: ImageSource.gallery, imageQuality: 45);
-  //   final file = File(image.path);
-  //   final sample = await ImageCrop.sampleImage(
-  //     file: file,
-  //     preferredSize: context.size.longestSide.ceil(),
-  //   );
-  //
-  //   _sample?.delete();
-  //   _file?.delete();
-  //
-  //   setState(() {
-  //     _sample = sample;
-  //     _file = file;
-  //   });
-  // }
-  //
-  //
-  // Future<void> _cropImage() async {
-  //   final scale = cropKey.currentState.scale;
-  //   final area = cropKey.currentState.area;
-  //   if (area == null) {
-  //     // cannot crop, widget is not setup
-  //     return;
-  //   }
-  //
-  //   // scale up to use maximum possible number of pixels
-  //   // this will sample image in higher resolution to make cropped image larger
-  //   final sample = await ImageCrop.sampleImage(
-  //     file: _file,
-  //     preferredSize: (2000 / scale).round(),
-  //   );
-  //
-  //   final file = await ImageCrop.cropImage(
-  //     file: sample,
-  //     area: area,
-  //   );
-  //
-  //   sample.delete();
-  //
-  //   _lastCropped?.delete();
-  //   _lastCropped = file;
-  //
-  //   debugPrint('$file');
-  // }
+
   Future getGalleryImage() async {
     var image = await ImagePicker.pickImage(
         source: ImageSource.gallery, imageQuality: 45);
@@ -513,26 +408,6 @@ class _DocMyProfileState extends State<DocMyProfile> {
       });
     }
   }
-
-  /*_getFromGallery() async {
-    var image = await ImagePicker.pickImage(
-        source: ImageSource.gallery, imageQuality: 45);
-      source: ImageSource.gallery,
-      maxWidth: 1800,
-      maxHeight: 1800,
-    );
-    _cropImage(pickedFile.path);
-  }
-*/
-  /// Crop Image
-  /*_cropImage(filePath) async {
-    File croppedImage = await f.cropImage(
-      sourcePath: filePath,
-      maxWidth: 1080,
-      maxHeight: 1080,
-    );
-  }*/
-
   List<KeyvalueModel> genderList = [
     KeyvalueModel(key: "1", name: "Male"),
     KeyvalueModel(key: "2", name: "Female"),
@@ -552,7 +427,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
             children: [
               InkWell(
                 onTap:(){
-                  _cropImage();
+                  //_cropImage();
                 },
                 child: Center(
                   child: Text(
@@ -624,7 +499,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
           ),
         ),*/
         body: (profileModel1 != null)
-            ?(_sample == null)? Container(
+            ?/*(_sample == null)?*/ Container(
                 height: double.maxFinite,
                 child: SingleChildScrollView(
                   child: Column(
@@ -854,6 +729,13 @@ class _DocMyProfileState extends State<DocMyProfile> {
                           ),
                         ),
                       ),
+                    /*  (_inProcess)?Container(
+                        color: Colors.white,
+                        height: MediaQuery.of(context).size.height * 0.95,
+                        child: Center(
+                          child: CircularProgressIndicator(),
+                        ),
+                      ):Center(),*/
                       SizedBox(
                         height: 3,
                       ),
@@ -863,7 +745,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
                     ],
                   ),
                 ),
-              ):_buildCroppingImage()
+              )/*:_buildCroppingImage()*/
             : Center(
                 child: Text(
                   loAd,

@@ -2,12 +2,12 @@ class ApiFactory {
   //bool isRelease = bool.fromEnvironment("DEV");
   static String REG_DEVICE = "https://cca.medtel.in/Ziniai/manageDeviceId";
   //static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
-  static String MAIN_URL = "http://api-demo.ehealthsystem.com/nirmalyaRest/api/";
+  //static String MAIN_URL = "http://api-demo.ehealthsystem.com/nirmalyaRest/api/";
   //static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
   //static String MAIN_URL = "http://api-demo.ehealthsystem.com/nirmalyaRest/api/";
   static String MAIN_URL1 = "https://1331.co.in/api";
   static String REPORT_URL1 = "https://ehealthsystem.com/";
-  // static String MAIN_URL = "http://192.168.34.208:8062/nirmalyaRest/api/";
+  static String MAIN_URL = "http://192.168.43.248:8062/nirmalyaRest/api/";
   static String VITALS_REPORT = MAIN_URL + 'medtel-screening-test-report';
   static String COUNTRY_API = MAIN_URL + 'get-country-list';
   static String VIEW_PATIENT_HEALTH_API = REPORT_URL1 + 'user/mobile-view-patient-health-chart?id=';
@@ -123,6 +123,7 @@ class ApiFactory {
   static String IIFESTYLE_DETAIS =
       MAIN_URL + 'get-patient-lifestyle-details?userid=';
   static String UPDATE_VITAL_SIGN = MAIN_URL + 'update-vital-signs';
+  static String CHANGE_PASSWORD_USER = MAIN_URL + 'change-password-user-wise';
   static String patient_lifestyle_details =
       MAIN_URL + 'post-patient-lifestyle-details';
   static String POST_PHARMACY_REQUST = MAIN_URL + 'post-pharmacy-request-api';
