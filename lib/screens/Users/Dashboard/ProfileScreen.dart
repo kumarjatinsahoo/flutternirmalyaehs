@@ -67,6 +67,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
   String selectDob;
   UserFamilyDetailsModel userfamilydetails;
   bool emeradd = true;
+  bool famdoctoradd = true;
+  bool familydetailsadd = true;
 
   final df = new DateFormat('dd/MM/yyyy');
   DateTime selectedDate = DateTime.now();
@@ -602,9 +604,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           child: TabBarView(
                             children: [
                               rowValue(),
-                              backUp(),
-                              rowValue2(),
-                              rowValue3(),
+                              (patientProfileModel != null)? backUp():Container(),
+                              (patientProfileModel != null)?rowValue2():Container(),
+                              (patientProfileModel != null)? rowValue3():Container(),
                               /* rowValue1(),
                               rowValue1(),
                               rowValue1(),
@@ -1398,6 +1400,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   Widget backUp() {
+    if(patientProfileModel.body.emergenceList.length >= 5)
+    {
+      setState(() {
+        emeradd=false;
+      });
+    }
+    else{
+      emeradd=true;
+    }
     return
       (patientProfileModel != null)?SingleChildScrollView(
       child: Column(
@@ -1410,18 +1421,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 Spacer(),
                 InkWell(
                   onTap: () {
-                    /* if (patientProfileModel.body.emergenceList.length != "" &&
-                         patientProfileModel.body.emergenceList.length != 5)
-                     {
 
 
-                    }else{*/
-                    displayDialog(context);
+                   /* if (patientProfileModel.body.emergenceList.length > 5 ||
+                        patientProfileModel.body.emergenceList.length == 0) {
+                      AppData.showInSnackBar(context, "only 5 data showing");
+                    } else {*/
+                      //AppData.showInSnackDone(context, "Working");
+                      displayDialog(context);
+                  //}
+
+
                     //}
                   },
-                  child: Icon(
-                    Icons.add_circle_outline_sharp,
-                    size: 30.0,
+                  child: Visibility(
+                    visible: emeradd,
+                    child: Icon(
+                      Icons.add_circle_outline_sharp,
+                      size: 30.0,
+                    ),
                   ),
                 ),
               ],
@@ -1606,7 +1624,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                     );
                   },
-                   itemCount: patientProfileModel.body.emergenceList.length,
+                   itemCount: patientProfileModel.body.emergenceList.take(5).length,
                   //itemCount: 5,
                 )
               : Container()
@@ -1616,6 +1634,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   Widget rowValue2() {
+    if(patientProfileModel.body.familyDoctorList.length >= 5)
+    {
+      setState(() {
+        famdoctoradd=false;
+      });
+    }
+    else{
+      emeradd=true;
+    }
     return (patientProfileModel != null)?SingleChildScrollView(
       child: Column(
         children: [
@@ -1629,9 +1656,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   onTap: () {
                     displayDialog2(context);
                   },
-                  child: Icon(
-                    Icons.add_circle_outline_sharp,
-                    size: 30.0,
+                  child: Visibility(
+                    visible: famdoctoradd,
+                    child: Icon(
+                      Icons.add_circle_outline_sharp,
+                      size: 30.0,
+                    ),
                   ),
                 ),
               ],
@@ -1829,7 +1859,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                     );
                   },
-                  itemCount: patientProfileModel.body.familyDoctorList.length,
+                  itemCount: patientProfileModel.body.familyDoctorList.take(5).length,
                   //itemCount: 5,
                 )
               : Container()
@@ -1839,6 +1869,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   Widget rowValue3() {
+    if(patientProfileModel.body.familyDetailsList.length >= 5)
+    {
+      setState(() {
+        familydetailsadd=false;
+      });
+    }
+    else{
+      emeradd=true;
+    }
     return (patientProfileModel != null)?SingleChildScrollView(
       child: Column(
         children: [
@@ -1852,9 +1891,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   onTap: () {
                     displayDialog3(context);
                   },
-                  child: Icon(
-                    Icons.add_circle_outline_sharp,
-                    size: 30.0,
+                  child: Visibility(
+                    visible: familydetailsadd,
+                    child: Icon(
+                      Icons.add_circle_outline_sharp,
+                      size: 30.0,
+                    ),
                   ),
                 ),
               ],
@@ -2050,7 +2092,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                     );
                   },
-                  itemCount: patientProfileModel.body.familyDetailsList.length,
+                  itemCount: patientProfileModel.body.familyDetailsList.take(5).length,
                 )
               : Container()
         ],
@@ -4679,7 +4721,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     Widget continueButton = TextButton(
       child: Text("Yes"),
       onPressed:  () {
-        String listid = patientProfileModel.body.familyDoctorList[index].id;
+        String listid = patientProfileModel.body.emergenceList[index].id;
         String emergency="1";
 
         emergencydoctorDeleteApi(listid,emergency);
