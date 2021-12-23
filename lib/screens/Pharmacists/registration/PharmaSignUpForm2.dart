@@ -226,6 +226,7 @@ class PharmaSignUpForm2State extends State<PharmaSignUpForm2> {
                                     child: Column(
                                       children: [
                                         Text(MyLocalizations.of(context).text("FILL_IN_PERSONAL_INFORMATION"),
+                                          textAlign: TextAlign.center,
                                           style: TextStyle(fontSize: 18, color: Colors.black),),
                                       ],
                                     ),

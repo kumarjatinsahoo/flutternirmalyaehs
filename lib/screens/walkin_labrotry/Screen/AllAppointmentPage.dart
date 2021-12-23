@@ -727,7 +727,7 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
           //prefixIcon: Icon(Icons.insert_drive_file_outlined),
           floatingLabelBehavior: FloatingLabelBehavior.always,
           hintText: hint,
-          labelText: hint,
+          //labelText: hint,
           alignLabelWithHint: false,
           contentPadding: EdgeInsets.only(left: 10, top: 4, right: 4),
           /*enabledBorder: OutlineInputBorder(

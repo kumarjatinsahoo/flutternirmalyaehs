@@ -140,6 +140,8 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
     PharmaSignUpForm.districtModel = null;
     PharmaSignUpForm.blockModel = null;
     PharmaSignUpForm.genderModel = null;
+    PharmaSignUpForm.pharmacyModel = null;
+    PharmaSignUpForm.titlemodel = null;
     /*setState(() {
       masterClass = widget.model.masterDataResponse;
     });
@@ -208,6 +210,7 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
                                   Column(
                                     children: [
                                       Text(MyLocalizations.of(context).text("FILL_IN_PERSONAL_INFORMATION"),
+                                        textAlign: TextAlign.center,
                                         style: TextStyle(fontSize: 18, color: Colors.black),),
                                     ],
                                   ),
@@ -248,20 +251,20 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
                                   SizedBox(
                                     height: 8,
                                   ),
-                                  formField1(11,MyLocalizations.of(context).text("ADDRESS")),
+                                  formField2(11,MyLocalizations.of(context).text("ADDRESS")),
 
-                                  DropDown.networkDropdownGetpartUser1(
-                                      MyLocalizations.of(context)
-                                          .text("GENDER") ,
-                                      ApiFactory.GENDER_API,
-                                      "gender",
-                                      Icons.location_on_rounded,
-                                      23.0, (KeyvalueModel data) {
-                                    setState(() {
-                                      print(ApiFactory.GENDER_API);
-                                      PharmaSignUpForm.genderModel = data;
-                                    });
-                                  }),
+                                  // DropDown.networkDropdownGetpartUser1(
+                                  //     MyLocalizations.of(context)
+                                  //         .text("GENDER") ,
+                                  //     ApiFactory.GENDER_API,
+                                  //     "gender",
+                                  //     Icons.location_on_rounded,
+                                  //     23.0, (KeyvalueModel data) {
+                                  //   setState(() {
+                                  //     print(ApiFactory.GENDER_API);
+                                  //     PharmaSignUpForm.genderModel = data;
+                                  //   });
+                                  // }),
                                   SizedBox(height: 15),
 
                                   Padding(padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -446,7 +449,6 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
       context: context,
       fun: () {
        // Navigator.pushNamed(context, "/patientRegistration2");
-
         if (PharmaSignUpForm.pharmacyModel == null ||
             PharmaSignUpForm.pharmacyModel == "") {
           AppData.showInSnackBar(context, "Please select Organization Name");
@@ -467,17 +469,17 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
             textEditingController[11].text == null) {
           AppData.showInSnackBar(context, "Please enter Address");
         }
-        else if (PharmaSignUpForm.genderModel == null ||
-            PharmaSignUpForm.genderModel == "") {
-          AppData.showInSnackBar(context, "Please select Gender");
-        }
+        // else if (PharmaSignUpForm.genderModel == null ||
+        //     PharmaSignUpForm.genderModel == "") {
+        //   AppData.showInSnackBar(context, "Please select Gender");
+        // }
         else {
           widget.model.pharmaorganisation = PharmaSignUpForm.pharmacyModel.key;
           widget.model.pharmartitle = PharmaSignUpForm.titlemodel.key;
           widget.model.pharmaprofessional = textEditingController[9].text;
           widget.model.pharmaexperience = textEditingController[10].text;
           widget.model.pharmaaddress = textEditingController[11].text;
-          widget.model.pharmagender = PharmaSignUpForm.genderModel.key;
+          //widget.model.pharmagender = PharmaSignUpForm.genderModel.key;
 
           Navigator.pushNamed(context, "/pharmasignupform2");
         }
@@ -926,6 +928,60 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
     );
   }
   Widget formField1(
+      int index,
+      String hint,
+      ) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+          horizontal: 8),
+      child: Container(
+        height: 50,
+        padding:
+        EdgeInsets.symmetric(horizontal: 5),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius:
+          BorderRadius.circular(5),
+          border: Border.all(
+              color: Colors.black, width: 0.3),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          child: TextFormField(
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: hint,
+              /* prefixIcon:
+              Icon(Icons.person_rounded),*/
+              hintStyle: TextStyle(
+                  color: AppData.hintColor,
+                  fontSize: 15),
+            ),
+            textInputAction: TextInputAction.next,
+            keyboardType: TextInputType.text,
+            controller: textEditingController[index],
+            //focusNode: fnode1,
+            textAlignVertical:
+            TextAlignVertical.center,
+            onFieldSubmitted: (value) {
+              print("ValueValue" + error[index].toString());
+
+              setState(() {
+                error[index] = false;
+              });
+              AppData.fieldFocusChange(context, fnode1, null);
+            },
+            inputFormatters: [
+              WhitelistingTextInputFormatter(
+                  RegExp("[a-zA-Z ]")),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget formField2(
       int index,
       String hint,
       ) {
