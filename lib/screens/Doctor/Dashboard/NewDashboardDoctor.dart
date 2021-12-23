@@ -783,7 +783,8 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                 ),
                 title: Text(MyLocalizations.of(context).text("SHARE")),
                 onTap: () {
-                  Navigator.pushNamed(context, "/emergencydetails");
+                  //Navigator.pushNamed(context, "/emergencydetails");
+                  Navigator.pushNamed(context, "/myopdpage");
                 },
               ),
               SizedBox(

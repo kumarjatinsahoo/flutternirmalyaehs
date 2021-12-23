@@ -100,8 +100,8 @@ class ApiFactory {
   static String DOCTOOR_API = MAIN_URL + 'get-doctor-list?type=';
   static String HOSPITAL_API = MAIN_URL + 'get-hospital-list?doctor=';
   static String POST_ORGAN_DONOR = MAIN_URL + 'post-organ-donor-details';
-  static String GET_PATIENT_MEDICAL_HISTORY =
-      MAIN_URL + 'get-patient-medical-history?userid=';
+  static String GET_PATIENT_MEDICAL_HISTORY = MAIN_URL + 'get-patient-medical-history?userid=';
+  static String OPD_MODEL = MAIN_URL + 'doctor-opd-weekly?drid=';
 
   //static String SPECIALITY_API2 = MAIN_URL + 'get-speciality-list';
   static String TESTNAME_LIST = MAIN_URL + 'get-testname-list';

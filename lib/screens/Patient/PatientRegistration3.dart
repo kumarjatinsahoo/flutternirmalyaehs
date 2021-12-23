@@ -436,8 +436,7 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
           widget.model.patientemail = textEditingController[2].text;
           widget.model.patientaadhar = textEditingController[3].text;
           widget.model.patienCountrykey = PatientRegistration3.countryModel.key;
-          widget.model.patienCountrycode =
-              PatientRegistration3.countryModel.code;
+          widget.model.patienCountrycode = PatientRegistration3.countryModel.code;
           widget.model.patienStatekey = PatientRegistration3.stateModel.key;
           widget.model.patienStatecode = PatientRegistration3.stateModel.code;
           widget.model.districtid = PatientRegistration3.districtModel.key;
