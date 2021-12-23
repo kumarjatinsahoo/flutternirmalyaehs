@@ -68,6 +68,17 @@ chooseAppointment(BuildContext context) {
                           // Navigator.pop(context);
                         },
                       ),
+                     /* ListTile(
+                          leading: Image.asset(
+                            "assets/images/changepassword.png",
+                            height: 30,
+                          ),
+                          title: Text("Change Password"),
+                          selected: _selectedDestination == 8,
+                          onTap: () {
+                            selectDestination(8);
+                            Navigator.pushNamed(context, "/changePassword");
+                          }),*/
                       Divider(),
                       MaterialButton(
                         child: Text(
@@ -291,6 +302,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                                 SizedBox(
                                   height: 5,
                                 ),
+
                                 Container(
                                   width: 100,
                                   height: 35,
@@ -1142,6 +1154,17 @@ abstract class MyPage1Widget extends StatelessWidget {
                             // Navigator.pop(context);
                           },
                         ),
+                        ListTile(
+                            leading: Image.asset(
+                              "assets/images/changepassword.png",
+                              height: 30,
+                            ),
+                            title: Text("Change Password"),
+
+                            onTap: () {
+                              //selectDestination(8);
+                              Navigator.pushNamed(context, "/changePassword");
+                            }),
 
                         /* ListTile(
                           title: Text("Health Screening"),

@@ -49,6 +49,7 @@ import 'package:user/screens/Users/BookAmbulance/BookAmbulance.dart';
 import 'package:user/screens/Users/BookAmbulance/BookAmbulancelist.dart';
 import 'package:user/screens/Users/BookBloodBank/BookBloodBank.dart';
 import 'package:user/screens/Users/BookBloodBank/BookBloodBanklist.dart';
+import 'package:user/screens/Users/Dashboard/ChangePassword.dart';
 import 'package:user/screens/Users/Dashboard/QrcodePage.dart';
 import 'package:user/screens/Users/Dashboard/TermsandConditionPage.dart';
 import 'package:user/screens/Users/GovermentSchemes/GovernmentSchemesList.dart';
@@ -1091,6 +1092,11 @@ class _MyAppState extends State<MyApp> {
                   Organlist(
                     model: _model,
                   ),
+              '/changePassword': (context) =>
+                  ChangePassword(
+                    model: _model,
+                  ),
+
               '/vdo': (context) =>
                   VideoCallPage(
                //     model: _model,
