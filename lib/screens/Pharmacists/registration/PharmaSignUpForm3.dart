@@ -278,6 +278,7 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
                                         Text(
                                           MyLocalizations.of(context).text(
                                               "FILL_IN_PERSONAL_INFORMATION"),
+                                          textAlign: TextAlign.center,
                                           style: TextStyle(
                                               fontSize: 18,
                                               color: Colors.black),
@@ -722,6 +723,9 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
         } else if (textEditingController[5].text == "" ||
             textEditingController[5].text == null) {
           AppData.showInSnackBar(context, "Please enter Zip/Pin Code");
+        } else if (textEditingController[5].text == "" ||
+            textEditingController[5].text.length != 6) {
+          AppData.showInSnackBar(context, "Please enter Valid Zip/Pin Code");
         } else if (textEditingController[10].text == "" ||
             textEditingController[10].text == null) {
           AppData.showInSnackBar(context, "Please enter Mobile Number");

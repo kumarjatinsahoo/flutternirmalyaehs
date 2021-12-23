@@ -47,6 +47,7 @@ class Body {
   String appyear;
   String patname;
   String appno;
+  String typeofconsult;
 
   Body({
     this.doctorid,
@@ -65,6 +66,7 @@ class Body {
     this.appyear,
     this.patname,
     this.appno,
+    this.typeofconsult,
   });
 
   Body.fromJson(Map<String, dynamic> json) {
@@ -86,6 +88,7 @@ class Body {
     appyear = json['appyear'].toString();
     patname = json['patname'].toString();
     appno = json['appno'].toString();
+    typeofconsult = json['typeofconsult'].toString();
   }
 
   Map<String, dynamic> toJson() {
@@ -106,6 +109,7 @@ class Body {
     data['appyear'] = this.appyear;
     data['patname'] = this.patname;
     data['appno'] = this.appno;
+    data['typeofconsult'] = this.typeofconsult;
     return data;
   }
 }

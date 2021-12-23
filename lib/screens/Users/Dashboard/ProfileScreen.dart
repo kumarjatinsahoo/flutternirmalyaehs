@@ -69,6 +69,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   bool emeradd = true;
   bool famdoctoradd = true;
   bool familydetailsadd = true;
+  bool isdata = false;
 
   final df = new DateFormat('dd/MM/yyyy');
   DateTime selectedDate = DateTime.now();
@@ -279,7 +280,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ProfileScreen.citymodel = null;
               }*/
             } else {
-              isDataNotAvail = true;
+             // isDataNotAvail = true;
+              isdata=true;
               AppData.showInSnackBar(context, "Something Went Wrong");
             }
           });
@@ -603,7 +605,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           height: 300,
                           child: TabBarView(
                             children: [
-                              rowValue(),
+                              (patientProfileModel != null)? rowValue()  :Container(
+                                child: Center(
+                                  child: Column(
+                                    children: [
+                                      SizedBox(height: 300,),
+                                      (isdata)? Text(MyLocalizations.of(context).text("NO_DATA_FOUND"),
+                                        style:
+                                        TextStyle(color: Colors.black, fontSize: 15),
+                                      ):CircularProgressIndicator(),
+                                    ],
+                                  ),
+                                ),
+                              ),
                               (patientProfileModel != null)? backUp():Container(),
                               (patientProfileModel != null)?rowValue2():Container(),
                               (patientProfileModel != null)? rowValue3():Container(),
@@ -1680,6 +1694,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
+                              //Text("Mu Hero",),
                               Padding(
                                 padding: const EdgeInsets.only(
                                     left: 10.0, top: 20, right: 10.0),
@@ -3825,6 +3840,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   // isdata = false;
                                   userfamilydetails =
                                       UserFamilyDetailsModel.fromJson(map);
+                                  Navigator.pop(context);
                                   display(context, userfamilydetails);
                                 });
                                 // appointModel = lab.LabBookModel.fromJson(map);
@@ -4424,7 +4440,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   void display(BuildContext context, UserFamilyDetailsModel userfamilydetails) {
     // userfamilydetails.body.code="";
     //userfamilydetails.body.name="";
-    // ProfileScreen.relationmodel=null;
+     ProfileScreen.relationmodel=null;
 
     showDialog(
         builder: (context) {
@@ -4561,13 +4577,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             Navigator.pop(context);
                             if (map[Const.STATUS1] == Const.SUCCESS) {
                               Navigator.pop(context);
-                             // Navigator.pop(context);
-                              //Navigator.pop(context);
                               // popup(context, map[Const.MESSAGE]);
                               callApi();
                               AppData.showInSnackDone(
                                   context, map[Const.MESSAGE]);
-                              Navigator.pop(context);
                             } else {
                               // AppData.showInSnackBar(context, map[Const.MESSAGE]);
                             }
@@ -4594,6 +4607,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       Widget continueButton = TextButton(
         child: Text("Yes"),
         onPressed:  () {
+          Navigator.pop(context);
           String listid = patientProfileModel.body.familyDetailsList[index].famid;
           String familydetails="3";
 
@@ -4630,20 +4644,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Navigator.pop(context);
                   setState(() {
                     String msg = map[Const.MESSAGE];
-                    if (map["message"] == Const.SUCCESS) {
-                      Navigator.pop(context);
-                      Navigator.pop(context);
-                      // popup(context, map[Const.MESSAGE]);
+                    if (map["status"] == Const.SUCCESS) {
                       callApi();
                       AppData.showInSnackDone(context, map[Const.MESSAGE]);
                     } else {
-                      // isdata = false;
-                      // isDataNotAvail = true;
                       AppData.showInSnackBar(context, msg);
                     }
                   });
 
-        });
+                });
   }
 
   void deletedoctordetailsdisplayDialog(BuildContext context, ProfileModel patientProfileModel, int index) {
@@ -4656,6 +4665,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     Widget continueButton = TextButton(
       child: Text("Yes"),
       onPressed:  () {
+        Navigator.pop(context);
         String listid = patientProfileModel.body.familyDoctorList[index].id;
         String famdoctor="2";
 
@@ -4692,16 +4702,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
           Navigator.pop(context);
           setState(() {
             String msg = map[Const.MESSAGE];
-            if (map["message"] == Const.SUCCESS) {
-              Navigator.pop(context);
-              Navigator.pop(context);
-              // Navigator.pop(context);
-              // popup(context, map[Const.MESSAGE]);
+            if (map["status"] == Const.SUCCESS) {
              callApi();
               AppData.showInSnackDone(context, map[Const.MESSAGE]);
             } else {
-              // isdata = false;
-              // isDataNotAvail = true;
               AppData.showInSnackBar(context, msg);
             }
           });
@@ -4719,6 +4723,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     Widget continueButton = TextButton(
       child: Text("Yes"),
       onPressed:  () {
+        Navigator.pop(context);
         String listid = patientProfileModel.body.emergenceList[index].id;
         String emergency="1";
 
@@ -4756,16 +4761,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
           Navigator.pop(context);
           setState(() {
             String msg = map[Const.MESSAGE];
-            if (map["message"] == Const.SUCCESS) {
-              Navigator.pop(context);
-               Navigator.pop(context);
-              // Navigator.pop(context);
-               //popup(context, map[Const.MESSAGE]);
+            if (map["status"] == Const.SUCCESS) {
               callApi();
               AppData.showInSnackDone(context, map[Const.MESSAGE]);
             } else {
-              // isdata = false;
-              // isDataNotAvail = true;
               AppData.showInSnackBar(context, msg);
             }
           });

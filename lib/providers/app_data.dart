@@ -506,6 +506,15 @@ class AppData {
       duration: Duration(seconds: 6),
     )..show(context);
   }
+  static void showInSnackDone1(BuildContext context, String value) {
+    Flushbar(
+      //  title:  "Hey SuperHero",
+      message: value,
+
+      backgroundColor: Colors.green,
+      duration: Duration(seconds: 6),
+    )..show(context);
+  }
 
   static String formatBytes(int bytes, int decimals) {
     if (bytes <= 0) return "0 B";

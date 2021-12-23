@@ -27,6 +27,7 @@ import 'package:user/screens/Doctor/Dashboard/ContactUs.dart';
 import 'package:user/screens/Doctor/Dashboard/EmergencyAccess/QrEmergencyAccess.dart';
 import 'package:user/screens/Doctor/Dashboard/MonthlyOverview/MonthlyOverViewList.dart';
 import 'package:user/screens/Doctor/Dashboard/MonthlyOverview/MonthlyOverview.dart';
+import 'package:user/screens/Doctor/Dashboard/MyOpdPage.dart';
 import 'package:user/screens/Doctor/Dashboard/MyPatientlist.dart';
 import 'package:user/screens/Doctor/Dashboard/NewDashboardDoctor.dart';
 import 'package:user/screens/Doctor/Dashboard/ShareAppointment/ShareAppointment.dart';
@@ -735,6 +736,9 @@ class _MyAppState extends State<MyApp> {
                     model: _model,
                   ),*/
               '/dashDoctor': (context) => NewDashboardDoctor(
+                    model: _model,
+                  ),
+              '/myopdpage': (context) => MyOpdPage(
                     model: _model,
                   ),
               '/apntMange': (context) => DocAppointmentMangement(

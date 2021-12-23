@@ -238,7 +238,7 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                                                           CrossAxisAlignment.start,
                                                           children: [
                                                             Text(
-                                                              'User Name: ',
+                                                              'Doctor Name: ',
                                                               style: TextStyle(
                                                                   color: Colors.blue,
                                                                   fontWeight:
@@ -392,6 +392,31 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                                                                   .appdate ??"N/A" +
                                                                   appointmentlist
                                                                       .apptime ??"N/A",
+                                                              overflow:
+                                                              TextOverflow
+                                                                  .clip,
+                                                              style: TextStyle(
+                                                                  fontWeight:
+                                                                  FontWeight.bold,
+                                                                  fontSize: 15),
+                                                            ),
+                                                            SizedBox(
+                                                              height: 4,
+                                                            ),
+                                                            Text(
+                                                              'Consult Type: ',
+                                                              style: TextStyle(
+                                                                  color: Colors.blue,
+                                                                  fontWeight:
+                                                                  FontWeight.w600),
+                                                            ),
+                                                            SizedBox(
+                                                              width: 5,
+                                                            ),
+                                                            Text(
+                                                              /*'23-Nov-2020-11:30AM'*/
+                                                              appointmentlist.
+                                                              typeofconsult??"N/A",
                                                               overflow:
                                                               TextOverflow
                                                                   .clip,
