@@ -209,7 +209,7 @@ class _MyOpdPageState extends State<MyOpdPage> {
                       Container(
                           width: 90.0,
                           child: Center(
-                              child: _normalToggleButton(opdModel)
+                              child: _normalToggleButton(opdModel.body[i].code)
                           )
                           // Text(
                           //   data?.code ?? "",
@@ -263,7 +263,7 @@ class _MyOpdPageState extends State<MyOpdPage> {
     );
   }
 
-  Widget _normalToggleButton(OpdModel opdModel) {
+  Widget _normalToggleButton(bool code) {
     return Container(
       child: Transform.scale(
         scale: 1,
@@ -272,16 +272,16 @@ class _MyOpdPageState extends State<MyOpdPage> {
           activeTrackColor: AppData.kPrimaryColor,
           // inactiveTrackColor: Colors.pinkAccent,
           //inactiveThumbColor: Colors.green,
-          //value: opdModel.body[i].code,
+          value: code,
           // activeThumbImage: AssetImage("assets/man.png",),
           //inactiveThumbImage: AssetImage("assets/women.png"),
           materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
           onChanged: (bool value) {
             print("VALUE : $value");
             setState(() {
-             // opdModel.code=value;
+              code=_value;
              // data?.code
-              _value = value;
+             // _value = value;
               //_value = opdModel.body[i].code;
 
               // if(value==false) {
@@ -356,6 +356,7 @@ class _MyOpdPageState extends State<MyOpdPage> {
       });
     }
   }
+
 
 
 }
