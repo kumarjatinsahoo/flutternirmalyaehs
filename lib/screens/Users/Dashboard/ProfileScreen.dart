@@ -4721,7 +4721,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     Widget continueButton = TextButton(
       child: Text("Yes"),
       onPressed:  () {
-        String listid = patientProfileModel.body.familyDoctorList[index].id;
+        String listid = patientProfileModel.body.emergenceList[index].id;
         String emergency="1";
 
         emergencydoctorDeleteApi(listid,emergency);
