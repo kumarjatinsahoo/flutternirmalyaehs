@@ -2,12 +2,12 @@ class ApiFactory {
   //bool isRelease = bool.fromEnvironment("DEV");
   static String REG_DEVICE = "https://cca.medtel.in/Ziniai/manageDeviceId";
  // static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
-   static String MAIN_URL = "http://api-demo.ehealthsystem.com/nirmalyaRest/api/";
+  // static String MAIN_URL = "http://api-demo.ehealthsystem.com/nirmalyaRest/api/";
   //static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
   //static String MAIN_URL = "http://api-demo.ehealthsystem.com/nirmalyaRest/api/";
   static String MAIN_URL1 = "https://1331.co.in/api";
   static String REPORT_URL1 = "https://ehealthsystem.com/";
- //  static String MAIN_URL = "http://192.168.43.248:8062/nirmalyaRest/api/";
+   static String MAIN_URL = "http://192.168.43.248:8062/nirmalyaRest/api/";
   static String VITALS_REPORT = MAIN_URL + 'medtel-screening-test-report';
   static String COUNTRY_API = MAIN_URL + 'get-country-list';
   static String VIEW_PATIENT_HEALTH_API = REPORT_URL1 + 'user/mobile-view-patient-health-chart?id=';
@@ -220,6 +220,7 @@ class ApiFactory {
   static String POC_REPORT_LISTT = MAIN_URL + 'view-medteltest-list?userid=';
   static String POC_REPORT_SMS = MAIN_URL + 'post-update-report-sms-status';
   static String UPDATE_EMERGENCY_CONTACT = MAIN_URL + 'post-emergency-contact-api';
+  static String DOCTOR_RATING = MAIN_URL + 'post-doctor-rating-api';
   static String UPDATE_DOCTOR_CONTACT = MAIN_URL + 'post-family-doctor-api';
   static String UPDATE_FAMILY_CONTACT = MAIN_URL + 'post-family-details-api';
   static String Delete_profile_CONTACT = MAIN_URL + 'delete-from-list-api?id=';
