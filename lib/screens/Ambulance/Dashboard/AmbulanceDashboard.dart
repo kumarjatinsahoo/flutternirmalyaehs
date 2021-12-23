@@ -567,6 +567,7 @@ class _AmbulanceDashboardState extends State<AmbulanceDashboard> {
                   selectDestination(1);
                   Navigator.pushNamed(context, "/docMyProf");
                 },
+
                 /*onTap: () {
                   selectDestination(1);
                   Navigator.pushNamed(context, "/labprofile");

@@ -35,6 +35,7 @@ import 'package:user/screens/Doctor/Dashboard/WalkinPatient/QRViewExample1.dart'
 import 'package:user/screens/FindPage1.dart';
 import 'package:user/screens/Ngo/Registration/NgoSignUpForm.dart';
 import 'package:user/screens/Ngo/Registration/NgoSignUpForm2.dart';
+import 'package:user/screens/OrganisationSignUpForm.dart';
 import 'package:user/screens/Pharmacists/MonthlyOverview/MonthlyOverviewPharma.dart';
 import 'package:user/screens/Pharmacists/MonthlyOverview/MonthlyOverviewPharmalist.dart';
 import 'package:user/screens/Pharmacists/Screens/NewDashboardPharmacy.dart';
@@ -99,6 +100,7 @@ import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/VideoDetailsPa
 import 'package:user/screens/Users/organ/Organlist.dart';
 import 'package:user/screens/VideoCall/VideoCallPage.dart';
 import 'package:user/screens/walkin_labrotry/LabDashboard.dart';
+import 'package:user/screens/walkin_labrotry/Screen/LabMyProfile.dart';
 import 'package:user/screens/walkin_labrotry/Screen/LabQrCode.dart';
 import 'package:user/widgets/PdfViewPage.dart';
 import 'screens/Users/MyMedicalRecord/LifeStyleHistory.dart';
@@ -1094,6 +1096,14 @@ class _MyAppState extends State<MyApp> {
                   ),
               '/changePassword': (context) =>
                   ChangePassword(
+                    model: _model,
+                  ),
+              '/labMyProfile': (context) =>
+                  LabMyProfile(
+                    model: _model,
+                  ),
+              '/organisationSignUpForm': (context) =>
+                  OrganisationSignUpForm(
                     model: _model,
                   ),
 
