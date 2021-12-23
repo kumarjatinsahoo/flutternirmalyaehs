@@ -175,9 +175,12 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              MyLocalizations.of(context).text("TESTS"),
-              style: TextStyle(color: bgColor),
+            Padding(
+              padding: const EdgeInsets.only(left: 90.0),
+              child: Text(
+                MyLocalizations.of(context).text("TESTS"),
+                style: TextStyle(color: bgColor),
+              ),
             ),
             InkWell(
               onTap: () {
@@ -247,7 +250,7 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
                               },
                           ),
                           TextSpan(
-                              text: MyLocalizations.of(context).text("APPOINTMENT"),
+                              text: MyLocalizations.of(context).text("   APPOINTMENT").toUpperCase(),
                               style: TextStyle(
                                   fontWeight: FontWeight.w600,
                                   fontSize: 15.0,
@@ -271,7 +274,7 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
                       width: 60,
                       child: Text(
                         MyLocalizations.of(context).text("REG_NO"),
-                        textAlign: TextAlign.left,
+                        textAlign: TextAlign.center,
                         style: TextStyle(
                             color: Colors.black,
                             fontSize: 14,
@@ -282,7 +285,7 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
                     Expanded(
                       child: Text(
                         MyLocalizations.of(context).text("NAME"),
-                        textAlign: TextAlign.start,
+                        textAlign: TextAlign.center,
                         style: TextStyle(
                             color: Colors.black,
                             fontSize: 14,
@@ -290,7 +293,7 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
                       ),
                     ),
                     SizedBox(
-                      width: 35,
+                      width: 60,
                       child: Text(
                         MyLocalizations.of(context).text("AGE"),
                         textAlign: TextAlign.center,
@@ -315,7 +318,7 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
                       width: 80,
                       child: Text(
                         MyLocalizations.of(context).text("STATUS"),
-                        textAlign: TextAlign.start,
+                        textAlign: TextAlign.center,
                         style: TextStyle(
                             color: Colors.black,
                             fontSize: 14,
@@ -352,7 +355,7 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
                                     width: 60,
                                     child: Text(
                                       foundUser[index].regNo,
-                                      textAlign: TextAlign.start,
+                                      textAlign: TextAlign.center,
                                       style: TextStyle(
                                         color: Colors.black,
                                         fontSize: 14,
@@ -364,7 +367,7 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
                                     child: Text(
                                       foundUser[index].patientName,
                                       style: TextStyle(color: Colors.black),
-                                      textAlign: TextAlign.start,
+                                      textAlign: TextAlign.center,
                                     ),
                                   ),
                                   /*Expanded(
@@ -375,7 +378,7 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
                                     ),
                                   ),*/
                                   SizedBox(
-                                    width: 35,
+                                    width: 60,
                                     child: Text(
                                       (foundUser[index].age!=null)?foundUser[index].age.toString():"N/A",
                                       textAlign: TextAlign.center,
@@ -422,7 +425,7 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
                                               color: Colors.green,
                                               decoration:
                                                   TextDecoration.underline),
-                                          textAlign: TextAlign.start,
+                                          textAlign: TextAlign.center,
                                         ),
                                       ),
                                     ),

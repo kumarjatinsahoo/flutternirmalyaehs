@@ -784,7 +784,7 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
           AppData.showInSnackBar(
               context, "Please enter a valid alternate E-mail Id");
           FocusScope.of(context).requestFocus(fnode7);
-        } else if (textEditingController[13].text != "" ||
+        } else if (textEditingController[13].text == "" ||
             textEditingController[13].text == null) {
           AppData.showInSnackBar(context, "Please enter Experience");
           FocusScope.of(context).requestFocus(fnode8);
