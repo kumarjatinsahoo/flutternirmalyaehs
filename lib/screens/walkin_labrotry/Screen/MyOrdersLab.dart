@@ -406,7 +406,7 @@ class _MyOrdersLabState extends State<MyOrdersLab> {
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
               callAPI();
-              AppData.showInSnackDone(context, msg);
+              AppData.showInSnackDone(context,"Order Accepted");
             } else {
               isDataNotAvail = true;
               AppData.showInSnackBar(context, msg);

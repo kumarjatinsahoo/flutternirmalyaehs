@@ -187,8 +187,9 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
                                 _selectDate(context);
                               },
                           ),
+
                           TextSpan(
-                              text:MyLocalizations.of(context).text("APPOINTMENT"),
+                              text:MyLocalizations.of(context).text("   APPOINTMENT").toUpperCase(),
                               style: TextStyle(
                                   fontWeight: FontWeight.w600,
                                   fontSize: 15.0,
@@ -268,38 +269,28 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
                       width: 60,
                       child: Text(
                         MyLocalizations.of(context).text("REG_NO"),
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                    Expanded(
-                      child: Text(
-                        MyLocalizations.of(context).text("NAME"),
-                        textAlign: TextAlign.start,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                    /*Expanded(
-                      child: Text(
-                        "Age",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             color: Colors.black,
                             fontSize: 14,
                             fontWeight: FontWeight.bold),
                       ),
-                    ),*/
+                    ),
+                    SizedBox(width: 10),
+                    Expanded(
+                      child: Text(
+                        MyLocalizations.of(context).text("NAME"),
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
                     SizedBox(
-                      width: 35,
+                      width: 60,
                       child: Text(
                         MyLocalizations.of(context).text("AGE"),
-
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             color: Colors.black,
@@ -318,10 +309,11 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
                             fontWeight: FontWeight.bold),
                       ),
                     ),
-                    Expanded(
+                    SizedBox(
+                      width: 80,
                       child: Text(
                         MyLocalizations.of(context).text("STATUS"),
-                        textAlign: TextAlign.start,
+                        textAlign: TextAlign.center,
                         style: TextStyle(
                             color: Colors.black,
                             fontSize: 14,
@@ -358,18 +350,19 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
                                     width: 60,
                                     child: Text(
                                       appointModel.body[index].regNo,
-                                      textAlign: TextAlign.start,
+                                      textAlign: TextAlign.center,
                                       style: TextStyle(
                                         color: Colors.black,
                                         fontSize: 14,
                                       ),
                                     ),
                                   ),
+                                  SizedBox(width: 10,),
                                   Expanded(
                                     child: Text(
                                       appointModel.body[index].patientName,
                                       style: TextStyle(color: Colors.black),
-                                      textAlign: TextAlign.start,
+                                      textAlign: TextAlign.center,
                                     ),
                                   ),
                                   /*Expanded(
@@ -380,7 +373,7 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
                                     ),
                                   ),*/
                                   SizedBox(
-                                    width: 35,
+                                    width: 60,
                                     child: Text(
                                       (appointModel.body[index].age!=null)?appointModel.body[index].age.toString():"N/A",
                                       textAlign: TextAlign.center,
@@ -421,7 +414,7 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
                                               color: Colors.green,
                                               decoration:
                                                   TextDecoration.underline),
-                                          textAlign: TextAlign.start,
+                                          textAlign: TextAlign.center,
                                         ),
                                       ),
                                     ),
@@ -511,7 +504,7 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
           onPressed: () {
             Navigator.of(context).pop();
           },
-          textColor: Colors.grey[900],
+          textColor: Colors.red,
           child: Text(MyLocalizations.of(context).text("CANCEL")),
         ),
         new FlatButton(
@@ -544,7 +537,7 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
                         UserDetailsModel userModel =
                             UserDetailsModel.fromJson(map);
                         widget.model.userModel = userModel;
-   //                     widget.model.beneficiary=shiftname_.text;
+   //                    widget.model.beneficiary=shiftname_.text;
 
                         Navigator.pushReplacement(
                           context,
