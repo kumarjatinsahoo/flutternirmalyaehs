@@ -614,6 +614,18 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                     selectDestination(7);
                     Navigator.pushNamed(context, "/support");
                   }),
+
+              ListTile(
+                  leading: Image.asset(
+                    "assets/images/changepassword.png",
+                    height: 30,
+                  ),
+                  title: Text("Change Password"),
+                  selected: _selectedDestination == 8,
+                  onTap: () {
+                    selectDestination(8);
+                    Navigator.pushNamed(context, "/changePassword");
+                  }),
               /*  ListTile(
                   leading: Image.asset(
                     "assets/images/reminder.png",
