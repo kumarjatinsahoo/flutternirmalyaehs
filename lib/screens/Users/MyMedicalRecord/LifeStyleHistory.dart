@@ -570,7 +570,7 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                   //_buildAboutText(),
                   //_buildLogoAttribution(),
                   Padding(
-                    padding: const EdgeInsets.only(left: 8.0),
+                    padding: const EdgeInsets.only(left: 16.0),
                     child: Text(
                       MyLocalizations.of(context).text("UPDATE_LIFESTYLE"),
                       style: TextStyle(
@@ -601,7 +601,7 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                       });
                     }),
                   ),
-                  SizedBox(height: 8),
+                  SizedBox(height: 5),
                   Text("  Alcohol"),
                   Padding(
                     //padding: const EdgeInsets.all(8.0),
@@ -619,7 +619,7 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                       });
                     }),
                   ),
-                  SizedBox(height: 8),
+                  SizedBox(height: 5),
                   Text("  Diet"),
                   gender(),
                   /* Padding(
@@ -632,12 +632,12 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                     }),
                   ),*/
                   SizedBox(
-                    height: 8,
+                    height: 5,
                   ),
                   formFieldMobile(
                       0, MyLocalizations.of(context).text("EXERCISE")),
                   SizedBox(
-                    height: 8,
+                    height: 5,
                   ),
                   // formField(1, MyLocalizations.of(context).text("OCCUPATION")),
                   // SizedBox(

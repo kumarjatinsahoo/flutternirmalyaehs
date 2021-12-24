@@ -33,7 +33,7 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
   String selectedDatestr;
   bool isdata = true;
   Ratingmodel ratingmodel;
-  int rate;
+  double rate;
   List<bool> error = [false, false, false, false, false, false];
 
   final df = new DateFormat('dd/MM/yyyy');
@@ -1129,8 +1129,11 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
   }
 
   void displayDialog(BuildContext context, Body appointmentlist) {
-    textEditingController[0].text=appointmentlist.review??"";
-  // double rating=appointmentlist.rating??"";
+    textEditingController[1].text=appointmentlist.review??"";
+    rate=double.tryParse(appointmentlist.rating);
+
+    //textEditingController[0].text="";
+   //rating=appointmentlist.rating;
     showDialog(
         builder: (context) {
           return AlertDialog(
@@ -1163,25 +1166,24 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                                 children: [
                                   RatingBar(
                                     // initialRating: 3,
-                                    onRatingChanged: ( rating) {
+                                    onRatingChanged:(rating) {
                                       // rate=int.tryParse(rating.toString()).toString();
-                                       rate=rating.toInt();
+                                       rate=rating;
                                       print(rate);
                                     },
                                     size: 45,
-                                    initialRating: 0,
+                                    initialRating:rate??0.0,
                                     filledIcon: Icons.star,
                                     filledColor: Colors.yellow,
                                     emptyIcon: Icons.star_border,
                                   ),
                                 ],
                               ),
-                              fromAddress(
-                                  1,
-                                  MyLocalizations.of(context).text("REASON"),
+                              fromAddress(1,
+                                  MyLocalizations.of(context).text("REVIEW"),
                                   TextInputAction.next,
                                   TextInputType.text,
-                                  "reason"),
+                                  "review"),
                             ],
                           ),
                         ),
@@ -1214,31 +1216,40 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                 ),
                 onPressed: () {
                   setState(() {
-                    Ratingmodel ratingmode = Ratingmodel();
-                    ratingmode.userid = widget.model.user;
-                   ratingmode.rating = rate.toString();
-                    ratingmode.drid = appointmentlist.doctorid;
-                    ratingmode.appno = appointmentlist.appno;
-                    ratingmode.reviews = textEditingController[1].text;
-                    log("Value json>>" + ratingmode.toJson().toString());
-                    MyWidgets.showLoading(context);
-                    widget.model.POSTMETHOD_TOKEN(
-                        api: ApiFactory.DOCTOR_RATING,
-                         json: ratingmode.toJson(),
-                        token: widget.model.token,
+                    if(rate == null||rate == ""){
+                    AppData.showInSnackBar(context, "Please enter rating");
+                    }
+                    else if (textEditingController[1].text == null ||
+                        textEditingController[1].text == "") {
+                      AppData.showInSnackBar(context, "Please enter Reviews");
+                    }
+                    else{
+                      Ratingmodel ratingmode = Ratingmodel();
+                      ratingmode.userid = widget.model.user;
+                      ratingmode.rating = rate.toInt().toString();
+                      ratingmode.drid = appointmentlist.doctorid;
+                      ratingmode.appno = appointmentlist.appno;
+                      ratingmode.reviews = textEditingController[1].text;
+                      log("Value json>>" + ratingmode.toJson().toString());
+                      MyWidgets.showLoading(context);
+                      widget.model.POSTMETHOD_TOKEN(
+                          api: ApiFactory.DOCTOR_RATING,
+                          json: ratingmode.toJson(),
+                          token: widget.model.token,
                         fun: (Map<String, dynamic> map) {
                           Navigator.pop(context);
 
                           if (map["status"] == Const.SUCCESS) {
                             Navigator.pop(context);
                             // popup(context, map[Const.MESSAGE]);
-                            //callAPI(today);
+                            callAPI(selectedDatestr);
                             AppData.showInSnackDone(
                                 context, map[Const.MESSAGE]);
                           } else {
                             // AppData.showInSnackBar(context, map[Const.MESSAGE]);
                           }
                         });
+          }
                   });
                 },
               ),
