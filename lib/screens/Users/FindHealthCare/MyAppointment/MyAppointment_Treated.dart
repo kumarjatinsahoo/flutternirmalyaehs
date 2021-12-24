@@ -33,7 +33,7 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
   String selectedDatestr;
   bool isdata = true;
   Ratingmodel ratingmodel;
-  int rate;
+  double rate;
   List<bool> error = [false, false, false, false, false, false];
 
   final df = new DateFormat('dd/MM/yyyy');
@@ -1130,6 +1130,8 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
 
   void displayDialog(BuildContext context, Body appointmentlist) {
     textEditingController[1].text=appointmentlist.review??"";
+    rate=double.tryParse(appointmentlist.rating);
+
     //textEditingController[0].text="";
    //rating=appointmentlist.rating;
     showDialog(
@@ -1164,13 +1166,13 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                                 children: [
                                   RatingBar(
                                     // initialRating: 3,
-                                    onRatingChanged: ( rating) {
+                                    onRatingChanged:(rating) {
                                       // rate=int.tryParse(rating.toString()).toString();
-                                       rate=rating.toInt();
+                                       rate=rating;
                                       print(rate);
                                     },
                                     size: 45,
-                                    initialRating:double.tryParse(appointmentlist.rating)??0.0,
+                                    initialRating:rate??0.0,
                                     filledIcon: Icons.star,
                                     filledColor: Colors.yellow,
                                     emptyIcon: Icons.star_border,
@@ -1224,7 +1226,7 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                     else{
                       Ratingmodel ratingmode = Ratingmodel();
                       ratingmode.userid = widget.model.user;
-                      ratingmode.rating = rate.toString();
+                      ratingmode.rating = rate.toInt().toString();
                       ratingmode.drid = appointmentlist.doctorid;
                       ratingmode.appno = appointmentlist.appno;
                       ratingmode.reviews = textEditingController[1].text;
