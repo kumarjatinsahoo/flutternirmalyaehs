@@ -552,7 +552,7 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
             textEditingController[1].text = "";
             textEditingController[2].text = "";
           },
-          textColor: Theme.of(context).primaryColor,
+          textColor: AppData.kPrimaryRedColor,
           child: const Text('Cancel'),
         ),
         new FlatButton(

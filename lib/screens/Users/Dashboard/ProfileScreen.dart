@@ -371,7 +371,39 @@ class _ProfileScreenState extends State<ProfileScreen> {
         //centerTitle: true,
         // iconTheme: IconThemeData(color: AppData.kPrimaryColor,),
       ),
-      body: Padding(
+      body: patientProfileModel == null
+          ?  isdata != true
+          ? Center(
+        child: Column(
+          children: [
+            SizedBox(
+              height:
+              MediaQuery.of(context).size.height * 0.35,
+            ),
+            CircularProgressIndicator(),
+          ],
+        ),
+      )
+          :Container(
+        child: Center(
+
+          child: Column(
+            children: [
+              SizedBox(
+                height:
+                MediaQuery.of(context).size.height * 0.35,
+              ),
+              //CircularProgressIndicator()
+              Text(
+                MyLocalizations.of(context).text("NO_DATA_FOUND"),
+                style: TextStyle(
+                    color: Colors.black, fontSize: 15),
+              ),
+            ],
+          ),
+        ),
+      )
+          : Padding(
         padding: const EdgeInsets.all(15.0),
         child: Container(
           height: double.maxFinite,
@@ -383,10 +415,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 child: Container(
                   width: double.infinity,
                   decoration: BoxDecoration(
-                      /*gradient: LinearGradient(
-                        colors: [Colors.blue[400], Colors.blue[200]]),*/
-                      /*borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: Colors.grey[200]),*/
                       ),
                   child: Padding(
                     padding: const EdgeInsets.only(
@@ -605,19 +633,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           height: 300,
                           child: TabBarView(
                             children: [
-                              (patientProfileModel != null)? rowValue()  :Container(
-                                child: Center(
-                                  child: Column(
-                                    children: [
-                                      SizedBox(height: 300,),
-                                      (isdata)? Text(MyLocalizations.of(context).text("NO_DATA_FOUND"),
-                                        style:
-                                        TextStyle(color: Colors.black, fontSize: 15),
-                                      ):CircularProgressIndicator(),
-                                    ],
-                                  ),
-                                ),
-                              ),
+                            rowValue(),
                               (patientProfileModel != null)? backUp():Container(),
                               (patientProfileModel != null)?rowValue2():Container(),
                               (patientProfileModel != null)? rowValue3():Container(),

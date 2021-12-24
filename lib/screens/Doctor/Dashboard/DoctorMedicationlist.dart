@@ -545,7 +545,7 @@ class _MedicationlistState extends State<Medicationlist> {
             textEditingController[1].text = "";
             textEditingController[2].text = "";
           },
-          textColor: Theme.of(context).primaryColor,
+          textColor: AppData.kPrimaryRedColor,
           child: const Text('Cancel'),
         ),
         new FlatButton(

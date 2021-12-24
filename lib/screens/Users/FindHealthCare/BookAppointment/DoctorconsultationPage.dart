@@ -308,7 +308,6 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                               ),
                               borderRadius: BorderRadius.circular(4.0),
                             ),
-                            child: Expanded(
                             child: Row(
                               children: [
                                 Radio(
@@ -329,7 +328,6 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                                       TextStyle(color: Colors.black, fontSize: 12,fontWeight: FontWeight.bold),
                                 )
                               ],
-                            ),
                             ),
                           ),
                         ],

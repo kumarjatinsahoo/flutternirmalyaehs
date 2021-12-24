@@ -70,8 +70,8 @@ class _MyOrdersLabState extends State<MyOrdersLab> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          MyLocalizations.of(context).text("CONFIRM_ORDER_LIST"),
+        title: Text("Orders List",
+          //MyLocalizations.of(context).text("ORDERS LIST").toUpperCase(),
           style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
@@ -386,6 +386,7 @@ class _MyOrdersLabState extends State<MyOrdersLab> {
               //pharmacyorderModel = oderlist.PharmacyorderModel.fromJson(map);
               //  AppData.showInSnackBar(context, msg);
               callAPI();
+              AppData.showInSnackDone(context,"Order Rejected");
             } else {
               isDataNotAvail = true;
               AppData.showInSnackBar(context, msg);

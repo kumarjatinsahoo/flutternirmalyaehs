@@ -33,7 +33,7 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
   String selectedDatestr;
   bool isdata = true;
   Ratingmodel ratingmodel;
-  String rate;
+  int rate;
   List<bool> error = [false, false, false, false, false, false];
 
   final df = new DateFormat('dd/MM/yyyy');
@@ -1129,6 +1129,8 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
   }
 
   void displayDialog(BuildContext context, Body appointmentlist) {
+    textEditingController[0].text=appointmentlist.review??"";
+  // double rating=appointmentlist.rating??"";
     showDialog(
         builder: (context) {
           return AlertDialog(
@@ -1161,9 +1163,10 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                                 children: [
                                   RatingBar(
                                     // initialRating: 3,
-                                    onRatingChanged: (rating) {
-                                       rate=rating.toString();
-                                      print(rating);
+                                    onRatingChanged: ( rating) {
+                                      // rate=int.tryParse(rating.toString()).toString();
+                                       rate=rating.toInt();
+                                      print(rate);
                                     },
                                     size: 45,
                                     initialRating: 0,
@@ -1213,7 +1216,7 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                   setState(() {
                     Ratingmodel ratingmode = Ratingmodel();
                     ratingmode.userid = widget.model.user;
-                   ratingmode.rating = rate;
+                   ratingmode.rating = rate.toString();
                     ratingmode.drid = appointmentlist.doctorid;
                     ratingmode.appno = appointmentlist.appno;
                     ratingmode.reviews = textEditingController[1].text;

@@ -48,6 +48,8 @@ class Body {
   String patname;
   String appno;
   String typeofconsult;
+  String rating;
+  String review;
 
   Body({
     this.doctorid,
@@ -67,6 +69,8 @@ class Body {
     this.patname,
     this.appno,
     this.typeofconsult,
+    this.rating,
+    this.review,
   });
 
   Body.fromJson(Map<String, dynamic> json) {
@@ -89,6 +93,8 @@ class Body {
     patname = json['patname'].toString();
     appno = json['appno'].toString();
     typeofconsult = json['typeofconsult'].toString();
+    rating = json['rating'].toString();
+    review = json['review'].toString();
   }
 
   Map<String, dynamic> toJson() {
@@ -110,6 +116,8 @@ class Body {
     data['patname'] = this.patname;
     data['appno'] = this.appno;
     data['typeofconsult'] = this.typeofconsult;
+    data['rating'] = this.rating;
+    data['review'] = this.review;
     return data;
   }
 }
