@@ -304,9 +304,6 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                          // SizedBox(width: 100),
 
                           Container(
-                           // color: Colors.grey,
-                           // width: 100,
-                            //height: 50,
                             decoration: BoxDecoration(
                               color: Colors.grey,
                               border: Border.all(
