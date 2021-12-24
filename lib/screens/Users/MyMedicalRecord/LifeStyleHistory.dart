@@ -601,6 +601,7 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                       });
                     }),
                   ),
+                  SizedBox(height: 8),
                   Text("  Alcohol"),
                   Padding(
                     //padding: const EdgeInsets.all(8.0),
@@ -618,6 +619,7 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                       });
                     }),
                   ),
+                  SizedBox(height: 8),
                   Text("  Diet"),
                   gender(),
                   /* Padding(
@@ -656,6 +658,10 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
           onPressed: () {
             Navigator.of(context).pop();
             // textEditingController[0].text = "";
+            lifeStyleHistryModel.body.smokingName=null;
+            lifeStyleHistryModel.body.alcoholName=null;
+            lifeStyleHistryModel.body.diet=null;
+            lifeStyleHistryModel.body.exercise=null;
           },
           child: Text(MyLocalizations.of(context).text("CANCEL"),
               style: TextStyle(color: AppData.kPrimaryRedColor)),
@@ -682,10 +688,10 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                   textEditingController[0].text == null ||
                   textEditingController[0].text == "") {
                 AppData.showInSnackBar(context, "Please enter  Exercise");
-              } else if (textEditingController[1].text == "N/A" ||
-                  textEditingController[1].text == null ||
-                  textEditingController[1].text == "") {
-                AppData.showInSnackBar(context, "Please enter  Occupation");
+              // } else if (textEditingController[1].text == "N/A" ||
+              //     textEditingController[1].text == null ||
+              //     textEditingController[1].text == "") {
+              //   AppData.showInSnackBar(context, "Please enter  Occupation");
               } else if (textEditingController[2].text == "N/A" ||
                   textEditingController[2].text == null ||
                   textEditingController[2].text == "") {

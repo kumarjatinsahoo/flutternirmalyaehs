@@ -655,7 +655,7 @@ class PharmaSignUpForm2State extends State<PharmaSignUpForm2> {
   Widget dob() {
     return Padding(
       //padding: const EdgeInsets.symmetric(horizontal: 8),
-      padding: const EdgeInsets.symmetric(horizontal: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 7),
       child: GestureDetector(
         onTap: () => widget.isConfirmPage ? null : _selectDate(context),
         child: AbsorbPointer(
@@ -706,7 +706,7 @@ class PharmaSignUpForm2State extends State<PharmaSignUpForm2> {
                 //contentPadding: EdgeInsets.symmetric(vertical: 10),
                 prefixIcon: Icon(
                   Icons.calendar_today,
-                  size: 18,
+                  size: 20,
                   color: Colors.grey,
                 ),
               ),
