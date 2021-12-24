@@ -601,6 +601,7 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                       });
                     }),
                   ),
+                  SizedBox(height: 8),
                   Text("  Alcohol"),
                   Padding(
                     //padding: const EdgeInsets.all(8.0),
@@ -618,6 +619,7 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                       });
                     }),
                   ),
+                  SizedBox(height: 8),
                   Text("  Diet"),
                   gender(),
                   /* Padding(
@@ -637,10 +639,10 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                   SizedBox(
                     height: 8,
                   ),
-                  // formField(1, MyLocalizations.of(context).text("OCCUPATION")),
-                  // SizedBox(
-                  //   height: 8,
-                  // ),
+                  formField(1, MyLocalizations.of(context).text("OCCUPATION")),
+                  SizedBox(
+                    height: 8,
+                  ),
                   formField(2, MyLocalizations.of(context).text("PETS")),
                   SizedBox(
                     height: 5,
