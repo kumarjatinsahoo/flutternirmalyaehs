@@ -281,7 +281,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               }*/
             } else {
              // isDataNotAvail = true;
-              isdata=true;
+             // isdata=true;
               AppData.showInSnackBar(context, "Something Went Wrong");
             }
           });
@@ -371,7 +371,43 @@ class _ProfileScreenState extends State<ProfileScreen> {
         //centerTitle: true,
         // iconTheme: IconThemeData(color: AppData.kPrimaryColor,),
       ),
-      body: Padding(
+      body: isdata == true
+          ? Center(
+        child: Column(
+          children: [
+            SizedBox(
+              height:
+              MediaQuery.of(context).size.height * 0.35,
+            ),
+            CircularProgressIndicator(),
+          ],
+        ),
+      )
+      /* Center(
+                child: CircularProgressIndicator(),
+              )*/
+          : patientProfileModel == null
+          ? Container(
+        child: Center(
+
+          child: Column(
+            children: [
+
+              SizedBox(
+                height:
+                MediaQuery.of(context).size.height * 0.35,
+              ),
+              CircularProgressIndicator()
+             /* Text(
+                MyLocalizations.of(context).text("NO_DATA_FOUND"),
+                style: TextStyle(
+                    color: Colors.black, fontSize: 15),
+              ),*/
+            ],
+          ),
+        ),
+      )
+          : Padding(
         padding: const EdgeInsets.all(15.0),
         child: Container(
           height: double.maxFinite,
@@ -605,19 +641,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           height: 300,
                           child: TabBarView(
                             children: [
-                              (patientProfileModel != null)? rowValue()  :Container(
-                                child: Center(
-                                  child: Column(
-                                    children: [
-                                      SizedBox(height: 300,),
-                                      (isdata)? Text(MyLocalizations.of(context).text("NO_DATA_FOUND"),
-                                        style:
-                                        TextStyle(color: Colors.black, fontSize: 15),
-                                      ):CircularProgressIndicator(),
-                                    ],
-                                  ),
-                                ),
-                              ),
+                            rowValue(),
                               (patientProfileModel != null)? backUp():Container(),
                               (patientProfileModel != null)?rowValue2():Container(),
                               (patientProfileModel != null)? rowValue3():Container(),
