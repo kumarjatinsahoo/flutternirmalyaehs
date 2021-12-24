@@ -94,7 +94,7 @@ class Body {
     appno = json['appno'].toString();
     typeofconsult = json['typeofconsult'].toString();
     rating = json['rating'].toString();
-    review = json['review'].toString();
+    review = json['review'];
   }
 
   Map<String, dynamic> toJson() {
