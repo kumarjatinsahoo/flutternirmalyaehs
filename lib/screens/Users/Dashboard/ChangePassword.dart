@@ -247,10 +247,10 @@ class _ChangePasswordState extends State<ChangePassword> {
               style: TextStyle(color: Colors.white, fontSize: 20),
             ),
             onPressed: () {
-              /*Navigator.pop(context, true);
+             /* Navigator.pop(context, true);
               Navigator.pop(context, true);
               Navigator.pop(context, true);*/
-              Navigator.pushNamedAndRemoveUntil(context, "/login", (route) => false);
+             //Navigator.pushNamedAndRemoveUntil(context, "/login", (route) => false);
             },
             color: Color.fromRGBO(0, 179, 134, 1.0),
             radius: BorderRadius.circular(0.0),
@@ -275,8 +275,8 @@ class _ChangePasswordState extends State<ChangePassword> {
           } else {
             var sendData ={
               "key" :loginResponse1.body.userMobile ,// "mobileno from login response",
-              "name" : oldwpwd.text,//"oldpassword",
-              "code" : newpwd.text,// "newpassword",
+              "name" :textEditingController[0].text,//"oldpassword",
+              "code" :textEditingController[1].text ,// "newpassword",
               "pass" :loginResponse1.body.userPassword// "password from login response"
             } /*{"key":loginResponse1.body.userMobile, "code": cnfpwd.text}*/;
              //MyWidgets.showLoading(context);

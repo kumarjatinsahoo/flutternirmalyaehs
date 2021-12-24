@@ -483,7 +483,7 @@ class _BiomediImplantsState extends State<BiomediImplants> {
                 AppData.fieldFocusChange(context, fnode3, fnode4);
               },
               decoration: InputDecoration(
-                hintText:(MyLocalizations.of(context).text("DOB1")),
+                hintText:(MyLocalizations.of(context).text("DATE")),
                 border: InputBorder.none,
                 //contentPadding: EdgeInsets.symmetric(vertical: 10),
                 suffixIcon: Icon(
