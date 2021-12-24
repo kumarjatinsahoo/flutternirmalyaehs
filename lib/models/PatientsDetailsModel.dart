@@ -198,14 +198,18 @@ class Allergies {
   String allFood;
   String severity;
   String reaction;
+  String allnameid;
+  String alltypeid;
 
-  Allergies({this.allName, this.allFood, this.severity, this.reaction});
+  Allergies({this.allName, this.allFood, this.severity, this.reaction,this.allnameid,this.alltypeid});
 
   Allergies.fromJson(Map<String, dynamic> json) {
     allName = json['allName'];
     allFood = json['allFood'];
     severity = json['severity'];
     reaction = json['reaction'];
+    allnameid = json['allnameid'];
+    alltypeid = json['alltypeid'];
   }
 
   Map<String, dynamic> toJson() {
@@ -214,6 +218,8 @@ class Allergies {
     data['allFood'] = this.allFood;
     data['severity'] = this.severity;
     data['reaction'] = this.reaction;
+    data['allnameid'] = this.allnameid;
+    data['alltypeid'] = this.alltypeid;
     return data;
   }
 }

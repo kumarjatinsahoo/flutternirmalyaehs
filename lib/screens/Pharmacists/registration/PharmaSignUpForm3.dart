@@ -287,13 +287,13 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
                                     ),
                                   ),
                                   SizedBox(
-                                    height: 5,
+                                    height: 10,
                                   ),
 
                                   //  formFieldaddress(8, "Address"),
-                                  SizedBox(
+                               /*   SizedBox(
                                     height: 5,
-                                  ),
+                                  ),*/
 
                                   DropDown.networkDropdownGetpartUser(
                                       MyLocalizations.of(context)

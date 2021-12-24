@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:dio/dio.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
@@ -10,27 +11,45 @@ import 'package:user/providers/DropDown.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
+import 'package:user/widgets/TextFormatter.dart';
 import 'package:user/widgets/text_field_container.dart';
+
 import '../../../localization/localizations.dart';
+import '../../../models/KeyvalueModel.dart';
+import '../../../models/KeyvalueModel.dart';
 import '../../../models/KeyvalueModel.dart';
 import '../../../providers/app_data.dart';
 import '../../../providers/app_data.dart';
 import '../../../providers/app_data.dart';
 
+
+enum gender{
+  Male,
+  Female,
+}
 // ignore: must_be_immutable
-class PharmaSignUpForm extends StatefulWidget {
+class OrganisationSignUpForm extends StatefulWidget {
 
   final bool isConfirmPage;
   final bool isFromDash;
+  String profilePath = null,
+      idproof = null,
+      labReport = null,
+      helathCheckup = null;
+
   MainModel model;
   static KeyvalueModel districtModel = null;
   static KeyvalueModel blockModel = null;
   static KeyvalueModel genderModel = null;
-  static KeyvalueModel organizationModel = null;
-  static KeyvalueModel pharmacyModel = null;
-  static KeyvalueModel titlemodel = null;
+  static KeyvalueModel bloodgroupModel = null;
+  static KeyvalueModel countryModel = null;
+  static KeyvalueModel stateModel = null;
+  static KeyvalueModel citymodel = null;
+  static KeyvalueModel healthcareProviderModel = null;
+  static KeyvalueModel doctorModel = null;
 
-  PharmaSignUpForm({
+
+  OrganisationSignUpForm({
     Key key,
     this.isConfirmPage = false,
     this.isFromDash = false,
@@ -38,10 +57,10 @@ class PharmaSignUpForm extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  PharmaSignUpFormState createState() => PharmaSignUpFormState();
+  OrganisationSignUpFormState createState() => OrganisationSignUpFormState();
 }
 
-class PharmaSignUpFormState extends State<PharmaSignUpForm> {
+class OrganisationSignUpFormState extends State<OrganisationSignUpForm> {
   File _image;
   final _formKey = GlobalKey<FormState>();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -89,7 +108,10 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
 
   TextEditingController _email = TextEditingController();
   FocusNode emailFocus_ = FocusNode();
-
+  String profilePath = null,
+      idproof = null,
+      labReport = null,
+      helathCheckup = null;
   List<bool> dropdownError = [false, false, false];
   var color = Colors.black;
   var strokeWidth = 3.0;
@@ -124,24 +146,29 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
 
   StreamSubscription _connectionChangeStream;
   bool isOnline = false;
-  List<KeyvalueModel> genderList = [
-    KeyvalueModel(name: "Male", key: "1"),
-    KeyvalueModel(name: "Female", key: "2"),
-    KeyvalueModel(name: "Transgender", key: "3"),
+  List<KeyvalueModel> BloodGroup = [
+    KeyvalueModel(name: "A+", key: "1"),
+    KeyvalueModel(name: "B+", key: "2"),
+    KeyvalueModel(name: "O+", key: "3"),
+    KeyvalueModel(name: "AB+", key: "4"),
+    KeyvalueModel(name: "A-", key: "5"),
+    KeyvalueModel(name: "B-", key: "6"),
+    KeyvalueModel(name: "O-", key: "7"),
+    KeyvalueModel(name: "AB-", key: "8"),
   ];
-  List<KeyvalueModel> districtList = [
-    KeyvalueModel(name: "india", key: "1"),
-
+  List<KeyvalueModel> Gender=[
+    KeyvalueModel(name: "Male",key: "0"),
+    KeyvalueModel(name: "Female",key: "1"),
+    KeyvalueModel(name: "Transgender",key: "2"),
   ];
 
   @override
   void initState() {
     super.initState();
-    PharmaSignUpForm.districtModel = null;
-    PharmaSignUpForm.blockModel = null;
-    PharmaSignUpForm.genderModel = null;
-    PharmaSignUpForm.pharmacyModel = null;
-    PharmaSignUpForm.titlemodel = null;
+    OrganisationSignUpForm.districtModel = null;
+    OrganisationSignUpForm.blockModel = null;
+    OrganisationSignUpForm.genderModel = null;
+    OrganisationSignUpForm.bloodgroupModel = null;
     /*setState(() {
       masterClass = widget.model.masterDataResponse;
     });
@@ -207,70 +234,191 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
-                                  Column(
-                                    children: [
-                                      Text(MyLocalizations.of(context).text("FILL_IN_PERSONAL_INFORMATION"),
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(fontSize: 18, color: Colors.black),),
-                                    ],
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Column(
+                                      children: [
+                                        Text(MyLocalizations.of(context).text("FILL_IN_PERSONAL_INFORMATION"),
+                                          style: TextStyle(fontSize: 18, color: Colors.black),),
+                                      ],
+                                    ),
                                   ),
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-                                  DropDown.networkDropdownGetpartUser1(
-                                      MyLocalizations.of(context)
-                                          .text("ORGANIZATION_NAME") ,
-                                      ApiFactory.PHARMACY_ORGANISATION_API,
-                                      "pharmacy",
-                                      Icons.location_on_rounded,
-                                      23.0, (KeyvalueModel data) {
-                                    setState(() {
-                                      print(ApiFactory.PHARMACY_ORGANISATION_API);
-                                      PharmaSignUpForm.pharmacyModel = data;
-                                    });
-                                  }),
-                                  DropDown.networkDropdownGetpartUser1(
-                                      MyLocalizations.of(context)
-                                          .text("TITLE") ,
-                                      ApiFactory.TITLE_API,
-                                      "title",
-                                      Icons.location_on_rounded,
-                                      23.0, (KeyvalueModel data) {
-                                    setState(() {
-                                      print(ApiFactory.TITLE_API);
-                                      PharmaSignUpForm.titlemodel = data;
-                                    });
-                                  }),
                                   SizedBox(
                                     height: 8,
                                   ),
-                                  formField1(9, MyLocalizations.of(context).text("PROFESSIONAL_NAME")),
-                                  SizedBox(height: 8),
-
-                                  formFieldExperience(10,  MyLocalizations.of(context).text("EXPERIENCE")),
+                                  formField1(0, "Organisation Name"),
                                   SizedBox(
                                     height: 8,
                                   ),
-                                  formField2(11,MyLocalizations.of(context).text("ADDRESS")),
+                                  formFieldPassPortno(1, "Licenece No",),
+                                  SizedBox(
+                                    height: 8,
+                                  ),
+                                  formField1(2, "Address"),
 
-                                  // DropDown.networkDropdownGetpartUser1(
-                                  //     MyLocalizations.of(context)
-                                  //         .text("GENDER") ,
-                                  //     ApiFactory.GENDER_API,
-                                  //     "gender",
-                                  //     Icons.location_on_rounded,
-                                  //     23.0, (KeyvalueModel data) {
-                                  //   setState(() {
-                                  //     print(ApiFactory.GENDER_API);
-                                  //     PharmaSignUpForm.genderModel = data;
-                                  //   });
-                                  // }),
-                                  SizedBox(height: 15),
+                                  DropDown.networkDropdownGetpartUser(
+                                      MyLocalizations.of(context)
+                                          .text("COUNTRY"),
+                                      ApiFactory.COUNTRY_API,
+                                      "country",
+                                      Icons.location_on_rounded,
+                                      23.0, (KeyvalueModel data) {
+                                    setState(() {
+                                      print(ApiFactory.COUNTRY_API);
+                                      OrganisationSignUpForm.countryModel = data;
+                                      OrganisationSignUpForm.stateModel = null;
+                                      OrganisationSignUpForm.districtModel = null;
+                                      OrganisationSignUpForm.citymodel = null;
+                                    });
+                                  }),
+                                  DropDown.countryList(
+                                      MyLocalizations.of(context).text("STATE"),
+                                      ApiFactory.STATE_API +
+                                          (OrganisationSignUpForm?.countryModel?.key ?? ""),"stateph",
+                                      Icons.location_on_rounded,
+                                      23.0, (KeyvalueModel data) {
+                                    setState(() {
+                                      print(ApiFactory.STATE_API);
+                                      OrganisationSignUpForm.stateModel = data;
+                                      OrganisationSignUpForm.districtModel = null;
+                                      OrganisationSignUpForm.citymodel = null;
+                                    });
+                                  }),
 
+                                  DropDown.countryList(
+                                      MyLocalizations.of(context).text("DIST"),
+                                      ApiFactory.DISTRICT_API +
+                                          (OrganisationSignUpForm?.stateModel?.key ??
+                                              ""),
+                                      "districtph",
+                                      Icons.location_on_rounded,
+                                      23.0, (KeyvalueModel data) {
+                                    setState(() {
+                                      print(ApiFactory.DISTRICT_API);
+                                      OrganisationSignUpForm.districtModel = data;
+                                      OrganisationSignUpForm.citymodel = null;
+                                    });
+                                  }),
+
+                                  DropDown.countryList(
+                                      MyLocalizations.of(context).text("CITY"),
+                                      ApiFactory.CITY_API +
+                                          (OrganisationSignUpForm
+                                              ?.districtModel?.key ??""),
+                                      "cityph",
+                                      Icons.location_on_rounded,
+                                      23.0, (KeyvalueModel data) {
+                                    setState(() {
+                                      print(ApiFactory.CITY_API);
+                                      OrganisationSignUpForm.citymodel = data;
+                                      // LabSignUpForm3.districtModel = null;
+                                    });
+                                  }),
+
+                                  SizedBox(
+                                    height: 8,
+                                  ),
+                                  formFieldzip(
+                                      5,
+                                      MyLocalizations.of(context)
+                                          .text("ENTER_ZIP_CODE")),
+                                  SizedBox(
+                                    height: 8,
+                                  ),
+                                  formFieldzip(
+                                      5,
+                                      "Enter GST/VAT"),
+
+
+                                  DropDown.networkDropdownGetpartUser(
+                                      "Select Healthcare Provider",
+                                      ApiFactory.HEALTHPROVIDER_API,
+                                      "healthcareProvider",
+                                      Icons.mail,
+                                      23.0, (KeyvalueModel data) {
+                                    setState(() {
+                                      print(ApiFactory.HEALTHPROVIDER_API);
+                                      OrganisationSignUpForm.healthcareProviderModel = data;
+                                      OrganisationSignUpForm.healthcareProviderModel = null;
+                                      // UserSignUpForm.cityModel = null;
+                                    });
+                                  }),
+                                  SizedBox(
+                                    height: 18,
+                                  ),
+                                  Container(
+                                    child: Row(
+                                      children: [
+                                        Expanded(
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(10.0),
+                                            child: Text(MyLocalizations.of(context).text("UPLOAD_DOCUMENT"),style: TextStyle(color:AppData.kPrimaryColor,fontSize: 20,fontWeight: FontWeight.bold),),
+                                          ),
+                                        ),
+                                        SizedBox(width:5),
+                                        Material(
+                                          elevation: 3,
+                                          color:AppData.kPrimaryColor,
+                                          borderRadius: BorderRadius.circular(5.0),
+                                          child: MaterialButton(
+                                            onPressed: () {
+                                              _settingModalBottomSheet(context);
+
+                                            },
+                                            minWidth: 150,
+                                            height: 40.0,
+                                            child: Text(MyLocalizations.of(context).text("UPLOAD"),
+                                              style: TextStyle(
+                                                  color: Colors.white, fontSize: 17.0),
+                                            ),
+                                          ),
+                                        ),
+
+                                      ],
+                                    ),
+                                  ),
+                                  SizedBox(height: 10,),
+                                  (idproof != null)
+                                      ? Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 10, right: 10),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Expanded(
+                                          child: Container(
+
+                                            child: Text(
+
+                                              "Report Path :" + idproof,
+                                              style: TextStyle(color: Colors.green),
+                                            ),
+                                          ),
+                                        ),
+                                        InkWell(
+                                          child: SizedBox(
+                                              width: 50.0,
+                                              child: Icon(Icons.clear)),
+                                          onTap: () {
+                                            setState(() {
+                                              idproof = null;
+                                              // registrationModel.profilePhotoBase64 =
+                                              null;
+                                              //registrationModel.profilePhotoExt =
+                                              null;
+                                            });
+                                          },
+                                        )
+                                      ],
+                                    ),
+                                  )
+                                      : Container(),
+                                  SizedBox(height: 30,),
                                   Padding(padding: const EdgeInsets.symmetric(horizontal: 10),
                                     child: nextButton1(),
                                   ),
-
                                 ],
                               ),
                             )
@@ -297,15 +445,233 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
       ),
     );
   }*/
-  Widget gender() {
-    return DropDown.searchDropdowntyp("Gender", "genderPartner", genderList,
-            (KeyvalueModel model) {
-          PharmaSignUpForm.genderModel = model;
+  // Widget gender() {
+  //   return DropDown.searchDropdowntyp("Gender", "genderPartner", genderList,
+  //           (KeyvalueModel model) {
+  //         LabSignUpForm2.genderModel = model;
+  //       });
+  // }
+
+
+  void _settingModalBottomSheet(context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext bc) {
+          return Container(
+            child: new Wrap(
+              children: <Widget>[
+                new ListTile(
+                    leading: new Icon(Icons.camera),
+                    title: new Text('Camera'),
+                    onTap: () => {
+                      Navigator.pop(context),
+                      getCameraImage(),
+                    }),
+                new ListTile(
+                  leading: new Icon(Icons.folder),
+                  title: new Text('Gallery'),
+                  onTap: () => {
+                    Navigator.pop(context),
+                    getCerificateImage()},
+                ),
+                new ListTile(
+                    leading: new Icon(Icons.file_copy),
+                    title: new Text('Document'),
+                    onTap: () => {
+                      Navigator.pop(context),
+                      getPdfAndUpload(),
+                    }),
+              ],
+            ),
+          );
         });
   }
+  Future getPdfAndUpload() async {
+    File file = await FilePicker.getFile(
+      type: FileType.custom,
+      allowedExtensions: [
+        'pdf',
+        'docx'
+      ], //here you can add any of extention what you need to pick
+    );
+    var enc = await file.readAsBytes();
+    String _path = file.path;
 
+    String _fileName = _path != null ? _path.split('/').last : '...';
+    var pos = _fileName.lastIndexOf('.');
+    String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+    print(extName);
 
+    if (file != null) {
+      setState(() {
+        idproof = file.path;
+        //pharmaSignupModel.documentUpload=base64Encode(enc);
+        // pharmaSignupModel.documentExt=extName;
+        //userModel. = base64Encode(enc);
+        //file1 = file; //file1 is a global variable which i created
+      });
+    }
+  }
+  Future getCameraImage() async {
+    // File pathUsr=null;
+    // var image = await ImagePicker.pickImage(source: ImageSource.gallery);
+    var image;
+    try {
+      var image = await ImagePicker.pickImage(
+          source: ImageSource.camera, imageQuality: 50);
 
+      // var decodedImage = await decodeImageFromList(image.readAsBytesSync());
+      if (image != null) {
+        var enc = await image.readAsBytes();
+        String _path = image.path;
+        String _fileName = _path != null ? _path.split('/').last : '...';
+        var pos = _fileName.lastIndexOf('.');
+        String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+        print(extName);
+        //print("size>>>" + AppData.formatBytes(enc.length, 0).toString());
+        setState(() {
+          // widget.model.patientimg =base64Encode(enc);
+          // widget.model.patientimgtype =extName;
+          _imageCertificate = image;
+          idproof = _fileName;
+          // Print("pathhh"+idproof);
+          //userModel.profileImage = base64Encode(enc);
+        });
+      }
+    } catch (e) {
+      print("Error>>in" + e.toString());
+    }
+  }
+
+  Future getCerificateImage() async {
+    var image = await ImagePicker.pickImage(
+      source: ImageSource.gallery,
+      imageQuality: 10,
+    );
+    var enc = await image.readAsBytes();
+    String _path = image.path;
+
+    String _fileName = _path != null ? _path.split('/').last : '...';
+    var pos = _fileName.lastIndexOf('.');
+    String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+    print(extName);
+
+    setState(() {
+      _imageCertificate = image;
+      idproof = _fileName;
+      //userModel.profileImage = base64Encode(enc);
+    });
+  }
+  Widget formFieldzip(
+      int index,
+      String hint,
+      ) {
+    return Padding(
+      //padding: const EdgeInsets.all(8.0),
+      padding:
+      const EdgeInsets.only(top: 0.0, left: 8.0, right: 8.0, bottom: 0.0),
+      child: Container(
+        decoration: BoxDecoration(
+            color: AppData.white,
+            borderRadius: BorderRadius.circular(5),
+            border: Border.all(color: Colors.black, width: 0.3)),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 18.0),
+          child: Row(
+            children: <Widget>[
+              new Expanded(
+                child: TextFormField(
+                  enabled: widget.isConfirmPage ? false : true,
+                  controller: textEditingController[index],
+                  //focusNode: fnode7,
+                  cursorColor: AppData.kPrimaryColor,
+                  textInputAction: TextInputAction.next,
+                  maxLength: 6,
+                  keyboardType: TextInputType.number,
+                  inputFormatters: [
+                    WhitelistingTextInputFormatter(RegExp("[0-9 ]")),
+                  ],
+                  decoration: InputDecoration(
+                    //suffixIcon: Icon(Icons.phone),
+                    border: InputBorder.none,
+                    counterText: "",
+                    hintText: hint,
+                    hintStyle:
+                    TextStyle(color: AppData.hintColor, fontSize: 15),
+                  ),
+
+                  onFieldSubmitted: (value) {
+                    // print(error[2]);
+                    error[4] = false;
+                    setState(() {});
+                    AppData.fieldFocusChange(context, fnode7, fnode8);
+                  },
+                  onSaved: (value) {
+                    //userPersonalForm.phoneNumber = value;
+                  },
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+  Widget formFieldGst(
+      int index,
+      String hint,
+      ) {
+    return Padding(
+      //padding: const EdgeInsets.all(8.0),
+      padding:
+      const EdgeInsets.only(top: 0.0, left: 8.0, right: 8.0, bottom: 0.0),
+      child: Container(
+        decoration: BoxDecoration(
+            color: AppData.white,
+            borderRadius: BorderRadius.circular(5),
+            border: Border.all(color: Colors.black, width: 0.3)),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 18.0),
+          child: Row(
+            children: <Widget>[
+              new Expanded(
+                child: TextFormField(
+                  enabled: widget.isConfirmPage ? false : true,
+                  controller: textEditingController[index],
+                  //focusNode: fnode7,
+                  cursorColor: AppData.kPrimaryColor,
+                  textInputAction: TextInputAction.next,
+                  maxLength: 6,
+                  keyboardType: TextInputType.number,
+                  inputFormatters: [
+                    WhitelistingTextInputFormatter(RegExp("[0-9. ]")),
+                  ],
+                  decoration: InputDecoration(
+                    //suffixIcon: Icon(Icons.phone),
+                    border: InputBorder.none,
+                    counterText: "",
+                    hintText: hint,
+                    hintStyle:
+                    TextStyle(color: AppData.hintColor, fontSize: 15),
+                  ),
+
+                  onFieldSubmitted: (value) {
+                    // print(error[2]);
+                    error[4] = false;
+                    setState(() {});
+                    AppData.fieldFocusChange(context, fnode7, fnode8);
+                  },
+                  onSaved: (value) {
+                    //userPersonalForm.phoneNumber = value;
+                  },
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 
   Widget mobileNoOTPSearch() {
     return Row(
@@ -333,7 +699,7 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
     );
   }
 
-  Future getCerificateImage() async {
+  /*Future getCerificateImage() async {
     // ignore: deprecated_member_use
     var image = await ImagePicker.pickImage(source: ImageSource.gallery);
     var decodedImage = await decodeImageFromList(image.readAsBytesSync());
@@ -345,7 +711,7 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
       selectGallery = true;
       print('Image Path $_imageCertificate');
     });
-  }
+  }*/
 
   Future getImage() async {
     // ignore: deprecated_member_use
@@ -442,80 +808,71 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
       ),
     );
   }
-
   Widget nextButton1() {
     return MyWidgets.nextButton(
-      text:MyLocalizations.of(context).text("NEXT"),
+      text:  MyLocalizations.of(context).text("NEXT"),
       context: context,
       fun: () {
-       // Navigator.pushNamed(context, "/patientRegistration2");
-        if (PharmaSignUpForm.pharmacyModel == null ||
-            PharmaSignUpForm.pharmacyModel == "") {
-          AppData.showInSnackBar(context, "Please select Organization Name");
+        if (textEditingController[8].text == "" ||
+            textEditingController[8].text == null) {
+          AppData.showInSnackBar(context, "Please Enter Education Name");
         }
-        else if (PharmaSignUpForm.titlemodel == null ||
-            PharmaSignUpForm.titlemodel == "") {
-          AppData.showInSnackBar(context, "Please select Title");
+        else if (OrganisationSignUpForm.healthcareProviderModel == null ||
+            OrganisationSignUpForm.healthcareProviderModel == "") {
+          AppData.showInSnackBar(context, "Please Select Speciality");
         }
-        else if (textEditingController[9].text == "" ||
-            textEditingController[9].text == null) {
-          AppData.showInSnackBar(context, "Please enter Professional's Name");
+        else if (textEditingController[2].text == "" ||
+            textEditingController[2].text == null) {
+          AppData.showInSnackBar(context, "Please Enter Date of Birth");
         }
-        else if (textEditingController[10].text == "" ||
-            textEditingController[10].text == null) {
-          AppData.showInSnackBar(context, "Please enter Experience");
+        else if (OrganisationSignUpForm.bloodgroupModel == null ||
+            OrganisationSignUpForm.bloodgroupModel == "") {
+          AppData.showInSnackBar(context, "Please Select Blood Group");
         }
-        else if (textEditingController[11].text == "" ||
-            textEditingController[11].text == null) {
-          AppData.showInSnackBar(context, "Please enter Address");
-        }
-        // else if (PharmaSignUpForm.genderModel == null ||
-        //     PharmaSignUpForm.genderModel == "") {
-        //   AppData.showInSnackBar(context, "Please select Gender");
-        // }
-        else {
-          widget.model.pharmaorganisation = PharmaSignUpForm.pharmacyModel.key;
-          widget.model.pharmartitle = PharmaSignUpForm.titlemodel.key;
-          widget.model.pharmaprofessional = textEditingController[9].text;
-          widget.model.pharmaexperience = textEditingController[10].text;
-          widget.model.pharmaaddress = textEditingController[11].text;
-          //widget.model.pharmagender = PharmaSignUpForm.genderModel.key;
-
-          Navigator.pushNamed(context, "/pharmasignupform2");
+        else if (OrganisationSignUpForm.genderModel == null ||
+            OrganisationSignUpForm.genderModel == "") {
+          AppData.showInSnackBar(context, "Please Select Gender");
+        } else {
+          // widget.model.pharmaeducation = textEditingController[8].text;
+          // widget.model.pharmaspeciality = PharmaSignUpForm2.specialistModel.key;
+          // widget.model.pharmadob = textEditingController[2].text;
+          // widget.model.pharmabloodgroup = PharmaSignUpForm2.bloodgroupModel.key;
+          // widget.model.pharmagender = PharmaSignUpForm2.genderModel.key;
+          Navigator.pushNamed(context, "/pharmasignupform3");
         }
       },
     );
   }
 
-  Widget nextButtonn() {
-    return GestureDetector(
-      onTap: () {
 
-
-        Navigator.pushNamed(context, "/pharmasignupform2");
-      },
-      child: Container(
-        width: MediaQuery.of(context).size.width,
-        margin: EdgeInsets.only(left:180, right: 0),
-        decoration: BoxDecoration(
-            color: AppData.kPrimaryColor,
-            borderRadius: BorderRadius.circular(10.0),
-            gradient: LinearGradient(
-                begin: Alignment.bottomRight,
-                end: Alignment.topLeft,
-                colors: [Colors.blue, AppData.kPrimaryColor])),
-        child: Padding(
-          padding:
-          EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
-          child: Text(
-            MyLocalizations.of(context).text("NEXT"),
-            textAlign: TextAlign.center,
-            style: TextStyle(color: Colors.white, fontSize: 16.0),
-          ),
-        ),
-      ),
-    );
-  }
+  // Widget nextButton1() {
+  //   return GestureDetector(
+  //     onTap: () {
+  //
+  //       Navigator.pushNamed(context, "/pharmasignupform3");
+  //     },
+  //     child: Container(
+  //       width: MediaQuery.of(context).size.width,
+  //       margin: EdgeInsets.only(left:180, right: 0),
+  //       decoration: BoxDecoration(
+  //           color: AppData.kPrimaryColor,
+  //           borderRadius: BorderRadius.circular(10.0),
+  //           gradient: LinearGradient(
+  //               begin: Alignment.bottomRight,
+  //               end: Alignment.topLeft,
+  //               colors: [Colors.blue, AppData.kPrimaryColor])),
+  //       child: Padding(
+  //         padding:
+  //         EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
+  //         child: Text(
+  //           MyLocalizations.of(context).text("NEXT"),
+  //           textAlign: TextAlign.center,
+  //           style: TextStyle(color: Colors.white, fontSize: 16.0),
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
 
   Widget nextButton() {
     return GestureDetector(
@@ -632,23 +989,22 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
   Widget dob() {
     return Padding(
       //padding: const EdgeInsets.symmetric(horizontal: 8),
-      padding: const EdgeInsets.symmetric(horizontal: 0),
+      padding: const EdgeInsets.symmetric(horizontal: 10),
       child: GestureDetector(
         onTap: () => widget.isConfirmPage ? null : _selectDate(context),
         child: AbsorbPointer(
           child: Container(
             // margin: EdgeInsets.symmetric(vertical: 10),
-            height: 45,
+            //height: 45,
             padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+            alignment: Alignment.center,
             // width: size.width * 0.8,
             decoration: BoxDecoration(
-              // color: AppData.kPrimaryLightColor,
-              // borderRadius: BorderRadius.circular(29),
-              border: Border(
-                bottom: BorderSide(
-                  width: 2.0,
-                  color: Colors.grey,
-                ),
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(6),
+              border: Border.all(
+                width: 0.3,
+                color: Colors.grey[800],
                 // border: Border.all(color: Colors.black, width: 0.3)
               ),
             ),
@@ -677,14 +1033,15 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
                 setState(() {});
                 AppData.fieldFocusChange(context, fnode3, fnode4);
               },
+              textAlignVertical: TextAlignVertical.center,
               decoration: InputDecoration(
-                hintText: MyLocalizations.of(context).text("DATE_OF_BIRTH"),
+                hintText: MyLocalizations.of(context).text("DOB1"),
                 border: InputBorder.none,
                 //contentPadding: EdgeInsets.symmetric(vertical: 10),
                 prefixIcon: Icon(
                   Icons.calendar_today,
                   size: 18,
-                  color: AppData.kPrimaryColor,
+                  color: Colors.grey,
                 ),
               ),
             ),
@@ -725,7 +1082,7 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
       AppData.showInSnackBar(
           context, MyLocalizations.of(context).text("PLEASE_ENTER_lAST_NAME"));
       FocusScope.of(context).requestFocus(fnode2);
-    } else if (PharmaSignUpForm.genderModel == null || PharmaSignUpForm.genderModel == "") {
+    } else if (OrganisationSignUpForm.genderModel == null || OrganisationSignUpForm.genderModel == "") {
       AppData.showInSnackBar(
           context, MyLocalizations.of(context).text("PLEASE_SELECT_GENDER"));
       FocusScope.of(context).requestFocus(fnode4);
@@ -745,9 +1102,9 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
       AppData.showInSnackBar(context,
           MyLocalizations.of(context).text("PLEASE_ENTER_PHONE_NUMBER"));
       FocusScope.of(context).requestFocus(fnode7);
-    } else if (PharmaSignUpForm.districtModel == null) {
+    } else if (OrganisationSignUpForm.districtModel == null) {
       AppData.showInSnackBar(context, "PLEASE SELECT DISTRICT");
-    } else if (PharmaSignUpForm.blockModel == null) {
+    } else if (OrganisationSignUpForm.blockModel == null) {
       AppData.showInSnackBar(context, "PLEASE SELECT BLOCK/ULB");
     } else {
       _formKey.currentState.save();
@@ -766,9 +1123,6 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
       }
     }
   }
-
-
-
 
   Widget mobileNumber1(int index, String hint, mobileModel) {
     return Container(
@@ -836,97 +1190,6 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
     );
   }
 
-  // Widget formField(int index, String hint,) {
-  //   return TextFieldContainer(
-  //     child: Container(
-  //       height: 50,
-  //       padding:
-  //       EdgeInsets.symmetric(horizontal: 5),
-  //       decoration: BoxDecoration(
-  //         color: Colors.white,
-  //         borderRadius:
-  //         BorderRadius.circular(5),
-  //         border: Border.all(
-  //             color: Colors.black, width: 0.3),
-  //       ),
-  //       child: TextFormField(
-  //         controller: textEditingController[index],
-  //         textInputAction: TextInputAction.done,
-  //         keyboardType:TextInputType.text,
-  //         /* decoration: BoxDecoration(11
-  //           color: AppData.kPrimaryLightColor,
-  //           //color: Color(0x45283e81),
-  //           borderRadius: BorderRadius.circular(29),
-  //         ),*/
-  //         style: TextStyle(fontSize: 13),
-  //         decoration: InputDecoration(
-  //             hintText: hint,
-  //             hintStyle: TextStyle(color: Colors.grey[700], fontSize: 15),
-  //             border: InputBorder.none,
-  //             contentPadding: EdgeInsets.symmetric(vertical: 2, horizontal: 0)),
-  //         onChanged: (newValue) {},
-  //       ),
-  //     ),
-  //   );
-  // }
-  Widget formFieldExperience(
-      int index,
-      String hint,
-      ) {
-    return Padding(
-      //padding: const EdgeInsets.all(8.0),
-      padding:
-      const EdgeInsets.only(top: 0.0, left: 8.0, right: 8.0, bottom: 0.0),
-      child: Container(
-        decoration: BoxDecoration(
-            color: AppData.white,
-            borderRadius: BorderRadius.circular(5),
-            border: Border.all(
-                color: Colors.black, width: 0.3)
-        ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 13.0),
-          child: Row(
-            children: <Widget>[
-              new Expanded(
-                child: TextFormField(
-                  enabled: widget.isConfirmPage ? false : true,
-                  controller: textEditingController[index],
-                  //focusNode: fnode7,
-                  cursorColor: AppData.kPrimaryColor,
-                  textInputAction: TextInputAction.next,
-                  maxLength: 2,
-                  keyboardType: TextInputType.number,
-                  inputFormatters: [
-                    WhitelistingTextInputFormatter(
-                        RegExp("[0-9 ]")),
-                  ],
-                  decoration: InputDecoration(
-                    //suffixIcon: Icon(Icons.phone),
-                    border: InputBorder.none,
-                    counterText: "",
-                    hintText: hint,
-                    hintStyle: TextStyle(
-                        color: AppData.hintColor, fontSize: 15),
-                  ),
-
-                  onFieldSubmitted: (value) {
-                    // print(error[2]);
-                    error[4] = false;
-                    setState(() {});
-                    // AppData.fieldFocusChange(context, fnode7, fnode8);
-                  },
-                  onSaved: (value) {
-                    //userPersonalForm.phoneNumber = value;
-                  },
-                ),
-              )
-            ],
-          ),
-        ),
-      ),
-    );
-  }
   Widget formField1(
       int index,
       String hint,
@@ -980,8 +1243,7 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
       ),
     );
   }
-
-  Widget formField2(
+  Widget formFieldPassPortno(
       int index,
       String hint,
       ) {
@@ -1005,6 +1267,7 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
             decoration: InputDecoration(
               border: InputBorder.none,
               hintText: hint,
+              counterText: '',
               /* prefixIcon:
               Icon(Icons.person_rounded),*/
               hintStyle: TextStyle(
@@ -1014,6 +1277,8 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
             textInputAction: TextInputAction.next,
             keyboardType: TextInputType.text,
             controller: textEditingController[index],
+            maxLength: 10,
+
             //focusNode: fnode1,
             textAlignVertical:
             TextAlignVertical.center,
@@ -1026,14 +1291,65 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
               AppData.fieldFocusChange(context, fnode1, null);
             },
             inputFormatters: [
-              WhitelistingTextInputFormatter(
-                  RegExp("[a-zA-Z ./0-9 ]")),
+              UpperCaseTextFormatter(),
+              WhitelistingTextInputFormatter(RegExp("[a-zA-Z0-9 ]")),
             ],
+
           ),
         ),
       ),
     );
   }
+  /*Widget formFieldPassPortno(
+      int controller, String hint) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        *//*Padding(
+          padding: const EdgeInsets.only(left: 0, right: 5),
+          child: Text(
+            hint,
+            style: TextStyle(
+                color: Colors.black,
+                fontSize: 13,
+                fontFamily: "",
+                fontWeight: FontWeight.w400),
+          ),
+        ),*//*
+        TextFieldContainer(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: TextFormField(
+              controller: textEditingController[controller],
+              textInputAction: TextInputAction.done,
+              keyboardType: TextInputType.text,
+              //focusNode: currentfn,
+
+              inputFormatters: [
+                UpperCaseTextFormatter(),
+                WhitelistingTextInputFormatter(RegExp("[a-zA-Z0-9 ]")),
+              ],
+              maxLength: 10,
+              // Validator.getKeyboardTyp(validateModel.fieldType.toLowerCase()),
+              style: TextStyle(fontSize: 15),
+
+              decoration: InputDecoration(
+                //hintText: hint,
+                  hintStyle: TextStyle(color: Colors.grey, fontSize: 13),
+                  border: InputBorder.none,
+                  counterText: '',
+                  contentPadding:
+                  EdgeInsets.symmetric(vertical: 2, horizontal: 0)),
+              onChanged: (newValue) {},
+              onFieldSubmitted: (value) {
+                //AppData.fieldFocusChange(context, currentfn, nextFn);
+              },
+            ),
+          ),
+        ),
+      ],
+    );
+  }*/
 
 // Widget formFieldPass(int index, String hint, int obqueTxt) {
 //   return TextFieldContainer(

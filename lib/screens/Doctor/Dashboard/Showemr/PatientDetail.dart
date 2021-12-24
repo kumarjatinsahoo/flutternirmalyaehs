@@ -1079,7 +1079,7 @@ class _PatientDetail extends State<PatientDetail> {
                                 child: Container(
                                   width: 80,
                                   child: Text(
-                                    patientsDetails.body[0].allergies[index].allName??"N/A",
+                                    patientsDetails.body[0].allergies[index].allnameid??"N/A",
                                     style: TextStyle(
                                       color: Colors.grey[700],
                                     ),
@@ -1093,7 +1093,7 @@ class _PatientDetail extends State<PatientDetail> {
                                 child: Container(
                                   width: 80,
                                   child: Text(
-                                    patientsDetails.body[0].allergies[index].allFood??"N/A",
+                                    patientsDetails.body[0].allergies[index].alltypeid??"N/A",
                                     style: TextStyle(
                                       color: Colors.grey[700],),
                                   ),

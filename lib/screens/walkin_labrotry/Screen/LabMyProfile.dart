@@ -36,7 +36,7 @@ import 'package:user/widgets/signature.dart';
 
 import '../../../main.dart';
 
-class DocMyProfile extends StatefulWidget {
+class LabMyProfile extends StatefulWidget {
   MainModel model;
   static KeyvalueModel gendermodel = null;
   static KeyvalueModel countrymodel = null;
@@ -44,16 +44,16 @@ class DocMyProfile extends StatefulWidget {
   static KeyvalueModel districtmodel = null;
   static KeyvalueModel citymodel = null;
   static KeyvalueModel bloodgroupmodel = null;
-  DocMyProfile({Key key, this.model}) : super(key: key);
+  LabMyProfile({Key key, this.model}) : super(key: key);
   @override
-  _DocMyProfileState createState() => _DocMyProfileState();
+  _LabMyProfileState createState() => _LabMyProfileState();
 }
 /*late AppState state;*/
 File imageFile;
 File _selectedFile;
 String _imagepath;
 
-class _DocMyProfileState extends State<DocMyProfile> {
+class _LabMyProfileState extends State<LabMyProfile> {
   String loAd = "Loading..";
   List<TextEditingController> textEditingController = [
     new TextEditingController(),
@@ -153,45 +153,45 @@ class _DocMyProfileState extends State<DocMyProfile> {
               profileModel1 = ProfileModel1.fromJson(map);
 
               if (profileModel1?.body?.gender != null) {
-                DocMyProfile.gendermodel = KeyvalueModel(
+                LabMyProfile.gendermodel = KeyvalueModel(
                      key: profileModel1.body.gender,
                     name: profileModel1.body.gendername);
               } else {
-                DocMyProfile.gendermodel = null;
+                LabMyProfile.gendermodel = null;
               }
               if (profileModel1?.body?.country != null) {
-                DocMyProfile.countrymodel = KeyvalueModel(
+                LabMyProfile.countrymodel = KeyvalueModel(
                     key: profileModel1.body.country,
                     name: profileModel1.body.countryName);
               } else {
-                DocMyProfile.countrymodel = null;
+                LabMyProfile.countrymodel = null;
               }
               if (profileModel1?.body?.state != null) {
-                DocMyProfile.statemodel = KeyvalueModel(
+                LabMyProfile.statemodel = KeyvalueModel(
                     key: profileModel1.body.state,
                     name: profileModel1.body.stateName);
               } else {
-                DocMyProfile.statemodel = null;
+                LabMyProfile.statemodel = null;
               }if (profileModel1?.body?.district != null) {
-                  DocMyProfile.districtmodel = KeyvalueModel(
+                  LabMyProfile.districtmodel = KeyvalueModel(
                       key: profileModel1.body.district,
                       name: profileModel1.body.districtName);
                       } else {
-                      DocMyProfile.districtmodel = null;
+                      LabMyProfile.districtmodel = null;
                       }
             if (profileModel1?.body?.city != null) {
-            DocMyProfile.citymodel = KeyvalueModel(
+            LabMyProfile.citymodel = KeyvalueModel(
             key: profileModel1.body.city,
             name: profileModel1.body.cityName);
             } else {
-            DocMyProfile.citymodel = null;
+            LabMyProfile.citymodel = null;
             }
               if (profileModel1?.body?.bldGr != null) {
-                DocMyProfile.bloodgroupmodel = KeyvalueModel(
+                LabMyProfile.bloodgroupmodel = KeyvalueModel(
                     key: profileModel1.body.bldGr,
                     name: profileModel1.body.bldGrname);
               } else {
-                DocMyProfile.bloodgroupmodel = null;
+                LabMyProfile.bloodgroupmodel = null;
               }
              /* if (profileModel1?.body?.state != null) {
                 DocMyProfile.statemodel = KeyvalueModel(
@@ -454,6 +454,18 @@ class _DocMyProfileState extends State<DocMyProfile> {
                   ),
                 ),
               ),
+              Align(
+                alignment: Alignment.topRight,
+                child: Padding(
+                  padding: const EdgeInsets.only(right:50.0),
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, "/qrcode");
+                    },
+                    child: Icon(Icons.qr_code_outlined),
+                  ),
+                ),
+              ),
               /*Align(
                 alignment: Alignment.topRight,
                 child: InkWell(
@@ -572,7 +584,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
                                       ),
                                       ListTile(
                                         leading: Icon(Icons.bloodtype_outlined),
-                                        title: Text("blood group".toUpperCase(),
+                                        title: Text("bloodgroup".toUpperCase(),
                                         ),
                                         subtitle: Text(
                                             profileModel1?.body?.bldGrname!="" ?profileModel1.body.bldGrname: "N/A"),
@@ -614,7 +626,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
                                       ),
                                       ListTile(
                                         leading: Icon(Icons.location_on_rounded),
-                                        title: Text("pin code".toUpperCase(),
+                                        title: Text("pincode".toUpperCase(),
                                         ),
                                         subtitle: Text(
                                             profileModel1?.body?.pincode!=""? profileModel1.body.pincode: "N/A"),
@@ -771,27 +783,27 @@ class _DocMyProfileState extends State<DocMyProfile> {
     textEditingController[13].text = profileModel1.body.address ?? "";
     if (profileModel1?.body?.gender == null ||
         profileModel1?.body?.gender == "") {
-      DocMyProfile.gendermodel = null;
+      LabMyProfile.gendermodel = null;
     }
     if (profileModel1?.body?.country == null ||
         profileModel1?.body?.country == "") {
-      DocMyProfile.countrymodel = null;
+      LabMyProfile.countrymodel = null;
     }
     if (profileModel1?.body?.state == null ||
         profileModel1?.body?.state == "") {
-      DocMyProfile.statemodel = null;
+      LabMyProfile.statemodel = null;
     }
     if (profileModel1?.body?.district == null ||
         profileModel1?.body?.district == "") {
-      DocMyProfile.districtmodel = null;
+      LabMyProfile.districtmodel = null;
     }
     if (profileModel1?.body?.city == null ||
         profileModel1?.body?.city == "") {
-      DocMyProfile.citymodel = null;
+      LabMyProfile.citymodel = null;
     }
     if (profileModel1?.body?.bldGr == null ||
         profileModel1?.body?.bldGr == "") {
-      DocMyProfile.bloodgroupmodel = null;
+      LabMyProfile.bloodgroupmodel = null;
     }
 
     return showDialog(
@@ -868,7 +880,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
                                     ApiFactory.BLOODGROUP_API,
                                     "bloodgroupdop", (KeyvalueModel model) {
                                   setState(() {
-                                    DocMyProfile.bloodgroupmodel = model;
+                                    LabMyProfile.bloodgroupmodel = model;
                                     profileModel1.body.bldGr = model.key;
                                     profileModel1.body.bldGrname =
                                         model.name;
@@ -999,7 +1011,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
                                     "countrydocp", (KeyvalueModel model) {
                                   setState(() {
                                     print(ApiFactory.COUNTRY_API);
-                                    DocMyProfile.countrymodel = model;
+                                    LabMyProfile.countrymodel = model;
                                     profileModel1.body.country = model.key;
                                     profileModel1.body.countryName = model.name;
                                     // updateProfileModel.bloodGroup = model.key;
@@ -1030,12 +1042,12 @@ class _DocMyProfileState extends State<DocMyProfile> {
                                 DropDown.networkDropdownlabler1(
                                     "State",
                                     ApiFactory.STATE_API +
-                                        (DocMyProfile?.countrymodel?.key ??
+                                        (LabMyProfile?.countrymodel?.key ??
                                             ""),
                                     "statedocp", (KeyvalueModel model) {
                                   setState(() {
                                     print(ApiFactory.STATE_API);
-                                    DocMyProfile.statemodel = model;
+                                    LabMyProfile.statemodel = model;
                                     profileModel1.body.state =
                                         model.key;
                                     profileModel1.body.stateName=
@@ -1066,12 +1078,12 @@ class _DocMyProfileState extends State<DocMyProfile> {
                                 DropDown.networkDropdownlabler1(
                                     "District",
                                     ApiFactory.DISTRICT_API +
-                                        (DocMyProfile?.statemodel?.key ??
+                                        (LabMyProfile?.statemodel?.key ??
                                             ""),
                                     "districtdocp", (KeyvalueModel model) {
                                   setState(() {
                                     print(ApiFactory.DISTRICT_API);
-                                    DocMyProfile.districtmodel = model;
+                                    LabMyProfile.districtmodel = model;
                                     profileModel1.body.district = model.key;
                                     profileModel1.body.districtName=model.name;
                                     // updateProfileModel.bloodGroup = model.key;
@@ -1101,13 +1113,13 @@ class _DocMyProfileState extends State<DocMyProfile> {
                                 DropDown.networkDropdownlabler1(
                                     "City",
                                     ApiFactory.CITY_API +
-                                        (DocMyProfile?.districtmodel?.key ??
+                                        (LabMyProfile?.districtmodel?.key ??
                                             ""),
                                     "citydocp",
                                         (KeyvalueModel model) {
                                       setState(() {
                                         print(ApiFactory.CITY_API);
-                                        DocMyProfile.citymodel = model;
+                                        LabMyProfile.citymodel = model;
                                         profileModel1.body.city = model.key;
                                         profileModel1.body.cityName = model.name;
                                         // updateProfileModel.bloodGroup = model.key;
@@ -1215,7 +1227,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
                     } else {
                       updateProfileModel.dctrid = loginResponse.body.user;
                       updateProfileModel.dob = textEditingController[0].text;
-                      updateProfileModel.gender = DocMyProfile.gendermodel.key;
+                      updateProfileModel.gender = LabMyProfile.gendermodel.key;
                       updateProfileModel.educationid = textEditingController[1].text;
                       updateProfileModel.experience = textEditingController[2].text;
                       updateProfileModel.imaNo = textEditingController[3].text;
@@ -1230,11 +1242,11 @@ class _DocMyProfileState extends State<DocMyProfile> {
                       updateProfileModel.pincode = textEditingController[11].text;
                       updateProfileModel.mobno = textEditingController[12].text;
                       updateProfileModel.address = textEditingController[13].text;
-                      updateProfileModel.countryid =  DocMyProfile.countrymodel.key;
-                      updateProfileModel.stateid =  DocMyProfile.statemodel.key;
-                      updateProfileModel.districtid =  DocMyProfile.districtmodel.key;
-                      updateProfileModel.cityid =  DocMyProfile.citymodel.key;
-                      updateProfileModel.bloodgroup =  DocMyProfile.bloodgroupmodel.key;
+                      updateProfileModel.countryid =  LabMyProfile.countrymodel.key;
+                      updateProfileModel.stateid =  LabMyProfile.statemodel.key;
+                      updateProfileModel.districtid =  LabMyProfile.districtmodel.key;
+                      updateProfileModel.cityid =  LabMyProfile.citymodel.key;
+                      updateProfileModel.bloodgroup =  LabMyProfile.bloodgroupmodel.key;
 
                       log("Post json2>>>>" + jsonEncode(updateProfileModel.toJson()));
                       log("Post api>>>>" +ApiFactory.UPDATE_DOCTER_PROFILE);
@@ -1553,7 +1565,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
     return DropDown.staticDropdown4(
         "Gender", "gender1", genderList,
             (KeyvalueModel model) {
-          DocMyProfile.gendermodel = model;
+          LabMyProfile.gendermodel = model;
           profileModel1.body.gender = model.key;
           profileModel1.body.gendername = model.name;
         });

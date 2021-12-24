@@ -92,11 +92,11 @@ class _MyOpdPageState extends State<MyOpdPage> {
       columns: <DataColumn>[
         DataColumn(
           label: Container(
-            width: 60.0,
+            width: 80.0,
             //color: Colors.red,
             child: Text(
               'DATE',
-              textAlign: TextAlign.left,
+              textAlign: TextAlign.center,
               style:
                   TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
             ),
@@ -180,7 +180,7 @@ class _MyOpdPageState extends State<MyOpdPage> {
                         //           ))).then((value) {});
                         // },
                         child: Container(
-                          width: 60.0,
+                          width: 80.0,
                           child: Center(
                             child: Text(
                               data?.key ?? "",
@@ -222,12 +222,13 @@ class _MyOpdPageState extends State<MyOpdPage> {
                       Container(
                         width: 90.0,
                         child: Center(
-                          child:stTime()
-                          // Text(
-                          //   data?.image ?? "",
-                          //   style: TextStyle(color: Colors.black),
-                          //   textAlign: TextAlign.center,
-                          // ),
+                          child:
+                          //stTime()
+                          Text(
+                            data?.image ?? "",
+                            style: TextStyle(color: Colors.black),
+                            textAlign: TextAlign.center,
+                          ),
                         ),
                       ),
                     ),

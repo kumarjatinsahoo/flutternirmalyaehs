@@ -1434,7 +1434,6 @@ class DropDown {
             break;
           case "block":
             selectedKey1 = data;
-
             break;
           case "gender":
             gender = data;
@@ -2520,6 +2519,10 @@ class DropDown {
           case "bloodgroupBooh":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
+          case "healthcareProvider":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+
         }
 
         return list;
