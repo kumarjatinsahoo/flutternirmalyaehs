@@ -1434,7 +1434,6 @@ class DropDown {
             break;
           case "block":
             selectedKey1 = data;
-
             break;
           case "gender":
             gender = data;

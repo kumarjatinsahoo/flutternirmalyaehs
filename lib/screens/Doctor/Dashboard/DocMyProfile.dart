@@ -572,7 +572,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
                                       ),
                                       ListTile(
                                         leading: Icon(Icons.bloodtype_outlined),
-                                        title: Text("bloodgroup".toUpperCase(),
+                                        title: Text("blood group".toUpperCase(),
                                         ),
                                         subtitle: Text(
                                             profileModel1?.body?.bldGrname!="" ?profileModel1.body.bldGrname: "N/A"),
@@ -614,7 +614,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
                                       ),
                                       ListTile(
                                         leading: Icon(Icons.location_on_rounded),
-                                        title: Text("pincode".toUpperCase(),
+                                        title: Text("pin code".toUpperCase(),
                                         ),
                                         subtitle: Text(
                                             profileModel1?.body?.pincode!=""? profileModel1.body.pincode: "N/A"),

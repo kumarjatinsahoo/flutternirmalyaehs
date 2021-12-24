@@ -569,12 +569,15 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                 children: <Widget>[
                   //_buildAboutText(),
                   //_buildLogoAttribution(),
-                  Text(
-                    MyLocalizations.of(context).text("UPDATE_LIFESTYLE"),
-                    style: TextStyle(
-                      fontSize: 25,
-                      color: Colors.black,
-                      fontWeight: FontWeight.w500,
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8.0),
+                    child: Text(
+                      MyLocalizations.of(context).text("UPDATE_LIFESTYLE"),
+                      style: TextStyle(
+                        fontSize: 25,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
                   SizedBox(
