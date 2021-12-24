@@ -281,7 +281,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               }*/
             } else {
              // isDataNotAvail = true;
-             // isdata=true;
+              isdata=true;
               AppData.showInSnackBar(context, "Something Went Wrong");
             }
           });
@@ -371,7 +371,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
         //centerTitle: true,
         // iconTheme: IconThemeData(color: AppData.kPrimaryColor,),
       ),
-      body: isdata == true
+      body: patientProfileModel == null
+          ?  isdata != true
           ? Center(
         child: Column(
           children: [
@@ -383,26 +384,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ],
         ),
       )
-      /* Center(
-                child: CircularProgressIndicator(),
-              )*/
-          : patientProfileModel == null
-          ? Container(
+          :Container(
         child: Center(
 
           child: Column(
             children: [
-
               SizedBox(
                 height:
                 MediaQuery.of(context).size.height * 0.35,
               ),
-              CircularProgressIndicator()
-             /* Text(
+              //CircularProgressIndicator()
+              Text(
                 MyLocalizations.of(context).text("NO_DATA_FOUND"),
                 style: TextStyle(
                     color: Colors.black, fontSize: 15),
-              ),*/
+              ),
             ],
           ),
         ),
@@ -419,10 +415,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 child: Container(
                   width: double.infinity,
                   decoration: BoxDecoration(
-                      /*gradient: LinearGradient(
-                        colors: [Colors.blue[400], Colors.blue[200]]),*/
-                      /*borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: Colors.grey[200]),*/
                       ),
                   child: Padding(
                     padding: const EdgeInsets.only(
