@@ -675,7 +675,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           //   size: 40,
                           // ),
                           onTap: () {
-                            Navigator.pop(context);
+                            //Navigator.pop(context);
                             organisationDialog(context,"/labsignupform");
                             //Navigator.pushNamed(context, "/labsignupform");
                           },

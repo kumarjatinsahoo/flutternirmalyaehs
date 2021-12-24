@@ -13,7 +13,9 @@ import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
 import 'package:user/widgets/TextFormatter.dart';
 import 'package:user/widgets/text_field_container.dart';
-
+import 'package:flutter/material.dart';
+import 'package:multi_image_picker/multi_image_picker.dart';
+import 'dart:async';
 import '../../../localization/localizations.dart';
 import '../../../models/KeyvalueModel.dart';
 import '../../../models/KeyvalueModel.dart';
@@ -110,6 +112,9 @@ class OrganisationSignUpFormState extends State<OrganisationSignUpForm> {
   FocusNode emailFocus_ = FocusNode();
   String profilePath = null,
       idproof = null,
+      idproof1 = null,
+      idproof2 = null,
+      idproof3 = null,
       labReport = null,
       helathCheckup = null;
   List<bool> dropdownError = [false, false, false];
@@ -346,35 +351,38 @@ class OrganisationSignUpFormState extends State<OrganisationSignUpForm> {
                                   SizedBox(
                                     height: 18,
                                   ),
-                                  Container(
-                                    child: Row(
-                                      children: [
-                                        Expanded(
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(10.0),
-                                            child: Text(MyLocalizations.of(context).text("UPLOAD_DOCUMENT"),style: TextStyle(color:AppData.kPrimaryColor,fontSize: 20,fontWeight: FontWeight.bold),),
-                                          ),
-                                        ),
-                                        SizedBox(width:5),
-                                        Material(
-                                          elevation: 3,
-                                          color:AppData.kPrimaryColor,
-                                          borderRadius: BorderRadius.circular(5.0),
-                                          child: MaterialButton(
-                                            onPressed: () {
-                                              _settingModalBottomSheet(context);
-
-                                            },
-                                            minWidth: 150,
-                                            height: 40.0,
-                                            child: Text(MyLocalizations.of(context).text("UPLOAD"),
-                                              style: TextStyle(
-                                                  color: Colors.white, fontSize: 17.0),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                    child: Container(
+                                      child: Row(
+                                        children: [
+                                          Expanded(
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(10.0),
+                                              child: Text("Upload Document1",style: TextStyle(color:AppData.kPrimaryColor,fontSize: 18,fontWeight: FontWeight.bold),),
                                             ),
                                           ),
-                                        ),
+                                          SizedBox(width:5),
+                                          Material(
+                                            elevation: 3,
+                                            color:AppData.kPrimaryColor,
+                                            borderRadius: BorderRadius.circular(5.0),
+                                            child: MaterialButton(
+                                              onPressed: () {
+                                                _settingModalBottomSheet(context);
 
-                                      ],
+                                              },
+                                              minWidth: 120,
+                                              height: 30.0,
+                                              child: Text(MyLocalizations.of(context).text("UPLOAD"),
+                                                style: TextStyle(
+                                                    color: Colors.white, fontSize: 17.0),
+                                              ),
+                                            ),
+                                          ),
+
+                                        ],
+                                      ),
                                     ),
                                   ),
                                   SizedBox(height: 10,),
@@ -415,7 +423,232 @@ class OrganisationSignUpFormState extends State<OrganisationSignUpForm> {
                                     ),
                                   )
                                       : Container(),
-                                  SizedBox(height: 30,),
+                                  SizedBox(
+                                    height: 18,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                    child: Container(
+                                      child: Row(
+                                        children: [
+                                          Expanded(
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(10.0),
+                                              child: Text("Upload Document2",style: TextStyle(color:AppData.kPrimaryColor,fontSize: 18,fontWeight: FontWeight.bold),),
+                                            ),
+                                          ),
+                                          SizedBox(width:5),
+                                          Material(
+                                            elevation: 3,
+                                            color:AppData.kPrimaryColor,
+                                            borderRadius: BorderRadius.circular(5.0),
+                                            child: MaterialButton(
+                                              onPressed: () {
+                                                _settingModalBottomSheet(context);
+
+                                              },
+                                              minWidth: 120,
+                                              height: 30.0,
+                                              child: Text(MyLocalizations.of(context).text("UPLOAD"),
+                                                style: TextStyle(
+                                                    color: Colors.white, fontSize: 17.0),
+                                              ),
+                                            ),
+                                          ),
+
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(height: 10,),
+                                  (idproof1 != null)
+                                      ? Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 10, right: 10),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Expanded(
+                                          child: Container(
+
+                                            child: Text(
+
+                                              "Report Path :" + idproof1,
+                                              style: TextStyle(color: Colors.green),
+                                            ),
+                                          ),
+                                        ),
+                                        InkWell(
+                                          child: SizedBox(
+                                              width: 50.0,
+                                              child: Icon(Icons.clear)),
+                                          onTap: () {
+                                            setState(() {
+                                              idproof1 = null;
+                                              // registrationModel.profilePhotoBase64 =
+                                              null;
+                                              //registrationModel.profilePhotoExt =
+                                              null;
+                                            });
+                                          },
+                                        )
+                                      ],
+                                    ),
+                                  )
+                                      : Container(),
+                                  SizedBox(
+                                    height: 18,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                    child: Container(
+                                      child: Row(
+                                        children: [
+                                          Expanded(
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(10.0),
+                                              child: Text("Upload Document3",style: TextStyle(color:AppData.kPrimaryColor,fontSize: 18,fontWeight: FontWeight.bold),),
+                                            ),
+                                          ),
+                                          SizedBox(width:5),
+                                          Material(
+                                            elevation: 3,
+                                            color:AppData.kPrimaryColor,
+                                            borderRadius: BorderRadius.circular(5.0),
+                                            child: MaterialButton(
+                                              onPressed: () {
+                                                _settingModalBottomSheet(context);
+
+                                              },
+                                              minWidth: 120,
+                                              height: 30.0,
+                                              child: Text(MyLocalizations.of(context).text("UPLOAD"),
+                                                style: TextStyle(
+                                                    color: Colors.white, fontSize: 17.0),
+                                              ),
+                                            ),
+                                          ),
+
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(height: 10,),
+                                  (idproof2 != null)
+                                      ? Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 10, right: 10),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Expanded(
+                                          child: Container(
+
+                                            child: Text(
+
+                                              "Report Path :" + idproof2,
+                                              style: TextStyle(color: Colors.green),
+                                            ),
+                                          ),
+                                        ),
+                                        InkWell(
+                                          child: SizedBox(
+                                              width: 50.0,
+                                              child: Icon(Icons.clear)),
+                                          onTap: () {
+                                            setState(() {
+                                              idproof2 = null;
+                                              // registrationModel.profilePhotoBase64 =
+                                              null;
+                                              //registrationModel.profilePhotoExt =
+                                              null;
+                                            });
+                                          },
+                                        )
+                                      ],
+                                    ),
+                                  )
+                                      : Container(),
+                                  SizedBox(
+                                    height: 18,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                    child: Container(
+                                      child: Row(
+                                        children: [
+                                          Expanded(
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(10.0),
+                                              child: Text("Upload Document4",style: TextStyle(color:AppData.kPrimaryColor,fontSize: 18,fontWeight: FontWeight.bold),),
+                                            ),
+                                          ),
+                                          SizedBox(width:5),
+                                          Material(
+                                            elevation: 3,
+                                            color:AppData.kPrimaryColor,
+                                            borderRadius: BorderRadius.circular(5.0),
+                                            child: MaterialButton(
+                                              onPressed: () {
+                                                _settingModalBottomSheet(context);
+
+                                              },
+                                              minWidth: 120,
+                                              height: 30.0,
+                                              child: Text(MyLocalizations.of(context).text("UPLOAD"),
+                                                style: TextStyle(
+                                                    color: Colors.white, fontSize: 17.0),
+                                              ),
+                                            ),
+                                          ),
+
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(height: 10,),
+                                  (idproof3 != null)
+                                      ? Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 18, right: 10),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Expanded(
+                                          child: Container(
+
+                                            child: Text(
+
+                                              "Report Path :" + idproof3,
+                                              style: TextStyle(color: Colors.green),
+                                            ),
+                                          ),
+                                        ),
+                                        InkWell(
+                                          child: SizedBox(
+                                              width: 50.0,
+                                              child: Icon(Icons.clear)),
+                                          onTap: () {
+                                            setState(() {
+                                              idproof3 = null;
+                                              // registrationModel.profilePhotoBase64 =
+                                              null;
+                                              //registrationModel.profilePhotoExt =
+                                              null;
+                                            });
+                                          },
+                                        )
+                                      ],
+                                    ),
+                                  )
+                                      : Container(),
+                                  SizedBox(height: 20,),
                                   Padding(padding: const EdgeInsets.symmetric(horizontal: 10),
                                     child: nextButton1(),
                                   ),
@@ -472,6 +705,14 @@ class OrganisationSignUpFormState extends State<OrganisationSignUpForm> {
                   title: new Text('Gallery'),
                   onTap: () => {
                     Navigator.pop(context),
+                 /* MultiImagePicker.pickImages(
+                  maxImages: 300,
+                  enableCamera: true,
+                  //selectedAssets: images,
+                  materialOptions: MaterialOptions(
+                  actionBarTitle: "FlutterCorner.com",
+                  ),
+                  ),*/
                     getCerificateImage()},
                 ),
                 new ListTile(
@@ -512,6 +753,7 @@ class OrganisationSignUpFormState extends State<OrganisationSignUpForm> {
       });
     }
   }
+
   Future getCameraImage() async {
     // File pathUsr=null;
     // var image = await ImagePicker.pickImage(source: ImageSource.gallery);

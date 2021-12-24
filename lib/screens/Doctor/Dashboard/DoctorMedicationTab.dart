@@ -32,10 +32,10 @@ class _DoctorMedicationTabState extends State<DoctorMedicationTab> {
       initialIndex: 0,
       child: Scaffold(
         appBar: AppBar(
-          title: Row(
-            children: [
-               Text('Medication'),
-              Spacer(),
+          centerTitle: true,
+          title:Text('Medication'),
+
+              //Spacer(),
             /*  InkWell(
                   onTap: (){
                      userid=widget.model.appointmentlist.userid;
@@ -43,8 +43,7 @@ class _DoctorMedicationTabState extends State<DoctorMedicationTab> {
                   },
                   child: Text('Show Emr',style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold),)
               ),*/
-            ],
-          ),
+
           backgroundColor: AppData.kPrimaryColor,
           actions: <Widget>[
 

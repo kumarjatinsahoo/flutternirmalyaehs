@@ -193,10 +193,10 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
     pharmaorganisation = widget.model.pharmaorganisation;
     pharmatitle = widget.model.pharmartitle;
     pharmaprofessional = widget.model.pharmaprofessional;
-    // pharmaeducation = widget.model.pharmaeducation;
-    // pharmaspecialty = widget.model.pharmaspeciality;
-    // pharmadob = widget.model.pharmadob;
-    // pharmabloodgrp=widget.model.pharmabloodgroup;
+    //pharmaeducation = widget.model.pharmaeducation;
+    //pharmaspecialty = widget.model.pharmaspeciality;
+    //pharmadob = widget.model.pharmadob;
+    //pharmabloodgrp=widget.model.pharmabloodgroup;
     pharmagender = widget.model.pharmagender;
     pharmaaddress = widget.model.pharmaaddress;
     pharmaexperience = widget.model.pharmaexperience;
@@ -756,7 +756,7 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
           pharmaSignupModel.districtid = PharmaSignUpForm3.districtModel.key;
           pharmaSignupModel.cityid = PharmaSignUpForm3.citymodel.key;
           pharmaSignupModel.pincode = textEditingController[5].text;
-          //  pharmaSignupModel.homephone = textEditingController[4].text;
+          //pharmaSignupModel.homephone = textEditingController[4].text;
           //pharmaSignupModel.officephone = textEditingController[6].text;
           pharmaSignupModel.mobno = textEditingController[10].text;
           pharmaSignupModel.email = textEditingController[11].text;
@@ -764,8 +764,7 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
           pharmaSignupModel.role = "7";
           pharmaSignupModel.speciality = "32";
 
-          print(">>>>>>>>>>>>>>>>>>>>>>>>>>>" +
-              pharmaSignupModel.toJson().toString());
+          print(">>>>>>>>>>>>>>>>>>>>>>>>>>>" + pharmaSignupModel.toJson().toString());
           widget.model.POSTMETHOD(
               api: ApiFactory.PHARMACY_REGISTRATION,
               json: pharmaSignupModel.toJson(),

@@ -264,7 +264,7 @@ class PharmaSignUpForm2State extends State<PharmaSignUpForm2> {
                                       print(ApiFactory.SPECIALITY_API);
                                       PharmaSignUpForm2.specialistModel = data;
                                       PharmaSignUpForm2.doctorModel = null;
-                                      // UserSignUpForm.cityModel = null;
+                                      //UserSignUpForm.cityModel = null;
                                     });
                                   }),
                                   SizedBox(
@@ -281,6 +281,7 @@ class PharmaSignUpForm2State extends State<PharmaSignUpForm2> {
                                       23.0, (KeyvalueModel data) {
                                     setState(() {
                                       print(ApiFactory.BLOODGROUP_API);
+                                     // widget.model.pharmagender=data.key;
                                       PharmaSignUpForm2.bloodgroupModel = data;
                                     });
                                   }),
@@ -294,6 +295,7 @@ class PharmaSignUpForm2State extends State<PharmaSignUpForm2> {
                                       23.0, (KeyvalueModel data) {
                                     setState(() {
                                       print(ApiFactory.GENDER_API);
+                                      widget.model.pharmagender=data.key;
                                       PharmaSignUpForm2.genderModel = data;
                                     });
                                   }),
