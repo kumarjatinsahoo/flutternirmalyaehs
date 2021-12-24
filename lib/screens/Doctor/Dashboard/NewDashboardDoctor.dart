@@ -686,11 +686,12 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Container(
-                          width: 30,
-                          height: 30,
-                          child: Image.asset('assets/images/dash.png',
-                              fit: BoxFit.cover)),
+                      Icon(Icons.dashboard,color:AppData.menublueColor, size: 27),
+                      // Container(
+                      //     width: 30,
+                      //     height: 30,
+                      //     child: Image.asset('assets/images/dash.png',
+                      //         fit: BoxFit.cover)),
                       VerticalDivider(
                         thickness: 1,
                         color: Colors.grey,
@@ -799,7 +800,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                       Container(
                           width: 30,
                           height: 30,
-                          child: Image.asset('assets/images/contact.png',
+                          child: Image.asset('assets/images/contact us.png',
                               fit: BoxFit.cover)),
                       VerticalDivider(
                         thickness: 1,
