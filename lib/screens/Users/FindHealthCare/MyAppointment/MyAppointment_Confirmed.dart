@@ -1,11 +1,9 @@
 import 'dart:convert';
-
 import 'package:custom_rating_bar/custom_rating_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/AppointmentlistModel.dart' as apnt;
 import 'package:user/models/LoginResponse1.dart';
-
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';

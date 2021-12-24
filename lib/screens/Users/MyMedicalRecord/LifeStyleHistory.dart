@@ -845,7 +845,7 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(hint),
+          Text(hint+" times"),
           SizedBox(
             height: 5,
           ),
@@ -874,7 +874,7 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                         //suffixIcon: Icon(Icons.phone),
                         border: InputBorder.none,
                         counterText: "",
-                        hintText: hint,
+                        hintText: hint+" (times)",
                         hintStyle:
                             TextStyle(color: AppData.hintColor, fontSize: 15),
                       ),
