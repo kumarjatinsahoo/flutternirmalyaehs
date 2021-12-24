@@ -4597,9 +4597,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   void deletefamilydetailsdisplayDialog(BuildContext context, ProfileModel patientProfileModel, int index) {
 
-   // showAlertDialog(BuildContext context) {
-
-      // set up the buttons
+    // set up the buttons
       Widget cancelButton = TextButton(
         child: Text("No"),
         onPressed:  () {

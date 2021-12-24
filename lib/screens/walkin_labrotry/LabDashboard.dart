@@ -568,7 +568,8 @@ class _LabDashboardState extends State<LabDashboard> {
                 selected: _selectedDestination == 1,
                 onTap: () {
                   selectDestination(1);
-                  Navigator.pushNamed(context, "/labprofile");
+                  //Navigator.pushNamed(context, "/labprofile");
+                  Navigator.pushNamed(context, "/labMyProfile");
                 },
               ),
               /* ListTile(
@@ -645,7 +646,8 @@ class _LabDashboardState extends State<LabDashboard> {
                   selected: _selectedDestination == 7,
                   onTap: () {
                     selectDestination(7);
-                    Navigator.pushNamed(context, "/support");
+                    Navigator.pushNamed(context, "/contactus");
+                    //Navigator.pushNamed(context, "/support");
                   }),
               ListTile(
                 leading: Image.asset(
