@@ -264,8 +264,8 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                         children: [
                           Container(
                             //color: Colors.green,
-                            height: 50,
-                            width: 150,
+                            //height: 50,
+                            //width: 150,
                             decoration: BoxDecoration(
                               color: Colors.green,
                               border: Border.all(
@@ -275,6 +275,8 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                             ),
                             child: Row(
                               children: [
+                               // SizedBox(width: 5,),
+                              //  Icon(Icons.local_hospital,color: Colors.white,),
                                 Radio(
                                   activeColor: Colors.white,
                                   value: RadioGroup1.payon_shop,
@@ -287,10 +289,14 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                                     });
                                   },
                                 ),
-                                Text(
-                                  "Hospital Visit",
-                                  style:
-                                      TextStyle(color: Colors.black, fontSize: 12,fontWeight: FontWeight.bold),
+                                Icon(Icons.local_hospital,color: Colors.white,),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    "Hospital Visit",
+                                    style:
+                                        TextStyle(color: Colors.black, fontSize: 12,fontWeight: FontWeight.bold),
+                                  ),
                                 )
                               ],
                             ),
@@ -298,9 +304,6 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                          // SizedBox(width: 100),
 
                           Container(
-                           // color: Colors.grey,
-                            width: 150,
-                            height: 50,
                             decoration: BoxDecoration(
                               color: Colors.grey,
                               border: Border.all(
@@ -310,6 +313,8 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                             ),
                             child: Row(
                               children: [
+                               // SizedBox(width: 5,),
+                               //Icon(Icons.video_call,color: Colors.white,),
                                 Radio(
                                   activeColor: Colors.white,
                                   value: RadioGroup1.online,
@@ -322,10 +327,14 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                                     });
                                   },
                                 ),
-                                Text(
-                                  "Video Consult",
-                                  style:
-                                      TextStyle(color: Colors.black, fontSize: 12,fontWeight: FontWeight.bold),
+                                Icon(Icons.video_call,color: Colors.white,),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    "Video Consult",
+                                    style:
+                                        TextStyle(color: Colors.black, fontSize: 12,fontWeight: FontWeight.bold),
+                                  ),
                                 )
                               ],
                             ),
