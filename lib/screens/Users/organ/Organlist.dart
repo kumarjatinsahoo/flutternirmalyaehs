@@ -249,7 +249,7 @@ class _OrganlistState extends State<Organlist> {
                                                   child: Text(
                                                     organlistModel.body.donatedOrganList[index].name??"N/A",
                                                     style: TextStyle(
-                                                        color: Colors.black,fontSize: 13),
+                                                        color: Colors.black,fontSize: 10),
                                                   ),
                                                 ),
 

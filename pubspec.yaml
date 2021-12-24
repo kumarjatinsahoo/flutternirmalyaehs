@@ -12,6 +12,7 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
+  multi_image_picker: ^4.7.14
   #image_picker: ^0.6.7+6
   flutter_rounded_date_picker: 2.0.2
   cupertino_icons: ^1.0.2
