@@ -639,10 +639,10 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                   SizedBox(
                     height: 8,
                   ),
-                  formField(1, MyLocalizations.of(context).text("OCCUPATION")),
-                  SizedBox(
-                    height: 8,
-                  ),
+                  // formField(1, MyLocalizations.of(context).text("OCCUPATION")),
+                  // SizedBox(
+                  //   height: 8,
+                  // ),
                   formField(2, MyLocalizations.of(context).text("PETS")),
                   SizedBox(
                     height: 5,
@@ -684,10 +684,10 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                   textEditingController[0].text == null ||
                   textEditingController[0].text == "") {
                 AppData.showInSnackBar(context, "Please enter  Exercise");
-              } else if (textEditingController[1].text == "N/A" ||
-                  textEditingController[1].text == null ||
-                  textEditingController[1].text == "") {
-                AppData.showInSnackBar(context, "Please enter  Occupation");
+              // } else if (textEditingController[1].text == "N/A" ||
+              //     textEditingController[1].text == null ||
+              //     textEditingController[1].text == "") {
+              //   AppData.showInSnackBar(context, "Please enter  Occupation");
               } else if (textEditingController[2].text == "N/A" ||
                   textEditingController[2].text == null ||
                   textEditingController[2].text == "") {
