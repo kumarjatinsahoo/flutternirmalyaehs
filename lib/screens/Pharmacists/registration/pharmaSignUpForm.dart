@@ -244,6 +244,7 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
                                   SizedBox(
                                     height: 8,
                                   ),
+
                                   formField1(9, MyLocalizations.of(context).text("PROFESSIONAL_NAME")),
                                   SizedBox(height: 8),
 
@@ -267,7 +268,6 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
                                     });
                                   }),
                                   SizedBox(height: 15),
-
                                   Padding(padding: const EdgeInsets.symmetric(horizontal: 10),
                                     child: nextButton1(),
                                   ),
@@ -291,13 +291,7 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
 
     );
   }
-  /*_
-            ],
-          ),
-        ),
-      ),
-    );
-  }*/
+
   Widget gender() {
     return DropDown.searchDropdowntyp("Gender", "genderPartner", genderList,
             (KeyvalueModel model) {
