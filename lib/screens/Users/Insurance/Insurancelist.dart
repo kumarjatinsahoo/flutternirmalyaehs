@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
@@ -30,9 +31,16 @@ class _InsuranceListState extends State<InsuranceList> {
   var selectedMinValue;
   LoginResponse1 loginResponse1;
   String extension;
+  String extension1;
+  String extension2;
+  String extension3;
   File selectFile;
+  File selectFile1;
+  File selectFile2;
+  File selectFile3;
   insurance.InsuranceModel insuranceModel;
   AddUploadDocumentModel adduploaddocument = AddUploadDocumentModel();
+
   String profilePath = null,
       idproof = null,
       idproof1 = null,
@@ -355,6 +363,40 @@ class _InsuranceListState extends State<InsuranceList> {
                         SizedBox(
                           height: 8,
                         ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Container(
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(10.0),
+                                    child: Text("Upload Document 1",style: TextStyle(color:AppData.kPrimaryColor,fontSize: 18,fontWeight: FontWeight.bold),),
+                                  ),
+                                ),
+                                SizedBox(width:5),
+                                Material(
+                                  elevation: 3,
+                                  color:AppData.kPrimaryColor,
+                                  borderRadius: BorderRadius.circular(5.0),
+                                  child: MaterialButton(
+                                    onPressed: () {
+                                      _settingModalBottomSheet(context);
+
+                                    },
+                                    minWidth: 120,
+                                    height: 30.0,
+                                    child: Text(MyLocalizations.of(context).text("UPLOAD"),
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 17.0),
+                                    ),
+                                  ),
+                                ),
+
+                              ],
+                            ),
+                          ),
+                        ),
                         SizedBox(height: 10,),
                         (idproof != null)
                             ? Padding(
@@ -404,7 +446,7 @@ class _InsuranceListState extends State<InsuranceList> {
                                 Expanded(
                                   child: Padding(
                                     padding: const EdgeInsets.all(10.0),
-                                    child: Text("Upload Document2",style: TextStyle(color:AppData.kPrimaryColor,fontSize: 18,fontWeight: FontWeight.bold),),
+                                    child: Text("Upload Document 2",style: TextStyle(color:AppData.kPrimaryColor,fontSize: 18,fontWeight: FontWeight.bold),),
                                   ),
                                 ),
                                 SizedBox(width:5),
@@ -414,7 +456,7 @@ class _InsuranceListState extends State<InsuranceList> {
                                   borderRadius: BorderRadius.circular(5.0),
                                   child: MaterialButton(
                                     onPressed: () {
-                                      _settingModalBottomSheet(context);
+                                      _settingModalBottomSheet1(context);
 
                                     },
                                     minWidth: 120,
@@ -479,7 +521,7 @@ class _InsuranceListState extends State<InsuranceList> {
                                 Expanded(
                                   child: Padding(
                                     padding: const EdgeInsets.all(10.0),
-                                    child: Text("Upload Document3",style: TextStyle(color:AppData.kPrimaryColor,fontSize: 18,fontWeight: FontWeight.bold),),
+                                    child: Text("Upload Document 3",style: TextStyle(color:AppData.kPrimaryColor,fontSize: 18,fontWeight: FontWeight.bold),),
                                   ),
                                 ),
                                 SizedBox(width:5),
@@ -489,7 +531,7 @@ class _InsuranceListState extends State<InsuranceList> {
                                   borderRadius: BorderRadius.circular(5.0),
                                   child: MaterialButton(
                                     onPressed: () {
-                                      _settingModalBottomSheet(context);
+                                      _settingModalBottomSheet2(context);
 
                                     },
                                     minWidth: 120,
@@ -554,7 +596,7 @@ class _InsuranceListState extends State<InsuranceList> {
                                 Expanded(
                                   child: Padding(
                                     padding: const EdgeInsets.all(10.0),
-                                    child: Text("Upload Document4",style: TextStyle(color:AppData.kPrimaryColor,fontSize: 18,fontWeight: FontWeight.bold),),
+                                    child: Text("Upload Document 4",style: TextStyle(color:AppData.kPrimaryColor,fontSize: 18,fontWeight: FontWeight.bold),),
                                   ),
                                 ),
                                 SizedBox(width:5),
@@ -564,7 +606,7 @@ class _InsuranceListState extends State<InsuranceList> {
                                   borderRadius: BorderRadius.circular(5.0),
                                   child: MaterialButton(
                                     onPressed: () {
-                                      _settingModalBottomSheet(context);
+                                      _settingModalBottomSheet3(context);
 
                                     },
                                     minWidth: 120,
@@ -752,7 +794,7 @@ class _InsuranceListState extends State<InsuranceList> {
                     title: new Text('Camera'),
                     onTap: () => {
                       Navigator.pop(context),
-                      //getCameraImage(),
+                      getCameraImage(),
                     }),
                 new ListTile(
                   leading: new Icon(Icons.folder),
@@ -776,12 +818,38 @@ class _InsuranceListState extends State<InsuranceList> {
                     title: new Text('Document'),
                     onTap: () => {
                       Navigator.pop(context),
-                      //getPdfAndUpload(),
+                      getPdfAndUpload(),
                     }),
               ],
             ),
           );
         });
+  }
+  Future getCameraImage() async {
+    var image1 = await ImagePicker.pickImage(
+      source: ImageSource.camera,
+      imageQuality: 10,
+    );
+    var enc = await image1.readAsBytes();
+    String _path = image1.path;
+
+    String _fileName = _path != null ? _path
+        .split('/')
+        .last : '...';
+    var pos = _fileName.lastIndexOf('.');
+    String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+    print(extName);
+
+    setState(() {
+      selectFile = image1;
+      idproof = image1.path;
+      adduploaddocument.extension = extName;
+      extension = extName;
+      print("Message is: " +
+          extension); // adduploaddocument.mulFile=file.path as MultipartFile;
+      print("Message isssss: " +
+          extName); // adduploaddocument.mulFile=file.path as MultipartFile;
+    });
   }
   Future getCerificateImage() async {
     var image1 = await ImagePicker.pickImage(
@@ -809,7 +877,410 @@ class _InsuranceListState extends State<InsuranceList> {
           extName); // adduploaddocument.mulFile=file.path as MultipartFile;
     });
   }
+  Future<void> getPdfAndUpload() async {
+    File file = await FilePicker.getFile(
+      type: FileType.custom,
+      allowedExtensions: [
+        'pdf',
+        'docx'
+      ], //here you can add any of extention what you need to pick
+    );
+    var enc = await file.readAsBytes();
+    String _path = file.path;
 
+    String _fileName = _path != null ? _path
+        .split('/')
+        .last : '...';
+    var pos = _fileName.lastIndexOf('.');
+    String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+    print(extName);
+
+    if (file != null) {
+      setState(() {
+        selectFile = file;
+        idproof = file.path;
+        adduploaddocument.extension = extName;
+        extension = extName;
+        print("Message is: " +
+            extension); // adduploaddocument.mulFile=file.path as MultipartFile;
+        print("Message isssss: " +
+            extName); // adduploaddocument.mulFile=file.path as MultipartFile;
+        //file1 = file; //file1 is a global variable which i created
+      });
+    }
+  }
+  void _settingModalBottomSheet1(context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext bc) {
+          return Container(
+            child: new Wrap(
+              children: <Widget>[
+                new ListTile(
+                    leading: new Icon(Icons.camera),
+                    title: new Text('Camera'),
+                    onTap: () => {
+                      Navigator.pop(context),
+                      getCameraImage1(),
+                    }),
+                new ListTile(
+                  leading: new Icon(Icons.folder),
+                  title: new Text('Gallery'),
+                  onTap: () => {
+                    Navigator.pop(context),
+
+
+                    /* MultiImagePicker.pickImages(
+                  maxImages: 300,
+                  enableCamera: true,
+                  //selectedAssets: images,
+                  materialOptions: MaterialOptions(
+                  actionBarTitle: "FlutterCorner.com",
+                  ),
+                  ),*/
+                    getCerificateImage1()},
+                ),
+                new ListTile(
+                    leading: new Icon(Icons.file_copy),
+                    title: new Text('Document'),
+                    onTap: () => {
+                      Navigator.pop(context),
+                      getPdfAndUpload1(),
+                    }),
+              ],
+            ),
+          );
+        });
+  }
+  Future getCameraImage1() async {
+    var image1 = await ImagePicker.pickImage(
+      source: ImageSource.camera,
+      imageQuality: 10,
+    );
+    var enc = await image1.readAsBytes();
+    String _path = image1.path;
+
+    String _fileName = _path != null ? _path
+        .split('/')
+        .last : '...';
+    var pos = _fileName.lastIndexOf('.');
+    String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+    print(extName);
+
+    setState(() {
+      selectFile1 = image1;
+      idproof1 = image1.path;
+      //adduploaddocument1.extension = extName;
+      extension1 = extName;
+      print("Message is: " +
+          extension1); // adduploaddocument.mulFile=file.path as MultipartFile;
+      print("Message isssss: " +
+          extName); // adduploaddocument.mulFile=file.path as MultipartFile;
+    });
+  }
+  Future getCerificateImage1() async {
+    var image1 = await ImagePicker.pickImage(
+      source: ImageSource.gallery,
+      imageQuality: 10,
+    );
+    var enc = await image1.readAsBytes();
+    String _path = image1.path;
+
+    String _fileName = _path != null ? _path
+        .split('/')
+        .last : '...';
+    var pos = _fileName.lastIndexOf('.');
+    String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+    print(extName);
+
+    setState(() {
+      selectFile1 = image1;
+      idproof1 = image1.path;
+      //adduploaddocument1.extension = extName;
+      extension1 = extName;
+      print("Message is: " +
+          extension1); // adduploaddocument.mulFile=file.path as MultipartFile;
+      print("Message isssss: " +
+          extName); // adduploaddocument.mulFile=file.path as MultipartFile;
+    });
+  }
+  Future<void> getPdfAndUpload1() async {
+    File file = await FilePicker.getFile(
+      type: FileType.custom,
+      allowedExtensions: [
+        'pdf',
+        'docx'
+      ], //here you can add any of extention what you need to pick
+    );
+    var enc = await file.readAsBytes();
+    String _path = file.path;
+
+    String _fileName = _path != null ? _path
+        .split('/')
+        .last : '...';
+    var pos = _fileName.lastIndexOf('.');
+    String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+    print(extName);
+
+    if (file != null) {
+      setState(() {
+        selectFile1 = file;
+        idproof1 = file.path;
+        //adduploaddocument1.extension = extName;
+        extension1 = extName;
+        print("Message is: " +
+            extension1); // adduploaddocument.mulFile=file.path as MultipartFile;
+        print("Message isssss: " +
+            extName); // adduploaddocument.mulFile=file.path as MultipartFile;
+        //file1 = file; //file1 is a global variable which i created
+      });
+    }
+  }
+  void _settingModalBottomSheet2(context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext bc) {
+          return Container(
+            child: new Wrap(
+              children: <Widget>[
+                new ListTile(
+                    leading: new Icon(Icons.camera),
+                    title: new Text('Camera'),
+                    onTap: () => {
+                      Navigator.pop(context),
+                      getCameraImage2(),
+                    }),
+                new ListTile(
+                  leading: new Icon(Icons.folder),
+                  title: new Text('Gallery'),
+                  onTap: () => {
+                    Navigator.pop(context),
+
+
+                    /* MultiImagePicker.pickImages(
+                  maxImages: 300,
+                  enableCamera: true,
+                  //selectedAssets: images,
+                  materialOptions: MaterialOptions(
+                  actionBarTitle: "FlutterCorner.com",
+                  ),
+                  ),*/
+                    getCerificateImage2()},
+                ),
+                new ListTile(
+                    leading: new Icon(Icons.file_copy),
+                    title: new Text('Document'),
+                    onTap: () => {
+                      Navigator.pop(context),
+                      getPdfAndUpload2(),
+                    }),
+              ],
+            ),
+          );
+        });
+  }
+  Future getCameraImage2() async {
+    var image1 = await ImagePicker.pickImage(
+      source: ImageSource.camera,
+      imageQuality: 10,
+    );
+    var enc = await image1.readAsBytes();
+    String _path = image1.path;
+
+    String _fileName = _path != null ? _path
+        .split('/')
+        .last : '...';
+    var pos = _fileName.lastIndexOf('.');
+    String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+    print(extName);
+
+    setState(() {
+      selectFile2 = image1;
+      idproof2 = image1.path;
+      //adduploaddocument1.extension = extName;
+      extension2 = extName;
+      print("Message is: " +
+          extension2); // adduploaddocument.mulFile=file.path as MultipartFile;
+      print("Message isssss: " +
+          extName); // adduploaddocument.mulFile=file.path as MultipartFile;
+    });
+  }
+  Future getCerificateImage2() async {
+    var image1 = await ImagePicker.pickImage(
+      source: ImageSource.gallery,
+      imageQuality: 10,
+    );
+    var enc = await image1.readAsBytes();
+    String _path = image1.path;
+
+    String _fileName = _path != null ? _path
+        .split('/')
+        .last : '...';
+    var pos = _fileName.lastIndexOf('.');
+    String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+    print(extName);
+
+    setState(() {
+      selectFile2 = image1;
+      idproof2 = image1.path;
+      //adduploaddocument1.extension = extName;
+      extension2 = extName;
+      print("Message is: " +
+          extension2); // adduploaddocument.mulFile=file.path as MultipartFile;
+      print("Message isssss: " +
+          extName); // adduploaddocument.mulFile=file.path as MultipartFile;
+    });
+  }
+  Future<void> getPdfAndUpload2() async {
+    File file = await FilePicker.getFile(
+      type: FileType.custom,
+      allowedExtensions: [
+        'pdf',
+        'docx'
+      ], //here you can add any of extention what you need to pick
+    );
+    var enc = await file.readAsBytes();
+    String _path = file.path;
+
+    String _fileName = _path != null ? _path
+        .split('/')
+        .last : '...';
+    var pos = _fileName.lastIndexOf('.');
+    String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+    print(extName);
+
+    if (file != null) {
+      setState(() {
+        selectFile2 = file;
+        idproof2 = file.path;
+        //adduploaddocument1.extension = extName;
+        extension2 = extName;
+        print("Message is: " +
+            extension2); // adduploaddocument.mulFile=file.path as MultipartFile;
+        print("Message isssss: " +
+            extName); // adduploaddocument.mulFile=file.path as MultipartFile;
+        //file1 = file; //file1 is a global variable which i created
+      });
+    }
+  }
+  void _settingModalBottomSheet3(context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext bc) {
+          return Container(
+            child: new Wrap(
+              children: <Widget>[
+                new ListTile(
+                    leading: new Icon(Icons.camera),
+                    title: new Text('Camera'),
+                    onTap: () => {
+                      Navigator.pop(context),
+                      getCameraImage3(),
+                    }),
+                new ListTile(
+                  leading: new Icon(Icons.folder),
+                  title: new Text('Gallery'),
+                  onTap: () => {
+                    Navigator.pop(context),
+
+                    getCerificateImage3()},
+                ),
+                new ListTile(
+                    leading: new Icon(Icons.file_copy),
+                    title: new Text('Document'),
+                    onTap: () => {
+                      Navigator.pop(context),
+                      getPdfAndUpload3(),
+                    }),
+              ],
+            ),
+          );
+        });
+  }
+  Future getCameraImage3() async {
+    var image1 = await ImagePicker.pickImage(
+      source: ImageSource.camera,
+      imageQuality: 10,
+    );
+    var enc = await image1.readAsBytes();
+    String _path = image1.path;
+
+    String _fileName = _path != null ? _path
+        .split('/')
+        .last : '...';
+    var pos = _fileName.lastIndexOf('.');
+    String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+    print(extName);
+
+    setState(() {
+      selectFile3 = image1;
+      idproof3 = image1.path;
+      //adduploaddocument1.extension = extName;
+      extension3 = extName;
+      print("Message is: " +
+          extension3); // adduploaddocument.mulFile=file.path as MultipartFile;
+      print("Message isssss: " +
+          extName); // adduploaddocument.mulFile=file.path as MultipartFile;
+    });
+  }
+  Future getCerificateImage3() async {
+    var image1 = await ImagePicker.pickImage(
+      source: ImageSource.gallery,
+      imageQuality: 10,
+    );
+    var enc = await image1.readAsBytes();
+    String _path = image1.path;
+
+    String _fileName = _path != null ? _path
+        .split('/')
+        .last : '...';
+    var pos = _fileName.lastIndexOf('.');
+    String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+    print(extName);
+
+    setState(() {
+      selectFile3 = image1;
+      idproof3 = image1.path;
+      //adduploaddocument1.extension = extName;
+      extension3 = extName;
+      print("Message is: " +
+          extension3); // adduploaddocument.mulFile=file.path as MultipartFile;
+      print("Message isssss: " +
+          extName); // adduploaddocument.mulFile=file.path as MultipartFile;
+    });
+  }
+  Future<void> getPdfAndUpload3() async {
+    File file = await FilePicker.getFile(
+      type: FileType.custom,
+      allowedExtensions: [
+        'pdf',
+        'docx'
+      ], //here you can add any of extention what you need to pick
+    );
+    var enc = await file.readAsBytes();
+    String _path = file.path;
+
+    String _fileName = _path != null ? _path
+        .split('/')
+        .last : '...';
+    var pos = _fileName.lastIndexOf('.');
+    String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+    print(extName);
+
+    if (file != null) {
+      setState(() {
+        selectFile3 = file;
+        idproof3 = file.path;
+        //adduploaddocument1.extension = extName;
+        extension3 = extName;
+        print("Message is: " +
+            extension3); // adduploaddocument.mulFile=file.path as MultipartFile;
+        print("Message isssss: " +
+            extName); // adduploaddocument.mulFile=file.path as MultipartFile;
+        //file1 = file; //file1 is a global variable which i created
+      });
+    }
+  }
   Widget formField(
     int index,
     String hint,
