@@ -154,20 +154,15 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
     KeyvalueModel(key: "0", name: "8PM-10PM "),
   ];
   TimeOfDay selectedTime = TimeOfDay.now();
-
   String time;
-
   bool isActive = true;
-
   StreamSubscription _connectionChangeStream;
   bool isOffline = true;
   String detailDoc = "";
   bool isOnline = false;
-
   String formattime;
   bool isValidtime = false;
   String formattedDate;
-
   @override
   void initState() {
     super.initState();
@@ -254,7 +249,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                     height: 10,
                   ),
                   Container(
-                   // height: 20,
+                    // height: 20,
                     child: Padding(
                       padding: const EdgeInsets.all(9.0),
                       child: Row(
@@ -275,8 +270,8 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                             ),
                             child: Row(
                               children: [
-                               // SizedBox(width: 5,),
-                              //  Icon(Icons.local_hospital,color: Colors.white,),
+                                // SizedBox(width: 5,),
+                                //  Icon(Icons.local_hospital,color: Colors.white,),
                                 Radio(
                                   activeColor: Colors.white,
                                   value: RadioGroup1.payon_shop,
@@ -289,19 +284,24 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                                     });
                                   },
                                 ),
-                                Icon(Icons.local_hospital,color: Colors.white,),
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Text(
                                     "Hospital Visit",
-                                    style:
-                                        TextStyle(color: Colors.black, fontSize: 12,fontWeight: FontWeight.bold),
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.bold),
                                   ),
-                                )
+                                ),
+                                Icon(
+                                  Icons.local_hospital,
+                                  color: Colors.white,
+                                ),
                               ],
                             ),
                           ),
-                         // SizedBox(width: 100),
+                          // SizedBox(width: 100),
 
                           Container(
                             decoration: BoxDecoration(
@@ -313,8 +313,8 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                             ),
                             child: Row(
                               children: [
-                               // SizedBox(width: 5,),
-                               //Icon(Icons.video_call,color: Colors.white,),
+                                // SizedBox(width: 5,),
+                                //Icon(Icons.video_call,color: Colors.white,),
                                 Radio(
                                   activeColor: Colors.white,
                                   value: RadioGroup1.online,
@@ -327,15 +327,20 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                                     });
                                   },
                                 ),
-                                Icon(Icons.video_call,color: Colors.white,),
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Text(
                                     "Video Consult",
-                                    style:
-                                        TextStyle(color: Colors.black, fontSize: 12,fontWeight: FontWeight.bold),
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.bold),
                                   ),
-                                )
+                                ),
+                                Icon(
+                                  Icons.video_call,
+                                  color: Colors.white,
+                                ),
                               ],
                             ),
                           ),

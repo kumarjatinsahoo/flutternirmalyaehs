@@ -188,7 +188,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
     // updateProfileModel.eCardNo =patientProfileModel.body.eCardNo;
     /*patientProfileModel.body=null?textEditingController[2].text =
         myFormatDate(patientProfileModel.body.dob.toString()):N/A*/
-    callApi();
+    setState(() {
+      callApi();
+    });
+   // callApi();
   }
 
   callApi() {
@@ -200,68 +203,71 @@ class _ProfileScreenState extends State<ProfileScreen> {
             log("Value>>>" + jsonEncode(map));
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
-              patientProfileModel = ProfileModel.fromJson(map);
-              loginResponse1.body.userPic =
-                  patientProfileModel.body.profileImage;
-              if (patientProfileModel?.body?.bloodGroup != null) {
-                ProfileScreen.bloodgroupmodel = KeyvalueModel(
-                    key: patientProfileModel.body.bloodGroupId,
-                    name: patientProfileModel.body.bloodGroup);
-              } else {
-                ProfileScreen.bloodgroupmodel = null;
-              }
-              if (patientProfileModel?.body?.country != null) {
-                ProfileScreen.countrymodel = KeyvalueModel(
-                    key: patientProfileModel.body.countryid,
-                    name: patientProfileModel.body.country);
-              } else {
-                ProfileScreen.countrymodel = null;
-              }
-              if (patientProfileModel?.body?.state != null) {
-                ProfileScreen.statemodel = KeyvalueModel(
-                    key: patientProfileModel.body.stateid,
-                    name: patientProfileModel.body.state);
-              } else {
-                ProfileScreen.statemodel = null;
-              }
-              if (patientProfileModel?.body?.dist != null) {
-                ProfileScreen.districtmodel = KeyvalueModel(
-                    key: patientProfileModel.body.distid,
-                    name: patientProfileModel.body.dist);
-              } else {
-                ProfileScreen.districtmodel = null;
-              }
-              if (patientProfileModel?.body?.city != null) {
-                ProfileScreen.citymodel = KeyvalueModel(
-                    key: patientProfileModel.body.cityid,
-                    name: patientProfileModel.body.city);
-              } else {
-                ProfileScreen.citymodel = null;
-              }
-              if (patientProfileModel?.body?.maritialstatus != null) {
-                ProfileScreen.materialmodel = KeyvalueModel(
-                    key: patientProfileModel.body.mstausid,
-                    name: patientProfileModel.body.maritialstatus);
-              }
-              if (patientProfileModel.body.emergenceList[0].type != null) {
-                ProfileScreen.relationmodel = KeyvalueModel(
-                  key: patientProfileModel.body.emergenceList[0].typeid,
-                  name: patientProfileModel.body.emergenceList[0].type,
-                );
-              }
-              if (patientProfileModel.body.familyDoctorList[0].type != null) {
-                ProfileScreen.relationmodel = KeyvalueModel(
-                  key: patientProfileModel.body.familyDoctorList[0].typeid,
-                  name: patientProfileModel.body.familyDoctorList[0].type,
-                );
-              }
-              if (patientProfileModel.body.familyDetailsList[0].relation !=
-                  null) {
-                ProfileScreen.relationmodel = KeyvalueModel(
-                  key: patientProfileModel.body.familyDetailsList[0].relid,
-                  name: patientProfileModel.body.familyDetailsList[0].relation,
-                );
-              }
+              setState(() {
+                patientProfileModel = ProfileModel.fromJson(map);
+                loginResponse1.body.userPic =
+                    patientProfileModel.body.profileImage;
+                if (patientProfileModel?.body?.bloodGroup != null) {
+                  ProfileScreen.bloodgroupmodel = KeyvalueModel(
+                      key: patientProfileModel.body.bloodGroupId,
+                      name: patientProfileModel.body.bloodGroup);
+                } else {
+                  ProfileScreen.bloodgroupmodel = null;
+                }
+                if (patientProfileModel?.body?.country != null) {
+                  ProfileScreen.countrymodel = KeyvalueModel(
+                      key: patientProfileModel.body.countryid,
+                      name: patientProfileModel.body.country);
+                } else {
+                  ProfileScreen.countrymodel = null;
+                }
+                if (patientProfileModel?.body?.state != null) {
+                  ProfileScreen.statemodel = KeyvalueModel(
+                      key: patientProfileModel.body.stateid,
+                      name: patientProfileModel.body.state);
+                } else {
+                  ProfileScreen.statemodel = null;
+                }
+                if (patientProfileModel?.body?.dist != null) {
+                  ProfileScreen.districtmodel = KeyvalueModel(
+                      key: patientProfileModel.body.distid,
+                      name: patientProfileModel.body.dist);
+                } else {
+                  ProfileScreen.districtmodel = null;
+                }
+                if (patientProfileModel?.body?.city != null) {
+                  ProfileScreen.citymodel = KeyvalueModel(
+                      key: patientProfileModel.body.cityid,
+                      name: patientProfileModel.body.city);
+                } else {
+                  ProfileScreen.citymodel = null;
+                }
+                if (patientProfileModel?.body?.maritialstatus != null) {
+                  ProfileScreen.materialmodel = KeyvalueModel(
+                      key: patientProfileModel.body.mstausid,
+                      name: patientProfileModel.body.maritialstatus);
+                }
+                if (patientProfileModel.body.emergenceList[0].type != null) {
+                  ProfileScreen.relationmodel = KeyvalueModel(
+                    key: patientProfileModel.body.emergenceList[0].typeid,
+                    name: patientProfileModel.body.emergenceList[0].type,
+                  );
+                }
+                if (patientProfileModel.body.familyDoctorList[0].type != null) {
+                  ProfileScreen.relationmodel = KeyvalueModel(
+                    key: patientProfileModel.body.familyDoctorList[0].typeid,
+                    name: patientProfileModel.body.familyDoctorList[0].type,
+                  );
+                }
+                if (patientProfileModel.body.familyDetailsList[0].relation !=
+                    null) {
+                  ProfileScreen.relationmodel = KeyvalueModel(
+                    key: patientProfileModel.body.familyDetailsList[0].relid,
+                    name: patientProfileModel.body.familyDetailsList[0].relation,
+                  );
+                }
+              });
+
 /*
               if (patientProfileModel?.body?.emergenceList[i].type != null) {
                 ProfileScreen.materialmodel = KeyvalueModel(
@@ -282,7 +288,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             } else {
              // isDataNotAvail = true;
               isdata=true;
-              AppData.showInSnackBar(context, "Something Went Wrong");
+              //AppData.showInSnackBar(context, "Something Went Wrong");
             }
           });
         });
@@ -371,7 +377,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         //centerTitle: true,
         // iconTheme: IconThemeData(color: AppData.kPrimaryColor,),
       ),
-      body: patientProfileModel == null
+      body:/* patientProfileModel == null
           ?  isdata != true
           ? Center(
         child: Column(
@@ -403,7 +409,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
         ),
       )
-          : Padding(
+          :*/ Padding(
         padding: const EdgeInsets.all(15.0),
         child: Container(
           height: double.maxFinite,
@@ -428,12 +434,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           children: [
                             InkWell(
                                 onTap: () {
-                                  if (patientProfileModel != null) {
-                                    _displayTextInputDialog(context);
-                                  } else {
-                                    AppData.showInSnackBar(context,
-                                        "Please wait until we are fetching your data");
-                                  }
+                                  setState(() {
+                                    if (patientProfileModel != null) {
+                                      _displayTextInputDialog(context);
+                                    } else {
+                                      AppData.showInSnackBar(context,
+                                          "Please wait until we are fetching your data");
+                                    }
+                                  });
+
+
                                 },
                                 child: Icon(
                                   Icons.edit,
@@ -633,7 +643,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           height: 300,
                           child: TabBarView(
                             children: [
-                            rowValue(),
+                              (patientProfileModel != null)?rowValue():Container(),
                               (patientProfileModel != null)? backUp():Container(),
                               (patientProfileModel != null)?rowValue2():Container(),
                               (patientProfileModel != null)? rowValue3():Container(),
@@ -1451,6 +1461,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 Spacer(),
                 InkWell(
                   onTap: () {
+                    setState(() {
+                      displayDialog(context);
+
+                    });
 
 
                    /* if (patientProfileModel.body.emergenceList.length > 5 ||
@@ -1458,7 +1472,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       AppData.showInSnackBar(context, "only 5 data showing");
                     } else {*/
                       //AppData.showInSnackDone(context, "Working");
-                      displayDialog(context);
                   //}
 
 
@@ -1494,8 +1507,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   Spacer(),
                                   InkWell(
                                     onTap: () {
-                                      EmergencydisplayDialog(
-                                          context, patientProfileModel, index);
+                                      setState(() {
+                                        EmergencydisplayDialog(
+                                            context, patientProfileModel, index);
+                                      });
+
                                     },
                                     child: Icon(
                                       Icons.edit,
@@ -1505,7 +1521,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   SizedBox(width: 20),
                                   InkWell(
                                     onTap: (){
-                                      emergencydetailsdisplayDialog(context, patientProfileModel, index);
+                                      setState(() {
+                                        emergencydetailsdisplayDialog(context, patientProfileModel, index);
+
+                                      });
 
                                     },
                                     child: Icon(
@@ -1684,7 +1703,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 Spacer(),
                 InkWell(
                   onTap: () {
-                    displayDialog2(context);
+                    setState(() {
+                      displayDialog2(context);
+
+                    });
                   },
                   child: Visibility(
                     visible: famdoctoradd,
@@ -1722,8 +1744,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         Spacer(),
                                         InkWell(
                                           onTap: () {
-                                            doctordisplayDialog(context,
-                                                patientProfileModel, index);
+                                            setState(() {
+                                              doctordisplayDialog(context,
+                                                  patientProfileModel, index);
+                                            });
+
                                           },
                                           child: Icon(
                                             Icons.edit,
@@ -1735,7 +1760,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         ),
                                         InkWell(
                                           onTap: () {
-                                            deletedoctordetailsdisplayDialog(context, patientProfileModel, index);
+                                            setState(() {
+                                              deletedoctordetailsdisplayDialog(context, patientProfileModel, index);
+
+                                            });
 
                                           },
                                           child: Icon(
@@ -1920,7 +1948,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 Spacer(),
                 InkWell(
                   onTap: () {
-                    displayDialog3(context);
+                    setState(() {
+                      displayDialog3(context);
+
+                    });
                   },
                   child: Visibility(
                     visible: familydetailsadd,
@@ -1957,7 +1988,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         Spacer(),
                                         InkWell(
                                           onTap: () {
-                                            familydetailsdisplayDialog(context, patientProfileModel, index);
+                                            setState(() {
+                                              familydetailsdisplayDialog(context, patientProfileModel, index);
+
+                                            });
                                           },
                                           child: Icon(
                                             Icons.edit,
@@ -1969,7 +2003,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         ),
                                         InkWell(
                                           onTap: () {
-                                            deletefamilydetailsdisplayDialog(context, patientProfileModel, index);
+                                            setState(() {
+                                              deletefamilydetailsdisplayDialog(context, patientProfileModel, index);
+
+                                            });
                                           },
                                           child: Icon(
                                             Icons.delete,
@@ -2156,7 +2193,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     //patientProfileModel.body.eName.toString() == null?"N/A":_eName.text =patientProfileModel.body.eName.toString();
     // patientProfileModel.body.docMobile.toString() == null?"N/A":_docMobile.text == patientProfileModel.body.docMobile;
     //textEditingController[5].text = (patientProfileModel != null)||(patientProfileModel.body.address == null)?patientProfileModel.body.address.toString(): "N/A";
-    textEditingController[1].text = patientProfileModel.body.address ?? "";
+    textEditingController[1].text = patientProfileModel.body.address ?? ""+patientProfileModel.body.pAddress ?? "";
     textEditingController[2].text = patientProfileModel.body.occupation ?? "";
     textEditingController[3].text =
         patientProfileModel.body.qualification ?? "";
@@ -3284,7 +3321,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
         //widget.model.patientimgtype =extName;
         //updateProfileModel.profileImage = base64Encode(enc) as List<Null>;
         //updateProfileModel.profileImageType = extName;
-        updateProfile(base64Encode(enc), extName);
+          updateProfile(base64Encode(enc), extName);
+
       });
     }
   }
