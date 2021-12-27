@@ -371,7 +371,7 @@ class _InsuranceListState extends State<InsuranceList> {
                                 Expanded(
                                   child: Padding(
                                     padding: const EdgeInsets.all(10.0),
-                                    child: Text("Upload Document1",style: TextStyle(color:AppData.kPrimaryColor,fontSize: 18,fontWeight: FontWeight.bold),),
+                                    child: Text("Upload Document 1",style: TextStyle(color:AppData.kPrimaryColor,fontSize: 18,fontWeight: FontWeight.bold),),
                                   ),
                                 ),
                                 SizedBox(width:5),
@@ -446,7 +446,7 @@ class _InsuranceListState extends State<InsuranceList> {
                                 Expanded(
                                   child: Padding(
                                     padding: const EdgeInsets.all(10.0),
-                                    child: Text("Upload Document2",style: TextStyle(color:AppData.kPrimaryColor,fontSize: 18,fontWeight: FontWeight.bold),),
+                                    child: Text("Upload Document 2",style: TextStyle(color:AppData.kPrimaryColor,fontSize: 18,fontWeight: FontWeight.bold),),
                                   ),
                                 ),
                                 SizedBox(width:5),
@@ -521,7 +521,7 @@ class _InsuranceListState extends State<InsuranceList> {
                                 Expanded(
                                   child: Padding(
                                     padding: const EdgeInsets.all(10.0),
-                                    child: Text("Upload Document3",style: TextStyle(color:AppData.kPrimaryColor,fontSize: 18,fontWeight: FontWeight.bold),),
+                                    child: Text("Upload Document 3",style: TextStyle(color:AppData.kPrimaryColor,fontSize: 18,fontWeight: FontWeight.bold),),
                                   ),
                                 ),
                                 SizedBox(width:5),
@@ -596,7 +596,7 @@ class _InsuranceListState extends State<InsuranceList> {
                                 Expanded(
                                   child: Padding(
                                     padding: const EdgeInsets.all(10.0),
-                                    child: Text("Upload Document4",style: TextStyle(color:AppData.kPrimaryColor,fontSize: 18,fontWeight: FontWeight.bold),),
+                                    child: Text("Upload Document 4",style: TextStyle(color:AppData.kPrimaryColor,fontSize: 18,fontWeight: FontWeight.bold),),
                                   ),
                                 ),
                                 SizedBox(width:5),
