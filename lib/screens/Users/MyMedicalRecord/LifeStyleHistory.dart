@@ -854,7 +854,7 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(hint+" times"),
+          Text(hint),
           SizedBox(
             height: 5,
           ),

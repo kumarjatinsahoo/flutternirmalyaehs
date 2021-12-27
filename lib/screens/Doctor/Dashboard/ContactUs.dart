@@ -21,6 +21,7 @@ class ContactScreen extends StatefulWidget {
 
 class _ContactScreenState extends State<ContactScreen> {
   GooglePlacesSearchModel googlePlacesSearch;
+  String contactus;
 
   getGender(String gender) {
     switch (gender) {
@@ -35,14 +36,19 @@ class _ContactScreenState extends State<ContactScreen> {
         break;
     }
   }
+  void initState() {
+    super.initState();
+    contactus = widget.model.contactscreen;
 
+    //callAPI();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.grey.shade100,
         //extendBody: true,
         appBar: AppBar(
-          title: const Text('Contact Us'),
+          title: Text(contactus),
           centerTitle: true,
           backgroundColor: AppData.kPrimaryColor,
         ),

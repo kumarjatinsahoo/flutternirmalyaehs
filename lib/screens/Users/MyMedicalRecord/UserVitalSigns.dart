@@ -275,7 +275,7 @@ class _VitalSignsState extends State<VitalSigns> {
                                 height: 5,
                               ),
                               Text(
-                                "BMI(kg/m)",
+                                "BMI(kg/m²)",
                                 style: TextStyle(
                                     fontWeight: FontWeight.w500,
                                     color: Colors.black38),
@@ -321,8 +321,9 @@ class _VitalSignsState extends State<VitalSigns> {
                                             "/" +
                                             vitalsignsModel.body[0].tempfar
                                                 .toString(),
-                                    subtitle: MyLocalizations.of(context)
-                                        .text("TEMPERATUREE"),
+                                    subtitle: "Temperature(C/F)",
+                                    // MyLocalizations.of(context)
+                                    //     .text("TEMPERATUREE"),
                                     fun: () {
                                       /*Navigator.pushNamed(
                                       context, "/patientRegistration");*/
@@ -349,8 +350,9 @@ class _VitalSignsState extends State<VitalSigns> {
                                             "/" +
                                             vitalsignsModel.body[0].diabp
                                                 .toString(),
-                                    subtitle: MyLocalizations.of(context)
-                                        .text("BLOOD_PRESSURE"),
+                                    subtitle:("Systolic / Diastolic Blood Pressure(mm Hg)"),
+                                    // MyLocalizations.of(context)
+                                    //     .text("BLOOD_PRESSURE(mm Hg)"),
                                     fun: () {
                                       // chooseAppointment(context);
                                       // Navigator.pushNamed(context, "/medicalrecordpage");
@@ -380,8 +382,8 @@ class _VitalSignsState extends State<VitalSigns> {
                                         ? "N/A"
                                         : vitalsignsModel.body[0].pulse
                                             .toString(),
-                                    subtitle: MyLocalizations.of(context)
-                                        .text("PULSE"),
+                                    subtitle: "Pulse(BPM)",
+                                   // MyLocalizations.of(context).text("PULSE (BPM)"),
                                     fun: () {
                                       /*Navigator.pushNamed(
                                           context, "/pocreportlist");*/
@@ -404,8 +406,9 @@ class _VitalSignsState extends State<VitalSigns> {
                                       ? "N/A"
                                       : vitalsignsModel.body[0].respiartion
                                           .toString(),
-                                  subtitle: MyLocalizations.of(context)
-                                      .text("RESPIRATION"),
+                                  subtitle: "Respiration(bpm)",
+                                  // MyLocalizations.of(context)
+                                  //     .text("RESPIRATION(bpm)"),
                                   fun: () {
                                     //chooseAppointment1(context);
                                     /* Navigator.pushNamed(
@@ -436,8 +439,9 @@ class _VitalSignsState extends State<VitalSigns> {
                                             "0")
                                     ? "N/A"
                                     : vitalsignsModel.body[0].oxygen.toString(),
-                                subtitle: MyLocalizations.of(context)
-                                    .text("OXYGEN_SATURATION"),
+                                subtitle:"Oxygen Saturation(%)",
+                                // MyLocalizations.of(context)
+                                //     .text("OXYGEN_SATURATION(%)"),
                                 fun: () {
                                   /* Navigator.pushNamed(context, "/testappointmentpage1");*/
                                 },
@@ -733,28 +737,35 @@ class _VitalSignsState extends State<VitalSigns> {
                   SizedBox(
                     height: 5,
                   ),
-                  formFieldMobile(4, "Systolic Blood Pressure"),
+                  formFieldMobile(4, "Systolic Blood Pressure(mm Hg)"),
                   SizedBox(
                     height: 5,
                   ),
                   formFieldMobile(
-                      5,
-                      MyLocalizations.of(context)
-                          .text("DIASTOLIC_BLOOD_PRESSURE")),
+                      5,"Diastolic Blood Prssure(mm Hg)"
+                      // MyLocalizations.of(context)
+                      //     .text("DIASTOLIC_BLOOD_PRESSURE")
+                  ),
                   SizedBox(
                     height: 5,
                   ),
-                  formFieldMobile(6, MyLocalizations.of(context).text("PULSE")),
+                  formFieldMobile(6, "Pulse(BPM)"
+                      // MyLocalizations.of(context).text("PULSE")
+                ),
                   SizedBox(
                     height: 5,
                   ),
                   formFieldMobile(
-                      7, MyLocalizations.of(context).text("RESPIRATION")),
+                      7,"Respiration(bpm)"
+                      //MyLocalizations.of(context).text("RESPIRATION")
+                    ),
                   SizedBox(
                     height: 5,
                   ),
                   formFieldMobile(
-                      8, MyLocalizations.of(context).text("OXYGEN_SATURATION")),
+                      8, "Oxygen Saturation(%)"
+                     // MyLocalizations.of(context).text("OXYGEN_SATURATION")
+                  ),
                 ],
               ),
             ),
