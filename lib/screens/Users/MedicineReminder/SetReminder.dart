@@ -213,6 +213,8 @@ class SetReminderState extends State<SetReminder> {
     );
     RecurrenceRule recurrenceRule =
         cal.RecurrenceRule(RecurrenceFrequency.Daily);
+    // recurrenceRule.recurrenceFrequency=cal.RecurrenceFrequency.Daily;
+    // recurrenceRule.endDate
     //recurrenceRule.
     // event.start=DateTime.now().add(Duration(minutes: 15));
     // event.end=DateTime.now().add(Duration(minutes: 35));
@@ -227,12 +229,13 @@ class SetReminderState extends State<SetReminder> {
     // event.recurrenceRule=recurrenceRule;
     //event.n="Home";
     // event.url=Uri(path: "https://pub.dev/packages/device_calendar/versions");
-    // event.recurrenceRule=RecurrenceRange.noEndDate;
+
     event.reminders = [cal.Reminder(minutes: 20)];
     // event.
 
     bool isAllAdded=false;
     for (int i = 0; i < int.tryParse(SetReminder.timeDayModel.name); i++) {
+      // event.recurrenceRule=recurrenceRule;
       event.start = DateTime(
           selectedStartDate.year,
           selectedStartDate.month,
@@ -241,6 +244,7 @@ class SetReminderState extends State<SetReminder> {
           actualTime[i].minute);
       event.end = DateTime(selectedEndDate.year, selectedEndDate.month,
           selectedEndDate.day, actualTime[i].hour, actualTime[i].minute);
+
 
       final createEventResult =
           await _deviceCalendarPlugin.createOrUpdateEvent(event);
