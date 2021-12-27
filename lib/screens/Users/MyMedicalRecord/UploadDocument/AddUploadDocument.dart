@@ -405,11 +405,11 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
       adduploaddocument.extension = extName;
       extension = extName;
       print("size>>>" + AppData.formatBytes(enc.length, 0).toString());
-      /*if (20000 < enc.length) {
-        AppData.(
-            "Please select image with maximum size 20 KB ", Colors.red);
+      if (104857600 < enc.length) {
+        AppData.showInSnackBar(context,"Please select video with maximum size 100 MB ",);
+        idproof="";
         return;
-      }*/
+      }
       print("Message is: " +
           extension); // adduploaddocument.mulFile=file.path as MultipartFile;
       print("Message isssss: " +
@@ -440,6 +440,12 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
       idproof = image.path;
       adduploaddocument.extension = extName;
       extension = extName;
+      print("size>>>" + AppData.formatBytes(enc.length, 0).toString());
+      if (104857600 < enc.length) {
+        AppData.showInSnackBar(context,"Please select video with maximum size 100 MB ",);
+        idproof="";
+        return;
+      }
       print("Message is: " +
           extension); // adduploaddocument.mulFile=file.path as MultipartFile;
       print("Message isssss: " +
@@ -471,6 +477,12 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
         idproof = file.path;
         adduploaddocument.extension = extName;
         extension = extName;
+        print("size>>>" + AppData.formatBytes(enc.length, 0).toString());
+        if (104857600 < enc.length) {
+          AppData.showInSnackBar(context,"Please select video with maximum size 100 MB ",);
+          idproof="";
+          return;
+        }
         print("Message is: " +
             extension); // adduploaddocument.mulFile=file.path as MultipartFile;
         print("Message isssss: " +
