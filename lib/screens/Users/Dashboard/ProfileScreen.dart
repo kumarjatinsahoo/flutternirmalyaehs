@@ -377,7 +377,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         //centerTitle: true,
         // iconTheme: IconThemeData(color: AppData.kPrimaryColor,),
       ),
-      body:/* patientProfileModel == null
+      body: patientProfileModel == null
           ?  isdata != true
           ? Center(
         child: Column(
@@ -409,7 +409,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
         ),
       )
-          :*/ Padding(
+          : Padding(
         padding: const EdgeInsets.all(15.0),
         child: Container(
           height: double.maxFinite,
