@@ -424,7 +424,7 @@ class ReceptionlistSignUpFormmState extends State<ReceptionlistSignUpFormm> {
                                       border: InputBorder.none,
                                       hintText:
                                       MyLocalizations.of(context)
-                                          .text("Experience(years)"),
+                                          .text("Experience(year)"),
                                       prefixIcon:
                                       Icon(Icons.work_outlined),
                                       hintStyle: TextStyle(
