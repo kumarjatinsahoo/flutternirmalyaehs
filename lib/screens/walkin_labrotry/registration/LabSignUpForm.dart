@@ -307,6 +307,31 @@ class LabSignUpFormState extends State<LabSignUpForm> {
                           SizedBox(
                             height: 10,
                           ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 0),
+                            child: SizedBox(
+                              height: 58,
+                              child:
+                              DropDown.networkDropdownGetpartUser(
+                                  MyLocalizations.of(context)
+                                      .text("GENDER"),
+                                  ApiFactory.GENDER_API,
+                                  "gender",
+                                  Icons.wc_outlined,
+                                  23.0, (KeyvalueModel data) {
+                                setState(() {
+                                  /* print(ApiFactory.GENDER_API);
+                                      DoctorSignUpForm3.genderModel = data;
+                                      userModel.title = data.key;*/
+                                  print(ApiFactory.GENDER_API);
+                                  LabSignUpForm.genderModel = data;
+                                  widget.model.labgender = data.key;
+                                  // UserSignUpForm.cityModel = null;
+                                });
+                              }),
+                            ),
+                          ),
                           // formField(10, "User Id"),
                           // SizedBox(
                           //   height: 5,

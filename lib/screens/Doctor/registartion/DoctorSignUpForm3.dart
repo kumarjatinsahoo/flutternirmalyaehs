@@ -249,11 +249,11 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
                           SizedBox(
                             height: 8,
                           ),
-                          formField1(
+                        /*  formField1(
                               8, MyLocalizations.of(context).text("EDUCATION")),
                           SizedBox(
                             height: 10,
-                          ),
+                          ),*/
                           Padding(
                             padding: const EdgeInsets.only(left: 8.0),
                             child: Row(
@@ -301,7 +301,7 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
                           SizedBox(
                             height: 8,
                           ),
-                          dob(),
+                          /*dob(),
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 0),
                             child: SizedBox(
@@ -319,7 +319,7 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
                                 });
                               }),
                             ),
-                          ),
+                          ),*/
                           /*SizedBox(
                         height: 5,
                       ),*/
@@ -336,8 +336,8 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
                                 setState(() {
                                   print(ApiFactory.GENDER_API);
                                   DoctorSignUpForm3.genderModel = data;
-                                  userModel.title = data.key;
-                                  // UserSignUpForm.cityModel = null;
+                                  //userModel.title = data.key;
+                                  //UserSignUpForm.cityModel = null;
                                 });
                               }),
                             ),
@@ -513,27 +513,27 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
       text: MyLocalizations.of(context).text("NEXT"),
       context: context,
       fun: () {
-        if (textEditingController[8].text == null ||
+       /* if (textEditingController[8].text == null ||
             textEditingController[8].text == "") {
           AppData.showInSnackBar(context, "Please enter Education Name");
           FocusScope.of(context).requestFocus(fnode1);
-        } else if (DoctorSignUpForm3.specialistModel == null ||
+        } else*/ if (DoctorSignUpForm3.specialistModel == null ||
             DoctorSignUpForm3.specialistModel == "") {
           AppData.showInSnackBar(context, "Please select Speciality");
-        } else if (textEditingController[2].text == null ||
+       /* } else if (textEditingController[2].text == null ||
             textEditingController[2].text == "") {
           AppData.showInSnackBar(context, "Please enter Date  of Birth");
         } else if (DoctorSignUpForm3.bloodgroupModel == null ||
             DoctorSignUpForm3.bloodgroupModel == "") {
-          AppData.showInSnackBar(context, "Please select Blood Group");
+          AppData.showInSnackBar(context, "Please select Blood Group");*/
         } else if (DoctorSignUpForm3.genderModel == null ||
             DoctorSignUpForm3.genderModel == "") {
           AppData.showInSnackBar(context, "Please select Gender");
         } else {
-          widget.model.education = textEditingController[8].text;
+          //widget.model.education = textEditingController[8].text;
           widget.model.speciality = DoctorSignUpForm3.specialistModel.key;
-          widget.model.dateofbirth = textEditingController[2].text;
-          widget.model.bloodgroup = DoctorSignUpForm3.bloodgroupModel.key;
+         /* widget.model.dateofbirth = textEditingController[2].text;
+          widget.model.bloodgroup = DoctorSignUpForm3.bloodgroupModel.key;*/
           widget.model.gender = DoctorSignUpForm3.genderModel.key;
           Navigator.pushNamed(context, "/doctorsignupform4");
         }
