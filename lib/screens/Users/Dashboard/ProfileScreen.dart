@@ -640,20 +640,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       //TabBar(tabs: [Tab(text: 'DETAILS',), Tab(text: 'CONTACTS'),Tab(text: 'FAMILY DOCTORS')]),
                       Container(
                           //height: MediaQuery.of(context).size.height * 100,
-                          height: 300,
-                          child: TabBarView(
-                            children: [
-                              /*(patientProfileModel != null)?*/rowValue()/*:Container()*/,
-                              (patientProfileModel != null)? backUp():Container(),
-                              (patientProfileModel != null)?rowValue2():Container(),
-                              (patientProfileModel != null)? rowValue3():Container(),
-                              /* rowValue1(),
-                              rowValue1(),
-                              rowValue1(),
-                              rowValue1(),
-                              rowValue1(),*/
-                            ],
-                          ))
+                          //height: 300,
+                        child:LimitedBox( // use this 
+                            maxHeight: 300,
+                        child: TabBarView(
+                          children: [
+                            (patientProfileModel != null)?rowValue():Container(),
+                            (patientProfileModel != null)? backUp():Container(),
+                            (patientProfileModel != null)?rowValue2():Container(),
+                            (patientProfileModel != null)? rowValue3():Container(),
+                            /* rowValue1(),
+                            rowValue1(),
+                            rowValue1(),
+                            rowValue1(),
+                            rowValue1(),*/
+                          ],
+                        )
+                      ),
+                      ),
                     ],
                   ))
             ],
