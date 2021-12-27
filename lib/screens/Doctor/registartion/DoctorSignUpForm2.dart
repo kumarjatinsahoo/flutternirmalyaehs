@@ -148,6 +148,8 @@ class DoctorSignUpForm2State extends State<DoctorSignUpForm2> {
     DoctorSignUpForm2.blockModel = null;
     DoctorSignUpForm2.genderModel = null;
 
+
+
     DoctorSignUpForm2.organizationModel = null;
     DoctorSignUpForm2.titleModel = null;
     /*setState(() {
@@ -321,6 +323,7 @@ class DoctorSignUpForm2State extends State<DoctorSignUpForm2> {
                               SizedBox(
                                 height: 5,
                               ),
+
                               // formField(10, "User Id"),
                               // SizedBox(
                               //   height: 5,

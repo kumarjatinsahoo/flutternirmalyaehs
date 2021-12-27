@@ -242,13 +242,13 @@ class LabSignUpForm2State extends State<LabSignUpForm2> {
                                   SizedBox(
                                     height: 13,
                                   ),
-                                  formField1(
+                                /*  formField1(
                                       8,
                                       MyLocalizations.of(context)
                                           .text("EDUCATION")),
                                   SizedBox(
                                     height: 13,
-                                  ),
+                                  ),*/
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Row(
@@ -295,7 +295,7 @@ class LabSignUpForm2State extends State<LabSignUpForm2> {
                                   SizedBox(
                                     height: 8,
                                   ),
-                                  dob(),
+                                /*  dob(),*/
                                   // Padding(
                                   //   padding: const EdgeInsets.symmetric(horizontal: 0),
                                   //   child: DropDown.staticDropdown3(
@@ -308,7 +308,7 @@ class LabSignUpForm2State extends State<LabSignUpForm2> {
                                   //     });
                                   //   }),
                                   // ),
-                                  Padding(
+                                  /*Padding(
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 0),
                                     child: SizedBox(
@@ -327,7 +327,7 @@ class LabSignUpForm2State extends State<LabSignUpForm2> {
                                         });
                                       }),
                                     ),
-                                  ),
+                                  ),*/
 
                                   Padding(
                                     padding: const EdgeInsets.symmetric(
@@ -547,7 +547,7 @@ class LabSignUpForm2State extends State<LabSignUpForm2> {
       text: MyLocalizations.of(context).text("NEXT"),
       context: context,
       fun: () {
-        if (textEditingController[8].text == "" ||
+       /* if (textEditingController[8].text == "" ||
             textEditingController[8].text == null) {
           AppData.showInSnackBar(context, "Please enter Education Name");
           FocusScope.of(context).requestFocus(fnode1);
@@ -557,13 +557,13 @@ class LabSignUpForm2State extends State<LabSignUpForm2> {
         } else if (LabSignUpForm2.bloodgroupModel == null ||
             LabSignUpForm2.bloodgroupModel == "") {
           AppData.showInSnackBar(context, "Please select Blood Group");
-        } else if (LabSignUpForm2.genderModel == null ||
+        } else*/ if (LabSignUpForm2.genderModel == null ||
             LabSignUpForm2.genderModel == "") {
           AppData.showInSnackBar(context, "Please select Gender");
         } else {
-          widget.model.labeducation = textEditingController[8].text;
-          widget.model.labdob = textEditingController[2].text;
-          widget.model.labbloodgroup = LabSignUpForm2.bloodgroupModel.key;
+         // widget.model.labeducation = textEditingController[8].text;
+         // widget.model.labdob = textEditingController[2].text;
+          //widget.model.labbloodgroup = LabSignUpForm2.bloodgroupModel.key;
           widget.model.labgender = LabSignUpForm2.genderModel.key;
           Navigator.pushNamed(context, "/labsignup3");
         }

@@ -264,7 +264,7 @@ class PharmaSignUpForm2State extends State<PharmaSignUpForm2> {
                                       print(ApiFactory.SPECIALITY_API);
                                       PharmaSignUpForm2.specialistModel = data;
                                       PharmaSignUpForm2.doctorModel = null;
-                                      widget.model.pharmagender=data.key;
+                                      //widget.model.pharmaspeciality=data.key;
                                     });
                                   }),
                                   SizedBox(

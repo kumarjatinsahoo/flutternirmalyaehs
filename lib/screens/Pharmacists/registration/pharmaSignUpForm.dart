@@ -253,7 +253,7 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
                                   ),
                                   formField2(11,MyLocalizations.of(context).text("ADDRESS")),
 
-                                 /* DropDown.networkDropdownGetpartUser1(
+                                  DropDown.networkDropdownGetpartUser1(
                                       MyLocalizations.of(context)
                                           .text("GENDER") ,
                                       ApiFactory.GENDER_API,
@@ -265,7 +265,7 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
                                      //widget.model.pharmagender=data.key;
                                       PharmaSignUpForm.genderModel = data;
                                     });
-                                  }),*/
+                                  }),
                                   SizedBox(height: 15),
 
                                   Padding(padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -470,19 +470,19 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
             textEditingController[11].text == null) {
           AppData.showInSnackBar(context, "Please enter Address");
         }
-       /* else if (PharmaSignUpForm.genderModel == null ||
+        else if (PharmaSignUpForm.genderModel == null ||
             PharmaSignUpForm.genderModel == "") {
           AppData.showInSnackBar(context, "Please select Gender");
-        }*/
+        }
         else {
           widget.model.pharmaorganisation = PharmaSignUpForm.pharmacyModel.key;
           widget.model.pharmartitle = PharmaSignUpForm.titlemodel.key;
           widget.model.pharmaprofessional = textEditingController[9].text;
           widget.model.pharmaexperience = textEditingController[10].text;
           widget.model.pharmaaddress = textEditingController[11].text;
-          //widget.model.pharmagender = PharmaSignUpForm.genderModel.key;
+          widget.model.pharmagender = PharmaSignUpForm.genderModel.key;
 
-          Navigator.pushNamed(context, "/pharmasignupform2");
+          Navigator.pushNamed(context, "/pharmasignupform3");
         }
       },
     );
