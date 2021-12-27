@@ -193,7 +193,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
     });
    // callApi();
   }
-
   callApi() {
     widget.model.GETMETHODCALL_TOKEN(
         api: ApiFactory.PATIENT_PROFILE + loginResponse1.body.user,
@@ -207,7 +206,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 patientProfileModel = ProfileModel.fromJson(map);
                 loginResponse1.body.userPic = patientProfileModel.body.profileImage;
               });
-
               if (patientProfileModel?.body?.bloodGroup != null) {
                 ProfileScreen.bloodgroupmodel = KeyvalueModel(
                     key: patientProfileModel.body.bloodGroupId,

@@ -791,9 +791,22 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                 height: 8,
               ),
               ListTile(
-                  leading: Image.asset(
-                    "assets/images/contact us.png",
-                    height: 30,
+                  leading: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Container(
+                            width: 30,
+                            height: 30,
+                            child: Image.asset( "assets/images/contact us.png",
+                                fit: BoxFit.cover)),
+                        VerticalDivider(
+                          thickness: 1,
+                          color: Colors.grey,
+                        ),
+                      ],
+                    ),
                   ),
                   title: Text(MyLocalizations.of(context).text("CONTACT_US")),
                   onTap: () {
@@ -802,9 +815,22 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                     //Navigator.pushNamed(context, "/discountoffer");
                   }),
               ListTile(
-                  leading: Image.asset(
-                    "assets/images/support.png",
-                    height: 30,
+                  leading: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Container(
+                            width: 30,
+                            height: 30,
+                            child: Image.asset( "assets/images/support.png",
+                                fit: BoxFit.cover)),
+                        VerticalDivider(
+                          thickness: 1,
+                          color: Colors.grey,
+                        ),
+                      ],
+                    ),
                   ),
                   title: Text(MyLocalizations.of(context).text("SUPPORT")),
                   onTap: () {

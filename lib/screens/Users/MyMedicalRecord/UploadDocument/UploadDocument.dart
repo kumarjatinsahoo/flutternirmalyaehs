@@ -1,23 +1,17 @@
-import 'dart:convert';
-import 'dart:developer';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
-import 'package:user/localization/localizations.dart';
 import 'package:user/models/AddBioMedicalModel.dart';
 import 'package:user/models/BiomedicalModel.dart' as bio;
 import 'package:user/models/DocumentListModel.dart' as document;
 import 'package:user/models/KeyvalueModel.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/providers/Const.dart';
-import 'package:user/providers/DropDown.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/AddUploadDocument.dart';
 import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/DocumentImageView.dart';
-import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/DocumentPdfView.dart';
 import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/VideoDetailsPage.dart';
 import 'package:user/widgets/PdfViewPage.dart';
 
