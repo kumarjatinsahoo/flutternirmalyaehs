@@ -199,14 +199,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
         api: ApiFactory.PATIENT_PROFILE + loginResponse1.body.user,
         token: widget.model.token,
         fun: (Map<String, dynamic> map) {
-          setState(() {
+          // setState(() {
             log("Value>>>" + jsonEncode(map));
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
               setState(() {
                 patientProfileModel = ProfileModel.fromJson(map);
                 loginResponse1.body.userPic = patientProfileModel.body.profileImage;
-
               });
 
               if (patientProfileModel?.body?.bloodGroup != null) {
@@ -292,7 +291,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               //AppData.showInSnackBar(context, "Something Went Wrong");
             }
           });
-        });
+        // });
   }
 
   updateProfile(String image, String ext) {
