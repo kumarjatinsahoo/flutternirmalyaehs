@@ -600,6 +600,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                   selected: _selectedDestination == 6,
                   onTap: () {
                     selectDestination(6);
+                    widget.model.contactscreen = "Contact Screen";
                     Navigator.pushNamed(context, "/contactus");
                     //Navigator.pushNamed(context, "/discountoffer");
                   }),
@@ -612,7 +613,8 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                   selected: _selectedDestination == 7,
                   onTap: () {
                     selectDestination(7);
-                    Navigator.pushNamed(context, "/support");
+                    widget.model.contactscreen = "Support Screen";
+                    Navigator.pushNamed(context, "/contactus");
                   }),
 
               ListTile(
