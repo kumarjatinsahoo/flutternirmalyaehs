@@ -66,10 +66,72 @@ class _OrganlistState extends State<Organlist> {
     final orientation = MediaQuery.of(context).orientation;
     return Scaffold(
         appBar: AppBar(
+          /* leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () => Navigator.of(context).pop(),
+        ),*/
+          automaticallyImplyLeading: false,
+          title: Stack(
+            children: [
+              InkWell(
+                onTap:(){
+                  //_cropImage();
+                },
+                child: Center(
+                  child: Text(
+                    "Organ List",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+              ),
+              //Spacer(),
+              Align(
+                alignment: Alignment.topRight,
+                child: Padding(
+                  padding: const EdgeInsets.only(right:10.0),
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, "/organPriviewPage");
+                    },
+                    child: Text("Preview"),
+                  ),
+                ),
+              ),
+              /*Align(
+                alignment: Alignment.topRight,
+                child: InkWell(
+                  onTap: () {
+                    Navigator.pushNamed(context, "/idCard");
+                  },
+                  child: Text(
+                    "ID CARD",
+                    style: TextStyle(
+                      fontSize: 14,
+                      decoration: TextDecoration.underline,
+                    ),
+                  ),
+                ),
+              ),*/
+              Align(
+                alignment: Alignment.topLeft,
+                child: InkWell(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: Icon(Icons.arrow_back),
+                ),
+              )
+            ],
+          ),
+          backgroundColor: AppData.kPrimaryColor,
+          //centerTitle: true,
+          // iconTheme: IconThemeData(color: AppData.kPrimaryColor,),
+        ),
+        /*appBar: AppBar(
           backgroundColor: AppData.kPrimaryColor,
           title: Text("Organ List"),
           centerTitle: true,
-        ),
+        ),*/
         body:
         (organlistModel != null)? Container(
           child: SingleChildScrollView(

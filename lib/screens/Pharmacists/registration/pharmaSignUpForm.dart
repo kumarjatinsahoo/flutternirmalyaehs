@@ -1028,7 +1028,7 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
             },
             inputFormatters: [
               WhitelistingTextInputFormatter(
-                  RegExp("[a-zA-Z ./0-9 ]")),
+                  RegExp("[a-zA-Z,-/0-9. ]")),
             ],
           ),
         ),

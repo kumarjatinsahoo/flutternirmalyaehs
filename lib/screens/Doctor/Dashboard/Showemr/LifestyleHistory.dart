@@ -93,10 +93,12 @@ class _LifeStylehistory extends State<LifeStylehistory> {
                             "   :   ",
                             style: TextStyle(color: Colors.black, fontSize: 15),
                           ),
-                          Text(
-                            /*"Very Frequently 25/day"*/ (lifeStyleHistryModel?.body == null || lifeStyleHistryModel.body.smokingName.toString()=="")
-                              ?"N/A": lifeStyleHistryModel.body.smokingName.toString(),
-                            style: TextStyle(color: Colors.black, fontSize: 15),
+                          Expanded(
+                            child: Text(
+                              /*"Very Frequently 25/day"*/ (lifeStyleHistryModel?.body == null || lifeStyleHistryModel.body.smokingName.toString()=="")
+                                ?"N/A": lifeStyleHistryModel.body.smokingName.toString(),
+                              style: TextStyle(color: Colors.black, fontSize: 15),
+                            ),
                           ),
                         ],
                       ),
@@ -114,10 +116,12 @@ class _LifeStylehistory extends State<LifeStylehistory> {
                             "   :   ",
                             style: TextStyle(color: Colors.black, fontSize: 15),
                           ),
-                          Text(
-                            /*"Very Frequently"*/(lifeStyleHistryModel?.body == null|| lifeStyleHistryModel.body.alcoholName.toString()=="0")
-                              ? "N/A":lifeStyleHistryModel.body.alcoholName.toString(),
-                            style: TextStyle(color: Colors.black, fontSize: 15),
+                          Expanded(
+                            child: Text(
+                              /*"Very Frequently"*/(lifeStyleHistryModel?.body == null|| lifeStyleHistryModel.body.alcoholName.toString()=="0")
+                                ? "N/A":lifeStyleHistryModel.body.alcoholName.toString(),
+                              style: TextStyle(color: Colors.black, fontSize: 15),
+                            ),
                           ),
                         ],
                       ),
