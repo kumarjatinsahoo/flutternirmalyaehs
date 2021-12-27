@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
 import 'package:share/share.dart';
 import 'package:user/models/LoginResponse1.dart';
@@ -30,6 +31,18 @@ class _OrganPriviewPageState extends State<OrganPriviewPage> {
     loginResponse1=widget.model.loginResponse1;
     id=base64.encode(utf8.encode(loginResponse1.body.user));
   }
+  final Completer<InAppWebViewController> _controller1 =
+  Completer<InAppWebViewController>();
+
+  final InAppWebViewGroupOptions _options = InAppWebViewGroupOptions(
+      crossPlatform: InAppWebViewOptions(
+        useShouldOverrideUrlLoading: true,
+        javaScriptCanOpenWindowsAutomatically: true,
+        mediaPlaybackRequiresUserGesture: false,
+        disableHorizontalScroll: true,
+        disableVerticalScroll: true,
+      ),
+  );
 /*  final Completer<InAppWebViewController> _controller1 =
   Completer<InAppWebViewController>();
 
@@ -79,7 +92,7 @@ class _OrganPriviewPageState extends State<OrganPriviewPage> {
           children: [
             Center(
               child: Text(
-                'PreView',
+                'Preview',
                 style: TextStyle(color: Colors.white),
               ),
             ),
@@ -99,7 +112,34 @@ class _OrganPriviewPageState extends State<OrganPriviewPage> {
         //centerTitle: true,
         // iconTheme: IconThemeData(color: AppData.kPrimaryColor,),
       ),
-      body:Container(
+      body: Builder(builder: (BuildContext context) {
+        print("api......" +
+            'https://ehealthsystem.com/download-ehealthcard?userid=' +
+            id);
+        return Container(
+          width: MediaQuery.of(context).size.width,
+          child: SizedBox(
+            // width: MediaQuery.of(context).size.height,
+            child: InAppWebView(
+              initialUrlRequest: URLRequest(
+                  url: Uri.parse("https://demo.ehealthsystem.com/user/mobile-organ-donation-pdf-download?id="+id)),
+              initialOptions: _options,
+              shouldOverrideUrlLoading: (controller, action) {
+                print("override");
+                return Future.value(NavigationActionPolicy.ALLOW);
+              },
+              onWebViewCreated: (webViewController) {
+                _controller1.complete(webViewController);
+              },
+              onDownloadStart: (controller, uri) {
+                print("download");
+              },
+            ),
+          ),
+        );
+      }),
+     /* body:Container(
+
         width: MediaQuery.of(context).size.width,
         height:MediaQuery.of(context).size.height ,
         child:WebView(
@@ -114,36 +154,14 @@ class _OrganPriviewPageState extends State<OrganPriviewPage> {
 
         },
       ),
-      /*Builder(builder: (BuildContext context) {
-        print("api......"+'https://www.ehealthsystem.com/assets/pdf/eHealthSystem-cnd.xhtml');
-        return  Container(
-          width: MediaQuery.of(context).size.width,
-          child: SizedBox(
-       // width: MediaQuery.of(context).size.height,
-        child: InAppWebView(
-          initialUrlRequest: URLRequest(url: Uri.parse('https://www.ehealthsystem.com/assets/pdf/eHealthSystem-cnd.xhtml')),
-          initialOptions: _options,
 
-          shouldOverrideUrlLoading: (controller, action) {
-            print("override");
-            return Future.value(NavigationActionPolicy.ALLOW);
-          },
-          onWebViewCreated: (webViewController) {
-            _controller1.complete(webViewController);
-          },
-          onDownloadStart: (controller, uri) {
-            print("download");
-          },
-        ),
-          ),
-        );
-      }),*/
-      )
+      )*/
 
     );
   }
 
   _onShareWithEmptyFields(BuildContext context) async {
+
     await Share.share("https://demo.ehealthsystem.com/user/mobile-organ-donation-pdf-download?id="+id,);
   }
 }
