@@ -38,6 +38,7 @@ class OrganisationSignUpForm extends StatefulWidget {
       helathCheckup = null;
 
   MainModel model;
+
   static KeyvalueModel districtModel = null;
   static KeyvalueModel blockModel = null;
   static KeyvalueModel genderModel = null;
@@ -115,6 +116,14 @@ class OrganisationSignUpFormState extends State<OrganisationSignUpForm> {
       idproof3 = null,
       labReport = null,
       helathCheckup = null;
+  String extension;
+  String extension1;
+  String extension2;
+  String extension3;
+  File selectFile;
+  File selectFile1;
+  File selectFile2;
+  File selectFile3;
   List<bool> dropdownError = [false, false, false];
   var color = Colors.black;
   var strokeWidth = 3.0;
@@ -357,7 +366,7 @@ class OrganisationSignUpFormState extends State<OrganisationSignUpForm> {
                                           Expanded(
                                             child: Padding(
                                               padding: const EdgeInsets.all(10.0),
-                                              child: Text("Upload Document1",style: TextStyle(color:AppData.kPrimaryColor,fontSize: 18,fontWeight: FontWeight.bold),),
+                                              child: Text("Upload Document 1",style: TextStyle(color:AppData.kPrimaryColor,fontSize: 18,fontWeight: FontWeight.bold),),
                                             ),
                                           ),
                                           SizedBox(width:5),
@@ -432,7 +441,7 @@ class OrganisationSignUpFormState extends State<OrganisationSignUpForm> {
                                           Expanded(
                                             child: Padding(
                                               padding: const EdgeInsets.all(10.0),
-                                              child: Text("Upload Document2",style: TextStyle(color:AppData.kPrimaryColor,fontSize: 18,fontWeight: FontWeight.bold),),
+                                              child: Text("Upload Document 2",style: TextStyle(color:AppData.kPrimaryColor,fontSize: 18,fontWeight: FontWeight.bold),),
                                             ),
                                           ),
                                           SizedBox(width:5),
@@ -441,8 +450,8 @@ class OrganisationSignUpFormState extends State<OrganisationSignUpForm> {
                                             color:AppData.kPrimaryColor,
                                             borderRadius: BorderRadius.circular(5.0),
                                             child: MaterialButton(
-                                              onPressed: () {
-                                                _settingModalBottomSheet(context);
+                                              onPressed: ( ) {
+                                                _settingModalBottomSheet1(context);
 
                                               },
                                               minWidth: 120,
@@ -507,7 +516,7 @@ class OrganisationSignUpFormState extends State<OrganisationSignUpForm> {
                                           Expanded(
                                             child: Padding(
                                               padding: const EdgeInsets.all(10.0),
-                                              child: Text("Upload Document3",style: TextStyle(color:AppData.kPrimaryColor,fontSize: 18,fontWeight: FontWeight.bold),),
+                                              child: Text("Upload Document 3",style: TextStyle(color:AppData.kPrimaryColor,fontSize: 18,fontWeight: FontWeight.bold),),
                                             ),
                                           ),
                                           SizedBox(width:5),
@@ -517,7 +526,7 @@ class OrganisationSignUpFormState extends State<OrganisationSignUpForm> {
                                             borderRadius: BorderRadius.circular(5.0),
                                             child: MaterialButton(
                                               onPressed: () {
-                                                _settingModalBottomSheet(context);
+                                                _settingModalBottomSheet2(context);
 
                                               },
                                               minWidth: 120,
@@ -582,7 +591,7 @@ class OrganisationSignUpFormState extends State<OrganisationSignUpForm> {
                                           Expanded(
                                             child: Padding(
                                               padding: const EdgeInsets.all(10.0),
-                                              child: Text("Upload Document4",style: TextStyle(color:AppData.kPrimaryColor,fontSize: 18,fontWeight: FontWeight.bold),),
+                                              child: Text("Upload Document 4",style: TextStyle(color:AppData.kPrimaryColor,fontSize: 18,fontWeight: FontWeight.bold),),
                                             ),
                                           ),
                                           SizedBox(width:5),
@@ -592,7 +601,7 @@ class OrganisationSignUpFormState extends State<OrganisationSignUpForm> {
                                             borderRadius: BorderRadius.circular(5.0),
                                             child: MaterialButton(
                                               onPressed: () {
-                                                _settingModalBottomSheet(context);
+                                                _settingModalBottomSheet3(context);
 
                                               },
                                               minWidth: 120,
@@ -703,7 +712,9 @@ class OrganisationSignUpFormState extends State<OrganisationSignUpForm> {
                   title: new Text('Gallery'),
                   onTap: () => {
                     Navigator.pop(context),
-                 /* MultiImagePicker.pickImages(
+
+
+                    /* MultiImagePicker.pickImages(
                   maxImages: 300,
                   enableCamera: true,
                   //selectedAssets: images,
@@ -725,7 +736,59 @@ class OrganisationSignUpFormState extends State<OrganisationSignUpForm> {
           );
         });
   }
-  Future getPdfAndUpload() async {
+  Future getCameraImage() async {
+    var image1 = await ImagePicker.pickImage(
+      source: ImageSource.camera,
+      imageQuality: 10,
+    );
+    var enc = await image1.readAsBytes();
+    String _path = image1.path;
+
+    String _fileName = _path != null ? _path
+        .split('/')
+        .last : '...';
+    var pos = _fileName.lastIndexOf('.');
+    String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+    print(extName);
+
+    setState(() {
+      selectFile = image1;
+      idproof = image1.path;
+      //adduploaddocument.extension = extName;
+      extension = extName;
+      print("Message is: " +
+          extension); // adduploaddocument.mulFile=file.path as MultipartFile;
+      print("Message isssss: " +
+          extName); // adduploaddocument.mulFile=file.path as MultipartFile;
+    });
+  }
+  Future getCerificateImage() async {
+    var image1 = await ImagePicker.pickImage(
+      source: ImageSource.gallery,
+      imageQuality: 10,
+    );
+    var enc = await image1.readAsBytes();
+    String _path = image1.path;
+
+    String _fileName = _path != null ? _path
+        .split('/')
+        .last : '...';
+    var pos = _fileName.lastIndexOf('.');
+    String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+    print(extName);
+
+    setState(() {
+      selectFile = image1;
+      idproof = image1.path;
+      //adduploaddocument.extension = extName;
+      extension = extName;
+      print("Message is: " +
+          extension); // adduploaddocument.mulFile=file.path as MultipartFile;
+      print("Message isssss: " +
+          extName); // adduploaddocument.mulFile=file.path as MultipartFile;
+    });
+  }
+  Future<void> getPdfAndUpload() async {
     File file = await FilePicker.getFile(
       type: FileType.custom,
       allowedExtensions: [
@@ -736,71 +799,398 @@ class OrganisationSignUpFormState extends State<OrganisationSignUpForm> {
     var enc = await file.readAsBytes();
     String _path = file.path;
 
-    String _fileName = _path != null ? _path.split('/').last : '...';
+    String _fileName = _path != null ? _path
+        .split('/')
+        .last : '...';
     var pos = _fileName.lastIndexOf('.');
     String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
     print(extName);
 
     if (file != null) {
       setState(() {
+        selectFile = file;
         idproof = file.path;
-        //pharmaSignupModel.documentUpload=base64Encode(enc);
-        // pharmaSignupModel.documentExt=extName;
-        //userModel. = base64Encode(enc);
+//        adduploaddocument.extension = extName;
+        extension = extName;
+        print("Message is: " +
+            extension); // adduploaddocument.mulFile=file.path as MultipartFile;
+        print("Message isssss: " +
+            extName); // adduploaddocument.mulFile=file.path as MultipartFile;
         //file1 = file; //file1 is a global variable which i created
       });
     }
   }
+  void _settingModalBottomSheet1(context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext bc) {
+          return Container(
+            child: new Wrap(
+              children: <Widget>[
+                new ListTile(
+                    leading: new Icon(Icons.camera),
+                    title: new Text('Camera'),
+                    onTap: () => {
+                      Navigator.pop(context),
+                      getCameraImage1(),
+                    }),
+                new ListTile(
+                  leading: new Icon(Icons.folder),
+                  title: new Text('Gallery'),
+                  onTap: () => {
+                    Navigator.pop(context),
 
-  Future getCameraImage() async {
-    // File pathUsr=null;
-    // var image = await ImagePicker.pickImage(source: ImageSource.gallery);
-    var image;
-    try {
-      var image = await ImagePicker.pickImage(
-          source: ImageSource.camera, imageQuality: 50);
 
-      // var decodedImage = await decodeImageFromList(image.readAsBytesSync());
-      if (image != null) {
-        var enc = await image.readAsBytes();
-        String _path = image.path;
-        String _fileName = _path != null ? _path.split('/').last : '...';
-        var pos = _fileName.lastIndexOf('.');
-        String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
-        print(extName);
-        //print("size>>>" + AppData.formatBytes(enc.length, 0).toString());
-        setState(() {
-          // widget.model.patientimg =base64Encode(enc);
-          // widget.model.patientimgtype =extName;
-          _imageCertificate = image;
-          idproof = _fileName;
-          // Print("pathhh"+idproof);
-          //userModel.profileImage = base64Encode(enc);
+                    /* MultiImagePicker.pickImages(
+                  maxImages: 300,
+                  enableCamera: true,
+                  //selectedAssets: images,
+                  materialOptions: MaterialOptions(
+                  actionBarTitle: "FlutterCorner.com",
+                  ),
+                  ),*/
+                    getCerificateImage1()},
+                ),
+                new ListTile(
+                    leading: new Icon(Icons.file_copy),
+                    title: new Text('Document'),
+                    onTap: () => {
+                      Navigator.pop(context),
+                      getPdfAndUpload1(),
+                    }),
+              ],
+            ),
+          );
         });
-      }
-    } catch (e) {
-      print("Error>>in" + e.toString());
-    }
   }
-
-  Future getCerificateImage() async {
-    var image = await ImagePicker.pickImage(
-      source: ImageSource.gallery,
+  Future getCameraImage1() async {
+    var image1 = await ImagePicker.pickImage(
+      source: ImageSource.camera,
       imageQuality: 10,
     );
-    var enc = await image.readAsBytes();
-    String _path = image.path;
+    var enc = await image1.readAsBytes();
+    String _path = image1.path;
 
-    String _fileName = _path != null ? _path.split('/').last : '...';
+    String _fileName = _path != null ? _path
+        .split('/')
+        .last : '...';
     var pos = _fileName.lastIndexOf('.');
     String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
     print(extName);
 
     setState(() {
-      _imageCertificate = image;
-      idproof = _fileName;
-      //userModel.profileImage = base64Encode(enc);
+      selectFile1 = image1;
+      idproof1 = image1.path;
+      //adduploaddocument1.extension = extName;
+      extension1 = extName;
+      print("Message is: " +
+          extension1); // adduploaddocument.mulFile=file.path as MultipartFile;
+      print("Message isssss: " +
+          extName); // adduploaddocument.mulFile=file.path as MultipartFile;
     });
+  }
+  Future getCerificateImage1() async {
+    var image1 = await ImagePicker.pickImage(
+      source: ImageSource.gallery,
+      imageQuality: 10,
+    );
+    var enc = await image1.readAsBytes();
+    String _path = image1.path;
+
+    String _fileName = _path != null ? _path
+        .split('/')
+        .last : '...';
+    var pos = _fileName.lastIndexOf('.');
+    String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+    print(extName);
+
+    setState(() {
+      selectFile1 = image1;
+      idproof1 = image1.path;
+      //adduploaddocument1.extension = extName;
+      extension1 = extName;
+      print("Message is: " +
+          extension1); // adduploaddocument.mulFile=file.path as MultipartFile;
+      print("Message isssss: " +
+          extName); // adduploaddocument.mulFile=file.path as MultipartFile;
+    });
+  }
+  Future<void> getPdfAndUpload1() async {
+    File file = await FilePicker.getFile(
+      type: FileType.custom,
+      allowedExtensions: [
+        'pdf',
+        'docx'
+      ], //here you can add any of extention what you need to pick
+    );
+    var enc = await file.readAsBytes();
+    String _path = file.path;
+
+    String _fileName = _path != null ? _path
+        .split('/')
+        .last : '...';
+    var pos = _fileName.lastIndexOf('.');
+    String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+    print(extName);
+
+    if (file != null) {
+      setState(() {
+        selectFile1 = file;
+        idproof1 = file.path;
+        //adduploaddocument1.extension = extName;
+        extension1 = extName;
+        print("Message is: " +
+            extension1); // adduploaddocument.mulFile=file.path as MultipartFile;
+        print("Message isssss: " +
+            extName); // adduploaddocument.mulFile=file.path as MultipartFile;
+        //file1 = file; //file1 is a global variable which i created
+      });
+    }
+  }
+  void _settingModalBottomSheet2(context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext bc) {
+          return Container(
+            child: new Wrap(
+              children: <Widget>[
+                new ListTile(
+                    leading: new Icon(Icons.camera),
+                    title: new Text('Camera'),
+                    onTap: () => {
+                      Navigator.pop(context),
+                      getCameraImage2(),
+                    }),
+                new ListTile(
+                  leading: new Icon(Icons.folder),
+                  title: new Text('Gallery'),
+                  onTap: () => {
+                    Navigator.pop(context),
+
+
+                    /* MultiImagePicker.pickImages(
+                  maxImages: 300,
+                  enableCamera: true,
+                  //selectedAssets: images,
+                  materialOptions: MaterialOptions(
+                  actionBarTitle: "FlutterCorner.com",
+                  ),
+                  ),*/
+                    getCerificateImage2()},
+                ),
+                new ListTile(
+                    leading: new Icon(Icons.file_copy),
+                    title: new Text('Document'),
+                    onTap: () => {
+                      Navigator.pop(context),
+                      getPdfAndUpload2(),
+                    }),
+              ],
+            ),
+          );
+        });
+  }
+  Future getCameraImage2() async {
+    var image1 = await ImagePicker.pickImage(
+      source: ImageSource.camera,
+      imageQuality: 10,
+    );
+    var enc = await image1.readAsBytes();
+    String _path = image1.path;
+
+    String _fileName = _path != null ? _path
+        .split('/')
+        .last : '...';
+    var pos = _fileName.lastIndexOf('.');
+    String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+    print(extName);
+
+    setState(() {
+      selectFile2 = image1;
+      idproof2 = image1.path;
+      //adduploaddocument1.extension = extName;
+      extension2 = extName;
+      print("Message is: " +
+          extension2); // adduploaddocument.mulFile=file.path as MultipartFile;
+      print("Message isssss: " +
+          extName); // adduploaddocument.mulFile=file.path as MultipartFile;
+    });
+  }
+  Future getCerificateImage2() async {
+    var image1 = await ImagePicker.pickImage(
+      source: ImageSource.gallery,
+      imageQuality: 10,
+    );
+    var enc = await image1.readAsBytes();
+    String _path = image1.path;
+
+    String _fileName = _path != null ? _path
+        .split('/')
+        .last : '...';
+    var pos = _fileName.lastIndexOf('.');
+    String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+    print(extName);
+
+    setState(() {
+      selectFile2 = image1;
+      idproof2 = image1.path;
+      //adduploaddocument1.extension = extName;
+      extension2 = extName;
+      print("Message is: " +
+          extension2); // adduploaddocument.mulFile=file.path as MultipartFile;
+      print("Message isssss: " +
+          extName); // adduploaddocument.mulFile=file.path as MultipartFile;
+    });
+  }
+  Future<void> getPdfAndUpload2() async {
+    File file = await FilePicker.getFile(
+      type: FileType.custom,
+      allowedExtensions: [
+        'pdf',
+        'docx'
+      ], //here you can add any of extention what you need to pick
+    );
+    var enc = await file.readAsBytes();
+    String _path = file.path;
+
+    String _fileName = _path != null ? _path
+        .split('/')
+        .last : '...';
+    var pos = _fileName.lastIndexOf('.');
+    String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+    print(extName);
+
+    if (file != null) {
+      setState(() {
+        selectFile2 = file;
+        idproof2 = file.path;
+        //adduploaddocument1.extension = extName;
+        extension2 = extName;
+        print("Message is: " +
+            extension2); // adduploaddocument.mulFile=file.path as MultipartFile;
+        print("Message isssss: " +
+            extName); // adduploaddocument.mulFile=file.path as MultipartFile;
+        //file1 = file; //file1 is a global variable which i created
+      });
+    }
+  }
+  void _settingModalBottomSheet3(context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext bc) {
+          return Container(
+            child: new Wrap(
+              children: <Widget>[
+                new ListTile(
+                    leading: new Icon(Icons.camera),
+                    title: new Text('Camera'),
+                    onTap: () => {
+                      Navigator.pop(context),
+                      getCameraImage3(),
+                    }),
+                new ListTile(
+                  leading: new Icon(Icons.folder),
+                  title: new Text('Gallery'),
+                  onTap: () => {
+                    Navigator.pop(context),
+
+                    getCerificateImage3()},
+                ),
+                new ListTile(
+                    leading: new Icon(Icons.file_copy),
+                    title: new Text('Document'),
+                    onTap: () => {
+                      Navigator.pop(context),
+                      getPdfAndUpload3(),
+                    }),
+              ],
+            ),
+          );
+        });
+  }
+  Future getCameraImage3() async {
+    var image1 = await ImagePicker.pickImage(
+      source: ImageSource.camera,
+      imageQuality: 10,
+    );
+    var enc = await image1.readAsBytes();
+    String _path = image1.path;
+
+    String _fileName = _path != null ? _path
+        .split('/')
+        .last : '...';
+    var pos = _fileName.lastIndexOf('.');
+    String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+    print(extName);
+
+    setState(() {
+      selectFile3 = image1;
+      idproof3 = image1.path;
+      //adduploaddocument1.extension = extName;
+      extension3 = extName;
+      print("Message is: " +
+          extension3); // adduploaddocument.mulFile=file.path as MultipartFile;
+      print("Message isssss: " +
+          extName); // adduploaddocument.mulFile=file.path as MultipartFile;
+    });
+  }
+  Future getCerificateImage3() async {
+    var image1 = await ImagePicker.pickImage(
+      source: ImageSource.gallery,
+      imageQuality: 10,
+    );
+    var enc = await image1.readAsBytes();
+    String _path = image1.path;
+
+    String _fileName = _path != null ? _path
+        .split('/')
+        .last : '...';
+    var pos = _fileName.lastIndexOf('.');
+    String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+    print(extName);
+
+    setState(() {
+      selectFile3 = image1;
+      idproof3 = image1.path;
+      //adduploaddocument1.extension = extName;
+      extension3 = extName;
+      print("Message is: " +
+          extension3); // adduploaddocument.mulFile=file.path as MultipartFile;
+      print("Message isssss: " +
+          extName); // adduploaddocument.mulFile=file.path as MultipartFile;
+    });
+  }
+  Future<void> getPdfAndUpload3() async {
+    File file = await FilePicker.getFile(
+      type: FileType.custom,
+      allowedExtensions: [
+        'pdf',
+        'docx'
+      ], //here you can add any of extention what you need to pick
+    );
+    var enc = await file.readAsBytes();
+    String _path = file.path;
+
+    String _fileName = _path != null ? _path
+        .split('/')
+        .last : '...';
+    var pos = _fileName.lastIndexOf('.');
+    String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+    print(extName);
+
+    if (file != null) {
+      setState(() {
+        selectFile3 = file;
+        idproof3 = file.path;
+        //adduploaddocument1.extension = extName;
+        extension3 = extName;
+        print("Message is: " +
+            extension3); // adduploaddocument.mulFile=file.path as MultipartFile;
+        print("Message isssss: " +
+            extName); // adduploaddocument.mulFile=file.path as MultipartFile;
+        //file1 = file; //file1 is a global variable which i created
+      });
+    }
   }
   Widget formFieldzip(
       int index,

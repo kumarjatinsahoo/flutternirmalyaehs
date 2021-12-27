@@ -193,7 +193,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
     });
    // callApi();
   }
-
   callApi() {
     widget.model.GETMETHODCALL_TOKEN(
         api: ApiFactory.PATIENT_PROFILE + loginResponse1.body.user,
@@ -207,7 +206,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 patientProfileModel = ProfileModel.fromJson(map);
                 loginResponse1.body.userPic = patientProfileModel.body.profileImage;
               });
-
               if (patientProfileModel?.body?.bloodGroup != null) {
                 ProfileScreen.bloodgroupmodel = KeyvalueModel(
                     key: patientProfileModel.body.bloodGroupId,
@@ -640,20 +638,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       //TabBar(tabs: [Tab(text: 'DETAILS',), Tab(text: 'CONTACTS'),Tab(text: 'FAMILY DOCTORS')]),
                       Container(
                           //height: MediaQuery.of(context).size.height * 100,
-                          height: 300,
-                          child: TabBarView(
-                            children: [
-                              /*(patientProfileModel != null)?*/rowValue()/*:Container()*/,
-                              (patientProfileModel != null)? backUp():Container(),
-                              (patientProfileModel != null)?rowValue2():Container(),
-                              (patientProfileModel != null)? rowValue3():Container(),
-                              /* rowValue1(),
-                              rowValue1(),
-                              rowValue1(),
-                              rowValue1(),
-                              rowValue1(),*/
-                            ],
-                          ))
+                          //height: 300,
+                        child:LimitedBox( // use this 
+                            maxHeight: 300,
+                        child: TabBarView(
+                          children: [
+                            (patientProfileModel != null)?rowValue():Container(),
+                            (patientProfileModel != null)? backUp():Container(),
+                            (patientProfileModel != null)?rowValue2():Container(),
+                            (patientProfileModel != null)? rowValue3():Container(),
+                            /* rowValue1(),
+                            rowValue1(),
+                            rowValue1(),
+                            rowValue1(),
+                            rowValue1(),*/
+                          ],
+                        )
+                      ),
+                      ),
                     ],
                   ))
             ],

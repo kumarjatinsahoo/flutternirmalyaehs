@@ -404,12 +404,21 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
       idproof = video.path;
       adduploaddocument.extension = extName;
       extension = extName;
+      print("size>>>" + AppData.formatBytes(enc.length, 0).toString());
+      /*if (20000 < enc.length) {
+        AppData.(
+            "Please select image with maximum size 20 KB ", Colors.red);
+        return;
+      }*/
       print("Message is: " +
           extension); // adduploaddocument.mulFile=file.path as MultipartFile;
       print("Message isssss: " +
           extName); // adduploaddocument.mulFile=file.path as MultipartFile;
     });
   }
+
+
+
 
   Future getCerificateImage() async {
     var image = await ImagePicker.pickImage(
