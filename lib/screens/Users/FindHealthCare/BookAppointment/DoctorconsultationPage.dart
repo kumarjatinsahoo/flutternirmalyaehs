@@ -295,7 +295,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.all(5.0),
+                                  padding: const EdgeInsets.all(8.0),
                                   child: Container(
                                       width: 25,
                                       height: 25,
@@ -342,7 +342,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.all(5.0),
+                                  padding: const EdgeInsets.all(8.0),
                                   child: Container(
                                       width: 25,
                                       height: 25,
