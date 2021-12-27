@@ -35,10 +35,11 @@ class _EmergencyAccess extends State<EmergencyAccess> {
     myController.text=uhid;
     loginResponse = widget.model.loginResponse1;
 
-
     super.initState();
     _descriptionFocus = FocusNode();
     _focusNode = FocusNode();
+   // myController.text=" ";
+
   }
 
   List<TextEditingController> textEditingController = [
@@ -48,6 +49,7 @@ class _EmergencyAccess extends State<EmergencyAccess> {
 
   @override
   Widget build(BuildContext context) {
+   // myController.text=" ";
     return Scaffold(
       // backgroundColor: Color(0xfff3f4f4),
       appBar: AppBar(
@@ -258,6 +260,7 @@ class _EmergencyAccess extends State<EmergencyAccess> {
         ),
       ),
     );
+
   }
 
   Widget _scanButton() {

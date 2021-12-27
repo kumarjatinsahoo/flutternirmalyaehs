@@ -45,12 +45,14 @@ class DoctorconsultationPage extends StatefulWidget {
   static KeyvalueModel doctorModel = null;
   static KeyvalueModel hospitalModel = null;
   static KeyvalueModel timeModel = null;
-
   static KeyvalueModel selectDistrict = null;
 
   @override
   DoctorconsultationPageState createState() => DoctorconsultationPageState();
 }
+
+enum RadioGroup { payonshop, home }
+enum RadioGroup1 { payon_shop, online }
 
 class DoctorconsultationPageState extends State<DoctorconsultationPage> {
   final _formKey = GlobalKey<FormState>();
@@ -60,6 +62,8 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
 
   DateTime selectedDate = DateTime.now();
   String selectedDatestr;
+  RadioGroup radioGroup = RadioGroup.payonshop;
+  RadioGroup1 radioGroup1 = RadioGroup1.payon_shop;
   List<TextEditingController> textEditingController = [
     new TextEditingController(),
     new TextEditingController(),
@@ -150,20 +154,15 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
     KeyvalueModel(key: "0", name: "8PM-10PM "),
   ];
   TimeOfDay selectedTime = TimeOfDay.now();
-
   String time;
-
   bool isActive = true;
-
   StreamSubscription _connectionChangeStream;
   bool isOffline = true;
   String detailDoc = "";
   bool isOnline = false;
-
   String formattime;
   bool isValidtime = false;
   String formattedDate;
-
   @override
   void initState() {
     super.initState();
@@ -249,17 +248,117 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                   SizedBox(
                     height: 10,
                   ),
-                  /*Align(
-                    child: Text(
-                      "Personal details",
-                      style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 26.0,
-                          color: Colors.black),
-                    ),
-                    alignment: Alignment.center,
-                  ),*/
+                  Container(
+                    // height: 20,
+                    child: Padding(
+                      padding: const EdgeInsets.all(9.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
+                        // mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            //color: Colors.green,
+                            //height: 50,
+                            //width: 150,
+                            decoration: BoxDecoration(
+                              color: Colors.green,
+                              border: Border.all(
+                                color: Colors.green,
+                              ),
+                              borderRadius: BorderRadius.circular(4.0),
+                            ),
+                            child: Row(
+                              children: [
+                                // SizedBox(width: 5,),
+                                //  Icon(Icons.local_hospital,color: Colors.white,),
+                                Radio(
+                                  activeColor: Colors.white,
+                                  value: RadioGroup1.payon_shop,
+                                  groupValue: radioGroup1,
+                                  onChanged: (RadioGroup1 value) {
+                                    setState(() {
+                                      radioGroup1 = value;
+                                      //roleid = "2";
+                                      //bookPostModel.paymentway = "0";
+                                    });
+                                  },
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    "Hospital Visit",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Container(
+                                      width: 25,
+                                      height: 25,
+                                      child: Image.asset( "assets/images/hospitalbuilding.png",
+                                          fit: BoxFit.cover)),
+                                ),
+                              ],
+                            ),
+                          ),
+                          // SizedBox(width: 100),
+
+                          Container(
+                            decoration: BoxDecoration(
+                              color: Colors.grey,
+                              border: Border.all(
+                                color: Colors.grey,
+                              ),
+                              borderRadius: BorderRadius.circular(4.0),
+                            ),
+                            child: Row(
+                              children: [
+                                // SizedBox(width: 5,),
+                                //Icon(Icons.video_call,color: Colors.white,),
+                                Radio(
+                                  activeColor: Colors.white,
+                                  value: RadioGroup1.online,
+                                  groupValue: radioGroup1,
+                                  onChanged: (RadioGroup1 value) {
+                                    setState(() {
+                                      radioGroup1 = value;
+                                      //roleid = "5";
+                                      //bookPostModel.paymentway = "1";
+                                    });
+                                  },
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    "Video Consult",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Container(
+                                      width: 25,
+                                      height: 25,
+                                      child: Image.asset( "assets/images/videoconference.png",
+                                          fit: BoxFit.cover)),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
                   Form(
                     key: _formKey,
                     autovalidate: _autovalidate,
@@ -269,22 +368,8 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                           padding: const EdgeInsets.only(left: 0, right: 0),
                           child: SizedBox(
                             height: 58,
-                            /*  child: DropDown.networkDropdownAWWList
-                                ("Country",
-                              ApiFactory.COUNTRY_API,
-                              "country",
-                             (KeyvalueModel data) {
-                            setState(() {
-                              print(ApiFactory.COUNTRY_API);
-                              DoctorconsultationPage.countryModel = data;
-                              DoctorconsultationPage.stateModel = null;
-
-                              DoctorconsultationPage.distrModel = null;
-                              DoctorconsultationPage.cityModel = null;
-                            });
-                          }),*/
                             child: DropDown.networkDropdownGetpartUser(
-                                MyLocalizations.of(context).text("COUNTRY"),
+                                ("Country"),
                                 ApiFactory.COUNTRY_API,
                                 "country",
                                 Icons.location_on_rounded,
@@ -307,7 +392,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                                 child: SizedBox(
                                   height: 58,
                                   child: DropDown.countryList(
-                                      MyLocalizations.of(context).text("STATE"),
+                                      "State",
                                       ApiFactory.STATE_API +
                                           DoctorconsultationPage
                                               .countryModel.key,
@@ -332,7 +417,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                                 child: SizedBox(
                                   height: 58,
                                   child: DropDown.countryList(
-                                      MyLocalizations.of(context).text("DIST"),
+                                      "Dist",
                                       ApiFactory.DISTRICT_API +
                                           DoctorconsultationPage.stateModel.key,
                                       "districtDA",
@@ -359,7 +444,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                                 child: SizedBox(
                                   height: 58,
                                   child: DropDown.countryList(
-                                      MyLocalizations.of(context).text("city"),
+                                      "City",
                                       ApiFactory.CITY_API +
                                           DoctorconsultationPage.distrModel.key,
                                       "cityDA",
@@ -669,8 +754,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
           } else {
             AppData.showInSnackBar(context, map[Const.MESSAGE]);
           }
-        }
-        );
+        });
     /*widget.model.POSTMETHOD(api: ApiFactory.POST_APPOINTMENT,
         json: map,
         fun: (Map<String, dynamic> map) {

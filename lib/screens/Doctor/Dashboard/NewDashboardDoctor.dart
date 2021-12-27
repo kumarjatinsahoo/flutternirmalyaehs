@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:user/localization/application.dart';
 import 'package:user/localization/localizations.dart';
@@ -68,6 +67,17 @@ chooseAppointment(BuildContext context) {
                           // Navigator.pop(context);
                         },
                       ),
+                     /* ListTile(
+                          leading: Image.asset(
+                            "assets/images/changepassword.png",
+                            height: 30,
+                          ),
+                          title: Text("Change Password"),
+                          selected: _selectedDestination == 8,
+                          onTap: () {
+                            selectDestination(8);
+                            Navigator.pushNamed(context, "/changePassword");
+                          }),*/
                       Divider(),
                       MaterialButton(
                         child: Text(
@@ -281,8 +291,8 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                                                 context, "/medipedia");*/
                                     // AppData.showSnack(
                                     //     context, "Coming soon", Colors.green);
-                                    Navigator.pushNamed(
-                                        context, "/docWalkInReg");
+                                    widget.model.regNoValue="";
+                                    Navigator.pushNamed(context, "/docWalkInReg");
                                   },
                                   color: AppData.BG2BLUE,
                                   bordercolor: AppData.BG2BLUE,
@@ -291,6 +301,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                                 SizedBox(
                                   height: 5,
                                 ),
+
                                 Container(
                                   width: 100,
                                   height: 35,
@@ -325,8 +336,8 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                                 _buildTilered(
                                   icon: "assets/images/emergency.png",
                                   fun: () {
-                                    Navigator.pushNamed(
-                                        context, "/emegencyAccess");
+                                    widget.model.regNoValue="";
+                                    Navigator.pushNamed(context, "/emegencyAccess");
                                     // AppData.showInSnackDone(context, "Coming Soon");
                                     // Navigator.pushNamed(context, "/discountoffer");
                                     //AppData.showInSnackBar(context, "Coming soon");
@@ -674,11 +685,12 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Container(
-                          width: 30,
-                          height: 30,
-                          child: Image.asset('assets/images/dash.png',
-                              fit: BoxFit.cover)),
+                      Icon(Icons.dashboard,color:AppData.menublueColor, size: 27),
+                      // Container(
+                      //     width: 30,
+                      //     height: 30,
+                      //     child: Image.asset('assets/images/dash.png',
+                      //         fit: BoxFit.cover)),
                       VerticalDivider(
                         thickness: 1,
                         color: Colors.grey,
@@ -771,9 +783,35 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                 ),
                 title: Text(MyLocalizations.of(context).text("SHARE")),
                 onTap: () {
-                  Navigator.pushNamed(context, "/emergencydetails");
+                  //Navigator.pushNamed(context, "/emergencydetails");
+                  Navigator.pushNamed(context, "/myopdpage");
                 },
               ),
+              SizedBox(
+                height: 8,
+              ),
+              ListTile(
+                  leading: Image.asset(
+                    "assets/images/contact us.png",
+                    height: 30,
+                  ),
+                  title: Text(MyLocalizations.of(context).text("CONTACT_US")),
+                  onTap: () {
+                    widget.model.contactscreen = "Contact Screen";
+                    Navigator.pushNamed(context, "/contactus");
+                    //Navigator.pushNamed(context, "/discountoffer");
+                  }),
+              ListTile(
+                  leading: Image.asset(
+                    "assets/images/support.png",
+                    height: 30,
+                  ),
+                  title: Text(MyLocalizations.of(context).text("SUPPORT")),
+                  onTap: () {
+                    widget.model.contactscreen = "Support Screen";
+                    Navigator.pushNamed(context, "/contactus");
+                  }),
+
               SizedBox(
                 height: 8,
               ),
@@ -786,7 +824,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                       Container(
                           width: 30,
                           height: 30,
-                          child: Image.asset('assets/images/contact.png',
+                          child: Image.asset( "assets/images/changepassword.png",
                               fit: BoxFit.cover)),
                       VerticalDivider(
                         thickness: 1,
@@ -795,11 +833,13 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                     ],
                   ),
                 ),
-                title: Text(MyLocalizations.of(context).text("CONTACT_US")),
+                title: Text("Change Password"),
                 onTap: () {
-                  Navigator.pushNamed(context, "/contactus");
+                  Navigator.pop(context);
+                  Navigator.pushNamed(context, "/changePassword");
                 },
               ),
+
               SizedBox(
                 height: 8,
               ),
@@ -833,9 +873,9 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                   //Navigator.pop(context);
                 },
               ),*/
-              SizedBox(
+            /*  SizedBox(
                 height: 8,
-              ),
+              ),*/
               ListTile(
                 leading: Padding(
                   padding: const EdgeInsets.all(10.0),
@@ -1142,6 +1182,17 @@ abstract class MyPage1Widget extends StatelessWidget {
                             // Navigator.pop(context);
                           },
                         ),
+                        ListTile(
+                            leading: Image.asset(
+                              "assets/images/changepassword.png",
+                              height: 30,
+                            ),
+                            title: Text("Change Password"),
+
+                            onTap: () {
+                              //selectDestination(8);
+                              Navigator.pushNamed(context, "/changePassword");
+                            }),
 
                         /* ListTile(
                           title: Text("Health Screening"),

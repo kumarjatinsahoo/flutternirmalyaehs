@@ -633,8 +633,8 @@ class LabSignUpFormState extends State<LabSignUpForm> {
           AppData.showInSnackBar(context, "Please select Organization Name");
         }else if (LabSignUpForm.titlemodel == null ||
              LabSignUpForm.titlemodel == "") {
-           AppData.showInSnackBar(context, "Please select Title");}
-         else if(textEditingController[1].text == "" ||
+           AppData.showInSnackBar(context, "Please select Title");
+         } else if(textEditingController[1].text == "" ||
             textEditingController[1].text == null) {
           AppData.showInSnackBar(context, "Please enter Professional's Name");
           FocusScope.of(context).requestFocus(fnode1);

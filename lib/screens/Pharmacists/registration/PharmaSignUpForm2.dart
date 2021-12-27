@@ -155,6 +155,7 @@ class PharmaSignUpForm2State extends State<PharmaSignUpForm2> {
     PharmaSignUpForm2.districtModel = null;
     PharmaSignUpForm2.blockModel = null;
     PharmaSignUpForm2.genderModel = null;
+    PharmaSignUpForm2.bloodgroupModel = null;
     /*setState(() {
       masterClass = widget.model.masterDataResponse;
     });
@@ -225,6 +226,7 @@ class PharmaSignUpForm2State extends State<PharmaSignUpForm2> {
                                     child: Column(
                                       children: [
                                         Text(MyLocalizations.of(context).text("FILL_IN_PERSONAL_INFORMATION"),
+                                          textAlign: TextAlign.center,
                                           style: TextStyle(fontSize: 18, color: Colors.black),),
                                       ],
                                     ),
@@ -262,7 +264,7 @@ class PharmaSignUpForm2State extends State<PharmaSignUpForm2> {
                                       print(ApiFactory.SPECIALITY_API);
                                       PharmaSignUpForm2.specialistModel = data;
                                       PharmaSignUpForm2.doctorModel = null;
-                                      // UserSignUpForm.cityModel = null;
+                                      //UserSignUpForm.cityModel = null;
                                     });
                                   }),
                                   SizedBox(
@@ -279,6 +281,7 @@ class PharmaSignUpForm2State extends State<PharmaSignUpForm2> {
                                       23.0, (KeyvalueModel data) {
                                     setState(() {
                                       print(ApiFactory.BLOODGROUP_API);
+                                     // widget.model.pharmagender=data.key;
                                       PharmaSignUpForm2.bloodgroupModel = data;
                                     });
                                   }),
@@ -292,6 +295,7 @@ class PharmaSignUpForm2State extends State<PharmaSignUpForm2> {
                                       23.0, (KeyvalueModel data) {
                                     setState(() {
                                       print(ApiFactory.GENDER_API);
+                                      widget.model.pharmagender=data.key;
                                       PharmaSignUpForm2.genderModel = data;
                                     });
                                   }),
@@ -653,7 +657,7 @@ class PharmaSignUpForm2State extends State<PharmaSignUpForm2> {
   Widget dob() {
     return Padding(
       //padding: const EdgeInsets.symmetric(horizontal: 8),
-      padding: const EdgeInsets.symmetric(horizontal: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 7),
       child: GestureDetector(
         onTap: () => widget.isConfirmPage ? null : _selectDate(context),
         child: AbsorbPointer(
@@ -704,7 +708,7 @@ class PharmaSignUpForm2State extends State<PharmaSignUpForm2> {
                 //contentPadding: EdgeInsets.symmetric(vertical: 10),
                 prefixIcon: Icon(
                   Icons.calendar_today,
-                  size: 18,
+                  size: 20,
                   color: Colors.grey,
                 ),
               ),

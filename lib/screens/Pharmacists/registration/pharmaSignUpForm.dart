@@ -140,6 +140,8 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
     PharmaSignUpForm.districtModel = null;
     PharmaSignUpForm.blockModel = null;
     PharmaSignUpForm.genderModel = null;
+    PharmaSignUpForm.pharmacyModel = null;
+    PharmaSignUpForm.titlemodel = null;
     /*setState(() {
       masterClass = widget.model.masterDataResponse;
     });
@@ -208,6 +210,7 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
                                   Column(
                                     children: [
                                       Text(MyLocalizations.of(context).text("FILL_IN_PERSONAL_INFORMATION"),
+                                        textAlign: TextAlign.center,
                                         style: TextStyle(fontSize: 18, color: Colors.black),),
                                     ],
                                   ),
@@ -248,7 +251,7 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
                                   SizedBox(
                                     height: 8,
                                   ),
-                                  formField1(11,MyLocalizations.of(context).text("ADDRESS")),
+                                  formField2(11,MyLocalizations.of(context).text("ADDRESS")),
 
                                   DropDown.networkDropdownGetpartUser1(
                                       MyLocalizations.of(context)
@@ -259,6 +262,7 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
                                       23.0, (KeyvalueModel data) {
                                     setState(() {
                                       print(ApiFactory.GENDER_API);
+                                     //widget.model.pharmagender=data.key;
                                       PharmaSignUpForm.genderModel = data;
                                     });
                                   }),
@@ -446,7 +450,6 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
       context: context,
       fun: () {
        // Navigator.pushNamed(context, "/patientRegistration2");
-
         if (PharmaSignUpForm.pharmacyModel == null ||
             PharmaSignUpForm.pharmacyModel == "") {
           AppData.showInSnackBar(context, "Please select Organization Name");
@@ -479,7 +482,7 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
           widget.model.pharmaaddress = textEditingController[11].text;
           widget.model.pharmagender = PharmaSignUpForm.genderModel.key;
 
-          Navigator.pushNamed(context, "/pharmasignupform2");
+          Navigator.pushNamed(context, "/pharmasignupform3");
         }
       },
     );
@@ -972,6 +975,60 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
             inputFormatters: [
               WhitelistingTextInputFormatter(
                   RegExp("[a-zA-Z ]")),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget formField2(
+      int index,
+      String hint,
+      ) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+          horizontal: 8),
+      child: Container(
+        height: 50,
+        padding:
+        EdgeInsets.symmetric(horizontal: 5),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius:
+          BorderRadius.circular(5),
+          border: Border.all(
+              color: Colors.black, width: 0.3),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          child: TextFormField(
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: hint,
+              /* prefixIcon:
+              Icon(Icons.person_rounded),*/
+              hintStyle: TextStyle(
+                  color: AppData.hintColor,
+                  fontSize: 15),
+            ),
+            textInputAction: TextInputAction.next,
+            keyboardType: TextInputType.text,
+            controller: textEditingController[index],
+            //focusNode: fnode1,
+            textAlignVertical:
+            TextAlignVertical.center,
+            onFieldSubmitted: (value) {
+              print("ValueValue" + error[index].toString());
+
+              setState(() {
+                error[index] = false;
+              });
+              AppData.fieldFocusChange(context, fnode1, null);
+            },
+            inputFormatters: [
+              WhitelistingTextInputFormatter(
+                  RegExp("[a-zA-Z,-/0-9. ]")),
             ],
           ),
         ),

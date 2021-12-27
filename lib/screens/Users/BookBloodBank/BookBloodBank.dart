@@ -335,10 +335,6 @@ class BookBloodBankPageState extends State<BookBloodBankPage> {
                         }),
                           )),*/
 
-
-
-
-
                         SizedBox(
                           height: 8,
                         ),
@@ -527,7 +523,7 @@ class BookBloodBankPageState extends State<BookBloodBankPage> {
     if (BookBloodBankPage.bloodbankModel == null ||
         BookBloodBankPage.bloodbankModel == "") {
       AppData.showInSnackBar(context, "Please select Bloodbank Name");
-    }if (BookBloodBankPage.bloodgroupmodel == null ||
+    }else if (BookBloodBankPage.bloodgroupmodel == null ||
           BookBloodBankPage.bloodgroupmodel == "") {
         AppData.showInSnackBar(context, "Please select Blood Group");
       } else if (appointmentdate.text == "" || appointmentdate.text == null) {
@@ -774,31 +770,35 @@ class BookBloodBankPageState extends State<BookBloodBankPage> {
   Widget fromAddress(int index, String hint, inputAct, keyType,
       FocusNode currentfn, FocusNode nextFn, String type) {
     return TextFieldAddress(
-      child: TextFormField(
-        controller: textEditingController[index],
-        focusNode: currentfn,
-        textInputAction: inputAct,
-        inputFormatters: [
-          //UpperCaseTextFormatter(),
-          WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
+      child: Column(
+        children: [
+          TextFormField(
+            controller: textEditingController[index],
+            focusNode: currentfn,
+            textInputAction: inputAct,
+            inputFormatters: [
+              //UpperCaseTextFormatter(),
+              WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
+            ],
+            keyboardType: keyType,
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: hint,
+              hintStyle: TextStyle(color: Colors.grey),
+              // suffixIcon: Icon(Icons.person_rounded),
+              //contentPadding: EdgeInsets.symmetric(vertical: 10)
+            ),
+            textAlignVertical: TextAlignVertical.center,
+            onChanged: (newValue) {},
+            onFieldSubmitted: (value) {
+              print("ValueValue" + error[index].toString());
+              setState(() {
+                error[index] = false;
+              });
+              AppData.fieldFocusChange(context, currentfn, nextFn);
+            },
+          ),
         ],
-        keyboardType: keyType,
-        decoration: InputDecoration(
-          border: InputBorder.none,
-          hintText: hint,
-          hintStyle: TextStyle(color: Colors.grey),
-          // suffixIcon: Icon(Icons.person_rounded),
-          //contentPadding: EdgeInsets.symmetric(vertical: 10)
-        ),
-        textAlignVertical: TextAlignVertical.center,
-        onChanged: (newValue) {},
-        onFieldSubmitted: (value) {
-          print("ValueValue" + error[index].toString());
-          setState(() {
-            error[index] = false;
-          });
-          AppData.fieldFocusChange(context, currentfn, nextFn);
-        },
       ),
     );
   }
@@ -860,7 +860,7 @@ class BookBloodBankPageState extends State<BookBloodBankPage> {
             // margin: EdgeInsets.symmetric(vertical: 10),
             alignment: Alignment.center,
             height: 50,
-            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 0),
+            padding: EdgeInsets.symmetric(horizontal: 5, vertical: 0),
             // width: size.width * 0.8,
             decoration: BoxDecoration(
                 color: Colors.white,

@@ -574,7 +574,7 @@ class DropDown {
           case "speciality":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
-            case "marital":
+          case "marital":
             list = KeyvalueModel.fromJsonList(response.data);
             break;
           case "admequipment":
@@ -604,7 +604,7 @@ class DropDown {
           case "bloodgroupdop":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
-            case "pcountry":
+          case "pcountry":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
           case "pstate":
@@ -618,9 +618,9 @@ class DropDown {
             break;
           case "gender":
             List<KeyvalueModel> listS = [];
-            listS.add(KeyvalueModel(name: "MALE", key: "1"));
-            listS.add(KeyvalueModel(name: "FEMALE", key: "2"));
-            listS.add(KeyvalueModel(name: "TRANSGENDER", key: "3"));
+            listS.add(KeyvalueModel(name: "Male", key: "1"));
+            listS.add(KeyvalueModel(name: "Female", key: "2"));
+            listS.add(KeyvalueModel(name: "Transgender", key: "3"));
             list = listS;
             break;
           case "ageproof":
@@ -648,7 +648,7 @@ class DropDown {
           case "marital":
             marital = data;
             break;
-            case "bloodgroup":
+          case "bloodgroup":
             bloodgroupmodel = data;
             break;
           case "relation":
@@ -1434,7 +1434,6 @@ class DropDown {
             break;
           case "block":
             selectedKey1 = data;
-
             break;
           case "gender":
             gender = data;
@@ -2145,7 +2144,7 @@ class DropDown {
       case "marital":
         return ProfileScreen.materialmodel;
         break;
-        case "dosage":
+      case "dosage":
         return EditReminder.dosageModel;
         break;
       case "speciality":
@@ -2198,7 +2197,7 @@ class DropDown {
       case "bloodgroupdop":
         return DocMyProfile.bloodgroupmodel;
         break;
-        case "pcountry":
+      case "pcountry":
         return ProfileScreen.countrymodel;
         break;
       case "pstate":
@@ -2210,12 +2209,24 @@ class DropDown {
       case "pcity":
         return ProfileScreen.citymodel;
         break;
-        case "marital":
+      case "marital":
         return ProfileScreen.materialmodel;
         break;
-        //city1,district1,state1,country1
+      case "rln":
+        return ProfileScreen.relationmodel;
+        break;
+        case "rlnn":
+        return ProfileScreen.relationmodel;
+        break;
+        case "spl":
+        return ProfileScreen.specialitymodel;
+        break;
+        case "gen":
+        return ProfileScreen.gendermodel;
+        break;
+      //city1,district1,state1,country1
 
-  }
+    }
   }
 
   static KeyvalueModel getData11(String callFor) {
@@ -2508,6 +2519,10 @@ class DropDown {
           case "bloodgroupBooh":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
+          case "healthcareProvider":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+
         }
 
         return list;
@@ -3727,7 +3742,7 @@ class DropDown {
           case "doctorrecipt":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
-            case "relation":
+          case "relation":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
         }
@@ -3964,7 +3979,7 @@ class DropDown {
         // filled: true,
         isDense: true,
         floatingLabelBehavior: FloatingLabelBehavior.never,
-        contentPadding: EdgeInsets.only(left: 12),
+        contentPadding: EdgeInsets.only(left: 2),
       ),
       //label: label,
       showSearchBox: true,

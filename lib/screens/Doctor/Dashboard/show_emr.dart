@@ -63,7 +63,7 @@ class _ShowEmr extends State<ShowEmr> {
             child: AppBar(
               centerTitle: true,
               backgroundColor: AppData.kPrimaryColor,
-              title: Text("Show Emr"),
+              title: Text("Show EMR"),
               leading: new Padding(
                 padding: const EdgeInsets.all(5.0),
                 child: Column(

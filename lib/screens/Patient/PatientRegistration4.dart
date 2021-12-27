@@ -266,21 +266,21 @@ class _PatientRegistration4State extends State<PatientRegistration4> {
                             ListTile(
                               contentPadding: EdgeInsets.symmetric(
                                   horizontal: 12, vertical: 4),
-                              leading: Icon(CupertinoIcons.sportscourt),
+                              leading: Icon(CupertinoIcons.speedometer),
                               title: Text(/*"134 Kg"*/ patientweight),
                               subtitle: Text(MyLocalizations.of(context).text("WEIGHT")),
                             ),
                             ListTile(
                               contentPadding: EdgeInsets.symmetric(
                                   horizontal: 12, vertical: 4),
-                              leading: Icon(CupertinoIcons.sportscourt),
+                              leading: Icon(CupertinoIcons.mail),
                               title: Text(email ?? "N/A"),
                               subtitle: Text(MyLocalizations.of(context).text("EMAILID")),
                             ),
                             ListTile(
                               contentPadding: EdgeInsets.symmetric(
                                   horizontal: 12, vertical: 4),
-                              leading: Icon(CupertinoIcons.sportscourt),
+                              leading: Icon(CupertinoIcons.creditcard),
                               title: Text(addhar ?? "N/A"),
                               subtitle: Text(MyLocalizations.of(context).text("AADHAAR_NO")),
                             ),

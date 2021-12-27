@@ -1,10 +1,12 @@
 import 'dart:convert';
 import 'dart:developer';
-
+import 'dart:io';
 import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:user/localization/localizations.dart';
+import 'package:user/models/AddUploadDocumentModel.dart';
 import 'package:user/models/InsuranceModel.dart' as insurance;
 import 'package:user/models/InsurancePostModel.dart';
 import 'package:user/models/LoginResponse1.dart';
@@ -27,8 +29,17 @@ class InsuranceList extends StatefulWidget {
 class _InsuranceListState extends State<InsuranceList> {
   var selectedMinValue;
   LoginResponse1 loginResponse1;
+  String extension;
+  File selectFile;
   insurance.InsuranceModel insuranceModel;
-
+  AddUploadDocumentModel adduploaddocument = AddUploadDocumentModel();
+  String profilePath = null,
+      idproof = null,
+      idproof1 = null,
+      idproof2 = null,
+      idproof3 = null,
+      labReport = null,
+      helathCheckup = null;
   DateTime selectedDate = DateTime.now();
   String selectDob;
   TextEditingController _startdate = TextEditingController();
@@ -57,8 +68,7 @@ class _InsuranceListState extends State<InsuranceList> {
     new TextEditingController(),
     new TextEditingController(),
     new TextEditingController(),
-    new TextEditingController(),
-  ];
+    new TextEditingController(),];
   FocusNode fnode1 = new FocusNode();
   FocusNode fnode2 = new FocusNode();
   FocusNode fnode3 = new FocusNode();
@@ -345,6 +355,269 @@ class _InsuranceListState extends State<InsuranceList> {
                         SizedBox(
                           height: 8,
                         ),
+                        SizedBox(height: 10,),
+                        (idproof != null)
+                            ? Padding(
+                          padding: const EdgeInsets.only(
+                              left: 10, right: 10),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment:
+                            MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: Container(
+
+                                  child: Text(
+
+                                    "Report Path :" + idproof,
+                                    style: TextStyle(color: Colors.green),
+                                  ),
+                                ),
+                              ),
+                              InkWell(
+                                child: SizedBox(
+                                    width: 50.0,
+                                    child: Icon(Icons.clear)),
+                                onTap: () {
+                                  setState(() {
+                                    idproof = null;
+                                    // registrationModel.profilePhotoBase64 =
+                                    null;
+                                    //registrationModel.profilePhotoExt =
+                                    null;
+                                  });
+                                },
+                              )
+                            ],
+                          ),
+                        )
+                            : Container(),
+                        SizedBox(
+                          height: 18,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Container(
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(10.0),
+                                    child: Text("Upload Document2",style: TextStyle(color:AppData.kPrimaryColor,fontSize: 18,fontWeight: FontWeight.bold),),
+                                  ),
+                                ),
+                                SizedBox(width:5),
+                                Material(
+                                  elevation: 3,
+                                  color:AppData.kPrimaryColor,
+                                  borderRadius: BorderRadius.circular(5.0),
+                                  child: MaterialButton(
+                                    onPressed: () {
+                                      _settingModalBottomSheet(context);
+
+                                    },
+                                    minWidth: 120,
+                                    height: 30.0,
+                                    child: Text(MyLocalizations.of(context).text("UPLOAD"),
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 17.0),
+                                    ),
+                                  ),
+                                ),
+
+                              ],
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 10,),
+                        (idproof1 != null)
+                            ? Padding(
+                          padding: const EdgeInsets.only(
+                              left: 10, right: 10),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment:
+                            MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: Container(
+
+                                  child: Text(
+
+                                    "Report Path :" + idproof1,
+                                    style: TextStyle(color: Colors.green),
+                                  ),
+                                ),
+                              ),
+                              InkWell(
+                                child: SizedBox(
+                                    width: 50.0,
+                                    child: Icon(Icons.clear)),
+                                onTap: () {
+                                  setState(() {
+                                    idproof1 = null;
+                                    // registrationModel.profilePhotoBase64 =
+                                    null;
+                                    //registrationModel.profilePhotoExt =
+                                    null;
+                                  });
+                                },
+                              )
+                            ],
+                          ),
+                        )
+                            : Container(),
+                        SizedBox(
+                          height: 18,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Container(
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(10.0),
+                                    child: Text("Upload Document3",style: TextStyle(color:AppData.kPrimaryColor,fontSize: 18,fontWeight: FontWeight.bold),),
+                                  ),
+                                ),
+                                SizedBox(width:5),
+                                Material(
+                                  elevation: 3,
+                                  color:AppData.kPrimaryColor,
+                                  borderRadius: BorderRadius.circular(5.0),
+                                  child: MaterialButton(
+                                    onPressed: () {
+                                      _settingModalBottomSheet(context);
+
+                                    },
+                                    minWidth: 120,
+                                    height: 30.0,
+                                    child: Text(MyLocalizations.of(context).text("UPLOAD"),
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 17.0),
+                                    ),
+                                  ),
+                                ),
+
+                              ],
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 10,),
+                        (idproof2 != null)
+                            ? Padding(
+                          padding: const EdgeInsets.only(
+                              left: 10, right: 10),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment:
+                            MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: Container(
+
+                                  child: Text(
+
+                                    "Report Path :" + idproof2,
+                                    style: TextStyle(color: Colors.green),
+                                  ),
+                                ),
+                              ),
+                              InkWell(
+                                child: SizedBox(
+                                    width: 50.0,
+                                    child: Icon(Icons.clear)),
+                                onTap: () {
+                                  setState(() {
+                                    idproof2 = null;
+                                    // registrationModel.profilePhotoBase64 =
+                                    null;
+                                    //registrationModel.profilePhotoExt =
+                                    null;
+                                  });
+                                },
+                              )
+                            ],
+                          ),
+                        )
+                            : Container(),
+                        SizedBox(
+                          height: 18,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Container(
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(10.0),
+                                    child: Text("Upload Document4",style: TextStyle(color:AppData.kPrimaryColor,fontSize: 18,fontWeight: FontWeight.bold),),
+                                  ),
+                                ),
+                                SizedBox(width:5),
+                                Material(
+                                  elevation: 3,
+                                  color:AppData.kPrimaryColor,
+                                  borderRadius: BorderRadius.circular(5.0),
+                                  child: MaterialButton(
+                                    onPressed: () {
+                                      _settingModalBottomSheet(context);
+
+                                    },
+                                    minWidth: 120,
+                                    height: 30.0,
+                                    child: Text(MyLocalizations.of(context).text("UPLOAD"),
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 17.0),
+                                    ),
+                                  ),
+                                ),
+
+                              ],
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 10,),
+                        (idproof3 != null)
+                            ? Padding(
+                          padding: const EdgeInsets.only(
+                              left: 18, right: 10),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment:
+                            MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: Container(
+
+                                  child: Text(
+
+                                    "Report Path :" + idproof3,
+                                    style: TextStyle(color: Colors.green),
+                                  ),
+                                ),
+                              ),
+                              InkWell(
+                                child: SizedBox(
+                                    width: 50.0,
+                                    child: Icon(Icons.clear)),
+                                onTap: () {
+                                  setState(() {
+                                    idproof3 = null;
+                                    // registrationModel.profilePhotoBase64 =
+                                    null;
+                                    //registrationModel.profilePhotoExt =
+                                    null;
+                                  });
+                                },
+                              )
+                            ],
+                          ),
+                        )
+                            : Container(),
                       ],
                     ),
                   ),
@@ -466,6 +739,75 @@ class _InsuranceListState extends State<InsuranceList> {
         ),
       ],
     );
+  }
+  void _settingModalBottomSheet(context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext bc) {
+          return Container(
+            child: new Wrap(
+              children: <Widget>[
+                new ListTile(
+                    leading: new Icon(Icons.camera),
+                    title: new Text('Camera'),
+                    onTap: () => {
+                      Navigator.pop(context),
+                      //getCameraImage(),
+                    }),
+                new ListTile(
+                  leading: new Icon(Icons.folder),
+                  title: new Text('Gallery'),
+                  onTap: () => {
+                    Navigator.pop(context),
+
+
+                    /* MultiImagePicker.pickImages(
+                  maxImages: 300,
+                  enableCamera: true,
+                  //selectedAssets: images,
+                  materialOptions: MaterialOptions(
+                  actionBarTitle: "FlutterCorner.com",
+                  ),
+                  ),*/
+                    getCerificateImage()},
+                ),
+                new ListTile(
+                    leading: new Icon(Icons.file_copy),
+                    title: new Text('Document'),
+                    onTap: () => {
+                      Navigator.pop(context),
+                      //getPdfAndUpload(),
+                    }),
+              ],
+            ),
+          );
+        });
+  }
+  Future getCerificateImage() async {
+    var image1 = await ImagePicker.pickImage(
+      source: ImageSource.gallery,
+      imageQuality: 10,
+    );
+    var enc = await image1.readAsBytes();
+    String _path = image1.path;
+
+    String _fileName = _path != null ? _path
+        .split('/')
+        .last : '...';
+    var pos = _fileName.lastIndexOf('.');
+    String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+    print(extName);
+
+    setState(() {
+      selectFile = image1;
+      idproof = image1.path;
+      adduploaddocument.extension = extName;
+      extension = extName;
+      print("Message is: " +
+          extension); // adduploaddocument.mulFile=file.path as MultipartFile;
+      print("Message isssss: " +
+          extName); // adduploaddocument.mulFile=file.path as MultipartFile;
+    });
   }
 
   Widget formField(

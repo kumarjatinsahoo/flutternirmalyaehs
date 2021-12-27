@@ -569,12 +569,15 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                 children: <Widget>[
                   //_buildAboutText(),
                   //_buildLogoAttribution(),
-                  Text(
-                    MyLocalizations.of(context).text("UPDATE_LIFESTYLE"),
-                    style: TextStyle(
-                      fontSize: 25,
-                      color: Colors.black,
-                      fontWeight: FontWeight.w500,
+                  Padding(
+                    padding: const EdgeInsets.only(left: 16.0),
+                    child: Text(
+                      MyLocalizations.of(context).text("UPDATE_LIFESTYLE"),
+                      style: TextStyle(
+                        fontSize: 25,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
                   SizedBox(
@@ -598,6 +601,7 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                       });
                     }),
                   ),
+                  SizedBox(height: 5),
                   Text("  Alcohol"),
                   Padding(
                     //padding: const EdgeInsets.all(8.0),
@@ -615,6 +619,7 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                       });
                     }),
                   ),
+                  SizedBox(height: 5),
                   Text("  Diet"),
                   gender(),
                   /* Padding(
@@ -627,12 +632,12 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                     }),
                   ),*/
                   SizedBox(
-                    height: 8,
+                    height: 5,
                   ),
                   formFieldMobile(
                       0, MyLocalizations.of(context).text("EXERCISE")),
                   SizedBox(
-                    height: 8,
+                    height: 5,
                   ),
                   // formField(1, MyLocalizations.of(context).text("OCCUPATION")),
                   // SizedBox(
@@ -653,6 +658,11 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
           onPressed: () {
             Navigator.of(context).pop();
             // textEditingController[0].text = "";
+            // lifeStyleHistryModel.body.smokingName=null;
+            // lifeStyleHistryModel.body.alcoholName=null;
+            // lifeStyleHistryModel.body.diet=null;
+            // lifeStyleHistryModel.body.exercise=null;
+            // lifeStyleHistryModel.body.pets=null;
           },
           child: Text(MyLocalizations.of(context).text("CANCEL"),
               style: TextStyle(color: AppData.kPrimaryRedColor)),
@@ -679,10 +689,10 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                   textEditingController[0].text == null ||
                   textEditingController[0].text == "") {
                 AppData.showInSnackBar(context, "Please enter  Exercise");
-              } else if (textEditingController[1].text == "N/A" ||
-                  textEditingController[1].text == null ||
-                  textEditingController[1].text == "") {
-                AppData.showInSnackBar(context, "Please enter  Occupation");
+              // } else if (textEditingController[1].text == "N/A" ||
+              //     textEditingController[1].text == null ||
+              //     textEditingController[1].text == "") {
+              //   AppData.showInSnackBar(context, "Please enter  Occupation");
               } else if (textEditingController[2].text == "N/A" ||
                   textEditingController[2].text == null ||
                   textEditingController[2].text == "") {
@@ -874,7 +884,7 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                         //suffixIcon: Icon(Icons.phone),
                         border: InputBorder.none,
                         counterText: "",
-                        hintText: hint,
+                        hintText: hint+" (times)",
                         hintStyle:
                             TextStyle(color: AppData.hintColor, fontSize: 15),
                       ),

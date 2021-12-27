@@ -149,7 +149,7 @@ class _Medication extends State<Medication> {
                                                 Container(
                                                   width: 100,
                                                   child: Text(
-                                                    "Type",
+                                                    "Med. name",
                                                     style: TextStyle(
                                                         color: Colors.black,
                                                         fontSize: 15),

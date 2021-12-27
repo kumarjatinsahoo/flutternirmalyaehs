@@ -1,11 +1,13 @@
 class ApiFactory {
   //bool isRelease = bool.fromEnvironment("DEV");
   static String REG_DEVICE = "https://cca.medtel.in/Ziniai/manageDeviceId";
-  //static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
-  //static String MAIN_URL = "http://api-demo.ehealthsystem.com/nirmalyaRest/api/";
+ // static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
+//  static String MAIN_URL = "http://api-demo.ehealthsystem.com/nirmalyaRest/api/";
   static String MAIN_URL1 = "https://1331.co.in/api";
   static String REPORT_URL1 = "https://ehealthsystem.com/";
-   static String MAIN_URL = "http://192.168.34.208:8062/nirmalyaRest/api/";
+   static String MAIN_URL = "http://192.168.136.208:8062/nirmalyaRest/api/";
+  // static String MAIN_URL = "http://192.168.43.248:8062/nirmalyaRest/api/";
+   //static String MAIN_URL = "http://192.168.43.248:8062/nirmalyaRest/api/";
   static String VITALS_REPORT = MAIN_URL + 'medtel-screening-test-report';
   static String COUNTRY_API = MAIN_URL + 'get-country-list';
   static String VIEW_PATIENT_HEALTH_API = REPORT_URL1 + 'user/mobile-view-patient-health-chart?id=';
@@ -98,8 +100,8 @@ class ApiFactory {
   static String DOCTOOR_API = MAIN_URL + 'get-doctor-list?type=';
   static String HOSPITAL_API = MAIN_URL + 'get-hospital-list?doctor=';
   static String POST_ORGAN_DONOR = MAIN_URL + 'post-organ-donor-details';
-  static String GET_PATIENT_MEDICAL_HISTORY =
-      MAIN_URL + 'get-patient-medical-history?userid=';
+  static String GET_PATIENT_MEDICAL_HISTORY = MAIN_URL + 'get-patient-medical-history?userid=';
+  static String OPD_MODEL = MAIN_URL + 'doctor-opd-weekly?drid=';
 
   //static String SPECIALITY_API2 = MAIN_URL + 'get-speciality-list';
   static String TESTNAME_LIST = MAIN_URL + 'get-testname-list';
@@ -121,6 +123,7 @@ class ApiFactory {
   static String IIFESTYLE_DETAIS =
       MAIN_URL + 'get-patient-lifestyle-details?userid=';
   static String UPDATE_VITAL_SIGN = MAIN_URL + 'update-vital-signs';
+  static String CHANGE_PASSWORD_USER = MAIN_URL + 'change-password-user-wise';
   static String patient_lifestyle_details =
       MAIN_URL + 'post-patient-lifestyle-details';
   static String POST_PHARMACY_REQUST = MAIN_URL + 'post-pharmacy-request-api';
@@ -217,8 +220,10 @@ class ApiFactory {
   static String POC_REPORT_LISTT = MAIN_URL + 'view-medteltest-list?userid=';
   static String POC_REPORT_SMS = MAIN_URL + 'post-update-report-sms-status';
   static String UPDATE_EMERGENCY_CONTACT = MAIN_URL + 'post-emergency-contact-api';
+  static String DOCTOR_RATING = MAIN_URL + 'post-doctor-rating-api';
   static String UPDATE_DOCTOR_CONTACT = MAIN_URL + 'post-family-doctor-api';
   static String UPDATE_FAMILY_CONTACT = MAIN_URL + 'post-family-details-api';
+  static String Delete_profile_CONTACT = MAIN_URL + 'delete-from-list-api?id=';
   static String EMERGENCY_HELP =
       MAIN_URL + 'view-user-emergency-details-api?userid=';
   static String CHANGE_STATUS_CHKUP = MAIN_URL + "post-chkupAppointmentStatus";

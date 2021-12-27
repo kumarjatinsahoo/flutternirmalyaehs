@@ -568,7 +568,8 @@ class _LabDashboardState extends State<LabDashboard> {
                 selected: _selectedDestination == 1,
                 onTap: () {
                   selectDestination(1);
-                  Navigator.pushNamed(context, "/labprofile");
+                  //Navigator.pushNamed(context, "/labprofile");
+                  Navigator.pushNamed(context, "/labMyProfile");
                 },
               ),
               /* ListTile(
@@ -633,6 +634,7 @@ class _LabDashboardState extends State<LabDashboard> {
                   selected: _selectedDestination == 6,
                   onTap: () {
                     selectDestination(6);
+                    widget.model.contactscreen = "Contact Screen";
                     Navigator.pushNamed(context, "/contactus");
                     //Navigator.pushNamed(context, "/discountoffer");
                   }),
@@ -645,8 +647,10 @@ class _LabDashboardState extends State<LabDashboard> {
                   selected: _selectedDestination == 7,
                   onTap: () {
                     selectDestination(7);
-                    Navigator.pushNamed(context, "/support");
+                    widget.model.contactscreen = "Support Screen";
+                    Navigator.pushNamed(context, "/contactus");
                   }),
+
               ListTile(
                 leading: Image.asset(
                   "assets/images/logout.png",

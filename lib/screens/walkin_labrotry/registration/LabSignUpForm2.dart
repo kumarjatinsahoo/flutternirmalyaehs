@@ -154,9 +154,9 @@ class LabSignUpForm2State extends State<LabSignUpForm2> {
     super.initState();
     LabSignUpForm2.districtModel = null;
     LabSignUpForm2.blockModel = null;
-
     LabSignUpForm2.bloodgroupModel = null;
     LabSignUpForm2.genderModel = null;
+
     /*setState(() {
       masterClass = widget.model.masterDataResponse;
     });
@@ -281,7 +281,7 @@ class LabSignUpForm2State extends State<LabSignUpForm2> {
                                           style: TextStyle(
                                               fontSize: 20, color: Colors.black),
                                         ),
-                                        SizedBox(width: 35),
+                                        SizedBox(width: 38),
                                         Text(
                                           MyLocalizations.of(context)
                                               .text("PATHOLOGIST"),
@@ -296,7 +296,6 @@ class LabSignUpForm2State extends State<LabSignUpForm2> {
                                     height: 8,
                                   ),
                                   dob(),
-
                                   // Padding(
                                   //   padding: const EdgeInsets.symmetric(horizontal: 0),
                                   //   child: DropDown.staticDropdown3(
@@ -687,7 +686,7 @@ class LabSignUpForm2State extends State<LabSignUpForm2> {
   Widget dob() {
     return Padding(
       //padding: const EdgeInsets.symmetric(horizontal: 8),
-      padding: const EdgeInsets.symmetric(horizontal: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 8),
       child: GestureDetector(
         onTap: () => widget.isConfirmPage ? null : _selectDate(context),
         child: AbsorbPointer(

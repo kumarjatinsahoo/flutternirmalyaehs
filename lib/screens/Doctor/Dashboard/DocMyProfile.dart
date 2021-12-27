@@ -8,10 +8,12 @@ import 'dart:typed_data';
 import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-import 'dart:ui' as ui;
+import 'package:image_cropper/image_cropper.dart';
+/*import 'package:image_crop/image_crop.dart';*/
 import 'package:image_picker/image_picker.dart';
+import 'dart:ui' as ui;
 import 'package:intl/intl.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/KeyvalueModel.dart';
 import 'package:user/models/LoginResponse1.dart';
@@ -27,9 +29,12 @@ import 'package:flutter/rendering.dart';
 
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/models/PatientListModel.dart';
+//import 'package:user/screens/Doctor/Dashboard/CropimageProfile.dart';
 import 'package:user/widgets/MyWidget.dart';
 import 'package:user/widgets/TextFormatter.dart';
 import 'package:user/widgets/signature.dart';
+
+import '../../../main.dart';
 
 class DocMyProfile extends StatefulWidget {
   MainModel model;
@@ -43,6 +48,10 @@ class DocMyProfile extends StatefulWidget {
   @override
   _DocMyProfileState createState() => _DocMyProfileState();
 }
+/*late AppState state;*/
+File imageFile;
+File _selectedFile;
+String _imagepath;
 
 class _DocMyProfileState extends State<DocMyProfile> {
   String loAd = "Loading..";
@@ -66,6 +75,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
   ];
   //Body model;
   File pathUsr = null;
+  bool _inProcess = false;
   LoginResponse1 loginResponse;
   bool isDataNotAvail = false;
   ProfileModel1 profileModel1;
@@ -90,6 +100,10 @@ class _DocMyProfileState extends State<DocMyProfile> {
   UpdateDocProfileModel updateProfileModel = UpdateDocProfileModel();
 
   bool selectGallery = false;
+  //final cropKey = GlobalKey<CropState>();
+  File _file;
+  File _sample;
+  File _lastCropped;
 
   var image;
   var pngBytes;
@@ -205,6 +219,12 @@ class _DocMyProfileState extends State<DocMyProfile> {
           });
         });
   }
+  void dispose() {
+    super.dispose();
+    _file?.delete();
+    _sample?.delete();
+    _lastCropped?.delete();
+  }
 
   getGender(String gender) {
     switch (gender) {
@@ -229,23 +249,112 @@ class _DocMyProfileState extends State<DocMyProfile> {
                 new ListTile(
                     leading: new Icon(Icons.camera),
                     title: new Text('Camera'),
-                    onTap: () => {
-                      Navigator.pop(context),
-                      getCameraImage(),
+                    onTap: () {
+                      Navigator.pop(context);
+                    getImage(ImageSource.camera);
+                      //getCameraImage(),
                     }),
                 new ListTile(
                   leading: new Icon(Icons.folder),
                   title: new Text('Gallery'),
-                  onTap: () => {
-                    Navigator.pop(context),
-                    getGalleryImage(),
+                  onTap: (){
+                    Navigator.pop(context);
+                    getImage(ImageSource.gallery);
+                  //_openImage();
+                   // _loadPicker(ImageSource.camera);
+                    //_buildOpenImage(),
+                  /*Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Cropimage()),
+                  ),*/
+                    //_sample == null ? _buildOpeningImage() : _buildCroppingImage(),
+                    //_buildCroppingImage(),
+                   // getGalleryImage(),
+                    //_openImage(),
+                    //_cropImage(),
                   },
                 ),
               ],
             ),
+
           );
+
+
         });
   }
+
+  getImage(ImageSource source) async {
+    this.setState((){
+      _inProcess = true;
+    });
+    File image = await ImagePicker.pickImage(source: source);
+    if(image != null){
+      File cropped = await ImageCropper.cropImage(
+          sourcePath: image.path,
+          aspectRatio: CropAspectRatio(
+              ratioX: 1, ratioY: 1),
+          compressQuality: 100,
+          maxWidth: 700,
+          maxHeight: 700,
+          compressFormat: ImageCompressFormat.jpg,
+          androidUiSettings: AndroidUiSettings(
+            toolbarColor: AppData.kPrimaryColor,
+            toolbarTitle: "Image Cropper",
+            toolbarWidgetColor: Colors.white,
+
+            //toolbar.setTitleTextColor(Color.RED);
+            ///statusBarColor: Colors.deepOrange.shade900,
+            backgroundColor: Colors.white,
+          )
+      );
+      if (cropped != null) {
+        var enc = await cropped.readAsBytes();
+        String _path = image.path;
+        setState(() => pathUsr = cropped);
+
+        String _fileName = _path != null ? _path.split('/').last : '...';
+        var pos = _fileName.lastIndexOf('.');
+        String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+        print(extName);
+        print("size>>>" + AppData.formatBytes(enc.length, 0).toString());
+        setState(() {
+          pathUsr = cropped;
+          _inProcess = false;
+
+          // callApii();
+          // widget.model.patientimg =base64Encode(enc);
+          //widget.model.patientimgtype =extName;
+          //updateProfileModel.profileImage = base64Encode(enc) as List<Null>;
+          //updateProfileModel.profileImageType = extName;
+          updateProfile(base64Encode(enc), extName);
+        });
+      }
+      /*this.setState((){
+        pathUsr = cropped;
+        //updateProfile(base64Encode(cropped), extName);
+        _inProcess = false;
+      });*/
+    } else {
+      this.setState((){
+        _inProcess = false;
+      });
+    }
+  }
+
+  void SaveImage(path) async {
+    SharedPreferences saveimage = await SharedPreferences.getInstance();
+    saveimage.setString("imagepath", path);
+  }
+
+  void LoadImage() async {
+    SharedPreferences saveimage = await SharedPreferences.getInstance();
+    setState(() {
+      _imagepath = saveimage.getString("imagepath");
+    });
+  }
+  // Widget _buildOpeningImage() {
+  //   return Center(child: _buildOpenImage());
+  // }
   Future getCameraImage() async {
     var image = await ImagePicker.pickImage(
         source: ImageSource.camera, imageQuality: 45);
@@ -273,6 +382,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
     }
   }
 
+
   Future getGalleryImage() async {
     var image = await ImagePicker.pickImage(
         source: ImageSource.gallery, imageQuality: 45);
@@ -289,6 +399,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
       print("size>>>" + AppData.formatBytes(enc.length, 0).toString());
       setState(() {
         pathUsr = File(_path);
+        //_cropImage();
         //widget.model.patientimg =base64Encode(enc);
         //widget.model.patientimgtype =extName;
         //updateProfileModel.profileImage = base64Encode(enc) as List<Null>;
@@ -297,9 +408,6 @@ class _DocMyProfileState extends State<DocMyProfile> {
       });
     }
   }
-
-
-
   List<KeyvalueModel> genderList = [
     KeyvalueModel(key: "1", name: "Male"),
     KeyvalueModel(key: "2", name: "Female"),
@@ -317,10 +425,15 @@ class _DocMyProfileState extends State<DocMyProfile> {
           automaticallyImplyLeading: false,
           title: Stack(
             children: [
-              Center(
-                child: Text(
-                  MyLocalizations.of(context).text("MY_PROFILE"),
-                  style: TextStyle(color: Colors.white),
+              InkWell(
+                onTap:(){
+                  //_cropImage();
+                },
+                child: Center(
+                  child: Text(
+                    MyLocalizations.of(context).text("MY_PROFILE"),
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
               ),
               //Spacer(),
@@ -386,7 +499,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
           ),
         ),*/
         body: (profileModel1 != null)
-            ? Container(
+            ?/*(_sample == null)?*/ Container(
                 height: double.maxFinite,
                 child: SingleChildScrollView(
                   child: Column(
@@ -459,7 +572,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
                                       ),
                                       ListTile(
                                         leading: Icon(Icons.bloodtype_outlined),
-                                        title: Text("bloodgroup".toUpperCase(),
+                                        title: Text("blood group".toUpperCase(),
                                         ),
                                         subtitle: Text(
                                             profileModel1?.body?.bldGrname!="" ?profileModel1.body.bldGrname: "N/A"),
@@ -501,7 +614,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
                                       ),
                                       ListTile(
                                         leading: Icon(Icons.location_on_rounded),
-                                        title: Text("pincode".toUpperCase(),
+                                        title: Text("pin code".toUpperCase(),
                                         ),
                                         subtitle: Text(
                                             profileModel1?.body?.pincode!=""? profileModel1.body.pincode: "N/A"),
@@ -616,6 +729,13 @@ class _DocMyProfileState extends State<DocMyProfile> {
                           ),
                         ),
                       ),
+                    /*  (_inProcess)?Container(
+                        color: Colors.white,
+                        height: MediaQuery.of(context).size.height * 0.95,
+                        child: Center(
+                          child: CircularProgressIndicator(),
+                        ),
+                      ):Center(),*/
                       SizedBox(
                         height: 3,
                       ),
@@ -625,7 +745,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
                     ],
                   ),
                 ),
-              )
+              )/*:_buildCroppingImage()*/
             : Center(
                 child: Text(
                   loAd,

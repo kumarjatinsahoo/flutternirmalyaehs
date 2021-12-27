@@ -157,6 +157,7 @@ String  receptionpatientid;
 
 Event selectEvent;
 
+  String contactscreen;
 
 
 }

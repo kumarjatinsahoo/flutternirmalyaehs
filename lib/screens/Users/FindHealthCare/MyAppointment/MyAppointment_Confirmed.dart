@@ -1,11 +1,9 @@
 import 'dart:convert';
-
 import 'package:custom_rating_bar/custom_rating_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/AppointmentlistModel.dart' as apnt;
 import 'package:user/models/LoginResponse1.dart';
-
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
@@ -238,7 +236,7 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                                                           CrossAxisAlignment.start,
                                                           children: [
                                                             Text(
-                                                              'User Name: ',
+                                                              'Doctor Name: ',
                                                               style: TextStyle(
                                                                   color: Colors.blue,
                                                                   fontWeight:
@@ -392,6 +390,31 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                                                                   .appdate ??"N/A" +
                                                                   appointmentlist
                                                                       .apptime ??"N/A",
+                                                              overflow:
+                                                              TextOverflow
+                                                                  .clip,
+                                                              style: TextStyle(
+                                                                  fontWeight:
+                                                                  FontWeight.bold,
+                                                                  fontSize: 15),
+                                                            ),
+                                                            SizedBox(
+                                                              height: 4,
+                                                            ),
+                                                            Text(
+                                                              'Consult Type: ',
+                                                              style: TextStyle(
+                                                                  color: Colors.blue,
+                                                                  fontWeight:
+                                                                  FontWeight.w600),
+                                                            ),
+                                                            SizedBox(
+                                                              width: 5,
+                                                            ),
+                                                            Text(
+                                                              /*'23-Nov-2020-11:30AM'*/
+                                                              appointmentlist.
+                                                              typeofconsult??"N/A",
                                                               overflow:
                                                               TextOverflow
                                                                   .clip,

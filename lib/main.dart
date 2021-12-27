@@ -27,6 +27,7 @@ import 'package:user/screens/Doctor/Dashboard/ContactUs.dart';
 import 'package:user/screens/Doctor/Dashboard/EmergencyAccess/QrEmergencyAccess.dart';
 import 'package:user/screens/Doctor/Dashboard/MonthlyOverview/MonthlyOverViewList.dart';
 import 'package:user/screens/Doctor/Dashboard/MonthlyOverview/MonthlyOverview.dart';
+import 'package:user/screens/Doctor/Dashboard/MyOpdPage.dart';
 import 'package:user/screens/Doctor/Dashboard/MyPatientlist.dart';
 import 'package:user/screens/Doctor/Dashboard/NewDashboardDoctor.dart';
 import 'package:user/screens/Doctor/Dashboard/ShareAppointment/ShareAppointment.dart';
@@ -35,6 +36,7 @@ import 'package:user/screens/Doctor/Dashboard/WalkinPatient/QRViewExample1.dart'
 import 'package:user/screens/FindPage1.dart';
 import 'package:user/screens/Ngo/Registration/NgoSignUpForm.dart';
 import 'package:user/screens/Ngo/Registration/NgoSignUpForm2.dart';
+import 'package:user/screens/OrganisationSignUpForm.dart';
 import 'package:user/screens/Pharmacists/MonthlyOverview/MonthlyOverviewPharma.dart';
 import 'package:user/screens/Pharmacists/MonthlyOverview/MonthlyOverviewPharmalist.dart';
 import 'package:user/screens/Pharmacists/Screens/NewDashboardPharmacy.dart';
@@ -49,6 +51,7 @@ import 'package:user/screens/Users/BookAmbulance/BookAmbulance.dart';
 import 'package:user/screens/Users/BookAmbulance/BookAmbulancelist.dart';
 import 'package:user/screens/Users/BookBloodBank/BookBloodBank.dart';
 import 'package:user/screens/Users/BookBloodBank/BookBloodBanklist.dart';
+import 'package:user/screens/Users/Dashboard/ChangePassword.dart';
 import 'package:user/screens/Users/Dashboard/QrcodePage.dart';
 import 'package:user/screens/Users/Dashboard/TermsandConditionPage.dart';
 import 'package:user/screens/Users/GovermentSchemes/GovernmentSchemesList.dart';
@@ -95,10 +98,13 @@ import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/DocumentPdfVie
 import 'package:user/screens/Users/MyMedicalRecord/HealthChart.dart';
 import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/UploadDocument.dart';
 import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/VideoDetailsPage.dart';
+import 'package:user/screens/Users/organ/OrganPreviewPage.dart';
 import 'package:user/screens/Users/organ/Organlist.dart';
 import 'package:user/screens/VideoCall/VideoCallPage.dart';
 import 'package:user/screens/walkin_labrotry/LabDashboard.dart';
+import 'package:user/screens/walkin_labrotry/Screen/LabMyProfile.dart';
 import 'package:user/screens/walkin_labrotry/Screen/LabQrCode.dart';
+import 'package:user/widgets/PdfViewPage.dart';
 import 'screens/Users/MyMedicalRecord/LifeStyleHistory.dart';
 import 'package:user/screens/Users/MyMedicalRecord/Medication/UserMedicineTab1.dart';
 import 'package:user/screens/Users/MyMedicalRecord/Medication/UserMedicineUrl.dart';
@@ -733,6 +739,9 @@ class _MyAppState extends State<MyApp> {
               '/dashDoctor': (context) => NewDashboardDoctor(
                     model: _model,
                   ),
+              '/myopdpage': (context) => MyOpdPage(
+                    model: _model,
+                  ),
               '/apntMange': (context) => DocAppointmentMangement(
                     model: _model,
                   ),
@@ -1002,7 +1011,7 @@ class _MyAppState extends State<MyApp> {
               '/adduploaddocument': (context) => AddUploadDocument(
                     model: _model,
                   ),
-              '/documentpdf': (context) => DocumentPdf(
+              '/documentpdf': (context) => PdfViewPage(
                     model: _model,
                   ),
               '/documentimage': (context) => DocumentImage(
@@ -1090,6 +1099,24 @@ class _MyAppState extends State<MyApp> {
                   Organlist(
                     model: _model,
                   ),
+              '/changePassword': (context) =>
+                  ChangePassword(
+                    model: _model,
+                  ),
+              '/labMyProfile': (context) =>
+                  LabMyProfile(
+                    model: _model,
+                  ),
+              '/organisationSignUpForm': (context) =>
+                  OrganisationSignUpForm(
+                    model: _model,
+                  ),
+              '/organPriviewPage': (context) =>
+                  OrganPriviewPage(
+                    model: _model,
+                  ),
+
+
               '/vdo': (context) =>
                   VideoCallPage(
                //     model: _model,

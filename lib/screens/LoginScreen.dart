@@ -641,7 +641,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           //   size: 40,
                           // ),
                           onTap: () {
-                            //Navigator.pop(context);
+                            Navigator.pop(context);
+
                             Navigator.pushNamed(context, "/userSignUpForm");
                             //_validate();
                           },
@@ -657,7 +658,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           // ),
                           onTap: () {
                             //Navigator.pop(context);
-                            Navigator.pushNamed(context, "/doctorsignupform2");
+                            organisationDialog(context,"/doctorsignupform2");
+                            //Navigator.pop(context);
+                            //Navigator.pushNamed(context, "/doctorsignupform2");
                             // Navigator.pushNamed(context, "/doctorsignupform");
                             //_validate();
                           },
@@ -672,8 +675,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           //   size: 40,
                           // ),
                           onTap: () {
-                            Navigator.pop(context);
-                            Navigator.pushNamed(context, "/labsignupform");
+                            //Navigator.pop(context);
+                            organisationDialog(context,"/labsignupform");
+                            //Navigator.pushNamed(context, "/labsignupform");
                           },
                         ),
                         Divider(),
@@ -766,4 +770,119 @@ class _LoginScreenState extends State<LoginScreen> {
           );
         });
   }
+  organisationDialog(BuildContext context ,String organisation
+      ) {
+      // set up the buttons
+      Widget cancelButton = TextButton(
+        child: Text("No",style: TextStyle(color: AppData.kPrimaryRedColor)),
+        onPressed:  () {
+          //Navigator.pop(context);
+          Navigator.pushNamed(context, "/organisationSignUpForm");
+        },
+      );
+      Widget continueButton = TextButton(
+        child: Text("Yes",style: TextStyle(color: AppData.matruColor)),
+        onPressed:  () {
+          //Navigator.pushNamed(context, "/doctorsignupform2");
+          Navigator.pushNamed(context,organisation);
+         // String listid = patientProfileModel.body.familyDetailsList[index].famid;
+         // String familydetails="3";
+
+        //  FamilyDeleteApi(listid,familydetails);
+
+        },
+      );
+
+      // set up the AlertDialog
+      AlertDialog alert = AlertDialog(
+        title: Text("Have you register your organisation in our eHealthSystems?"),
+        // content: Text("Do You Want to Delete ?"),
+        actions: [
+          cancelButton,
+          continueButton,
+        ],
+      );
+
+      // show the dialog
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return alert;
+        },
+      );
+
+
+/*
+    showDialog(
+        builder: (context) {
+          return AlertDialog(
+            contentPadding: EdgeInsets.only(left: 5, right: 5, top: 5),
+            insetPadding: EdgeInsets.only(left: 5, right: 5, top: 5),
+            content: StatefulBuilder(
+              builder: (BuildContext context, StateSetter setState) {
+                return Container(
+                  width: MediaQuery.of(context).size.width * 0.86,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                     *//* Positioned(
+                        right: 10.0,
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: Align(
+                            alignment: Alignment.topRight,
+                            child: CircleAvatar(
+                              radius: 10.0,
+                              backgroundColor: Colors.white,
+                              child: Icon(Icons.close, color: Colors.red,size: 25,),
+                            ),
+                          ),
+                        ),
+                      ),*//*
+                   Align(
+                  alignment: Alignment.center,
+                    child: Text(
+                        "Have you register your organisation in our eHealthSystems?",
+                        style: TextStyle(
+                            color: Colors.black, fontSize: 20,fontWeight: FontWeight.w400, // light
+                            fontStyle: FontStyle.normal ),
+                      ),
+                   ),
+                      SizedBox(height: 10),
+
+                    ],
+                  ),
+                );
+              },
+            ),
+            actions: <Widget>[
+              FlatButton(
+                //textColor: Colors.grey,
+                child: Text("No", style: TextStyle(color: AppData.kPrimaryRedColor)),
+                onPressed: () {
+                 // Navigator.pushNamed(context, "/doctorsignupform2");
+
+                },
+              ),
+              FlatButton(
+                //textColor: Colors.grey,
+                child: Text(
+                  "Yes", style: TextStyle(color: AppData.matruColor),
+                ),
+                onPressed: () {
+                  Navigator.pushNamed(context,organisation *//*"/doctorsignupform2"*//*);
+
+
+                },
+              ),
+            ],
+          );
+        },
+        context: context);*/
+  }
+
 }

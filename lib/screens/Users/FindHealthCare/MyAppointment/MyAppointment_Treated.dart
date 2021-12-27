@@ -1,8 +1,12 @@
+import 'dart:developer';
+
 import 'package:custom_rating_bar/custom_rating_bar.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/AppointmentlistModel.dart';
 import 'package:user/models/AppointmentlistModel.dart' as apt;
+import 'package:user/models/Ratingmodel.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
@@ -10,6 +14,7 @@ import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:user/widgets/text_field_address.dart';
 
 class MyAppointmentTreated extends StatefulWidget {
   MainModel model;
@@ -27,10 +32,22 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
   TextEditingController toThis_ = TextEditingController();
   String selectedDatestr;
   bool isdata = true;
+  Ratingmodel ratingmodel;
+  double rate;
+  List<bool> error = [false, false, false, false, false, false];
 
   final df = new DateFormat('dd/MM/yyyy');
   var selectedMinValue;
   DateTime date = DateTime.now();
+  List<TextEditingController> textEditingController = [
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+  ];
 
   void initState() {
     // TODO: implement initState
@@ -60,6 +77,7 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
         callAPI(selectedDatestr);
       });
   }
+
   leftArrow() {
     setState(() {
       selectedDate = selectedDate.subtract(Duration(days: 1));
@@ -77,6 +95,7 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
       callAPI(selectedDatestr);
     });
   }
+
   callAPI(String today) {
     /*if (comeFrom == Const.HEALTH_SCREENING_APNT) {*/
     widget.model.GETMETHODCALL_TOKEN(
@@ -100,7 +119,7 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
 
               // appointModel = lab.LabBookModel.fromJson(map);
             } else {
-              appointmentlistModel=null;
+              appointmentlistModel = null;
               isdata = false;
               // isDataNotAvail = true;
               // AppData.showInSnackBar(context, msg);
@@ -142,7 +161,6 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                     ],
                   ),
                   Spacer(),
-
                   InkWell(
                     onTap: () {
                       rightArrow();
@@ -158,21 +176,19 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                   ),
                 ],
               ),
-
               isdata == true
                   ? Center(
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height:
-                          MediaQuery.of(context).size.height * 0.35,
-                        ),
-                        CircularProgressIndicator(
-                            //backgroundColor: AppData.matruColor,
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.35,
                           ),
-                      ],
-                    ),
-                  )
+                          CircularProgressIndicator(
+                              //backgroundColor: AppData.matruColor,
+                              ),
+                        ],
+                      ),
+                    )
                   : appointmentlistModel == null || appointmentlistModel == null
                       ? Container(
                           child: Center(
@@ -180,10 +196,11 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                               children: [
                                 SizedBox(
                                   height:
-                                  MediaQuery.of(context).size.height * 0.35,
+                                      MediaQuery.of(context).size.height * 0.35,
                                 ),
                                 Text(
-                                  MyLocalizations.of(context).text("NO_DATA_FOUND"),
+                                  MyLocalizations.of(context)
+                                      .text("NO_DATA_FOUND"),
                                   style: TextStyle(
                                       color: Colors.black, fontSize: 15),
                                 ),
@@ -196,7 +213,8 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                               shrinkWrap: true,
                               physics: NeverScrollableScrollPhysics(),
                               itemBuilder: (context, i) {
-                                apt.Body appointmentlist =appointmentlistModel.body[i];
+                                apt.Body appointmentlist =
+                                    appointmentlistModel.body[i];
                                 /* itemCount: lists.length,
                           itemBuilder: (context, index) {*/
                                 return InkWell(
@@ -219,33 +237,40 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                                             children: [
                                               Container(
                                                 decoration: BoxDecoration(
-                                                    gradient: LinearGradient(colors: [
+                                                    gradient: LinearGradient(
+                                                        colors: [
                                                       Colors.blueGrey[50],
                                                       Colors.blue[50]
                                                     ])),
                                                 child: Padding(
-                                                  padding: const EdgeInsets.only(
-                                                      left: 10.0,
-                                                      right: 10.0,
-                                                      top: 10,
-                                                      bottom: 5),
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 10.0,
+                                                          right: 10.0,
+                                                          top: 10,
+                                                          bottom: 5),
                                                   child: Row(
                                                     mainAxisAlignment:
-                                                    MainAxisAlignment.spaceBetween,
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
                                                     crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
+                                                        CrossAxisAlignment
+                                                            .start,
                                                     children: [
                                                       Expanded(
                                                         child: Column(
                                                           crossAxisAlignment:
-                                                          CrossAxisAlignment.start,
+                                                              CrossAxisAlignment
+                                                                  .start,
                                                           children: [
                                                             Text(
-                                                              'User Name: ',
+                                                              'Doctor Name: ',
                                                               style: TextStyle(
-                                                                  color: Colors.blue,
+                                                                  color: Colors
+                                                                      .blue,
                                                                   fontWeight:
-                                                                  FontWeight.w600),
+                                                                      FontWeight
+                                                                          .w600),
                                                             ),
                                                             SizedBox(
                                                               height: 5,
@@ -253,37 +278,48 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                                                             Row(
                                                               children: [
                                                                 Text(
-                                                                  appointmentlist.doctorName ??
+                                                                  appointmentlist
+                                                                          .doctorName ??
                                                                       "N/A",
                                                                   /*"",*/
                                                                   style: TextStyle(
                                                                       fontWeight:
-                                                                      FontWeight.bold,
-                                                                      fontSize: 15),
+                                                                          FontWeight
+                                                                              .bold,
+                                                                      fontSize:
+                                                                          15),
                                                                 ),
                                                                 SizedBox(
-                                                                  width:
-                                                                  5,
+                                                                  width: 5,
                                                                 ),
-                                                                (appointmentlist.patname ==
-                                                                    "Registered Doctor")
+                                                                (appointmentlist
+                                                                            .patname ==
+                                                                        "Registered Doctor")
                                                                     ? Container(
-                                                                  child: Icon(
-                                                                    Icons.check_circle,
-                                                                    size: 16,
-                                                                    color: AppData.kPrimaryColor,
-                                                                  ),
-                                                                )
+                                                                        child:
+                                                                            Icon(
+                                                                          Icons
+                                                                              .check_circle,
+                                                                          size:
+                                                                              16,
+                                                                          color:
+                                                                              AppData.kPrimaryColor,
+                                                                        ),
+                                                                      )
                                                                     : Container(),
                                                               ],
                                                             ),
-                                                            SizedBox(height: 5,),
+                                                            SizedBox(
+                                                              height: 5,
+                                                            ),
                                                             Text(
                                                               'Education: ',
                                                               style: TextStyle(
-                                                                  color: Colors.blue,
+                                                                  color: Colors
+                                                                      .blue,
                                                                   fontWeight:
-                                                                  FontWeight.w600),
+                                                                      FontWeight
+                                                                          .w600),
                                                             ),
                                                             SizedBox(
                                                               height: 5,
@@ -291,39 +327,48 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                                                             Row(
                                                               children: [
                                                                 Text(
-                                                                  appointmentlist.docedu ??
+                                                                  appointmentlist
+                                                                          .docedu ??
                                                                       "N/A",
                                                                   overflow:
-                                                                  TextOverflow.clip,
+                                                                      TextOverflow
+                                                                          .clip,
                                                                   style: TextStyle(
                                                                       fontWeight:
-                                                                      FontWeight.bold,
-                                                                      fontSize: 15),
+                                                                          FontWeight
+                                                                              .bold,
+                                                                      fontSize:
+                                                                          15),
                                                                 ),
-                                                                (appointmentlist.docexp ==
-                                                                    null)
+                                                                (appointmentlist
+                                                                            .docexp ==
+                                                                        null)
                                                                     ? Text(
-                                                                  "  Exp ",
-                                                                  overflow:
-                                                                  TextOverflow.clip,
-                                                                  style: TextStyle(
-                                                                      fontSize:
-                                                                      13,
-                                                                      color:
-                                                                      Colors.black),
-                                                                ):Container(),
-                                                                (appointmentlist.docexp == null)
-                                                                    ?Text(
-                                                                  appointmentlist.docexp ??
-                                                                      "N/A",
-                                                                  overflow:
-                                                                  TextOverflow.clip,
-                                                                  style: TextStyle(
-                                                                      fontSize:
-                                                                      13,
-                                                                      color:
-                                                                      Colors.black),
-                                                                ):Container(),
+                                                                        "  Exp ",
+                                                                        overflow:
+                                                                            TextOverflow.clip,
+                                                                        style: TextStyle(
+                                                                            fontSize:
+                                                                                13,
+                                                                            color:
+                                                                                Colors.black),
+                                                                      )
+                                                                    : Container(),
+                                                                (appointmentlist
+                                                                            .docexp ==
+                                                                        null)
+                                                                    ? Text(
+                                                                        appointmentlist.docexp ??
+                                                                            "N/A",
+                                                                        overflow:
+                                                                            TextOverflow.clip,
+                                                                        style: TextStyle(
+                                                                            fontSize:
+                                                                                13,
+                                                                            color:
+                                                                                Colors.black),
+                                                                      )
+                                                                    : Container(),
                                                               ],
                                                             ),
                                                             SizedBox(
@@ -332,23 +377,26 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                                                             Text(
                                                               'Speciality: ',
                                                               style: TextStyle(
-                                                                  color: Colors.blue,
+                                                                  color: Colors
+                                                                      .blue,
                                                                   fontWeight:
-                                                                  FontWeight.w600),
+                                                                      FontWeight
+                                                                          .w600),
                                                             ),
                                                             SizedBox(
                                                               height: 3,
                                                             ),
                                                             Text(
                                                               appointmentlist
-                                                                  .speciality ??
+                                                                      .speciality ??
                                                                   "N/A",
                                                               overflow:
-                                                              TextOverflow
-                                                                  .clip,
+                                                                  TextOverflow
+                                                                      .clip,
                                                               style: TextStyle(
                                                                   fontWeight:
-                                                                  FontWeight.bold,
+                                                                      FontWeight
+                                                                          .bold,
                                                                   fontSize: 15),
                                                             ),
                                                             SizedBox(
@@ -357,9 +405,11 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                                                             Text(
                                                               'Address: ',
                                                               style: TextStyle(
-                                                                  color: Colors.blue,
+                                                                  color: Colors
+                                                                      .blue,
                                                                   fontWeight:
-                                                                  FontWeight.w600),
+                                                                      FontWeight
+                                                                          .w600),
                                                             ),
                                                             SizedBox(
                                                               height: 3,
@@ -367,13 +417,15 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                                                             Text(
                                                               /*'23-Nov-2020-11:30AM'*/
                                                               appointmentlist
-                                                                  .dochospital??"N/A",
+                                                                      .dochospital ??
+                                                                  "N/A",
                                                               overflow:
-                                                              TextOverflow
-                                                                  .clip,
+                                                                  TextOverflow
+                                                                      .clip,
                                                               style: TextStyle(
                                                                   fontWeight:
-                                                                  FontWeight.bold,
+                                                                      FontWeight
+                                                                          .bold,
                                                                   fontSize: 15),
                                                             ),
                                                             SizedBox(
@@ -382,9 +434,11 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                                                             Text(
                                                               'Date: ',
                                                               style: TextStyle(
-                                                                  color: Colors.blue,
+                                                                  color: Colors
+                                                                      .blue,
                                                                   fontWeight:
-                                                                  FontWeight.w600),
+                                                                      FontWeight
+                                                                          .w600),
                                                             ),
                                                             SizedBox(
                                                               width: 5,
@@ -392,15 +446,47 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                                                             Text(
                                                               /*'23-Nov-2020-11:30AM'*/
                                                               appointmentlist
-                                                                  .appdate ??"N/A" +
-                                                                  appointmentlist
-                                                                      .apptime ??"N/A",
+                                                                      .appdate ??
+                                                                  "N/A" +
+                                                                      appointmentlist
+                                                                          .apptime ??
+                                                                  "N/A",
                                                               overflow:
-                                                              TextOverflow
-                                                                  .clip,
+                                                                  TextOverflow
+                                                                      .clip,
                                                               style: TextStyle(
                                                                   fontWeight:
-                                                                  FontWeight.bold,
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  fontSize: 15),
+                                                            ),
+                                                            SizedBox(
+                                                              height: 4,
+                                                            ),
+                                                            Text(
+                                                              'Consult Type: ',
+                                                              style: TextStyle(
+                                                                  color: Colors
+                                                                      .blue,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600),
+                                                            ),
+                                                            SizedBox(
+                                                              width: 5,
+                                                            ),
+                                                            Text(
+                                                              /*'23-Nov-2020-11:30AM'*/
+                                                              appointmentlist
+                                                                      .typeofconsult ??
+                                                                  "N/A",
+                                                              overflow:
+                                                                  TextOverflow
+                                                                      .clip,
+                                                              style: TextStyle(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
                                                                   fontSize: 15),
                                                             ),
                                                             SizedBox(
@@ -411,29 +497,33 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                                                                 RatingBar
                                                                     .readOnly(
                                                                   filledIcon:
-                                                                  Icons.star,
-                                                                  emptyIcon:
-                                                                  Icons.star_border,
+                                                                      Icons
+                                                                          .star,
+                                                                  emptyIcon: Icons
+                                                                      .star_border,
                                                                   initialRating:
-                                                                  double.tryParse(appointmentlist.docrate.toString()) ??
-                                                                      0,
-                                                                  maxRating:
-                                                                  5,
+                                                                      double.tryParse(appointmentlist
+                                                                              .docrate
+                                                                              .toString()) ??
+                                                                          0,
+                                                                  maxRating: 5,
                                                                   filledColor:
-                                                                  Colors.green,
-                                                                  size:
-                                                                  23.00,
+                                                                      Colors
+                                                                          .green,
+                                                                  size: 23.00,
                                                                 ),
                                                                 SizedBox(
-                                                                  width:
-                                                                  5,
+                                                                  width: 5,
                                                                 ),
                                                                 Text(
-                                                                  double.tryParse(appointmentlist.docrate.toString())
+                                                                  double.tryParse(appointmentlist
+                                                                          .docrate
+                                                                          .toString())
                                                                       .toString(),
                                                                   style: TextStyle(
                                                                       fontWeight:
-                                                                      FontWeight.w700),
+                                                                          FontWeight
+                                                                              .w700),
                                                                 )
                                                               ],
                                                             ),
@@ -441,58 +531,105 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                                                               height: 4,
                                                             ),
                                                             Row(
-                                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceBetween,
                                                               children: [
                                                                 Text(
                                                                   /*'Confirmed'*/
                                                                   appointmentlist
-                                                                      .status ??
+                                                                          .status ??
                                                                       "N/A",
                                                                   style: TextStyle(
                                                                       fontWeight:
-                                                                      FontWeight
-                                                                          .bold,
-                                                                      fontSize: 15,
+                                                                          FontWeight
+                                                                              .bold,
+                                                                      fontSize:
+                                                                          15,
                                                                       color: AppData
                                                                           .kPrimaryColor),
                                                                 ),
                                                                 InkWell(
                                                                   onTap: () {
+                                                                    displayDialog(
+                                                                      context,
+                                                                      appointmentlist,
+                                                                    );
+                                                                  },
+                                                                  child:
+                                                                      Material(
+                                                                    elevation:
+                                                                        5,
+                                                                    color: AppData
+                                                                        .kPrimaryColor,
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            3.0),
+                                                                    child:
+                                                                        MaterialButton(
+                                                                      minWidth:
+                                                                          90,
+                                                                      height:
+                                                                          40.0,
+                                                                      child:
+                                                                          Text(
+                                                                        "Rate",
+                                                                        style: TextStyle(
+                                                                            fontWeight: FontWeight
+                                                                                .bold,
+                                                                            fontSize:
+                                                                                15,
+                                                                            color:
+                                                                                Colors.white),
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                                InkWell(
+                                                                  onTap: () {
                                                                     // widget.model.userappointment = appointmentlist;
-                                                                    widget.model.apntUserType = Const.HEALTH_CHKUP_APNT;
-                                                                    widget.model.appno=appointmentlist?.appno ;
+                                                                    widget.model
+                                                                            .apntUserType =
+                                                                        Const
+                                                                            .HEALTH_CHKUP_APNT;
+                                                                    widget.model
+                                                                            .appno =
+                                                                        appointmentlist
+                                                                            ?.appno;
                                                                     Navigator.pushNamed(
                                                                         context,
                                                                         "/usermedicinelist");
                                                                   },
-                                                                  child: Material(
-                                                                    elevation: 5,
+                                                                  child:
+                                                                      Material(
+                                                                    elevation:
+                                                                        5,
                                                                     color: AppData
                                                                         .kPrimaryColor,
                                                                     borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                        3.0),
+                                                                        BorderRadius.circular(
+                                                                            3.0),
                                                                     child:
-                                                                    MaterialButton(
-                                                                      minWidth: 90,
-                                                                      height: 40.0,
-                                                                      child: Text(
-                                                                            "Show Prescription",
+                                                                        MaterialButton(
+                                                                      minWidth:
+                                                                          90,
+                                                                      height:
+                                                                          40.0,
+                                                                      child:
+                                                                          Text(
+                                                                        "Show Prescription",
                                                                         style: TextStyle(
-                                                                            fontWeight:
-                                                                            FontWeight
+                                                                            fontWeight: FontWeight
                                                                                 .bold,
                                                                             fontSize:
-                                                                            15,
-                                                                            color: Colors
-                                                                                .white),
+                                                                                15,
+                                                                            color:
+                                                                                Colors.white),
                                                                       ),
                                                                     ),
                                                                   ),
                                                                 ),
                                                                 // Spacer(),
-
                                                               ],
                                                             ),
                                                           ],
@@ -507,7 +644,7 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                                         ),
                                       ),
                                     ),
-                                   /* Padding(
+                                    /* Padding(
                                       padding: const EdgeInsets.only(
                                         left: 5.0,
                                         right: 5.0,
@@ -991,5 +1128,217 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
     );
   }
 
+  void displayDialog(BuildContext context, Body appointmentlist) {
+    textEditingController[1].text=appointmentlist.review??"";
+    rate=double.tryParse(appointmentlist.rating);
+
+    //textEditingController[0].text="";
+   //rating=appointmentlist.rating;
+    showDialog(
+        builder: (context) {
+          return AlertDialog(
+            contentPadding: EdgeInsets.only(left: 5, right: 5, top: 30),
+            insetPadding: EdgeInsets.only(left: 5, right: 5, top: 30),
+            content: StatefulBuilder(
+              builder: (BuildContext context, StateSetter setState) {
+                return Container(
+                  width: MediaQuery.of(context).size.width * 0.86,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SizedBox(height: 10),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 0, right: 0),
+                          child: Column(
+                            children: [
+                              Text(
+                                "Rate to Doctor",
+                                style: TextStyle(
+                                    color: Colors.black, fontSize: 20),
+                              ),
+                              SizedBox(
+                                height: 15,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  RatingBar(
+                                    // initialRating: 3,
+                                    onRatingChanged:(rating) {
+                                      // rate=int.tryParse(rating.toString()).toString();
+                                       rate=rating;
+                                      print(rate);
+                                    },
+                                    size: 45,
+                                    initialRating:rate??0.0,
+                                    filledIcon: Icons.star,
+                                    filledColor: Colors.yellow,
+                                    emptyIcon: Icons.star_border,
+                                  ),
+                                ],
+                              ),
+                              fromAddress(1,
+                                  MyLocalizations.of(context).text("REVIEW"),
+                                  TextInputAction.next,
+                                  TextInputType.text,
+                                  "review"),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            ),
+            actions: <Widget>[
+              FlatButton(
+                //textColor: Colors.grey,
+                child: Text(MyLocalizations.of(context).text("CANCEL"),
+                    style: TextStyle(color: AppData.kPrimaryRedColor)),
+                onPressed: () {
+                  setState(() {
+                    Navigator.pop(context);
+                  });
+                },
+              ),
+              FlatButton(
+                //textColor: Colors.grey,
+                child: Text(
+                  MyLocalizations.of(context).text("SUBMIT"),
+                  //style: TextStyle(color: Colors.grey),
+                  style: TextStyle(color: AppData.matruColor),
+                ),
+                onPressed: () {
+                  setState(() {
+                    if(rate == null||rate == ""){
+                    AppData.showInSnackBar(context, "Please enter rating");
+                    }
+                    else if (textEditingController[1].text == null ||
+                        textEditingController[1].text == "") {
+                      AppData.showInSnackBar(context, "Please enter Reviews");
+                    }
+                    else{
+                      Ratingmodel ratingmode = Ratingmodel();
+                      ratingmode.userid = widget.model.user;
+                      ratingmode.rating = rate.toInt().toString();
+                      ratingmode.drid = appointmentlist.doctorid;
+                      ratingmode.appno = appointmentlist.appno;
+                      ratingmode.reviews = textEditingController[1].text;
+                      log("Value json>>" + ratingmode.toJson().toString());
+                      MyWidgets.showLoading(context);
+                      widget.model.POSTMETHOD_TOKEN(
+                          api: ApiFactory.DOCTOR_RATING,
+                          json: ratingmode.toJson(),
+                          token: widget.model.token,
+                        fun: (Map<String, dynamic> map) {
+                          Navigator.pop(context);
+
+                          if (map["status"] == Const.SUCCESS) {
+                            Navigator.pop(context);
+                            // popup(context, map[Const.MESSAGE]);
+                            callAPI(selectedDatestr);
+                            AppData.showInSnackDone(
+                                context, map[Const.MESSAGE]);
+                          } else {
+                            // AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                          }
+                        });
+          }
+                  });
+                },
+              ),
+            ],
+          );
+        },
+        context: context);
+  }
+
+  Widget fromAddress(int index, String hint, inputAct, keyType, String type) {
+    return TextFieldAddress(
+      child: TextFormField(
+        controller: textEditingController[index],
+        // focusNode: currentfn,
+        textInputAction: inputAct,
+        inputFormatters: [
+          //UpperCaseTextFormatter(),
+          WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
+        ],
+        keyboardType: keyType,
+        decoration: InputDecoration(
+          border: InputBorder.none,
+          hintText: hint,
+          hintStyle: TextStyle(color: Colors.grey),
+          // suffixIcon: Icon(Icons.person_rounded),
+          //contentPadding: EdgeInsets.symmetric(vertical: 10)
+        ),
+        textAlignVertical: TextAlignVertical.center,
+        onChanged: (newValue) {},
+        onFieldSubmitted: (value) {
+          print("ValueValue" + error[index].toString());
+          setState(() {
+            error[index] = false;
+          });
+          //  AppData.fieldFocusChange(context, currentfn, nextFn);
+        },
+      ),
+    );
+  }
 //style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15,color: Colors.blue),),
+}
+
+class StarRating extends StatelessWidget {
+  final int rating;
+
+  StarRating({this.rating});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: <Widget>[
+        Image.asset(
+          rating >= 1 ? "assets/images/star.png" : "assets/images/stargrey.png",
+          width: 13,
+          height: 13,
+        ),
+        SizedBox(
+          width: 3,
+        ),
+        Image.asset(
+          rating >= 2 ? "assets/images/star.png" : "assets/images/stargrey.png",
+          width: 13,
+          height: 13,
+        ),
+        SizedBox(
+          width: 3,
+        ),
+        Image.asset(
+          rating >= 3 ? "assets/images/star.png" : "assets/images/stargrey.png",
+          width: 13,
+          height: 13,
+        ),
+        SizedBox(
+          width: 3,
+        ),
+        Image.asset(
+          rating >= 4 ? "assets/images/star.png" : "assets/images/stargrey.png",
+          width: 13,
+          height: 13,
+        ),
+        SizedBox(
+          width: 3,
+        ),
+        Image.asset(
+          rating >= 5 ? "assets/images/star.png" : "assets/images/stargrey.png",
+          width: 13,
+          height: 13,
+        ),
+      ],
+    );
+  }
 }

@@ -193,10 +193,10 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
     pharmaorganisation = widget.model.pharmaorganisation;
     pharmatitle = widget.model.pharmartitle;
     pharmaprofessional = widget.model.pharmaprofessional;
-    // pharmaeducation = widget.model.pharmaeducation;
-    // pharmaspecialty = widget.model.pharmaspeciality;
-    // pharmadob = widget.model.pharmadob;
-    // pharmabloodgrp=widget.model.pharmabloodgroup;
+    //pharmaeducation = widget.model.pharmaeducation;
+    //pharmaspecialty = widget.model.pharmaspeciality;
+    //pharmadob = widget.model.pharmadob;
+    //pharmabloodgrp=widget.model.pharmabloodgroup;
     pharmagender = widget.model.pharmagender;
     pharmaaddress = widget.model.pharmaaddress;
     pharmaexperience = widget.model.pharmaexperience;
@@ -278,6 +278,7 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
                                         Text(
                                           MyLocalizations.of(context).text(
                                               "FILL_IN_PERSONAL_INFORMATION"),
+                                          textAlign: TextAlign.center,
                                           style: TextStyle(
                                               fontSize: 18,
                                               color: Colors.black),
@@ -286,13 +287,13 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
                                     ),
                                   ),
                                   SizedBox(
-                                    height: 5,
+                                    height: 10,
                                   ),
 
                                   //  formFieldaddress(8, "Address"),
-                                  SizedBox(
+                               /*   SizedBox(
                                     height: 5,
-                                  ),
+                                  ),*/
 
                                   DropDown.networkDropdownGetpartUser(
                                       MyLocalizations.of(context)
@@ -722,6 +723,9 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
         } else if (textEditingController[5].text == "" ||
             textEditingController[5].text == null) {
           AppData.showInSnackBar(context, "Please enter Zip/Pin Code");
+        } else if (textEditingController[5].text == "" ||
+            textEditingController[5].text.length != 6) {
+          AppData.showInSnackBar(context, "Please enter Valid Zip/Pin Code");
         } else if (textEditingController[10].text == "" ||
             textEditingController[10].text == null) {
           AppData.showInSnackBar(context, "Please enter Mobile Number");
@@ -752,7 +756,7 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
           pharmaSignupModel.districtid = PharmaSignUpForm3.districtModel.key;
           pharmaSignupModel.cityid = PharmaSignUpForm3.citymodel.key;
           pharmaSignupModel.pincode = textEditingController[5].text;
-          //  pharmaSignupModel.homephone = textEditingController[4].text;
+          //pharmaSignupModel.homephone = textEditingController[4].text;
           //pharmaSignupModel.officephone = textEditingController[6].text;
           pharmaSignupModel.mobno = textEditingController[10].text;
           pharmaSignupModel.email = textEditingController[11].text;
@@ -760,8 +764,7 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
           pharmaSignupModel.role = "7";
           pharmaSignupModel.speciality = "32";
 
-          print(">>>>>>>>>>>>>>>>>>>>>>>>>>>" +
-              pharmaSignupModel.toJson().toString());
+          print(">>>>>>>>>>>>>>>>>>>>>>>>>>>" + pharmaSignupModel.toJson().toString());
           widget.model.POSTMETHOD(
               api: ApiFactory.PHARMACY_REGISTRATION,
               json: pharmaSignupModel.toJson(),

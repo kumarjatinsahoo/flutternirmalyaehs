@@ -357,7 +357,7 @@ class _ImmunizationState extends State<Immunization> {
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Positioned(
+                     /*Positioned(
                         right: 10.0,
                         child: GestureDetector(
                           onTap: () {
@@ -372,12 +372,13 @@ class _ImmunizationState extends State<Immunization> {
                             ),
                           ),
                         ),
-                      ),
+                      ),*/
+                      SizedBox(height: 20),
                       Center(
                               child: Text(
                                 "Are you Vaccinated ?",
                                 style: TextStyle(
-                                    color: Colors.black, fontSize: 25,fontWeight: FontWeight.w400, // light
+                                    color: Colors.black, fontSize: 23,fontWeight: FontWeight.w400, // light
                                   fontStyle: FontStyle.normal ),
                               ),
                             ),
@@ -389,6 +390,42 @@ class _ImmunizationState extends State<Immunization> {
               },
             ),
             actions: <Widget>[
+              FlatButton(
+                //textColor: Colors.grey,
+                child: Text(
+                  "Cancel",
+                  //style: TextStyle(color: Colors.grey),
+                  style: TextStyle(color: Colors.deepOrange),
+                ),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                 /* widget.model.GETMETHODCALL_TOKEN(
+                      api: ApiFactory
+                          .IMMUNIZATION_STATUS + slno +
+                          "&status=" + *//*status*//*"yes",
+                      token: widget.model.token,
+                      fun: (Map<String, dynamic> map) {
+                        setState(() {
+                          log("Value>>>" +
+                              jsonEncode(map));
+                          String msg = map[Const.MESSAGE];
+                          if (map[Const.CODE] ==
+                              Const.SUCCESS) {
+                            setState(() {
+                              callApi();
+                              Navigator.of(context).pop();
+                            });
+                          } else {
+                            setState(() {
+                              isDataNoFound = true;
+                            });
+                            //AppData.showInSnackBar(context, msg);
+                          }
+                        });
+                      });
+*/
+                },
+              ),
               FlatButton(
                 //textColor: Colors.grey,
                 child: Text("No",
