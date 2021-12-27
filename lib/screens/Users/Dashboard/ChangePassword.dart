@@ -30,6 +30,8 @@ class _ChangePasswordState extends State<ChangePassword> {
   TextEditingController newpwd = new TextEditingController();
   TextEditingController cnfpwd = new TextEditingController();
   bool isPassShow = true;
+  bool isPassShow1 = true;
+  bool isPassShow2 = true;
   List<TextEditingController> textEditingController = [
     new TextEditingController(),
     new TextEditingController(),
@@ -86,7 +88,7 @@ class _ChangePasswordState extends State<ChangePassword> {
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 14),
-          child: fromFieldPass(0,"Old Password"),
+          child: fromFieldPass("Old Password"),
         ),
         /*Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30),
@@ -102,7 +104,7 @@ class _ChangePasswordState extends State<ChangePassword> {
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 14),
-          child: fromFieldPass(1,"New Password"),
+          child: fromFieldPass1("New Password"),
         ),
        /* Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30),
@@ -118,7 +120,7 @@ class _ChangePasswordState extends State<ChangePassword> {
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 14),
-          child: fromFieldPass(2,"Confirm Password"),
+          child: fromFieldPass2("Confirm Password"),
         ),
         /*Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30),
@@ -174,12 +176,12 @@ class _ChangePasswordState extends State<ChangePassword> {
       ),
     );
   }
-  Widget fromFieldPass( int index,
+  Widget fromFieldPass(
       String hint,) {
     return Theme(
       data: ThemeData(primaryColor: AppData.matruColor),
       child: TextFormField(
-        controller: textEditingController[index],
+        controller: textEditingController[0],
         textInputAction: TextInputAction.done,
         keyboardType: TextInputType.text,
         autofocus: false,
@@ -227,6 +229,112 @@ class _ChangePasswordState extends State<ChangePassword> {
       ),
     );
   }
+  Widget fromFieldPass1(
+      String hint,) {
+    return Theme(
+      data: ThemeData(primaryColor: AppData.matruColor),
+      child: TextFormField(
+        controller: textEditingController[1],
+        textInputAction: TextInputAction.done,
+        keyboardType: TextInputType.text,
+        autofocus: false,
+        //maxLength: 7,
+        decoration: InputDecoration(
+          /* prefix:
+                Padding(padding: EdgeInsets.only(top: 10), child: Text('+91 ')),*/
+          //hintText: "Enter password",
+          //contentPadding: EdgeInsets.only(top: ),
+          /*filled: true,
+            fillColor: Colors.red.withOpacity(.5),*/
+            labelText: hint,
+            alignLabelWithHint: true,
+            hintStyle: TextStyle(color: Colors.grey),
+            labelStyle: TextStyle(color: Colors.grey),
+            counterText: '',
+            suffixIcon: IconButton(
+              icon: Icon(
+                !isPassShow1 ? Icons.visibility : Icons.visibility_off,
+              ),
+              onPressed: () {
+                setState(() {
+                  isPassShow1 = !isPassShow1;
+                });
+              },
+            )),
+        textAlignVertical: TextAlignVertical.bottom,
+        obscureText: isPassShow1,
+
+        validator: (value) {
+          if (value.isEmpty) {
+            return null;
+          } else if (value.length != 14) {
+            return null;
+          } else {
+            return null;
+          }
+        },
+        /*onFieldSubmitted: (value) {
+          AppData.fieldFocusChange(context, fnode3, null);
+        },*/
+        onSaved: (newValue) {
+          print("onsave");
+        },
+      ),
+    );
+  }
+  Widget fromFieldPass2(
+      String hint,) {
+    return Theme(
+      data: ThemeData(primaryColor: AppData.matruColor),
+      child: TextFormField(
+        controller: textEditingController[2],
+        textInputAction: TextInputAction.done,
+        keyboardType: TextInputType.text,
+        autofocus: false,
+        //maxLength: 7,
+        decoration: InputDecoration(
+          /* prefix:
+                Padding(padding: EdgeInsets.only(top: 10), child: Text('+91 ')),*/
+          //hintText: "Enter password",
+          //contentPadding: EdgeInsets.only(top: ),
+          /*filled: true,
+            fillColor: Colors.red.withOpacity(.5),*/
+            labelText: hint,
+            alignLabelWithHint: true,
+            hintStyle: TextStyle(color: Colors.grey),
+            labelStyle: TextStyle(color: Colors.grey),
+            counterText: '',
+            suffixIcon: IconButton(
+              icon: Icon(
+                !isPassShow2? Icons.visibility : Icons.visibility_off,
+              ),
+              onPressed: () {
+                setState(() {
+                  isPassShow2 = !isPassShow2;
+                });
+              },
+            )),
+        textAlignVertical: TextAlignVertical.bottom,
+        obscureText: isPassShow2,
+
+        validator: (value) {
+          if (value.isEmpty) {
+            return null;
+          } else if (value.length != 14) {
+            return null;
+          } else {
+            return null;
+          }
+        },
+        /*onFieldSubmitted: (value) {
+          AppData.fieldFocusChange(context, fnode3, null);
+        },*/
+        onSaved: (newValue) {
+          print("onsave");
+        },
+      ),
+    );
+  }
   popup(String msg, BuildContext context) {
     return Alert(
         context: context,
@@ -247,10 +355,10 @@ class _ChangePasswordState extends State<ChangePassword> {
               style: TextStyle(color: Colors.white, fontSize: 20),
             ),
             onPressed: () {
-             /* Navigator.pop(context, true);
-              Navigator.pop(context, true);
-              Navigator.pop(context, true);*/
-             //Navigator.pushNamedAndRemoveUntil(context, "/login", (route) => false);
+              Navigator.pop(context);
+              Navigator.pop(context);
+              Navigator.pop(context);
+              //Navigator.pushNamedAndRemoveUntil(context, "/login", (route) => false);
             },
             color: Color.fromRGBO(0, 179, 134, 1.0),
             radius: BorderRadius.circular(0.0),
@@ -263,8 +371,7 @@ class _ChangePasswordState extends State<ChangePassword> {
         text: "submit".toUpperCase(),
         context: context,
         fun: () {
-
-          if (textEditingController[0].text == "" || textEditingController[0].text == null) {
+          if(textEditingController[0].text == "" || textEditingController[0].text == null) {
             AppData.showInSnackBar(context, "Please enter  Old password");
           }else if (textEditingController[1].text == "" || textEditingController[1].text == null) {
             AppData.showInSnackBar(context, "Please enter  New password");
@@ -279,7 +386,7 @@ class _ChangePasswordState extends State<ChangePassword> {
               "code" :textEditingController[1].text ,// "newpassword",
               "pass" :loginResponse1.body.userPassword// "password from login response"
             } /*{"key":loginResponse1.body.userMobile, "code": cnfpwd.text}*/;
-             //MyWidgets.showLoading(context);
+             MyWidgets.showLoading(context);
             log("API NAME>>>>" + ApiFactory.CHANGE_PASSWORD_USER);
             log("TO POST>>>>" + jsonEncode(sendData));
             widget.model.POSTMETHOD_TOKEN(
@@ -287,11 +394,13 @@ class _ChangePasswordState extends State<ChangePassword> {
               json: sendData,
               token: widget.model.token,
               fun: (Map<String, dynamic> map) {
+                String body=map[Const.BODY];
                 Navigator.pop(context);
                 setState(() {
                   if (map[Const.CODE] == Const.SUCCESS) {
                     popup( map[Const.MESSAGE], context);
-                    // Navigator.pop(context);
+                    loginResponse1.body.userPassword=body;
+                    //Navigator.pop(context);
                     //callAPI();
                     //AppData.showInSnackDone(context, map[Const.MESSAGE]);
                   } else {

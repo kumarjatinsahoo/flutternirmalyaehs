@@ -13,8 +13,6 @@ import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
 import 'package:user/widgets/TextFormatter.dart';
 import 'package:user/widgets/text_field_container.dart';
-import 'package:flutter/material.dart';
-import 'package:multi_image_picker/multi_image_picker.dart';
 import 'dart:async';
 import '../../../localization/localizations.dart';
 import '../../../models/KeyvalueModel.dart';

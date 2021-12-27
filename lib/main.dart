@@ -98,6 +98,7 @@ import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/DocumentPdfVie
 import 'package:user/screens/Users/MyMedicalRecord/HealthChart.dart';
 import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/UploadDocument.dart';
 import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/VideoDetailsPage.dart';
+import 'package:user/screens/Users/organ/OrganPreviewPage.dart';
 import 'package:user/screens/Users/organ/Organlist.dart';
 import 'package:user/screens/VideoCall/VideoCallPage.dart';
 import 'package:user/screens/walkin_labrotry/LabDashboard.dart';
@@ -1110,6 +1111,11 @@ class _MyAppState extends State<MyApp> {
                   OrganisationSignUpForm(
                     model: _model,
                   ),
+              '/organPriviewPage': (context) =>
+                  OrganPriviewPage(
+                    model: _model,
+                  ),
+
 
               '/vdo': (context) =>
                   VideoCallPage(
