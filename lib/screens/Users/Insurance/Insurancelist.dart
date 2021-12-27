@@ -68,8 +68,7 @@ class _InsuranceListState extends State<InsuranceList> {
     new TextEditingController(),
     new TextEditingController(),
     new TextEditingController(),
-    new TextEditingController(),
-  ];
+    new TextEditingController(),];
   FocusNode fnode1 = new FocusNode();
   FocusNode fnode2 = new FocusNode();
   FocusNode fnode3 = new FocusNode();

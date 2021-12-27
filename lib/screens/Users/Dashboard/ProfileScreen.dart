@@ -205,68 +205,69 @@ class _ProfileScreenState extends State<ProfileScreen> {
             if (map[Const.CODE] == Const.SUCCESS) {
               setState(() {
                 patientProfileModel = ProfileModel.fromJson(map);
-                loginResponse1.body.userPic =
-                    patientProfileModel.body.profileImage;
-                if (patientProfileModel?.body?.bloodGroup != null) {
-                  ProfileScreen.bloodgroupmodel = KeyvalueModel(
-                      key: patientProfileModel.body.bloodGroupId,
-                      name: patientProfileModel.body.bloodGroup);
-                } else {
-                  ProfileScreen.bloodgroupmodel = null;
-                }
-                if (patientProfileModel?.body?.country != null) {
-                  ProfileScreen.countrymodel = KeyvalueModel(
-                      key: patientProfileModel.body.countryid,
-                      name: patientProfileModel.body.country);
-                } else {
-                  ProfileScreen.countrymodel = null;
-                }
-                if (patientProfileModel?.body?.state != null) {
-                  ProfileScreen.statemodel = KeyvalueModel(
-                      key: patientProfileModel.body.stateid,
-                      name: patientProfileModel.body.state);
-                } else {
-                  ProfileScreen.statemodel = null;
-                }
-                if (patientProfileModel?.body?.dist != null) {
-                  ProfileScreen.districtmodel = KeyvalueModel(
-                      key: patientProfileModel.body.distid,
-                      name: patientProfileModel.body.dist);
-                } else {
-                  ProfileScreen.districtmodel = null;
-                }
-                if (patientProfileModel?.body?.city != null) {
-                  ProfileScreen.citymodel = KeyvalueModel(
-                      key: patientProfileModel.body.cityid,
-                      name: patientProfileModel.body.city);
-                } else {
-                  ProfileScreen.citymodel = null;
-                }
-                if (patientProfileModel?.body?.maritialstatus != null) {
-                  ProfileScreen.materialmodel = KeyvalueModel(
-                      key: patientProfileModel.body.mstausid,
-                      name: patientProfileModel.body.maritialstatus);
-                }
-                if (patientProfileModel.body.emergenceList[0].type != null) {
-                  ProfileScreen.relationmodel = KeyvalueModel(
-                    key: patientProfileModel.body.emergenceList[0].typeid,
-                    name: patientProfileModel.body.emergenceList[0].type,
-                  );
-                }
-                if (patientProfileModel.body.familyDoctorList[0].type != null) {
-                  ProfileScreen.relationmodel = KeyvalueModel(
-                    key: patientProfileModel.body.familyDoctorList[0].typeid,
-                    name: patientProfileModel.body.familyDoctorList[0].type,
-                  );
-                }
-                if (patientProfileModel.body.familyDetailsList[0].relation !=
-                    null) {
-                  ProfileScreen.relationmodel = KeyvalueModel(
-                    key: patientProfileModel.body.familyDetailsList[0].relid,
-                    name: patientProfileModel.body.familyDetailsList[0].relation,
-                  );
-                }
+                loginResponse1.body.userPic = patientProfileModel.body.profileImage;
+
               });
+
+              if (patientProfileModel?.body?.bloodGroup != null) {
+                ProfileScreen.bloodgroupmodel = KeyvalueModel(
+                    key: patientProfileModel.body.bloodGroupId,
+                    name: patientProfileModel.body.bloodGroup);
+              } else {
+                ProfileScreen.bloodgroupmodel = null;
+              }
+              if (patientProfileModel?.body?.country != null) {
+                ProfileScreen.countrymodel = KeyvalueModel(
+                    key: patientProfileModel.body.countryid,
+                    name: patientProfileModel.body.country);
+              } else {
+                ProfileScreen.countrymodel = null;
+              }
+              if (patientProfileModel?.body?.state != null) {
+                ProfileScreen.statemodel = KeyvalueModel(
+                    key: patientProfileModel.body.stateid,
+                    name: patientProfileModel.body.state);
+              } else {
+                ProfileScreen.statemodel = null;
+              }
+              if (patientProfileModel?.body?.dist != null) {
+                ProfileScreen.districtmodel = KeyvalueModel(
+                    key: patientProfileModel.body.distid,
+                    name: patientProfileModel.body.dist);
+              } else {
+                ProfileScreen.districtmodel = null;
+              }
+              if (patientProfileModel?.body?.city != null) {
+                ProfileScreen.citymodel = KeyvalueModel(
+                    key: patientProfileModel.body.cityid,
+                    name: patientProfileModel.body.city);
+              } else {
+                ProfileScreen.citymodel = null;
+              }
+              if (patientProfileModel?.body?.maritialstatus != null) {
+                ProfileScreen.materialmodel = KeyvalueModel(
+                    key: patientProfileModel.body.mstausid,
+                    name: patientProfileModel.body.maritialstatus);
+              }
+              if (patientProfileModel.body.emergenceList[0].type != null) {
+                ProfileScreen.relationmodel = KeyvalueModel(
+                  key: patientProfileModel.body.emergenceList[0].typeid,
+                  name: patientProfileModel.body.emergenceList[0].type,
+                );
+              }
+              if (patientProfileModel.body.familyDoctorList[0].type != null) {
+                ProfileScreen.relationmodel = KeyvalueModel(
+                  key: patientProfileModel.body.familyDoctorList[0].typeid,
+                  name: patientProfileModel.body.familyDoctorList[0].type,
+                );
+              }
+              if (patientProfileModel.body.familyDetailsList[0].relation !=
+                  null) {
+                ProfileScreen.relationmodel = KeyvalueModel(
+                  key: patientProfileModel.body.familyDetailsList[0].relid,
+                  name: patientProfileModel.body.familyDetailsList[0].relation,
+                );
+              }
 
 /*
               if (patientProfileModel?.body?.emergenceList[i].type != null) {
@@ -643,7 +644,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           height: 300,
                           child: TabBarView(
                             children: [
-                              (patientProfileModel != null)?rowValue():Container(),
+                              /*(patientProfileModel != null)?*/rowValue()/*:Container()*/,
                               (patientProfileModel != null)? backUp():Container(),
                               (patientProfileModel != null)?rowValue2():Container(),
                               (patientProfileModel != null)? rowValue3():Container(),
