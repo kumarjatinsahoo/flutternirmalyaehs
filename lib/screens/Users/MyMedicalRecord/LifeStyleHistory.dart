@@ -658,10 +658,11 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
           onPressed: () {
             Navigator.of(context).pop();
             // textEditingController[0].text = "";
-            lifeStyleHistryModel.body.smokingName=null;
-            lifeStyleHistryModel.body.alcoholName=null;
-            lifeStyleHistryModel.body.diet=null;
-            lifeStyleHistryModel.body.exercise=null;
+            // lifeStyleHistryModel.body.smokingName=null;
+            // lifeStyleHistryModel.body.alcoholName=null;
+            // lifeStyleHistryModel.body.diet=null;
+            // lifeStyleHistryModel.body.exercise=null;
+            // lifeStyleHistryModel.body.pets=null;
           },
           child: Text(MyLocalizations.of(context).text("CANCEL"),
               style: TextStyle(color: AppData.kPrimaryRedColor)),
