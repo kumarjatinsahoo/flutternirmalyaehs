@@ -294,9 +294,13 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                                         fontWeight: FontWeight.bold),
                                   ),
                                 ),
-                                Icon(
-                                  Icons.local_hospital,
-                                  color: Colors.white,
+                                Padding(
+                                  padding: const EdgeInsets.all(5.0),
+                                  child: Container(
+                                      width: 25,
+                                      height: 25,
+                                      child: Image.asset( "assets/images/hospitalbuilding.png",
+                                          fit: BoxFit.cover)),
                                 ),
                               ],
                             ),
@@ -337,9 +341,13 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                                         fontWeight: FontWeight.bold),
                                   ),
                                 ),
-                                Icon(
-                                  Icons.video_call,
-                                  color: Colors.white,
+                                Padding(
+                                  padding: const EdgeInsets.all(5.0),
+                                  child: Container(
+                                      width: 25,
+                                      height: 25,
+                                      child: Image.asset( "assets/images/videoconference.png",
+                                          fit: BoxFit.cover)),
                                 ),
                               ],
                             ),
