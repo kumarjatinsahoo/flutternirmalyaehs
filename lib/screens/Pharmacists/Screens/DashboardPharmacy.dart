@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:unique_identifier/unique_identifier.dart';
+import 'package:user/localization/localizations.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/SharedPref.dart';
@@ -258,27 +259,28 @@ class _DashboardPharmacyState extends State<DashboardPharmacy> {
                   leading: Image.asset(
                     "assets/images/contact us.png",
                     height: 30,
-                      color: Colors.grey
                   ),
-                  title: Text('Contact Us'),
+                  title: Text(MyLocalizations.of(context).text("CONTACT_US")),
                   selected: _selectedDestination == 6,
                   onTap: () {
                     selectDestination(6);
-                    //Navigator.pushNamed(context, "/share");
+                    widget.model.contactscreen = "Contact Screen";
+                    Navigator.pushNamed(context, "/contactus");
+                    //Navigator.pushNamed(context, "/discountoffer");
                   }),
-              Divider(),
               ListTile(
                   leading: Image.asset(
                     "assets/images/support.png",
                     height: 30,
-                      color: Colors.grey
                   ),
-                  title: Text('Support'),
+                  title: Text(MyLocalizations.of(context).text("SUPPORT")),
                   selected: _selectedDestination == 7,
                   onTap: () {
                     selectDestination(7);
-                    //Navigator.pushNamed(context, "/signUpForm");
+                    widget.model.contactscreen = "Support Screen";
+                    Navigator.pushNamed(context, "/contactus");
                   }),
+
               Divider(),
               ListTile(
                   leading: Image.asset(

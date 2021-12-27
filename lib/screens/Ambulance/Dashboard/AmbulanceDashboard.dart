@@ -626,7 +626,7 @@ class _AmbulanceDashboardState extends State<AmbulanceDashboard> {
                     //Navigator.pushNamed(context, "/dashboard1");
                     Navigator.pushNamed(context, "/emergencydetails");
                   }),
-              ListTile(
+                           ListTile(
                   leading: Image.asset(
                     "assets/images/contact us.png",
                     height: 30,
@@ -635,6 +635,7 @@ class _AmbulanceDashboardState extends State<AmbulanceDashboard> {
                   selected: _selectedDestination == 6,
                   onTap: () {
                     selectDestination(6);
+                    widget.model.contactscreen = "Contact Screen";
                     Navigator.pushNamed(context, "/contactus");
                     //Navigator.pushNamed(context, "/discountoffer");
                   }),
@@ -647,8 +648,10 @@ class _AmbulanceDashboardState extends State<AmbulanceDashboard> {
                   selected: _selectedDestination == 7,
                   onTap: () {
                     selectDestination(7);
-                    Navigator.pushNamed(context, "/support");
-                  }),*/
+                    widget.model.contactscreen = "Support Screen";
+                    Navigator.pushNamed(context, "/contactus");
+                  }),
+*/
               ListTile(
                 leading: Image.asset(
                   "assets/images/logout.png",

@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:user/localization/application.dart';
 import 'package:user/localization/localizations.dart';
@@ -792,54 +791,27 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                 height: 8,
               ),
               ListTile(
-                leading: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Container(
-                          width: 30,
-                          height: 30,
-                          child: Image.asset('assets/images/contact us.png',
-                              fit: BoxFit.cover)),
-                      VerticalDivider(
-                        thickness: 1,
-                        color: Colors.grey,
-                      ),
-                    ],
+                  leading: Image.asset(
+                    "assets/images/contact us.png",
+                    height: 30,
                   ),
-                ),
-                title: Text(MyLocalizations.of(context).text("CONTACT_US")),
-                onTap: () {
-                  Navigator.pushNamed(context, "/contactus");
-                },
-              ),
-              SizedBox(
-                height: 8,
-              ),
+                  title: Text(MyLocalizations.of(context).text("CONTACT_US")),
+                  onTap: () {
+                    widget.model.contactscreen = "Contact Screen";
+                    Navigator.pushNamed(context, "/contactus");
+                    //Navigator.pushNamed(context, "/discountoffer");
+                  }),
               ListTile(
-                leading: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Container(
-                          width: 30,
-                          height: 30,
-                          child: Image.asset('assets/images/support.png',
-                              fit: BoxFit.cover)),
-                      VerticalDivider(
-                        thickness: 1,
-                        color: Colors.grey,
-                      ),
-                    ],
+                  leading: Image.asset(
+                    "assets/images/support.png",
+                    height: 30,
                   ),
-                ),
-                title: Text(MyLocalizations.of(context).text("SUPPORT")),
-                onTap: () {
-                 // Navigator.pushNamed(context, "/contactus");
-                },
-              ),
+                  title: Text(MyLocalizations.of(context).text("SUPPORT")),
+                  onTap: () {
+                    widget.model.contactscreen = "Support Screen";
+                    Navigator.pushNamed(context, "/contactus");
+                  }),
+
               SizedBox(
                 height: 8,
               ),
