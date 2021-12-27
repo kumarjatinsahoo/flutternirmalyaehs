@@ -302,7 +302,7 @@ class _PatientDetail extends State<PatientDetail> {
                             Container(
                               width: 100,
                               child: Text(
-                                "Maritial Status",
+                                "Marital Status",
                                 style: TextStyle(
                                     color: Colors.black, fontSize: 15),
                               ),
@@ -349,7 +349,7 @@ class _PatientDetail extends State<PatientDetail> {
                   SizedBox(height: 10),
                   Center(
                     child: Text(
-                      "Address",
+                      "ADDRESS",
                       style: TextStyle(
                           color: Colors.blue,
                           fontSize: 20,
@@ -377,47 +377,49 @@ class _PatientDetail extends State<PatientDetail> {
                               style: TextStyle(
                                   color: Colors.black, fontSize: 15),
                             ),
-                            Text(
-                              (patientsDetails?.body[0]?.address1 == null ||
-                                  patientsDetails?.body[0]?.address1 ==
-                                      "null")
-                                  ? "N/A"
-                                  : (patientsDetails?.body[0]?.address1 ??
-                                  "N/A"),
-                              style: TextStyle(
-                                  color: Colors.black, fontSize: 15),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 5),
-                        Row(
-                          children: [
-                            Container(
-                              width: 100,
+                            Expanded(
                               child: Text(
-                                "Post ",
+                                (patientsDetails?.body[0]?.address1 == null ||
+                                    patientsDetails?.body[0]?.address1 ==
+                                        "null")
+                                    ? "N/A"
+                                    : (patientsDetails?.body[0]?.address1 ??
+                                    "N/A"),
                                 style: TextStyle(
                                     color: Colors.black, fontSize: 15),
                               ),
                             ),
-                            Text(
-                              "   :   ",
-                              style: TextStyle(
-                                  color: Colors.black, fontSize: 15),
-                            ),
-                            Text(
-                              (patientsDetails?.body[0]?.address2 == null ||
-                                  patientsDetails?.body[0]?.address2 ==
-                                      "null")
-                                  ? "N/A"
-                                  : (patientsDetails?.body[0]?.address2 ??
-                                  "N/A"),
-                              style: TextStyle(
-                                  color: Colors.black, fontSize: 15),
-                            ),
                           ],
                         ),
                         SizedBox(height: 5),
+                        // Row(
+                        //   children: [
+                        //     Container(
+                        //       width: 100,
+                        //       child: Text(
+                        //         "Post ",
+                        //         style: TextStyle(
+                        //             color: Colors.black, fontSize: 15),
+                        //       ),
+                        //     ),
+                        //     Text(
+                        //       "   :   ",
+                        //       style: TextStyle(
+                        //           color: Colors.black, fontSize: 15),
+                        //     ),
+                        //     Text(
+                        //       (patientsDetails?.body[0]?.address2 == null ||
+                        //           patientsDetails?.body[0]?.address2 ==
+                        //               "null")
+                        //           ? "N/A"
+                        //           : (patientsDetails?.body[0]?.address2 ??
+                        //           "N/A"),
+                        //       style: TextStyle(
+                        //           color: Colors.black, fontSize: 15),
+                        //     ),
+                        //   ],
+                        // ),
+                        // SizedBox(height: 5),
                         Row(
                           children: [
                             Container(
@@ -497,7 +499,7 @@ class _PatientDetail extends State<PatientDetail> {
                             Container(
                               width: 100,
                               child: Text(
-                                "city",
+                                "City",
                                 style: TextStyle(
                                     color: Colors.black, fontSize: 15),
                               ),
@@ -812,7 +814,7 @@ class _PatientDetail extends State<PatientDetail> {
                             Container(
                               width: 200,
                               child: Text(
-                                "BMI kg/m2s",
+                                "BMI kg/m²",
                                 style: TextStyle(
                                     color: Colors.black, fontSize: 15),
                               ),
