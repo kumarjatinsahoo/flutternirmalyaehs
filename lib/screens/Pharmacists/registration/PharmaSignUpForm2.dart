@@ -234,10 +234,10 @@ class PharmaSignUpForm2State extends State<PharmaSignUpForm2> {
                                   SizedBox(
                                     height: 8,
                                   ),
-                                  formField1(8, MyLocalizations.of(context).text("EDUCATION")),
+                                /*  formField1(8, MyLocalizations.of(context).text("EDUCATION")),
                                   SizedBox(
                                     height: 8,
-                                  ),
+                                  ),*/
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Row(
@@ -264,13 +264,13 @@ class PharmaSignUpForm2State extends State<PharmaSignUpForm2> {
                                       print(ApiFactory.SPECIALITY_API);
                                       PharmaSignUpForm2.specialistModel = data;
                                       PharmaSignUpForm2.doctorModel = null;
-                                      //UserSignUpForm.cityModel = null;
+                                      widget.model.pharmagender=data.key;
                                     });
                                   }),
                                   SizedBox(
                                     height: 8,
                                   ),
-                                  dob(),
+                                 /* dob(),
 
                                   DropDown.networkDropdownGetpartUser1(
                                       MyLocalizations.of(context)
@@ -285,7 +285,7 @@ class PharmaSignUpForm2State extends State<PharmaSignUpForm2> {
                                       PharmaSignUpForm2.bloodgroupModel = data;
                                     });
                                   }),
-
+*/
                                   DropDown.networkDropdownGetpartUser1(
                                       MyLocalizations.of(context)
                                           .text("GENDER") ,
@@ -497,10 +497,10 @@ class PharmaSignUpForm2State extends State<PharmaSignUpForm2> {
             PharmaSignUpForm2.bloodgroupModel == "") {
           AppData.showInSnackBar(context, "Please Select Blood Group");
         }
-        else if (PharmaSignUpForm2.genderModel == null ||
+        /*else if (PharmaSignUpForm2.genderModel == null ||
             PharmaSignUpForm2.genderModel == "") {
-          AppData.showInSnackBar(context, "Please Select Gender");
-        } else {
+          AppData.showInSnackBar(context, "Please Select Gender");}*/
+        else {
           // widget.model.pharmaeducation = textEditingController[8].text;
           // widget.model.pharmaspeciality = PharmaSignUpForm2.specialistModel.key;
           // widget.model.pharmadob = textEditingController[2].text;
