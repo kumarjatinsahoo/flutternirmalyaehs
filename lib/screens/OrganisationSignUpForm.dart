@@ -340,8 +340,6 @@ class OrganisationSignUpFormState extends State<OrganisationSignUpForm> {
                                   formFieldzip(
                                       5,
                                       "Enter GST/VAT"),
-
-
                                   DropDown.networkDropdownGetpartUser(
                                       "Select Healthcare Provider",
                                       ApiFactory.HEALTHPROVIDER_API,
@@ -356,7 +354,11 @@ class OrganisationSignUpFormState extends State<OrganisationSignUpForm> {
                                     });
                                   }),
                                   SizedBox(
-                                    height: 18,
+                                    height: 8,
+                                  ),
+                                  formField1(6, "Document Name 1"),
+                                  SizedBox(
+                                    height: 8,
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -433,6 +435,10 @@ class OrganisationSignUpFormState extends State<OrganisationSignUpForm> {
                                   SizedBox(
                                     height: 18,
                                   ),
+                                  formField1(7, "Document Name 2"),
+                                  SizedBox(
+                                    height: 8,
+                                  ),
                                   Padding(
                                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
                                     child: Container(
@@ -508,6 +514,10 @@ class OrganisationSignUpFormState extends State<OrganisationSignUpForm> {
                                   SizedBox(
                                     height: 18,
                                   ),
+                                  formField1(8, "Document Name 3"),
+                                  SizedBox(
+                                    height: 8,
+                                  ),
                                   Padding(
                                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
                                     child: Container(
@@ -582,6 +592,10 @@ class OrganisationSignUpFormState extends State<OrganisationSignUpForm> {
                                       : Container(),
                                   SizedBox(
                                     height: 18,
+                                  ),
+                                  formField1(9, "Document Name 4"),
+                                  SizedBox(
+                                    height: 8,
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
