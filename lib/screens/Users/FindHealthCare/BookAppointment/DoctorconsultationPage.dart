@@ -163,6 +163,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
   String formattime;
   bool isValidtime = false;
   String formattedDate;
+
   @override
   void initState() {
     super.initState();
@@ -253,14 +254,9 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                     child: Padding(
                       padding: const EdgeInsets.all(9.0),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
-                        // mainAxisAlignment: MainAxisAlignment.center,
+                        //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Container(
-                            //color: Colors.green,
-                            //height: 50,
-                            //width: 150,
                             decoration: BoxDecoration(
                               color: Colors.green,
                               border: Border.all(
@@ -268,10 +264,10 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                               ),
                               borderRadius: BorderRadius.circular(4.0),
                             ),
-                            child: Row(
+                            child:
+                            Expanded(
+                          child:  Row(
                               children: [
-                                // SizedBox(width: 5,),
-                                //  Icon(Icons.local_hospital,color: Colors.white,),
                                 Radio(
                                   activeColor: Colors.white,
                                   value: RadioGroup1.payon_shop,
@@ -279,8 +275,6 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                                   onChanged: (RadioGroup1 value) {
                                     setState(() {
                                       radioGroup1 = value;
-                                      //roleid = "2";
-                                      //bookPostModel.paymentway = "0";
                                     });
                                   },
                                 ),
@@ -299,57 +293,60 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                                   child: Container(
                                       width: 25,
                                       height: 25,
-                                      child: Image.asset( "assets/images/hospitalbuilding.png",
+                                      child: Image.asset(
+                                          "assets/images/hospitalbuilding.png",
                                           fit: BoxFit.cover)),
                                 ),
                               ],
-                            ),
+                            ),),
                           ),
                           // SizedBox(width: 100),
-
                           Container(
-                            decoration: BoxDecoration(
-                              color: Colors.grey,
-                              border: Border.all(
+                              decoration: BoxDecoration(
                                 color: Colors.grey,
+                                border: Border.all(
+                                  color: Colors.grey,
+                                ),
+                                borderRadius: BorderRadius.circular(4.0),
                               ),
-                              borderRadius: BorderRadius.circular(4.0),
-                            ),
-                            child: Row(
-                              children: [
-                                // SizedBox(width: 5,),
-                                //Icon(Icons.video_call,color: Colors.white,),
-                                Radio(
-                                  activeColor: Colors.white,
-                                  value: RadioGroup1.online,
-                                  groupValue: radioGroup1,
-                                  onChanged: (RadioGroup1 value) {
-                                    setState(() {
-                                      radioGroup1 = value;
-                                      //roleid = "5";
-                                      //bookPostModel.paymentway = "1";
-                                    });
-                                  },
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text(
-                                    "Video Consult",
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.bold),
+                              child:Expanded(
+                                child:Row(
+                                children: [
+                                  // SizedBox(width: 5,),
+                                  //Icon(Icons.video_call,color: Colors.white,),
+                                  Radio(
+                                    activeColor: Colors.white,
+                                    value: RadioGroup1.online,
+                                    groupValue: radioGroup1,
+                                    onChanged: (RadioGroup1 value) {
+                                      setState(() {
+                                        radioGroup1 = value;
+                                        //roleid = "5";
+                                        //bookPostModel.paymentway = "1";
+                                      });
+                                    },
                                   ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Container(
-                                      width: 25,
-                                      height: 25,
-                                      child: Image.asset( "assets/images/videoconference.png",
-                                          fit: BoxFit.cover)),
-                                ),
-                              ],
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      "Video Consult",
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Container(
+                                        width: 25,
+                                        height: 25,
+                                        child: Image.asset(
+                                            "assets/images/videoconference.png",
+                                            fit: BoxFit.cover)),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ],
