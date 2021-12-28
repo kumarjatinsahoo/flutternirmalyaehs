@@ -683,15 +683,14 @@ class _LoginScreenState extends State<LoginScreen> {
                         Divider(),
                         ListTile(
                           title: Center(
-                              child: Text(MyLocalizations.of(context)
-                                  .text("PHARMACISTS"))),
+                              child: Text(MyLocalizations.of(context).text("PHARMACISTS"))),
                           // leading: Icon(
                           //   CupertinoIcons.calendar_today,
                           //   size: 40,
                           // ),
                           onTap: () {
-                            Navigator.pop(context);
-                            Navigator.pushNamed(context, "/pharmacists");
+                           // Navigator.pop(context);
+                            organisationDialog(context, "/pharmacists");
                           },
                         ),
                         Divider(),
@@ -704,8 +703,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           //   size: 40,
                           // ),
                           onTap: () {
-                            Navigator.pop(context);
-                            Navigator.pushNamed(context, "/ambulance");
+                           // Navigator.pop(context);
+                            organisationDialog(context, "/ambulance");
                           },
                         ),
                         Divider(),
@@ -718,8 +717,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           //   size: 40,
                           // ),
                           onTap: () {
-                            Navigator.pop(context);
-                            Navigator.pushNamed(context, "/ngo");
+                           // Navigator.pop(context);
+                            organisationDialog(context, "/ngo");
                           },
                         ),
                         Divider(),
@@ -732,8 +731,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           //   size: 40,
                           // ),
                           onTap: () {
-                            Navigator.pop(context);
-                            Navigator.pushNamed(context, "/bloodbank");
+                            //Navigator.pop(context);
+                            organisationDialog(context, "/bloodbank");
                           },
                         ),
                         Divider(),
@@ -745,8 +744,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           // ),
                           onTap: () {
                             //Navigator.pop(context);
-                            Navigator.pushNamed(
-                                context, "/receptionlistsignUpformm");
+                            organisationDialog(context, "/receptionlistsignUpformm");
                             // Navigator.pushNamed(context, "/doctorsignupform");
                             //_validate();
                           },
@@ -774,6 +772,14 @@ class _LoginScreenState extends State<LoginScreen> {
       ) {
       // set up the buttons
       Widget cancelButton = TextButton(
+        child: Text("Cancel",style: TextStyle(color: AppData.kPrimaryRedColor)),
+        onPressed:  () {
+          Navigator.pop(context);
+          Navigator.pop(context);
+         // Navigator.pushNamed(context, "/organisationSignUpForm");
+        },
+      );
+      Widget noButton = TextButton(
         child: Text("No",style: TextStyle(color: AppData.kPrimaryRedColor)),
         onPressed:  () {
           //Navigator.pop(context);
@@ -799,6 +805,7 @@ class _LoginScreenState extends State<LoginScreen> {
         // content: Text("Do You Want to Delete ?"),
         actions: [
           cancelButton,
+          noButton,
           continueButton,
         ],
       );
