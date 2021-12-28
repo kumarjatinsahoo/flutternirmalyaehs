@@ -692,7 +692,7 @@ class _InsuranceListState extends State<InsuranceList> {
           },
           child: Text(
             MyLocalizations.of(context).text("CANCEL"),
-            style: TextStyle(color: AppData.matruColor),
+            style: TextStyle(color: AppData.kPrimaryRedColor),
           ),
         ),
         new FlatButton(

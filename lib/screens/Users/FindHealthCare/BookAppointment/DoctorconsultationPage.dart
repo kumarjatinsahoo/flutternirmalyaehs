@@ -237,7 +237,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
       ),*/
       body: SafeArea(
         child: Container(
-          height: double.maxFinite,
+          //height: double.maxFinite,
           child: Stack(
             children: [
               ListView(
@@ -247,61 +247,66 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                 padding: EdgeInsets.all(5),
                 children: <Widget>[
                   SizedBox(
-                    height: 10,
+                    height: 5,
                   ),
                   Container(
                     // height: 20,
                     child: Padding(
-                      padding: const EdgeInsets.all(9.0),
+                      padding: const EdgeInsets.symmetric(horizontal: 9.0),
                       child: Row(
                         //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Container(
-                            decoration: BoxDecoration(
-                              color: Colors.green,
-                              border: Border.all(
+                          Expanded(
+                            child: Container(
+                              decoration: BoxDecoration(
                                 color: Colors.green,
-                              ),
-                              borderRadius: BorderRadius.circular(4.0),
-                            ),
-                            child:
-                            Expanded(
-                          child:  Row(
-                              children: [
-                                Radio(
-                                  activeColor: Colors.white,
-                                  value: RadioGroup1.payon_shop,
-                                  groupValue: radioGroup1,
-                                  onChanged: (RadioGroup1 value) {
-                                    setState(() {
-                                      radioGroup1 = value;
-                                    });
-                                  },
+                                border: Border.all(
+                                  color: Colors.green,
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text(
+                                borderRadius: BorderRadius.circular(4.0),
+                              ),
+                              child: Row(
+                                children: [
+                                  Radio(
+                                    activeColor: Colors.white,
+                                    value: RadioGroup1.payon_shop,
+                                    groupValue: radioGroup1,
+                                    onChanged: (RadioGroup1 value) {
+                                      setState(() {
+                                        radioGroup1 = value;
+                                      });
+                                    },
+                                    materialTapTargetSize:
+                                        MaterialTapTargetSize.shrinkWrap,
+                                  ),
+                                  Text(
                                     "Hospital Visit",
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 12,
                                         fontWeight: FontWeight.bold),
                                   ),
-                                ),
-                                Padding(
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  Icon(Icons.local_hospital_rounded,
+                                      color: Colors.white),
+
+/*                                Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Container(
                                       width: 25,
                                       height: 25,
-                                      child: Image.asset(
-                                          "assets/images/hospitalbuilding.png",
+                                      child: Image.asset( "assets/images/hospitalbuilding.png",
                                           fit: BoxFit.cover)),
-                                ),
-                              ],
-                            ),),
+                                ),*/
+                                ],
+                              ),
+                            ),
                           ),
-                          // SizedBox(width: 100),
-                          Container(
+                          SizedBox(width: 5),
+                          Expanded(
+                            child: Container(
                               decoration: BoxDecoration(
                                 color: Colors.grey,
                                 border: Border.all(
@@ -309,8 +314,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                                 ),
                                 borderRadius: BorderRadius.circular(4.0),
                               ),
-                              child:Expanded(
-                                child:Row(
+                              child: Row(
                                 children: [
                                   // SizedBox(width: 5,),
                                   //Icon(Icons.video_call,color: Colors.white,),
@@ -325,26 +329,22 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                                         //bookPostModel.paymentway = "1";
                                       });
                                     },
+                                    materialTapTargetSize:
+                                        MaterialTapTargetSize.shrinkWrap,
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(
-                                      "Video Consult",
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.bold),
-                                    ),
+                                  Text(
+                                    "Video Consult",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.bold),
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Container(
-                                        width: 25,
-                                        height: 25,
-                                        child: Image.asset(
-                                            "assets/images/videoconference.png",
-                                            fit: BoxFit.cover)),
+                                  SizedBox(
+                                    width: 10,
                                   ),
+
+                                  Icon(Icons.video_call_rounded,
+                                      color: Colors.white),
                                 ],
                               ),
                             ),
@@ -354,7 +354,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                     ),
                   ),
                   SizedBox(
-                    height: 10,
+                    height: 5,
                   ),
                   Form(
                     key: _formKey,
