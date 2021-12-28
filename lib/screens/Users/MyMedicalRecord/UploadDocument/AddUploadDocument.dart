@@ -321,9 +321,9 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
             });
           }
         },
-      );
+      );  Navigator.pop(context);
       if (response.statusCode == 200) {
-        Navigator.pop(context);
+
         log("value" + jsonEncode(response.data));
         if (response.data["code"] == "success") {
           //Navigator.pushNamed(context, "/uploaddocument");
