@@ -509,7 +509,7 @@ class _MedicationlistState extends State<Medicationlist> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'Evening ',
+                        'Night ',
                         style: TextStyle(fontSize: 17.0),
                       ),
                       Checkbox(
