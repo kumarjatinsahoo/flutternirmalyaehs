@@ -185,10 +185,10 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
     organisationname = widget.model.organisationname;
     professionalname = widget.model.professionalname;
     title = widget.model.title;
-    education = widget.model.education;
+    //education = widget.model.education;
     speciality = widget.model.speciality;
-    dateofbirth = widget.model.dateofbirth;
-    bloodgroup = widget.model.bloodgroup;
+    //dateofbirth = widget.model.dateofbirth;
+    //bloodgroup = widget.model.bloodgroup;
     gender = widget.model.gender;
     /*setState(() {
       masterClass = widget.model.masterDataResponse;
@@ -763,10 +763,10 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
           doctorModel.organizationid = organisationname;
           doctorModel.docname = professionalname;
           doctorModel.titleid = title;
-          doctorModel.educationid = education;
+          //doctorModel.educationid = education;
           doctorModel.speciality = speciality;
-          doctorModel.dob = dateofbirth;
-          doctorModel.bloodgroup = bloodgroup;
+           //doctorModel.dob = dateofbirth;
+          //doctorModel.bloodgroup = bloodgroup;
           doctorModel.gender = gender;
           doctorModel.role = "2";
           log("DOCTOR MODEL SEND>>>>" + jsonEncode(doctorModel.toJson()));

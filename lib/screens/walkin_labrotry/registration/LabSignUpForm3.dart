@@ -191,9 +191,9 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
     labid = widget.model.organization;
     labtitleid = widget.model.title1;
     labdname = widget.model.labprofessionalname;
-    labeducation = widget.model.labeducation;
-    labdob = widget.model.labdob;
-    labbloodgrp = widget.model.labbloodgroup;
+    //labeducation = widget.model.labeducation;
+    //labdob = widget.model.labdob;
+    //labbloodgrp = widget.model.labbloodgroup;
     labgender = widget.model.labgender;
     // labaddress = widget.model.labaddress;
     // labcountryid = widget.model.labcountry;
@@ -797,10 +797,10 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
           labSignupModel.organizationid = labid;
           labSignupModel.titleid = labtitleid;
           labSignupModel.docname = labdname;
-          labSignupModel.educationid = labeducation;
+          //labSignupModel.educationid = labeducation;
           //labSignupModel.speciality = labspecialty;
-          labSignupModel.dob = labdob;
-          labSignupModel.bloodgroup = labbloodgrp;
+          //labSignupModel.dob = labdob;
+         // labSignupModel.bloodgroup = labbloodgrp;
           labSignupModel.gender = labgender;
           labSignupModel.address = textEditingController[8].text;
           labSignupModel.countryid = LabSignUpForm3.countryModel.key;

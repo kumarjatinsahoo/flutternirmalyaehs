@@ -404,12 +404,21 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
       idproof = video.path;
       adduploaddocument.extension = extName;
       extension = extName;
+      print("size>>>" + AppData.formatBytes(enc.length, 0).toString());
+      if (104857600 < enc.length) {
+        AppData.showInSnackBar(context,"Please select video with maximum size 100 MB ",);
+        idproof="";
+        return;
+      }
       print("Message is: " +
           extension); // adduploaddocument.mulFile=file.path as MultipartFile;
       print("Message isssss: " +
           extName); // adduploaddocument.mulFile=file.path as MultipartFile;
     });
   }
+
+
+
 
   Future getCerificateImage() async {
     var image = await ImagePicker.pickImage(
@@ -431,6 +440,12 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
       idproof = image.path;
       adduploaddocument.extension = extName;
       extension = extName;
+      print("size>>>" + AppData.formatBytes(enc.length, 0).toString());
+      if (104857600 < enc.length) {
+        AppData.showInSnackBar(context,"Please select video with maximum size 100 MB ",);
+        idproof="";
+        return;
+      }
       print("Message is: " +
           extension); // adduploaddocument.mulFile=file.path as MultipartFile;
       print("Message isssss: " +
@@ -462,6 +477,12 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
         idproof = file.path;
         adduploaddocument.extension = extName;
         extension = extName;
+        print("size>>>" + AppData.formatBytes(enc.length, 0).toString());
+        if (104857600 < enc.length) {
+          AppData.showInSnackBar(context,"Please select video with maximum size 100 MB ",);
+          idproof="";
+          return;
+        }
         print("Message is: " +
             extension); // adduploaddocument.mulFile=file.path as MultipartFile;
         print("Message isssss: " +

@@ -37,10 +37,11 @@ class _OrganPriviewPageState extends State<OrganPriviewPage> {
   final InAppWebViewGroupOptions _options = InAppWebViewGroupOptions(
       crossPlatform: InAppWebViewOptions(
         useShouldOverrideUrlLoading: true,
-        javaScriptCanOpenWindowsAutomatically: true,
+        javaScriptCanOpenWindowsAutomatically:true,
         mediaPlaybackRequiresUserGesture: false,
-        disableHorizontalScroll: true,
-        disableVerticalScroll: true,
+        disableHorizontalScroll: false,
+        supportZoom: true,
+        disableVerticalScroll: false,
       ),
   );
 /*  final Completer<InAppWebViewController> _controller1 =
