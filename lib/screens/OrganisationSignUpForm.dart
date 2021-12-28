@@ -205,7 +205,7 @@ class OrganisationSignUpFormState extends State<OrganisationSignUpForm> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppData.kPrimaryColor,
-        title: Text(MyLocalizations.of(context).text("SIGNUP")),
+        title: Text("Add  Your Organization"),
         centerTitle: true,
       ),
       body: Container(
