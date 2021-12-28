@@ -4,6 +4,8 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:user/providers/Const.dart';
+import 'package:user/providers/SharedPref.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/screens/Ambulance/Dashboard/AcceptAmbulance.dart';
@@ -304,6 +306,7 @@ class _MyAppState extends State<MyApp> {
   final MainModel _model = MainModel();
   MyLocalizationsDelegate myLocalizationsDelegate;
   String _token;
+  SharedPref sharedPref=SharedPref();
 
   @override
   void initState() {
@@ -311,6 +314,7 @@ class _MyAppState extends State<MyApp> {
     super.initState();
     myLocalizationsDelegate = MyLocalizationsDelegate(widget.localizedValues);
     application.onLocaleChanged = onLocaleChange;
+    application.logoutCallBack = logouCallBack;
     ////tokem=FirebaseMessaging.instance.getToken(vapidKey: "");
 
     /* FirebaseMessaging.instance
@@ -388,6 +392,20 @@ class _MyAppState extends State<MyApp> {
     setState(() {
       selectedLan = locale;
     });
+  }
+  void logouCallBack() {
+      FirebaseMessaging.instance
+          .unsubscribeFromTopic(_model.loginResponse1.body.user);
+      FirebaseMessaging.instance
+          .unsubscribeFromTopic(_model.loginResponse1.body.userMobile);
+      sharedPref.save(Const.IS_LOGIN, false.toString());
+      sharedPref.save(Const.IS_REGISTRATION, false.toString());
+      sharedPref.remove(Const.IS_REGISTRATION);
+      sharedPref.remove(Const.IS_LOGIN);
+      sharedPref.remove(Const.LOGIN_DATA);
+      sharedPref.remove(Const.IS_REG_SERVER);
+      Navigator.of(context)
+          .pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
   }
 
   @override

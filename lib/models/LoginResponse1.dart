@@ -23,6 +23,10 @@ class LoginResponse1 {
     data['total'] = this.total;
     return data;
   }
+
+  acceptValue(body){
+    this.body=body;
+  }
 }
 
 class Body {

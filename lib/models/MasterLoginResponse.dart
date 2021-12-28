@@ -1,0 +1,120 @@
+class MasterLoginResponse {
+  List<Body> body;
+  String message;
+  String code;
+  // Null total;
+
+  // MasterLoginResponse({this.body, this.message, this.code, this.total});
+
+  MasterLoginResponse.fromJson(Map<String, dynamic> json) {
+    if (json['body'] != null) {
+      body = new List<Body>();
+      json['body'].forEach((v) {
+        body.add(new Body.fromJson(v));
+      });
+    }
+    message = json['message'];
+    code = json['code'];
+    // total = json['total'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.body != null) {
+      data['body'] = this.body.map((v) => v.toJson()).toList();
+    }
+    data['message'] = this.message;
+    data['code'] = this.code;
+    // data['total'] = this.total;
+    return data;
+  }
+}
+
+class Body {
+  String user;
+  String userName;
+  String userPassword;
+  String userMobile;
+  String userEmail;
+  // Null userParent;
+  // Null userAddress;
+  // Null userState;
+  // Null userCountry;
+  // Null userDist;
+  // Null userPin;
+  bool userStatus;
+  // Null userCreatedOn;
+  // Null userUpdatedOn;
+  // List<Null> roles;
+  // Null roleDashboard;
+  // Null userType;
+  // Null dateFormat;
+  // Null dateFormatId;
+  // Null dateFormatJS;
+  // Null vendorId;
+  String otp;
+  String token;
+
+
+
+  Body.fromJson(Map<String, dynamic> json) {
+    user = json['user'];
+    userName = json['userName'];
+    userPassword = json['userPassword'];
+    userMobile = json['userMobile'];
+    userEmail = json['userEmail'];
+    // userParent = json['userParent'];
+    // userAddress = json['userAddress'];
+    // userState = json['userState'];
+    // userCountry = json['userCountry'];
+    // userDist = json['userDist'];
+    // userPin = json['userPin'];
+    userStatus = json['userStatus'];
+    // userCreatedOn = json['userCreatedOn'];
+    // userUpdatedOn = json['userUpdatedOn'];
+    /*if (json['roles'] != null) {
+      roles = new List<Null>();
+      json['roles'].forEach((v) {
+        roles.add(new Null.fromJson(v));
+      });
+    }
+    roleDashboard = json['roleDashboard'];
+    userType = json['userType'];
+    dateFormat = json['dateFormat'];
+    dateFormatId = json['dateFormatId'];
+    dateFormatJS = json['dateFormatJS'];
+    vendorId = json['vendorId'];*/
+    otp = json['otp'];
+    token = json['token'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['user'] = this.user;
+    data['userName'] = this.userName;
+    data['userPassword'] = this.userPassword;
+    data['userMobile'] = this.userMobile;
+    data['userEmail'] = this.userEmail;
+    // data['userParent'] = this.userParent;
+    // data['userAddress'] = this.userAddress;
+    // data['userState'] = this.userState;
+    // data['userCountry'] = this.userCountry;
+    // data['userDist'] = this.userDist;
+    // data['userPin'] = this.userPin;
+    data['userStatus'] = this.userStatus;
+    // data['userCreatedOn'] = this.userCreatedOn;
+    // data['userUpdatedOn'] = this.userUpdatedOn;
+    // if (this.roles != null) {
+    //   data['roles'] = this.roles.map((v) => v.toJson()).toList();
+    // }
+    // data['roleDashboard'] = this.roleDashboard;
+    // data['userType'] = this.userType;
+    // data['dateFormat'] = this.dateFormat;
+    // data['dateFormatId'] = this.dateFormatId;
+    // data['dateFormatJS'] = this.dateFormatJS;
+    // data['vendorId'] = this.vendorId;
+    data['otp'] = this.otp;
+    data['token'] = this.token;
+    return data;
+  }
+}

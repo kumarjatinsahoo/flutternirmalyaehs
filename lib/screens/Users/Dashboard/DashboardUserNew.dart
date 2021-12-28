@@ -743,6 +743,10 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
   }
 
   _exitApp() async {
+    FirebaseMessaging.instance
+        .unsubscribeFromTopic(loginResponse1.body.user);
+    FirebaseMessaging.instance
+        .unsubscribeFromTopic(loginResponse1.body.userMobile);
     sharedPref.save(Const.IS_LOGIN, false.toString());
     sharedPref.save(Const.IS_REGISTRATION, false.toString());
     sharedPref.remove(Const.IS_REGISTRATION);

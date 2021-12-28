@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:dio/dio.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:user/localization/application.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/models/HealthChartResponse.dart';
 import 'package:user/providers/SharedPref.dart';
@@ -84,6 +86,8 @@ class RestAPI extends Model {
     }
   }
 
+
+
   GETMETHODCALL_TOKEN(
       {@required String api, @required Function fun, String token}) async {
     print("<<>>>>>API CALL>>>>>>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" + api);
@@ -120,7 +124,11 @@ class RestAPI extends Model {
       if (e.type == DioErrorType.RESPONSE) {
         fun(failedMap);
       }*/
-      fun(failedMap);
+      if(e.response.statusCode==401 && e.response.data.containsKey("error") && e.response.data["error"]=="Unauthorized"){
+        application.logoutCallBack;
+      }else {
+        fun(failedMap);
+      }
     }
   }
   DELETEMETHODCALL_TOKEN(
@@ -159,7 +167,11 @@ class RestAPI extends Model {
       if (e.type == DioErrorType.RESPONSE) {
         fun(failedMap);
       }*/
-      fun(failedMap);
+      if(e.response.statusCode==401 && e.response.data.containsKey("error") && e.response.data["error"]=="Unauthorized"){
+        application.logoutCallBack;
+      }else {
+        fun(failedMap);
+      }
     }
   }
 
@@ -200,7 +212,12 @@ class RestAPI extends Model {
       if (e.type == DioErrorType.RESPONSE) {
         fun(failedMap);
       }*/
-      fun(failedMap);
+      if(e.response.statusCode==401 && e.response.data.containsKey("error") && e.response.data["error"]=="Unauthorized"){
+        application.logoutCallBack;
+      }else {
+        fun(failedMap);
+      }
+      // fun(failedMap);
     }
   }
 
@@ -239,7 +256,12 @@ class RestAPI extends Model {
       if (e.type == DioErrorType.RESPONSE) {*/
         //fun(Const.TIMEOUT);
       //}
+      if(e.response.statusCode==401 && e.response.data.containsKey("error") && e.response.data["error"]=="Unauthorized"){
+        application.logoutCallBack;
+      }else {
         fun(failedMap);
+      }
+       // fun(failedMap);
     }
   }
 
@@ -402,7 +424,12 @@ class RestAPI extends Model {
       if (e.type == DioErrorType.RESPONSE) {
         fun(failedMap);
       }*/
-      fun(failedMap);
+      // fun(failedMap);
+      if(e.response.statusCode==401 && e.response.data.containsKey("error") && e.response.data["error"]=="Unauthorized"){
+        application.logoutCallBack;
+      }else {
+        fun(failedMap);
+      }
     }
   }
   POSTMETHOD1(
@@ -445,7 +472,12 @@ class RestAPI extends Model {
       if (e.type == DioErrorType.RESPONSE) {
         fun(failedMap);
       }*/
-      fun(failedMap);
+      // fun(failedMap);
+      if(e.response.statusCode==401 && e.response.data.containsKey("error") && e.response.data["error"]=="Unauthorized"){
+        application.logoutCallBack;
+      }else {
+        fun(failedMap);
+      }
     }
   }
 
@@ -487,7 +519,12 @@ class RestAPI extends Model {
       if (e.type == DioErrorType.RESPONSE) {
         fun(failedMap);
       }*/
-      fun(failedMap);
+      // fun(failedMap);
+      if(e.response.statusCode==401 && e.response.data.containsKey("error") && e.response.data["error"]=="Unauthorized"){
+        application.logoutCallBack;
+      }else {
+        fun(failedMap);
+      }
     }
   }
 

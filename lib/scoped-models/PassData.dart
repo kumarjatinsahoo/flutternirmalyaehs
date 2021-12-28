@@ -1,14 +1,15 @@
 import 'package:device_calendar/device_calendar.dart';
 import 'package:scoped_model/scoped_model.dart';
-import 'package:user/models/ForgetUseridModel.dart'as forgotuser;
-import 'package:user/models/PharmacyorderModel.dart'as cnfrm;
-import 'package:user/models/UserListModel.dart'as test;
+import 'package:user/models/ForgetUseridModel.dart' as forgotuser;
+import 'package:user/models/MasterLoginResponse.dart';
+import 'package:user/models/PharmacyorderModel.dart' as cnfrm;
+import 'package:user/models/UserListModel.dart' as test;
 import 'package:user/models/UserDetailsModel.dart';
-import 'package:user/models/LabBookModel.dart'as lab;
+import 'package:user/models/LabBookModel.dart' as lab;
 import 'package:user/models/PatientListModel.dart' as patiet;
 import 'package:user/models/DocterAppointmentlistModel.dart' as doc;
-import 'package:user/models/AppointmentlistModel.dart'as pharma;
-import 'package:user/models/MedicineListModel.dart'as medicine;
+import 'package:user/models/AppointmentlistModel.dart' as pharma;
+import 'package:user/models/MedicineListModel.dart' as medicine;
 
 class PassData extends Model {
   String empid;
@@ -60,7 +61,8 @@ class PassData extends Model {
   String bloodgroup;
   String gender;
 
-  String patientseHealthCard ;
+  String patientseHealthCard;
+
   //////////////
   String organization;
   String title1;
@@ -92,22 +94,23 @@ class PassData extends Model {
   String placeId;
   doc.Body appointmentlist;
   forgotuser.Body forgotuserid;
+
 /////
-String pharmaorganisation;
-String pharmartitle;
-String pharmaprofessional;
-String pharmaaddress;
-String pharmaexperience;
-String pharmagender;
-pharma.Body  userappointment;
-String userid;
-medicine.Body medicinelist;
-test.Body testList;
-String pharmacyaddress;
-String pharmacity;
-String pharamctorderid;
-String appno;
-cnfrm.Body pharmacyorderModel;
+  String pharmaorganisation;
+  String pharmartitle;
+  String pharmaprofessional;
+  String pharmaaddress;
+  String pharmaexperience;
+  String pharmagender;
+  pharma.Body userappointment;
+  String userid;
+  medicine.Body medicinelist;
+  test.Body testList;
+  String pharmacyaddress;
+  String pharmacity;
+  String pharamctorderid;
+  String appno;
+  cnfrm.Body pharmacyorderModel;
 
 ////////////
   String ambulanceorganisation;
@@ -116,6 +119,7 @@ cnfrm.Body pharmacyorderModel;
   String ambulanceaddress;
   String ambulanceexperience;
   String ambulancegender;
+
 ////////////
   String ngoorganisation;
   String ngotitle;
@@ -123,6 +127,7 @@ cnfrm.Body pharmacyorderModel;
   String ngoaddress;
   String ngoexperience;
   String ngogender;
+
   //////////////////
   String bloodbankorganisation;
   String bloodbanktitle;
@@ -134,30 +139,28 @@ cnfrm.Body pharmacyorderModel;
   String txnId;
 
 ////////
-String profilebloodgroup;
-String profilespeciality;
-String profilegender;
-String profilerelation;
+  String profilebloodgroup;
+  String profilespeciality;
+  String profilegender;
+  String profilerelation;
 
+  String medicineStore;
+  String regNoValue;
+  String labregNoValue;
 
-String medicineStore;
-String regNoValue;
-String labregNoValue;
+  String insuranceid;
+  String pdfurl;
+  String diesepdf;
 
-String insuranceid;
-String pdfurl;
-String diesepdf;
+  String emergencyrelation;
 
-String emergencyrelation;
+  String documentcategories;
+  String emrdocumentcategories;
+  String receptionhospitalid;
+  String receptionpatientid;
 
-String documentcategories;
-String emrdocumentcategories;
-String  receptionhospitalid;
-String  receptionpatientid;
-
-Event selectEvent;
+  Event selectEvent;
 
   String contactscreen;
-
-
+  MasterLoginResponse masterResponse;
 }
