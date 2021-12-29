@@ -1180,7 +1180,7 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                                 ],
                               ),
                               fromAddress(1,
-                                  MyLocalizations.of(context).text("REVIEW"),
+                                  "Review",
                                   TextInputAction.next,
                                   TextInputType.text,
                                   "review"),
@@ -1238,8 +1238,8 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                           token: widget.model.token,
                         fun: (Map<String, dynamic> map) {
                           Navigator.pop(context);
-
                           if (map["status"] == Const.SUCCESS) {
+
                             Navigator.pop(context);
                             // popup(context, map[Const.MESSAGE]);
                             callAPI(selectedDatestr);

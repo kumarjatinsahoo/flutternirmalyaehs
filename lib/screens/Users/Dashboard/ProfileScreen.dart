@@ -1465,19 +1465,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   onTap: () {
                     setState(() {
                       displayDialog(context);
-
                     });
-
-
-                   /* if (patientProfileModel.body.emergenceList.length > 5 ||
-                        patientProfileModel.body.emergenceList.length == 0) {
-                      AppData.showInSnackBar(context, "only 5 data showing");
-                    } else {*/
-                      //AppData.showInSnackDone(context, "Working");
-                  //}
-
-
-                    //}
                   },
                   child: Visibility(
                     visible: emeradd,
@@ -1491,7 +1479,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
           ),
           (patientProfileModel != null)
-              ? ListView.builder(
+              ?
+          ListView.builder(
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
                   itemBuilder: (BuildContext context, int index) {
@@ -1722,22 +1711,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
           ),
           (patientProfileModel != null)
-              ? ListView.builder(
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  itemBuilder: (BuildContext context, int index) {
-                    return Card(
-                      elevation: 0,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
+              ?
+          ListView.builder(
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            itemBuilder: (BuildContext context, int index) {
+              return Card(
+                elevation: 0,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
                               //Text("Mu Hero",),
                               Padding(
                                 padding: const EdgeInsets.only(
-                                    left: 10.0, top: 20, right: 10.0),
+                                    left: 0.0, top: 0, right: 0.0),
                                 child: Column(
                                   children: [
                                     Row(
@@ -1775,6 +1765,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         ),
                                       ],
                                     ),
+                                    SizedBox(height:20),
                                     Row(
                                       children: [
                                         Icon(
@@ -1967,21 +1958,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
           ),
           (patientProfileModel != null)
-              ? ListView.builder(
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  itemBuilder: (BuildContext context, int index) {
-                    return Card(
-                      elevation: 0,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
+              ?           ListView.builder(
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            itemBuilder: (BuildContext context, int index) {
+              return Card(
+                elevation: 0,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
                               Padding(
                                 padding: const EdgeInsets.only(
-                                    left: 10.0, top: 20, right: 10.0),
+                                    left: 0.0, top: 0, right: 0.0),
                                 child: Column(
                                   children: [
                                     Row(
@@ -2017,7 +2008,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         ),
                                       ],
                                     ),
-                                    SizedBox(height:10),
+                                    SizedBox(height:20),
                                     Row(
                                       children: [
                                         Icon(
