@@ -3745,6 +3745,12 @@ class DropDown {
           case "relation":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
+            case "spl":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+            case "rlnn":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
         }
         return list;
       },

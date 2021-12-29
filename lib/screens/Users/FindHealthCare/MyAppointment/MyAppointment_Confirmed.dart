@@ -208,8 +208,6 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                                           left: 15, right: 15, top: 15),
                                       child: Card(
                                         child: Container(
-                                          //height: height * 0.30,
-                                          // color: Colors.grey[200],
                                           child: Column(
                                             children: [
                                               Container(

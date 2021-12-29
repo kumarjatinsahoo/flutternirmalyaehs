@@ -373,7 +373,7 @@ class _MedicineList extends State<UserMedicineList> {
                                                       children: [
                                                         Container(
                                                           child: Text(
-                                                            "Evening",
+                                                            "Night",
                                                             style: TextStyle(
                                                                 color: Colors
                                                                     .black,
