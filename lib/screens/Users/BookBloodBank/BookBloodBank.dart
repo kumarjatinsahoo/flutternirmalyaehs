@@ -343,7 +343,7 @@ class BookBloodBankPageState extends State<BookBloodBankPage> {
                         //comultationTime(),
                         fromAddress(
                             1,
-                            MyLocalizations.of(context).text("REASON_FOR_DOCTOR"),
+                            MyLocalizations.of(context).text("REASON FOR CHOICE OF BLOOD BANK").toUpperCase(),
                             TextInputAction.next,
                             TextInputType.text,
                             address_,
@@ -522,10 +522,10 @@ class BookBloodBankPageState extends State<BookBloodBankPage> {
     _formKey.currentState.validate();
     if (BookBloodBankPage.bloodbankModel == null ||
         BookBloodBankPage.bloodbankModel == "") {
-      AppData.showInSnackBar(context, "Please select Bloodbank Name");
+      AppData.showInSnackBar(context, "Please select blood bank name");
     }else if (BookBloodBankPage.bloodgroupmodel == null ||
           BookBloodBankPage.bloodgroupmodel == "") {
-        AppData.showInSnackBar(context, "Please select Blood Group");
+        AppData.showInSnackBar(context, "Please select blood group");
       } else if (appointmentdate.text == "" || appointmentdate.text == null) {
       AppData.showInSnackBar(context, "Please select Date");
 

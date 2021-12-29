@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
+import 'package:dio/dio.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
@@ -29,6 +30,7 @@ class InsuranceList extends StatefulWidget {
 
 class _InsuranceListState extends State<InsuranceList> {
   var selectedMinValue;
+  var dio = Dio();
   LoginResponse1 loginResponse1;
   String extension;
   String extension1;
@@ -140,13 +142,15 @@ class _InsuranceListState extends State<InsuranceList> {
                   size: 25,
                 ),
               ),
-              onTap: () async {
+              onTap: (){
+                Navigator.pushNamed(context,"/addinsuranceForm");
+              }/* async {
                 showDialog(
                   context: context,
                   builder: (BuildContext context) =>
                       dialogaddnomination(context),
                 );
-              },
+              },*/
             ),
           ]),
       body: (insuranceModel != null)
@@ -269,8 +273,10 @@ class _InsuranceListState extends State<InsuranceList> {
       insetPadding: EdgeInsets.only(left: 5, right: 5, top: 30),
       //title: const Text(''),
       content: StatefulBuilder(
-        builder: (BuildContext context, StateSetter setState) {
+        builder: (BuildContext context, StateSetter setDialog) {
+
           return Container(
+
             width: MediaQuery.of(context).size.width * 0.86,
             child: SingleChildScrollView(
               child: Column(
@@ -363,6 +369,13 @@ class _InsuranceListState extends State<InsuranceList> {
                         SizedBox(
                           height: 8,
                         ),
+                        SizedBox(
+                          height: 8,
+                        ),
+                        formField1(12, "Document Name 1"),
+                        SizedBox(
+                          height: 8,
+                        ),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8.0),
                           child: Container(
@@ -381,8 +394,12 @@ class _InsuranceListState extends State<InsuranceList> {
                                   borderRadius: BorderRadius.circular(5.0),
                                   child: MaterialButton(
                                     onPressed: () {
-                                      _settingModalBottomSheet(context);
-
+                                      if (textEditingController[12].text == "" ||
+                                          textEditingController[12].text == null) {
+                                        AppData.showInSnackBar(context, "Please Enter Document Name 1");
+                                      }else {
+                                        _settingModalBottomSheet(context);
+                                      }
                                     },
                                     minWidth: 120,
                                     height: 30.0,
@@ -438,7 +455,14 @@ class _InsuranceListState extends State<InsuranceList> {
                         SizedBox(
                           height: 18,
                         ),
-                        Padding(
+                        (idproof != null)
+                            ?  formField1(13, "Document Name 2"):Container(),
+                        (idproof != null)
+                            ? SizedBox(
+                          height: 8,
+                        ):Container(),
+                        (idproof != null)
+                            ? Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8.0),
                           child: Container(
                             child: Row(
@@ -455,9 +479,14 @@ class _InsuranceListState extends State<InsuranceList> {
                                   color:AppData.kPrimaryColor,
                                   borderRadius: BorderRadius.circular(5.0),
                                   child: MaterialButton(
-                                    onPressed: () {
-                                      _settingModalBottomSheet1(context);
-
+                                    onPressed: ( ) {
+                                      if (textEditingController[13].text == "" ||
+                                          textEditingController[13].text == null) {
+                                        AppData.showInSnackBar(context, "Please Enter Document Name 2");
+                                      }else {
+                                        _settingModalBottomSheet1(
+                                            context);
+                                      }
                                     },
                                     minWidth: 120,
                                     height: 30.0,
@@ -471,7 +500,7 @@ class _InsuranceListState extends State<InsuranceList> {
                               ],
                             ),
                           ),
-                        ),
+                        ):Container(),
                         SizedBox(height: 10,),
                         (idproof1 != null)
                             ? Padding(
@@ -513,7 +542,14 @@ class _InsuranceListState extends State<InsuranceList> {
                         SizedBox(
                           height: 18,
                         ),
-                        Padding(
+                        (idproof1 != null)
+                            ? formField1(14,"Document Name 3"):Container(),
+                        (idproof1 != null)
+                            ? SizedBox(
+                          height: 8,
+                        ):Container(),
+                        (idproof1 != null)
+                            ?Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8.0),
                           child: Container(
                             child: Row(
@@ -531,8 +567,13 @@ class _InsuranceListState extends State<InsuranceList> {
                                   borderRadius: BorderRadius.circular(5.0),
                                   child: MaterialButton(
                                     onPressed: () {
-                                      _settingModalBottomSheet2(context);
-
+                                      if (textEditingController[14].text == "" ||
+                                          textEditingController[14].text == null) {
+                                        AppData.showInSnackBar(context, "Please Enter Document Name 3");
+                                      }else {
+                                        _settingModalBottomSheet2(
+                                            context);
+                                      }
                                     },
                                     minWidth: 120,
                                     height: 30.0,
@@ -546,8 +587,9 @@ class _InsuranceListState extends State<InsuranceList> {
                               ],
                             ),
                           ),
-                        ),
-                        SizedBox(height: 10,),
+                        ):Container(),
+
+                        //SizedBox(height: 10,),
                         (idproof2 != null)
                             ? Padding(
                           padding: const EdgeInsets.only(
@@ -588,7 +630,14 @@ class _InsuranceListState extends State<InsuranceList> {
                         SizedBox(
                           height: 18,
                         ),
-                        Padding(
+                        (idproof2 != null)
+                            ?formField1(15, "Document Name 4"):Container(),
+                        (idproof2 != null)
+                            ? SizedBox(
+                          height: 8,
+                        ):Container(),
+                        (idproof2 != null)
+                            ?Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8.0),
                           child: Container(
                             child: Row(
@@ -606,7 +655,13 @@ class _InsuranceListState extends State<InsuranceList> {
                                   borderRadius: BorderRadius.circular(5.0),
                                   child: MaterialButton(
                                     onPressed: () {
-                                      _settingModalBottomSheet3(context);
+                                      if (textEditingController[15].text == "" ||
+                                          textEditingController[15].text == null) {
+                                        AppData.showInSnackBar(context, "Please Enter Document Name 4");
+                                      }else {
+                                        _settingModalBottomSheet3(
+                                            context);
+                                      }
 
                                     },
                                     minWidth: 120,
@@ -621,7 +676,7 @@ class _InsuranceListState extends State<InsuranceList> {
                               ],
                             ),
                           ),
-                        ),
+                        ):Container(),
                         SizedBox(height: 10,),
                         (idproof3 != null)
                             ? Padding(
@@ -692,7 +747,7 @@ class _InsuranceListState extends State<InsuranceList> {
           },
           child: Text(
             MyLocalizations.of(context).text("CANCEL"),
-            style: TextStyle(color: AppData.matruColor),
+            style: TextStyle(color: AppData.kPrimaryRedColor),
           ),
         ),
         new FlatButton(
@@ -736,8 +791,28 @@ class _InsuranceListState extends State<InsuranceList> {
                 textEditingController[11].text == null) {
               AppData.showInSnackBar(
                   context, "Please Enter Sum Assured Amount");
+            }else if (textEditingController[12].text == "" ||
+    textEditingController[12].text == null) {
+    AppData.showInSnackBar(context, "Please Enter Document name 1");
+    }else if (textEditingController[12].text != "" &&
+    idproof == null) {
+    AppData.showInSnackBar(context, "Please Upload Document 1");
+    }else if (textEditingController[13].text != "" &&
+    idproof1 == null) {
+    AppData.showInSnackBar(context, "Please Upload Document 2");
+    }else if (textEditingController[14].text != "" &&
+    idproof2 == null) {
+    AppData.showInSnackBar(context, "Please Upload Document 3");
+
+    }else if (textEditingController[15].text != "" &&
+    idproof3 == null) {
+    AppData.showInSnackBar(context, "Please Upload Document 4");
+
+    /*} else {
+    postMultiPart();*/
             } else {
-              MyWidgets.showLoading(context);
+              postMultiPart();
+              /*MyWidgets.showLoading(context);
               InsurancePostModel insurancepostmodel = InsurancePostModel();
               insurancepostmodel.patientId = loginResponse1.body.user;
               insurancepostmodel.insCompany = textEditingController[1].text;
@@ -751,8 +826,7 @@ class _InsuranceListState extends State<InsuranceList> {
               insurancepostmodel.premiumAmount = textEditingController[9].text;
               insurancepostmodel.policyEndDt = _enddate.text;
               insurancepostmodel.sumAssuredAmt = textEditingController[11].text;
-              print(">>>>>>>>>>>>>>>>>>>>>>>>>>>" +
-                  insurancepostmodel.toJson().toString());
+              print(">>>>>>>>>>>>>>>>>>>>>>>>>>>" + insurancepostmodel.toJson().toString());
               widget.model.POSTMETHOD2(
                   api: ApiFactory.INSURANCE_POST,
                   json: insurancepostmodel.toJson(),
@@ -768,7 +842,7 @@ class _InsuranceListState extends State<InsuranceList> {
                       AppData.showInSnackBar(context, msg);
                     }
                   });
-              //AppData.showInSnackBar(context, "add Successfully");
+                 */
             }
 
             // Navigator.of(context).pop();
@@ -782,6 +856,243 @@ class _InsuranceListState extends State<InsuranceList> {
       ],
     );
   }
+
+
+
+  Future<FormData> FormData2() async {
+    log("File extension is:::::>>>>>" + textEditingController[0].text + "," + textEditingController[1].text + "," + textEditingController[2].text + "," +  textEditingController[3].text);
+    var formData = FormData();
+    formData.fields..add(MapEntry('patientId',loginResponse1.body.user))..add(
+        MapEntry(
+          'insCompany',
+          textEditingController[1].text,
+        ))
+      ..add(
+        MapEntry(
+          'healthInsType',
+          textEditingController[2].text,
+        ))..add(MapEntry(
+      'policyNo',
+      textEditingController[3].text,
+    ))..add(MapEntry(
+      'policyStartDt',
+        _startdate.text,
+    ))..add(MapEntry(
+      'totalInsAmount',
+      textEditingController[5].text,
+    ))..add(MapEntry(
+      'premiumDueDt',
+      _premiumdate.text,
+    ))..add(MapEntry(
+      'insType',
+      textEditingController[7].text,
+    ))..add(MapEntry(
+      'thirdPartyAdm',
+      textEditingController[8].text,
+    ))..add(MapEntry(
+      'premiumAmount',
+      textEditingController[9].text,
+    ))..add(MapEntry(
+      'policyEndDt',
+        _enddate.text,
+    ))..add(MapEntry(
+      'sumAssuredAmt',
+      textEditingController[11].text,
+
+    ));
+    if( textEditingController[12].text!=null) {
+      formData.fields.add(MapEntry(
+        'docName1',
+        textEditingController[12].text,
+      ));
+    }
+    if( textEditingController[13].text!=null) {
+      formData.fields.add( MapEntry(
+        'docName2',
+        textEditingController[13].text,
+      ));
+    }
+    if( textEditingController[14].text!=null) {
+      formData.fields.add( MapEntry(
+        'docName3',
+        textEditingController[14].text,
+      ));
+    }
+    if( textEditingController[14].text!=null) {
+      formData.fields.add( MapEntry(
+        'docName4',
+        textEditingController[15].text,
+      ));
+    }
+    if(extension!=null){
+      formData.fields.add(MapEntry(
+        'ext1',
+        extension,
+      ));
+    }
+    if(extension1!=null){
+      formData.fields.add(MapEntry(
+        'ext2',
+        extension1,
+      ));
+    }
+    if(extension2!=null){
+      formData.fields.add(MapEntry(
+        'ext3',
+        extension2,
+      ));}
+    if(extension3!=null) {
+      formData.fields.add(MapEntry(
+        'ext4',
+        extension3,
+      ));
+    }
+
+    /*..add(MapEntry(
+        'docName1',
+        textEditingController[12].text,
+      ))..add(MapEntry(
+      'docName2',
+      textEditingController[13].text,
+    ))..add(MapEntry(
+      'docName3',
+      textEditingController[14].text,
+    ))..add(MapEntry(
+      'docName4',
+      textEditingController[15].text,
+    )) ..add(MapEntry(
+      'ext1',
+      extension,
+    ))..add(MapEntry(
+      'ext2',
+      extension1,
+    ))
+      ..add(MapEntry(
+        'ext3',
+        extension2,
+      ))
+      ..add(MapEntry(
+        'ext4',
+        extension3,
+      ));*/
+    if(selectFile!=null) {
+      formData.files.add(MapEntry(
+        'img1',
+        MultipartFile.fromFileSync(
+          selectFile.path,
+          filename: selectFile.path,
+          //contentType: new MediaType('','')
+        ),
+      ));
+    }
+    if(selectFile1!=null) {
+      formData.files.add(MapEntry(
+        'img2',
+        MultipartFile.fromFileSync(
+          selectFile1.path,
+          filename: selectFile1.path,
+          //contentType: new MediaType('','')
+        ),
+      )); }
+    if(selectFile2!=null) {
+      formData.files.add(MapEntry(
+        'img3',
+        MultipartFile.fromFileSync(
+          selectFile2.path,
+          filename: selectFile2.path,
+          //contentType: new MediaType('','')
+        ),
+      ));}
+    if(selectFile3!=null) {
+      formData.files.add(MapEntry(
+        'img4',
+        MultipartFile.fromFileSync(
+          selectFile3.path,
+          filename: selectFile3.path,
+          //contentType: new MediaType('','')
+        ),
+      ));}
+
+    return formData;
+  }
+  void postMultiPart() async {
+    MyWidgets.showLoading(context);
+    try {
+      Response response;
+      response = await dio.post(
+        ApiFactory.INSURANCE_POST,
+        options: Options(
+          headers: {
+            "Authorization": widget.model.token,
+          },
+        ),
+        data: await FormData2(),
+         onSendProgress: (received, total) {
+          if (total != -1) {
+            setState(() {
+              print((received / total * 100).toStringAsFixed(0) + '%');
+            });
+          }
+        },
+      );
+      if (response.statusCode == 200) {
+        Navigator.pop(context);
+        log("value" + jsonEncode(response.data));
+        if (response.data["code"] == "success") {
+          //Navigator.pushNamed(context, "/uploaddocument");
+
+          popup(context);
+        } else {
+          AppData.showInSnackBar(context, "Something went wrong");
+        }
+      } else {
+        Navigator.pop(context);
+        AppData.showInSnackBar(context, "Something went wrong");
+      }
+    } on DioError catch (e) {
+      /* if (e.type == DioErrorType.CONNECT_TIMEOUT) {
+        log(e.response.data);
+      }*/
+      /*if (e.type == DioErrorType.RECEIVE_TIMEOUT) {
+        log(e.response.data);
+      }*/
+      /* if (e.type == DioErrorType.DEFAULT) {
+        log(e.response.data);
+      }*/
+      /*if (e.type == DioErrorType.RESPONSE) {
+        log(e.response.data);
+      }*/
+    }
+    //print(response);
+  }
+  popup(BuildContext context) {
+    return Alert(
+        context: context,
+        title: "Successfully Upload",
+        type: AlertType.success,
+        onWillPopActive: true,
+        closeIcon: Icon(
+          Icons.info,
+          color: Colors.transparent,
+        ),
+        //image: Image.asset("assets/success.png"),
+        closeFunction: () {},
+        buttons: [
+          DialogButton(
+            child: Text(
+              "OK",
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+            onPressed: () {
+              Navigator.pop(context, true);
+              Navigator.pop(context, true);
+            },
+            color: Color.fromRGBO(0, 179, 134, 1.0),
+            radius: BorderRadius.circular(0.0),
+          ),
+        ]).show();
+  }
+
   void _settingModalBottomSheet(context) {
     showModalBottomSheet(
         context: context,
@@ -1338,7 +1649,7 @@ class _InsuranceListState extends State<InsuranceList> {
             hintStyle: TextStyle(color: AppData.hintColor, fontSize: 15),
           ),
           textInputAction: TextInputAction.next,
-          keyboardType: TextInputType.number,
+          keyboardType: TextInputType.text,
           controller: textEditingController[index],
           textAlignVertical: TextAlignVertical.center,
           inputFormatters: [
@@ -1570,7 +1881,7 @@ class _InsuranceListState extends State<InsuranceList> {
       });
   }
 
-  popup(String msg, BuildContext context) {
+  /*popup(String msg, BuildContext context) {
     return Alert(
         context: context,
         title: "Success",
@@ -1598,5 +1909,5 @@ class _InsuranceListState extends State<InsuranceList> {
             radius: BorderRadius.circular(0.0),
           ),
         ]).show();
-  }
+  }*/
 }

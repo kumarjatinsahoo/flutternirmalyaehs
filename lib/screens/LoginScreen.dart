@@ -861,15 +861,14 @@ class _LoginScreenState extends State<LoginScreen> {
                         Divider(),
                         ListTile(
                           title: Center(
-                              child: Text(MyLocalizations.of(context)
-                                  .text("PHARMACISTS"))),
+                              child: Text(MyLocalizations.of(context).text("PHARMACISTS"))),
                           // leading: Icon(
                           //   CupertinoIcons.calendar_today,
                           //   size: 40,
                           // ),
                           onTap: () {
-                            Navigator.pop(context);
-                            Navigator.pushNamed(context, "/pharmacists");
+                           // Navigator.pop(context);
+                            organisationDialog(context, "/pharmacists");
                           },
                         ),
                         Divider(),
@@ -882,8 +881,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           //   size: 40,
                           // ),
                           onTap: () {
-                            Navigator.pop(context);
-                            Navigator.pushNamed(context, "/ambulance");
+                           // Navigator.pop(context);
+                            organisationDialog(context, "/ambulance");
                           },
                         ),
                         Divider(),
@@ -896,8 +895,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           //   size: 40,
                           // ),
                           onTap: () {
-                            Navigator.pop(context);
-                            Navigator.pushNamed(context, "/ngo");
+                           // Navigator.pop(context);
+                            organisationDialog(context, "/ngo");
                           },
                         ),
                         Divider(),
@@ -910,8 +909,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           //   size: 40,
                           // ),
                           onTap: () {
-                            Navigator.pop(context);
-                            Navigator.pushNamed(context, "/bloodbank");
+                            //Navigator.pop(context);
+                            organisationDialog(context, "/bloodbank");
                           },
                         ),
                         Divider(),
@@ -923,8 +922,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           // ),
                           onTap: () {
                             //Navigator.pop(context);
-                            Navigator.pushNamed(
-                                context, "/receptionlistsignUpformm");
+                            organisationDialog(context, "/receptionlistsignUpformm");
                             // Navigator.pushNamed(context, "/doctorsignupform");
                             //_validate();
                           },
@@ -948,45 +946,61 @@ class _LoginScreenState extends State<LoginScreen> {
           );
         });
   }
+  organisationDialog(BuildContext context ,String organisation
+      ) {
+      // set up the buttons
+      Widget cancelButton = TextButton(
+        child: Text("Cancel",style: TextStyle(color: AppData.kPrimaryRedColor)),
+        onPressed:  () {
+          Navigator.pop(context);
+          Navigator.pop(context);
+         // Navigator.pushNamed(context, "/organisationSignUpForm");
+        },
+      );
+      Widget noButton = TextButton(
+        child: Text("No",style: TextStyle(color: AppData.kPrimaryRedColor)),
+        onPressed:  () {
+          Navigator.pop(context);
+         // Navigator.pop(context);
+          //Navigator.pop(context);
+          Navigator.pushNamed(context, "/organisationSignUpForm");
+        },
+      );
+      Widget continueButton = TextButton(
+        child: Text("Yes",style: TextStyle(color: AppData.matruColor)),
+        onPressed:  () {
+          Navigator.pop(context);
+          //Navigator.pop(context);
 
-  organisationDialog(BuildContext context, String organisation) {
-    // set up the buttons
-    Widget cancelButton = TextButton(
-      child: Text("No", style: TextStyle(color: AppData.kPrimaryRedColor)),
-      onPressed: () {
-        //Navigator.pop(context);
-        Navigator.pushNamed(context, "/organisationSignUpForm");
-      },
-    );
-    Widget continueButton = TextButton(
-      child: Text("Yes", style: TextStyle(color: AppData.matruColor)),
-      onPressed: () {
-        //Navigator.pushNamed(context, "/doctorsignupform2");
-        Navigator.pushNamed(context, organisation);
-        // String listid = patientProfileModel.body.familyDetailsList[index].famid;
-        // String familydetails="3";
+          //Navigator.pushNamed(context, "/doctorsignupform2");
+          Navigator.pushNamed(context,organisation);
+         // String listid = patientProfileModel.body.familyDetailsList[index].famid;
+         // String familydetails="3";
 
         //  FamilyDeleteApi(listid,familydetails);
-      },
-    );
 
-    // set up the AlertDialog
-    AlertDialog alert = AlertDialog(
-      title: Text("Have you register your organisation in our eHealthSystems?"),
-      // content: Text("Do You Want to Delete ?"),
-      actions: [
-        cancelButton,
-        continueButton,
-      ],
-    );
+        },
+      );
 
-    // show the dialog
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return alert;
-      },
-    );
+      // set up the AlertDialog
+      AlertDialog alert = AlertDialog(
+        title: Text("Have you register your organisation in our eHealthSystems?"),
+        // content: Text("Do You Want to Delete ?"),
+        actions: [
+          cancelButton,
+          noButton,
+          continueButton,
+        ],
+      );
+
+      // show the dialog
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return alert;
+        },
+      );
+
 
 /*
     showDialog(
@@ -1003,7 +1017,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                     */ /* Positioned(
+                     *//* Positioned(
                         right: 10.0,
                         child: GestureDetector(
                           onTap: () {
@@ -1018,7 +1032,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           ),
                         ),
-                      ),*/ /*
+                      ),*//*
                    Align(
                   alignment: Alignment.center,
                     child: Text(
@@ -1050,7 +1064,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   "Yes", style: TextStyle(color: AppData.matruColor),
                 ),
                 onPressed: () {
-                  Navigator.pushNamed(context,organisation */ /*"/doctorsignupform2"*/ /*);
+                  Navigator.pushNamed(context,organisation *//*"/doctorsignupform2"*//*);
 
 
                 },
@@ -1060,4 +1074,5 @@ class _LoginScreenState extends State<LoginScreen> {
         },
         context: context);*/
   }
+
 }

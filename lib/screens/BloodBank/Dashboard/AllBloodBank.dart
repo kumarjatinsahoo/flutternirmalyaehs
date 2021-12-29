@@ -175,12 +175,14 @@ class _AllBloodBankState extends State<AllBloodBank> {
                                                         ),
                                                       ),
                                                       // Spacer(),
-                                                      Text(
-                                                        body.patientName,
-                                                        style: TextStyle(
-                                                            fontSize: 15),
-                                                        textAlign:
-                                                            TextAlign.right,
+                                                      Expanded(
+                                                        child: Text(
+                                                          body.patientName,
+                                                          style: TextStyle(
+                                                              fontSize: 15),
+                                                          textAlign:
+                                                              TextAlign.start,
+                                                        ),
                                                       ),
                                                     ],
                                                   ),
@@ -206,6 +208,8 @@ class _AllBloodBankState extends State<AllBloodBank> {
                                                           body.bloodGrName,
                                                           style: TextStyle(
                                                               fontSize: 15),
+                                                          textAlign:
+                                                          TextAlign.start,
                                                         ),
                                                       ),
                                                     ],
@@ -232,6 +236,8 @@ class _AllBloodBankState extends State<AllBloodBank> {
                                                           body.bookedDate,
                                                           style: TextStyle(
                                                               fontSize: 15),
+                                                          textAlign:
+                                                          TextAlign.start,
                                                         ),
                                                       ),
                                                     ],
@@ -258,6 +264,8 @@ class _AllBloodBankState extends State<AllBloodBank> {
                                                           body.patientNote,
                                                           style: TextStyle(
                                                               fontSize: 15),
+                                                          textAlign:
+                                                          TextAlign.start,
                                                         ),
                                                       ),
                                                     ],

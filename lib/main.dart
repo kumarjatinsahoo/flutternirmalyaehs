@@ -77,6 +77,7 @@ import 'package:user/screens/Users/GovermentSchemes/GovetListPage5.dart';
 import 'package:user/screens/Users/GovermentSchemes/GovetListPage6.dart';
 import 'package:user/screens/Users/GovermentSchemes/GovetListPage7.dart';
 import 'package:user/screens/Users/GovermentSchemes/GovetListPage8.dart';
+import 'package:user/screens/Users/Insurance/AddInsuranceForm.dart';
 import 'package:user/screens/Users/Medication/UserMedicineList.dart';
 import 'package:user/screens/Users/Medication/UserTestList.dart';
 import 'package:user/screens/Users/MedicineReminder/EditReminder.dart';
@@ -1119,6 +1120,10 @@ class _MyAppState extends State<MyApp> {
                   ),
               '/organPriviewPage': (context) =>
                   OrganPriviewPage(
+                    model: _model,
+                  ),
+              '/addinsuranceForm': (context) =>
+                  AddinsuranceForm(
                     model: _model,
                   ),
 

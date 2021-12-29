@@ -82,6 +82,7 @@ class _MedicineList extends State<UserMedicineList> {
   bool isDataNoFound = false;
   bool isdata = false;
   String selectPharma;
+  String mode;
 
   void initState() {
     // TODO: implement initState
@@ -373,7 +374,7 @@ class _MedicineList extends State<UserMedicineList> {
                                                       children: [
                                                         Container(
                                                           child: Text(
-                                                            "Evening",
+                                                            "Night",
                                                             style: TextStyle(
                                                                 color: Colors
                                                                     .black,

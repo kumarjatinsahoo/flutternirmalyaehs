@@ -298,10 +298,11 @@ class _DocMyProfileState extends State<DocMyProfile> {
           maxHeight: 700,
           compressFormat: ImageCompressFormat.jpg,
           androidUiSettings: AndroidUiSettings(
+           // textAlign: TextAlign.center,
             toolbarColor: AppData.kPrimaryColor,
             toolbarTitle: "Image Cropper",
             toolbarWidgetColor: Colors.white,
-
+            //centerTitle: true,
             //toolbar.setTitleTextColor(Color.RED);
             ///statusBarColor: Colors.deepOrange.shade900,
             backgroundColor: Colors.white,

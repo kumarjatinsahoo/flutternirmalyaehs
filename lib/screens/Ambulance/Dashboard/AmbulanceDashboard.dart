@@ -657,7 +657,7 @@ class _AmbulanceDashboardState extends State<AmbulanceDashboard> {
                   "assets/images/logout.png",
                   height: 30,
                 ),
-                title: Text('Logout'),
+                title:Text(MyLocalizations.of(context).text("LOGOUT"),),
                 selected: _selectedDestination == 10,
                 onTap: () {
                   selectDestination(10);

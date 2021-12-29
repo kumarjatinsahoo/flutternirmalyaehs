@@ -32,6 +32,7 @@ class _UserMedicineList extends State<OrdersTabLab> {
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Order Details'),
+          centerTitle: true,
           backgroundColor: AppData.kPrimaryColor,
           actions: <Widget>[
 

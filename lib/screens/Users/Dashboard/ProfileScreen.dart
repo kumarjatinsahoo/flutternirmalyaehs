@@ -217,6 +217,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
               } else {
                 ProfileScreen.bloodgroupmodel = null;
               }
+              if (patientProfileModel?.body?.gender != null) {
+                ProfileScreen.bloodgroupmodel = KeyvalueModel(
+                    key: patientProfileModel.body.genderId,
+                    name: patientProfileModel.body.gender);
+              } else {
+                ProfileScreen.gendermodel = null;
+              }
               if (patientProfileModel?.body?.country != null) {
                 ProfileScreen.countrymodel = KeyvalueModel(
                     key: patientProfileModel.body.countryid,
@@ -1638,19 +1645,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   onTap: () {
                     setState(() {
                       displayDialog(context);
-
                     });
-
-
-                   /* if (patientProfileModel.body.emergenceList.length > 5 ||
-                        patientProfileModel.body.emergenceList.length == 0) {
-                      AppData.showInSnackBar(context, "only 5 data showing");
-                    } else {*/
-                      //AppData.showInSnackDone(context, "Working");
-                  //}
-
-
-                    //}
                   },
                   child: Visibility(
                     visible: emeradd,
@@ -1664,7 +1659,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
           ),
           (patientProfileModel != null)
-              ? ListView.builder(
+              ?
+          ListView.builder(
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
                   itemBuilder: (BuildContext context, int index) {
@@ -1895,22 +1891,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
           ),
           (patientProfileModel != null)
-              ? ListView.builder(
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  itemBuilder: (BuildContext context, int index) {
-                    return Card(
-                      elevation: 0,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
+              ?
+          ListView.builder(
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            itemBuilder: (BuildContext context, int index) {
+              return Card(
+                elevation: 0,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
                               //Text("Mu Hero",),
                               Padding(
                                 padding: const EdgeInsets.only(
-                                    left: 10.0, top: 20, right: 10.0),
+                                    left: 0.0, top: 0, right: 0.0),
                                 child: Column(
                                   children: [
                                     Row(
@@ -1948,42 +1945,46 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         ),
                                       ],
                                     ),
-                                    Row(
-                                      children: [
-                                        Icon(
-                                          Icons.person,
-                                          size: 20,
-                                        ),
-                                        SizedBox(width: 10),
-                                        Expanded(
-                                          flex: 1,
-                                          child: Text(
-                                            MyLocalizations.of(context)
-                                                .text("NAME"),
-                                            style: TextStyle(
-                                              fontSize: 15
-                                              // color: Colors.black54,
-                                              ,
-                                              fontWeight: FontWeight.w600,
+                                    SizedBox(height:20),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left:10,right:10),
+                                      child: Row(
+                                        children: [
+                                          Icon(
+                                            Icons.person,
+                                            size: 20,
+                                          ),
+                                          SizedBox(width: 10),
+                                          Expanded(
+                                            flex: 1,
+                                            child: Text(
+                                              MyLocalizations.of(context)
+                                                  .text("NAME"),
+                                              style: TextStyle(
+                                                fontSize: 15
+                                                // color: Colors.black54,
+                                                ,
+                                                fontWeight: FontWeight.w600,
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                        SizedBox(width: 10),
-                                        Expanded(
-                                          flex: 1,
-                                          child: Text(
-                                            patientProfileModel
-                                                    ?.body
-                                                    ?.familyDoctorList[index]
-                                                    .name ??
-                                                "N/A",
-                                            style: TextStyle(fontSize: 14
-                                                // fontWeight: FontWeight.w500,
-                                                // color: Colors.black54,
-                                                ),
+                                          SizedBox(width: 10),
+                                          Expanded(
+                                            flex: 1,
+                                            child: Text(
+                                              patientProfileModel
+                                                      ?.body
+                                                      ?.familyDoctorList[index]
+                                                      .name ??
+                                                  "N/A",
+                                              style: TextStyle(fontSize: 14
+                                                  // fontWeight: FontWeight.w500,
+                                                  // color: Colors.black54,
+                                                  ),
+                                            ),
                                           ),
-                                        ),
-                                      ],
+                                        ],
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -2140,21 +2141,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
           ),
           (patientProfileModel != null)
-              ? ListView.builder(
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  itemBuilder: (BuildContext context, int index) {
-                    return Card(
-                      elevation: 0,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
+              ?           ListView.builder(
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            itemBuilder: (BuildContext context, int index) {
+              return Card(
+                elevation: 0,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
                               Padding(
                                 padding: const EdgeInsets.only(
-                                    left: 10.0, top: 20, right: 10.0),
+                                    left: 0.0, top: 0, right: 0.0),
                                 child: Column(
                                   children: [
                                     Row(
@@ -2190,43 +2191,46 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         ),
                                       ],
                                     ),
-                                    SizedBox(height:10),
-                                    Row(
-                                      children: [
-                                        Icon(
-                                          Icons.person,
-                                          size: 20,
-                                        ),
-                                        SizedBox(width: 10),
-                                        Expanded(
-                                          flex: 1,
-                                          child: Text(
-                                            MyLocalizations.of(context)
-                                                .text("NAME"),
-                                            style: TextStyle(
-                                              fontSize: 15
-                                              // color: Colors.black54,
-                                              ,
-                                              fontWeight: FontWeight.w600,
+                                    SizedBox(height:20),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left:10,right:10),
+                                      child: Row(
+                                        children: [
+                                          Icon(
+                                            Icons.person,
+                                            size: 20,
+                                          ),
+                                          SizedBox(width: 10),
+                                          Expanded(
+                                            flex: 1,
+                                            child: Text(
+                                              MyLocalizations.of(context)
+                                                  .text("NAME"),
+                                              style: TextStyle(
+                                                fontSize: 15
+                                                // color: Colors.black54,
+                                                ,
+                                                fontWeight: FontWeight.w600,
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                        SizedBox(width: 10),
-                                        Expanded(
-                                          flex: 1,
-                                          child: Text(
-                                            patientProfileModel
-                                                    ?.body
-                                                    ?.familyDetailsList[index]
-                                                    .memeberName ??
-                                                "N/A",
-                                            style: TextStyle(fontSize: 14
-                                                // fontWeight: FontWeight.w500,
-                                                // color: Colors.black54,
-                                                ),
+                                          SizedBox(width: 10),
+                                          Expanded(
+                                            flex: 1,
+                                            child: Text(
+                                              patientProfileModel
+                                                      ?.body
+                                                      ?.familyDetailsList[index]
+                                                      .memeberName ??
+                                                  "N/A",
+                                              style: TextStyle(fontSize: 14
+                                                  // fontWeight: FontWeight.w500,
+                                                  // color: Colors.black54,
+                                                  ),
+                                            ),
                                           ),
-                                        ),
-                                      ],
+                                        ],
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -2425,14 +2429,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
         patientProfileModel?.body?.city == "") {
       ProfileScreen.citymodel = null;
     }
+
     if (patientProfileModel?.body?.gender == null ||
-        patientProfileModel?.body?.gender == "") {
+        patientProfileModel.body.gender == "") {
       ProfileScreen.gendermodel = null;
     } else {
       ProfileScreen.gendermodel = KeyvalueModel(
           key: patientProfileModel.body.genderId,
           name: patientProfileModel.body.gender);
     }
+
 
     /* if (patientProfileModel?.body?.speciality == null ||
         patientProfileModel?.body?.speciality == "") {
@@ -2604,7 +2610,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   ),
                                 ),
                                 DropDown.networkDropdownlabler1(
-                                    "Gender", ApiFactory.MARITAL_API, "gender",
+                                    "Gender", ApiFactory.GENDER_API, "gen",
                                     (KeyvalueModel model) {
                                   setState(() {
                                     print(ApiFactory.GENDER_API);
@@ -3789,7 +3795,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     } else if (textEditingController[14] != "" &&
                         textEditingController[14].text.length != 10) {
                       AppData.showInSnackBar(
-                          context, "Please enter valid Emergency Contact No.");
+                          context, "Please enter valid Emergency Mobile No.");
                     } else {
                       UpdateEmergencyModel updateEmergencyModel =
                           UpdateEmergencyModel();
@@ -4828,7 +4834,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
     // set up the buttons
       Widget cancelButton = TextButton(
-        child: Text("No"),
+        child: Text("No",style: TextStyle(color: AppData.kPrimaryRedColor)),
         onPressed:  () {
           Navigator.pop(context);
         },
@@ -4886,7 +4892,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   void deletedoctordetailsdisplayDialog(BuildContext context, ProfileModel patientProfileModel, int index) {
     Widget cancelButton = TextButton(
-      child: Text("No"),
+      child: Text("No",style: TextStyle(color: AppData.kPrimaryRedColor)),
       onPressed:  () {
         Navigator.pop(context);
       },
@@ -4944,7 +4950,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   void emergencydetailsdisplayDialog(BuildContext context, ProfileModel patientProfileModel, int index) {
     Widget cancelButton = TextButton(
-      child: Text("No"),
+      child: Text("No",style: TextStyle(color: AppData.kPrimaryRedColor)),
+
       onPressed:  () {
         Navigator.pop(context);
       },
