@@ -213,6 +213,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
               } else {
                 ProfileScreen.bloodgroupmodel = null;
               }
+              if (patientProfileModel?.body?.gender != null) {
+                ProfileScreen.bloodgroupmodel = KeyvalueModel(
+                    key: patientProfileModel.body.genderId,
+                    name: patientProfileModel.body.gender);
+              } else {
+                ProfileScreen.gendermodel = null;
+              }
               if (patientProfileModel?.body?.country != null) {
                 ProfileScreen.countrymodel = KeyvalueModel(
                     key: patientProfileModel.body.countryid,
@@ -1766,42 +1773,45 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       ],
                                     ),
                                     SizedBox(height:20),
-                                    Row(
-                                      children: [
-                                        Icon(
-                                          Icons.person,
-                                          size: 20,
-                                        ),
-                                        SizedBox(width: 10),
-                                        Expanded(
-                                          flex: 1,
-                                          child: Text(
-                                            MyLocalizations.of(context)
-                                                .text("NAME"),
-                                            style: TextStyle(
-                                              fontSize: 15
-                                              // color: Colors.black54,
-                                              ,
-                                              fontWeight: FontWeight.w600,
+                                    Padding(
+                                      padding: const EdgeInsets.only(left:10,right:10),
+                                      child: Row(
+                                        children: [
+                                          Icon(
+                                            Icons.person,
+                                            size: 20,
+                                          ),
+                                          SizedBox(width: 10),
+                                          Expanded(
+                                            flex: 1,
+                                            child: Text(
+                                              MyLocalizations.of(context)
+                                                  .text("NAME"),
+                                              style: TextStyle(
+                                                fontSize: 15
+                                                // color: Colors.black54,
+                                                ,
+                                                fontWeight: FontWeight.w600,
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                        SizedBox(width: 10),
-                                        Expanded(
-                                          flex: 1,
-                                          child: Text(
-                                            patientProfileModel
-                                                    ?.body
-                                                    ?.familyDoctorList[index]
-                                                    .name ??
-                                                "N/A",
-                                            style: TextStyle(fontSize: 14
-                                                // fontWeight: FontWeight.w500,
-                                                // color: Colors.black54,
-                                                ),
+                                          SizedBox(width: 10),
+                                          Expanded(
+                                            flex: 1,
+                                            child: Text(
+                                              patientProfileModel
+                                                      ?.body
+                                                      ?.familyDoctorList[index]
+                                                      .name ??
+                                                  "N/A",
+                                              style: TextStyle(fontSize: 14
+                                                  // fontWeight: FontWeight.w500,
+                                                  // color: Colors.black54,
+                                                  ),
+                                            ),
                                           ),
-                                        ),
-                                      ],
+                                        ],
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -2009,42 +2019,45 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       ],
                                     ),
                                     SizedBox(height:20),
-                                    Row(
-                                      children: [
-                                        Icon(
-                                          Icons.person,
-                                          size: 20,
-                                        ),
-                                        SizedBox(width: 10),
-                                        Expanded(
-                                          flex: 1,
-                                          child: Text(
-                                            MyLocalizations.of(context)
-                                                .text("NAME"),
-                                            style: TextStyle(
-                                              fontSize: 15
-                                              // color: Colors.black54,
-                                              ,
-                                              fontWeight: FontWeight.w600,
+                                    Padding(
+                                      padding: const EdgeInsets.only(left:10,right:10),
+                                      child: Row(
+                                        children: [
+                                          Icon(
+                                            Icons.person,
+                                            size: 20,
+                                          ),
+                                          SizedBox(width: 10),
+                                          Expanded(
+                                            flex: 1,
+                                            child: Text(
+                                              MyLocalizations.of(context)
+                                                  .text("NAME"),
+                                              style: TextStyle(
+                                                fontSize: 15
+                                                // color: Colors.black54,
+                                                ,
+                                                fontWeight: FontWeight.w600,
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                        SizedBox(width: 10),
-                                        Expanded(
-                                          flex: 1,
-                                          child: Text(
-                                            patientProfileModel
-                                                    ?.body
-                                                    ?.familyDetailsList[index]
-                                                    .memeberName ??
-                                                "N/A",
-                                            style: TextStyle(fontSize: 14
-                                                // fontWeight: FontWeight.w500,
-                                                // color: Colors.black54,
-                                                ),
+                                          SizedBox(width: 10),
+                                          Expanded(
+                                            flex: 1,
+                                            child: Text(
+                                              patientProfileModel
+                                                      ?.body
+                                                      ?.familyDetailsList[index]
+                                                      .memeberName ??
+                                                  "N/A",
+                                              style: TextStyle(fontSize: 14
+                                                  // fontWeight: FontWeight.w500,
+                                                  // color: Colors.black54,
+                                                  ),
+                                            ),
                                           ),
-                                        ),
-                                      ],
+                                        ],
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -2243,14 +2256,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
         patientProfileModel?.body?.city == "") {
       ProfileScreen.citymodel = null;
     }
+
     if (patientProfileModel?.body?.gender == null ||
-        patientProfileModel?.body?.gender == "") {
+        patientProfileModel.body.gender == "") {
       ProfileScreen.gendermodel = null;
     } else {
       ProfileScreen.gendermodel = KeyvalueModel(
           key: patientProfileModel.body.genderId,
           name: patientProfileModel.body.gender);
     }
+
 
     /* if (patientProfileModel?.body?.speciality == null ||
         patientProfileModel?.body?.speciality == "") {
@@ -2422,7 +2437,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   ),
                                 ),
                                 DropDown.networkDropdownlabler1(
-                                    "Gender", ApiFactory.MARITAL_API, "gender",
+                                    "Gender", ApiFactory.GENDER_API, "gen",
                                     (KeyvalueModel model) {
                                   setState(() {
                                     print(ApiFactory.GENDER_API);
@@ -3607,7 +3622,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     } else if (textEditingController[14] != "" &&
                         textEditingController[14].text.length != 10) {
                       AppData.showInSnackBar(
-                          context, "Please enter valid Emergency Contact No.");
+                          context, "Please enter valid Emergency Mobile No.");
                     } else {
                       UpdateEmergencyModel updateEmergencyModel =
                           UpdateEmergencyModel();
@@ -4646,7 +4661,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
     // set up the buttons
       Widget cancelButton = TextButton(
-        child: Text("No"),
+        child: Text("No",style: TextStyle(color: AppData.kPrimaryRedColor)),
         onPressed:  () {
           Navigator.pop(context);
         },
@@ -4704,7 +4719,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   void deletedoctordetailsdisplayDialog(BuildContext context, ProfileModel patientProfileModel, int index) {
     Widget cancelButton = TextButton(
-      child: Text("No"),
+      child: Text("No",style: TextStyle(color: AppData.kPrimaryRedColor)),
       onPressed:  () {
         Navigator.pop(context);
       },
@@ -4762,7 +4777,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   void emergencydetailsdisplayDialog(BuildContext context, ProfileModel patientProfileModel, int index) {
     Widget cancelButton = TextButton(
-      child: Text("No"),
+      child: Text("No",style: TextStyle(color: AppData.kPrimaryRedColor)),
+
       onPressed:  () {
         Navigator.pop(context);
       },

@@ -326,7 +326,6 @@ class LabSignUpFormState extends State<LabSignUpForm> {
                                       userModel.title = data.key;*/
                                   print(ApiFactory.GENDER_API);
                                   LabSignUpForm.genderModel = data;
-                                  widget.model.labgender = data.key;
                                   // UserSignUpForm.cityModel = null;
                                 });
                               }),
@@ -666,11 +665,17 @@ class LabSignUpFormState extends State<LabSignUpForm> {
         } else if (textEditingController[1].text.length <= 3) {
           AppData.showInSnackBar(context, "Please enter valid Professional's Name ");
           FocusScope.of(context).requestFocus(fnode1);
-        } else {
+        } else if (LabSignUpForm.genderModel == null ||
+             LabSignUpForm.genderModel == "") {
+           AppData.showInSnackBar(context, "Please select Gender");
+         }
+         else {
           widget.model.organization = LabSignUpForm.organizationModel.key;
           widget.model.labprofessionalname = textEditingController[1].text;
           widget.model.title1 = LabSignUpForm.titlemodel.key;
-          Navigator.pushNamed(context, "/labsignup2");
+          widget.model.labgender = LabSignUpForm.genderModel.key;
+          Navigator.pushNamed(context, "/labsignup3");
+        ///  Navigator.pushNamed(context, "/labsignup2");
         }
       },
     );

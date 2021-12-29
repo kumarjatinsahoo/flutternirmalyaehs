@@ -31,7 +31,13 @@ class PharmacyRegistrationModel {
     this.pincode,
     this.mobno,
     this.email,
-    this.role});
+    this.role,
+    this.documentUpload,
+    this.documentExt,
+
+
+
+  });
 
   PharmacyRegistrationModel.fromJson(Map<String, dynamic> json) {
     organizationid = json['organizationid'];
@@ -49,6 +55,8 @@ class PharmacyRegistrationModel {
     mobno = json['mobno'];
     email = json['email'];
     role = json['role'];
+    documentUpload = json['documentUpload'];
+    documentExt = json['documentExt'];
 
   }
 
@@ -81,6 +89,6 @@ class PharmacyRegistrationModel {
         '  gender: $gender, countryid: $countryid,'
         ' stateid: $stateid, districtid: $districtid, cityid: $cityid,pincode: $pincode,'
         'mobno:$mobno,email: $email,'
-        'role:$role}';
+        'role:$role,profileImage: $documentUpload,profileImageType: $documentExt}';
   }
 }

@@ -67,6 +67,7 @@ class AmbulanceSignUpForm2State extends State<AmbulanceSignUpForm2> {
   bool _autovalidate = false;
   DateTime selectedDate = DateTime.now();
   UserRegistrationModel userModel = UserRegistrationModel();
+  PharmacyRegistrationModel pharmaSignupModel = PharmacyRegistrationModel();
   List<TextEditingController> textEditingController = [
     new TextEditingController(),
     new TextEditingController(),
@@ -737,6 +738,10 @@ class AmbulanceSignUpForm2State extends State<AmbulanceSignUpForm2> {
           AppData.showInSnackBar(context, "Please enter a valid Email Id");
           FocusScope.of(context).requestFocus(fnode3);
         }
+        else if (pharmaSignupModel.documentExt == null) {
+          AppData.showInSnackBar(context, "Please Upload Document");
+        }
+
         else if (_checkbox == false) {
           AppData.showInSnackBar(context, "Please check Terms and Condition");
         }
@@ -1534,8 +1539,8 @@ class AmbulanceSignUpForm2State extends State<AmbulanceSignUpForm2> {
     if (file != null) {
       setState(() {
         idproof = file.path;
-        //pharmaSignupModel.documentUpload=base64Encode(enc);
-       // pharmaSignupModel.documentExt=extName;
+        pharmaSignupModel.documentUpload=base64Encode(enc);
+        pharmaSignupModel.documentExt=extName;
         //userModel. = base64Encode(enc);
         //file1 = file; //file1 is a global variable which i created
       });
@@ -1564,6 +1569,8 @@ class AmbulanceSignUpForm2State extends State<AmbulanceSignUpForm2> {
           _imageCertificate = image;
           idproof = _fileName;
          // Print("pathhh"+idproof);
+          pharmaSignupModel.documentUpload=base64Encode(enc);
+          pharmaSignupModel.documentExt=extName;
           userModel.profileImage = base64Encode(enc);
         });
       }
@@ -1588,6 +1595,8 @@ class AmbulanceSignUpForm2State extends State<AmbulanceSignUpForm2> {
     setState(() {
       _imageCertificate = image;
       idproof = _fileName;
+      pharmaSignupModel.documentUpload=base64Encode(enc);
+      pharmaSignupModel.documentExt=extName;
       userModel.profileImage = base64Encode(enc);
     });
   }
