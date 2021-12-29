@@ -72,6 +72,7 @@ class _MedicineList extends State<UserMedicineList1> {
   List<medicine.Body> selectedMedicine = [];
 
   Map<String, dynamic> mapK = {};
+  String mode;
 
   void initState() {
     // TODO: implement initState
@@ -157,6 +158,7 @@ class _MedicineList extends State<UserMedicineList1> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //appBar: AppBar(title: Text("aasd")),
       body:
       (medicineListModel != null)
         ?Container(
@@ -180,6 +182,9 @@ class _MedicineList extends State<UserMedicineList1> {
                         medicine.Body body = medicineListModel.body[i];
 
                        // widget.model.medicinelist = ;
+                        if(mode==null){
+                          mode=body.status;
+                        }
                         return InkWell(
                           onTap: (){
                             widget.model.apntUserType =

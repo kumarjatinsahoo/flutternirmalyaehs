@@ -82,6 +82,7 @@ class _MedicineList extends State<UserMedicineList> {
   bool isDataNoFound = false;
   bool isdata = false;
   String selectPharma;
+  String mode;
 
   void initState() {
     // TODO: implement initState
