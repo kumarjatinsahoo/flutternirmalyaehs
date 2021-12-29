@@ -510,7 +510,7 @@ class AmbulanceSignUpFormState extends State<AmbulanceSignUpForm> {
             textEditingController[9].text == null) {
           AppData.showInSnackBar(context, "Please enter Professional's Name");
           FocusScope.of(context).requestFocus(fnode6);
-        }  else if (textEditingController[9].text.length<4) {
+        }  else if (textEditingController[9].text.length<3) {
           AppData.showInSnackBar(context, "Please enter valid Professional's Name");
           FocusScope.of(context).requestFocus(fnode6);
         } else if (textEditingController[10].text == "" ||

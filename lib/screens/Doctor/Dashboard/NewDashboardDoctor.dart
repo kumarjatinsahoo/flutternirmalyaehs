@@ -691,10 +691,10 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                       //     height: 30,
                       //     child: Image.asset('assets/images/dash.png',
                       //         fit: BoxFit.cover)),
-                      VerticalDivider(
-                        thickness: 1,
-                        color: Colors.grey,
-                      ),
+                      // VerticalDivider(
+                      //   thickness: 1,
+                      //   color: Colors.grey,
+                      // ),
                     ],
                   ),
                 ),
@@ -717,10 +717,10 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                           height: 30,
                           child: Image.asset('assets/images/myprofile.png',
                               fit: BoxFit.cover)),
-                      VerticalDivider(
-                        thickness: 1,
-                        color: Colors.grey,
-                      ),
+                      // VerticalDivider(
+                      //   thickness: 1,
+                      //   color: Colors.grey,
+                      // ),
                     ],
                   ),
                 ),
@@ -745,10 +745,10 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                           height: 30,
                           child: Image.asset('assets/images/aboutus.png',
                               fit: BoxFit.cover)),
-                      VerticalDivider(
-                        thickness: 1,
-                        color: Colors.grey,
-                      ),
+                      // VerticalDivider(
+                      //   thickness: 1,
+                      //   color: Colors.grey,
+                      // ),
                     ],
                   ),
                 ),
@@ -774,10 +774,10 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                           height: 30,
                           child: Image.asset('assets/images/share.png',
                               fit: BoxFit.cover)),
-                      VerticalDivider(
-                        thickness: 1,
-                        color: Colors.grey,
-                      ),
+                      // VerticalDivider(
+                      //   thickness: 1,
+                      //   color: Colors.grey,
+                      // ),
                     ],
                   ),
                 ),
@@ -801,10 +801,10 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                             height: 30,
                             child: Image.asset( "assets/images/contact us.png",
                                 fit: BoxFit.cover)),
-                        VerticalDivider(
-                          thickness: 1,
-                          color: Colors.grey,
-                        ),
+                        // VerticalDivider(
+                        //   thickness: 1,
+                        //   color: Colors.grey,
+                        // ),
                       ],
                     ),
                   ),
@@ -825,10 +825,10 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                             height: 30,
                             child: Image.asset( "assets/images/support.png",
                                 fit: BoxFit.cover)),
-                        VerticalDivider(
-                          thickness: 1,
-                          color: Colors.grey,
-                        ),
+                        // VerticalDivider(
+                        //   thickness: 1,
+                        //   color: Colors.grey,
+                        // ),
                       ],
                     ),
                   ),
@@ -852,10 +852,10 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                           height: 30,
                           child: Image.asset( "assets/images/changepassword.png",
                               fit: BoxFit.cover)),
-                      VerticalDivider(
-                        thickness: 1,
-                        color: Colors.grey,
-                      ),
+                      // VerticalDivider(
+                      //   thickness: 1,
+                      //   color: Colors.grey,
+                      // ),
                     ],
                   ),
                 ),
@@ -913,10 +913,10 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                           height: 30,
                           child: Image.asset('assets/images/logout.png',
                               fit: BoxFit.cover)),
-                      VerticalDivider(
-                        thickness: 1,
-                        color: Colors.grey,
-                      ),
+                      // VerticalDivider(
+                      //   thickness: 1,
+                      //   color: Colors.grey,
+                      // ),
                     ],
                   ),
                 ),

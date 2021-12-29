@@ -1557,7 +1557,7 @@ class OrganisationSignUpFormState extends State<OrganisationSignUpForm> {
     );
   }
   Future<FormData> FormData2() async {
-    log("File extension is:::::>>>>>" + textEditingController[0].text + "," + textEditingController[1].text + "," + textEditingController[2].text + "," +  OrganisationSignUpForm.countryModel.key);
+    //log("File extension is:::::>>>>>" + textEditingController[0].text + "," + textEditingController[1].text + "," + textEditingController[2].text + "," +  OrganisationSignUpForm.countryModel.key);
     var formData = FormData();
     formData.fields..add(MapEntry('orgname', textEditingController[0].text))..add(
         MapEntry(
@@ -1587,33 +1587,56 @@ class OrganisationSignUpFormState extends State<OrganisationSignUpForm> {
     ))..add(MapEntry(
       'healthprovider',
         OrganisationSignUpForm.healthcareProviderModel.key,
-    ))..add(MapEntry(
-      'docnameone',
-      textEditingController[5].text,
-    ))..add(MapEntry(
-      'docnametwo',
-      textEditingController[6].text,
-    ))..add(MapEntry(
-      'docnamethree',
-      textEditingController[7].text,
-    ))..add(MapEntry(
-      'docnamefour',
-      textEditingController[8].text,
-    )) ..add(MapEntry(
-      'extone',
-      extension,
-    ))..add(MapEntry(
-      'exttwo',
-      extension1,
-    ))
-    ..add(MapEntry(
-    'extthree',
-      extension2,
-    ))
-    ..add(MapEntry(
-    'extfour',
-      extension3,
     ));
+    if( textEditingController[5].text!=null) {
+      formData.fields.add(MapEntry(
+        'docnameone',
+        textEditingController[5].text,
+      ));
+    }
+    if( textEditingController[6].text!=null) {
+      formData.fields.add( MapEntry(
+        'docnametwo',
+        textEditingController[6].text,
+      ));
+    }
+    if( textEditingController[7].text!=null) {
+      formData.fields.add( MapEntry(
+        'docnamethree',
+        textEditingController[7].text,
+      ));
+    }
+    if( textEditingController[8].text!=null) {
+      formData.fields.add( MapEntry(
+        'docnamefour',
+        textEditingController[8].text,
+      ));
+    }
+
+
+    if(extension!=null){
+      formData.fields.add(MapEntry(
+        'extone',
+        extension,
+      ));
+    }
+    if(extension1!=null){
+      formData.fields.add(MapEntry(
+        'exttwo',
+        extension1,
+      ));
+    }
+    if(extension2!=null){
+      formData.fields.add(MapEntry(
+    'extthree',
+    extension2,
+    ));}
+    if(extension3!=null) {
+      formData.fields.add(MapEntry(
+        'extfour',
+        extension3,
+      ));
+    }
 
     if(selectFile!=null) {
       formData.files.add(MapEntry(
@@ -1720,6 +1743,7 @@ class OrganisationSignUpFormState extends State<OrganisationSignUpForm> {
               style: TextStyle(color: Colors.white, fontSize: 20),
             ),
             onPressed: () {
+              Navigator.pop(context, true);
               Navigator.pop(context, true);
               Navigator.pop(context, true);
             },
