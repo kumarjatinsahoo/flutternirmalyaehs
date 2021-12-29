@@ -335,7 +335,7 @@ class OrganisationSignUpFormState extends State<OrganisationSignUpForm> {
                                   SizedBox(
                                     height: 8,
                                   ),
-                                  formField1(2, "Address"),
+                                  formFieldaddress(2, "Address"),
                                   SizedBox(
                                     height: 8,
                                   ),
@@ -2098,7 +2098,40 @@ class OrganisationSignUpFormState extends State<OrganisationSignUpForm> {
       ),
     );
   }
-
+  Widget formFieldaddress(
+      int index,
+      String hint,
+      ) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8),
+      child: Container(
+        height: 50,
+        padding: EdgeInsets.symmetric(horizontal: 10),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(5),
+          border: Border.all(color: Colors.black, width: 0.3),
+        ),
+        child: TextFormField(
+          decoration: InputDecoration(
+            border: InputBorder.none,
+            hintText: hint,
+            /* prefixIcon:
+            Icon(Icons.person_rounded),*/
+            hintStyle: TextStyle(color: AppData.hintColor, fontSize: 15),
+          ),
+          textInputAction: TextInputAction.next,
+          keyboardType: TextInputType.text,
+          controller: textEditingController[index],
+          textAlignVertical: TextAlignVertical.center,
+          /* inputFormatters: [
+            WhitelistingTextInputFormatter(
+                RegExp("[a-zA-Z ]")),
+          ],*/
+        ),
+      ),
+    );
+  }
   Widget formField1(
       int index,
       String hint,
