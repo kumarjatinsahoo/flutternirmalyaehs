@@ -84,7 +84,7 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: formField(2, MyLocalizations.of(context).text("EMAIL")),
+                    child: formField(2, MyLocalizations.of(context).text("EMAIL(Optional)")),
                   ),
                   SizedBox(
                     height:5,
@@ -404,10 +404,20 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
         if (textEditingController[0].text == "" ||
             textEditingController[0].text == null) {
           AppData.showInSnackBar(context, "Please enter Height(CM)");
+
+        }else if (double.tryParse(textEditingController[0].text)>250) {
+          AppData.showInSnackBar(
+              context, "Invalid height enter");
+
         } else if (textEditingController[1].text == "" ||
             textEditingController[1].text == null) {
           AppData.showInSnackBar(context, "Please enter Weight(kg)");
-        } else if (textEditingController[2].text != '' &&
+
+        }else if (double.tryParse(textEditingController[1].text)>636) {
+          AppData.showInSnackBar(
+              context, "Invalid weight enter");
+
+        } else if (textEditingController[2].text != ""  &&
             !AppData.isValidEmail(textEditingController[2].text)) {
           AppData.showInSnackBar(context, "Please enter a valid E-mail");
         } else if (textEditingController[3].text != '' &&

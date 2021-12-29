@@ -261,6 +261,7 @@ class AmbulanceSignUpFormState extends State<AmbulanceSignUpForm> {
                                       Text(
                                         MyLocalizations.of(context).text(
                                             "FILL_IN_PERSONAL_INFORMATION"),
+                                        textAlign: TextAlign.center,
                                         style: TextStyle(
                                             fontSize: 18, color: Colors.black),
                                       ),
@@ -296,7 +297,7 @@ class AmbulanceSignUpFormState extends State<AmbulanceSignUpForm> {
                                   SizedBox(
                                     height: 8.0,
                                   ),
-                                  formField(
+                                  formFieldName(
                                       9,
                                       MyLocalizations.of(context)
                                           .text("PROFESSIONAL_NAME"),
@@ -509,6 +510,9 @@ class AmbulanceSignUpFormState extends State<AmbulanceSignUpForm> {
             textEditingController[9].text == null) {
           AppData.showInSnackBar(context, "Please enter Professional's Name");
           FocusScope.of(context).requestFocus(fnode6);
+        }  else if (textEditingController[9].text.length<4) {
+          AppData.showInSnackBar(context, "Please enter valid Professional's Name");
+          FocusScope.of(context).requestFocus(fnode6);
         } else if (textEditingController[10].text == "" ||
             textEditingController[10].text == null) {
           AppData.showInSnackBar(context, "Please enter Experience");
@@ -517,7 +521,10 @@ class AmbulanceSignUpFormState extends State<AmbulanceSignUpForm> {
             textEditingController[11].text == null) {
           AppData.showInSnackBar(context, "Please enter Address");
           FocusScope.of(context).requestFocus(fnode6);
-        } else if (AmbulanceSignUpForm.genderModel == null ||
+        }  else if (textEditingController[11].text.length<3) {
+          AppData.showInSnackBar(context, "Please enter valid address");
+          FocusScope.of(context).requestFocus(fnode6);
+      } else if (AmbulanceSignUpForm.genderModel == null ||
             AmbulanceSignUpForm.genderModel == "") {
           AppData.showInSnackBar(context, "Please select Gender");
         } else {
@@ -868,7 +875,7 @@ class AmbulanceSignUpFormState extends State<AmbulanceSignUpForm> {
             borderRadius: BorderRadius.circular(5),
             border: Border.all(color: Colors.black, width: 0.3)),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15.0),
+          padding: const EdgeInsets.symmetric(horizontal: 10.0),
           child: Row(
             children: <Widget>[
               new Expanded(
@@ -922,23 +929,27 @@ class AmbulanceSignUpFormState extends State<AmbulanceSignUpForm> {
           border: Border.all(color: Colors.black, width: 0.3),
         ),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          padding: const EdgeInsets.symmetric(horizontal: 6.0),
           child: TextFormField(
             decoration: InputDecoration(
               border: InputBorder.none,
               hintText: hint,
+              //counterText: "",
               /* prefixIcon:
               Icon(Icons.person_rounded),*/
               hintStyle: TextStyle(color: AppData.hintColor, fontSize: 17),
             ),
             textInputAction: TextInputAction.next,
             focusNode: currentfn,
+           // maxLength: 3,
             keyboardType: TextInputType.text,
             controller: textEditingController[index],
             textAlignVertical: TextAlignVertical.center,
             inputFormatters: [
-              WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
+              WhitelistingTextInputFormatter(RegExp("[a-zA-Z. , / 0-9 ]")
+              ),
             ],
+
             onFieldSubmitted: (value) {
               setState(() {});
               AppData.fieldFocusChange(context, currentfn, nextFn);
@@ -948,6 +959,51 @@ class AmbulanceSignUpFormState extends State<AmbulanceSignUpForm> {
       ),
     );
   }
+
+  Widget formFieldName(
+      int index, String hint, FocusNode currentfn, FocusNode nextFn) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8),
+      child: Container(
+        height: 50,
+        padding: EdgeInsets.symmetric(horizontal: 5),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(5),
+          border: Border.all(color: Colors.black, width: 0.3),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 6.0),
+          child: TextFormField(
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: hint,
+              //counterText: "",
+              /* prefixIcon:
+              Icon(Icons.person_rounded),*/
+              hintStyle: TextStyle(color: AppData.hintColor, fontSize: 17),
+            ),
+            textInputAction: TextInputAction.next,
+            focusNode: currentfn,
+            // maxLength: 3,
+            keyboardType: TextInputType.text,
+            controller: textEditingController[index],
+            textAlignVertical: TextAlignVertical.center,
+            inputFormatters: [
+              WhitelistingTextInputFormatter(RegExp("[a-zA-Z. ]")
+              ),
+            ],
+
+            onFieldSubmitted: (value) {
+              setState(() {});
+              AppData.fieldFocusChange(context, currentfn, nextFn);
+            },
+          ),
+        ),
+      ),
+    );
+  }
+
 
 // Widget formFieldPass(int index, String hint, int obqueTxt) {
 //   return TextFieldContainer(
