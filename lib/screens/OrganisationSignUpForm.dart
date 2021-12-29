@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:file_picker/file_picker.dart';
@@ -7,6 +9,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:user/models/OrganizationRegistrationModel.dart';
 import 'package:user/providers/DropDown.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/scoped-models/MainModel.dart';
@@ -66,7 +70,9 @@ class OrganisationSignUpFormState extends State<OrganisationSignUpForm> {
   final _formKey = GlobalKey<FormState>();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   bool _autovalidate = false;
+  OrganizatioRegistrationModel organizationRegistrationModel = new OrganizatioRegistrationModel();
   DateTime selectedDate = DateTime.now();
+  var dio = Dio();
   List<TextEditingController> textEditingController = [
     new TextEditingController(),
     new TextEditingController(),
@@ -263,10 +269,10 @@ class OrganisationSignUpFormState extends State<OrganisationSignUpForm> {
                                     height: 8,
                                   ),
                                   formFieldPassPortno(1, "Licenece No",),
-                                  SizedBox(
+                                 /* SizedBox(
                                     height: 8,
                                   ),
-                                  formField1(2, "Address"),
+                                  formField1(2, "Address"),*/
 
                                   DropDown.networkDropdownGetpartUser(
                                       MyLocalizations.of(context)
@@ -326,24 +332,25 @@ class OrganisationSignUpFormState extends State<OrganisationSignUpForm> {
                                       // LabSignUpForm3.districtModel = null;
                                     });
                                   }),
-
+                                  SizedBox(
+                                    height: 8,
+                                  ),
+                                  formField1(2, "Address"),
                                   SizedBox(
                                     height: 8,
                                   ),
                                   formFieldzip(
-                                      5,
+                                      3,
                                       MyLocalizations.of(context)
                                           .text("ENTER_ZIP_CODE")),
                                   SizedBox(
                                     height: 8,
                                   ),
                                   formFieldzip(
-                                      5,
+                                      4,
                                       "Enter GST/VAT"),
-
-
                                   DropDown.networkDropdownGetpartUser(
-                                      "Select Healthcare Provider",
+                                      "Select Type",
                                       ApiFactory.HEALTHPROVIDER_API,
                                       "healthcareProvider",
                                       Icons.mail,
@@ -351,12 +358,16 @@ class OrganisationSignUpFormState extends State<OrganisationSignUpForm> {
                                     setState(() {
                                       print(ApiFactory.HEALTHPROVIDER_API);
                                       OrganisationSignUpForm.healthcareProviderModel = data;
-                                      OrganisationSignUpForm.healthcareProviderModel = null;
+
                                       // UserSignUpForm.cityModel = null;
                                     });
                                   }),
                                   SizedBox(
-                                    height: 18,
+                                    height: 8,
+                                  ),
+                                  formField1(5, "Document Name 1"),
+                                  SizedBox(
+                                    height: 8,
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -376,8 +387,12 @@ class OrganisationSignUpFormState extends State<OrganisationSignUpForm> {
                                             borderRadius: BorderRadius.circular(5.0),
                                             child: MaterialButton(
                                               onPressed: () {
-                                                _settingModalBottomSheet(context);
-
+                                                if (textEditingController[5].text == "" ||
+                                                    textEditingController[5].text == null) {
+                                                  AppData.showInSnackBar(context, "Please Enter Document Name 1");
+                                                }else {
+                                                  _settingModalBottomSheet(context);
+                                                }
                                               },
                                               minWidth: 120,
                                               height: 30.0,
@@ -433,7 +448,14 @@ class OrganisationSignUpFormState extends State<OrganisationSignUpForm> {
                                   SizedBox(
                                     height: 18,
                                   ),
-                                  Padding(
+                                  (idproof != null)
+                                      ?  formField1(6, "Document Name 2"):Container(),
+                                  (idproof != null)
+                                      ? SizedBox(
+                                    height: 8,
+                                  ):Container(),
+                                  (idproof != null)
+                                      ? Padding(
                                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
                                     child: Container(
                                       child: Row(
@@ -451,8 +473,13 @@ class OrganisationSignUpFormState extends State<OrganisationSignUpForm> {
                                             borderRadius: BorderRadius.circular(5.0),
                                             child: MaterialButton(
                                               onPressed: ( ) {
-                                                _settingModalBottomSheet1(context);
-
+                                                if (textEditingController[6].text == "" ||
+                                                    textEditingController[6].text == null) {
+                                                  AppData.showInSnackBar(context, "Please Enter Document Name 2");
+                                                }else {
+                                                  _settingModalBottomSheet1(
+                                                      context);
+                                                }
                                               },
                                               minWidth: 120,
                                               height: 30.0,
@@ -466,7 +493,7 @@ class OrganisationSignUpFormState extends State<OrganisationSignUpForm> {
                                         ],
                                       ),
                                     ),
-                                  ),
+                                  ):Container(),
                                   SizedBox(height: 10,),
                                   (idproof1 != null)
                                       ? Padding(
@@ -508,7 +535,14 @@ class OrganisationSignUpFormState extends State<OrganisationSignUpForm> {
                                   SizedBox(
                                     height: 18,
                                   ),
-                                  Padding(
+                                  (idproof1 != null)
+                                      ? formField1(7,"Document Name 3"):Container(),
+                                  (idproof1 != null)
+                                      ? SizedBox(
+                                    height: 8,
+                                  ):Container(),
+                                  (idproof1 != null)
+                                      ?Padding(
                                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
                                     child: Container(
                                       child: Row(
@@ -526,8 +560,13 @@ class OrganisationSignUpFormState extends State<OrganisationSignUpForm> {
                                             borderRadius: BorderRadius.circular(5.0),
                                             child: MaterialButton(
                                               onPressed: () {
-                                                _settingModalBottomSheet2(context);
-
+                                                if (textEditingController[7].text == "" ||
+                                                    textEditingController[7].text == null) {
+                                                  AppData.showInSnackBar(context, "Please Enter Document Name 3");
+                                                }else {
+                                                  _settingModalBottomSheet2(
+                                                      context);
+                                                }
                                               },
                                               minWidth: 120,
                                               height: 30.0,
@@ -541,8 +580,9 @@ class OrganisationSignUpFormState extends State<OrganisationSignUpForm> {
                                         ],
                                       ),
                                     ),
-                                  ),
-                                  SizedBox(height: 10,),
+                                  ):Container(),
+
+                                  //SizedBox(height: 10,),
                                   (idproof2 != null)
                                       ? Padding(
                                     padding: const EdgeInsets.only(
@@ -583,7 +623,14 @@ class OrganisationSignUpFormState extends State<OrganisationSignUpForm> {
                                   SizedBox(
                                     height: 18,
                                   ),
-                                  Padding(
+                                  (idproof2 != null)
+                      ?formField1(8, "Document Name 4"):Container(),
+                                  (idproof2 != null)
+                                      ? SizedBox(
+                                    height: 8,
+                                  ):Container(),
+                                  (idproof2 != null)
+                      ?Padding(
                                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
                                     child: Container(
                                       child: Row(
@@ -601,7 +648,13 @@ class OrganisationSignUpFormState extends State<OrganisationSignUpForm> {
                                             borderRadius: BorderRadius.circular(5.0),
                                             child: MaterialButton(
                                               onPressed: () {
-                                                _settingModalBottomSheet3(context);
+                                                if (textEditingController[8].text == "" ||
+                                                    textEditingController[8].text == null) {
+                                                  AppData.showInSnackBar(context, "Please Enter Document Name 4");
+                                                }else {
+                                                  _settingModalBottomSheet3(
+                                                      context);
+                                                }
 
                                               },
                                               minWidth: 120,
@@ -616,7 +669,7 @@ class OrganisationSignUpFormState extends State<OrganisationSignUpForm> {
                                         ],
                                       ),
                                     ),
-                                  ),
+                                  ):Container(),
                                   SizedBox(height: 10,),
                                   (idproof3 != null)
                                       ? Padding(
@@ -1438,40 +1491,242 @@ class OrganisationSignUpFormState extends State<OrganisationSignUpForm> {
       ),
     );
   }
+
   Widget nextButton1() {
     return MyWidgets.nextButton(
-      text:  MyLocalizations.of(context).text("NEXT"),
+      text:  "SUBMIT",
       context: context,
       fun: () {
-        if (textEditingController[8].text == "" ||
-            textEditingController[8].text == null) {
-          AppData.showInSnackBar(context, "Please Enter Education Name");
+        if (textEditingController[0].text == "" ||
+            textEditingController[0].text == null) {
+          AppData.showInSnackBar(context, "Please Enter Organisation Name");
+        }else if (textEditingController[1].text == "" ||
+            textEditingController[1].text == null) {
+          AppData.showInSnackBar(context, "Please Enter Licenece No");
+        }else if (OrganisationSignUpForm.countryModel == null ||
+            OrganisationSignUpForm.countryModel == "") {
+          AppData.showInSnackBar(context, "Please Select Country");
+        }else if (OrganisationSignUpForm.stateModel == null ||
+            OrganisationSignUpForm.stateModel == "") {
+          AppData.showInSnackBar(context, "Please Select State");
+        }else if (OrganisationSignUpForm.districtModel == null ||
+            OrganisationSignUpForm.districtModel == "") {
+          AppData.showInSnackBar(context, "Please Select District");
+        }else if (OrganisationSignUpForm.citymodel == null ||
+            OrganisationSignUpForm.citymodel == "") {
+          AppData.showInSnackBar(context, "Please Select City");
+        }else if (textEditingController[2].text == "" ||
+            textEditingController[2].text == null) {
+          AppData.showInSnackBar(context, "Please Enter Address");
+
+        }
+        else if (textEditingController[3].text == "" ||
+            textEditingController[3].text == null) {
+          AppData.showInSnackBar(context, "Please Enter Zip/Pin Code");
+        }
+        else if (textEditingController[4].text == "" ||
+            textEditingController[4].text == null) {
+          AppData.showInSnackBar(context, "Please Enter GST/VAT");
         }
         else if (OrganisationSignUpForm.healthcareProviderModel == null ||
             OrganisationSignUpForm.healthcareProviderModel == "") {
-          AppData.showInSnackBar(context, "Please Select Speciality");
+          AppData.showInSnackBar(context, "Please Select Type");
         }
-        else if (textEditingController[2].text == "" ||
-            textEditingController[2].text == null) {
-          AppData.showInSnackBar(context, "Please Enter Date of Birth");
-        }
-        else if (OrganisationSignUpForm.bloodgroupModel == null ||
-            OrganisationSignUpForm.bloodgroupModel == "") {
-          AppData.showInSnackBar(context, "Please Select Blood Group");
-        }
-        else if (OrganisationSignUpForm.genderModel == null ||
-            OrganisationSignUpForm.genderModel == "") {
-          AppData.showInSnackBar(context, "Please Select Gender");
+        else if (textEditingController[5].text == "" ||
+            textEditingController[5].text == null) {
+          AppData.showInSnackBar(context, "Please Enter Document name");
+        }else if (textEditingController[5].text != "" &&
+            idproof == null) {
+          AppData.showInSnackBar(context, "Please Upload Document 1");
+        }else if (textEditingController[6].text != "" &&
+            idproof1 == null) {
+          AppData.showInSnackBar(context, "Please Upload Document 2");
+        }else if (textEditingController[7].text != "" &&
+            idproof2 == null) {
+          AppData.showInSnackBar(context, "Please Upload Document 3");
+
+        }else if (textEditingController[8].text != "" &&
+            idproof3 == null) {
+          AppData.showInSnackBar(context, "Please Upload Document 4");
+
         } else {
-          // widget.model.pharmaeducation = textEditingController[8].text;
-          // widget.model.pharmaspeciality = PharmaSignUpForm2.specialistModel.key;
-          // widget.model.pharmadob = textEditingController[2].text;
-          // widget.model.pharmabloodgroup = PharmaSignUpForm2.bloodgroupModel.key;
-          // widget.model.pharmagender = PharmaSignUpForm2.genderModel.key;
-          Navigator.pushNamed(context, "/pharmasignupform3");
+          postMultiPart();
+
         }
       },
     );
+  }
+  Future<FormData> FormData2() async {
+    log("File extension is:::::>>>>>" + textEditingController[0].text + "," + textEditingController[1].text + "," + textEditingController[2].text + "," +  OrganisationSignUpForm.countryModel.key);
+    var formData = FormData();
+    formData.fields..add(MapEntry('orgname', textEditingController[0].text))..add(
+        MapEntry(
+          'licno',
+          textEditingController[1].text,
+        ))..add(MapEntry(
+      'address',
+      textEditingController[2].text,
+    ))..add(MapEntry(
+      'country',
+      OrganisationSignUpForm.countryModel.key,
+    ))..add(MapEntry(
+      'state',
+      OrganisationSignUpForm.stateModel.key,
+    ))..add(MapEntry(
+      'dist',
+        OrganisationSignUpForm.districtModel.key,
+    ))..add(MapEntry(
+      'city',
+      OrganisationSignUpForm.citymodel.key,
+    ))..add(MapEntry(
+      'pincode',
+      textEditingController[3].text,
+    ))..add(MapEntry(
+      'gst',
+      textEditingController[4].text,
+    ))..add(MapEntry(
+      'healthprovider',
+        OrganisationSignUpForm.healthcareProviderModel.key,
+    ))..add(MapEntry(
+      'docnameone',
+      textEditingController[5].text,
+    ))..add(MapEntry(
+      'docnametwo',
+      textEditingController[6].text,
+    ))..add(MapEntry(
+      'docnamethree',
+      textEditingController[7].text,
+    ))..add(MapEntry(
+      'docnamefour',
+      textEditingController[8].text,
+    )) ..add(MapEntry(
+      'extone',
+      extension,
+    ))..add(MapEntry(
+      'exttwo',
+      extension1,
+    ))
+    ..add(MapEntry(
+    'extthree',
+      extension2,
+    ))
+    ..add(MapEntry(
+    'extfour',
+      extension3,
+    ));
+
+    if(selectFile!=null) {
+      formData.files.add(MapEntry(
+        'fileone',
+        MultipartFile.fromFileSync(
+          selectFile.path,
+          filename: selectFile.path,
+          //contentType: new MediaType('','')
+        ),
+      ));
+    }
+    if(selectFile1!=null) {
+    formData.files.add(MapEntry(
+      'filetwo',
+      MultipartFile.fromFileSync(
+        selectFile1.path,
+        filename: selectFile1.path,
+        //contentType: new MediaType('','')
+      ),
+    )); }
+    if(selectFile2!=null) {
+    formData.files.add(MapEntry(
+      'filethree',
+      MultipartFile.fromFileSync(
+        selectFile2.path,
+        filename: selectFile2.path,
+        //contentType: new MediaType('','')
+      ),
+    ));}
+    if(selectFile3!=null) {
+    formData.files.add(MapEntry(
+      'filefour',
+      MultipartFile.fromFileSync(
+        selectFile3.path,
+        filename: selectFile3.path,
+        //contentType: new MediaType('','')
+      ),
+    ));}
+
+    return formData;
+
+  }
+  void postMultiPart() async {
+    MyWidgets.showLoading(context);
+    try {
+      Response response;
+      response = await dio.post(
+        ApiFactory.ADD_ORGANIZATION,
+        data: await FormData2(),
+        onSendProgress: (received, total) {
+          if (total != -1) {
+            setState(() {
+              print((received / total * 100).toStringAsFixed(0) + '%');
+            });
+          }
+        },
+      );
+      if (response.statusCode == 200) {
+        Navigator.pop(context);
+        log("value" + jsonEncode(response.data));
+        if (response.data["code"] == "success") {
+          //Navigator.pushNamed(context, "/uploaddocument");
+
+          popup(context);
+        } else {
+          AppData.showInSnackBar(context, "Something went wrong");
+        }
+      } else {
+        Navigator.pop(context);
+        AppData.showInSnackBar(context, "Something went wrong");
+      }
+    } on DioError catch (e) {
+     /* if (e.type == DioErrorType.CONNECT_TIMEOUT) {
+        log(e.response.data);
+      }*/
+      /*if (e.type == DioErrorType.RECEIVE_TIMEOUT) {
+        log(e.response.data);
+      }*/
+     /* if (e.type == DioErrorType.DEFAULT) {
+        log(e.response.data);
+      }*/
+      /*if (e.type == DioErrorType.RESPONSE) {
+        log(e.response.data);
+      }*/
+    }
+    //print(response);
+  }
+  popup(BuildContext context) {
+    return Alert(
+        context: context,
+        title: "Successfully Upload",
+        type: AlertType.success,
+        onWillPopActive: true,
+        closeIcon: Icon(
+          Icons.info,
+          color: Colors.transparent,
+        ),
+        //image: Image.asset("assets/success.png"),
+        closeFunction: () {},
+        buttons: [
+          DialogButton(
+            child: Text(
+              "OK",
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+            onPressed: () {
+              Navigator.pop(context, true);
+              Navigator.pop(context, true);
+            },
+            color: Color.fromRGBO(0, 179, 134, 1.0),
+            radius: BorderRadius.circular(0.0),
+          ),
+        ]).show();
   }
 
 
