@@ -22,10 +22,10 @@ class Application {
 
   //function to be invoked when changing the language
   LocaleChangeCallback onLocaleChanged;
-  LogoutCallBack logoutCallBack;
+  // LogoutCallBack logoutCallBack;
 }
 
 Application application = Application();
 
 typedef void LocaleChangeCallback(String locale);
-typedef void LogoutCallBack();
+// typedef void LogoutCallBack();

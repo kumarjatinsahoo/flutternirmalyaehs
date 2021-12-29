@@ -314,7 +314,7 @@ class _MyAppState extends State<MyApp> {
     super.initState();
     myLocalizationsDelegate = MyLocalizationsDelegate(widget.localizedValues);
     application.onLocaleChanged = onLocaleChange;
-    application.logoutCallBack = logouCallBack;
+    // application.logoutCallBack = logouCallBack;
     ////tokem=FirebaseMessaging.instance.getToken(vapidKey: "");
 
     /* FirebaseMessaging.instance
@@ -393,20 +393,7 @@ class _MyAppState extends State<MyApp> {
       selectedLan = locale;
     });
   }
-  void logouCallBack() {
-      FirebaseMessaging.instance
-          .unsubscribeFromTopic(_model.loginResponse1.body.user);
-      FirebaseMessaging.instance
-          .unsubscribeFromTopic(_model.loginResponse1.body.userMobile);
-      sharedPref.save(Const.IS_LOGIN, false.toString());
-      sharedPref.save(Const.IS_REGISTRATION, false.toString());
-      sharedPref.remove(Const.IS_REGISTRATION);
-      sharedPref.remove(Const.IS_LOGIN);
-      sharedPref.remove(Const.LOGIN_DATA);
-      sharedPref.remove(Const.IS_REG_SERVER);
-      Navigator.of(context)
-          .pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -416,6 +403,7 @@ class _MyAppState extends State<MyApp> {
         builder: (BuildContext context, Widget child, MainModel model) {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
+            navigatorKey: Const.navigatorKey,
             locale: Locale(selectedLan),
             theme: ThemeData(primarySwatch: Colors.blue, fontFamily: ''),
             /*home: SplashScreen(

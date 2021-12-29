@@ -3,6 +3,11 @@ PODS:
     - AgoraRtcEngine_iOS (= 3.5.0.3)
     - Flutter
   - AgoraRtcEngine_iOS (3.5.0.3)
+  - BSGridCollectionViewLayout (1.2.5)
+  - BSImagePicker (2.10.3):
+    - BSGridCollectionViewLayout (= 1.2.5)
+    - BSImageView (= 1.0.3)
+  - BSImageView (1.0.3)
   - connectivity (0.0.1):
     - Flutter
     - Reachability
@@ -120,11 +125,17 @@ PODS:
     - GoogleUtilities/Logger
   - GoogleUtilities/UserDefaults (7.5.2):
     - GoogleUtilities/Logger
+  - image_cropper (0.0.4):
+    - Flutter
+    - TOCropViewController (~> 2.6.0)
   - image_picker (0.0.1):
     - Flutter
   - location_permissions (2.0.5):
     - Flutter
   - MTBBarcodeScanner (5.0.11)
+  - multi_image_picker (4.8.00):
+    - BSImagePicker (~> 2.10.3)
+    - Flutter
   - multi_select_item (0.0.1):
     - Flutter
   - nanopb (2.30908.0):
@@ -152,6 +163,7 @@ PODS:
   - shared_preferences (0.0.1):
     - Flutter
   - SwiftyGif (5.4.0)
+  - TOCropViewController (2.6.0)
   - unique_identifier (0.0.1):
     - Flutter
   - url_launcher (0.0.1):
@@ -179,8 +191,10 @@ DEPENDENCIES:
   - flutter_webview_plugin (from `.symlinks/plugins/flutter_webview_plugin/ios`)
   - geocoder (from `.symlinks/plugins/geocoder/ios`)
   - geolocator (from `.symlinks/plugins/geolocator/ios`)
+  - image_cropper (from `.symlinks/plugins/image_cropper/ios`)
   - image_picker (from `.symlinks/plugins/image_picker/ios`)
   - location_permissions (from `.symlinks/plugins/location_permissions/ios`)
+  - multi_image_picker (from `.symlinks/plugins/multi_image_picker/ios`)
   - multi_select_item (from `.symlinks/plugins/multi_select_item/ios`)
   - pageview_indicator_plugins (from `.symlinks/plugins/pageview_indicator_plugins/ios`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
@@ -197,6 +211,9 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - AgoraRtcEngine_iOS
+    - BSGridCollectionViewLayout
+    - BSImagePicker
+    - BSImageView
     - DKImagePickerController
     - DKPhotoGallery
     - Firebase
@@ -213,6 +230,7 @@ SPEC REPOS:
     - Reachability
     - SDWebImage
     - SwiftyGif
+    - TOCropViewController
 
 EXTERNAL SOURCES:
   agora_rtc_engine:
@@ -245,10 +263,14 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/geocoder/ios"
   geolocator:
     :path: ".symlinks/plugins/geolocator/ios"
+  image_cropper:
+    :path: ".symlinks/plugins/image_cropper/ios"
   image_picker:
     :path: ".symlinks/plugins/image_picker/ios"
   location_permissions:
     :path: ".symlinks/plugins/location_permissions/ios"
+  multi_image_picker:
+    :path: ".symlinks/plugins/multi_image_picker/ios"
   multi_select_item:
     :path: ".symlinks/plugins/multi_select_item/ios"
   pageview_indicator_plugins:
@@ -277,6 +299,9 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   agora_rtc_engine: 0820b82b3a71a8fcaf8b27c000622e671349f0ba
   AgoraRtcEngine_iOS: ff8e085161ea98c917173783a899882f884dd9ef
+  BSGridCollectionViewLayout: 333dcb457a5a3bdd9212607ab5756553dcfe06cb
+  BSImagePicker: 07404254f2fcdaf5a2eb403c0f8c337267ce8738
+  BSImageView: a149459433a2687157d034c78e059d30ac7f2544
   connectivity: c4130b2985d4ef6fd26f9702e886bd5260681467
   device_calendar: 23b28a5f1ab3bf77e34542fb1167e1b8b29a98f5
   DKImagePickerController: b5eb7f7a388e4643264105d648d01f727110fc3d
@@ -300,9 +325,11 @@ SPEC CHECKSUMS:
   geolocator: a048cc412bf350b17d671d170f151b0c9fb8f098
   GoogleDataTransport: 85fd18ff3019bb85d3f2c551d04c481dedf71fc9
   GoogleUtilities: 8de2a97a17e15b6b98e38e8770e2d129a57c0040
+  image_cropper: f1668dd8d2cad2d357955caad15a40547856edcb
   image_picker: 66aa71bc96850a90590a35d4c4a2907b0d823109
   location_permissions: 4a49d4e5bec5b653643e551ab77963cc99bb0e4a
   MTBBarcodeScanner: f453b33c4b7dfe545d8c6484ed744d55671788cb
+  multi_image_picker: 443e776a762d7901641854043b60abf88a85d5ef
   multi_select_item: b70b78aac4d208141e5d7de8640655570fb40e90
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   OrderedSet: aaeb196f7fef5a9edf55d89760da9176ad40b93c
@@ -316,6 +343,7 @@ SPEC CHECKSUMS:
   share: 0b2c3e82132f5888bccca3351c504d0003b3b410
   shared_preferences: af6bfa751691cdc24be3045c43ec037377ada40d
   SwiftyGif: 5d4af95df24caf1c570dbbcb32a3b8a0763bc6d7
+  TOCropViewController: 3105367e808b7d3d886a74ff59bf4804e7d3ab38
   unique_identifier: 5b4b48cfe07a95df6aa11746944c0dce22ab5400
   url_launcher: 6fef411d543ceb26efce54b05a0a40bfd74cbbef
   video_player: 9cc823b1d9da7e8427ee591e8438bfbcde500e6e

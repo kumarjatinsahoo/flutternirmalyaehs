@@ -1,3 +1,5 @@
+import 'package:flutter/cupertino.dart';
+
 class Const {
   static List<String> acdYrList = [
     "2010",
@@ -86,6 +88,8 @@ class Const {
   static const String INTERNET_CONNECTION = "PLEASE CHECK YOUR INTERNET";
   static const String EDIT_BENEFICIARY = "Edit Beneficiary";
   static const String POST = "Edit Beneficiary";
+
+  static GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
   static getMode(String payMode) {
     /*if (payMode1 == PayMode1.cash) payModeCode = "1";

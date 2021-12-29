@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
+import 'package:user/localization/application.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/AddBioMedicalModel.dart';
 import 'package:user/models/BiomedicalModel.dart' as bio;
@@ -14,6 +15,7 @@ import 'package:user/models/KeyvalueModel.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/DropDown.dart';
+import 'package:user/providers/TokenToID.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
@@ -75,12 +77,14 @@ class _ImmunizationState extends State<Immunization> {
   }
 
   callApi() {
+    /*Map<String, dynamic> map = TokenToID.parseJwt(widget.model.token);
+    log("Token>>>"+jsonEncode(map));*/
     widget.model.GETMETHODCALL_TOKEN(
         api: ApiFactory.IMMUNIZATION_LIST + loginResponse1.body.user,
         token: widget.model.token,
         fun: (Map<String, dynamic> map) {
           setState(() {
-            log("Value>>>" + jsonEncode(map));
+            log("Immunisation>>>" + jsonEncode(map));
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
               isdata = false;
@@ -126,6 +130,7 @@ class _ImmunizationState extends State<Immunization> {
                 onTap: () {
                   _date.text = "";
                   displayTextInputDialog(context);
+                   // application.logoutCallBack();
                 },
                 child: Icon(
                   Icons.add_circle_outline_sharp,

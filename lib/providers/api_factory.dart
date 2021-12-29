@@ -2,10 +2,10 @@ class ApiFactory {
   //bool isRelease = bool.fromEnvironment("DEV");
   static String REG_DEVICE = "https://cca.medtel.in/Ziniai/manageDeviceId";
  // static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
-  static String MAIN_URL = "http://api-demo.ehealthsystem.com/nirmalyaRest/api/";
+ //  static String MAIN_URL = "http://api-demo.ehealthsystem.com/nirmalyaRest/api/";
   static String MAIN_URL1 = "https://1331.co.in/api";
   static String REPORT_URL1 = "https://ehealthsystem.com/";
- //  static String MAIN_URL = "http://192.168.136.208:8062/nirmalyaRest/api/";
+   static String MAIN_URL = "http://172.20.10.4:8062/nirmalyaRest/api/";
   // static String MAIN_URL = "http://192.168.43.248:8062/nirmalyaRest/api/";
    //static String MAIN_URL = "http://192.168.43.248:8062/nirmalyaRest/api/";
   static String VITALS_REPORT = MAIN_URL + 'medtel-screening-test-report';
@@ -133,6 +133,10 @@ class ApiFactory {
 
   static String LOGIN_PASS(String mob, String pass) {
     return MAIN_URL + "login?mobileNo=$mob&password=$pass";
+  }
+
+  static String LOGIN_PASS_MULTIPLE(String mob, String pass) {
+    return MAIN_URL + "login-multiple-user?mobileNo=$mob&password=$pass";
   }
 
   static String LOGIN_Otp(String mob) {
@@ -309,6 +313,7 @@ class ApiFactory {
   }
 
   static String TIME_SLOT1 = MAIN_URL + "/Doc/GetDocSlotInfo?doctor=";
+  static String GET_ROLE = MAIN_URL + "get-role-api?id=";
 /* (
       String doctor, String appointdate, String hospitalid) {
     return

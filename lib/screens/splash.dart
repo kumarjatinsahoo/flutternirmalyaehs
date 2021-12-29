@@ -6,6 +6,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:intro_slider/intro_slider.dart';
 import 'package:intro_slider/slide_object.dart';
 import 'package:user/models/LoginResponse1.dart';
+import 'package:user/models/MasterLoginResponse.dart';
 import 'package:user/providers/ConnectionStatusSingleton.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/SharedPref.dart';
@@ -41,6 +42,7 @@ class _SplashScreenState extends State<SplashScreen> {
   var myVer;
   var login; //= await sharedPref.getKey(Const.IS_LOGIN);
   var loginData; //= await sharedPref.getKey(Const.LOGIN_DATA);
+  var masterResponse; //= await sharedPref.getKey(Const.LOGIN_DATA);
   LoginResponse1 loginResponse1;
   String value;
   var phnNostr,passWordstr;
@@ -64,12 +66,10 @@ class _SplashScreenState extends State<SplashScreen> {
     setState(() {
       isOffline = !connectionStatus.hasConnection;
       if (!connectionStatus.hasConnection) {
-        // isFirstTime = true;
         color = Colors.green;
       }
     });
     isFirstTimes();
-    // getLocal();
   }
 
   void connectionChanged(dynamic hasConnection) {
@@ -159,18 +159,19 @@ class _SplashScreenState extends State<SplashScreen> {
     loginData = await sharedPref.getKey(Const.LOGIN_DATA);
     phnNostr = await sharedPref.getKey(Const.LOGIN_phoneno);
     passWordstr = await sharedPref.getKey(Const.LOGIN_password);
+    masterResponse = await sharedPref.getKey(Const.MASTER_RESPONSE);
 
      String phnNostr1 =phnNostr.replaceAll("\"", "") ;
     String passWordstr1= passWordstr.replaceAll("\"", "");
 
     //passWordstr = await sharedPref. getValue() ;
-    if (login != null && login.replaceAll("\"", "") == "true") {
+   /* if (login != null && login.replaceAll("\"", "") == "true") {
 
       setState(() {
 
      //   MyWidgets.showLoading(context);
-        /*String phnNostr = sharedPref.getKey("phnNo");
-        String passWordstr = sharedPref.getKey("passWord");*/
+        *//*String phnNostr = sharedPref.getKey("phnNo");
+        String passWordstr = sharedPref.getKey("passWord");*//*
         widget.model.GETMETHODCALL(
             api: ApiFactory.LOGIN_PASS(phnNostr1,passWordstr1),
             fun: (Map<String, dynamic> map) {
@@ -194,7 +195,7 @@ class _SplashScreenState extends State<SplashScreen> {
             });
         //loginResponse1 = LoginResponse1.fromJson(jsonDecode(loginData));
       });
-    }
+    }*/
   }
 
   void callResourceTimer() {
@@ -232,9 +233,12 @@ class _SplashScreenState extends State<SplashScreen> {
               }
             });*/
         LoginResponse1 loginResponse1 =LoginResponse1.fromJson(jsonDecode(loginData));
+        MasterLoginResponse master =MasterLoginResponse.fromJson(jsonDecode(masterResponse));
         widget.model.setLoginData1(loginResponse1);
         widget.model.token = loginResponse1.body.token;
+        widget.model.masterResponse = master;
         widget.model.user = loginResponse1.body.user;
+
         if (loginResponse1.body.roles[0] == "8".toLowerCase()) {
           Navigator.of(context).pushNamedAndRemoveUntil(
               '/labDash', (Route<dynamic> route) => false);
