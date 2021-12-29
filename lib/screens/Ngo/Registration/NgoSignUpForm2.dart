@@ -290,6 +290,7 @@ class NgoSignUpForm2State extends State<NgoSignUpForm2> {
                                   Column(
                                     children: [
                                       Text(MyLocalizations.of(context).text("FILL_IN_PERSONAL_INFORMATION"),
+                                        textAlign: TextAlign.center,
                                         style: TextStyle(fontSize: 18, color: Colors.black),),
                                     ],
                                   ),
@@ -1327,7 +1328,7 @@ class NgoSignUpForm2State extends State<NgoSignUpForm2> {
                 color: Colors.black,width: 0.3)
         ),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          padding: const EdgeInsets.symmetric(horizontal: 15.0),
           child: Row(
             children: <Widget>[
               new Expanded(
@@ -1387,7 +1388,7 @@ class NgoSignUpForm2State extends State<NgoSignUpForm2> {
               color: Colors.black, width: 0.3),
         ),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+          padding: const EdgeInsets.symmetric(horizontal: 6.0),
           child: TextFormField(
             decoration: InputDecoration(
               border: InputBorder.none,
@@ -1436,7 +1437,7 @@ class NgoSignUpForm2State extends State<NgoSignUpForm2> {
                 color: Colors.black, width: 0.3)
         ),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          padding: const EdgeInsets.symmetric(horizontal: 15.0),
           child: Row(
             children: <Widget>[
               new Expanded(

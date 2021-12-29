@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:user/models/AmbulanceAllModel.dart';
-import 'package:user/models/BloodbanklistModel.dart'as ambulanceappoint;
+import 'package:user/models/BloodbanklistModel.dart' as ambulanceappoint;
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
@@ -27,7 +27,6 @@ class _RejectBloodBankState extends State<RejectBloodBank> {
   bool isdata = true;
   ambulanceappoint.BloodbanklistModel bloodbanklistModel;
 
-
   void selectDestination(int index) {
     setState(() {
       _selectedDestination = index;
@@ -43,9 +42,12 @@ class _RejectBloodBankState extends State<RejectBloodBank> {
 
   callAPI() {
     widget.model.GETMETHODCALL_TOKEN_FORM(
-        api: ApiFactory.BLOODBANK_ALL + loginResponse.body.user+"&status="+"4",
-         userId: loginResponse.body.user,
-          token: widget.model.token,
+        api: ApiFactory.BLOODBANK_ALL +
+            loginResponse.body.user +
+            "&status=" +
+            "4",
+        userId: loginResponse.body.user,
+        token: widget.model.token,
         fun: (Map<String, dynamic> map) {
           setState(() {
             log("Json Response>>>" + JsonEncoder().convert(map));
@@ -79,209 +81,211 @@ class _RejectBloodBankState extends State<RejectBloodBank> {
         ),
         body: isdata == true
             ? Center(
-              child: CircularProgressIndicator(
-          //backgroundColor: AppData.matruColor,
-        ),
-            )
-            : bloodbanklistModel == null || bloodbanklistModel == null
-            ? Container(
-          child: Center(
-            child: Text(
-              'No Data Found',
-              style:
-              TextStyle(color: Colors.black, fontSize: 15),
-            ),
-          ),
-
-        ):
-            SingleChildScrollView(
-          child: (bloodbanklistModel != null)
-              ? ListView.builder(
-            physics: NeverScrollableScrollPhysics(),
-            // controller: _scrollController,
-            shrinkWrap: true,
-            itemBuilder: (context, i) {
-              if (i == bloodbanklistModel.body.length) {
-                return (bloodbanklistModel.body.length % 10 == 0)
-                    ? CupertinoActivityIndicator()
-                    : Container();
-              }
-              ambulanceappoint.Body body = bloodbanklistModel.body[i];
-              return Padding(
-                padding: const EdgeInsets.only(
-                    left: 15, right: 15, top: 15),
-                child: Card(
-                  child: Container(
-                    //height: height * 0.30,
-                    // color: Colors.grey[200],
-                    child: Column(
-                      children: [
-                        Container(
-                          decoration: BoxDecoration(
-                              gradient: LinearGradient(colors: [
-                                Colors.blueGrey[50],
-                                Colors.blue[50]
-                              ])),
-                          child: Padding(
-                            padding: const EdgeInsets.only(
-                                left: 10.0,
-                                right: 10.0,
-                                top: 10,
-                                bottom: 5),
-                            child: InkWell(
-                              onTap: () {
-                                /* widget.model.pharmacyorderModel=body;
-                              Navigator.pushNamed(context, "/orderDetails");*/
-                              },
-                              child: Column(
-                                crossAxisAlignment:
-                                CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Container(
-                                        width: 140,
-                                        child: Text(
-                                          "Name ",
-                                          style: TextStyle(
-                                            fontWeight:
-                                            FontWeight.w600,
-                                            fontSize: 15,
-                                          ),
-                                        ),
-                                      ),
-                                    //  Spacer(),
-                                      Text(
-                                        body.patientName,
-                                        style: TextStyle(
-                                            fontSize: 15),
-                                        textAlign:
-                                        TextAlign.right,
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    height: size.height * 0.01,
-                                  ),
-                                  Row(
-                                    children: [
-                                      Container(
-                                        width:140,
-                                        child: Text(
-                                          "Bloodgroup",
-                                          style: TextStyle(
-                                            fontWeight:
-                                            FontWeight.w600,
-                                            fontSize: 15,
-                                          ),
-                                        ),
-                                      ),
-                                     // Spacer(),
-                                      Expanded(
-                                        child: Text(
-                                          body.bloodGrName,
-                                          style: TextStyle(
-                                              fontSize: 15),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    height: size.height * 0.01,
-                                  ),
-                                  Row(
-                                    children: [
-                                      Container(
-                                        width:140,
-                                        child: Text(
-                                          "Date",
-                                          style: TextStyle(
-                                            fontWeight:
-                                            FontWeight.w600,
-                                            fontSize: 15,
-                                          ),
-                                        ),
-                                      ),
-                                   //   Spacer(),
-                                      Expanded(
-                                        child: Text(
-                                          body.bookedDate,
-                                          style: TextStyle(
-                                              fontSize: 15),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    height: size.height * 0.01,
-                                  ),
-                                  Row(
-                                    children: [
-                                      Container(
-                                        width:140,
-                                        child: Text(
-                                          'Patient Notes',
-                                          style: TextStyle(
-                                            fontWeight:
-                                            FontWeight.w600,
-                                            fontSize: 15,
-                                          ),
-                                        ),
-                                      ),
-                                   //   Spacer(),
-                                      Expanded(
-                                        child: Text(
-                                          body.patientNote,
-                                          style: TextStyle(
-                                              fontSize: 15),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        ' ',
-                                        style: TextStyle(
-                                            fontWeight:
-                                            FontWeight.w600),
-                                      ),
-                                      Spacer(),
-                                      Text(
-                                        /*'Confirmed'*/
-                                      body.status,
-                                        style: TextStyle(
-                                            fontWeight:
-                                            FontWeight
-                                                .bold,
-                                            fontSize: 15,
-                                            color: AppData
-                                                .kPrimaryBlueColor),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
+                child: CircularProgressIndicator(
+                    //backgroundColor: AppData.matruColor,
                     ),
-                  ),
-                ),
-              );
-            },
-            //itemCount:5,
-            itemCount: bloodbanklistModel.body.length,
-          )
-              : Container(),
-        )
-           );
-  }
+              )
+            : bloodbanklistModel == null || bloodbanklistModel == null
+                ? Container(
+                    child: Center(
+                      child: Text(
+                        'No Data Found',
+                        style: TextStyle(color: Colors.black, fontSize: 15),
+                      ),
+                    ),
+                  )
+                : SingleChildScrollView(
+                    child: (bloodbanklistModel != null)
+                        ? ListView.builder(
+                            physics: NeverScrollableScrollPhysics(),
+                            // controller: _scrollController,
+                            shrinkWrap: true,
+                            itemBuilder: (context, i) {
+                              if (i == bloodbanklistModel.body.length) {
+                                return (bloodbanklistModel.body.length % 10 ==
+                                        0)
+                                    ? CupertinoActivityIndicator()
+                                    : Container();
+                              }
+                              ambulanceappoint.Body body =
+                                  bloodbanklistModel.body[i];
+                              return Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 8, right: 8, top: 12),
+                                child: Card(
+                                  child: Container(
+                                    //height: height * 0.30,
+                                    // color: Colors.grey[200],
+                                    child: Column(
+                                      children: [
+                                        Container(
+                                          decoration: BoxDecoration(
+                                              gradient: LinearGradient(colors: [
+                                            Colors.blueGrey[50],
+                                            Colors.blue[50]
+                                          ])),
+                                          child: Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: 10.0,
+                                                right: 10.0,
+                                                top: 10,
+                                                bottom: 5),
+                                            child: InkWell(
+                                              onTap: () {
+                                              },
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Row(
+                                                    children: [
+                                                      Expanded(
+                                                        child: Container(
+                                                          child: Text(
+                                                            "Name ",
+                                                            style: TextStyle(
+                                                              fontWeight:
+                                                                  FontWeight.w600,
+                                                              fontSize: 15,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      //  Spacer(),
+                                                      Expanded(
+                                                        child: Text(
+                                                          body.patientName,
+                                                          style: TextStyle(
+                                                              fontSize: 15),
 
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  SizedBox(
+                                                    height: size.height * 0.01,
+                                                  ),
+                                                  Row(
+                                                    children: [
+                                                      Expanded(
+                                                        child: Container(
+                                                          child: Text(
+                                                            "Bloodgroup",
+                                                            style: TextStyle(
+                                                              fontWeight:
+                                                                  FontWeight.w600,
+                                                              fontSize: 15,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      // Spacer(),
+                                                      Expanded(
+                                                        child: Text(
+                                                          body.bloodGrName,
+                                                          style: TextStyle(
+                                                              fontSize: 15),
+
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  SizedBox(
+                                                    height: size.height * 0.01,
+                                                  ),
+                                                  Row(
+                                                    children: [
+                                                      Expanded(
+                                                        child: Container(
+                                                          child: Text(
+                                                            "Date",
+                                                            style: TextStyle(
+                                                              fontWeight:
+                                                                  FontWeight.w600,
+                                                              fontSize: 15,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      //   Spacer(),
+                                                      Expanded(
+                                                        child: Text(
+                                                          body.bookedDate,
+                                                          style: TextStyle(
+                                                              fontSize: 15),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  SizedBox(
+                                                    height: size.height * 0.01,
+                                                  ),
+                                                  Row(
+                                                    children: [
+                                                      Expanded(
+                                                        child: Container(
+                                                          child: Text(
+                                                            'Patient Notes',
+                                                            style: TextStyle(
+                                                              fontWeight:
+                                                                  FontWeight.w600,
+                                                              fontSize: 15,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      //   Spacer(),
+                                                      Expanded(
+                                                        child: Text(
+                                                          body.patientNote,
+                                                          style: TextStyle(
+                                                              fontSize: 15),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  SizedBox(
+                                                    height: 10,
+                                                  ),
+                                                  Row(
+                                                    children: [
+                                                      Text(
+                                                        ' ',
+                                                        style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w600),
+                                                      ),
+                                                      Spacer(),
+                                                      Text(
+                                                        /*'Confirmed'*/
+                                                        body.status,
+                                                        style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                            fontSize: 15,
+                                                            color: AppData
+                                                                .kPrimaryRedColor),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              );
+                            },
+                            //itemCount:5,
+                            itemCount: bloodbanklistModel.body.length,
+                          )
+                        : Container(),
+                  ));
+  }
 
   Widget changeStatus(BuildContext context, String orderid) {
     //NomineeModel nomineeModel = NomineeModel();
