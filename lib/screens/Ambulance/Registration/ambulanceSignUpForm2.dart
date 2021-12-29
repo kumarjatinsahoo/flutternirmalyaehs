@@ -284,6 +284,7 @@ class AmbulanceSignUpForm2State extends State<AmbulanceSignUpForm2> {
                                   Column(
                                     children: [
                                       Text(MyLocalizations.of(context).text("FILL_IN_PERSONAL_INFORMATION"),
+                                        textAlign: TextAlign.center,
                                         style: TextStyle(fontSize: 18, color: Colors.black),),
                                     ],
                                   ),
@@ -714,8 +715,11 @@ class AmbulanceSignUpForm2State extends State<AmbulanceSignUpForm2> {
             textEditingController[5].text == null) {
           AppData.showInSnackBar(context, "Please enter Zip/Pin Code");
           FocusScope.of(context).requestFocus(fnode1);
-        }
-        else if (textEditingController[10].text == "" ||
+        }else if (textEditingController[5].text != "" &&
+            textEditingController[5].text.length != 6) {
+          AppData.showInSnackBar(context, "Please enter a valid Zip/Pin Code ");
+          FocusScope.of(context).requestFocus(fnode1);
+        }else if (textEditingController[10].text == "" ||
             textEditingController[10].text == null) {
           AppData.showInSnackBar(context, "Please enter Mobile No.");
           FocusScope.of(context).requestFocus(fnode2);
@@ -1281,7 +1285,7 @@ class AmbulanceSignUpForm2State extends State<AmbulanceSignUpForm2> {
                 color: Colors.black,width: 0.3)
         ),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          padding: const EdgeInsets.symmetric(horizontal: 13.0),
           child: Row(
             children: <Widget>[
               new Expanded(
@@ -1341,7 +1345,7 @@ class AmbulanceSignUpForm2State extends State<AmbulanceSignUpForm2> {
               color: Colors.black, width: 0.3),
         ),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+          padding: const EdgeInsets.symmetric(horizontal: 4.0),
           child: TextFormField(
             decoration: InputDecoration(
               border: InputBorder.none,
@@ -1390,7 +1394,7 @@ class AmbulanceSignUpForm2State extends State<AmbulanceSignUpForm2> {
                 color: Colors.black, width: 0.3)
         ),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          padding: const EdgeInsets.symmetric(horizontal: 13.0),
           child: Row(
             children: <Widget>[
               new Expanded(

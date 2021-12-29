@@ -742,7 +742,7 @@ class _VitalSignsState extends State<VitalSigns> {
                     height: 5,
                   ),
                   formFieldMobile(
-                      5,"Diastolic Blood Prssure(mm Hg)"
+                      5,"Diastolic Blood Pressure(mm Hg)"
                       // MyLocalizations.of(context)
                       //     .text("DIASTOLIC_BLOOD_PRESSURE")
                   ),
@@ -790,15 +790,102 @@ class _VitalSignsState extends State<VitalSigns> {
           onPressed: () {
             //AppData.showInSnackBar(context, "click");
             setState(() {
-              bool isAllBlank = true;
+             /* bool isAllBlank = false;
               textEditingController.forEach((element) {
-                if (element.text != "") isAllBlank = false;
-              });
+                if (element.text == "") {isAllBlank = true;}
+              });*/
 
-              if (isAllBlank) {
+              if (textEditingController[0].text.trim()=="") {
                 //AppData.showInSnackBar(context, "Please select Smoking");
                 AppData.showInSnackBar(
-                    context, "Please Fill Up Atleast One Field ");
+                    context, "Please enter height");
+
+              }else if (double.tryParse(textEditingController[0].text)>250) {
+                //AppData.showInSnackBar(context, "Please select Smoking");
+                AppData.showInSnackBar(
+                    context, "Invalid height enter");
+
+              }else if (textEditingController[1].text.trim()=="") {
+                //AppData.showInSnackBar(context, "Please select Smoking");
+                AppData.showInSnackBar(
+                    context, "Please enter weight");
+
+              }else if (double.tryParse(textEditingController[1].text)>636) {
+                //AppData.showInSnackBar(context, "Please select Smoking");
+                AppData.showInSnackBar(
+                    context, "Invalid weight enter");
+
+              }else if (textEditingController[3].text.trim()=="") {
+                //AppData.showInSnackBar(context, "Please select Smoking");
+                AppData.showInSnackBar(
+                    context, "Please enter temperature in C");
+
+              }else if (double.tryParse(textEditingController[3].text)>200) {
+                //AppData.showInSnackBar(context, "Please select Smoking");
+                AppData.showInSnackBar(
+                    context, "Invalid temperature C enter");
+
+              }else if (textEditingController[9].text.trim()=="") {
+                //AppData.showInSnackBar(context, "Please select Smoking");
+                AppData.showInSnackBar(
+                    context, "Please enter temperature in F");
+
+              }else if (double.tryParse(textEditingController[9].text)>500) {
+                //AppData.showInSnackBar(context, "Please select Smoking");
+                AppData.showInSnackBar(
+                    context, "Invalid temperature F enter");
+
+              } else if (textEditingController[4].text.trim()=="") {
+                //AppData.showInSnackBar(context, "Please select Smoking");
+                AppData.showInSnackBar(
+                    context, "Please enter systolic BP ");
+
+              }else if (double.tryParse(textEditingController[4].text)>200) {
+                //AppData.showInSnackBar(context, "Please select Smoking");
+                AppData.showInSnackBar(
+                    context, "Invalid systolic BP enter");
+
+              }else if (textEditingController[5].text.trim()=="") {
+                //AppData.showInSnackBar(context, "Please select Smoking");
+                AppData.showInSnackBar(
+                    context, "Please enter diastolic BP ");
+
+              }else if (double.tryParse(textEditingController[5].text)>200) {
+                //AppData.showInSnackBar(context, "Please select Smoking");
+                AppData.showInSnackBar(
+                    context, "Invalid diastolic BP enter");
+
+              }else if (textEditingController[6].text.trim()=="") {
+                //AppData.showInSnackBar(context, "Please select Smoking");
+                AppData.showInSnackBar(
+                    context, "Please enter pulse ");
+
+              }else if (double.tryParse(textEditingController[6].text)>200) {
+                //AppData.showInSnackBar(context, "Please select Smoking");
+                AppData.showInSnackBar(
+                    context, "Invalid pulse enter");
+
+              }else if (textEditingController[7].text.trim()=="") {
+                //AppData.showInSnackBar(context, "Please select Smoking");
+                AppData.showInSnackBar(
+                    context, "Please enter respiration ");
+
+              }else if (double.tryParse(textEditingController[7].text)>200) {
+                //AppData.showInSnackBar(context, "Please select Smoking");
+                AppData.showInSnackBar(
+                    context, "Invalid respiration enter");
+
+              }else if (textEditingController[8].text.trim()=="") {
+                //AppData.showInSnackBar(context, "Please select Smoking");
+                AppData.showInSnackBar(
+                    context, "Please enter oxygen saturation ");
+
+              }else if (double.tryParse(textEditingController[8].text)>200) {
+                //AppData.showInSnackBar(context, "Please select Smoking");
+                AppData.showInSnackBar(
+                    context, "Invalid oxygen saturation enter");
+
+
               } else {
                 var sendData = [
                   {

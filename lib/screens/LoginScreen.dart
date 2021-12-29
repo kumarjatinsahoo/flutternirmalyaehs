@@ -782,6 +782,8 @@ class _LoginScreenState extends State<LoginScreen> {
       Widget noButton = TextButton(
         child: Text("No",style: TextStyle(color: AppData.kPrimaryRedColor)),
         onPressed:  () {
+          Navigator.pop(context);
+         // Navigator.pop(context);
           //Navigator.pop(context);
           Navigator.pushNamed(context, "/organisationSignUpForm");
         },
@@ -789,6 +791,9 @@ class _LoginScreenState extends State<LoginScreen> {
       Widget continueButton = TextButton(
         child: Text("Yes",style: TextStyle(color: AppData.matruColor)),
         onPressed:  () {
+          Navigator.pop(context);
+          //Navigator.pop(context);
+
           //Navigator.pushNamed(context, "/doctorsignupform2");
           Navigator.pushNamed(context,organisation);
          // String listid = patientProfileModel.body.familyDetailsList[index].famid;
