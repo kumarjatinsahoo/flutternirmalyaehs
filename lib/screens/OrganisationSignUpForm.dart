@@ -264,11 +264,11 @@ class OrganisationSignUpFormState extends State<OrganisationSignUpForm> {
                                   SizedBox(
                                     height: 8,
                                   ),
-                                  formField1(0, "Organisation Name"),
+                                  formField1(0, "Organization Name"),
                                   SizedBox(
                                     height: 8,
                                   ),
-                                  formFieldPassPortno(1, "Licenece No",),
+                                  formFieldPassPortno(1, "License No",),
                                  /* SizedBox(
                                     height: 8,
                                   ),
