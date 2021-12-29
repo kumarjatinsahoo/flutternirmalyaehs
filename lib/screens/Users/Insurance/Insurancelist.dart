@@ -271,8 +271,10 @@ class _InsuranceListState extends State<InsuranceList> {
       insetPadding: EdgeInsets.only(left: 5, right: 5, top: 30),
       //title: const Text(''),
       content: StatefulBuilder(
-        builder: (BuildContext context, StateSetter setState) {
+        builder: (BuildContext context, StateSetter setDialog) {
+
           return Container(
+
             width: MediaQuery.of(context).size.width * 0.86,
             child: SingleChildScrollView(
               child: Column(
@@ -895,7 +897,56 @@ class _InsuranceListState extends State<InsuranceList> {
       'sumAssuredAmt',
       textEditingController[11].text,
 
-    ))..add(MapEntry(
+    ));
+    if( textEditingController[12].text!=null) {
+      formData.fields.add(MapEntry(
+        'docName1',
+        textEditingController[12].text,
+      ));
+    }
+    if( textEditingController[13].text!=null) {
+      formData.fields.add( MapEntry(
+        'docName2',
+        textEditingController[13].text,
+      ));
+    }
+    if( textEditingController[14].text!=null) {
+      formData.fields.add( MapEntry(
+        'docName3',
+        textEditingController[14].text,
+      ));
+    }
+    if( textEditingController[14].text!=null) {
+      formData.fields.add( MapEntry(
+        'docName4',
+        textEditingController[15].text,
+      ));
+    }
+    if(extension!=null){
+      formData.fields.add(MapEntry(
+        'ext1',
+        extension,
+      ));
+    }
+    if(extension1!=null){
+      formData.fields.add(MapEntry(
+        'ext2',
+        extension1,
+      ));
+    }
+    if(extension2!=null){
+      formData.fields.add(MapEntry(
+        'ext3',
+        extension2,
+      ));}
+    if(extension3!=null) {
+      formData.fields.add(MapEntry(
+        'ext4',
+        extension3,
+      ));
+    }
+
+    /*..add(MapEntry(
         'docName1',
         textEditingController[12].text,
       ))..add(MapEntry(
@@ -921,7 +972,7 @@ class _InsuranceListState extends State<InsuranceList> {
       ..add(MapEntry(
         'ext4',
         extension3,
-      ));
+      ));*/
     if(selectFile!=null) {
       formData.files.add(MapEntry(
         'img1',
@@ -1596,7 +1647,7 @@ class _InsuranceListState extends State<InsuranceList> {
             hintStyle: TextStyle(color: AppData.hintColor, fontSize: 15),
           ),
           textInputAction: TextInputAction.next,
-          keyboardType: TextInputType.number,
+          keyboardType: TextInputType.text,
           controller: textEditingController[index],
           textAlignVertical: TextAlignVertical.center,
           inputFormatters: [

@@ -1612,8 +1612,6 @@ class OrganisationSignUpFormState extends State<OrganisationSignUpForm> {
         textEditingController[8].text,
       ));
     }
-
-
     if(extension!=null){
       formData.fields.add(MapEntry(
         'extone',
