@@ -522,10 +522,10 @@ class BookBloodBankPageState extends State<BookBloodBankPage> {
     _formKey.currentState.validate();
     if (BookBloodBankPage.bloodbankModel == null ||
         BookBloodBankPage.bloodbankModel == "") {
-      AppData.showInSnackBar(context, "Please select Bloodbank Name");
+      AppData.showInSnackBar(context, "Please select blood bank name");
     }else if (BookBloodBankPage.bloodgroupmodel == null ||
           BookBloodBankPage.bloodgroupmodel == "") {
-        AppData.showInSnackBar(context, "Please select Blood Group");
+        AppData.showInSnackBar(context, "Please select blood group");
       } else if (appointmentdate.text == "" || appointmentdate.text == null) {
       AppData.showInSnackBar(context, "Please select Date");
 

@@ -229,6 +229,7 @@ class BloodBankSignUpFormState extends State<BloodBankSignUpForm> {
                                     children: [
                                       Text(
                                         MyLocalizations.of(context).text("FILL_IN_PERSONAL_INFORMATION"),
+                                        textAlign: TextAlign.center,
                                         style: TextStyle(
                                             fontSize: 18, color: Colors.black),
                                       ),
@@ -274,7 +275,7 @@ class BloodBankSignUpFormState extends State<BloodBankSignUpForm> {
                                   SizedBox(
                                     height: 8,
                                   ),
-                                  formField(11,MyLocalizations.of(context).text("ADDRESS"), fnode3, null),
+                                  formFieldAddress(11,MyLocalizations.of(context).text("ADDRESS"), fnode3, null),
 
                                   DropDown.networkDropdownGetpartUser1(
                                       MyLocalizations.of(context).text("GENDER"),
@@ -570,6 +571,8 @@ class BloodBankSignUpFormState extends State<BloodBankSignUpForm> {
         } else if (textEditingController[9].text == "" ||
             textEditingController[9].text == null) {
           AppData.showInSnackBar(context, "Please Enter Professional's Name");
+        }  else if (textEditingController[9].text.length<3) {
+          AppData.showInSnackBar(context, "Please enter valid Professional's Name");
         } else if (textEditingController[10].text == "" ||
             textEditingController[10].text == null) {
           AppData.showInSnackBar(context, "Please Enter Experience");
@@ -983,7 +986,7 @@ class BloodBankSignUpFormState extends State<BloodBankSignUpForm> {
             borderRadius: BorderRadius.circular(5),
             border: Border.all(color: Colors.black, width: 0.3)),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15.0),
+          padding: const EdgeInsets.symmetric(horizontal: 12.0),
           child: Row(
             children: <Widget>[
               new Expanded(
@@ -1053,6 +1056,46 @@ class BloodBankSignUpFormState extends State<BloodBankSignUpForm> {
             textAlignVertical: TextAlignVertical.center,
             inputFormatters: [
               WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
+            ],
+            onFieldSubmitted: (value) {
+              setState(() {});
+              AppData.fieldFocusChange(context, currentfn, nextFn);
+            },
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget formFieldAddress(
+      int index, String hint, FocusNode currentfn, FocusNode nextFn) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8),
+      child: Container(
+        height: 50,
+        padding: EdgeInsets.symmetric(horizontal: 5),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(5),
+          border: Border.all(color: Colors.black, width: 0.3),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: TextFormField(
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: hint,
+              /* prefixIcon:
+              Icon(Icons.person_rounded),*/
+              hintStyle: TextStyle(color: AppData.hintColor, fontSize: 17),
+            ),
+            textInputAction: TextInputAction.next,
+            focusNode: currentfn,
+            keyboardType: TextInputType.text,
+            controller: textEditingController[index],
+            textAlignVertical: TextAlignVertical.center,
+            inputFormatters: [
+              WhitelistingTextInputFormatter(RegExp("[a-zA-Z . , /0-9 ]")),
             ],
             onFieldSubmitted: (value) {
               setState(() {});
