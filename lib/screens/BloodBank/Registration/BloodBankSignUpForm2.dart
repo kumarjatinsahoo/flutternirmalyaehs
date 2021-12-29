@@ -284,6 +284,7 @@ class BloodBankSignUpForm2State extends State<BloodBankSignUpForm2> {
                                     children: [
                                       Text(
                                         MyLocalizations.of(context).text("FILL_IN_PERSONAL_INFORMATION"),
+                                        textAlign: TextAlign.center,
                                         style: TextStyle(
                                             fontSize: 18, color: Colors.black),
                                       ),
@@ -463,32 +464,33 @@ class BloodBankSignUpForm2State extends State<BloodBankSignUpForm2> {
                                         SizedBox(
                                           height: 10,
                                         ),
-                                        RichText(
-                                            textAlign: TextAlign.start,
-                                            text: TextSpan(
-                                              children: [
-                                                TextSpan(
-                                                  text: MyLocalizations.of(context).text("AGREE_EHEALTHSYSTEM"),
-                                                  style: TextStyle(
-                                                    fontFamily: "Monte",
-                                                    fontSize: 13,
-                                                    color: Colors.grey,
+                                        Expanded(
+                                          child: RichText(
+                                              textAlign: TextAlign.start,
+                                              text: TextSpan(
+                                                children: [
+                                                  TextSpan(
+                                                    text: MyLocalizations.of(context).text("AGREE_EHEALTHSYSTEM"),
+                                                    style: TextStyle(
+                                                      fontFamily: "Monte",
+                                                      color: Colors.grey,
+                                                    ),
                                                   ),
-                                                ),
-                                                TextSpan(
-                                                  text: MyLocalizations.of(context).text("T&C"),
-                                                  style: TextStyle(
-                                                    fontFamily: "Monte",fontSize: 13,
-                                                    color: Colors.indigo,
-                                                  ),
-                                                    recognizer: TapGestureRecognizer()
-                                                      ..onTap = () {
-                                                        Navigator.pushNamed(context, "/termsandConditionPage");
-                                                        // AppData.showInSnackBar(context, "Please select Gender");
-                                                      }
-                                                )
-                                              ],
-                                            )),
+                                                  TextSpan(
+                                                    text: MyLocalizations.of(context).text("T&C"),
+                                                    style: TextStyle(
+                                                      fontFamily: "Monte",
+                                                      color: Colors.indigo,
+                                                    ),
+                                                      recognizer: TapGestureRecognizer()
+                                                        ..onTap = () {
+                                                          Navigator.pushNamed(context, "/termsandConditionPage");
+                                                          // AppData.showInSnackBar(context, "Please select Gender");
+                                                        }
+                                                  )
+                                                ],
+                                              )),
+                                        ),
                                       ],
                                     ),
                                   ),
@@ -673,6 +675,9 @@ class BloodBankSignUpForm2State extends State<BloodBankSignUpForm2> {
         } else if (textEditingController[5].text == "" ||
             textEditingController[5].text == null) {
           AppData.showInSnackBar(context, "Please enter Zip/Pin Code");
+        }else if (textEditingController[5].text != "" &&
+            textEditingController[5].text.length != 6) {
+          AppData.showInSnackBar(context, "Please enter a valid Zip/Pin Code ");
         } else if (textEditingController[10].text == "" ||
             textEditingController[10].text == null) {
           AppData.showInSnackBar(context, "Please enter Mobile Number");

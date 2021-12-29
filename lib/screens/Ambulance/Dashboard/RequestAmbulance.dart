@@ -112,7 +112,7 @@ class _RequestAmbulanceState extends State<RequestAmbulance> {
               ambulanceappoint.Body body = ambulanceAppointmentModel.body[i];
               return Padding(
                 padding: const EdgeInsets.only(
-                    left: 15, right: 15, top: 15),
+                    left: 8, right: 8, top: 12),
                 child: Card(
                   child: Container(
                     //height: height * 0.30,
@@ -142,21 +142,25 @@ class _RequestAmbulanceState extends State<RequestAmbulance> {
                                 children: [
                                   Row(
                                     children: [
-                                      Text(
-                                        "Name ",
-                                        style: TextStyle(
-                                          fontWeight:
-                                          FontWeight.w600,
-                                          fontSize: 15,
+                                      Container(
+                                        width: 180,
+                                        child: Text(
+                                          "Name :",
+                                          style: TextStyle(
+                                            fontWeight:
+                                            FontWeight.w600,
+                                            fontSize: 15,
+                                          ),
                                         ),
                                       ),
-                                      Spacer(),
-                                      Text(
-                                        body.patientName,
-                                        style: TextStyle(
-                                            fontSize: 15),
-                                        textAlign:
-                                        TextAlign.right,
+                                      Expanded(
+                                        child: Text(
+                                          body.patientName,
+                                          style: TextStyle(
+                                              fontSize: 15),
+                                          textAlign:
+                                          TextAlign.start,
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -165,19 +169,23 @@ class _RequestAmbulanceState extends State<RequestAmbulance> {
                                   ),
                                   Row(
                                     children: [
-                                      Text(
-                                        "From",
-                                        style: TextStyle(
-                                          fontWeight:
-                                          FontWeight.w600,
-                                          fontSize: 15,
+                                      Container(
+                                        width: 180,
+                                        child: Text(
+                                          "From :",
+                                          style: TextStyle(
+                                            fontWeight:
+                                            FontWeight.w600,
+                                            fontSize: 15,
+                                          ),
                                         ),
                                       ),
-                                      Spacer(),
-                                      Text(
-                                        body.fromLocation,
-                                        style: TextStyle(
-                                            fontSize: 15),
+                                      Expanded(
+                                        child: Text(
+                                          body.fromLocation,
+                                          style: TextStyle(
+                                              fontSize: 15),
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -186,19 +194,23 @@ class _RequestAmbulanceState extends State<RequestAmbulance> {
                                   ),
                                   Row(
                                     children: [
-                                      Text(
-                                        "Destination",
-                                        style: TextStyle(
-                                          fontWeight:
-                                          FontWeight.w600,
-                                          fontSize: 15,
+                                      Container(
+                                        width: 180,
+                                        child: Text(
+                                          "Destination :",
+                                          style: TextStyle(
+                                            fontWeight:
+                                            FontWeight.w600,
+                                            fontSize: 15,
+                                          ),
                                         ),
                                       ),
-                                      Spacer(),
-                                      Text(
-                                        body.toDestination,
-                                        style: TextStyle(
-                                            fontSize: 15),
+                                      Expanded(
+                                        child: Text(
+                                          body.toDestination,
+                                          style: TextStyle(
+                                              fontSize: 15),
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -207,20 +219,24 @@ class _RequestAmbulanceState extends State<RequestAmbulance> {
                                   ),
                                   Row(
                                     children: [
-                                      Text(
-                                        'Patient Notes',
-                                        style: TextStyle(
-                                          fontWeight:
-                                          FontWeight.w600,
-                                          fontSize: 15,
+                                      Container(
+                                        width: 180,
+                                        child: Text(
+                                          "Patient Notes :",
+                                          style: TextStyle(
+                                            fontWeight:
+                                            FontWeight.w600,
+                                            fontSize: 15,
+                                          ),
                                         ),
                                       ),
-                                      Spacer(),
-                                      Text(
-                                        body.patientNote,
-                                        textAlign: TextAlign.left,
-                                        style: TextStyle(
-                                            fontSize: 15),
+                                      Expanded(
+                                        child: Text(
+                                          body.patientNote,
+                                          textAlign: TextAlign.left,
+                                          style: TextStyle(
+                                              fontSize: 15),
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -239,6 +255,7 @@ class _RequestAmbulanceState extends State<RequestAmbulance> {
                                         },
                                         child: Container(
                                           height: size.height * 0.06,
+                                          width: 120,
                                           decoration: BoxDecoration(
                                               borderRadius:
                                               BorderRadius.circular(5),
@@ -258,7 +275,7 @@ class _RequestAmbulanceState extends State<RequestAmbulance> {
                                           ),
                                         ),
                                       ),
-                                    Spacer(),
+                                      SizedBox(width: 60),
                                       Expanded(
                                         child: InkWell(
                                           onTap: () {
@@ -267,6 +284,7 @@ class _RequestAmbulanceState extends State<RequestAmbulance> {
                                           },
                                           child: Container(
                                             height: size.height * 0.06,
+                                            width: 100,
                                             decoration: BoxDecoration(
                                                 borderRadius:
                                                 BorderRadius.circular(5),
