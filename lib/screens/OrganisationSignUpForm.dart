@@ -187,6 +187,13 @@ class OrganisationSignUpFormState extends State<OrganisationSignUpForm> {
     OrganisationSignUpForm.blockModel = null;
     OrganisationSignUpForm.genderModel = null;
     OrganisationSignUpForm.bloodgroupModel = null;
+
+    OrganisationSignUpForm.countryModel = null;
+    OrganisationSignUpForm.stateModel = null;
+    OrganisationSignUpForm.districtModel = null;
+    OrganisationSignUpForm.citymodel = null;
+
+
     /*setState(() {
       masterClass = widget.model.masterDataResponse;
     });
@@ -1520,7 +1527,7 @@ class OrganisationSignUpFormState extends State<OrganisationSignUpForm> {
           AppData.showInSnackBar(context, "Please Enter Address");
 
         }else if (textEditingController[2].text != 3) {
-          AppData.showInSnackBar(context, "Please Enter valid Address");
+          AppData.showInSnackBar(context, "Please Enter Address");
 
         }
         else if (textEditingController[3].text == "" ||

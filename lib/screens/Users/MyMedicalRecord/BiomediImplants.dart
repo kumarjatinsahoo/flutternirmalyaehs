@@ -35,7 +35,7 @@ class _BiomediImplantsState extends State<BiomediImplants> {
   String selectDob;
   bool isdata = false;
   DateTime selectedDate = DateTime.now();
-  final df = new DateFormat('dd/MM/yyyy');
+  final df = new DateFormat('dd-MM-yyyy');
 
   TextEditingController _date = TextEditingController();
   TextEditingController _reason = TextEditingController();
@@ -80,6 +80,13 @@ class _BiomediImplantsState extends State<BiomediImplants> {
               setState(() {
                 biomedicalModel = bio.BiomedicalModel.fromJson(map);
               });
+              if (biomedicalModel?.body[0].bioMName != null) {
+                BiomediImplants.admequipmentmodel = KeyvalueModel(
+                    key: biomedicalModel.body[0].bioid,
+                    name: biomedicalModel.body[0].bioMName);
+              } else {
+                BiomediImplants.admequipmentmodel = null;
+              }
             } else {
               setState(() {
                 isDataNoFound = true;
@@ -132,161 +139,213 @@ class _BiomediImplantsState extends State<BiomediImplants> {
       /*
         ],
       ),*/
-        appBar: AppBar(
+      appBar: AppBar(
           centerTitle: true,
           backgroundColor: AppData.kPrimaryColor,
           title: Text(MyLocalizations.of(context).text("BIOMEDICAL")),
-            actions: <Widget>[
-        Padding(
-        padding: EdgeInsets.only(right: 20.0),
-        child:InkWell(
-            onTap: () {
-              displayTextInputDialog(context);
-            },
-          child: Icon(
-            Icons.add_circle_outline_sharp,
-            size: 26.0,
-          ),),
-      ),
-  ]
-        ),
-        body:
-        isdata == true
-            ? CircularProgressIndicator(
-          backgroundColor: AppData.matruColor,
-        )
-            : biomedicalModel == null || biomedicalModel == null
-            ? Container(
-          child: Center(
-            child: Text("No Data Found",
-              style:
-              TextStyle(color: Colors.black, fontSize: 15),
-            ),
-          ),
-        ) : Container(
-            child: SingleChildScrollView(
-            child:
-        (biomedicalModel != null)
-            ? ListView.builder(
-                itemCount: biomedicalModel.body.length,
-                shrinkWrap: true,
-                itemBuilder: (context, i) {
-                  bio.Body body = biomedicalModel.body[i];
-                  return Padding(
-                    padding: const EdgeInsets.only(left: 5, right: 5, top: 5),
-                    child: Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5.0),
-                      ),
-                      shadowColor: Colors.grey,
-                      elevation: 10,
-                      child: ClipPath(
-                        clipper: ShapeBorderClipper(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(5))),
-                        child: Container(
-                          decoration: (i % 2 == 0)
-                              ? BoxDecoration(
-                                  border: Border(
-                                      left: BorderSide(
-                                          color: AppData.kPrimaryRedColor,
-                                          width: 5)))
-                              : BoxDecoration(
-                                  border: Border(
-                                      left: BorderSide(
-                                          color: AppData.kPrimaryColor,
-                                          width: 5))),
-                          width: double.maxFinite,
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 10.0, top: 10, right: 10.0),
-                                child: Row(
-                                  children: [
-                                    Expanded(
-                                      flex: 1,
-                                      child: Text(
-                                        "Name",
-                                        style: TextStyle(
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ),
-                                    Expanded(
-                                      child: Text(
-                                        body?.bioMName ?? "N/A",
-                                        style: TextStyle(fontSize: 15),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              //SizedBox(height: 2),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 10.0, top: 10, right: 10.0),
-                                child: Row(
-                                  children: [
-                                    Expanded(
-                                      flex: 1,
-                                      child: Text(
-                                        "Date",
-                                        style: TextStyle(
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ),
-                                    Expanded(flex: 1,
-                                      child: Text(
-                                        body?.bioMDate ?? "N/A",
-                                        style: TextStyle(fontSize: 15),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              // SizedBox(height: 5),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 10.0, top: 10, right: 10.0),
-                                child: Row(
-                                  children: [
-                                    Expanded(
-                                      flex: 1,
-                                      child: Text(
-                                        "Reason",
-                                        style: TextStyle(
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ),
-                                    Expanded(flex: 1,
-                                      child: Text(
-                                        body?.bioMReason ?? "N/A",
-                                        style: TextStyle(fontSize: 15),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              SizedBox(height: 10),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  );
+          actions: <Widget>[
+            Padding(
+              padding: EdgeInsets.only(right: 20.0),
+              child: InkWell(
+                onTap: () {
+                  displayTextInputDialog(context);
                 },
-        ): Container(),
+                child: Icon(
+                  Icons.add_circle_outline_sharp,
+                  size: 26.0,
+                ),
+              ),
             ),
-       /* ): Container(
+          ]),
+      body: isdata == true
+          ? CircularProgressIndicator(
+              backgroundColor: AppData.matruColor,
+            )
+          : biomedicalModel == null || biomedicalModel == null
+              ? Container(
+                  child: Center(
+                    child: Text(
+                      "No Data Found",
+                      style: TextStyle(color: Colors.black, fontSize: 15),
+                    ),
+                  ),
+                )
+              : Container(
+                  child: SingleChildScrollView(
+                    child: (biomedicalModel != null)
+                        ? ListView.builder(
+                            itemCount: biomedicalModel.body.length,
+                            shrinkWrap: true,
+                            itemBuilder: (context, i) {
+                              bio.Body body = biomedicalModel.body[i];
+                              return Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 5, right: 5, top: 5),
+                                child: Card(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(5.0),
+                                  ),
+                                  shadowColor: Colors.grey,
+                                  elevation: 10,
+                                  child: ClipPath(
+                                    clipper: ShapeBorderClipper(
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(5))),
+                                    child: Container(
+                                      decoration: (i % 2 == 0)
+                                          ? BoxDecoration(
+                                              border: Border(
+                                                  left: BorderSide(
+                                                      color: AppData
+                                                          .kPrimaryRedColor,
+                                                      width: 5)))
+                                          : BoxDecoration(
+                                              border: Border(
+                                                  left: BorderSide(
+                                                      color:
+                                                          AppData.kPrimaryColor,
+                                                      width: 5))),
+                                      width: double.maxFinite,
+                                      child: Column(
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: 10.0,
+                                                top: 10,
+                                                right: 10.0),
+                                            child: Row(
+                                              children: [
+                                                Expanded(
+                                                  flex: 1,
+                                                  child: Text(
+                                                    " ",
+                                                    style: TextStyle(
+                                                        fontSize: 15,
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  ),
+                                                ),
+                                                InkWell(
+                                                  onTap: () {
+                                                    setState(() {
+                                                      BiomedicaldisplayDialog(
+                                                          context, biomedicalModel, i);
+                                                    });
+
+                                                  },
+                                                  child: Icon(
+                                                    Icons.edit,
+                                                    size: 20,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          //SizedBox(height: 2),
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: 10.0,
+                                                top: 10,
+                                                right: 10.0),
+                                            child: Row(
+                                              children: [
+                                                Expanded(
+                                                  flex: 1,
+                                                  child: Text(
+                                                    "Name",
+                                                    style: TextStyle(
+                                                        fontSize: 15,
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  ),
+                                                ),
+                                                Expanded(
+                                                  flex: 1,
+                                                  child: Text(
+                                                    body?.bioMName ?? "N/A",
+                                                    style:
+                                                        TextStyle(fontSize: 15),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: 10.0,
+                                                top: 10,
+                                                right: 10.0),
+                                            child: Row(
+                                              children: [
+                                                Expanded(
+                                                  flex: 1,
+                                                  child: Text(
+                                                    "Date",
+                                                    style: TextStyle(
+                                                        fontSize: 15,
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  ),
+                                                ),
+                                                Expanded(
+                                                  flex: 1,
+                                                  child: Text(
+                                                    body?.bioMDate ?? "N/A",
+                                                    style:
+                                                        TextStyle(fontSize: 15),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          // SizedBox(height: 5),
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: 10.0,
+                                                top: 10,
+                                                right: 10.0),
+                                            child: Row(
+                                              children: [
+                                                Expanded(
+                                                  flex: 1,
+                                                  child: Text(
+                                                    "Reason",
+                                                    style: TextStyle(
+                                                        fontSize: 15,
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  ),
+                                                ),
+                                                Expanded(
+                                                  flex: 1,
+                                                  child: Text(
+                                                    body?.bioMReason ?? "N/A",
+                                                    style:
+                                                        TextStyle(fontSize: 15),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          SizedBox(height: 10),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              );
+                            },
+                          )
+                        : Container(),
+                  ),
+                  /* ): Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
           alignment: Alignment.center,
           child: (isDataNoFound) ? Text("Data Not Found"):callApi(),
 */
-        ),
+                ),
     );
   }
 
@@ -313,7 +372,8 @@ class _BiomediImplantsState extends State<BiomediImplants> {
                           child: Column(
                             children: [
                               Center(
-                                child: Text("Add Details",
+                                child: Text(
+                                  "Add Details",
                                   style: TextStyle(
                                       color: Colors.black, fontSize: 20),
                                 ),
@@ -333,7 +393,8 @@ class _BiomediImplantsState extends State<BiomediImplants> {
                         //   });
                         // }),
 
-                        DropDown.networkDropdownGetpartUser1(MyLocalizations.of(context).text("NAME"),
+                        DropDown.networkDropdownGetpartUser1(
+                            MyLocalizations.of(context).text("NAME"),
                             ApiFactory.ADM_EQUIPMENT_API,
                             "typelist",
                             Icons.location_on_rounded,
@@ -347,28 +408,8 @@ class _BiomediImplantsState extends State<BiomediImplants> {
                         dob(),
                         SizedBox(height: 8),
 
-                        formField(1,MyLocalizations.of(context).text("REASON")),
-
-                        // TextField(
-                        //   controller: _reason,
-                        //   inputFormatters: [
-                        //     WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
-                        //   ],
-                        //   decoration: InputDecoration(hintText: "Reason"),
-                        // ),
-                        // TextField(
-                        //   onChanged: (value) {
-                        //     setState(() {
-                        //       // valueText = value;
-                        //       // updateProfileModel.fName = value;
-                        //     });
-                        //   },
-                        //   // controller: _fDoctor,
-                        //   inputFormatters: [
-                        //     WhitelistingTextInputFormatter(RegExp("[a-zA-Z. ]")),
-                        //   ],
-                        //   decoration: InputDecoration(hintText: "Updated by"),
-                        // ),
+                        formField(
+                            1, MyLocalizations.of(context).text("REASON")),
                       ],
                     ),
                   ),
@@ -378,11 +419,12 @@ class _BiomediImplantsState extends State<BiomediImplants> {
             actions: <Widget>[
               FlatButton(
                 textColor: AppData.kPrimaryRedColor,
-                child:Text(MyLocalizations.of(context).text("CANCEL"),
+                child: Text(
+                  MyLocalizations.of(context).text("CANCEL"),
                 ),
                 onPressed: () {
                   setState(() {
-                    BiomediImplants.admequipmentmodel=null;
+                    BiomediImplants.admequipmentmodel = null;
                     _date.text = "";
                     _reason.text = "";
                     Navigator.pop(context);
@@ -404,36 +446,37 @@ class _BiomediImplantsState extends State<BiomediImplants> {
                     AppData.showInSnackBar(context, "Please enter DOB");
                   } else if (_reason.text == "" || _reason.text == null) {
                     AppData.showInSnackBar(context, "Please enter Reason");
-                  } else if (_reason.text  != "" &&  _reason.text.length <= 2) {
-                    AppData.showInSnackBar(context, "Please enter valid Reason");
+                  } else if (_reason.text != "" && _reason.text.length <= 2) {
+                    AppData.showInSnackBar(
+                        context, "Please enter valid Reason");
                   } else {
                     MyWidgets.showLoading(context);
                     AddBioMedicalModel biomedicalModel = AddBioMedicalModel();
                     biomedicalModel.userid = loginResponse1.body.user;
-                    biomedicalModel.bioMName =
-                        BiomediImplants.admequipmentmodel.key;
+                    biomedicalModel.bioMName = BiomediImplants.admequipmentmodel.key;
                     biomedicalModel.bioMDate = _date.text;
                     biomedicalModel.bioMReason = _reason.text;
-
+                    log("Value json>>" +
+                        biomedicalModel.toJson().toString());
                     widget.model.POSTMETHOD2(
-                      api: ApiFactory.ADD_BIOMEDICAL_IMPLANTS,
-                      json: biomedicalModel.toJson(),
-                      token: widget.model.token,
-                      fun: (Map<String, dynamic> map) {
-                        Navigator.pop(context);
-                        setState(() {
+                        api: ApiFactory.ADD_BIOMEDICAL_IMPLANTS,
+                        json: biomedicalModel.toJson(),
+                        token: widget.model.token,
+                        fun: (Map<String, dynamic> map) {
+                          Navigator.pop(context);
                           if (map[Const.STATUS1] == Const.SUCCESS) {
                             Navigator.pop(context);
+                            //  Navigator.pop(context);
+                            // popup(context, map[Const.MESSAGE]);
                             callApi();
                             AppData.showInSnackDone(
                                 context, map[Const.MESSAGE]);
                           } else {
-
-                            AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                            // AppData.showInSnackBar(context, map[Const.MESSAGE]);
                           }
-                        });
-                      },
+                        }
                     );
+
                   }
                 },
               ),
@@ -483,13 +526,13 @@ class _BiomediImplantsState extends State<BiomediImplants> {
                 AppData.fieldFocusChange(context, fnode3, fnode4);
               },
               decoration: InputDecoration(
-                hintText:(MyLocalizations.of(context).text("DATE")),
+                hintText: (MyLocalizations.of(context).text("DATE")),
                 border: InputBorder.none,
                 //contentPadding: EdgeInsets.symmetric(vertical: 10),
                 suffixIcon: Icon(
                   Icons.calendar_today,
                   size: 18,
-                  color:Colors.grey,
+                  color: Colors.grey,
                 ),
               ),
             ),
@@ -505,7 +548,8 @@ class _BiomediImplantsState extends State<BiomediImplants> {
         locale: Locale("en"),
         initialDate: DateTime.now(),
         firstDate: DateTime(1901, 1),
-        lastDate: DateTime.now().add(new Duration(days:0 ))); //18 years is 6570 days
+        lastDate:
+            DateTime.now().add(new Duration(days: 0))); //18 years is 6570 days
     if (picked != null && picked != selectedDate)
       setState(() {
         selectedDate = picked;
@@ -547,5 +591,147 @@ class _BiomediImplantsState extends State<BiomediImplants> {
         ),
       ),
     );
+  }
+
+  BiomedicaldisplayDialog(BuildContext context, bio.BiomedicalModel biomedicalModel,int i) {
+    _date.text =biomedicalModel.body[i].bioMDate??"";
+    _reason.text =biomedicalModel.body[i].bioMReason??"";
+
+    if (biomedicalModel.body[i].bioMName == null ||
+        biomedicalModel.body[i].bioMName == "") {
+      BiomediImplants.admequipmentmodel = null;
+    } else {
+      BiomediImplants.admequipmentmodel = KeyvalueModel(
+          key: biomedicalModel.body[i].bioid,
+          name: biomedicalModel.body[i].bioMName);
+    }
+
+
+    showDialog(
+        builder: (context) {
+          return AlertDialog(
+            contentPadding: EdgeInsets.only(left: 5, right: 5, top: 30),
+            insetPadding: EdgeInsets.only(left: 5, right: 5, top: 30),
+            content: StatefulBuilder(
+              builder: (BuildContext context, StateSetter setState) {
+                return Container(
+                  width: MediaQuery.of(context).size.width * 0.86,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SizedBox(height: 10),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 0, right: 0),
+                          child: Column(
+                            children: [
+                              Center(
+                                child: Text(
+                                  "Add Details",
+                                  style: TextStyle(
+                                      color: Colors.black, fontSize: 20),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+
+                        DropDown.networkDropdownGetpartUser1(
+                            MyLocalizations.of(context).text("NAME"),
+                            ApiFactory.ADM_EQUIPMENT_API,
+                            "biotype",
+                            Icons.location_on_rounded,
+                            23.0, (KeyvalueModel data) {
+                          setState(() {
+                            print(ApiFactory.ADM_EQUIPMENT_API);
+                            BiomediImplants.admequipmentmodel = data;
+                            BiomediImplants.admequipmentmodel = data.key;
+                          });
+                        }),
+                        SizedBox(height: 8),
+                        dob(),
+                        SizedBox(height: 8),
+
+                        formField(
+                            1, MyLocalizations.of(context).text("REASON")),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            ),
+            actions: <Widget>[
+              FlatButton(
+                textColor: AppData.kPrimaryRedColor,
+                child: Text(
+                  MyLocalizations.of(context).text("CANCEL"),
+                ),
+                onPressed: () {
+                  setState(() {
+                    BiomediImplants.admequipmentmodel = null;
+                    _date.text = "";
+                    _reason.text = "";
+                    Navigator.pop(context);
+                  });
+                },
+              ),
+              FlatButton(
+                //textColor: Colors.grey,
+                child: Text(
+                  MyLocalizations.of(context).text("SUBMIT"),
+                  //style: TextStyle(color: Colors.grey),
+                  style: TextStyle(color: AppData.matruColor),
+                ),
+                onPressed: () {
+                  if (BiomediImplants.admequipmentmodel == null ||
+                      BiomediImplants.admequipmentmodel == "") {
+                    AppData.showInSnackBar(context, "Please select Name ");
+                  } else if (_date.text == "" || _date.text == null) {
+                    AppData.showInSnackBar(context, "Please enter DOB");
+                  } else if (_reason.text == "" || _reason.text == null) {
+                    AppData.showInSnackBar(context, "Please enter Reason");
+                  } else if (_reason.text != "" && _reason.text.length <= 2) {
+                    AppData.showInSnackBar(
+                        context, "Please enter valid Reason");
+                  } else {
+                    MyWidgets.showLoading(context);
+                    AddBioMedicalModel biomedicalModell = AddBioMedicalModel();
+                    biomedicalModell.userid = loginResponse1.body.user;
+                    biomedicalModell.bioMName = BiomediImplants.admequipmentmodel.key;
+                    biomedicalModell.bioMDate = _date.text;
+                    biomedicalModell.bioMReason = _reason.text;
+                    biomedicalModell.id =biomedicalModel.body[i].id;
+                    log("Value json>>" +
+                        biomedicalModell.toJson().toString());
+
+                    widget.model.POSTMETHOD2(
+                      api: ApiFactory.ADD_BIOMEDICAL_IMPLANTS,
+                      json: biomedicalModell.toJson(),
+                      token: widget.model.token,
+                        fun: (Map<String, dynamic> map) {
+                          Navigator.pop(context);
+                          if (map[Const.STATUS1] == Const.SUCCESS) {
+                            Navigator.pop(context);
+                            //  Navigator.pop(context);
+                            // popup(context, map[Const.MESSAGE]);
+                            callApi();
+                            AppData.showInSnackDone(
+                                context, map[Const.MESSAGE]);
+                          } else {
+                            // AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                          }
+                        }
+                    );
+                  }
+                },
+              ),
+            ],
+          );
+        },
+        context: context);
   }
 }
