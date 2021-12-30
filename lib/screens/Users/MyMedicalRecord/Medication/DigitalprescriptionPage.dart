@@ -44,7 +44,7 @@ class _DisitalPrescriptionPageState extends State<DisitalPrescriptionPage> {
         disableVerticalScroll: false,
       ),
   );
-/*  final Completer<InAppWebViewController> _controller1 =
+/* final Completer<InAppWebViewController> _controller1 =
   Completer<InAppWebViewController>();
 
   final InAppWebViewGroupOptions _options = InAppWebViewGroupOptions(
