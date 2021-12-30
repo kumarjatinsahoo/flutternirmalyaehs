@@ -5,6 +5,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:user/localization/application.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/LoginResponse1.dart';
+import 'package:user/models/MasterLoginResponse.dart' as master;
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/SharedPref.dart';
 import 'package:user/providers/api_factory.dart';
@@ -79,6 +80,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
   var pin;
   String token = "";
+
+  master.MasterLoginResponse masterResponse;
 
   @override
   void initState() {
@@ -474,6 +477,176 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
+  Widget dialogUserView(BuildContext context,List<master.Body> data) {
+    return AlertDialog(
+      contentPadding: EdgeInsets.zero,
+      insetPadding: EdgeInsets.zero,
+      actions: [
+        MaterialButton(onPressed: (){
+          Navigator.pop(context);
+        },child: Text("Cancel"),)
+      ],
+      content: StatefulBuilder(
+        builder: (BuildContext context, StateSetter setState) {
+          return Container(
+            padding: EdgeInsets.only(left: 5, right: 5, top: 20),
+            //color: Colors.grey,
+            width: MediaQuery.of(context).size.width * 0.9,
+            height: 450,
+            child: Column(
+              children: [
+                Text(
+                  "Login Users",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 23,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                SizedBox(height: 20,),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        //_buildAboutText(),
+                        //_buildLogoAttribution(),
+
+                        ListView.separated(
+                          separatorBuilder: (c,i){
+                            return Divider();
+                          },
+                          physics: NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemBuilder: (c, i) {
+                            return ListTile(
+                              leading: Icon(CupertinoIcons.person_alt_circle,size: 44,),
+                              title: Text(data[i].userName),
+                              subtitle: Text(data[i].user),
+                              onTap: (){
+                              /*  sharedPref.save(Const.LOGIN_phoneno, _loginId.text);
+                                sharedPref.save(Const.LOGIN_password, passController.text);
+                                LoginResponse1 loginResponse = LoginResponse1();
+                                // loginResponse.acceptValue(data[i]);
+                                Body body=Body();
+                                body.user=data[i].user;
+                                body.userName=data[i].userName;
+                                body.userAddress=data[i].userAddress;
+                                body.userPassword=data[i].userPassword;
+                                body.userMobile=data[i].userMobile;
+                                body.userStatus=data[i].userStatus;
+                                body.token=data[i].token;
+                                body.roles.add(value)
+                                loginResponse.body=body;
+                                widget.model.token = data[i].token;
+                                widget.model.user = data[i].user;
+                                log("Response after assign>>>>"+jsonEncode(loginResponse.toJson()));
+                                sharedPref.save(Const.LOGIN_DATA, loginResponse);
+                                widget.model.setLoginData1(loginResponse);
+                                sharedPref.save(Const.IS_LOGIN, "true");*/
+                                roleUpdateApi(data[i].user,data[i]);
+
+                              },
+                              trailing: Icon(Icons.arrow_right),
+                            );
+                          },
+                          itemCount: data.length,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
+      ),
+      /*actions: <Widget>[
+        new FlatButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          textColor: Colors.grey[900],
+          child: Text("Cancel"),
+        ),
+        new FlatButton(
+          textColor: Theme.of(context).primaryColor,
+          child: const Text('SEARCH'),
+        ),
+      ],*/
+    );
+  }
+
+  roleUpdateApi(userId,data){
+    MyWidgets.showLoading(context);
+    widget.model.GETMETHODCALL(api: ApiFactory.GET_ROLE+userId, fun: (Map<String,dynamic> map){
+      Navigator.pop(context);
+      if(map["code"]=="success"){
+
+
+        sharedPref.save(Const.LOGIN_phoneno, _loginId.text);
+        sharedPref.save(Const.LOGIN_password, passController.text);
+        LoginResponse1 loginResponse = LoginResponse1();
+        // loginResponse.acceptValue(data[i]);
+        Body body=Body();
+        body.user=data.user;
+        body.userName=data.userName;
+        body.userAddress=data.userAddress;
+        body.userPassword=data.userPassword;
+        body.userMobile=data.userMobile;
+        body.userStatus=data.userStatus;
+        body.token=data.token;
+        body.roles=[];
+        body.roles.add(map["body"]["roleid"]);
+        loginResponse.body=body;
+        widget.model.token = data.token;
+        widget.model.masterResponse = masterResponse;
+        widget.model.user = data.user;
+        log("Response after assign>>>>"+jsonEncode(loginResponse.toJson()));
+        sharedPref.save(Const.LOGIN_DATA, loginResponse);
+        sharedPref.save(Const.MASTER_RESPONSE, masterResponse);
+        widget.model.setLoginData1(loginResponse);
+        sharedPref.save(Const.IS_LOGIN, "true");
+
+
+        if (map["body"]["roleid"] == "1".toLowerCase()) {
+          Navigator.of(context).pushNamedAndRemoveUntil(
+              '/dashboard', (Route<dynamic> route) => false);
+        } else if (map["body"]["roleid"] ==
+            "2".toLowerCase()) {
+          Navigator.of(context).pushNamedAndRemoveUntil(
+              '/dashDoctor', (Route<dynamic> route) => false);
+        } else if (map["body"]["roleid"] ==
+            "5".toLowerCase()) {
+          Navigator.of(context).pushNamedAndRemoveUntil(
+              '/dashboardreceptionlist',
+                  (Route<dynamic> route) => false);
+        } else if (map["body"]["roleid"] ==
+            "7".toLowerCase()) {
+          Navigator.of(context).pushNamedAndRemoveUntil(
+              '/dashboardpharmacy',
+                  (Route<dynamic> route) => false);
+        } else if (map["body"]["roleid"] ==
+            "8".toLowerCase()) {
+          Navigator.of(context).pushNamedAndRemoveUntil(
+              '/labDash', (Route<dynamic> route) => false);
+        } else if (map["body"]["roleid"] ==
+            "12".toLowerCase()) {
+          Navigator.of(context).pushNamedAndRemoveUntil(
+              '/ambulancedash', (Route<dynamic> route) => false);
+        } else if (map["body"]["roleid"] ==
+            "13".toLowerCase()) {
+          Navigator.of(context).pushNamedAndRemoveUntil(
+              '/bloodBankDashboard',
+                  (Route<dynamic> route) => false);
+        } else {
+          AppData.showInSnackBar(context, "No Role Assign");
+        }
+      }
+    });
+  }
+
   Widget _loginButton() {
     return MyWidgets.nextButton(
       text: MyLocalizations.of(context).text("LOGIN"),
@@ -492,7 +665,7 @@ class _LoginScreenState extends State<LoginScreen> {
           widget.model.passWord = passController.text;
           MyWidgets.showLoading(context);
           widget.model.GETMETHODCALL(
-              api: ApiFactory.LOGIN_PASS(_loginId.text, passController.text),
+              api: ApiFactory.LOGIN_PASS_MULTIPLE(_loginId.text, passController.text),
               fun: (Map<String, dynamic> map) {
                 Navigator.pop(context);
                 log("LOGIN RESPONSE>>>>" + jsonEncode(map));
@@ -503,7 +676,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   setState(() {
                     widget.model.phnNo = _loginId.text;
                     widget.model.passWord = passController.text;
-                    sharedPref.save(Const.LOGIN_phoneno, _loginId.text);
+                    masterResponse = master.MasterLoginResponse.fromJson(map);
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) => dialogUserView(context,masterResponse.body),
+                    );
+                    /* sharedPref.save(Const.LOGIN_phoneno, _loginId.text);
                     sharedPref.save(Const.LOGIN_password, passController.text);
                     LoginResponse1 loginResponse = LoginResponse1.fromJson(map);
                     widget.model.token = loginResponse.body.token;
@@ -559,7 +737,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           (Route<dynamic> route) => false);
                     } else {
                       AppData.showInSnackBar(context, "No Role Assign");
-                    }
+                    }*/
                   });
                 } else {
                   AppData.showInSnackBar(context, map[Const.MESSAGE]);
@@ -658,7 +836,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           // ),
                           onTap: () {
                             //Navigator.pop(context);
-                            organisationDialog(context,"/doctorsignupform2");
+                            organisationDialog(context, "/doctorsignupform2");
                             //Navigator.pop(context);
                             //Navigator.pushNamed(context, "/doctorsignupform2");
                             // Navigator.pushNamed(context, "/doctorsignupform");
@@ -676,7 +854,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           // ),
                           onTap: () {
                             //Navigator.pop(context);
-                            organisationDialog(context,"/labsignupform");
+                            organisationDialog(context, "/labsignupform");
                             //Navigator.pushNamed(context, "/labsignupform");
                           },
                         ),

@@ -13,6 +13,7 @@ import 'package:user/models/AddUserFamilyDetailsModel.dart';
 import 'package:user/models/FamilyDoctorModel.dart';
 import 'package:user/models/KeyvalueModel.dart';
 import 'package:user/models/LoginResponse1.dart';
+import 'package:user/models/LoginResponse1.dart' as login;
 import 'package:user/models/PatientListModel.dart';
 import 'package:user/models/ProfileModel.dart';
 import 'package:user/models/ProfileModel.dart';
@@ -21,6 +22,7 @@ import 'package:user/models/UpdateProfileModel.dart';
 import 'package:user/models/UserFamilyDetailModel.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/DropDown.dart';
+import 'package:user/providers/SharedPref.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/providers/text_field_container.dart';
@@ -175,6 +177,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
   //TabController _controller;
 
   UpdateProfileModel updateProfileModel = UpdateProfileModel();
+
+  SharedPref sharedPref=SharedPref();
 
   @override
   void initState() {
@@ -537,12 +541,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         SizedBox(
                           height: 20,
                         ),
-                        Text(
-                          patientProfileModel?.body?.fullName ?? "N/A",
-                          style: TextStyle(
-                              fontSize: 20,
-                              color: Colors.black,
-                              fontWeight: FontWeight.w600),
+                        InkWell(
+                          onTap: (){
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) => dialogUserView(context),
+                            );
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SizedBox(width: 20,),
+                              Text(
+                                patientProfileModel?.body?.fullName ?? "N/A",
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w600),
+                              ),
+                              Icon(Icons.arrow_drop_down)
+                            ],
+                          ),
                         ),
                         SizedBox(
                           height: 10,
@@ -671,6 +690,160 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ),
     );
   }
+
+
+
+
+  ///////Profile Swap ////Sanjaya//////
+
+  Widget dialogUserView(BuildContext context) {
+    return AlertDialog(
+      contentPadding: EdgeInsets.zero,
+      insetPadding: EdgeInsets.zero,
+      actions: [
+        MaterialButton(onPressed: (){
+          Navigator.pop(context);
+        },child: Text("Cancel"),)
+      ],
+      content: StatefulBuilder(
+        builder: (BuildContext context, StateSetter setState) {
+          return Container(
+            padding: EdgeInsets.only(left: 5, right: 5, top: 20),
+            //color: Colors.grey,
+            width: MediaQuery.of(context).size.width * 0.9,
+            height: 450,
+            child: Column(
+              children: [
+                Text(
+                  "Login Users",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 23,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                SizedBox(height: 20,),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        //_buildAboutText(),
+                        //_buildLogoAttribution(),
+
+                        ListView.separated(
+                          separatorBuilder: (c,i){
+                            return Divider();
+                          },
+                          physics: NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemBuilder: (c, i) {
+                            return ListTile(
+                              leading: Icon(CupertinoIcons.person_alt_circle,size: 44,),
+                              title: Text(widget.model.masterResponse.body[i].userName),
+                              subtitle: Text(widget.model.masterResponse.body[i].user),
+                              onTap: (){
+                                roleUpdateApi(widget.model.masterResponse.body[i]);
+                              },
+                              trailing: Icon(Icons.arrow_right),
+                            );
+                          },
+                          itemCount: widget.model.masterResponse.body.length,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
+      ),
+      /*actions: <Widget>[
+        new FlatButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          textColor: Colors.grey[900],
+          child: Text("Cancel"),
+        ),
+        new FlatButton(
+          textColor: Theme.of(context).primaryColor,
+          child: const Text('SEARCH'),
+        ),
+      ],*/
+    );
+  }
+
+  roleUpdateApi(data){
+    MyWidgets.showLoading(context);
+    widget.model.GETMETHODCALL(api: ApiFactory.GET_ROLE+data.user, fun: (Map<String,dynamic> map){
+      Navigator.pop(context);
+      if(map["code"]=="success"){
+        LoginResponse1 loginResponse = LoginResponse1();
+        login.Body body=login.Body();
+        body.user=data.user;
+        body.userName=data.userName;
+        body.userAddress=data.userAddress;
+        body.userPassword=data.userPassword;
+        body.userMobile=data.userMobile;
+        body.userStatus=data.userStatus;
+        body.token=data.token;
+        body.roles=[];
+        body.roles.add(map["body"]["roleid"]);
+        loginResponse.body=body;
+        widget.model.token = data.token;
+        widget.model.user = data.user;
+        log("Response after assign>>>>"+jsonEncode(loginResponse.toJson()));
+        sharedPref.save(Const.LOGIN_DATA, loginResponse);
+        widget.model.setLoginData1(loginResponse);
+
+
+        if (map["body"]["roleid"] == "1".toLowerCase()) {
+          Navigator.of(context).pushNamedAndRemoveUntil(
+              '/dashboard', (Route<dynamic> route) => false);
+        } else if (map["body"]["roleid"] ==
+            "2".toLowerCase()) {
+          Navigator.of(context).pushNamedAndRemoveUntil(
+              '/dashDoctor', (Route<dynamic> route) => false);
+        } else if (map["body"]["roleid"] ==
+            "5".toLowerCase()) {
+          Navigator.of(context).pushNamedAndRemoveUntil(
+              '/dashboardreceptionlist',
+                  (Route<dynamic> route) => false);
+        } else if (map["body"]["roleid"] ==
+            "7".toLowerCase()) {
+          Navigator.of(context).pushNamedAndRemoveUntil(
+              '/dashboardpharmacy',
+                  (Route<dynamic> route) => false);
+        } else if (map["body"]["roleid"] ==
+            "8".toLowerCase()) {
+          Navigator.of(context).pushNamedAndRemoveUntil(
+              '/labDash', (Route<dynamic> route) => false);
+        } else if (map["body"]["roleid"] ==
+            "12".toLowerCase()) {
+          Navigator.of(context).pushNamedAndRemoveUntil(
+              '/ambulancedash', (Route<dynamic> route) => false);
+        } else if (map["body"]["roleid"] ==
+            "13".toLowerCase()) {
+          Navigator.of(context).pushNamedAndRemoveUntil(
+              '/bloodBankDashboard',
+                  (Route<dynamic> route) => false);
+        } else {
+          AppData.showInSnackBar(context, "No Role Assign");
+        }
+      }
+    });
+  }
+
+
+
+
+  /////////////////////
+
+
+
 
    Widget rowValue() {
     return

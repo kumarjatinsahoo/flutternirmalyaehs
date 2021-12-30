@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -12,8 +13,11 @@ import 'package:flutter/material.dart';
 //import 'package:matrujyoti/models/LoginResponse.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:user/providers/api_factory.dart';
+import 'package:user/providers/app_data.dart';
 
-class RestAPI extends Model {
+import 'PassData.dart';
+
+class RestAPI extends Model with PassData{
   var dio = Dio();
   SharedPref sharedPref = SharedPref();
   LoginResponse1 loginData1;
@@ -124,8 +128,25 @@ class RestAPI extends Model {
       if (e.type == DioErrorType.RESPONSE) {
         fun(failedMap);
       }*/
+      // log("Token EXpire>>>"+jsonEncode(e.response.data)+"Status code>>>"+e.response.statusCode.toString());
       if(e.response.statusCode==401 && e.response.data.containsKey("error") && e.response.data["error"]=="Unauthorized"){
-        application.logoutCallBack;
+        log("Token EXpire Inner>>>"+jsonEncode(e.response.data)+"Status code>>>"+e.response.statusCode.toString());
+        // application.logoutCallBack();
+        FirebaseMessaging.instance
+            .unsubscribeFromTopic(loginResponse1.body.user);
+        FirebaseMessaging.instance
+            .unsubscribeFromTopic(loginResponse1.body.userMobile);
+        sharedPref.save(Const.IS_LOGIN, false.toString());
+        sharedPref.save(Const.IS_REGISTRATION, false.toString());
+        sharedPref.remove(Const.IS_REGISTRATION);
+        sharedPref.remove(Const.IS_LOGIN);
+        sharedPref.remove(Const.LOGIN_DATA);
+        sharedPref.remove(Const.IS_REG_SERVER);
+        sharedPref.remove(Const.MASTER_RESPONSE);
+        AppData.showInSnackDone(Const.navigatorKey.currentContext, "Session Logged out");
+        Navigator.of(Const.navigatorKey.currentContext)
+            .pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
+        // AppData.showInSnackDone(Const.navigatorKey.currentContext, "Session Logged out");
       }else {
         fun(failedMap);
       }
@@ -168,7 +189,22 @@ class RestAPI extends Model {
         fun(failedMap);
       }*/
       if(e.response.statusCode==401 && e.response.data.containsKey("error") && e.response.data["error"]=="Unauthorized"){
-        application.logoutCallBack;
+        // application.logoutCallBack;
+        FirebaseMessaging.instance
+            .unsubscribeFromTopic(loginResponse1.body.user);
+        FirebaseMessaging.instance
+            .unsubscribeFromTopic(loginResponse1.body.userMobile);
+        sharedPref.save(Const.IS_LOGIN, false.toString());
+        sharedPref.save(Const.IS_REGISTRATION, false.toString());
+        sharedPref.remove(Const.IS_REGISTRATION);
+        sharedPref.remove(Const.IS_LOGIN);
+        sharedPref.remove(Const.LOGIN_DATA);
+        sharedPref.remove(Const.IS_REG_SERVER);
+        sharedPref.remove(Const.MASTER_RESPONSE);
+        AppData.showInSnackDone(Const.navigatorKey.currentContext, "Session Logged out");
+        Navigator.of(Const.navigatorKey.currentContext)
+            .pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
+        // AppData.showInSnackDone(Const.navigatorKey.currentContext, "Session Logged out");
       }else {
         fun(failedMap);
       }
@@ -213,7 +249,22 @@ class RestAPI extends Model {
         fun(failedMap);
       }*/
       if(e.response.statusCode==401 && e.response.data.containsKey("error") && e.response.data["error"]=="Unauthorized"){
-        application.logoutCallBack;
+        // application.logoutCallBack;
+        FirebaseMessaging.instance
+            .unsubscribeFromTopic(loginResponse1.body.user);
+        FirebaseMessaging.instance
+            .unsubscribeFromTopic(loginResponse1.body.userMobile);
+        sharedPref.save(Const.IS_LOGIN, false.toString());
+        sharedPref.save(Const.IS_REGISTRATION, false.toString());
+        sharedPref.remove(Const.IS_REGISTRATION);
+        sharedPref.remove(Const.IS_LOGIN);
+        sharedPref.remove(Const.LOGIN_DATA);
+        sharedPref.remove(Const.IS_REG_SERVER);
+        sharedPref.remove(Const.MASTER_RESPONSE);
+        AppData.showInSnackDone(Const.navigatorKey.currentContext, "Session Logged out");
+        Navigator.of(Const.navigatorKey.currentContext)
+            .pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
+        // AppData.showInSnackDone(Const.navigatorKey.currentContext, "Session Logged out");
       }else {
         fun(failedMap);
       }
@@ -257,7 +308,22 @@ class RestAPI extends Model {
         //fun(Const.TIMEOUT);
       //}
       if(e.response.statusCode==401 && e.response.data.containsKey("error") && e.response.data["error"]=="Unauthorized"){
-        application.logoutCallBack;
+        // application.logoutCallBack;
+        FirebaseMessaging.instance
+            .unsubscribeFromTopic(loginResponse1.body.user);
+        FirebaseMessaging.instance
+            .unsubscribeFromTopic(loginResponse1.body.userMobile);
+        sharedPref.save(Const.IS_LOGIN, false.toString());
+        sharedPref.save(Const.IS_REGISTRATION, false.toString());
+        sharedPref.remove(Const.IS_REGISTRATION);
+        sharedPref.remove(Const.IS_LOGIN);
+        sharedPref.remove(Const.LOGIN_DATA);
+        sharedPref.remove(Const.IS_REG_SERVER);
+        sharedPref.remove(Const.MASTER_RESPONSE);
+        AppData.showInSnackDone(Const.navigatorKey.currentContext, "Session Logged out");
+        Navigator.of(Const.navigatorKey.currentContext)
+            .pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
+
       }else {
         fun(failedMap);
       }
@@ -459,7 +525,21 @@ class RestAPI extends Model {
       }*/
       // fun(failedMap);
       if(e.response.statusCode==401 && e.response.data.containsKey("error") && e.response.data["error"]=="Unauthorized"){
-        application.logoutCallBack;
+        // application.logoutCallBack;
+        FirebaseMessaging.instance
+            .unsubscribeFromTopic(loginResponse1.body.user);
+        FirebaseMessaging.instance
+            .unsubscribeFromTopic(loginResponse1.body.userMobile);
+        sharedPref.save(Const.IS_LOGIN, false.toString());
+        sharedPref.save(Const.IS_REGISTRATION, false.toString());
+        sharedPref.remove(Const.IS_REGISTRATION);
+        sharedPref.remove(Const.IS_LOGIN);
+        sharedPref.remove(Const.LOGIN_DATA);
+        sharedPref.remove(Const.IS_REG_SERVER);
+        sharedPref.remove(Const.MASTER_RESPONSE);
+        AppData.showInSnackDone(Const.navigatorKey.currentContext, "Session Logged out");
+        Navigator.of(Const.navigatorKey.currentContext)
+            .pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
       }else {
         fun(failedMap);
       }
@@ -507,7 +587,21 @@ class RestAPI extends Model {
       }*/
       // fun(failedMap);
       if(e.response.statusCode==401 && e.response.data.containsKey("error") && e.response.data["error"]=="Unauthorized"){
-        application.logoutCallBack;
+        // application.logoutCallBack;
+        FirebaseMessaging.instance
+            .unsubscribeFromTopic(loginResponse1.body.user);
+        FirebaseMessaging.instance
+            .unsubscribeFromTopic(loginResponse1.body.userMobile);
+        sharedPref.save(Const.IS_LOGIN, false.toString());
+        sharedPref.save(Const.IS_REGISTRATION, false.toString());
+        sharedPref.remove(Const.IS_REGISTRATION);
+        sharedPref.remove(Const.IS_LOGIN);
+        sharedPref.remove(Const.LOGIN_DATA);
+        sharedPref.remove(Const.IS_REG_SERVER);
+        sharedPref.remove(Const.MASTER_RESPONSE);
+        AppData.showInSnackDone(Const.navigatorKey.currentContext, "Session Logged out");
+        Navigator.of(Const.navigatorKey.currentContext)
+            .pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
       }else {
         fun(failedMap);
       }
@@ -554,7 +648,21 @@ class RestAPI extends Model {
       }*/
       // fun(failedMap);
       if(e.response.statusCode==401 && e.response.data.containsKey("error") && e.response.data["error"]=="Unauthorized"){
-        application.logoutCallBack;
+        // application.logoutCallBack;
+        FirebaseMessaging.instance
+            .unsubscribeFromTopic(loginResponse1.body.user);
+        FirebaseMessaging.instance
+            .unsubscribeFromTopic(loginResponse1.body.userMobile);
+        sharedPref.save(Const.IS_LOGIN, false.toString());
+        sharedPref.save(Const.IS_REGISTRATION, false.toString());
+        sharedPref.remove(Const.IS_REGISTRATION);
+        sharedPref.remove(Const.IS_LOGIN);
+        sharedPref.remove(Const.LOGIN_DATA);
+        sharedPref.remove(Const.IS_REG_SERVER);
+        sharedPref.remove(Const.MASTER_RESPONSE);
+        AppData.showInSnackDone(Const.navigatorKey.currentContext, "Session Logged out");
+        Navigator.of(Const.navigatorKey.currentContext)
+            .pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
       }else {
         fun(failedMap);
       }
@@ -580,7 +688,6 @@ class RestAPI extends Model {
               JsonEncoder().convert(response.data).toString());
           String status = response.data[Const.STATUS];
           String msg = response.data[Const.MESSAGE];
-          print("\n\n\n\n\n\n\n\n\n\n\n\n Hidiiid" + msg.toString());
           if (status == Const.SUCCESS)
             return true;
           else if (status == Const.ALREADY_REG_STATUS)

@@ -142,13 +142,15 @@ class _InsuranceListState extends State<InsuranceList> {
                   size: 25,
                 ),
               ),
-              onTap: () async {
+              onTap: (){
+                Navigator.pushNamed(context,"/addinsuranceForm");
+              }/* async {
                 showDialog(
                   context: context,
                   builder: (BuildContext context) =>
                       dialogaddnomination(context),
                 );
-              },
+              },*/
             ),
           ]),
       body: (insuranceModel != null)

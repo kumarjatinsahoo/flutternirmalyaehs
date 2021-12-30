@@ -1000,6 +1000,7 @@ class _NewDashboardPharmacyState extends State<NewDashboardPharmacy> {
     sharedPref.remove(Const.IS_LOGIN);
     sharedPref.remove(Const.LOGIN_DATA);
     sharedPref.remove(Const.IS_REG_SERVER);
+    sharedPref.remove(Const.MASTER_RESPONSE);
     Navigator.of(context)
         .pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
   }

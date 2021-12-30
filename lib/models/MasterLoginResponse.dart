@@ -2,12 +2,12 @@ class MasterLoginResponse {
   List<Body> body;
   String message;
   String code;
-  // Null total;
+  // String total;
 
-  // MasterLoginResponse({this.body, this.message, this.code, this.total});
+  MasterLoginResponse({this.body, this.message, this.code,});
 
   MasterLoginResponse.fromJson(Map<String, dynamic> json) {
-    if (json['body'] != null) {
+    if (json['body'] != String) {
       body = new List<Body>();
       json['body'].forEach((v) {
         body.add(new Body.fromJson(v));
@@ -20,7 +20,7 @@ class MasterLoginResponse {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.body != null) {
+    if (this.body != String) {
       data['body'] = this.body.map((v) => v.toJson()).toList();
     }
     data['message'] = this.message;
@@ -36,26 +36,48 @@ class Body {
   String userPassword;
   String userMobile;
   String userEmail;
-  // Null userParent;
-  // Null userAddress;
-  // Null userState;
-  // Null userCountry;
-  // Null userDist;
-  // Null userPin;
+  String userParent;
+  String userAddress;
+  String userState;
+  String userCountry;
+  String userDist;
+  String userPin;
   bool userStatus;
-  // Null userCreatedOn;
-  // Null userUpdatedOn;
-  // List<Null> roles;
-  // Null roleDashboard;
-  // Null userType;
-  // Null dateFormat;
-  // Null dateFormatId;
-  // Null dateFormatJS;
-  // Null vendorId;
+  String userCreatedOn;
+  String userUpdatedOn;
+  String roleDashboard;
+  String userType;
+  String dateFormat;
+  String dateFormatId;
+  String dateFormatJS;
+  String vendorId;
   String otp;
   String token;
+  String profilePic;
 
-
+  Body(
+      {this.user,
+        this.userName,
+        this.userPassword,
+        this.userMobile,
+        this.userEmail,
+        this.userParent,
+        this.userAddress,
+        this.userState,
+        this.userCountry,
+        this.userDist,
+        this.userPin,
+        this.userStatus,
+        this.userCreatedOn,
+        this.userUpdatedOn,
+        this.roleDashboard,
+        this.userType,
+        this.dateFormat,
+        this.dateFormatId,
+        this.dateFormatJS,
+        this.vendorId,
+        this.otp,
+        this.token});
 
   Body.fromJson(Map<String, dynamic> json) {
     user = json['user'];
@@ -63,29 +85,24 @@ class Body {
     userPassword = json['userPassword'];
     userMobile = json['userMobile'];
     userEmail = json['userEmail'];
-    // userParent = json['userParent'];
-    // userAddress = json['userAddress'];
-    // userState = json['userState'];
-    // userCountry = json['userCountry'];
-    // userDist = json['userDist'];
-    // userPin = json['userPin'];
+    userParent = json['userParent'];
+    userAddress = json['userAddress'];
+    userState = json['userState'];
+    userCountry = json['userCountry'];
+    userDist = json['userDist'];
+    userPin = json['userPin'];
     userStatus = json['userStatus'];
-    // userCreatedOn = json['userCreatedOn'];
-    // userUpdatedOn = json['userUpdatedOn'];
-    /*if (json['roles'] != null) {
-      roles = new List<Null>();
-      json['roles'].forEach((v) {
-        roles.add(new Null.fromJson(v));
-      });
-    }
+    userCreatedOn = json['userCreatedOn'];
+    userUpdatedOn = json['userUpdatedOn'];
     roleDashboard = json['roleDashboard'];
     userType = json['userType'];
     dateFormat = json['dateFormat'];
     dateFormatId = json['dateFormatId'];
     dateFormatJS = json['dateFormatJS'];
-    vendorId = json['vendorId'];*/
+    vendorId = json['vendorId'];
     otp = json['otp'];
     token = json['token'];
+    profilePic = json['profilePic'];
   }
 
   Map<String, dynamic> toJson() {
@@ -95,26 +112,24 @@ class Body {
     data['userPassword'] = this.userPassword;
     data['userMobile'] = this.userMobile;
     data['userEmail'] = this.userEmail;
-    // data['userParent'] = this.userParent;
-    // data['userAddress'] = this.userAddress;
-    // data['userState'] = this.userState;
-    // data['userCountry'] = this.userCountry;
-    // data['userDist'] = this.userDist;
-    // data['userPin'] = this.userPin;
+    data['userParent'] = this.userParent;
+    data['userAddress'] = this.userAddress;
+    data['userState'] = this.userState;
+    data['userCountry'] = this.userCountry;
+    data['userDist'] = this.userDist;
+    data['userPin'] = this.userPin;
     data['userStatus'] = this.userStatus;
-    // data['userCreatedOn'] = this.userCreatedOn;
-    // data['userUpdatedOn'] = this.userUpdatedOn;
-    // if (this.roles != null) {
-    //   data['roles'] = this.roles.map((v) => v.toJson()).toList();
-    // }
-    // data['roleDashboard'] = this.roleDashboard;
-    // data['userType'] = this.userType;
-    // data['dateFormat'] = this.dateFormat;
-    // data['dateFormatId'] = this.dateFormatId;
-    // data['dateFormatJS'] = this.dateFormatJS;
-    // data['vendorId'] = this.vendorId;
+    data['userCreatedOn'] = this.userCreatedOn;
+    data['userUpdatedOn'] = this.userUpdatedOn;
+    data['roleDashboard'] = this.roleDashboard;
+    data['userType'] = this.userType;
+    data['dateFormat'] = this.dateFormat;
+    data['dateFormatId'] = this.dateFormatId;
+    data['dateFormatJS'] = this.dateFormatJS;
+    data['vendorId'] = this.vendorId;
     data['otp'] = this.otp;
     data['token'] = this.token;
+    data['profilePic'] = this.profilePic;
     return data;
   }
 }

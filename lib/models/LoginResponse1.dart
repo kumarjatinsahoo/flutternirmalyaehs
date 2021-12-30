@@ -4,7 +4,9 @@ class LoginResponse1 {
   String code;
   String total;
 
-  LoginResponse1({this.body, this.message, this.code, this.total});
+  // LoginResponse1({this.body, this.message, this.code, this.total});
+
+  LoginResponse1();
 
   LoginResponse1.fromJson(Map<String, dynamic> json) {
     body = json['body'] != null ? new Body.fromJson(json['body']) : null;
@@ -25,12 +27,13 @@ class LoginResponse1 {
   }
 
   acceptValue(body){
-    this.body=body;
+    // this.body=body;
   }
 }
 
 class Body {
   String user;
+  String profile;
   String userName;
   String userPassword;
   String userMobile;
