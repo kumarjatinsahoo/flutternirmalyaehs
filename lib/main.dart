@@ -85,6 +85,7 @@ import 'package:user/screens/Users/Medipedia/DieseInfo.dart';
 import 'package:user/screens/Users/Medipedia/Diesepdf.dart';
 import 'package:user/screens/Users/Medipedia/HealthTipsList.dart';
 import 'package:user/screens/Users/Medication/UserMedicineTab.dart';
+import 'package:user/screens/Users/MyMedicalRecord/Medication/DigitalprescriptionPage.dart';
 import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/AddUploadDocument.dart';
 import 'package:user/screens/Users/MyMedicalRecord/BiomediImplants.dart';
 import 'package:user/screens/Pharmacists/Screens/Deliverdorder.dart';
@@ -1126,8 +1127,10 @@ class _MyAppState extends State<MyApp> {
                   AddinsuranceForm(
                     model: _model,
                   ),
-
-
+              '/disitalPrescriptionPage': (context) =>
+                  DisitalPrescriptionPage(
+                    model: _model,
+                  ),
               '/vdo': (context) =>
                   VideoCallPage(
                //     model: _model,
