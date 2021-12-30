@@ -3618,7 +3618,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     } else if (textEditingController[14].text == "" ||
                         textEditingController[14].text == null) {
                       AppData.showInSnackBar(
-                          context, "Please enter Emergency Contact No.");
+                          context, "Please enter Emergency Mobile No.");
                     } else if (textEditingController[14] != "" &&
                         textEditingController[14].text.length != 10) {
                       AppData.showInSnackBar(

@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:user/localization/localizations.dart';
-import 'package:user/models/AmbulanceAllModel.dart';
 import 'package:user/models/AmbulanceAppointment.dart' as ambulanceappoint;
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/api_factory.dart';
@@ -153,143 +152,141 @@ class _AcceptAmbulanceState extends State<AcceptAmbulance> {
                                                 /* widget.model.pharmacyorderModel=body;
                               Navigator.pushNamed(context, "/orderDetails");*/
                                               },
-                                              child: Expanded(
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Row(
-                                                      children: [
-                                                        Container(
-                                                          width: 140,
-                                                          child: Text(
-                                                            "Name ",
-                                                            style: TextStyle(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w600,
-                                                              fontSize: 15,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        Expanded(
-                                                          child: Text(
-                                                            body.patientName,
-                                                            style: TextStyle(
-                                                                fontSize: 15),
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                    SizedBox(
-                                                      height:
-                                                          size.height * 0.01,
-                                                    ),
-                                                    Row(
-                                                      children: [
-                                                        Container(
-                                                          width: 140,
-                                                          child: Text(
-                                                            "From",
-                                                            style: TextStyle(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w600,
-                                                              fontSize: 15,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        Expanded(
-                                                          child: Text(
-                                                            body.fromLocation,
-                                                            style: TextStyle(
-                                                                fontSize: 15),
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                    SizedBox(
-                                                      height:
-                                                          size.height * 0.01,
-                                                    ),
-                                                    Row(
-                                                      children: [
-                                                        Container(
-                                                          width: 140,
-                                                          child: Text(
-                                                            "Destination",
-                                                            style: TextStyle(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w600,
-                                                              fontSize: 15,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        Expanded(
-                                                          child: Text(
-                                                            body.toDestination,
-                                                            style: TextStyle(
-                                                                fontSize: 15),
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                    SizedBox(
-                                                      height:
-                                                          size.height * 0.01,
-                                                    ),
-                                                    Row(
-                                                      children: [
-                                                        Container(
-                                                          width: 140,
-                                                          child: Text(
-                                                            'Patient Notes',
-                                                            style: TextStyle(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w600,
-                                                              fontSize: 15,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        Expanded(
-                                                          child: Text(
-                                                            body.patientNote,
-                                                            style: TextStyle(
-                                                                fontSize: 15),
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                    SizedBox(
-                                                      height: 10,
-                                                    ),
-                                                    Row(
-                                                      children: [
-                                                        Text(
-                                                          ' ',
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Row(
+                                                    children: [
+                                                      Container(
+                                                        width: 140,
+                                                        child: Text(
+                                                          "Name ",
                                                           style: TextStyle(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w600),
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w600,
+                                                            fontSize: 15,
+                                                          ),
                                                         ),
-                                                        Spacer(),
-                                                        Text(
-                                                          /*'Confirmed'*/
-                                                          body.status,
+                                                      ),
+                                                      Expanded(
+                                                        child: Text(
+                                                          body.patientName,
                                                           style: TextStyle(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold,
-                                                              fontSize: 15,
-                                                              color: AppData
-                                                                  .kPrimaryBlueColor),
+                                                              fontSize: 15),
                                                         ),
-                                                      ],
-                                                    ),
-                                                  ],
-                                                ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  SizedBox(
+                                                    height:
+                                                        size.height * 0.01,
+                                                  ),
+                                                  Row(
+                                                    children: [
+                                                      Container(
+                                                        width: 140,
+                                                        child: Text(
+                                                          "From",
+                                                          style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w600,
+                                                            fontSize: 15,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      Expanded(
+                                                        child: Text(
+                                                          body.fromLocation,
+                                                          style: TextStyle(
+                                                              fontSize: 15),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  SizedBox(
+                                                    height:
+                                                        size.height * 0.01,
+                                                  ),
+                                                  Row(
+                                                    children: [
+                                                      Container(
+                                                        width: 140,
+                                                        child: Text(
+                                                          "Destination",
+                                                          style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w600,
+                                                            fontSize: 15,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      Expanded(
+                                                        child: Text(
+                                                          body.toDestination,
+                                                          style: TextStyle(
+                                                              fontSize: 15),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  SizedBox(
+                                                    height:
+                                                        size.height * 0.01,
+                                                  ),
+                                                  Row(
+                                                    children: [
+                                                      Container(
+                                                        width: 140,
+                                                        child: Text(
+                                                          'Patient Notes',
+                                                          style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w600,
+                                                            fontSize: 15,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      Expanded(
+                                                        child: Text(
+                                                          body.patientNote,
+                                                          style: TextStyle(
+                                                              fontSize: 15),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  SizedBox(
+                                                    height: 10,
+                                                  ),
+                                                  Row(
+                                                    children: [
+                                                      Text(
+                                                        ' ',
+                                                        style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w600),
+                                                      ),
+                                                      Spacer(),
+                                                      Text(
+                                                        /*'Confirmed'*/
+                                                        body.status,
+                                                        style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold,
+                                                            fontSize: 15,
+                                                            color: AppData
+                                                                .kPrimaryBlueColor),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ],
                                               ),
                                             ),
                                           ),
