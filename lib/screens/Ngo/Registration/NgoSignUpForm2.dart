@@ -427,37 +427,34 @@ class NgoSignUpForm2State extends State<NgoSignUpForm2> {
                                     height: 8,
                                   ),
 
+                                  Row(
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.all(10),
+                                        child: Text(MyLocalizations.of(context).text("UPLOAD_DOCUMENT"),
+                                          style: TextStyle(color:AppData.kPrimaryColor,fontSize: 20,
+                                         ),),
+                                      ),
+                                      SizedBox(width:5),
+                                      Material(
+                                        elevation: 3,
+                                        color:AppData.kPrimaryColor,
+                                        borderRadius: BorderRadius.circular(5.0),
+                                        child: MaterialButton(
+                                          onPressed: () {
+                                            _settingModalBottomSheet(context);
 
-                                  Container(
-                                    child: Row(
-                                      children: [
-                                        Expanded(
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(10.0),
-                                            child: Text(MyLocalizations.of(context).text("UPLOAD_DOCUMENT"),style: TextStyle(color:AppData.kPrimaryColor,fontSize: 20,fontWeight: FontWeight.bold),),
+                                          },
+                                          minWidth: 150,
+                                          height: 40.0,
+                                          child: Text(MyLocalizations.of(context).text("UPLOAD"),
+                                            style: TextStyle(
+                                                color: Colors.white, fontSize: 17.0),
                                           ),
                                         ),
-                                        SizedBox(width:5),
-                                        Material(
-                                          elevation: 3,
-                                          color:AppData.kPrimaryColor,
-                                          borderRadius: BorderRadius.circular(5.0),
-                                          child: MaterialButton(
-                                            onPressed: () {
-                                              _settingModalBottomSheet(context);
+                                      ),
 
-                                            },
-                                            minWidth: 150,
-                                            height: 40.0,
-                                            child: Text(MyLocalizations.of(context).text("UPLOAD"),
-                                              style: TextStyle(
-                                                  color: Colors.white, fontSize: 17.0),
-                                            ),
-                                          ),
-                                        ),
-
-                                      ],
-                                    ),
+                                    ],
                                   ),
                                   SizedBox(height: 10,),
                                   (idproof != null)
@@ -556,7 +553,9 @@ class NgoSignUpForm2State extends State<NgoSignUpForm2> {
                                               children: [
                                                 TextSpan(
                                                   text:  MyLocalizations.of(context).text("AGREE_TO_NCORDS") ,
-                                                  *//* "Welcome back",*//*
+                                                  */
+                                        /* "Welcome back",*/
+                                        /*
                                                   style: TextStyle(
                                                     // fontWeight: FontWeight.w800,
                                                     fontFamily: "Monte",
@@ -601,7 +600,6 @@ class NgoSignUpForm2State extends State<NgoSignUpForm2> {
         ),
       ),
 
-
     );
   }
   /*_
@@ -617,8 +615,6 @@ class NgoSignUpForm2State extends State<NgoSignUpForm2> {
   //         LabSignUpForm2.genderModel = model;
   //       });
   // }
-
-
 
 
   Widget mobileNoOTPSearch() {
@@ -765,6 +761,9 @@ class NgoSignUpForm2State extends State<NgoSignUpForm2> {
         } else if (textEditingController[5].text == "" ||
             textEditingController[5].text == null) {
           AppData.showInSnackBar(context, "Please enter Zip/Pin Code");
+        }else if (textEditingController[5].text != "" &&
+            textEditingController[5].text.length != 6) {
+          AppData.showInSnackBar(context, "Please enter a valid Zip/Pin Code ");
         }else if (textEditingController[10].text == "" ||
             textEditingController[10].text == null) {
           AppData.showInSnackBar(context, "Please enter Mobile No");
