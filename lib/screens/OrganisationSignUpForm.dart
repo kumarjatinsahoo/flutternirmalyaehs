@@ -2234,7 +2234,7 @@ class OrganisationSignUpFormState extends State<OrganisationSignUpForm> {
               AppData.fieldFocusChange(context, fnode1, null);
             },
             inputFormatters: [
-              UpperCaseTextFormatter(),
+              //UpperCaseTextFormatter(),
               WhitelistingTextInputFormatter(RegExp("[a-zA-Z0-9 - / ]")),
             ],
 
