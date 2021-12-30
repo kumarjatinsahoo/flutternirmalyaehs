@@ -199,9 +199,9 @@ class _DoctorAppointmentRequestedState
                           itemBuilder: (context, i) {
                             Body appointmentlist = doctorAppointmment.body[i];
                             String date = appointmentlist.appdate +
-                                " " +
+                                "-" +
                                 appointmentlist.appmonth +
-                                " " +
+                                "-" +
                                 appointmentlist.appyear;
                             String name = appointmentlist.patname;
                             return InkWell(

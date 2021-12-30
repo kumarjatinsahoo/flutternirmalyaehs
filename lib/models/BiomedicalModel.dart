@@ -34,6 +34,8 @@ class Body {
   String bioMName;
   String bioMReason;
   String bioMDate;
+  String id;
+  String bioid;
 
   Body({this.bioMName, this.bioMReason, this.bioMDate});
 
@@ -41,6 +43,8 @@ class Body {
     bioMName = json['bioMName'];
     bioMReason = json['bioMReason'];
     bioMDate = json['bioMDate'];
+    id = json['id'];
+    bioid = json['bioid'];
   }
 
   Map<String, dynamic> toJson() {
@@ -48,6 +52,8 @@ class Body {
     data['bioMName'] = this.bioMName;
     data['bioMReason'] = this.bioMReason;
     data['bioMDate'] = this.bioMDate;
+    data['id'] = this.id;
+    data['bioid'] = this.bioid;
     return data;
   }
 }

@@ -18,6 +18,7 @@ import 'package:user/screens/Users/EmergencyHelp/SetupContactsPage.dart';
 import 'package:user/screens/Users/FindHealthCare/BookAppointment/DoctorconsultationPage.dart';
 import 'package:user/screens/Users/GenericMedicine/GenericStores.dart';
 import 'package:user/screens/Users/MedicineReminder/EditReminder.dart';
+import 'package:user/screens/Users/MyMedicalRecord/BiomediImplants.dart';
 import 'package:user/screens/Users/MyMedicalRecord/LifeStyleHistory.dart';
 import 'package:user/screens/Users/UserSignUpForm.dart';
 import 'package:user/screens/walkin_labrotry/registration/LabSignUpForm3.dart';
@@ -616,7 +617,7 @@ class DropDown {
           case "pcity":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
-            case "gen":
+          case "gen":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
           case "gender":
@@ -2218,14 +2219,17 @@ class DropDown {
       case "rln":
         return ProfileScreen.relationmodel;
         break;
-        case "rlnn":
+      case "rlnn":
         return ProfileScreen.relationmodel;
         break;
-        case "spl":
+      case "spl":
         return ProfileScreen.specialitymodel;
         break;
-        case "gen":
+      case "gen":
         return ProfileScreen.gendermodel;
+        break;
+      case "biotype":
+        return BiomediImplants.admequipmentmodel;
         break;
       //city1,district1,state1,country1
 
@@ -2525,7 +2529,6 @@ class DropDown {
           case "healthcareProvider":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
-
         }
 
         return list;
@@ -3748,13 +3751,16 @@ class DropDown {
           case "relation":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
-            case "spl":
+          case "spl":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
-            case "rlnn":
+          case "rlnn":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
-            case "rln":
+          case "rln":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "biotype":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
         }
