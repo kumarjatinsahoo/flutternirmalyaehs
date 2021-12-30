@@ -288,7 +288,7 @@ class NgoSignUpFormState extends State<NgoSignUpForm> {
                                   SizedBox(
                                     height: 8.0,
                                   ),
-                                  formField(11, MyLocalizations.of(context).text("ADDRESS"),fnode3,null),
+                                  formFieldAddress(11, MyLocalizations.of(context).text("ADDRESS"),fnode3,null),
                                   DropDown.networkDropdownGetpartUser1(
                                     MyLocalizations.of(context).text("GENDER"),
                                       ApiFactory.GENDER_API,
@@ -586,16 +586,18 @@ class NgoSignUpFormState extends State<NgoSignUpForm> {
             textEditingController[9].text == null) {
           AppData.showInSnackBar(context, "Please enter Professional's Name");
           FocusScope.of(context).requestFocus(fnode6);
-        }
-        else if (textEditingController[10].text == "" ||
+        }  else if (textEditingController[9].text.length<3) {
+          AppData.showInSnackBar(context, "Please enter valid Professional's Name");
+        } else if (textEditingController[10].text == "" ||
             textEditingController[10].text == null) {
           AppData.showInSnackBar(context, "Please enter Experience");
           FocusScope.of(context).requestFocus(fnode6);
-        }
-        else if (textEditingController[11].text == "" ||
+        } else if (textEditingController[11].text == "" ||
             textEditingController[11].text == null) {
           AppData.showInSnackBar(context, "Please enter Address");
           FocusScope.of(context).requestFocus(fnode6);
+        }  else if (textEditingController[11].text.length<3) {
+          AppData.showInSnackBar(context, "Please enter valid Address");
         }
         else if (NgoSignUpForm.genderModel == null ||
             NgoSignUpForm.genderModel == "") {
@@ -1136,6 +1138,55 @@ class NgoSignUpFormState extends State<NgoSignUpForm> {
             inputFormatters: [
               WhitelistingTextInputFormatter(
                   RegExp("[a-zA-Z ]")),
+            ],
+            onFieldSubmitted: (value) {
+              setState(() {});
+              AppData.fieldFocusChange(context, currentfn, nextFn);
+            },
+          ),
+        ),
+      ),
+    );
+  }
+  Widget formFieldAddress(
+      int index,
+      String hint,FocusNode currentfn, FocusNode nextFn
+      ) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+          horizontal: 8),
+      child: Container(
+        height: 50,
+        padding:
+        EdgeInsets.symmetric(horizontal: 5),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius:
+          BorderRadius.circular(5),
+          border: Border.all(
+              color: Colors.black, width: 0.3),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 7.0),
+          child: TextFormField(
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: hint,
+              /* prefixIcon:
+              Icon(Icons.person_rounded),*/
+              hintStyle: TextStyle(
+                  color: AppData.hintColor,
+                  fontSize: 17),
+            ),
+            textInputAction: TextInputAction.next,
+            focusNode: currentfn,
+            keyboardType: TextInputType.text,
+            controller: textEditingController[index],
+            textAlignVertical:
+            TextAlignVertical.center,
+            inputFormatters: [
+              WhitelistingTextInputFormatter(
+                  RegExp("[a-zA-Z 0-9. , /  ]")),
             ],
             onFieldSubmitted: (value) {
               setState(() {});

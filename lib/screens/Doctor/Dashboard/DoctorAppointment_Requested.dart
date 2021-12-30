@@ -502,8 +502,7 @@ class _DoctorAppointmentRequestedState
                                                                 Expanded(
                                                                   child:
                                                                       InkWell(
-                                                                    onTap: () {
-
+                                                                        onTap: () {
                                                                       widget.model.GETMETHODCALL_TOKEN(
                                                                           api: ApiFactory.user_APPOINTMENT_status + appointmentlist.doctorName + "&appstatus=" + "4",
                                                                           token: widget.model.token,
