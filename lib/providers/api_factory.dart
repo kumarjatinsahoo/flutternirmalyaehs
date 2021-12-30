@@ -1,13 +1,13 @@
 class ApiFactory {
   //bool isRelease = bool.fromEnvironment("DEV");
   static String REG_DEVICE = "https://cca.medtel.in/Ziniai/manageDeviceId";
- //static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
+ // static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
   static String MAIN_URL = "http://api-demo.ehealthsystem.com/nirmalyaRest/api/";
   static String MAIN_URL1 = "https://1331.co.in/api";
   static String REPORT_URL1 = "https://ehealthsystem.com/";
  //  static String MAIN_URL = "http://192.168.136.208:8062/nirmalyaRest/api/";
   // static String MAIN_URL = "http://192.168.43.248:8062/nirmalyaRest/api/";
-  // static String MAIN_URL = "http://192.168.43.248:8062/nirmalyaRest/api/";
+   //static String MAIN_URL = "http://192.168.43.248:8062/nirmalyaRest/api/";
   static String VITALS_REPORT = MAIN_URL + 'medtel-screening-test-report';
   static String COUNTRY_API = MAIN_URL + 'get-country-list';
   static String VIEW_PATIENT_HEALTH_API = REPORT_URL1 + 'user/mobile-view-patient-health-chart?id=';
@@ -60,8 +60,7 @@ class ApiFactory {
       MAIN_URL + 'get-confirmed-patient-list?drid=';
   static String RECEPTIONLIST_DOCTOR =
       MAIN_URL + 'get-doctor-list-by-org?userid=';
-  static String SHARE_APPOINTMENT_DOCTORRECEPTIONIST =
-      MAIN_URL + 'get-doctorreceptionist-list?drid=';
+  static String SHARE_APPOINTMENT_DOCTORRECEPTIONIST = MAIN_URL + 'get-doctorreceptionist-list?drid=';
   static String GET_DOCUMENT_API = MAIN_URL + 'get-document-type-list';
   static String IMMUNIZATION_API = MAIN_URL + 'get-immunization-type-list';
   static String SPECIALITY_API = MAIN_URL + 'get-doctor-speciality-list';

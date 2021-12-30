@@ -889,7 +889,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
                           SizedBox(
                             height: 10,
                           ),
-                          formFieldEducation(
+                          formFieldExperince(
                               2,
                               "Experience(In Year)",
                               fnode2,
@@ -931,7 +931,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
                           ),
                           formFieldPassPortno(
                               7,
-                              "Licenece No",
+                              "Licence No",
                               fnode7,
                               fnode8),
                           SizedBox(
@@ -959,7 +959,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
 
                           formFieldZipno(
                           11,
-                          "Pincode",
+                          "Pin code",
                           fnode11,
                           fnode12),
                       SizedBox(height: 10),
@@ -1879,6 +1879,58 @@ class _DocMyProfileState extends State<DocMyProfile> {
       ],
     );
   }
+
+  Widget formFieldExperince(
+      int controller, String hint, FocusNode currentfn, FocusNode nextFn) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 0, right: 5),
+          child: Text(
+            hint,
+            style: TextStyle(
+                color: Colors.black,
+                fontSize: 13,
+                fontFamily: "",
+                fontWeight: FontWeight.w400),
+          ),
+        ),
+        TextFieldContainer(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: TextFormField(
+              controller: textEditingController[controller],
+              textInputAction: TextInputAction.done,
+              keyboardType: TextInputType.text,
+              focusNode: currentfn,
+              inputFormatters: [
+                WhitelistingTextInputFormatter(
+                  RegExp("[0-9.]"),
+                ),
+              ],
+              //maxLength: 10,
+              // Validator.getKeyboardTyp(validateModel.fieldType.toLowerCase()),
+              style: TextStyle(fontSize: 15),
+
+              decoration: InputDecoration(
+                //hintText: hint,
+                  hintStyle: TextStyle(color: Colors.grey, fontSize: 13),
+                  border: InputBorder.none,
+                  counterText: '',
+                  contentPadding:
+                  EdgeInsets.symmetric(vertical: 2, horizontal: 0)),
+              onChanged: (newValue) {},
+              onFieldSubmitted: (value) {
+                AppData.fieldFocusChange(context, currentfn, nextFn);
+              },
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
   Widget formFieldAadhaaerno(
       int controller, String hint, FocusNode currentfn, FocusNode nextFn) {
     return Column(

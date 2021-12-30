@@ -275,7 +275,7 @@ class OrganisationSignUpFormState extends State<OrganisationSignUpForm> {
                                   SizedBox(
                                     height: 8,
                                   ),
-                                  formFieldPassPortno(1, "License No",),
+                                  formFieldPassPortno(1, "Licence No",),
                                  /* SizedBox(
                                     height: 8,
                                   ),
@@ -1506,7 +1506,7 @@ class OrganisationSignUpFormState extends State<OrganisationSignUpForm> {
       fun: () {
         if (textEditingController[0].text == "" ||
             textEditingController[0].text == null) {
-          AppData.showInSnackBar(context, "Please Enter Organisation Name");
+          AppData.showInSnackBar(context, "Please enter Organization Name");
         }else if (textEditingController[1].text == "" ||
             textEditingController[1].text == null) {
           AppData.showInSnackBar(context, "Please Enter Licenece No");
@@ -2227,7 +2227,7 @@ class OrganisationSignUpFormState extends State<OrganisationSignUpForm> {
             textInputAction: TextInputAction.next,
             keyboardType: TextInputType.text,
             controller: textEditingController[index],
-            maxLength: 10,
+           // maxLength: 10,
 
             //focusNode: fnode1,
             textAlignVertical:
@@ -2241,8 +2241,8 @@ class OrganisationSignUpFormState extends State<OrganisationSignUpForm> {
               AppData.fieldFocusChange(context, fnode1, null);
             },
             inputFormatters: [
-              UpperCaseTextFormatter(),
-              WhitelistingTextInputFormatter(RegExp("[a-zA-Z0-9 ]")),
+              //UpperCaseTextFormatter(),
+              WhitelistingTextInputFormatter(RegExp("[a-zA-Z0-9 - / ]")),
             ],
 
           ),
