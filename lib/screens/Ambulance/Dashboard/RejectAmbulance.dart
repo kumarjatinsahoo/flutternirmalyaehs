@@ -125,9 +125,9 @@ class _RejectAmbulanceState extends State<RejectAmbulance> {
                               ])),
                           child: Padding(
                             padding: const EdgeInsets.only(
-                                left: 10.0,
-                                right: 10.0,
-                                top: 10,
+                                left: 8.0,
+                                right: 8.0,
+                                top: 8,
                                 bottom: 5),
                             child: InkWell(
                               onTap: () {
@@ -218,19 +218,24 @@ class _RejectAmbulanceState extends State<RejectAmbulance> {
                                   ),
                                   Row(
                                     children: [
-                                      Text(
-                                        'Patient Notes',
-                                        style: TextStyle(
-                                          fontWeight:
-                                          FontWeight.w600,
-                                          fontSize: 15,
+                                      Container(
+                                        width:140.00,
+                                        child: Text(
+                                          'Patient Notes',
+                                          style: TextStyle(
+                                            fontWeight:
+                                            FontWeight.w600,
+                                            fontSize: 15,
+                                          ),
                                         ),
                                       ),
-                                      Spacer(),
-                                      Text(
-                                        body.patientNote,
-                                        style: TextStyle(
-                                            fontSize: 15),
+                                     // Spacer(),
+                                      Expanded(
+                                        child: Text(
+                                          body.patientNote,
+                                          style: TextStyle(
+                                              fontSize: 15),
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -254,8 +259,7 @@ class _RejectAmbulanceState extends State<RejectAmbulance> {
                                             FontWeight
                                                 .bold,
                                             fontSize: 15,
-                                            color: AppData
-                                                .kPrimaryBlueColor),
+                                            color: Colors.red),
                                       ),
                                     ],
                                   ),

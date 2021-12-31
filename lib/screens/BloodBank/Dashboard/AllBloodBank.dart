@@ -246,6 +246,7 @@ class _AllBloodBankState extends State<AllBloodBank> {
                                                     height: size.height * 0.01,
                                                   ),
                                                   Row(
+                                                    crossAxisAlignment: CrossAxisAlignment.start,
                                                     children: [
                                                       Container(
                                                         width: 140,

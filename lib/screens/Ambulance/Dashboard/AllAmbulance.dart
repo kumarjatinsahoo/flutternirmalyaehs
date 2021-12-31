@@ -128,10 +128,10 @@ class _AllAmbulanceState extends State<AllAmbulance> {
                                       ])),
                                       child: Padding(
                                         padding: const EdgeInsets.only(
-                                            left: 10.0,
-                                            right: 10.0,
-                                            top: 10,
-                                            bottom: 5),
+                                            left: 8.0,
+                                            right: 8.0,
+                                            top: 8,
+                                            ),
                                         child: InkWell(
                                           onTap: () {
                                             /* widget.model.pharmacyorderModel=body;
@@ -166,6 +166,7 @@ class _AllAmbulanceState extends State<AllAmbulance> {
                                                 height: size.height * 0.01,
                                               ),
                                               Row(
+                                                crossAxisAlignment: CrossAxisAlignment.start,
                                                 children: [
                                                   Container(
                                                     width: 140,
@@ -191,6 +192,7 @@ class _AllAmbulanceState extends State<AllAmbulance> {
                                                 height: size.height * 0.01,
                                               ),
                                               Row(
+                                                crossAxisAlignment: CrossAxisAlignment.start,
                                                 children: [
                                                   Container(
                                                     width: 140,
@@ -216,6 +218,7 @@ class _AllAmbulanceState extends State<AllAmbulance> {
                                                 height: size.height * 0.01,
                                               ),
                                               Row(
+                                                crossAxisAlignment: CrossAxisAlignment.start,
                                                 children: [
                                                   Container(
                                                     width: 140,
