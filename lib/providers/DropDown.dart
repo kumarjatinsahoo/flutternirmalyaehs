@@ -18,6 +18,7 @@ import 'package:user/screens/Users/EmergencyHelp/SetupContactsPage.dart';
 import 'package:user/screens/Users/FindHealthCare/BookAppointment/DoctorconsultationPage.dart';
 import 'package:user/screens/Users/GenericMedicine/GenericStores.dart';
 import 'package:user/screens/Users/MedicineReminder/EditReminder.dart';
+import 'package:user/screens/Users/MyMedicalRecord/Allergiclist.dart';
 import 'package:user/screens/Users/MyMedicalRecord/BiomediImplants.dart';
 import 'package:user/screens/Users/MyMedicalRecord/LifeStyleHistory.dart';
 import 'package:user/screens/Users/UserSignUpForm.dart';
@@ -2231,6 +2232,15 @@ class DropDown {
       case "biotype":
         return BiomediImplants.admequipmentmodel;
         break;
+        case "namelist":
+        return AllergicListList.nameModel;
+        break;
+        case "allergen":
+        return AllergicListList.typeModel;
+        break;
+        case "SEVERITY":
+        return AllergicListList.severitylistModel;
+        break;
       //city1,district1,state1,country1
 
     }
@@ -3761,6 +3771,12 @@ class DropDown {
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
           case "biotype":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+            case "namelist":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+            case "allergen":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
         }

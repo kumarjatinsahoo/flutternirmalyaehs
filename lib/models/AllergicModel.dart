@@ -39,6 +39,7 @@ class Body {
   String allnameid;
   String alltypeid;
   String updatedby;
+  String id;
 
   Body(
       {this.allName,
@@ -48,7 +49,9 @@ class Body {
         this.userid,
         this.allnameid,
         this.alltypeid,
-        this.updatedby});
+        this.updatedby,
+        this.id,
+      });
 
   Body.fromJson(Map<String, dynamic> json) {
     allName = json['allName'];
@@ -59,6 +62,7 @@ class Body {
     allnameid = json['allnameid'];
     alltypeid = json['alltypeid'];
     updatedby = json['updatedby'];
+    id = json['id'];
   }
 
   Map<String, dynamic> toJson() {
@@ -71,6 +75,7 @@ class Body {
     data['allnameid'] = this.allnameid;
     data['alltypeid'] = this.alltypeid;
     data['updatedby'] = this.updatedby;
+    data['id'] = this.id;
     return data;
   }
 }
