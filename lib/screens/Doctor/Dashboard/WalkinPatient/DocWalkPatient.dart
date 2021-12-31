@@ -148,9 +148,6 @@ String uhid;
                     ],
                   ),
                 ),
-
-
-                //      SizedBox(height: 6),
                 /*Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Row(
@@ -201,7 +198,6 @@ String uhid;
                           myController.text == null) {
                         AppData.showInSnackBar(context, "Please enter Valid UHID Number");
                       }
-
                       else {
                         var sendData;
                           sendData = {"key": myController.text, "name": "Mobile number"};
@@ -220,8 +216,6 @@ String uhid;
                                   widget.model.userResponse = forgotUseridModel;*/
                                   log("userid response " + jsonEncode(map));
                                   String otp = map["body"]["code"];
-
-
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(

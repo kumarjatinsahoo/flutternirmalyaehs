@@ -425,33 +425,6 @@ class _PatientDetail extends State<PatientDetail> {
                             Container(
                               width: 100,
                               child: Text(
-                                "Pin",
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 15),
-                              ),
-                            ),
-                            Text(
-                              "   :   ",
-                              style: TextStyle(
-                                  color: Colors.black, fontSize: 15),
-                            ),
-                            Text(
-                              (patientsDetails?.body[0]?.pin == null ||
-                                  patientsDetails?.body[0]?.pin ==
-                                      "null")
-                                  ? "N/A"
-                                  : (patientsDetails?.body[0]?.pin ??
-                                  "N/A"),
-                              style: TextStyle(
-                                  color: Colors.black, fontSize: 15),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Container(
-                              width: 100,
-                              child: Text(
                                 "Dist",
                                 style: TextStyle(
                                     color: Colors.black, fontSize: 15),
@@ -562,6 +535,33 @@ class _PatientDetail extends State<PatientDetail> {
                             ),
                             Text(
                               patientsDetails.body[0].country ?? "N/A",
+                              style: TextStyle(
+                                  color: Colors.black, fontSize: 15),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Container(
+                              width: 100,
+                              child: Text(
+                                "Pin",
+                                style: TextStyle(
+                                    color: Colors.black, fontSize: 15),
+                              ),
+                            ),
+                            Text(
+                              "   :   ",
+                              style: TextStyle(
+                                  color: Colors.black, fontSize: 15),
+                            ),
+                            Text(
+                              (patientsDetails?.body[0]?.pin == null ||
+                                  patientsDetails?.body[0]?.pin ==
+                                      "null")
+                                  ? "N/A"
+                                  : (patientsDetails?.body[0]?.pin ??
+                                  "N/A"),
                               style: TextStyle(
                                   color: Colors.black, fontSize: 15),
                             ),
