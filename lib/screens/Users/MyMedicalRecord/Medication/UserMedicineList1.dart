@@ -187,6 +187,8 @@ class _MedicineList extends State<UserMedicineList1> {
                             widget.model.apntUserType =
                                 Const.HEALTH_SCREENING_APNT;
                             widget.model.appno=body?.appno ;
+                            widget.model.meddatest=body?.meddate;
+                            widget.model.doctorst=body?.doctor;
                               Navigator.pushNamed(
                                   context,
                                   "/userMedicineList");
@@ -256,7 +258,8 @@ class _MedicineList extends State<UserMedicineList1> {
                                             ),
                                             Spacer(),
                                             Text(
-                                              toDate(body.meddate)??"N/A",
+                                              //toDate(body.meddate)??"N/A",
+                                                body.meddate??"N/A",
                                               style: TextStyle(
                                                   fontSize: 14,
                                                   color: Colors
