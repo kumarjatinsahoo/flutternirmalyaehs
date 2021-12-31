@@ -88,7 +88,7 @@ class _ChangePasswordState extends State<ChangePassword> {
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 14),
-          child: fromFieldPass("Old Password"),
+          child: fromFieldPass("Current Password"),
         ),
         /*Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30),
@@ -372,7 +372,7 @@ class _ChangePasswordState extends State<ChangePassword> {
         context: context,
         fun: () {
           if(textEditingController[0].text == "" || textEditingController[0].text == null) {
-            AppData.showInSnackBar(context, "Please enter  Old password");
+            AppData.showInSnackBar(context, "Please enter  Current password");
           }else if (textEditingController[1].text == "" || textEditingController[1].text == null) {
             AppData.showInSnackBar(context, "Please enter  New password");
           }else if (textEditingController[2].text == "" || textEditingController[2].text == null) {

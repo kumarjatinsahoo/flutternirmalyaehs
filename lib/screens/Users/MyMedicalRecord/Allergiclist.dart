@@ -189,10 +189,36 @@ class _AllergicListListState extends State<AllergicListList> {
                                                           width: 5))),
                                           width: double.maxFinite,
                                           /*  margin: const EdgeInsets.only(top: 6.0),*/
-                                          child: Row(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
+                                          child: Column(
                                             children: [
+                                              Row(
+                                                children: [
+                                                  Text(
+                                                    " ",
+                                                    style: TextStyle(
+                                                        fontSize: 15,
+                                                        fontWeight:
+                                                        FontWeight.bold),
+                                                  ),
+                                                  Spacer(),
+                                                  InkWell(
+                                                    onTap: () {
+                                                      setState(() {
+                                                        allergicdisplayDialog(
+                                                            context, allergicModel, i);
+                                                      });
+
+                                                    },
+                                                    child: Padding(
+                                                      padding: const EdgeInsets.only(right: 20,top: 5,bottom: 5),
+                                                      child: Icon(
+                                                        Icons.edit,
+                                                        size: 20,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
                                               Padding(
                                                 padding:
                                                     const EdgeInsets.all(8.0),
@@ -863,5 +889,209 @@ class _AllergicListListState extends State<AllergicListList> {
             radius: BorderRadius.circular(0.0),
           ),
         ]).show();
+  }
+
+  void allergicdisplayDialog(BuildContext context, allergic.AllergicModel allergicModel, int i) async {
+    AllergicListList.typeModel=null;
+    AllergicListList.nameModel=null;
+    AllergicListList.severitylistModel=null;
+    textEditingController[0].text =allergicModel.body[i].reaction;
+    textEditingController[1].text =allergicModel.body[i].updatedby;
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            // title: Text('TextField in Dialog'),
+            insetPadding: EdgeInsets.zero,
+
+            //contentPadding: EdgeInsets.symmetric(horizontal: 10),
+            content: StatefulBuilder(
+              builder: (BuildContext context, StateSetter setState) {
+                return Container(
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  height: MediaQuery.of(context).size.height * 0.5,
+                  child: SingleChildScrollView(
+                    child: Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child: Column(mainAxisSize: MainAxisSize.min, children: [
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 0, right: 0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Center(
+                                child: Text( MyLocalizations.of(context)
+                                    .text("ADD_ALLERGIC"),
+                                  style: TextStyle(
+                                    fontSize: 25,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),/*Text(
+                                  MyLocalizations.of(context)
+                                      .text("ADD_ALLERGIC"),
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),*/
+                              ),
+                              SizedBox(
+                                height: 15,
+                              ),
+                              DropDown.networkDropdownGetpartUser1(
+                                  MyLocalizations.of(context).text("NAME"),
+                                  ApiFactory.TYPE_API,
+                                  "typelist",
+                                  Icons.location_on_rounded,
+                                  23.0, (KeyvalueModel data) {
+                                setState(() {
+                                  print(ApiFactory.TYPE_API);
+                                  AllergicListList.typeModel = data;
+                                });
+                              }),
+                              DropDown.networkDropdownGetpartUser1(
+                                  MyLocalizations.of(context).text("ALLERGEN"),
+                                  ApiFactory.NAME_API,
+                                  "namelist",
+                                  Icons.location_on_rounded,
+                                  23.0, (KeyvalueModel data) {
+                                setState(() {
+                                  print(ApiFactory.NAME_API);
+                                  AllergicListList.nameModel = data;
+                                });
+                              }),
+                              DropDown.networkDrop(
+                                  MyLocalizations.of(context).text("SEVERTY"),
+                                  "SEVERITY",
+                                  severitylist, (KeyvalueModel data) {
+                                setState(() {
+                                  AllergicListList.severitylistModel = data;
+                                });
+                              }),
+                              SizedBox(
+                                height: 8,
+                              ),
+                              formField(
+                                  0,
+                                  MyLocalizations.of(context).text("REACTION"),
+                                  fnode1,
+                                  fnode2),
+                              SizedBox(
+                                height: 8,
+                              ),
+                              formField(
+                                  1,
+                                  MyLocalizations.of(context)
+                                      .text("UPDATED_BY"),
+                                  fnode2,
+                                  null),
+                            ],
+                          ),
+                        ),
+                      ]),
+                    ),
+                  ),
+                );
+              },
+            ),
+            actions: <Widget>[
+              FlatButton(
+                //textColor: Colors.grey,
+                textColor: AppData.kPrimaryRedColor,
+                child:Text(MyLocalizations.of(context).text("CANCEL"),
+                ),
+                onPressed: () {
+                  setState(() {
+                    /* Navigator.of(context).pop();*/
+                    /*AllergicListList.typeModel=null;
+                    AllergicListList.nameModel=null;
+                    AllergicListList.severitylistModel=null;
+                    textEditingController[0].text = "";
+                    textEditingController[1].text = "";
+                    callAPI();*/
+                    Navigator.pop(context);
+                  });
+                },
+              ),
+              FlatButton(
+                //textColor: Colors.grey,
+                child: Text(
+                  MyLocalizations.of(context).text("SUBMIT"),
+                  //style: TextStyle(color: Colors.grey),
+                  style: TextStyle(color: AppData.matruColor),
+                ),
+                onPressed: () {
+                  //AppData.showInSnackBar(context, "click");
+                  setState(() {
+                    if (AllergicListList.typeModel == null ||
+                        AllergicListList.typeModel == "") {
+                      AppData.showInSnackBar(context, "Please select Name ");
+                    } else if (AllergicListList.nameModel == null ||
+                        AllergicListList.nameModel == "") {
+                      AppData.showInSnackBar(context, "Please select Type ");
+                    } else if (AllergicListList.severitylistModel == null ||
+                        AllergicListList.severitylistModel == "") {
+                      AppData.showInSnackBar(
+                          context, "Please select Severity ");
+                    } else if (textEditingController[0].text == "" ||
+                        textEditingController[0].text == null) {
+                      FocusScope.of(context).requestFocus(fnode1);
+                      AppData.showInSnackBar(context, "Please enter Reaction");
+                    } else if (textEditingController[0].text != "" &&  textEditingController[0].text.length <= 2) {
+                      FocusScope.of(context).requestFocus(fnode1);
+                      AppData.showInSnackBar(context, "Please enter valid Reaction");
+                    } else if (textEditingController[1].text == "" ||
+                        textEditingController[1].text == null) {
+                      FocusScope.of(context).requestFocus(fnode2);
+                      AppData.showInSnackBar(
+                          context, "Please enter Updated by");
+                    } else if ( textEditingController[1].text != "" &&  textEditingController[1].text.length <= 2) {
+                      FocusScope.of(context).requestFocus(fnode2);
+                      AppData.showInSnackBar(context, "Please enter valid Updated by");
+                    } else {
+                      MyWidgets.showLoading(context);
+                      AllergicPostModel allergicmodel = AllergicPostModel();
+                      allergicmodel.userid = loginResponse.body.user;
+                      allergicmodel.allnameid = AllergicListList.nameModel.key;
+                      allergicmodel.alltypeid = AllergicListList.typeModel.key;
+                      allergicmodel.severity = AllergicListList.severitylistModel.key;
+                      allergicmodel.reaction = textEditingController[0].text;
+                      allergicmodel.updatedby = textEditingController[1].text;
+                      print(">>>>>>>>>>>>>>>>>>>>>>>>>>>" +
+                          allergicmodel.toJson().toString());
+                      /*widget.model.POSTMETHOD2(
+                        api: ApiFactory.ALLERGIC_POST,
+                        json: allergicmodel.toJson(),
+                        token: widget.model.token,
+                        fun: (Map<String, dynamic> map) {
+                          Navigator.pop(context);
+                          setState(() {
+                            if (map[Const.STATUS1] == Const.SUCCESS) {
+                              Navigator.pop(context);
+                              callAPI();
+                              AppData.showInSnackDone(
+                                  context, map[Const.MESSAGE]);
+                            } else {
+                              callAPI();
+                              AppData.showInSnackBar(
+                                  context, map[Const.MESSAGE]);
+                            }
+                          });
+                        },
+                      );*/
+                      //AppData.showInSnackBar(context, "add Successfully");
+                    }
+                  });
+                },
+              ),
+            ],
+          );
+        });
+
   }
 }

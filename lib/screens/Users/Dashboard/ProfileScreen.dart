@@ -218,7 +218,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ProfileScreen.bloodgroupmodel = null;
               }
               if (patientProfileModel?.body?.gender != null) {
-                ProfileScreen.bloodgroupmodel = KeyvalueModel(
+                ProfileScreen.gendermodel = KeyvalueModel(
                     key: patientProfileModel.body.genderId,
                     name: patientProfileModel.body.gender);
               } else {
