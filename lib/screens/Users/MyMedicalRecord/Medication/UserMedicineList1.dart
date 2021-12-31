@@ -109,7 +109,7 @@ class _MedicineList extends State<UserMedicineList1> {
   }
   static String toDate(String date) {
     if (date != null && date != "") {
-      DateTime formatter = new DateFormat("yyyy-MM-dd").parse(date);
+      DateTime formatter = new DateFormat("dd-MMM-yyyy").parse(date);
      // final DateTime formatter =
       //DateFormat("yyyy-MM-dd\'T\'HH:mm:ss.SSSZ\'").parse(date);
       //DateFormat("dd/MM/yyyy").parse(date);
@@ -258,8 +258,8 @@ class _MedicineList extends State<UserMedicineList1> {
                                             ),
                                             Spacer(),
                                             Text(
-                                              //toDate(body.meddate)??"N/A",
-                                                body.meddate??"N/A",
+                                              toDate(body.meddate)??"N/A",
+                                                /*body.meddate??"N/A"*/
                                               style: TextStyle(
                                                   fontSize: 14,
                                                   color: Colors
