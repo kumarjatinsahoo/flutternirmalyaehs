@@ -126,7 +126,7 @@ class _GovtSchemesState extends State<GovtSchemes> {
                         }),
                       ),
                     ),
-                    Padding(
+                  /*  Padding(
                       padding: const EdgeInsets.only(left: 0, right: 0),
                       child: SizedBox(
                         height: 58,
@@ -161,12 +161,12 @@ class _GovtSchemesState extends State<GovtSchemes> {
                             23.0, (KeyvalueModel data) {
                           setState(() {
                             GovtSchemes.cityModel = data;
-                            /*userModel.state=data.key;
-                                     userModel.stateCode=data.code;*/
+                            *//*userModel.state=data.key;
+                                     userModel.stateCode=data.code;*//*
                           });
                         }),
                       ),
-                    ),
+                    ),*/
                     SizedBox(
                       height: 25,
                     ),
@@ -194,10 +194,10 @@ class _GovtSchemesState extends State<GovtSchemes> {
       fun: () {
         if (GovtSchemes.countryModel == null) {
           AppData.showInSnackBar(context, "Please select country");
-        } else if (GovtSchemes.stateModel == null) {
+       /* } else if (GovtSchemes.stateModel == null) {
           AppData.showInSnackBar(context, "Please select state");
         } else if (GovtSchemes.districtModel == null) {
-          AppData.showInSnackBar(context, "Please select district");
+          AppData.showInSnackBar(context, "Please select district");*/
         } else {
           Navigator.pushNamed(context, "/govetschemeslist");
         }

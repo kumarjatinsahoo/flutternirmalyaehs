@@ -244,8 +244,7 @@ class _FindPageState extends State<FindPage> {
             String msg = map[Const.MESSAGE];
             if (map[Const.STATUS1] == Const.RESULT_OK) {
               setState(() {
-                GooglePlacesSearchModel googlePlacesSearch =
-                    GooglePlacesSearchModel.fromJson(map);
+                GooglePlacesSearchModel googlePlacesSearch = GooglePlacesSearchModel.fromJson(map);
                 log("Print Select Value>>>>" +
                     googlePlacesSearch.result.geometry.location.lat.toString() +
                     "<<<<" +
