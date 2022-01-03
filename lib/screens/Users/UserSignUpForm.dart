@@ -1311,7 +1311,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
             onPressed: () {
               Navigator.pop(context);
               Navigator.pop(context);
-              Navigator.pop(context);
+             // Navigator.pop(context);
             },
             color: Color.fromRGBO(0, 179, 134, 1.0),
             radius: BorderRadius.circular(0.0),

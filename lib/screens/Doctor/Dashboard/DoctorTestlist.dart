@@ -533,7 +533,7 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
                     }),
                   ),
                 ),
-                fromField1(0, "Test Groop", TextInputAction.next,
+                fromField1(0, "Test Group", TextInputAction.next,
                     TextInputType.text, "Type"),
                 fromField1(1, "Test Name", TextInputAction.next,
                     TextInputType.text, "Type"),
