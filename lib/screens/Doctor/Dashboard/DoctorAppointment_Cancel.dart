@@ -223,12 +223,40 @@ class _DoctorAppointmentCancleState extends State<DoctorAppointmentCancle> {
                                                           crossAxisAlignment:
                                                           CrossAxisAlignment.start,
                                                           children: [
-                                                            Text(
+                                                           /* Text(
                                                               'User Name: ',
                                                               style: TextStyle(
                                                                   color: Colors.blue,
                                                                   fontWeight:
                                                                   FontWeight.w600),
+                                                            ),*/
+                                                            Row(
+                                                              children: [
+                                                                Text(
+                                                                  'User Name: ',
+                                                                  style: TextStyle(
+                                                                      color: Colors
+                                                                          .blue,
+                                                                      fontWeight:
+                                                                      FontWeight
+                                                                          .w600),
+                                                                ),
+                                                                Spacer(),
+                                                                Text(
+                                                                  appointmentlist
+                                                                      .status ??
+                                                                      "N/A",
+                                                                  style: TextStyle(
+                                                                      fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                      fontSize:
+                                                                      15,
+                                                                      color: Colors
+                                                                          .red[
+                                                                      700]),
+                                                                ),
+                                                              ],
                                                             ),
                                                             SizedBox(
                                                               height: 5,
@@ -428,9 +456,9 @@ class _DoctorAppointmentCancleState extends State<DoctorAppointmentCancle> {
                                                                           .bold,
                                                                       fontSize: 13),
                                                                 ),
-                                                                Spacer(),
+                                                               /* Spacer(),
                                                                 Text(
-                                                                  /*'Confirmed'*/
+                                                                  *//*'Confirmed'*//*
                                                                   appointmentlist
                                                                       .status ??
                                                                       "N/A",
@@ -441,7 +469,7 @@ class _DoctorAppointmentCancleState extends State<DoctorAppointmentCancle> {
                                                                       fontSize: 15,
                                                                       color: Colors
                                                                           .red),
-                                                                ),
+                                                                ),*/
                                                               ],
                                                             ),
                                                           ],

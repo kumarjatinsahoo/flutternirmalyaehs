@@ -40,8 +40,8 @@ class _GovernmentSchemesListState extends State<GovernmentSchemesList> {
         api: ApiFactory.GOVET_SCHEMES_LIST(
                 GovtSchemes.countryModel.key,
                 GovtSchemes.stateModel.key,
-                GovtSchemes.districtModel.key,
-                GovtSchemes.cityModel.key) +
+                GovtSchemes?.districtModel?.key??null,
+                GovtSchemes?.cityModel?.key??null) +
             loginResponse1.body.user,
         token: widget.model.token,
         fun: (Map<String, dynamic> map) {
