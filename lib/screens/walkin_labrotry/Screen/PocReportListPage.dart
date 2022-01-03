@@ -212,12 +212,23 @@ class _PocReportListPageState extends State<PocReportListPage> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              (i + 1).toString() + ". " + patient.name + " ",
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 19),
+                            Row(
+                              children: [
+                                Text(
+                                  (i + 1).toString() + ". "??"0",
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 19),
+                                ),
+                                Text(
+                                  patient.name??"N/A",
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 19),
+                                ),
+                              ],
                             ),
                             SizedBox(
                               height: 4,
@@ -225,7 +236,7 @@ class _PocReportListPageState extends State<PocReportListPage> {
                             (patient.thpId == "")
                                 ? Container()
                                 : Text(
-                                    patient.thpName ?? "",
+                                    patient.thpName ?? "N/A",
                                     style: TextStyle(color: Colors.grey),
                                     textAlign: TextAlign.start,
                                   ),
@@ -235,22 +246,22 @@ class _PocReportListPageState extends State<PocReportListPage> {
                               textAlign: TextAlign.end,
                             ),
                             Text(
-                              patient.mobile ?? "",
+                              patient.mobile ?? "N/A",
                               style: TextStyle(color: Colors.grey),
                               textAlign: TextAlign.end,
                             ),
                             Text(
-                              patient.gender ?? "",
+                              patient.gender ?? "N/A",
                               style: TextStyle(color: Colors.grey),
                               textAlign: TextAlign.end,
                             ),
                             Text(
-                              patient.age ?? "",
+                              patient.age ?? "N/A",
                               style: TextStyle(color: Colors.grey),
                               textAlign: TextAlign.end,
                             ),
                             Text(
-                              patient.screeningDate ?? "",
+                              patient.screeningDate ?? "N/A",
                               style: TextStyle(color: Colors.grey),
                               textAlign: TextAlign.end,
                             ),

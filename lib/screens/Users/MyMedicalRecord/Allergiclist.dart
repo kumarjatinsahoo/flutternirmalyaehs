@@ -892,11 +892,36 @@ class _AllergicListListState extends State<AllergicListList> {
   }
 
   void allergicdisplayDialog(BuildContext context, allergic.AllergicModel allergicModel, int i) async {
-    AllergicListList.typeModel=null;
-    AllergicListList.nameModel=null;
-    AllergicListList.severitylistModel=null;
     textEditingController[0].text =allergicModel.body[i].reaction;
     textEditingController[1].text =allergicModel.body[i].updatedby;
+
+    if (allergicModel.body[i].allnameid == null ||
+        allergicModel.body[i].allnameid == "") {
+      AllergicListList.nameModel = null;
+    } else {
+      AllergicListList.nameModel = KeyvalueModel(
+          key: allergicModel.body[i].allName,
+          name: allergicModel.body[i].allnameid);
+    }
+    if (allergicModel.body[i].alltypeid == null ||
+        allergicModel.body[i].alltypeid == "") {
+      AllergicListList.typeModel = null;
+    } else {
+      AllergicListList.typeModel = KeyvalueModel(
+          key: allergicModel.body[i].allFood,
+          name: allergicModel.body[i].alltypeid);
+    }
+    if (allergicModel.body[i].severity == null ||
+        allergicModel.body[i].severity == "") {
+      AllergicListList.severitylistModel = null;
+    } else {
+      AllergicListList.severitylistModel = KeyvalueModel(
+          key: allergicModel.body[i].severity,
+          name: allergicModel.body[i].severity);
+    }
+
+
+
     return showDialog(
         context: context,
         builder: (context) {
@@ -924,7 +949,7 @@ class _AllergicListListState extends State<AllergicListList> {
                             children: <Widget>[
                               Center(
                                 child: Text( MyLocalizations.of(context)
-                                    .text("ADD_ALLERGIC"),
+                                    .text("EDIT_ALLERGIC"),
                                   style: TextStyle(
                                     fontSize: 25,
                                     color: Colors.black,
@@ -946,23 +971,25 @@ class _AllergicListListState extends State<AllergicListList> {
                               DropDown.networkDropdownGetpartUser1(
                                   MyLocalizations.of(context).text("NAME"),
                                   ApiFactory.TYPE_API,
-                                  "typelist",
+                                  "namelist",
                                   Icons.location_on_rounded,
                                   23.0, (KeyvalueModel data) {
                                 setState(() {
                                   print(ApiFactory.TYPE_API);
                                   AllergicListList.typeModel = data;
+                                  AllergicListList.typeModel = data.key;
                                 });
                               }),
                               DropDown.networkDropdownGetpartUser1(
                                   MyLocalizations.of(context).text("ALLERGEN"),
                                   ApiFactory.NAME_API,
-                                  "namelist",
+                                  "allergen",
                                   Icons.location_on_rounded,
                                   23.0, (KeyvalueModel data) {
                                 setState(() {
                                   print(ApiFactory.NAME_API);
                                   AllergicListList.nameModel = data;
+                                  AllergicListList.nameModel = data.key;
                                 });
                               }),
                               DropDown.networkDrop(
@@ -971,6 +998,7 @@ class _AllergicListListState extends State<AllergicListList> {
                                   severitylist, (KeyvalueModel data) {
                                 setState(() {
                                   AllergicListList.severitylistModel = data;
+                                  AllergicListList.severitylistModel = data.key;
                                 });
                               }),
                               SizedBox(
@@ -1062,6 +1090,8 @@ class _AllergicListListState extends State<AllergicListList> {
                       allergicmodel.severity = AllergicListList.severitylistModel.key;
                       allergicmodel.reaction = textEditingController[0].text;
                       allergicmodel.updatedby = textEditingController[1].text;
+                      allergicmodel.id = allergicModel.body[i].id;
+
                       print(">>>>>>>>>>>>>>>>>>>>>>>>>>>" +
                           allergicmodel.toJson().toString());
                       /*widget.model.POSTMETHOD2(
