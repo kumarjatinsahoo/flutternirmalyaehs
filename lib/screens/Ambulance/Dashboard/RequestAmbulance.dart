@@ -141,6 +141,7 @@ class _RequestAmbulanceState extends State<RequestAmbulance> {
                                 CrossAxisAlignment.start,
                                 children: [
                                   Row(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Container(
                                         width: 180,
@@ -155,7 +156,7 @@ class _RequestAmbulanceState extends State<RequestAmbulance> {
                                       ),
                                       Expanded(
                                         child: Text(
-                                          body.patientName,
+                                          body.patientName.trim(),
                                           style: TextStyle(
                                               fontSize: 15),
                                           textAlign:
@@ -168,6 +169,7 @@ class _RequestAmbulanceState extends State<RequestAmbulance> {
                                     height: size.height * 0.01,
                                   ),
                                   Row(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Container(
                                         width: 180,
@@ -182,9 +184,11 @@ class _RequestAmbulanceState extends State<RequestAmbulance> {
                                       ),
                                       Expanded(
                                         child: Text(
-                                          body.fromLocation,
+                                          body.fromLocation.trim(),
                                           style: TextStyle(
                                               fontSize: 15),
+                                          textAlign:
+                                          TextAlign.start,
                                         ),
                                       ),
                                     ],
@@ -193,6 +197,7 @@ class _RequestAmbulanceState extends State<RequestAmbulance> {
                                     height: size.height * 0.01,
                                   ),
                                   Row(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Container(
                                         width: 180,
@@ -207,7 +212,7 @@ class _RequestAmbulanceState extends State<RequestAmbulance> {
                                       ),
                                       Expanded(
                                         child: Text(
-                                          body.toDestination,
+                                          body.toDestination.trim(),
                                           style: TextStyle(
                                               fontSize: 15),
                                         ),
@@ -218,6 +223,7 @@ class _RequestAmbulanceState extends State<RequestAmbulance> {
                                     height: size.height * 0.01,
                                   ),
                                   Row(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Container(
                                         width: 180,
@@ -232,7 +238,7 @@ class _RequestAmbulanceState extends State<RequestAmbulance> {
                                       ),
                                       Expanded(
                                         child: Text(
-                                          body.patientNote,
+                                          body.patientNote.trim(),
                                           textAlign: TextAlign.left,
                                           style: TextStyle(
                                               fontSize: 15),

@@ -518,7 +518,12 @@ class _DoctorAppointmentRequestedState
                                                                     },
                                                                     child:
                                                                         Container(
-                                                                   //   height: 50,
+                                                                          height: size
+                                                                              .height *
+                                                                              0.06,
+                                                                          width: size
+                                                                              .height *
+                                                                              0.20,
                                                                       decoration: BoxDecoration(
                                                                           borderRadius: BorderRadius.circular(
                                                                               5),
@@ -567,8 +572,12 @@ class _DoctorAppointmentRequestedState
                                                                     },
                                                                     child:
                                                                         Container(
-                                                                          //height: size.height * 0.06,
-                                                                      //width: size.height * 0.20,
+                                                                      height: size
+                                                                              .height *
+                                                                          0.06,
+                                                                      width: size
+                                                                              .height *
+                                                                          0.20,
                                                                       decoration: BoxDecoration(
                                                                           borderRadius: BorderRadius.circular(
                                                                               5),

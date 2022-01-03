@@ -141,8 +141,9 @@ class _DocMyProfileState extends State<DocMyProfile> {
         fun: (Map<String, dynamic> map) {
           setState(() {
             log("Json Response>>>" + JsonEncoder().convert(map));
-            String msg = map[Const.MESSAGE];
+          String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
+            //AppData.showInSnackDone(context, "demo");
               // pocReportModel = PocReportModel.fromJson(map);
              /* if (profileModel1?.body?.birthdate != null) {
                 birthdatestr = toDate(profileModel1.body.birthdate);
@@ -567,7 +568,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
                                       ),
                                       ListTile(
                                         leading: Icon(Icons.call),
-                                        title: Text("Email.".toUpperCase()),
+                                        title: Text("Email".toUpperCase()),
                                         //subtitle: Text("NIRMALYA"),
                                         subtitle: Text(profileModel1?.body?.email!=""?profileModel1.body.email:"N/A"),
                                       ),
@@ -929,7 +930,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
                           SizedBox(
                             height: 10,
                           ),
-                          formFieldPassPortno(
+                          licenceno(
                               7,
                               "Licence No",
                               fnode7,
@@ -1147,78 +1148,112 @@ class _DocMyProfileState extends State<DocMyProfile> {
                   //AppData.showInSnackBar(context, "click");
                   setState(() {
 
-                 /*   if (textEditingController[0].text == "N/A" ||
+                 if (textEditingController[0].text == "N/A" ||
                         textEditingController[0].text == null ||
                         textEditingController[0].text == "") {
+                   AppData.showInSnackBar(context, "Please enter DOB");
+                 } else if (DocMyProfile.gendermodel == null ||
+                     DocMyProfile.gendermodel == "") {
+                AppData.showInSnackBar(context, "Please select gender");
+                }  else if (DocMyProfile.bloodgroupmodel == null ||
+          DocMyProfile.bloodgroupmodel == "") {
+          AppData.showInSnackBar(context, "Please select blood group");
+          }
 
-                      AppData.showInSnackBar(context, "Please enter DOB");*/
-                 bool isAllBlank = true;
-                 textEditingController.forEach((element) {
-          if (element.text != "") isAllBlank = false;
-          });if (isAllBlank) {
-          //AppData.showInSnackBar(context, "Please select Smoking");
-          AppData.showInSnackBar(
-          context, "Please Fill Up Atleast One Field ");
 
+                   //        bool isAllBlank = true;
+                   //        textEditingController.forEach((element) {
+                   // if (element.text != "") isAllBlank = false;
+                   // });if (isAllBlank)
+                   // {
+                   // //AppData.showInSnackBar(context, "Please select Smoking");
+                   // AppData.showInSnackBar(
+                   // context, "Please Fill Up all details ");
 
-          /*} else if (textEditingController[1].text == "N/A" ||
+                 else if (textEditingController[1].text == "N/A" ||
                         textEditingController[1].text == null ||
                         textEditingController[1].text == "") {
                       AppData.showInSnackBar(
-                          context, "Please enter Emergency Contact Name");
-                      FocusScope.of(context).requestFocus(fnode1);
-                    } else if (textEditingController[1].text != "" &&
-                        textEditingController[1].text.length <= 2) {
-                      AppData.showInSnackBar(context,
-                          "Please enter valid Emergency Contact Name ");
-                      FocusScope.of(context).requestFocus(fnode1);
-
-                    } else if (textEditingController[2].text == "N/A" ||
+                          context, "Please enter education name");
+                 }  else if (textEditingController[1].text.length<3) {
+                   AppData.showInSnackBar(context, "Please enter valid education name");
+                    } else if (textEditingController[1].text == "N/A" ||
                         textEditingController[2].text == null ||
                         textEditingController[2].text == "") {
                       AppData.showInSnackBar(
-                          context, "Please enter  Emergency Contact No.");
-                      FocusScope.of(context).requestFocus(fnode2);
-                    } else if (textEditingController[2].text != "" &&
-                        textEditingController[2].text.length != 10) {
-                      AppData.showInSnackBar(
-                          context, "Please enter valid Emergency Contact No.");
-                      FocusScope.of(context).requestFocus(fnode2);
-                    } else if (textEditingController[3].text == "" ||
-                        textEditingController[3].text == null ||
-                        textEditingController[3].text == "") {
-                      AppData.showInSnackBar(
-                          context, "Please enter Family Doctor Name");
-                      FocusScope.of(context).requestFocus(fnode3);
-                    } else if (textEditingController[3].text != "" &&
-                        textEditingController[3].text.length <= 2) {
-                      AppData.showInSnackBar(
-                          context, "Please enter valid Family Doctor Name ");
-                      FocusScope.of(context).requestFocus(fnode3);
+                          context, "Please enter experience");
 
+                    // } else if (textEditingController[3].text == "" ||
+                    //     textEditingController[3].text == null ||
+                    //     textEditingController[3].text == "") {
+                    //   AppData.showInSnackBar(
+                    //       context, "Please enter IMA No.");
                     } else if (textEditingController[4].text == "N/A" ||
                         textEditingController[4].text == null ||
                         textEditingController[4].text == "") {
                       AppData.showInSnackBar(
-                          context, "Please enter Doctor Mobile No.");
-                      FocusScope.of(context).requestFocus(fnode4);
-                    } else if (textEditingController[4].text != "" &&
-                        textEditingController[4].text.length != 10) {
-                      AppData.showInSnackBar(
-                          context, "Please enter valid  Doctor Mobile No.");
-                      FocusScope.of(context).requestFocus(fnode4);
-                      //ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Please enter Emergency Contact No."), backgroundColor: Colors.red,duration: Duration(seconds: 6),));
-                    } else if (textEditingController[5].text == "N/A" ||
-                        textEditingController[5].text == null ||
-                        textEditingController[5].text == "") {
-                      AppData.showInSnackBar(context, "Please enter Address");
-                      FocusScope.of(context).requestFocus(fnode5);
-                    } else if (textEditingController[5].text != "" &&
-                        textEditingController[5].text.length <= 2) {
-                      AppData.showInSnackBar(
-                          context, "Please enter valid Address");
-                      FocusScope.of(context).requestFocus(fnode5);*/
-                    } else {
+                          context, "Please enter Aadhaar No.");
+                 }else if (textEditingController[4].text != "" &&
+                     textEditingController[4].text.length != 12) {
+                   AppData.showInSnackBar(context, "Please enter a valid adhaar no ");
+                    // } else if (textEditingController[5].text == "N/A" ||
+                    //     textEditingController[5].text == null ||
+                    //     textEditingController[5].text == "") {
+                    //   AppData.showInSnackBar(context, "Please enter passport No");
+                 // } else if (textEditingController[6].text == "N/A" ||
+                 //     textEditingController[6].text == null ||
+                 //     textEditingController[6].text == "") {
+                 //   AppData.showInSnackBar(context, "Please enter voter card No");
+                 // } else if (textEditingController[7].text == "N/A" ||
+                 //     textEditingController[7].text == null ||
+                 //     textEditingController[7].text == "") {
+                 //   AppData.showInSnackBar(context, "Please enter licence No");
+                 // } else if (textEditingController[8].text == "N/A" ||
+                 //     textEditingController[8].text == null ||
+                 //     textEditingController[8].text == "") {
+                 //   AppData.showInSnackBar(context, "Please enter licence authority");
+                 // } else if (textEditingController[9].text == "N/A" ||
+                 //     textEditingController[9].text == null ||
+                 //     textEditingController[9].text == "") {
+                 //   AppData.showInSnackBar(context, "Please enter PAN No");
+                 } else if (textEditingController[10].text == "N/A" ||
+                     textEditingController[10].text == null ||
+                     textEditingController[10].text == "") {
+                   AppData.showInSnackBar(context, "Please enter email");
+                 } else if (textEditingController[11].text == "N/A" ||
+                     textEditingController[11].text == null ||
+                     textEditingController[11].text == "") {
+                   AppData.showInSnackBar(context, "Please enter pin code");
+                 }else if (textEditingController[11].text != "" &&
+                     textEditingController[11].text.length != 6) {
+                   AppData.showInSnackBar(context, "Please enter a valid Pin Code ");
+                 } else if (textEditingController[12].text == "N/A" ||
+                     textEditingController[12].text == null ||
+                     textEditingController[12].text == "") {
+                   AppData.showInSnackBar(context, "Please enter mobile No");
+                 }else if (textEditingController[12].text != "" &&
+                     textEditingController[12].text.length != 10) {
+                   AppData.showInSnackBar(context, "Please enter a valid mobile no ");
+                 } else if (textEditingController[13].text == "N/A" ||
+                     textEditingController[13].text == null ||
+                     textEditingController[13].text == "") {
+                   AppData.showInSnackBar(context, "Please enter address");
+                 }  else if (textEditingController[13].text.length<3) {
+                   AppData.showInSnackBar(context, "Please enter valid address");
+                    } else if (DocMyProfile.countrymodel == null ||
+          DocMyProfile.countrymodel == "") {
+          AppData.showInSnackBar(context, "Please select country");
+                 } else if (DocMyProfile.statemodel == null ||
+                     DocMyProfile.statemodel == "") {
+                   AppData.showInSnackBar(context, "Please select state");
+                 } else if (DocMyProfile.districtmodel == null ||
+                     DocMyProfile.districtmodel == "") {
+                   AppData.showInSnackBar(context, "Please select district");
+                 } else if (DocMyProfile.citymodel == null ||
+                     DocMyProfile.citymodel == "") {
+                   AppData.showInSnackBar(context, "Please select city");
+                 }
+                 else {
                       updateProfileModel.dctrid = loginResponse.body.user;
                       updateProfileModel.dob = textEditingController[0].text;
                       updateProfileModel.gender = DocMyProfile.gendermodel.key;
@@ -1781,10 +1816,61 @@ class _DocMyProfileState extends State<DocMyProfile> {
               focusNode: currentfn,
 
               inputFormatters: [
-                UpperCaseTextFormatter(),
+                //UpperCaseTextFormatter(),
                 WhitelistingTextInputFormatter(RegExp("[a-zA-Z0-9 ]")),
               ],
               maxLength: 10,
+              // Validator.getKeyboardTyp(validateModel.fieldType.toLowerCase()),
+              style: TextStyle(fontSize: 15),
+
+              decoration: InputDecoration(
+                //hintText: hint,
+                  hintStyle: TextStyle(color: Colors.grey, fontSize: 13),
+                  border: InputBorder.none,
+                  counterText: '',
+                  contentPadding:
+                  EdgeInsets.symmetric(vertical: 2, horizontal: 0)),
+              onChanged: (newValue) {},
+              onFieldSubmitted: (value) {
+                AppData.fieldFocusChange(context, currentfn, nextFn);
+              },
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget licenceno(
+      int controller, String hint, FocusNode currentfn, FocusNode nextFn) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 0, right: 5),
+          child: Text(
+            hint,
+            style: TextStyle(
+                color: Colors.black,
+                fontSize: 13,
+                fontFamily: "",
+                fontWeight: FontWeight.w400),
+          ),
+        ),
+        TextFieldContainer(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: TextFormField(
+              controller: textEditingController[controller],
+              textInputAction: TextInputAction.done,
+              keyboardType: TextInputType.text,
+              focusNode: currentfn,
+
+              inputFormatters: [
+                //UpperCaseTextFormatter(),
+                WhitelistingTextInputFormatter(RegExp("[a-z-A-Z0-9/ ]")),
+              ],
+              maxLength: 20,
               // Validator.getKeyboardTyp(validateModel.fieldType.toLowerCase()),
               style: TextStyle(fontSize: 15),
 
@@ -1858,9 +1944,10 @@ class _DocMyProfileState extends State<DocMyProfile> {
               textInputAction: TextInputAction.done,
               keyboardType: TextInputType.text,
               focusNode: currentfn,
+              maxLength: 15,
               inputFormatters: [
                 WhitelistingTextInputFormatter(
-                  RegExp("[a-zA-Z0-9.]"),
+                  RegExp("[a-zA-Z 0-9.]"),
                 ),
               ],
              //maxLength: 10,
@@ -1914,7 +2001,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
                   RegExp("[0-9.]"),
                 ),
               ],
-              //maxLength: 10,
+              maxLength: 2,
               // Validator.getKeyboardTyp(validateModel.fieldType.toLowerCase()),
               style: TextStyle(fontSize: 15),
 
