@@ -7,6 +7,7 @@ import 'package:user/providers/Const.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
+import 'package:user/widgets/MyWidget.dart';
 
 class PocReportListPage extends StatefulWidget {
   MainModel model;
@@ -71,7 +72,7 @@ class _PocReportListPageState extends State<PocReportListPage> {
               }
             } else {
               isDataNotAvail = true;
-              if (i == 1) AppData.showInSnackBar(context, msg);
+              //if (i == 1) AppData.showInSnackBar(context, msg);
             }
           });
         });
@@ -92,7 +93,7 @@ class _PocReportListPageState extends State<PocReportListPage> {
 
               //Navigator.pop(context);
             } else {
-              //  isDataNotAvail = true;
+               isDataNotAvail = true;
               // if (i == 1) AppData.showInSnackBar(context, msg);
             }
           });
@@ -100,6 +101,7 @@ class _PocReportListPageState extends State<PocReportListPage> {
   }
 
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         title: Row(
@@ -143,7 +145,13 @@ class _PocReportListPageState extends State<PocReportListPage> {
         backgroundColor: AppData.kPrimaryColor,
         elevation: 0,
       ),
-      body: (pocReportModel != null)
+      body:
+      (pocReportModel != null &&
+          pocReportModel.body != null &&
+          pocReportModel.body.length > 0)
+          ?
+
+      (pocReportModel != null)
           ? ListView.builder(
               controller: _scrollController,
               itemBuilder: (context, i) {
@@ -292,7 +300,14 @@ class _PocReportListPageState extends State<PocReportListPage> {
                   ],
                 ),
               ),
-            ),
+            ): (isDataNotAvail)
+          ? Container(
+        height: size.height - 80,
+        child: Center(
+          child: Text("Data Not Found"),
+        ),
+      )
+          : MyWidgets.loading(context),
     );
     /*body: ListTile(
         onTap: () {

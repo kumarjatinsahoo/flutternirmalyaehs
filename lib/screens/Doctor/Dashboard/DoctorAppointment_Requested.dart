@@ -631,8 +631,7 @@ class _DoctorAppointmentRequestedState
                                         Column(
                                           children: [
                                             Text(
-                                              */ /*'Confirmed'*/
-                                  /*
+                                              */ /*'Confirmed'*/ /*
                                               appointmentlist
                                                   .status ??
                                                   "N/A",
@@ -704,8 +703,7 @@ class _DoctorAppointmentRequestedState
                                             child:
                                             MaterialButton(
                                               child: Text(
-                                                */ /*'Confirmed'*/
-                                  /*
+                                                */ /*'Confirmed'*/ /*
                                                 "Accept",
                                                 style: TextStyle(
                                                     fontWeight:

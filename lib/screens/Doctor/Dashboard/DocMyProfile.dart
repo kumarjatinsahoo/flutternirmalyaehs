@@ -355,7 +355,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
     });
   }
   // Widget _buildOpeningImage() {
-  //   return Center(child: _buildOpenImage());
+  //   return Ce/nter(child: _buildOpenImage());
   // }
   Future getCameraImage() async {
     var image = await ImagePicker.pickImage(
@@ -960,13 +960,13 @@ class _DocMyProfileState extends State<DocMyProfile> {
 
                           formFieldZipno(
                           11,
-                          "Pin code",
+                          "Pin Code",
                           fnode11,
                           fnode12),
                       SizedBox(height: 10),
                           formFieldMoileno(
                           12,
-                          "Mobile no",
+                          "Mobile No",
                           fnode12,
                           fnode13),
                           SizedBox(height: 10),
@@ -1004,6 +1004,9 @@ class _DocMyProfileState extends State<DocMyProfile> {
                                     DocMyProfile.countrymodel = model;
                                     profileModel1.body.country = model.key;
                                     profileModel1.body.countryName = model.name;
+                                    DocMyProfile.statemodel = null;
+                                    DocMyProfile.districtmodel = null;
+                                    DocMyProfile.citymodel = null;
                                     // updateProfileModel.bloodGroup = model.key;
                                   });
                                 }),
@@ -1038,10 +1041,10 @@ class _DocMyProfileState extends State<DocMyProfile> {
                                   setState(() {
                                     print(ApiFactory.STATE_API);
                                     DocMyProfile.statemodel = model;
-                                    profileModel1.body.state =
-                                        model.key;
-                                    profileModel1.body.stateName=
-                                        model.name;
+                                    profileModel1.body.state = model.key;
+                                    profileModel1.body.stateName= model.name;
+                                    DocMyProfile.districtmodel = null;
+                                    DocMyProfile.citymodel = null;
                                     // updateProfileModel.bloodGroup = model.key;
                                   });
                                 }),
@@ -1076,6 +1079,8 @@ class _DocMyProfileState extends State<DocMyProfile> {
                                     DocMyProfile.districtmodel = model;
                                     profileModel1.body.district = model.key;
                                     profileModel1.body.districtName=model.name;
+                                    DocMyProfile.citymodel = null;
+
                                     // updateProfileModel.bloodGroup = model.key;
                                   });
                                 }),
@@ -1130,7 +1135,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
                     style: TextStyle(color: AppData.kPrimaryRedColor)),
                 onPressed: () {
                   setState(() {
-                    //callApi();
+                    callAPI();
                     Navigator.pop(context);
                   });
                 },
