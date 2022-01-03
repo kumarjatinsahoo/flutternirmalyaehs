@@ -4,6 +4,7 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
 import 'package:share/share.dart';
 import 'package:user/models/LoginResponse1.dart';
+import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -21,6 +22,8 @@ class _DisitalPrescriptionPageState extends State<DisitalPrescriptionPage> {
   Completer<WebViewController> _controller = Completer<WebViewController>();
 
   String id;
+  String doctorid;
+  String datest;
   LoginResponse1 loginResponse1;
 
 
@@ -29,7 +32,10 @@ class _DisitalPrescriptionPageState extends State<DisitalPrescriptionPage> {
     // TODO: implement initState
     super.initState();
     loginResponse1=widget.model.loginResponse1;
-    id=base64.encode(utf8.encode(loginResponse1.body.user));
+
+        id=base64.encode(utf8.encode(loginResponse1.body.user));
+    doctorid=base64.encode(utf8.encode( widget?.model?.doctorst));
+    datest=base64.encode(utf8.encode( widget?.model?.meddatest));
   }
   final Completer<InAppWebViewController> _controller1 =
   Completer<InAppWebViewController>();
@@ -114,16 +120,14 @@ class _DisitalPrescriptionPageState extends State<DisitalPrescriptionPage> {
         // iconTheme: IconThemeData(color: AppData.kPrimaryColor,),
       ),
       body: Builder(builder: (BuildContext context) {
-        print("api......" +
-            'https://ehealthsystem.com/download-ehealthcard?userid=' +
-            id);
+        print(ApiFactory.MEDICATION_VIEW_PRESCRIPTION+id+"&id="+doctorid+"&date="+datest);
         return Container(
           width: MediaQuery.of(context).size.width,
           child: SizedBox(
             // width: MediaQuery.of(context).size.height,
             child: InAppWebView(
               initialUrlRequest: URLRequest(
-                  url: Uri.parse("https://demo.ehealthsystem.com/user/mobile-organ-donation-pdf-download?id="+id)),
+                  url: Uri.parse(ApiFactory.MEDICATION_VIEW_PRESCRIPTION+id+"&id="+doctorid+"&date="+datest)),
               initialOptions: _options,
               shouldOverrideUrlLoading: (controller, action) {
                 print("override");

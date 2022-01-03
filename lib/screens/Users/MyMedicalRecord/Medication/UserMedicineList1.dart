@@ -109,7 +109,7 @@ class _MedicineList extends State<UserMedicineList1> {
   }
   static String toDate(String date) {
     if (date != null && date != "") {
-      DateTime formatter = new DateFormat("yyyy-MM-dd").parse(date);
+      DateTime formatter = new DateFormat("d-MMM-yyyy").parse(date);
      // final DateTime formatter =
       //DateFormat("yyyy-MM-dd\'T\'HH:mm:ss.SSSZ\'").parse(date);
       //DateFormat("dd/MM/yyyy").parse(date);
@@ -139,6 +139,7 @@ class _MedicineList extends State<UserMedicineList1> {
           Navigator.pop(context);
           ResultsServer finder = ResultsServer.fromJson(map["results"][0]);
           print("finder1>>>>>>>>>" + finder.toJson().toString());
+
           setState(() {
             address = "${finder.formattedAddress}";
             cityName = finder.addressComponents[4].longName;
@@ -148,6 +149,7 @@ class _MedicineList extends State<UserMedicineList1> {
             widget.model.pharmacity = finder.addressComponents[4].longName;
             longitudes = position.longitude.toString();
             latitudes = position.altitude.toString();
+            print("location>>>>>>>>>>>>>>>>>>"+medicineListModel.body[0].meddate);
           });
         });
   }
@@ -187,6 +189,8 @@ class _MedicineList extends State<UserMedicineList1> {
                             widget.model.apntUserType =
                                 Const.HEALTH_SCREENING_APNT;
                             widget.model.appno=body?.appno ;
+                            widget.model.meddatest=body?.meddate;
+                            widget.model.doctorst=body?.doctor;
                               Navigator.pushNamed(
                                   context,
                                   "/userMedicineList");
@@ -256,7 +260,9 @@ class _MedicineList extends State<UserMedicineList1> {
                                             ),
                                             Spacer(),
                                             Text(
-                                              toDate(body.meddate)??"N/A",
+
+                                              //toDate(body.meddate)??"N/A",
+                                                body.meddate??"N/A",
                                               style: TextStyle(
                                                   fontSize: 14,
                                                   color: Colors

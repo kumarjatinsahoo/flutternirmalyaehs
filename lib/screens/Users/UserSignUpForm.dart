@@ -545,7 +545,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                             height: size.height * 0.01,
                           ),
 
-                          Row(
+                         /* Row(
                             children: [
                               Expanded(
                                 child: ListTile(
@@ -664,7 +664,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                         onTap: () {
                                           //_selectDate1(context);
 
-                                          /*showDialog(
+                                          *//*showDialog(
                                             context: context,
                                             builder: (BuildContext
                                                 context) {
@@ -708,7 +708,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                                 ),
                                               );
                                             },
-                                          );*/
+                                          );*//*
                                         },
                                         child: Padding(
                                           padding:
@@ -812,7 +812,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                 ),
                           SizedBox(
                             height: 10,
-                          ),
+                          ),*/
                           Padding(
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 10),
@@ -1242,7 +1242,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
     } else if (UserSignUpForm.cityModel == null ||
         UserSignUpForm.cityModel == "") {
       AppData.showInSnackBar(context, "Please select City");
-    } else if (selectDobEn==TypeDob.Age && (textEditingController[3].text =="" || textEditingController[3].text == null) ) {
+    } /*else if (selectDobEn==TypeDob.Age && (textEditingController[3].text =="" || textEditingController[3].text == null) ) {
       AppData.showInSnackBar(context, "Please enter your Age");
       FocusScope.of(context).requestFocus(fnode4);
     } else if (selectDobEn==TypeDob.Age  && (int.tryParse(textEditingController[3].text)<18) ) {
@@ -1251,7 +1251,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
     }
     else if (selectDobEn==TypeDob.DOB &&(textEditingController[5].text == "" || textEditingController[5].text == null) ) {
       AppData.showInSnackBar(context, "Please enter your DOB");
-    }
+    }*/
     else if (_checkbox == false) {
       AppData.showInSnackBar(context, "Please check Terms and Condition");
     }
@@ -1260,9 +1260,9 @@ class UserSignUpFormState extends State<UserSignUpForm> {
       userModel.fName = textEditingController[0].text;
       userModel.lName = textEditingController[1].text;
       userModel.mobile = textEditingController[2].text;
-      userModel.age = (textEditingController[3].text=="")?null:textEditingController[3].text;
-      userModel.ageYears = textEditingController[4].text;
-      userModel.dob =(textEditingController[5].text=="")?null:textEditingController[5].text;
+    //  userModel.age = (textEditingController[3].text=="")?null:textEditingController[3].text;
+   //  userModel.ageYears = textEditingController[4].text;
+      //userModel.dob =(textEditingController[5].text=="")?null:textEditingController[5].text;
       userModel.country = UserSignUpForm.countryModel.key;
       userModel.countryCode = UserSignUpForm.countryModel.code;
       userModel.stateCode = UserSignUpForm.stateModel.code;

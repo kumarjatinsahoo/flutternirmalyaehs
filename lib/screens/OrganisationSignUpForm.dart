@@ -943,10 +943,8 @@ class OrganisationSignUpFormState extends State<OrganisationSignUpForm> {
       idproof1 = image1.path;
       //adduploaddocument1.extension = extName;
       extension1 = extName;
-      print("Message is: " +
-          extension1); // adduploaddocument.mulFile=file.path as MultipartFile;
-      print("Message isssss: " +
-          extName); // adduploaddocument.mulFile=file.path as MultipartFile;
+      print("Message is: " + extension1); // adduploaddocument.mulFile=file.path as MultipartFile;
+      print("Message isssss: " +extName); // adduploaddocument.mulFile=file.path as MultipartFile;
     });
   }
   Future getCerificateImage1() async {
@@ -1572,7 +1570,7 @@ class OrganisationSignUpFormState extends State<OrganisationSignUpForm> {
     formData.fields..add(MapEntry('orgname', textEditingController[0].text))..add(
         MapEntry(
           'licno',
-          textEditingController[1].text,
+          textEditingController[1].text.toUpperCase(),
         ))..add(MapEntry(
       'address',
       textEditingController[2].text,
@@ -2230,8 +2228,7 @@ class OrganisationSignUpFormState extends State<OrganisationSignUpForm> {
            // maxLength: 10,
 
             //focusNode: fnode1,
-            textAlignVertical:
-            TextAlignVertical.center,
+            textAlignVertical: TextAlignVertical.center,
             onFieldSubmitted: (value) {
               print("ValueValue" + error[index].toString());
 

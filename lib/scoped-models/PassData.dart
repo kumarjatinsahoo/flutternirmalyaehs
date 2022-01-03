@@ -110,6 +110,8 @@ class PassData extends Model {
   String pharmacity;
   String pharamctorderid;
   String appno;
+  String meddatest;
+  String doctorst;
   cnfrm.Body pharmacyorderModel;
 
 ////////////

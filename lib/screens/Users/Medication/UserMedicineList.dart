@@ -180,8 +180,20 @@ class _MedicineList extends State<UserMedicineList> {
         title: Text("Medicine List"),
         actions: <Widget>[
           Padding(
-            padding: EdgeInsets.only(right: 20.0),
+            padding: const EdgeInsets.only(right: 15.0,top: 20),
+            child: InkWell(
+              onTap: () {
+                Navigator.pushNamed(context, "/disitalPrescriptionPage");
+              },
+              child: Text("Prescription"),
+            ),
           ),
+         /* Padding(
+            padding: EdgeInsets.only(right: 18.0,top: 20),
+           child:Text("Prescription"),
+
+
+          ),*/
         ],
         toolbarHeight: (widget.model.apntUserType == Const.HEALTH_CHKUP_APNT)
             ? 0
