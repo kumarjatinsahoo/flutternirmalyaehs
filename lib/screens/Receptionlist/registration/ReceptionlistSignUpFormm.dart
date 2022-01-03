@@ -264,7 +264,7 @@ class ReceptionlistSignUpFormmState extends State<ReceptionlistSignUpFormm> {
                           ),
                         ),
                         SizedBox(
-                          height: 8,
+                          height: 2,
                         ),
                         Form(
                           key: _formKey,
@@ -296,7 +296,7 @@ class ReceptionlistSignUpFormmState extends State<ReceptionlistSignUpFormm> {
                                 ),
                               ),
                               SizedBox(
-                                height: 10,
+                                height: 2,
                               ),
                               Padding(
                                 padding:
@@ -328,7 +328,6 @@ class ReceptionlistSignUpFormmState extends State<ReceptionlistSignUpFormm> {
                                 const EdgeInsets.symmetric(horizontal: 5),
                                 child: Container(
                                   height: 50,
-                                  padding: EdgeInsets.symmetric(horizontal: 5),
                                   decoration: BoxDecoration(
                                     color: Colors.white,
                                     borderRadius: BorderRadius.circular(5),
@@ -339,7 +338,7 @@ class ReceptionlistSignUpFormmState extends State<ReceptionlistSignUpFormm> {
                                     decoration: InputDecoration(
                                       border: InputBorder.none,
                                       hintText: MyLocalizations.of(context)
-                                          .text("Professional's Name"),
+                                          .text("PROFESSIONAL_NAME"),
                                       prefixIcon: Icon(Icons.person_rounded),
                                       hintStyle: TextStyle(
                                           color: AppData.hintColor,
@@ -352,7 +351,7 @@ class ReceptionlistSignUpFormmState extends State<ReceptionlistSignUpFormm> {
                                     textAlignVertical: TextAlignVertical.center,
                                     inputFormatters: [
                                       WhitelistingTextInputFormatter(
-                                          RegExp("[a-z A-Z]")),
+                                          RegExp("[a-z A-Z.]")),
                                     ],
 
                                   ),
@@ -366,8 +365,6 @@ class ReceptionlistSignUpFormmState extends State<ReceptionlistSignUpFormm> {
                                     horizontal: 5),
                                 child: Container(
                                   height: 50,
-                                  padding:
-                                  EdgeInsets.symmetric(horizontal: 5),
                                   decoration: BoxDecoration(
                                     color: Colors.white,
                                     borderRadius:
@@ -380,7 +377,7 @@ class ReceptionlistSignUpFormmState extends State<ReceptionlistSignUpFormm> {
                                       border: InputBorder.none,
                                       hintText:
                                       MyLocalizations.of(context)
-                                          .text("Address")
+                                          .text("ADDRESS")
                                       ,
                                       prefixIcon:
                                       Icon(Icons.location_on),
@@ -396,7 +393,7 @@ class ReceptionlistSignUpFormmState extends State<ReceptionlistSignUpFormm> {
                                     TextAlignVertical.center,
                                     inputFormatters: [
                                       WhitelistingTextInputFormatter(
-                                          RegExp("[a-z A-Z]")),
+                                          RegExp("[a-z A-Z. , /0-9]")),
                                     ],
 
                                   ),
@@ -410,8 +407,6 @@ class ReceptionlistSignUpFormmState extends State<ReceptionlistSignUpFormm> {
                                     horizontal: 5),
                                 child: Container(
                                   height: 50,
-                                  padding:
-                                  EdgeInsets.symmetric(horizontal: 5),
                                   decoration: BoxDecoration(
                                     color: Colors.white,
                                     borderRadius:
@@ -422,9 +417,10 @@ class ReceptionlistSignUpFormmState extends State<ReceptionlistSignUpFormm> {
                                   child: TextFormField(
                                     decoration: InputDecoration(
                                       border: InputBorder.none,
+                                      counterText: "",
                                       hintText:
                                       MyLocalizations.of(context)
-                                          .text("Experience(in year)"),
+                                          .text("EXPERIENCE"),
                                       prefixIcon:
                                       Icon(Icons.work_outlined),
                                       hintStyle: TextStyle(
@@ -437,6 +433,11 @@ class ReceptionlistSignUpFormmState extends State<ReceptionlistSignUpFormm> {
                                     focusNode: fnode3,
                                     textAlignVertical:
                                     TextAlignVertical.center,
+                                    maxLength: 2,
+                                    inputFormatters: [
+                                      WhitelistingTextInputFormatter(
+                                          RegExp("[0-9]")),
+                                    ],
 
                                   ),
                                 ),
@@ -449,7 +450,6 @@ class ReceptionlistSignUpFormmState extends State<ReceptionlistSignUpFormm> {
                                 const EdgeInsets.symmetric(horizontal: 5),
                                 child: Container(
                                   height: 50,
-                                  padding: EdgeInsets.symmetric(horizontal: 5),
                                   decoration: BoxDecoration(
                                     color: Colors.white,
                                     borderRadius: BorderRadius.circular(5),
@@ -458,9 +458,10 @@ class ReceptionlistSignUpFormmState extends State<ReceptionlistSignUpFormm> {
                                   ),
                                   child: TextFormField(
                                     decoration: InputDecoration(
+                                      counterText: "",
                                       border: InputBorder.none,
                                       hintText: MyLocalizations.of(context)
-                                          .text("PinCode"),
+                                          .text("ENTER_ZIP_CODE"),
                                       prefixIcon: Icon(Icons.location_on),
                                       hintStyle: TextStyle(
                                           color: AppData.hintColor,
@@ -471,6 +472,11 @@ class ReceptionlistSignUpFormmState extends State<ReceptionlistSignUpFormm> {
                                     controller: textEditingController[0],
                                     focusNode: fnode1,
                                     textAlignVertical: TextAlignVertical.center,
+                                    maxLength: 6,
+                                    inputFormatters: [
+                                      WhitelistingTextInputFormatter(
+                                          RegExp("[0-9]")),
+                                    ],
 
 
                                   ),
@@ -484,7 +490,6 @@ class ReceptionlistSignUpFormmState extends State<ReceptionlistSignUpFormm> {
                                 const EdgeInsets.symmetric(horizontal: 5),
                                 child: Container(
                                   height: 50,
-                                  padding: EdgeInsets.symmetric(horizontal: 5),
                                   decoration: BoxDecoration(
                                       color: Colors.white,
                                       borderRadius: BorderRadius.circular(5),
@@ -494,7 +499,7 @@ class ReceptionlistSignUpFormmState extends State<ReceptionlistSignUpFormm> {
                                     decoration: InputDecoration(
                                       border: InputBorder.none,
                                       hintText: MyLocalizations.of(context)
-                                          .text("Email Id"),
+                                          .text("EMAILID"),
                                       prefixIcon: Icon(Icons.email),
                                       hintStyle: TextStyle(
                                           color: AppData.hintColor,
@@ -541,17 +546,14 @@ class ReceptionlistSignUpFormmState extends State<ReceptionlistSignUpFormm> {
                                       MyLocalizations.of(context)
                                           .text("COUNTRY"),
                                       ApiFactory.COUNTRY_API,
-                                      "country",
+                                      "countryU",
                                       Icons.location_on_rounded,
                                       23.0, (KeyvalueModel data) {
                                     setState(() {
                                       print(ApiFactory.COUNTRY_API);
-                                      ReceptionlistSignUpFormm.countryModel =
-                                          data;
-                                      ReceptionlistSignUpFormm.stateModel =
-                                      null;
-                                      ReceptionlistSignUpFormm.districtModel =
-                                      null;
+                                      ReceptionlistSignUpFormm.countryModel = data;
+                                      ReceptionlistSignUpFormm.stateModel = null;
+                                      ReceptionlistSignUpFormm.districtModel = null;
                                       ReceptionlistSignUpFormm.cityModel = null;
                                     });
                                   }),
@@ -573,16 +575,13 @@ class ReceptionlistSignUpFormmState extends State<ReceptionlistSignUpFormm> {
                                       ApiFactory.STATE_API +
                                           ReceptionlistSignUpFormm
                                               .countryModel.key,
-                                      "stateU",
+                                      "stateR",
                                       Icons.location_on_rounded,
                                       23.0, (KeyvalueModel data) {
                                     setState(() {
-                                      ReceptionlistSignUpFormm
-                                          .stateModel = data;
-                                      ReceptionlistSignUpFormm
-                                          .districtModel = null;
-                                      ReceptionlistSignUpFormm.cityModel =
-                                      null;
+                                      ReceptionlistSignUpFormm.stateModel = data;
+                                      ReceptionlistSignUpFormm.districtModel = null;
+                                      ReceptionlistSignUpFormm.cityModel = null;
                                       /*userModel.state=data.key;
                                       userModel.stateCode=data.code;*/
                                     });
@@ -606,15 +605,13 @@ class ReceptionlistSignUpFormmState extends State<ReceptionlistSignUpFormm> {
                                       ApiFactory.DISTRICT_API +
                                           ReceptionlistSignUpFormm
                                               .stateModel.key,
-                                      "districtU",
+                                      "districtR",
                                       Icons.location_on_rounded,
                                       23.0, (KeyvalueModel data) {
                                     setState(() {
                                       print(ApiFactory.COUNTRY_API);
-                                      ReceptionlistSignUpFormm
-                                          .districtModel = data;
-                                      ReceptionlistSignUpFormm.cityModel =
-                                      null;
+                                      ReceptionlistSignUpFormm.districtModel = data;
+                                      ReceptionlistSignUpFormm.cityModel = null;
                                     });
                                   }),
                                 ),
@@ -636,7 +633,7 @@ class ReceptionlistSignUpFormmState extends State<ReceptionlistSignUpFormm> {
                                       ApiFactory.CITY_API +
                                           ReceptionlistSignUpFormm
                                               .districtModel.key,
-                                      "cityU",
+                                      "cityR",
                                       Icons.location_on_rounded,
                                       23.0, (KeyvalueModel data) {
                                     setState(() {
@@ -725,7 +722,7 @@ class ReceptionlistSignUpFormmState extends State<ReceptionlistSignUpFormm> {
                                   : Container(),
                               Padding(
                                 padding:
-                                const EdgeInsets.symmetric(horizontal: 10),
+                                const EdgeInsets.symmetric(horizontal: 1),
                                 child: Row(
                                   //  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
@@ -1113,14 +1110,18 @@ class ReceptionlistSignUpFormmState extends State<ReceptionlistSignUpFormm> {
     } else if (textEditingController[2].text == null ||
         textEditingController[2].text == "") {
       AppData.showInSnackBar(context, "Please Enter Professional Name");
+    }  else if (textEditingController[2].text.length<3) {
+      AppData.showInSnackBar(context, "Please enter valid Professional's Name");
     } else if (textEditingController[3].text == null ||
         textEditingController[3].text == "") {
       AppData.showInSnackBar(context, "Please Enter Address");
+    }  else if (textEditingController[3].text.length<3) {
+      AppData.showInSnackBar(context, "Please enter valid address");
     } else if (textEditingController[4].text ==null||
         textEditingController[4].text == "" ) {
-      AppData.showInSnackBar(context, "Please enter a Experience");
+      AppData.showInSnackBar(context, "Please enter Experience");
       FocusScope.of(context).requestFocus(fnode3);
-    } else if (textEditingController[0].text != "" &&
+    } else if (textEditingController[0].text == null ||
         textEditingController[0].text.length != 6) {
       AppData.showInSnackBar(context, "Please enter a valid Zip/Pin Code");
       FocusScope.of(context).requestFocus(fnode1);
@@ -1140,8 +1141,6 @@ class ReceptionlistSignUpFormmState extends State<ReceptionlistSignUpFormm> {
         textEditingController[5].text.length != 10) {
       AppData.showInSnackBar(context, "Please enter a valid Mobile Number");
       FocusScope.of(context).requestFocus(fnode6);
-    } else if (_checkbox == false) {
-      AppData.showInSnackBar(context, "Please Check Terms And Condition");
     } else if (ReceptionlistSignUpFormm.countryModel == null ||
         ReceptionlistSignUpFormm.countryModel == "") {
       AppData.showInSnackBar(context, "Please select Country");
@@ -1154,8 +1153,11 @@ class ReceptionlistSignUpFormmState extends State<ReceptionlistSignUpFormm> {
     } else if (ReceptionlistSignUpFormm.cityModel == null ||
         ReceptionlistSignUpFormm.cityModel == "") {
       AppData.showInSnackBar(context, "Please select City");
+    }else if (doctorModel.documentExt == null) {
+      AppData.showInSnackBar(context, "Please Upload Document");
+     } else if (_checkbox == false) {
+      AppData.showInSnackBar(context, "Please check terms and conditions");
     }
-
     else {
       doctorModel.titleid = ReceptionlistSignUpFormm.titleModel.key;
       doctorModel.organizationid = ReceptionlistSignUpFormm.organizationModel.key;

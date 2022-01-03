@@ -915,7 +915,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         Divider(),
                         ListTile(
-                          title: Center(child: Text("Receptionlist")),
+                          title: Center(child: Text("Receptionist")),
                           // leading: Icon(
                           //   CupertinoIcons.calendar_today,
                           //   size: 40,
