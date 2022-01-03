@@ -502,7 +502,7 @@ class _DoctorAppointmentRequestedState
                                                                 Expanded(
                                                                   child:
                                                                       InkWell(
-                                                                        onTap: () {
+                                                                    onTap: () {
                                                                       widget.model.GETMETHODCALL_TOKEN(
                                                                           api: ApiFactory.user_APPOINTMENT_status + appointmentlist.doctorName + "&appstatus=" + "4",
                                                                           token: widget.model.token,
@@ -518,8 +518,7 @@ class _DoctorAppointmentRequestedState
                                                                     },
                                                                     child:
                                                                         Container(
-                                                                      height:
-                                                                          50,
+                                                                   //   height: 50,
                                                                       decoration: BoxDecoration(
                                                                           borderRadius: BorderRadius.circular(
                                                                               5),
@@ -568,12 +567,8 @@ class _DoctorAppointmentRequestedState
                                                                     },
                                                                     child:
                                                                         Container(
-                                                                      height: size
-                                                                              .height *
-                                                                          0.06,
-                                                                      width: size
-                                                                              .height *
-                                                                          0.20,
+                                                                          //height: size.height * 0.06,
+                                                                      //width: size.height * 0.20,
                                                                       decoration: BoxDecoration(
                                                                           borderRadius: BorderRadius.circular(
                                                                               5),

@@ -1112,7 +1112,7 @@ class _MyAppState extends State<MyApp> {
                     model: _model,
                   ),
               '/labMyProfile': (context) =>
-                  LabMyProfile(
+                  DocMyProfile(
                     model: _model,
                   ),
               '/organisationSignUpForm': (context) =>

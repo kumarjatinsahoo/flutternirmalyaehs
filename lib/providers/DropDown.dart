@@ -12,6 +12,7 @@ import 'package:user/screens/Ambulance/Registration/ambulanceSignUpForm2.dart';
 import 'package:user/screens/Doctor/Dashboard/DocMyProfile.dart';
 import 'package:user/screens/Doctor/registartion/DoctorSignUpForm4.dart';
 import 'package:user/screens/Ngo/Registration/NgoSignUpForm2.dart';
+import 'package:user/screens/OrganisationSignUpForm.dart';
 import 'package:user/screens/Pharmacists/registration/PharmaSignUpForm3.dart';
 import 'package:user/screens/Users/Dashboard/ProfileScreen.dart';
 import 'package:user/screens/Users/EmergencyHelp/SetupContactsPage.dart';
@@ -2305,11 +2306,20 @@ class DropDown {
       case "stateph":
         return PharmaSignUpForm3.stateModel;
         break;
+        case "stateph":
+        return OrganisationSignUpForm.stateModel;
+        break;
       case "districtph":
         return PharmaSignUpForm3.districtModel;
         break;
+        case "districtph":
+        return OrganisationSignUpForm.districtModel;
+        break;
       case "cityph":
         return PharmaSignUpForm3.citymodel;
+        break;
+        case "cityph":
+        return OrganisationSignUpForm.citymodel;
         break;
       case "state_Ngo":
         return NgoSignUpForm2.stateModel;

@@ -1094,7 +1094,7 @@ class _AllergicListListState extends State<AllergicListList> {
 
                       print(">>>>>>>>>>>>>>>>>>>>>>>>>>>" +
                           allergicmodel.toJson().toString());
-                      /*widget.model.POSTMETHOD2(
+                      widget.model.POSTMETHOD2(
                         api: ApiFactory.ALLERGIC_POST,
                         json: allergicmodel.toJson(),
                         token: widget.model.token,
@@ -1113,7 +1113,7 @@ class _AllergicListListState extends State<AllergicListList> {
                             }
                           });
                         },
-                      );*/
+                      );
                       //AppData.showInSnackBar(context, "add Successfully");
                     }
                   });

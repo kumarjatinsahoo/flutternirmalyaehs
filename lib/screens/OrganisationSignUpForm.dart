@@ -1527,7 +1527,7 @@ class OrganisationSignUpFormState extends State<OrganisationSignUpForm> {
           AppData.showInSnackBar(context, "Please Enter Address");
 
         }else if (textEditingController[2].text != 3) {
-          AppData.showInSnackBar(context, "Please Enter Address");
+          AppData.showInSnackBar(context, "Please Enter Valid  Address");
 
         }
         else if (textEditingController[3].text == "" ||

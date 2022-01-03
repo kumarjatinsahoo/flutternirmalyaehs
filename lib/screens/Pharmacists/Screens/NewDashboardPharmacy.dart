@@ -386,22 +386,6 @@ class _NewDashboardPharmacyState extends State<NewDashboardPharmacy> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          /*  Container(
-                            height: size.height * 0.07,
-                            width: size.width * 0.13,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(55),
-                                border: Border.all(color: Colors.white, width: 0.5),
-                                color: Colors.white),
-                            child: ClipRRect(
-                                borderRadius: BorderRadius.circular(55),
-                                child: Image.asset(
-                                  'assets/images/user.png',
-                                  height: size.height * 0.07,
-                                  width: size.width * 0.13,
-                                  //fit: BoxFit.cover,
-                                )),
-                          ),*/
                           CircleAvatar(
                             radius: 35,
                             foregroundColor: Colors.white,
