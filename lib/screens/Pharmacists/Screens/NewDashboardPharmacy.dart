@@ -180,7 +180,7 @@ class _NewDashboardPharmacyState extends State<NewDashboardPharmacy> {
                           height: 35,
                           /* child: Expanded(*/
                           child: Text(
-                            MyLocalizations.of(context).text("CONFIRMED_ORDER"),
+                            MyLocalizations.of(context).text("ORDER_DETAILS"),
                             // MyLocalizations.of(context).text("Confirmed Order"),
                             textAlign: TextAlign.center,
                             //overflow: TextOverflow.ellipsis,

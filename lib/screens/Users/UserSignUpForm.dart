@@ -1204,44 +1204,44 @@ class UserSignUpFormState extends State<UserSignUpForm> {
   validate() async {
     _formKey.currentState.validate();
     if (UserSignUpForm.titleModel == null || UserSignUpForm.titleModel == "") {
-      AppData.showInSnackBar(context, "Please select Title");
+      AppData.showInSnackBar(context, "Please select title");
     } else if (textEditingController[0].text == "" ||
         textEditingController[0].text == null) {
-      AppData.showInSnackBar(context, "Please enter First Name");
+      AppData.showInSnackBar(context, "Please enter first name");
       FocusScope.of(context).requestFocus(fnode1);
     }else if (textEditingController[0].text != "" &&
         textEditingController[0].text.length <= 2) {
-      AppData.showInSnackBar(context, "Please enter a valid First Name");
+      AppData.showInSnackBar(context, "Please enter a valid first name");
     }else if (textEditingController[1].text == "" ||
         textEditingController[1].text == null) {
-      AppData.showInSnackBar(context, "Please enter Last Name");
+      AppData.showInSnackBar(context, "Please enter last name");
       FocusScope.of(context).requestFocus(fnode2);
     }else if (textEditingController[1].text != "" &&
         textEditingController[1].text.length <= 2) {
-      AppData.showInSnackBar(context, "Please enter a valid  Last Name");
+      AppData.showInSnackBar(context, "Please enter a valid  last name");
     } else if (UserSignUpForm.genderModel == null ||
         UserSignUpForm.genderModel == "") {
-      AppData.showInSnackBar(context, "Please select Gender");
+      AppData.showInSnackBar(context, "Please select gender");
     }else if (textEditingController[2].text=="" ||
         textEditingController[2].text == null) {
-      AppData.showInSnackBar(context, "Please enter Phone Number");
+      AppData.showInSnackBar(context, "Please enter phone number");
       FocusScope.of(context).requestFocus(fnode3);
     }else if (textEditingController[2].text.length != 10 ||
         textEditingController[2].text == null) {
-      AppData.showInSnackBar(context, "Please enter Valid Phone Number");
+      AppData.showInSnackBar(context, "Please enter valid phone number");
       FocusScope.of(context).requestFocus(fnode3);
     }else if (UserSignUpForm.countryModel == null ||
         UserSignUpForm.countryModel == "") {
-      AppData.showInSnackBar(context, "Please select Country");
+      AppData.showInSnackBar(context, "Please select country");
     } else if (UserSignUpForm.stateModel == null ||
         UserSignUpForm.stateModel == "") {
-      AppData.showInSnackBar(context, "Please select State");
+      AppData.showInSnackBar(context, "Please select state");
     } else if (UserSignUpForm.districtModel == null ||
         UserSignUpForm.districtModel == "") {
-      AppData.showInSnackBar(context, "Please select District");
+      AppData.showInSnackBar(context, "Please select district");
     } else if (UserSignUpForm.cityModel == null ||
         UserSignUpForm.cityModel == "") {
-      AppData.showInSnackBar(context, "Please select City");
+      AppData.showInSnackBar(context, "Please select city");
     } /*else if (selectDobEn==TypeDob.Age && (textEditingController[3].text =="" || textEditingController[3].text == null) ) {
       AppData.showInSnackBar(context, "Please enter your Age");
       FocusScope.of(context).requestFocus(fnode4);
@@ -1253,7 +1253,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
       AppData.showInSnackBar(context, "Please enter your DOB");
     }*/
     else if (_checkbox == false) {
-      AppData.showInSnackBar(context, "Please check Terms and Condition");
+      AppData.showInSnackBar(context, "Please check terms and conditions");
     }
     else {
       // PatientSignupModel patientSignupModel = PatientSignupModel();
