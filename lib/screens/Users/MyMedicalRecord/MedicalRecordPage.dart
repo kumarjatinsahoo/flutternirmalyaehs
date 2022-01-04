@@ -89,8 +89,7 @@ class _MedicalRecordPageState extends State<MedicalRecordPage> {
                             GestureDetector(
                               onTap: () =>
 
-                                  Navigator.pushNamed(
-                                      context, "/userTab1"),
+                                  Navigator.pushNamed(context, "/userTab1"),
                               child: Card(
                                 elevation: 5,
                                 child: Container(
@@ -362,6 +361,7 @@ class _MedicalRecordPageState extends State<MedicalRecordPage> {
 
                               onTap: () => Navigator.pushNamed(
                                   context, "/healthchart"),
+                              //Navigator.pushNamed(context, "/healthChaatlist"),
                               child: Card(
                                 elevation: 5,
                                 child: Container(
