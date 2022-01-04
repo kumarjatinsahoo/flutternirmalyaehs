@@ -159,10 +159,10 @@ class ApiFactory {
         "find-health-provider-details?longi=$longi&lati=$lati&addr=$addr&city=$city&healthpro=$healthpro&type=$type";
   }
 
-  static String GOVET_SCHEMES_LIST(String contry, String state, String dist,
-      String city) {
+  static String GOVET_SCHEMES_LIST(String contry, String state/*, String dist,
+      String city*/) {
     return MAIN_URL +
-        "view-government-scheme-list?country=$contry&state=$state&dist=$dist&city=$city";
+        "view-government-scheme-list?country=$contry&state=$state";/*&dist=$dist&city=$city*/
   }
 
   static String GOOGLE_QUERY_API(
