@@ -49,7 +49,7 @@ class _DisitaTestPageState extends State<DisitaTestPage> {
         disableHorizontalScroll: false,
         supportZoom: true,
         disableVerticalScroll: false,
-      ),
+       ),
   );
 /* final Completer<InAppWebViewController> _controller1 =
   Completer<InAppWebViewController>();
@@ -137,13 +137,13 @@ class _DisitaTestPageState extends State<DisitaTestPage> {
               onWebViewCreated: (webViewController) {
                 _controller1.complete(webViewController);
               },
-              onEnterFullscreen: (controller) {
+              onEnterFullscreen: (_controller1) {
                 SystemChrome.setPreferredOrientations([
                   DeviceOrientation.landscapeRight,
                   DeviceOrientation.landscapeLeft,
                 ]);
               },
-              onExitFullscreen: (controller) {
+              onExitFullscreen: (_controller1) {
                 SystemChrome.setPreferredOrientations([
                   DeviceOrientation.portraitDown,
                   DeviceOrientation.portraitUp,
