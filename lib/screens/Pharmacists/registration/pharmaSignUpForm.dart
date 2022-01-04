@@ -446,27 +446,31 @@ class PharmaSignUpFormState extends State<PharmaSignUpForm> {
        // Navigator.pushNamed(context, "/patientRegistration2");
         if (PharmaSignUpForm.pharmacyModel == null ||
             PharmaSignUpForm.pharmacyModel == "") {
-          AppData.showInSnackBar(context, "Please select Organization Name");
+          AppData.showInSnackBar(context, "Please select organization name");
         }
         else if (PharmaSignUpForm.titlemodel == null ||
             PharmaSignUpForm.titlemodel == "") {
-          AppData.showInSnackBar(context, "Please select Title");
+          AppData.showInSnackBar(context, "Please select title");
         }
         else if (textEditingController[9].text == "" ||
             textEditingController[9].text == null) {
-          AppData.showInSnackBar(context, "Please enter Professional's Name");
-        }
-        else if (textEditingController[10].text == "" ||
+          AppData.showInSnackBar(context, "Please enter professional's name");
+        } else if (textEditingController[9].text.length<3) {
+          AppData.showInSnackBar(context, "Please enter valid professional's name");
+
+        }else if (textEditingController[10].text == "" ||
             textEditingController[10].text == null) {
-          AppData.showInSnackBar(context, "Please enter Experience");
+          AppData.showInSnackBar(context, "Please enter experience");
         }
         else if (textEditingController[11].text == "" ||
             textEditingController[11].text == null) {
-          AppData.showInSnackBar(context, "Please enter Address");
-        }
-        else if (PharmaSignUpForm.genderModel == null ||
+          AppData.showInSnackBar(context, "Please enter address");
+        } else if (textEditingController[11].text.length<3) {
+          AppData.showInSnackBar(context, "Please enter valid address");
+
+        } else if (PharmaSignUpForm.genderModel == null ||
             PharmaSignUpForm.genderModel == "") {
-          AppData.showInSnackBar(context, "Please select Gender");
+          AppData.showInSnackBar(context, "Please select gender");
         }
         else {
           widget.model.pharmaorganisation = PharmaSignUpForm.pharmacyModel.key;

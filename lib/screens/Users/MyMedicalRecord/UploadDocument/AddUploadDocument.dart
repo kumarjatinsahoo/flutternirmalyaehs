@@ -234,7 +234,7 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
                       else if (idproof == "" || idproof == null) {
                         AppData.showInSnackBar(
                             context,
-                            "Please Select  at least One Image,Vedio,Document");
+                            "Please Select  at least One Image,Video,Document");
                       }
                       else {
                         postMultiPart();
@@ -328,7 +328,7 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
         if (response.data["code"] == "success") {
           //Navigator.pushNamed(context, "/uploaddocument");
 
-          popup(context);
+          popup(context,);
         } else {
           AppData.showInSnackBar(context, "Something went wrong");
         }
@@ -370,7 +370,7 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
             hintText: hint,
             /* prefixIcon:
             Icon(Icons.person_rounded),*/
-            hintStyle: TextStyle(color: AppData.hintColor, fontSize: 15),
+            //hintStyle: TextStyle(color: AppData.hintColor, fontSize: 15),
           ),
           textInputAction: TextInputAction.next,
           keyboardType: TextInputType.text,
@@ -495,7 +495,7 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
   popup(BuildContext context) {
     return Alert(
         context: context,
-        title: "Successfully Upload",
+        title: "Successfully Uploaded",
         type: AlertType.success,
         onWillPopActive: true,
         closeIcon: Icon(
@@ -560,7 +560,8 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
                 AppData.fieldFocusChange(context, fnode3, fnode4);
               },
               decoration: InputDecoration(
-                hintText: ("Document Date"),
+                hintText: (" Document Date"),
+              //  hintStyle: TextStyle(color: AppData.hintColor, fontSize: 15),
                 border: InputBorder.none,
                 //contentPadding: EdgeInsets.symmetric(vertical: 10),
                 suffixIcon: Icon(

@@ -94,9 +94,7 @@ class _TestReport extends State<TestReport> {
             ],
           ),
         ),
-      )
-          :
-      SingleChildScrollView(
+      ): SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(15.0),
           child: Container(
