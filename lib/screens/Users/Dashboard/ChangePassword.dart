@@ -395,7 +395,7 @@ class _ChangePasswordState extends State<ChangePassword> {
               token: widget.model.token,
               fun: (Map<String, dynamic> map) {
                 String body=map[Const.BODY];
-                Navigator.pop(context);
+                //Navigator.pop(context);
                 setState(() {
                   if (map[Const.CODE] == Const.SUCCESS) {
                     popup( map[Const.MESSAGE], context);
