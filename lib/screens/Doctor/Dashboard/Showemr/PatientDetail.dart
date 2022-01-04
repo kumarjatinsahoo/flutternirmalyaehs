@@ -157,7 +157,8 @@ class _PatientDetail extends State<PatientDetail> {
                                   color: Colors.black, fontSize: 15),
                             ),
                             Text(
-                              patientsDetails.body[0].firstname,
+                              patientsDetails.body[0].firstname??
+                                  "N/A",
                               style: TextStyle(
                                   color: Colors.black, fontSize: 15),
                             ),
@@ -180,7 +181,8 @@ class _PatientDetail extends State<PatientDetail> {
                                   color: Colors.black, fontSize: 15),
                             ),
                             Text(
-                              patientsDetails.body[0].lastname,
+                              patientsDetails.body[0].lastname??
+                                  "N/A",
                               style: TextStyle(
                                   color: Colors.black, fontSize: 15),
                             ),
@@ -203,7 +205,8 @@ class _PatientDetail extends State<PatientDetail> {
                                   color: Colors.black, fontSize: 15),
                             ),
                             Text(
-                              patientsDetails.body[0].uhidcardno,
+                              patientsDetails.body[0].uhidcardno??
+                                  "N/A",
                               style: TextStyle(
                                   color: Colors.black, fontSize: 15),
                             ),
@@ -269,7 +272,8 @@ class _PatientDetail extends State<PatientDetail> {
                                   color: Colors.black, fontSize: 15),
                             ),
                             Text(
-                              patientsDetails.body[0].age,
+                              patientsDetails.body[0].age??
+                                  "N/A",
                               style: TextStyle(
                                   color: Colors.black, fontSize: 15),
                             ),
@@ -291,7 +295,8 @@ class _PatientDetail extends State<PatientDetail> {
                                   color: Colors.black, fontSize: 15),
                             ),
                             Text(
-                              patientsDetails.body[0].gender,
+                              patientsDetails.body[0].gender??
+                                  "N/A",
                               style: TextStyle(
                                   color: Colors.black, fontSize: 15),
                             ),

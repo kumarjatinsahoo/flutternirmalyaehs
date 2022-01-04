@@ -59,55 +59,63 @@ class _ShowEmr extends State<ShowEmr> {
         child: Scaffold(
           appBar: PreferredSize(
             preferredSize: Size.fromHeight(130.0), // here the desired height
-
             child: AppBar(
-              centerTitle: true,
               backgroundColor: AppData.kPrimaryColor,
-              title: Text("Show EMR"),
-              leading: new Padding(
-                padding: const EdgeInsets.all(5.0),
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 20,
+            title: Padding(
+              padding: const EdgeInsets.only(left: 60),
+              child: Text("Show EMR"),
+            ),
+            leading: InkWell(onTap: (){Navigator.pop(context);},child: Icon(Icons.arrow_back)),
+            /*  title: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  GestureDetector(
+                    child: Icon(
+                      Icons.arrow_back,
+                      color: Colors.white,
+                      size: 25,
                     ),
-                    Row(
-                      children: [
-                        SizedBox(
-                          width: 10,
-                        ),
-                        GestureDetector(
-                          child: Icon(
-                            Icons.arrow_back,
-                            color: Colors.white,
-                            size: 25,
-                          ),
-                          onTap: () async {
-                            /*Navigator.push(
-                                context,
-                                new MaterialPageRoute(
-                                    builder: (context) => new WalkPatient()));*/
-                            //Navigator.pushNamed(context, "/docWalkInReg");
-                            Navigator.of(context).pop();
-                            //Navigator.of(context).pop();
-                          },
-                        ),
-                        SizedBox(
-                          width: 7,
-                        ),
-                        // Container(
-                        //   height: 20,
-                        //   width: 1,
-                        //   child: VerticalDivider(
-                        //     thickness: 2,
-                        //     color: Colors.white,
-                        //   ),
-                        // ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
+                    onTap: () async {
+                      */
+              /*Navigator.push(
+                              context,
+                              new MaterialPageRoute(
+                                  builder: (context) => new WalkPatient()));*/
+              /*
+                      //Navigator.pushNamed(context, "/docWalkInReg");
+                      Navigator.of(context).pop();
+                      //Navigator.of(context).pop();
+                    },
+                  ),
+
+                ],
+              ),*/
+             /* leading: Column(
+                children: [
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: 10,
+                      ),
+
+                      SizedBox(
+                        width: 7,
+                      ),
+                      // Container(
+                      //   height: 20,
+                      //   width: 1,
+                      //   child: VerticalDivider(
+                      //     thickness: 2,
+                      //     color: Colors.white,
+                      //   ),
+                      // ),
+                    ],
+                  ),
+                ],
+              ),*/
               /*actions: <Widget>[
                 PopupMenuButton<int>(
                   onSelected: (item) => handleClick(item),
