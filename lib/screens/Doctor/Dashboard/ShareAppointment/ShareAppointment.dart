@@ -211,7 +211,7 @@ class _ShareAppointment extends State<ShareAppointment> {
                               FontWeight
                                   .bold,
                               fontSize:
-                              12,
+                              17,
                               color: Colors
                                   .white),
                         ),

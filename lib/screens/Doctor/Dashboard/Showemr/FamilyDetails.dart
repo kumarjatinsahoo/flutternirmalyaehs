@@ -100,106 +100,104 @@ class _FamilyDetails extends State<FamilyDetails> {
                   ),
                   Padding(
                     padding: const EdgeInsets.all(0.0),
-                    child: Expanded(
-                      child:(familyDetailsModel != null)
-                          ? ListView.builder(
-                        shrinkWrap: true,
-                        // scrollDirection: Axis.horizontal,
-                        /* itemCount: 2,
+                    child: (familyDetailsModel != null)
+                        ? ListView.builder(
+                      shrinkWrap: true,
+                      // scrollDirection: Axis.horizontal,
+                      /* itemCount: 2,
                   itemBuilder: (BuildContext context, int index) {*/
-                        itemBuilder: (context, i) {
-                          family.Body familydetails = familyDetailsModel.body[i];
-                          return Card(
-                            color: Color(0xFFD2E4FC),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(5),
-                                  topRight: Radius.circular(5),
-                                  bottomRight: Radius.circular(5),
-                                  bottomLeft: Radius.circular(5),
-                                ),
-                                side: BorderSide(width: 1, color: Color(0xFFD2E4FC))),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Column(
-                                children: [
-                                  Row(
-                                    children: [
-                                      Container(
-                                        width: 100,
-                                        child: Text(
-                                          "Name",
-                                          style: TextStyle(
-                                              color: Colors.black, fontSize: 15),
-                                        ),
-                                      ),
-                                      Text(
-                                        "   :   ",
-                                        style: TextStyle(
-                                            color: Colors.black, fontSize: 15),
-                                      ),
-                                      Text(
-                                        familydetails.memeberName,
-                                        style: TextStyle(
-                                            color: Colors.black, fontSize: 15),
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(height: 5),
-                                  Row(
-                                    children: [
-                                      Container(
-                                        width: 100,
-                                        child: Text(
-                                          "Relation",
-                                          style: TextStyle(
-                                              color: Colors.black, fontSize: 15),
-                                        ),
-                                      ),
-                                      Text(
-                                        "   :   ",
-                                        style: TextStyle(
-                                            color: Colors.black, fontSize: 15),
-                                      ),
-                                      Text(
-                                      familydetails.relation,
-                                        style: TextStyle(
-                                            color: Colors.black, fontSize: 15),
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(height: 5),
-                                  Row(
-                                    children: [
-                                      Container(
-                                        width: 100,
-                                        child: Text(
-                                          "Age",
-                                          style: TextStyle(
-                                              color: Colors.black, fontSize: 15),
-                                        ),
-                                      ),
-                                      Text(
-                                        "   :   ",
-                                        style: TextStyle(
-                                            color: Colors.black, fontSize: 15),
-                                      ),
-                                      Text(
-                                        familydetails.age,
-                                        style: TextStyle(
-                                            color: Colors.black, fontSize: 15),
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(height: 5),
-                                ],
+                      itemBuilder: (context, i) {
+                        family.Body familydetails = familyDetailsModel.body[i];
+                        return Card(
+                          color: Color(0xFFD2E4FC),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(5),
+                                topRight: Radius.circular(5),
+                                bottomRight: Radius.circular(5),
+                                bottomLeft: Radius.circular(5),
                               ),
+                              side: BorderSide(width: 1, color: Color(0xFFD2E4FC))),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              children: [
+                                Row(
+                                  children: [
+                                    Container(
+                                      width: 100,
+                                      child: Text(
+                                        "Name",
+                                        style: TextStyle(
+                                            color: Colors.black, fontSize: 15),
+                                      ),
+                                    ),
+                                    Text(
+                                      "   :   ",
+                                      style: TextStyle(
+                                          color: Colors.black, fontSize: 15),
+                                    ),
+                                    Text(
+                                      familydetails.memeberName,
+                                      style: TextStyle(
+                                          color: Colors.black, fontSize: 15),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(height: 5),
+                                Row(
+                                  children: [
+                                    Container(
+                                      width: 100,
+                                      child: Text(
+                                        "Relation",
+                                        style: TextStyle(
+                                            color: Colors.black, fontSize: 15),
+                                      ),
+                                    ),
+                                    Text(
+                                      "   :   ",
+                                      style: TextStyle(
+                                          color: Colors.black, fontSize: 15),
+                                    ),
+                                    Text(
+                                    familydetails.relation,
+                                      style: TextStyle(
+                                          color: Colors.black, fontSize: 15),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(height: 5),
+                                Row(
+                                  children: [
+                                    Container(
+                                      width: 100,
+                                      child: Text(
+                                        "Age",
+                                        style: TextStyle(
+                                            color: Colors.black, fontSize: 15),
+                                      ),
+                                    ),
+                                    Text(
+                                      "   :   ",
+                                      style: TextStyle(
+                                          color: Colors.black, fontSize: 15),
+                                    ),
+                                    Text(
+                                      familydetails.age,
+                                      style: TextStyle(
+                                          color: Colors.black, fontSize: 15),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(height: 5),
+                              ],
                             ),
-                          );
-                        },
-                        itemCount: familyDetailsModel.body.length,
-                      ) : Container(),
-                    ),
+                          ),
+                        );
+                      },
+                      itemCount: familyDetailsModel.body.length,
+                    ) : Container(),
                   ),
                 ]),
               ),
