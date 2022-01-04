@@ -153,7 +153,7 @@ class _RejectAmbulanceState extends State<RejectAmbulance> {
                                       ),
                                     //  Spacer(),
                                       Text(
-                                        body.patientName,
+                                        body.patientName.trim(),
                                         style: TextStyle(
                                             fontSize: 15),
                                         textAlign:
@@ -180,7 +180,7 @@ class _RejectAmbulanceState extends State<RejectAmbulance> {
                                      // Spacer(),
                                       Expanded(
                                         child: Text(
-                                          body.fromLocation,
+                                          body.fromLocation.trim(),
                                           style: TextStyle(
                                               fontSize: 15),
                                         ),
@@ -206,7 +206,7 @@ class _RejectAmbulanceState extends State<RejectAmbulance> {
                                     //  Spacer(),
                                       Expanded(
                                         child: Text(
-                                          body.toDestination,
+                                          body.toDestination.trim(),
                                           style: TextStyle(
                                               fontSize: 15),
                                         ),
@@ -232,7 +232,7 @@ class _RejectAmbulanceState extends State<RejectAmbulance> {
                                      // Spacer(),
                                       Expanded(
                                         child: Text(
-                                          body.patientNote,
+                                          body.patientNote.trim(),
                                           style: TextStyle(
                                               fontSize: 15),
                                         ),
