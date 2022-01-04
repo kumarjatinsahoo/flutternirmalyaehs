@@ -257,8 +257,7 @@ class ReceptionlistSignUpFormmState extends State<ReceptionlistSignUpFormm> {
                                 23.0, (KeyvalueModel data) {
                               setState(() {
                                 print(ApiFactory.ORGANISATION_API);
-                                ReceptionlistSignUpFormm.organizationModel =
-                                    data;
+                                ReceptionlistSignUpFormm.organizationModel = data;
                               });
                             }),
                           ),
@@ -288,8 +287,7 @@ class ReceptionlistSignUpFormmState extends State<ReceptionlistSignUpFormm> {
                                       23.0, (KeyvalueModel data) {
                                     setState(() {
                                       print(ApiFactory.TITLE_API);
-                                      ReceptionlistSignUpFormm.titleModel =
-                                          data;
+                                      ReceptionlistSignUpFormm.titleModel = data;
                                       userModel.title = data.key;
                                     });
                                   }),
@@ -314,8 +312,7 @@ class ReceptionlistSignUpFormmState extends State<ReceptionlistSignUpFormm> {
                                       23.0, (KeyvalueModel data) {
                                     setState(() {
                                       print(ApiFactory.GENDER_API);
-                                      ReceptionlistSignUpFormm.genderModel =
-                                          data;
+                                      ReceptionlistSignUpFormm.genderModel = data;
                                       userModel.gender = data.key;
                                       // UserSignUpForm.cityModel = null;
                                     });
@@ -1097,10 +1094,11 @@ class ReceptionlistSignUpFormmState extends State<ReceptionlistSignUpFormm> {
   }
 
   validate() async {
-    if (ReceptionlistSignUpFormm.organizationModel == "" ||
+    if (
+    ReceptionlistSignUpFormm.organizationModel == "" ||
         ReceptionlistSignUpFormm.organizationModel == null) {
       AppData.showInSnackBar(context, "Please Select Organization Name");
-      FocusScope.of(context).requestFocus(fnode1);
+     // FocusScope.of(context).requestFocus(fnode1);
     } else if (ReceptionlistSignUpFormm.titleModel == null ||
         ReceptionlistSignUpFormm.titleModel == "") {
       AppData.showInSnackBar(context, "Please select Title");
@@ -1159,8 +1157,8 @@ class ReceptionlistSignUpFormmState extends State<ReceptionlistSignUpFormm> {
       AppData.showInSnackBar(context, "Please check terms and conditions");
     }
     else {
-      doctorModel.titleid = ReceptionlistSignUpFormm.titleModel.key;
       doctorModel.organizationid = ReceptionlistSignUpFormm.organizationModel.key;
+      doctorModel.titleid = ReceptionlistSignUpFormm.titleModel.key;
       doctorModel.gender = ReceptionlistSignUpFormm.genderModel.key;
       doctorModel.address = textEditingController[3].text;
       doctorModel.pincode = textEditingController[0].text;
