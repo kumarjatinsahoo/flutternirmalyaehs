@@ -328,7 +328,7 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
         if (response.data["code"] == "success") {
           //Navigator.pushNamed(context, "/uploaddocument");
 
-          popup(context);
+          popup(context,);
         } else {
           AppData.showInSnackBar(context, "Something went wrong");
         }
@@ -495,7 +495,7 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
   popup(BuildContext context) {
     return Alert(
         context: context,
-        title: "Successfully Upload",
+        title: "Successfully Uploaded",
         type: AlertType.success,
         onWillPopActive: true,
         closeIcon: Icon(

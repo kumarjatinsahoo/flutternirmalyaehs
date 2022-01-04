@@ -174,7 +174,7 @@ class _BiomediImplantsState extends State<BiomediImplants> {
                   child: SingleChildScrollView(
                     child: (biomedicalModel != null)
                         ? ListView.builder(
-                      physics: NeverScrollableScrollPhysics(),
+                            physics: NeverScrollableScrollPhysics(),
                             itemCount: biomedicalModel.body.length,
                             shrinkWrap: true,
                             itemBuilder: (context, i) {
@@ -207,134 +207,130 @@ class _BiomediImplantsState extends State<BiomediImplants> {
                                                       color:
                                                           AppData.kPrimaryColor,
                                                       width: 5))),
-                                      width: double.maxFinite,
-                                      child: Column(
-                                        children: [
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                left: 10.0,
-                                                top: 10,
-                                                right: 10.0),
-                                            child: Row(
-                                              children: [
-                                                Expanded(
-                                                  flex: 1,
-                                                  child: Text(
-                                                    " ",
-                                                    style: TextStyle(
-                                                        fontSize: 15,
-                                                        fontWeight:
-                                                            FontWeight.bold),
-                                                  ),
-                                                ),
-                                                InkWell(
-                                                  onTap: () {
-                                                    setState(() {
-                                                      BiomedicaldisplayDialog(
-                                                          context, biomedicalModel, i);
-                                                    });
+                                      //width: double.maxFinite,
+                                      child: Stack(
+                                          children: [
 
-                                                  },
-                                                  child: Icon(
-                                                    Icons.edit,
-                                                    size: 20,
+                                        Column(
+                                          children: [
+
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 10.0, right: 10.0,top: 8,),
+                                              child: Row(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Expanded(
+                                                    flex: 1,
+                                                    child: Text(
+                                                      "Name",
+                                                      style: TextStyle(
+                                                          fontSize: 15,
+                                                          fontWeight:
+                                                              FontWeight.bold),
+                                                    ),
                                                   ),
-                                                ),
-                                              ],
+                                                  Expanded(
+                                                    flex: 1,
+                                                    child: Text(
+                                                      body?.bioMName ?? "N/A",
+                                                      style: TextStyle(
+                                                          fontSize: 15),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
                                             ),
-                                          ),
-                                          //SizedBox(height: 2),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                left: 10.0,
-                                                top: 10,
-                                                right: 10.0),
-                                            child: Row(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              children: [
-                                                Expanded(
-                                                  flex: 1,
-                                                  child: Text(
-                                                    "Name",
-                                                    style: TextStyle(
-                                                        fontSize: 15,
-                                                        fontWeight:
-                                                            FontWeight.bold),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 10.0,
+                                                  top: 10,
+                                                  right: 10.0),
+                                              child: Row(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Expanded(
+                                                    flex: 1,
+                                                    child: Text(
+                                                      "Date",
+                                                      style: TextStyle(
+                                                          fontSize: 15,
+                                                          fontWeight:
+                                                              FontWeight.bold),
+                                                    ),
                                                   ),
-                                                ),
-                                                Expanded(
-                                                  flex: 1,
-                                                  child: Text(
-                                                    body?.bioMName ?? "N/A",
-                                                    style:
-                                                        TextStyle(fontSize: 15),
+                                                  Expanded(
+                                                    flex: 1,
+                                                    child: Text(
+                                                      body?.bioMDate ?? "N/A",
+                                                      style: TextStyle(
+                                                          fontSize: 15),
+                                                    ),
                                                   ),
-                                                ),
-                                              ],
+                                                ],
+                                              ),
                                             ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                left: 10.0,
-                                                top: 10,
-                                                right: 10.0),
-                                            child: Row(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              children: [
-                                                Expanded(
-                                                  flex: 1,
-                                                  child: Text(
-                                                    "Date",
-                                                    style: TextStyle(
-                                                        fontSize: 15,
-                                                        fontWeight:
-                                                            FontWeight.bold),
+                                            // SizedBox(height: 5),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 10.0,
+                                                  top: 10,
+                                                  right: 10.0),
+                                              child: Row(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Expanded(
+                                                    flex: 1,
+                                                    child: Text(
+                                                      "Reason",
+                                                      style: TextStyle(
+                                                          fontSize: 15,
+                                                          fontWeight:
+                                                              FontWeight.bold),
+                                                    ),
                                                   ),
-                                                ),
-                                                Expanded(
-                                                  flex: 1,
-                                                  child: Text(
-                                                    body?.bioMDate ?? "N/A",
-                                                    style:
-                                                        TextStyle(fontSize: 15),
+                                                  Expanded(
+                                                    flex: 1,
+                                                    child: Text(
+                                                      body?.bioMReason ?? "N/A",
+                                                      style: TextStyle(
+                                                          fontSize: 15),
+                                                    ),
                                                   ),
-                                                ),
-                                              ],
+                                                ],
+                                              ),
                                             ),
-                                          ),
-                                          // SizedBox(height: 5),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                left: 10.0,
-                                                top: 10,
-                                                right: 10.0),
-                                            child: Row(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              children: [
-                                                Expanded(
-                                                  flex: 1,
-                                                  child: Text(
-                                                    "Reason",
-                                                    style: TextStyle(
-                                                        fontSize: 15,
-                                                        fontWeight:
-                                                            FontWeight.bold),
-                                                  ),
-                                                ),
-                                                Expanded(
-                                                  flex: 1,
-                                                  child: Text(
-                                                    body?.bioMReason ?? "N/A",
-                                                    style:
-                                                        TextStyle(fontSize: 15),
-                                                  ),
-                                                ),
-                                              ],
+                                            SizedBox(height: 10),
+                                          ],
+                                        ),
+                                            Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                // crossAxisAlignment: CrossAxisAlignment.end,
+                                                mainAxisAlignment: MainAxisAlignment.end,
+                                                children: [
+                                                  InkWell(
+                                                    onTap: () {
+                                                      setState(() {
+                                                        BiomedicaldisplayDialog(
+                                                            context,
+                                                            biomedicalModel,
+                                                            i);
+                                                      });
+                                                    },
+                                                    child: Icon(
+                                                      Icons.edit,
+                                                      size: 20,
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
                                             ),
-                                          ),
-                                          SizedBox(height: 10),
-                                        ],
-                                      ),
+                                      ]),
                                     ),
                                   ),
                                 ),
@@ -356,9 +352,9 @@ class _BiomediImplantsState extends State<BiomediImplants> {
   displayTextInputDialog(BuildContext context) {
     _date.text = "";
     _reason.text = "";
-    BiomediImplants.admequipmentmodel =null;
+    BiomediImplants.admequipmentmodel = null;
 
-        showDialog(
+    showDialog(
         builder: (context) {
           return AlertDialog(
             contentPadding: EdgeInsets.only(left: 5, right: 5, top: 30),
@@ -459,11 +455,11 @@ class _BiomediImplantsState extends State<BiomediImplants> {
                     MyWidgets.showLoading(context);
                     AddBioMedicalModel biomedicalModel = AddBioMedicalModel();
                     biomedicalModel.userid = loginResponse1.body.user;
-                    biomedicalModel.bioMName = BiomediImplants.admequipmentmodel.key;
+                    biomedicalModel.bioMName =
+                        BiomediImplants.admequipmentmodel.key;
                     biomedicalModel.bioMDate = _date.text;
                     biomedicalModel.bioMReason = _reason.text;
-                    log("Value json>>" +
-                        biomedicalModel.toJson().toString());
+                    log("Value json>>" + biomedicalModel.toJson().toString());
                     widget.model.POSTMETHOD2(
                         api: ApiFactory.ADD_BIOMEDICAL_IMPLANTS,
                         json: biomedicalModel.toJson(),
@@ -478,11 +474,9 @@ class _BiomediImplantsState extends State<BiomediImplants> {
                             AppData.showInSnackDone(
                                 context, map[Const.MESSAGE]);
                           } else {
-                             AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                            AppData.showInSnackBar(context, map[Const.MESSAGE]);
                           }
-                        }
-                    );
-
+                        });
                   }
                 },
               ),
@@ -599,9 +593,10 @@ class _BiomediImplantsState extends State<BiomediImplants> {
     );
   }
 
-  BiomedicaldisplayDialog(BuildContext context, bio.BiomedicalModel biomedicalModel,int i) {
-    _date.text =biomedicalModel.body[i].bioMDate??"";
-    _reason.text =biomedicalModel.body[i].bioMReason??"";
+  BiomedicaldisplayDialog(
+      BuildContext context, bio.BiomedicalModel biomedicalModel, int i) {
+    _date.text = biomedicalModel.body[i].bioMDate ?? "";
+    _reason.text = biomedicalModel.body[i].bioMReason ?? "";
 
     if (biomedicalModel.body[i].bioMName == null ||
         biomedicalModel.body[i].bioMName == "") {
@@ -611,7 +606,6 @@ class _BiomediImplantsState extends State<BiomediImplants> {
           key: biomedicalModel.body[i].bioid,
           name: biomedicalModel.body[i].bioMName);
     }
-
 
     showDialog(
         builder: (context) {
@@ -645,7 +639,6 @@ class _BiomediImplantsState extends State<BiomediImplants> {
                         SizedBox(
                           height: 20,
                         ),
-
                         DropDown.networkDropdownGetpartUser1(
                             MyLocalizations.of(context).text("NAME"),
                             ApiFactory.ADM_EQUIPMENT_API,
@@ -661,7 +654,6 @@ class _BiomediImplantsState extends State<BiomediImplants> {
                         SizedBox(height: 8),
                         dob(),
                         SizedBox(height: 8),
-
                         formField(
                             1, MyLocalizations.of(context).text("REASON")),
                       ],
@@ -707,17 +699,17 @@ class _BiomediImplantsState extends State<BiomediImplants> {
                     MyWidgets.showLoading(context);
                     AddBioMedicalModel biomedicalModell = AddBioMedicalModel();
                     biomedicalModell.userid = loginResponse1.body.user;
-                    biomedicalModell.bioMName = BiomediImplants.admequipmentmodel.key;
+                    biomedicalModell.bioMName =
+                        BiomediImplants.admequipmentmodel.key;
                     biomedicalModell.bioMDate = _date.text;
                     biomedicalModell.bioMReason = _reason.text;
-                    biomedicalModell.id =biomedicalModel.body[i].id;
-                    log("Value json>>" +
-                        biomedicalModell.toJson().toString());
+                    biomedicalModell.id = biomedicalModel.body[i].id;
+                    log("Value json>>" + biomedicalModell.toJson().toString());
 
                     widget.model.POSTMETHOD2(
-                      api: ApiFactory.ADD_BIOMEDICAL_IMPLANTS,
-                      json: biomedicalModell.toJson(),
-                      token: widget.model.token,
+                        api: ApiFactory.ADD_BIOMEDICAL_IMPLANTS,
+                        json: biomedicalModell.toJson(),
+                        token: widget.model.token,
                         fun: (Map<String, dynamic> map) {
                           Navigator.pop(context);
                           if (map[Const.STATUS1] == Const.SUCCESS) {
@@ -730,8 +722,7 @@ class _BiomediImplantsState extends State<BiomediImplants> {
                           } else {
                             AppData.showInSnackBar(context, map[Const.MESSAGE]);
                           }
-                        }
-                    );
+                        });
                   }
                 },
               ),
