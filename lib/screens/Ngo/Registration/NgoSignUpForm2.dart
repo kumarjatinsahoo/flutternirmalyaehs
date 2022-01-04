@@ -445,7 +445,7 @@ class NgoSignUpForm2State extends State<NgoSignUpForm2> {
                                             _settingModalBottomSheet(context);
 
                                           },
-                                          minWidth: 150,
+                                          minWidth: 145,
                                           height: 40.0,
                                           child: Text(MyLocalizations.of(context).text("UPLOAD"),
                                             style: TextStyle(

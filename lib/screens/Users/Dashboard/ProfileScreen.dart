@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/services.dart';
+import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
@@ -72,6 +73,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   bool famdoctoradd = true;
   bool familydetailsadd = true;
   bool isdata = false;
+  bool _inProcess = false;
 
   final df = new DateFormat('dd/MM/yyyy');
   DateTime selectedDate = DateTime.now();
@@ -3452,7 +3454,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 //
 //   }
 // }
-  void _settingModalBottomSheet(context) {
+ /* void _settingModalBottomSheet(context) {
     showModalBottomSheet(
         context: context,
         builder: (BuildContext bc) {
@@ -3464,19 +3466,67 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     title: new Text('Camera'),
                     onTap: () => {
                           Navigator.pop(context),
-                          getCameraImage(),
+                   // getImage(ImageSource.camera),
+
+              getCameraImage(),
                         }),
                 new ListTile(
                   leading: new Icon(Icons.folder),
                   title: new Text('Gallery'),
                   onTap: () => {
-                    Navigator.pop(context),
-                    getGalleryImage(),
+          Navigator.pop(context),
+         // getImage(ImageSource.gallery),
+
+         getGalleryImage(),
                   },
                 ),
               ],
             ),
           );
+        });
+  }*/
+
+  void _settingModalBottomSheet(context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext bc) {
+          return Container(
+            child: new Wrap(
+              children: <Widget>[
+                new ListTile(
+                    leading: new Icon(Icons.camera),
+                    title: new Text('Camera'),
+                    onTap: () {
+                      Navigator.pop(context);
+                      getImage(ImageSource.camera);
+                      //getCameraImage(),
+                    }),
+                new ListTile(
+                  leading: new Icon(Icons.folder),
+                  title: new Text('Gallery'),
+                  onTap: (){
+                    Navigator.pop(context);
+                    getImage(ImageSource.gallery);
+                    //_openImage();
+                    // _loadPicker(ImageSource.camera);
+                    //_buildOpenImage(),
+                    /*Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Cropimage()),
+                  ),*/
+                    //_sample == null ? _buildOpeningImage() : _buildCroppingImage(),
+                    //_buildCroppingImage(),
+                    // getGalleryImage(),
+                    //_openImage(),
+                    //_cropImage(),
+                  },
+                ),
+              ],
+            ),
+
+          );
+
+
         });
   }
 
@@ -5007,4 +5057,65 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
         });
   }
+
+  getImage(ImageSource source) async {
+    this.setState((){
+      _inProcess = true;
+    });
+    File image = await ImagePicker.pickImage(source: source);
+    if(image != null){
+      File cropped = await ImageCropper.cropImage(
+          sourcePath: image.path,
+          aspectRatio: CropAspectRatio(
+              ratioX: 1, ratioY: 1),
+          compressQuality: 100,
+          maxWidth: 700,
+          maxHeight: 700,
+          compressFormat: ImageCompressFormat.jpg,
+          androidUiSettings: AndroidUiSettings(
+            // textAlign: TextAlign.center,
+            toolbarColor: AppData.kPrimaryColor,
+            toolbarTitle: "Image Cropper",
+            toolbarWidgetColor: Colors.white,
+            //centerTitle: true,
+            //toolbar.setTitleTextColor(Color.RED);
+            ///statusBarColor: Colors.deepOrange.shade900,
+            backgroundColor: Colors.white,
+          )
+      );
+      if (cropped != null) {
+        var enc = await cropped.readAsBytes();
+        String _path = image.path;
+        setState(() => pathUsr = cropped);
+
+        String _fileName = _path != null ? _path.split('/').last : '...';
+        var pos = _fileName.lastIndexOf('.');
+        String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+        print(extName);
+        print("size>>>" + AppData.formatBytes(enc.length, 0).toString());
+        setState(() {
+          pathUsr = cropped;
+          _inProcess = false;
+
+          // callApii();
+          // widget.model.patientimg =base64Encode(enc);
+          //widget.model.patientimgtype =extName;
+          //updateProfileModel.profileImage = base64Encode(enc) as List<Null>;
+          //updateProfileModel.profileImageType = extName;
+          updateProfile(base64Encode(enc), extName);
+        });
+      }
+      /*this.setState((){
+        pathUsr = cropped;
+        //updateProfile(base64Encode(cropped), extName);
+        _inProcess = false;
+      });*/
+    } else {
+      this.setState((){
+        _inProcess = false;
+      });
+    }
+  }
+
+
 }

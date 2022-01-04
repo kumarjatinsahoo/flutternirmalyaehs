@@ -460,32 +460,9 @@ class _DoctorAppointmentConfirmedState
                                                               ),
 
                                                               Row(
-                                                                // mainAxisAlignment: MainAxisAlignment.center,
-                                                                crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .end,
+                                                                crossAxisAlignment: CrossAxisAlignment.end,
                                                                 children: [
-                                                                  /*Column(
-                                                                    children: [
-                                                                      Text(
-                                                                        *//*'Confirmed'*//*
-                                                                        appointmentlist
-                                                                            .status ??
-                                                                            "N/A",
-                                                                        style: TextStyle(
-                                                                            fontWeight:
-                                                                            FontWeight
-                                                                                .bold,
-                                                                            fontSize: 15,
-                                                                            color: Colors
-                                                                                .green),
-                                                                      ),
-                                                                      SizedBox(height: 20,)
-                                                                    ],
-                                                                  ),
-                                                                  Spacer(),
-*/
-                                                                  InkWell(
+                                                                 Expanded(child: InkWell(
                                                                     onTap:(){
                                                                       widget.model.patientseHealthCard =
                                                                           appointmentlist.userid;
@@ -501,8 +478,8 @@ class _DoctorAppointmentConfirmedState
                                                                           .circular(
                                                                           10.0),
                                                                       child: MaterialButton(
-                                                                        minWidth: size.height * 0.20,
-                                                                        height: 40.0,
+                                                                       // minWidth: size.height * 0.20,
+                                                                        //height: 40.0,
                                                                         child: Text(
                                                                           /*'Confirmed'*/
                                                                           "Show EMR",
@@ -517,41 +494,44 @@ class _DoctorAppointmentConfirmedState
                                                                         ),
                                                                       ),
                                                                     ),
-                                                                  ),
-                                                                  Spacer(),
-                                                                  InkWell(
-                                                                    onTap: () {
-                                                                      widget.model.appointmentlist =
-                                                                          appointmentlist;
-                                                                      widget.model.patientseHealthCard =
-                                                                          appointmentlist.userid;
-                                                                      //Navigator.pushNamed(context, "/medi");
-                                                                      Navigator.pushNamed(
-                                                                          context, "/doctorMedicationTab");
-                                                                    },
-                                                                    child: Material(
-                                                                      elevation: 5,
-                                                                      color: AppData
-                                                                          .kPrimaryColor,
-                                                                      borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                          10.0),
-                                                                      child:
-                                                                      MaterialButton(
-                                                                        minWidth: 50,
-                                                                        height: 40.0,
-                                                                        child: Text(
-                                                                          /*'Confirmed'*/
-                                                                          "Give Prescription",
-                                                                          style: TextStyle(
-                                                                              fontWeight:
-                                                                              FontWeight
-                                                                                  .bold,
-                                                                              fontSize:
-                                                                              15,
-                                                                              color: Colors
-                                                                                  .white),
+                                                                  ),),
+                                                                 // Spacer(),
+                                                                  SizedBox(width: 5,),
+                                                                  Expanded(
+                                                                    child: InkWell(
+                                                                      onTap: () {
+                                                                        widget.model.appointmentlist =
+                                                                            appointmentlist;
+                                                                        widget.model.patientseHealthCard =
+                                                                            appointmentlist.userid;
+                                                                        //Navigator.pushNamed(context, "/medi");
+                                                                        Navigator.pushNamed(
+                                                                            context, "/doctorMedicationTab");
+                                                                      },
+                                                                      child: Material(
+                                                                        elevation: 5,
+                                                                        color: AppData
+                                                                            .kPrimaryColor,
+                                                                        borderRadius:
+                                                                        BorderRadius
+                                                                            .circular(
+                                                                            10.0),
+                                                                        child:
+                                                                        MaterialButton(
+                                                                          minWidth: 50,
+                                                                          height: 40.0,
+                                                                          child: Text(
+                                                                            /*'Confirmed'*/
+                                                                            "Give Prescription",
+                                                                            style: TextStyle(
+                                                                                fontWeight:
+                                                                                FontWeight
+                                                                                    .bold,
+                                                                                fontSize:
+                                                                                15,
+                                                                                color: Colors
+                                                                                    .white),
+                                                                          ),
                                                                         ),
                                                                       ),
                                                                     ),

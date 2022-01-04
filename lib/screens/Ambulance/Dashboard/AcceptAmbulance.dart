@@ -81,7 +81,7 @@ class _AcceptAmbulanceState extends State<AcceptAmbulance> {
           backgroundColor: AppData.kPrimaryColor,
           //leading: Icon(Icons.arrow_back, color: Colors.black),
         ),
-        body:ambulanceAppointmentModel == null
+        body: ambulanceAppointmentModel == null
             ?  isdata != true
             ? Center(
           child: Column(

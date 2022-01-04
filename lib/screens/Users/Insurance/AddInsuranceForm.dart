@@ -281,7 +281,7 @@ class AddinsuranceFormState extends State<AddinsuranceForm> {
                                   SizedBox(
                                     height: 8,
                                   ),
-                                  formFieldzip(
+                                  formField1(
                                       5,
                                       MyLocalizations.of(context)
                                           .text("TOTAL_INSURANCE_AMOUNT")),
@@ -300,8 +300,7 @@ class AddinsuranceFormState extends State<AddinsuranceForm> {
                                   ),
                                   formFieldzip(
                                       8,
-                                      MyLocalizations.of(context)
-                                          .text("THIRDPARTY_ADMINSTRATOR")),
+                                      MyLocalizations.of(context).text("THIRDPARTY_ADMINSTRATOR")),
                                   SizedBox(
                                     height: 8,
                                   ),
@@ -2363,7 +2362,7 @@ class AddinsuranceFormState extends State<AddinsuranceForm> {
             },
             inputFormatters: [
               WhitelistingTextInputFormatter(
-                  RegExp("[a-zA-Z ]")),
+                  RegExp("[a-zA-Z0-9 ]")),
             ],
           ),
         ),

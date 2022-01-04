@@ -141,6 +141,7 @@ class _RequestAmbulanceState extends State<RequestAmbulance> {
                                 CrossAxisAlignment.start,
                                 children: [
                                   Row(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Container(
                                         width: 180,
@@ -155,7 +156,7 @@ class _RequestAmbulanceState extends State<RequestAmbulance> {
                                       ),
                                       Expanded(
                                         child: Text(
-                                          body.patientName,
+                                          body.patientName.trim(),
                                           style: TextStyle(
                                               fontSize: 15),
                                           textAlign:
@@ -168,6 +169,7 @@ class _RequestAmbulanceState extends State<RequestAmbulance> {
                                     height: size.height * 0.01,
                                   ),
                                   Row(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Container(
                                         width: 180,
@@ -182,9 +184,11 @@ class _RequestAmbulanceState extends State<RequestAmbulance> {
                                       ),
                                       Expanded(
                                         child: Text(
-                                          body.fromLocation,
+                                          body.fromLocation.trim(),
                                           style: TextStyle(
                                               fontSize: 15),
+                                          textAlign:
+                                          TextAlign.start,
                                         ),
                                       ),
                                     ],
@@ -193,6 +197,7 @@ class _RequestAmbulanceState extends State<RequestAmbulance> {
                                     height: size.height * 0.01,
                                   ),
                                   Row(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Container(
                                         width: 180,
@@ -207,7 +212,7 @@ class _RequestAmbulanceState extends State<RequestAmbulance> {
                                       ),
                                       Expanded(
                                         child: Text(
-                                          body.toDestination,
+                                          body.toDestination.trim(),
                                           style: TextStyle(
                                               fontSize: 15),
                                         ),
@@ -218,6 +223,7 @@ class _RequestAmbulanceState extends State<RequestAmbulance> {
                                     height: size.height * 0.01,
                                   ),
                                   Row(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Container(
                                         width: 180,
@@ -232,7 +238,7 @@ class _RequestAmbulanceState extends State<RequestAmbulance> {
                                       ),
                                       Expanded(
                                         child: Text(
-                                          body.patientNote,
+                                          body.patientNote.trim(),
                                           textAlign: TextAlign.left,
                                           style: TextStyle(
                                               fontSize: 15),
@@ -247,35 +253,37 @@ class _RequestAmbulanceState extends State<RequestAmbulance> {
                                     mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                     children: [
-                                      InkWell(
-                                        onTap: () {
-                                          String orderid = body.orderId;
-                                          rejectApi(orderid);
-                                          callAPI();
-                                        },
-                                        child: Container(
-                                          height: size.height * 0.06,
-                                          width: 120,
-                                          decoration: BoxDecoration(
-                                              borderRadius:
-                                              BorderRadius.circular(5),
-                                              border: Border.all(
-                                                  color: Colors.black12),
-                                              color: Colors.red[900]),
-                                          child: RaisedButton(
-                                            onPressed: null,
-                                            child: Text(
-                                              'Reject',
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.w400),
+                                      Expanded(
+                                        child: InkWell(
+                                          onTap: () {
+                                            String orderid = body.orderId;
+                                            rejectApi(orderid);
+                                            callAPI();
+                                          },
+                                          child: Container(
+                                           // height: size.height * 0.06,
+                                            //width: 100,
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                BorderRadius.circular(5),
+                                                border: Border.all(
+                                                    color: Colors.black12),
+                                                color: Colors.red[900]),
+                                            child: RaisedButton(
+                                              onPressed: null,
+                                              child: Text(
+                                                'Reject',
+                                                style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.w400),
+                                              ),
+                                              disabledColor: Colors.red[900],
                                             ),
-                                            disabledColor: Colors.red[900],
                                           ),
                                         ),
                                       ),
-                                      SizedBox(width: 60),
+                                      SizedBox(width: 5),
                                       Expanded(
                                         child: InkWell(
                                           onTap: () {
@@ -283,8 +291,8 @@ class _RequestAmbulanceState extends State<RequestAmbulance> {
                                             acceptApi(orderid);
                                           },
                                           child: Container(
-                                            height: size.height * 0.06,
-                                            width: 100,
+                                           // height: size.height * 0.06,
+                                            //width: 100,
                                             decoration: BoxDecoration(
                                                 borderRadius:
                                                 BorderRadius.circular(5),
