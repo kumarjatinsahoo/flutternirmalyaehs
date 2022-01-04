@@ -3866,7 +3866,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           json: updateEmergencyModel.toJson(),
                           token: widget.model.token,
                           fun: (Map<String, dynamic> map) {
-                            Navigator.pop(context);
+                           // Navigator.pop(context);
 
                             if (map[Const.STATUS1] == Const.SUCCESS) {
                               Navigator.pop(context);
@@ -4174,7 +4174,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           controller: textEditingController[index],
           textAlignVertical: TextAlignVertical.center,
           inputFormatters: [
-            WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
+            WhitelistingTextInputFormatter(RegExp("[a-zA-Z.]")),
           ],
         ),
       ),

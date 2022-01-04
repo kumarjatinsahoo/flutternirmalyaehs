@@ -85,6 +85,7 @@ import 'package:user/screens/Users/Medipedia/DieseInfo.dart';
 import 'package:user/screens/Users/Medipedia/Diesepdf.dart';
 import 'package:user/screens/Users/Medipedia/HealthTipsList.dart';
 import 'package:user/screens/Users/Medication/UserMedicineTab.dart';
+import 'package:user/screens/Users/MyMedicalRecord/HealthChat1/Healthchatlist.dart';
 import 'package:user/screens/Users/MyMedicalRecord/Medication/DigitalprescriptionPage.dart';
 import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/AddUploadDocument.dart';
 import 'package:user/screens/Users/MyMedicalRecord/BiomediImplants.dart';
@@ -99,7 +100,7 @@ import 'package:user/screens/Users/GenericMedicine/GenericMedicine.dart';
 import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/DocumentImageView.dart';
 import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/DocumentList.dart';
 import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/DocumentPdfView.dart';
-import 'package:user/screens/Users/MyMedicalRecord/HealthChart.dart';
+import 'screens/Users/MyMedicalRecord/HealthChat1/HealthChart.dart';
 import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/UploadDocument.dart';
 import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/VideoDetailsPage.dart';
 import 'package:user/screens/Users/organ/OrganPreviewPage.dart';
@@ -1059,6 +1060,10 @@ class _MyAppState extends State<MyApp> {
               '/receptionlistsignup': (context) => MonthlyOverviewlist(
                     model: _model,
                   ),
+              '/healthChaatlist': (context) => HealthChaatlist(
+                model: _model,
+              ),
+
 ////////////////////////////////////////////////////////////////////////////////
               // RECEPTIONLIST
               '/receptionlistsignUpformm': (context) =>
