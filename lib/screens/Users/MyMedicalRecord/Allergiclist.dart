@@ -85,7 +85,7 @@ class _AllergicListListState extends State<AllergicListList> {
             } else {
               setState(() {
                 //isDataNoFound = true;
-                AppData.showInSnackBar(context, msg);
+               // AppData.showInSnackBar(context, msg);
               });
             }
           });
@@ -426,6 +426,12 @@ class _AllergicListListState extends State<AllergicListList> {
   }
 
   Future<void> dialogaddnomination(BuildContext context) async {
+    AllergicListList.typeModel=null;
+    AllergicListList.nameModel=null;
+    AllergicListList.severitylistModel=null;
+    textEditingController[0].text="";
+    textEditingController[1].text="";
+
 
     return showDialog(
         context: context,
@@ -453,8 +459,7 @@ class _AllergicListListState extends State<AllergicListList> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Center(
-                                child: Text( MyLocalizations.of(context)
-                              .text("ADD_ALLERGIC"),
+                                child: Text("Add Allergic",
                                   style: TextStyle(
                                     fontSize: 25,
                                     color: Colors.black,
@@ -563,7 +568,7 @@ class _AllergicListListState extends State<AllergicListList> {
                       AppData.showInSnackBar(context, "Please select Name ");
                     } else if (AllergicListList.nameModel == null ||
                         AllergicListList.nameModel == "") {
-                      AppData.showInSnackBar(context, "Please select Type ");
+                      AppData.showInSnackBar(context, "Please select Allergen ");
                     } else if (AllergicListList.severitylistModel == null ||
                         AllergicListList.severitylistModel == "") {
                       AppData.showInSnackBar(
@@ -894,7 +899,6 @@ class _AllergicListListState extends State<AllergicListList> {
   void allergicdisplayDialog(BuildContext context, allergic.AllergicModel allergicModel, int i) async {
     textEditingController[0].text =allergicModel.body[i].reaction;
     textEditingController[1].text =allergicModel.body[i].updatedby;
-
     if (allergicModel.body[i].allnameid == null ||
         allergicModel.body[i].allnameid == "") {
       AllergicListList.nameModel = null;
@@ -903,6 +907,7 @@ class _AllergicListListState extends State<AllergicListList> {
           key: allergicModel.body[i].allName,
           name: allergicModel.body[i].allnameid);
     }
+
     if (allergicModel.body[i].alltypeid == null ||
         allergicModel.body[i].alltypeid == "") {
       AllergicListList.typeModel = null;
@@ -911,6 +916,7 @@ class _AllergicListListState extends State<AllergicListList> {
           key: allergicModel.body[i].allFood,
           name: allergicModel.body[i].alltypeid);
     }
+
     if (allergicModel.body[i].severity == null ||
         allergicModel.body[i].severity == "") {
       AllergicListList.severitylistModel = null;
@@ -1042,6 +1048,7 @@ class _AllergicListListState extends State<AllergicListList> {
                     textEditingController[0].text = "";
                     textEditingController[1].text = "";
                     callAPI();*/
+                    callAPI();
                     Navigator.pop(context);
                   });
                 },
@@ -1061,7 +1068,7 @@ class _AllergicListListState extends State<AllergicListList> {
                       AppData.showInSnackBar(context, "Please select Name ");
                     } else if (AllergicListList.nameModel == null ||
                         AllergicListList.nameModel == "") {
-                      AppData.showInSnackBar(context, "Please select Type ");
+                      AppData.showInSnackBar(context, "Please select Allergen ");
                     } else if (AllergicListList.severitylistModel == null ||
                         AllergicListList.severitylistModel == "") {
                       AppData.showInSnackBar(

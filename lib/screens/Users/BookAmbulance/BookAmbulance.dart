@@ -290,7 +290,7 @@ class BookAmbulancePageState extends State<BookAmbulancePage> {
                                 MyLocalizations.of(context).text("AMBULANCE_NAME"),
                                 ApiFactory.AMBULANCE_API,
                                 "ambulancename",
-                                Icons.location_on_rounded,
+                                Icons.account_box,
                                 23.0, (KeyvalueModel data) {
                               setState(() {
                                 print(ApiFactory.AMBULANCE_API);
@@ -440,7 +440,7 @@ class BookAmbulancePageState extends State<BookAmbulancePage> {
                         //comultationTime(),
                         fromAddress(
                             1,
-                            MyLocalizations.of(context).text("REASON_FOR_DOCTOR"),
+                            "Reason For Ambulance",
                             TextInputAction.next,
                             TextInputType.text,
                             address_,

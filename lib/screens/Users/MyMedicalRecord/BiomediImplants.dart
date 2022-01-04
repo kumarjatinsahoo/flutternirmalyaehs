@@ -174,13 +174,14 @@ class _BiomediImplantsState extends State<BiomediImplants> {
                   child: SingleChildScrollView(
                     child: (biomedicalModel != null)
                         ? ListView.builder(
+                      physics: NeverScrollableScrollPhysics(),
                             itemCount: biomedicalModel.body.length,
                             shrinkWrap: true,
                             itemBuilder: (context, i) {
                               bio.Body body = biomedicalModel.body[i];
                               return Padding(
                                 padding: const EdgeInsets.only(
-                                    left: 5, right: 5, top: 5),
+                                    left: 10, right: 10, top: 5),
                                 child: Card(
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(5.0),
@@ -249,6 +250,7 @@ class _BiomediImplantsState extends State<BiomediImplants> {
                                                 top: 10,
                                                 right: 10.0),
                                             child: Row(
+                                              crossAxisAlignment: CrossAxisAlignment.start,
                                               children: [
                                                 Expanded(
                                                   flex: 1,
@@ -277,6 +279,7 @@ class _BiomediImplantsState extends State<BiomediImplants> {
                                                 top: 10,
                                                 right: 10.0),
                                             child: Row(
+                                              crossAxisAlignment: CrossAxisAlignment.start,
                                               children: [
                                                 Expanded(
                                                   flex: 1,
@@ -306,6 +309,7 @@ class _BiomediImplantsState extends State<BiomediImplants> {
                                                 top: 10,
                                                 right: 10.0),
                                             child: Row(
+                                              crossAxisAlignment: CrossAxisAlignment.start,
                                               children: [
                                                 Expanded(
                                                   flex: 1,
@@ -352,7 +356,9 @@ class _BiomediImplantsState extends State<BiomediImplants> {
   displayTextInputDialog(BuildContext context) {
     _date.text = "";
     _reason.text = "";
-    showDialog(
+    BiomediImplants.admequipmentmodel =null;
+
+        showDialog(
         builder: (context) {
           return AlertDialog(
             contentPadding: EdgeInsets.only(left: 5, right: 5, top: 30),
@@ -394,7 +400,7 @@ class _BiomediImplantsState extends State<BiomediImplants> {
                         // }),
 
                         DropDown.networkDropdownGetpartUser1(
-                            MyLocalizations.of(context).text("NAME"),
+                            " Name",
                             ApiFactory.ADM_EQUIPMENT_API,
                             "typelist",
                             Icons.location_on_rounded,
@@ -443,7 +449,7 @@ class _BiomediImplantsState extends State<BiomediImplants> {
                       BiomediImplants.admequipmentmodel == "") {
                     AppData.showInSnackBar(context, "Please select Name ");
                   } else if (_date.text == "" || _date.text == null) {
-                    AppData.showInSnackBar(context, "Please enter DOB");
+                    AppData.showInSnackBar(context, "Please enter Date");
                   } else if (_reason.text == "" || _reason.text == null) {
                     AppData.showInSnackBar(context, "Please enter Reason");
                   } else if (_reason.text != "" && _reason.text.length <= 2) {
@@ -472,7 +478,7 @@ class _BiomediImplantsState extends State<BiomediImplants> {
                             AppData.showInSnackDone(
                                 context, map[Const.MESSAGE]);
                           } else {
-                            // AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                             AppData.showInSnackBar(context, map[Const.MESSAGE]);
                           }
                         }
                     );
@@ -691,7 +697,7 @@ class _BiomediImplantsState extends State<BiomediImplants> {
                       BiomediImplants.admequipmentmodel == "") {
                     AppData.showInSnackBar(context, "Please select Name ");
                   } else if (_date.text == "" || _date.text == null) {
-                    AppData.showInSnackBar(context, "Please enter DOB");
+                    AppData.showInSnackBar(context, "Please enter Date");
                   } else if (_reason.text == "" || _reason.text == null) {
                     AppData.showInSnackBar(context, "Please enter Reason");
                   } else if (_reason.text != "" && _reason.text.length <= 2) {
@@ -722,7 +728,7 @@ class _BiomediImplantsState extends State<BiomediImplants> {
                             AppData.showInSnackDone(
                                 context, map[Const.MESSAGE]);
                           } else {
-                            // AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                            AppData.showInSnackBar(context, map[Const.MESSAGE]);
                           }
                         }
                     );
