@@ -2235,10 +2235,10 @@ class DropDown {
         return BiomediImplants.admequipmentmodel;
         break;
         case "namelist":
-        return AllergicListList.nameModel;
+        return AllergicListList.typeModel;
         break;
         case "allergen":
-        return AllergicListList.typeModel;
+        return AllergicListList.nameModel;
         break;
         case "SEVERITY":
         return AllergicListList.severitylistModel;
@@ -3798,9 +3798,9 @@ class DropDown {
           case "biotype":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
-            case "namelist":
+           /* case "namelist":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
-            break;
+            break;*/
             case "allergen":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
