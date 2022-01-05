@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:dropdown_search/dropdown_search.dart';
@@ -8,9 +9,11 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:user/models/LoginResponse1.dart';
 import 'package:user/models/UserRegistrationModel.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/DropDown.dart';
@@ -98,6 +101,10 @@ class UserSignUpFormState extends State<UserSignUpForm> {
   final df1 = new DateFormat('yyyy');
   bool ispartnercode = false;
   bool _checkbox = false;
+  bool _inProcess = false;
+  LoginResponse1 loginResponse1;
+  bool isDataNotAvail = false;
+
 
   Future<Null> _selectDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
@@ -157,6 +164,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
       isOnline = hasConnection;
     });
   }
+
   void SelectedItem(BuildContext context, item) {
     switch (item) {
       case 0:
@@ -175,6 +183,36 @@ class UserSignUpFormState extends State<UserSignUpForm> {
         break;
     }
   }
+
+
+  // updateProfile(String image, String ext) {
+  //   MyWidgets.showLoading(context);
+  //   var value = {
+  //     "profileImageType": ext,
+  //     "pImage": [image],
+  //     "eCardNo": loginResponse1.body.user
+  //   };
+  //
+  //   log("Post data>>\n\n" + jsonEncode(value));
+  //   widget.model.POSTMETHOD_TOKEN(
+  //       api: ApiFactory.USER_PROFILE_IMAGE,
+  //       token: widget.model.token,
+  //       json: value,
+  //       fun: (Map<String, dynamic> map) {
+  //         Navigator.pop(context);
+  //         setState(() {
+  //           log("Value>>>" + jsonEncode(map));
+  //           String msg = map[Const.MESSAGE];
+  //           if (map[Const.CODE] == Const.SUCCESS) {
+  //           } else {
+  //             isDataNotAvail = true;
+  //             AppData.showInSnackBar(context, msg);
+  //           }
+  //         });
+  //       });
+  // }
+
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -664,7 +702,8 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                         onTap: () {
                                           //_selectDate1(context);
 
-                                          *//*showDialog(
+                                          */
+                          /*showDialog(
                                             context: context,
                                             builder: (BuildContext
                                                 context) {
@@ -708,7 +747,8 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                                 ),
                                               );
                                             },
-                                          );*//*
+                                          );*/
+                          /*
                                         },
                                         child: Padding(
                                           padding:
@@ -1331,14 +1371,16 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                     title: new Text('Camera'),
                     onTap: () => {
                           Navigator.pop(context),
-                          getCameraImage(),
+                          //getCameraImage(),
+                    getImage(ImageSource.camera),
                         }),
                 new ListTile(
                   leading: new Icon(Icons.folder),
                   title: new Text('Gallery'),
                   onTap: () => {
                     Navigator.pop(context),
-                    getGalleryImage(),
+                    //getGalleryImage(),
+                  getImage(ImageSource.gallery),
                   },
                 ),
               ],
@@ -1490,6 +1532,68 @@ class UserSignUpFormState extends State<UserSignUpForm> {
             },
           );
         });
+  }
+
+
+  getImage(ImageSource source) async {
+    this.setState((){
+      _inProcess = true;
+    });
+    File image = await ImagePicker.pickImage(source: source);
+    if(image != null){
+      File cropped = await ImageCropper.cropImage(
+          sourcePath: image.path,
+          aspectRatio: CropAspectRatio(
+              ratioX: 1, ratioY: 1),
+          compressQuality: 100,
+          maxWidth: 700,
+          maxHeight: 700,
+          compressFormat: ImageCompressFormat.jpg,
+          androidUiSettings: AndroidUiSettings(
+            // textAlign: TextAlign.center,
+            toolbarColor: AppData.kPrimaryColor,
+            toolbarTitle: "Image Cropper",
+            toolbarWidgetColor: Colors.white,
+            //centerTitle: true,
+            //toolbar.setTitleTextColor(Color.RED);
+            ///statusBarColor: Colors.deepOrange.shade900,
+            backgroundColor: Colors.white,
+          )
+      );
+      if (cropped != null) {
+        var enc = await cropped.readAsBytes();
+        String _path = image.path;
+        setState(() => pathUsr = cropped);
+
+        String _fileName = _path != null ? _path.split('/').last : '...';
+        var pos = _fileName.lastIndexOf('.');
+        String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+        print(extName);
+        print("size>>>" + AppData.formatBytes(enc.length, 0).toString());
+        setState(() {
+          pathUsr = cropped;
+          _inProcess = false;
+
+          userModel.profileImage = base64Encode(enc);
+          userModel.profileImageType = extName;
+          // callApii();
+          // widget.model.patientimg =base64Encode(enc);
+          //widget.model.patientimgtype =extName;
+          //updateProfileModel.profileImage = base64Encode(enc) as List<Null>;
+          //updateProfileModel.profileImageType = extName;
+          //updateProfile(base64Encode(enc), extName);
+        });
+      }
+      /*this.setState((){
+        pathUsr = cropped;
+        //updateProfile(base64Encode(cropped), extName);
+        _inProcess = false;
+      });*/
+    } else {
+      this.setState((){
+        _inProcess = false;
+      });
+    }
   }
 
 
