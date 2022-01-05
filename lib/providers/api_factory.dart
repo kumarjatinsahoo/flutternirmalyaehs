@@ -2,12 +2,12 @@ class ApiFactory {
   //bool isRelease = bool.fromEnvironment("DEV");
   static String REG_DEVICE = "https://cca.medtel.in/Ziniai/manageDeviceId";
   //static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
- // static String MAIN_URL = "http://api-demo.ehealthsystem.com/nirmalyaRest/api/";
+// static String MAIN_URL = "http://api-demo.ehealthsystem.com/nirmalyaRest/api/";
   static String MAIN_URL1 = "https://1331.co.in/api";
   //static String REPORT_URL1 = "https://ehealthsystem.com/";
   static String REPORT_URL1 = "https://demo.ehealthsystem.com/";
  // static String MAIN_URL = "http:// 192.168.29.46:8062/nirmalyaRest/api/";
-  static String MAIN_URL = "http://192.168.137.1:8062/nirmalyaRest/api/";
+  static String MAIN_URL = "http://192.168.43.240:8062/nirmalyaRest/api/";
    //static String MAIN_URL = "http://192.168.43.248:8062/nirmalyaRest/api/";
   static String VITALS_REPORT = MAIN_URL + 'medtel-screening-test-report';
   static String COUNTRY_API = MAIN_URL + 'get-country-list';
@@ -22,6 +22,7 @@ class ApiFactory {
   static String ORGAN_API = MAIN_URL + 'get-organ-list';
   static String TISSUE_API = MAIN_URL + 'get-tissue-list';
   static String ORGANISATION_API = MAIN_URL + 'get-all-organization-list';
+  static String SYNDICATE_ORGANISATION_API = MAIN_URL + 'get-syndicate-partner-organization';
   static String PHARMACY_ORGANISATION_API = MAIN_URL + 'get-pharmacy-list';
   static String AMBULANCE_ORGANISATION_API = MAIN_URL + 'get-ambulance-org-list';
   static String BlOODBANK_ORGANISATION_API = MAIN_URL + 'get-bloodbank-org-list';
