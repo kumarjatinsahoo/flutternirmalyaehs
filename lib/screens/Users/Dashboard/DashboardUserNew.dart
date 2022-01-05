@@ -589,7 +589,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                   onTap: () {
                     selectDestination(5);
                     //Navigator.pushNamed(context, "/dashboard1");
-                    Navigator.pushNamed(context, "/emergencydetails");
+                    //Navigator.pushNamed(context, "/emergencydetails");
                   }),
               ListTile(
                   leading: Image.asset(
