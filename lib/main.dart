@@ -99,7 +99,8 @@ import 'package:user/screens/Users/Dashboard/EmergencyDetails.dart';
 import 'package:user/screens/Users/GenericMedicine/GenericMedicine.dart';
 import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/DocumentImageView.dart';
 import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/DocumentList.dart';
-import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/DocumentPdfView.dart';
+import 'screens/Syndicate Partner/Dashboard/SyndicateDashboard.dart';
+import 'screens/Syndicate Partner/Registration/Syndicatepartner.dart';
 import 'screens/Users/MyMedicalRecord/HealthChat1/HealthChart.dart';
 import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/UploadDocument.dart';
 import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/VideoDetailsPage.dart';
@@ -107,7 +108,6 @@ import 'package:user/screens/Users/organ/OrganPreviewPage.dart';
 import 'package:user/screens/Users/organ/Organlist.dart';
 import 'package:user/screens/VideoCall/VideoCallPage.dart';
 import 'package:user/screens/walkin_labrotry/LabDashboard.dart';
-import 'package:user/screens/walkin_labrotry/Screen/LabMyProfile.dart';
 import 'package:user/screens/walkin_labrotry/Screen/LabQrCode.dart';
 import 'package:user/widgets/PdfViewPage.dart';
 import 'screens/Users/MyMedicalRecord/LifeStyleHistory.dart';
@@ -1065,6 +1065,16 @@ class _MyAppState extends State<MyApp> {
               ),
 
 ////////////////////////////////////////////////////////////////////////////////
+             // syndicate partner
+              '/syndicatesignUpformm': (context) =>
+                  SyndicateSignupform(
+                    model: _model,
+                  ),
+
+              '/syndicateDashboard': (context) =>
+                  SyndicateDashboard(
+                    model: _model,
+                  ),
               // RECEPTIONLIST
               '/receptionlistsignUpformm': (context) =>
                   ReceptionlistSignUpFormm(
