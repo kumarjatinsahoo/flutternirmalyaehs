@@ -210,10 +210,8 @@ class _BiomediImplantsState extends State<BiomediImplants> {
                                       //width: double.maxFinite,
                                       child: Stack(
                                           children: [
-
                                         Column(
                                           children: [
-
                                             Padding(
                                               padding: const EdgeInsets.only(
                                                   left: 10.0, right: 10.0,top: 8,),

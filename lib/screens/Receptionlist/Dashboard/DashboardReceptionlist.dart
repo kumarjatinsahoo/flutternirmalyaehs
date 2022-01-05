@@ -794,6 +794,7 @@ class _DashboardReceptionlistState extends State<DashboardReceptionlist> {
               ),
               title: Text(MyLocalizations.of(context).text("CONTACT_US")),
               onTap: () {
+                widget.model.contactscreen = "Contact Screen";
                 Navigator.pushNamed(context, "/contactus");
               },
             ),

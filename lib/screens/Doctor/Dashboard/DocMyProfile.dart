@@ -951,7 +951,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
                           SizedBox(
                             height: 10,
                           ),
-                          formField(
+                          formFieldemail(
                           10,
                           "Email",
                           fnode10,
@@ -1177,11 +1177,10 @@ class _DocMyProfileState extends State<DocMyProfile> {
                           context, "Please enter education name");
                  }  else if (textEditingController[1].text.length<3) {
                    AppData.showInSnackBar(context, "Please enter valid education name");
-                    } else if (textEditingController[1].text == "N/A" ||
-                        textEditingController[2].text == null ||
-                        textEditingController[2].text == "") {
+                    } else if (textEditingController[2].text == "N/A" || textEditingController[2].text == null ||
+                        textEditingController[2].text == "" || double.tryParse(textEditingController[2].text)>99) {
                       AppData.showInSnackBar(
-                          context, "Please enter experience");
+                          context, "Are you sure this is your experience ?");
 
                     // } else if (textEditingController[3].text == "" ||
                     //     textEditingController[3].text == null ||
@@ -1220,6 +1219,9 @@ class _DocMyProfileState extends State<DocMyProfile> {
                      textEditingController[10].text == null ||
                      textEditingController[10].text == "") {
                    AppData.showInSnackBar(context, "Please enter email");
+                 } else if (textEditingController[10].text != "" &&
+                     !AppData.isValidEmail(textEditingController[10].text)) {
+                   AppData.showInSnackBar(context, "Please enter a valid e-mail Id");
                  } else if (textEditingController[11].text == "N/A" ||
                      textEditingController[11].text == null ||
                      textEditingController[11].text == "") {
@@ -1740,6 +1742,59 @@ class _DocMyProfileState extends State<DocMyProfile> {
       ],
     );
   }
+
+  Widget formFieldemail(
+      int index, String hint, FocusNode currentfn, FocusNode nextFn) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 0, right: 5),
+          child: Text(
+            hint,
+            style: TextStyle(
+                color: Colors.black,
+                fontSize: 13,
+                fontFamily: "",
+                fontWeight: FontWeight.w400),
+          ),
+        ),
+        TextFieldContainer(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: TextFormField(
+              controller: textEditingController[index],
+              textInputAction: TextInputAction.done,
+              focusNode: currentfn,
+              keyboardType: TextInputType.text,
+              inputFormatters: [
+                WhitelistingTextInputFormatter(
+                    RegExp("[a-zA-Z0-9.@]")),
+              ],
+              // Validator.getKeyboardTyp(validateModel.fieldType.toLowerCase()),
+              style: TextStyle(fontSize: 15),
+              decoration: InputDecoration(
+                //hintText: hint,
+                  hintStyle: TextStyle(color: Colors.grey, fontSize: 13),
+                  border: InputBorder.none,
+                  contentPadding:
+                  EdgeInsets.symmetric(vertical: 2, horizontal: 0)),
+              onChanged: (newValue) {},
+              onFieldSubmitted: (value) {
+                print("ValueValue" + error[index].toString());
+
+                setState(() {
+                  error[index] = false;
+                });
+                AppData.fieldFocusChange(context, currentfn, nextFn);
+              },
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
   Widget formFieldMobileno(
       int controller, String hint, FocusNode currentfn, FocusNode nextFn) {
     return Column(
@@ -2001,7 +2056,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
                   RegExp("[0-9.]"),
                 ),
               ],
-              maxLength: 2,
+              maxLength: 4,
               // Validator.getKeyboardTyp(validateModel.fieldType.toLowerCase()),
               style: TextStyle(fontSize: 15),
 
