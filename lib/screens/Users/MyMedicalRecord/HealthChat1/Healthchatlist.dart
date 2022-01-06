@@ -71,7 +71,7 @@ class _MedicineList extends State<HealthChaatlist> {
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: AppData.kPrimaryColor,
-        title: Text("HealthChaatlist"),
+        title: Text("Health Chart list"),
       ),
       body: Container(
     child: Container(
@@ -207,7 +207,7 @@ class _MedicineList extends State<HealthChaatlist> {
                                               mainAxisAlignment:
                                               MainAxisAlignment.center,
                                               children: [
-                                                Text("Body Measurment".toUpperCase(),
+                                                Text("Blood Pressure".toUpperCase(),
                                                   style: TextStyle(
                                                       fontWeight: FontWeight.bold,
                                                       fontSize: 16),
@@ -217,7 +217,7 @@ class _MedicineList extends State<HealthChaatlist> {
                                                 ),
 
                                                 Text(
-                                                  "Weight,Height,BMI",
+                                                  "Systolic/Diastalic",
                                                   style: TextStyle(fontSize: 13,color:Colors.grey),
                                                 )
                                               ],
@@ -279,7 +279,7 @@ class _MedicineList extends State<HealthChaatlist> {
                                               mainAxisAlignment:
                                               MainAxisAlignment.center,
                                               children: [
-                                                Text("Body Measurment".toUpperCase(),
+                                                Text("Complete blood Count".toUpperCase(),
                                                   style: TextStyle(
                                                       fontWeight: FontWeight.bold,
                                                       fontSize: 16),
@@ -287,10 +287,11 @@ class _MedicineList extends State<HealthChaatlist> {
                                                 SizedBox(
                                                   height: 5,
                                                 ),
-
+                                                Expanded(child:
                                                 Text(
-                                                  "Weight,Height,BMI",
+                                                  "Hb,WBCs,Nutrophils,Eosinophils,Basophis,Monocytes,platelets,ESR,Hct.....",
                                                   style: TextStyle(fontSize: 13,color:Colors.grey),
+                                                    )
                                                 )
                                               ],
                                             ),
