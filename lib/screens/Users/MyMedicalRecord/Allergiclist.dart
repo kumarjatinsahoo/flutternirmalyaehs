@@ -207,8 +207,11 @@ class _AllergicListListState extends State<AllergicListList> {
                                                             children: [
                                                               Container(
                                                                 width: 120,
-                                                                child: Text(
-                                                                  "Name",
+                                                                child:  Text(
+                                                                  MyLocalizations.of(
+                                                                      context)
+                                                                      .text(
+                                                                      "NAME"),
                                                                   style: TextStyle(
                                                                       color: Colors
                                                                           .black,
