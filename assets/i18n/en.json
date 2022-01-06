@@ -276,6 +276,7 @@
   "UHID_NO": "Uhid No",
   "SHOW_EMR": "Show EMR",
   "PATHOLOGY_LAB": "Pathology Lab",
+  "CHANGE_PASSWORD": "Change Password",
 
   "ADD_INSURANCE": "Add Insurance",
   "INSURANCE_COMPANY": "Insurance Company",
@@ -289,6 +290,7 @@
   "PREMIUM_AMOUNT": "Premium Amount",
   "POLICY_END_DATE": "Policy End Date",
   "SUM_ASSURED_AMOUNT": "Sum Assured Amount",
+  "ORDER_BLOOD": "Order Blood",
 
   "HOSPITAL_DOCTOR": "Hospital & Doctor",
   "DIAGNOSTIC_PATHALOGY": "Diagnostic & Pathalogy",

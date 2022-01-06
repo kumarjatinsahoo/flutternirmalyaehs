@@ -1335,6 +1335,9 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
             ),
             textInputAction: TextInputAction.next,
             keyboardType: TextInputType.text,
+            inputFormatters: [
+              WhitelistingTextInputFormatter(RegExp("[a-zA-Z0-9 ,./-]")),
+            ],
             focusNode: currentfn,
             controller: textEditingController[index],
             textAlignVertical: TextAlignVertical.center,
