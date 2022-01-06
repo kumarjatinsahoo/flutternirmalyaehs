@@ -225,7 +225,7 @@ class _UploadDocumentState extends State<UploadDocument> {
           /* Center(
                 child: CircularProgressIndicator(),
               )*/
-          : documentListModel == null || documentListModel == null
+          : documentListModel == null || documentListModel.body == null
               ? Container(
                   child: Center(
                     child: Column(
@@ -243,7 +243,7 @@ class _UploadDocumentState extends State<UploadDocument> {
                 )
               : Container(
                   child: SingleChildScrollView(
-                    child: (documentListModel != null)
+                    child: (documentListModel != null && documentListModel.body!=null)
                         ? ListView.builder(
                             shrinkWrap: true,
                             physics: NeverScrollableScrollPhysics(),

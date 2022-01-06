@@ -34,7 +34,7 @@ class _DisitaTestPageState extends State<DisitaTestPage> {
     super.initState();
     loginResponse1=widget.model.loginResponse1;
 
-        id=base64.encode(utf8.encode(loginResponse1.body.user));
+    id=base64.encode(utf8.encode(loginResponse1.body.user));
     doctorid=base64.encode(utf8.encode( widget?.model?.doctorst));
     datest=base64.encode(utf8.encode( widget?.model?.meddatest));
   }

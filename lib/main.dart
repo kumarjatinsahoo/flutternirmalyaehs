@@ -87,6 +87,7 @@ import 'package:user/screens/Users/Medipedia/Diesepdf.dart';
 import 'package:user/screens/Users/Medipedia/HealthTipsList.dart';
 import 'package:user/screens/Users/Medication/UserMedicineTab.dart';
 import 'package:user/screens/Users/MyMedicalRecord/HealthChat1/Healthchatlist.dart';
+import 'package:user/screens/Users/MyMedicalRecord/Medication/DigitalTestPage.dart';
 import 'package:user/screens/Users/MyMedicalRecord/Medication/DigitalprescriptionPage.dart';
 import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/AddUploadDocument.dart';
 import 'package:user/screens/Users/MyMedicalRecord/BiomediImplants.dart';
@@ -1055,6 +1056,10 @@ class _MyAppState extends State<MyApp> {
               '/userTestList': (context) => UserTestList(
                     model: _model,
                   ),
+              '/disitaTestPage': (context) => DisitaTestPage(
+                model: _model,
+              ),
+
 
               '/monthlyoverview': (context) => MonthlyOverview(
                     model: _model,
