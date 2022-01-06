@@ -622,7 +622,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                     "assets/images/changepassword.png",
                     height: 30,
                   ),
-                  title: Text("Change Password"),
+                  title: Text(MyLocalizations.of(context).text("CHANGE_PASSWORD")),
                   selected: _selectedDestination == 8,
                   onTap: () {
                     selectDestination(8);
@@ -2462,8 +2462,8 @@ class MyPage2Widget extends StatelessWidget {
                           Container(
                             width: 100,
                             height: 35,
-                            child: Text(
-                              "Order Blood",
+                            child: Text(MyLocalizations.of(context)
+                                .text("ORDER_BLOOD"),
                               textAlign: TextAlign.center,
                               //overflow: TextOverflow.ellipsis,
                             ),

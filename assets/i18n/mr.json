@@ -25,7 +25,7 @@
   "EXPERIENCE": "अनुभव(वर्ष)",
   "ENTER_ZIP_CODE": "पिन/पिन कोड प्रविष्ट करा",
   "UPLOAD": "अपलोड",
-
+  "CHANGE_PASSWORD": "पासवर्ड बदला",
 
 
   "SIGNUP": "साइनअप करा",
@@ -105,7 +105,7 @@
   "PLEASE_SELECT_BLOCK": "कृपया ब्लॉक निवडा",
   "PLEASE_SELECT_DISTRICT": "कृपया जिल्हा निवडा",
   "PLEASE_ENTER_ADDRESS": "कृपया पत्ता प्रविष्ट करा",
-
+  "ORDER_BLOOD": "रक्ताची मागणी करा",
 
   "MEDICATION": "औषधोपचार",
   "MEDICAL_RECORD1": "वैद्यकीय नोंदी",
