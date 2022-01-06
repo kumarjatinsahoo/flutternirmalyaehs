@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:date_format/date_format.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:user/models/ChemistsLocationwiseModel.dart';
 import 'package:user/models/GooglePlacesModel.dart';
@@ -11,6 +12,8 @@ import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:user/models/LoginResponse1.dart' as session;
+
+import 'FindPage.dart';
 
 class ChemistsOngooglePage extends StatefulWidget {
   MainModel model;
@@ -30,7 +33,7 @@ class _ChemistsOngooglePageState extends State<ChemistsOngooglePage> {
 
   static const platform = AppData.channel;
   session.LoginResponse1 loginResponse1;
-  String longi, lati, city, addr, healthpro, type;
+  String longi, lati, city, addr, healthpro, type,speciality;
 
   @override
   void initState() {
@@ -42,13 +45,12 @@ class _ChemistsOngooglePageState extends State<ChemistsOngooglePage> {
     addr = widget.model.addr;
     healthpro = widget.model.healthproname;
     type = widget.model.type;
-
+    speciality = FindPage.specialistModel.name;
     callAPI();
   }
 
   /* callAPI() {
-
-      Map<String, dynamic> postData = {
+Map<String, dynamic> postData = {
         "longi": longi,
         "lati": lati,
         "addr": addr,
@@ -84,7 +86,7 @@ class _ChemistsOngooglePageState extends State<ChemistsOngooglePage> {
         "\n\n\n");
     widget.model.GETMETHODCAL(
         api: ApiFactory.GOOGLE_QUERY_API(
-            lati: lati, longi: longi, healthpro: healthpro),
+            lati: lati, longi: longi, healthpro: (speciality!=null)?healthpro+" "+speciality:healthpro),
         fun: (Map<String, dynamic> map) {
           setState(() {
             //String msg = map[Const.MESSAGE];
