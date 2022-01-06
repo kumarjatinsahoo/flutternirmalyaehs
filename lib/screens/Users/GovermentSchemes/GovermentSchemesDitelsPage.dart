@@ -99,7 +99,7 @@ class _GovermentSchemesDitelsPageState extends State<GovermentSchemesDitelsPage>
           children: [
             Center(
               child: Text(
-                'Schemes Details',
+                'Schemes Detai ls',
                 style: TextStyle(color: Colors.white),
               ),
             ),
@@ -129,7 +129,7 @@ class _GovermentSchemesDitelsPageState extends State<GovermentSchemesDitelsPage>
               initialUrlRequest: URLRequest(
                   url: Uri.parse(widget.model.pdfurl)),
               initialOptions: _options,
-              shouldOverrideUrlLoading: (controller, action) {
+              shouldOverrideUrlLoading:(controller, action) {
                 print("override");
                 return Future.value(NavigationActionPolicy.ALLOW);
               },
