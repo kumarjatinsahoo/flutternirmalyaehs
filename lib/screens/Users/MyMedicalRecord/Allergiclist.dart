@@ -587,7 +587,7 @@ class _AllergicListListState extends State<AllergicListList> {
                           context, "Please enter Updated by");
                     } else if ( textEditingController[1].text != "" &&  textEditingController[1].text.length <= 2) {
                       FocusScope.of(context).requestFocus(fnode2);
-                      AppData.showInSnackBar(context, "Please enter valid Updated by");
+                      AppData.showInSnackBar(context, "Please enter valid name");
                     } else {
                       MyWidgets.showLoading(context);
                       AllergicPostModel allergicmodel = AllergicPostModel();
@@ -685,9 +685,11 @@ class _AllergicListListState extends State<AllergicListList> {
                             AllergicListList.typeModel = data;
                           });
                         }),
-                        */ /*SizedBox(
+                        */
+  /*SizedBox(
                           height: 5,
-                        ),*/ /*
+                        ),*/
+  /*
                         DropDown.networkDropdownGetpartUser1(
                             MyLocalizations.of(context)
                                 .text("ALLERGEN") ,
@@ -702,7 +704,8 @@ class _AllergicListListState extends State<AllergicListList> {
                         }),
                        */ /* SizedBox(
                           height: 5,
-                        ),*/ /*
+                        ),*/
+  /*
                         DropDown.networkDrop(
                             MyLocalizations.of(context)
                                 .text("SEVERTY") ,
@@ -736,11 +739,13 @@ class _AllergicListListState extends State<AllergicListList> {
         new FlatButton(
           onPressed: () {
             Navigator.of(context).pop();
-            */ /*AllergicListList.nameModel.key = "";
+            */
+  /*AllergicListList.nameModel.key = "";
             AllergicListList.typeModel.key = "";
             AllergicListList.severitylistModel.key = "";
             textEditingController[0].text = "";
-            textEditingController[1].text = "";*/ /*
+            textEditingController[1].text = "";*/
+  /*
             // textEditingController[0].text = "";
           },
           textColor: Theme.of(context).primaryColor,
@@ -800,7 +805,8 @@ class _AllergicListListState extends State<AllergicListList> {
                     }
                   });
                 },
-                */ /*fun: (Map<String, dynamic> map) {
+                */
+  /*fun: (Map<String, dynamic> map) {
                     Navigator.pop(context);
                     callAPI();
                     if (map[Const.STATUS] == Const.SUCCESS) {
@@ -808,7 +814,8 @@ class _AllergicListListState extends State<AllergicListList> {
                     } else {
                       AppData.showInSnackBar(context, map[Const.MESSAGE]);
                     }
-                  }*/ /*
+                  }*/
+  /*
               );
               //AppData.showInSnackBar(context, "add Successfully");
             }
@@ -856,7 +863,7 @@ class _AllergicListListState extends State<AllergicListList> {
           controller: textEditingController[index],
           textAlignVertical: TextAlignVertical.center,
           inputFormatters: [
-            WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
+            WhitelistingTextInputFormatter(RegExp("[a-zA-Z. ]")),
           ],
           onFieldSubmitted: (value) {
             AppData.fieldFocusChange(context, currentfn, nextFn);

@@ -231,10 +231,13 @@ class _BiomediImplantsState extends State<BiomediImplants> {
                                                   ),
                                                   Expanded(
                                                     flex: 1,
-                                                    child: Text(
-                                                      body?.bioMName ?? "N/A",
-                                                      style: TextStyle(
-                                                          fontSize: 15),
+                                                    child: Padding(
+                                                      padding: const EdgeInsets.only(right:6.0),
+                                                      child: Text(
+                                                        body?.bioMName ?? "N/A",
+                                                        style: TextStyle(
+                                                            fontSize: 15),
+                                                      ),
                                                     ),
                                                   ),
                                                 ],
@@ -548,7 +551,7 @@ class _BiomediImplantsState extends State<BiomediImplants> {
         firstDate: DateTime(1901, 1),
         lastDate:
             DateTime.now().add(new Duration(days: 0))); //18 years is 6570 days
-    if (picked != null && picked != selectedDate)
+    //if (picked != null && picked != selectedDate)
       setState(() {
         selectedDate = picked;
         error[2] = false;
