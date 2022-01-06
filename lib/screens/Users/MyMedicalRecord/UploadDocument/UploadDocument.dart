@@ -182,7 +182,7 @@ class _UploadDocumentState extends State<UploadDocument> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
+    /*  appBar: AppBar(
           centerTitle: true,
           backgroundColor: AppData.kPrimaryColor,
           title: Text("Upload Document"),
@@ -210,7 +210,7 @@ class _UploadDocumentState extends State<UploadDocument> {
                 ),
               ),
             ),
-          ]),
+          ]),*/
       body: isdata == true
           ? Center(
               child: Column(
