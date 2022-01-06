@@ -60,6 +60,7 @@ dependencies:
   lottie: ^1.1.0
   date_picker_timeline: ^1.2.3
   flutter_rating_bar: ^4.0.0
+  flutter_share: ^2.0.0
   #fl_chart: ^0.40.2
   pie_chart: ^5.1.0
   #fl_chart: ^0.40.0
