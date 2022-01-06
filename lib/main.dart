@@ -101,6 +101,7 @@ import 'package:user/screens/Users/Dashboard/EmergencyDetails.dart';
 import 'package:user/screens/Users/GenericMedicine/GenericMedicine.dart';
 import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/DocumentImageView.dart';
 import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/DocumentList.dart';
+import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/UploadDocumentTab.dart';
 import 'screens/Syndicate Partner/Dashboard/SyndicateDashboard.dart';
 import 'screens/Syndicate Partner/Registration/Syndicatepartner.dart';
 import 'screens/Users/MyMedicalRecord/HealthChat1/HealthChart.dart';
@@ -1010,7 +1011,7 @@ class _MyAppState extends State<MyApp> {
               '/myPatientlist': (context) => MyPatientlist(
                     model: _model,
                   ),
-              '/uploaddocument': (context) => DocumentList(
+              '/uploaddocument': (context) => UploadDocumentTab(
                     model: _model,
                   ),
               '/upload': (context) => UploadDocument(

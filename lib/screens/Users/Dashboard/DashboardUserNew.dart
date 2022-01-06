@@ -1859,17 +1859,20 @@ class MyPage1Widget extends StatelessWidget {
                 width: 5,
               ),
               /*Expanded(*/
+
               Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     _buildTileblue(
-                      icon: "assets/health-careF.png",
+                      icon: "assets/ambulance.png",
+                      //icon: Icons.search,
+                      //icon: FontAwesomeIcons.accusoft,
+                      title: "Book Ambulance",
                       fun: () {
-                        AppData.showInSnackDone(context, "Coming Soon");
-                        // Navigator.pushNamed(context, "/vdo");
-                        // AppData.showSnack(
-                        //   context, "Coming soon", Colors.green);
+                        //AppData.showInSnackDone(context, "Coming Soon");
+                        Navigator.pushNamed(
+                            context, "/bookAmbulancelist");
                       },
                       color: AppData.BG2BLUE,
                       bordercolor: AppData.BG2BLUE,
@@ -1881,23 +1884,13 @@ class MyPage1Widget extends StatelessWidget {
                     Container(
                       width: 100,
                       height: 35,
-                      /* child: Expanded(*/
                       child: Text(
                         MyLocalizations.of(context)
-                            .text("PREVENTIVE_HEALTHCARE"),
+                            .text("BOOK_AMBULANCE"),
                         textAlign: TextAlign.center,
                         //overflow: TextOverflow.ellipsis,
                       ),
                     ),
-                    /* Align(
-                                          alignment: Alignment.center,
-                                          child: Expanded(
-                                            child: Text(
-                                              "Generic Medical Stores",
-                                              style: TextStyle(color: Colors.black),
-                                              textAlign: TextAlign.center,
-                                            ),
-                                          )),*/
                   ]),
               SizedBox(
                 width: 5,
@@ -2480,7 +2473,7 @@ class MyPage2Widget extends StatelessWidget {
                       width: 15,
                     ),
 
-                    Column(
+                   /* Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -2511,7 +2504,7 @@ class MyPage2Widget extends StatelessWidget {
                               //overflow: TextOverflow.ellipsis,
                             ),
                           ),
-                        ]),
+                        ]),*/
                   ],
                 ),
               ],
