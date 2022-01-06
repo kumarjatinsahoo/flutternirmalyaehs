@@ -56,6 +56,7 @@ import 'package:user/screens/Users/BookBloodBank/BookBloodBanklist.dart';
 import 'package:user/screens/Users/Dashboard/ChangePassword.dart';
 import 'package:user/screens/Users/Dashboard/QrcodePage.dart';
 import 'package:user/screens/Users/Dashboard/TermsandConditionPage.dart';
+import 'package:user/screens/Users/GovermentSchemes/GovermentSchemesDitelsPage.dart';
 import 'package:user/screens/Users/GovermentSchemes/GovernmentSchemesList.dart';
 import 'package:user/screens/Pharmacists/screens/OrdersTabPharmacy.dart';
 import 'package:user/screens/Users/Dashboard/AboutUs.dart';
@@ -1023,6 +1024,10 @@ class _MyAppState extends State<MyApp> {
               '/documentpdf': (context) => PdfViewPage(
                     model: _model,
                   ),
+              '/govermentSchemesDitelsPage': (context) => GovermentSchemesDitelsPage(
+                model: _model,
+              ),
+
               '/documentimage': (context) => DocumentImage(
                     model: _model,
                   ),

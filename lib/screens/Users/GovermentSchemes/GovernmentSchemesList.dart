@@ -79,7 +79,7 @@ class _GovernmentSchemesListState extends State<GovernmentSchemesList> {
                   return InkWell(
                     onTap: () {
                       widget.model.pdfurl = govetSchemeListModel.body[i].code;
-                      Navigator.pushNamed(context, "/documentpdf");
+                      Navigator.pushNamed(context, "/govermentSchemesDitelsPage");
                      //Navigator.pushNamed(context, "/govetschem1");
                     },
                     child: Stack(
