@@ -579,7 +579,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                   //Navigator.pushNamed(context, "/biomedicalimplants");
                 },
               ),
-              ListTile(
+              /*ListTile(
                   leading: Image.asset(
                     "assets/images/share.png",
                     height: 30,
@@ -590,7 +590,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                     selectDestination(5);
                     //Navigator.pushNamed(context, "/dashboard1");
                     //Navigator.pushNamed(context, "/emergencydetails");
-                  }),
+                  }),*/
               ListTile(
                   leading: Image.asset(
                     "assets/images/contact us.png",
