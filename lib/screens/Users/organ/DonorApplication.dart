@@ -1513,17 +1513,20 @@ class DonorApplicationState extends State<DonorApplication> {
           } else if (textEditingController[4].text != "" &&
               textEditingController[4].text.length != 10) {
             AppData.showInSnackBar(context, "Please enter valid Mobile Number");
-          } else if (textEditingController[5].text == '') {
-            AppData.showInSnackBar(context, "Please enter E-mail");
-          } else if (textEditingController[5].text != '' &&
-              !AppData.isValidEmail(textEditingController[5].text)) {
-            AppData.showInSnackBar(context, "Please enter a valid E-mail");
-          } else if (textEditingController[6].text == "" ||
-              textEditingController[6].text == null) {
-            AppData.showInSnackBar(context, "Please enter Address");
-          } else if (textEditingController[15].text == "" ||
-              textEditingController[15].text == null) {
-            AppData.showInSnackBar(context, "Please enter Blood Group");
+          // } else if (textEditingController[5].text == '') {
+          //   AppData.showInSnackBar(context, "Please enter E-mail");
+          // } else if (textEditingController[5].text != '' &&
+          //     !AppData.isValidEmail(textEditingController[5].text)) {
+          //   AppData.showInSnackBar(context, "Please enter a valid E-mail");
+          // } else if (textEditingController[6].text == "" ||
+          //     textEditingController[6].text == null) {
+          //   AppData.showInSnackBar(context, "Please enter Address");
+          // } else if (textEditingController[15].text == "" ||
+          //     textEditingController[15].text == null) {
+          //   AppData.showInSnackBar(context, "Please enter Blood Group");
+          } else if (DonorApplication.bloodgroupModel == null ||
+              DonorApplication.bloodgroupModel == "") {
+            AppData.showInSnackBar(context, "Please select blood group");
           } else {
             // Navigator.pushNamed(context, "/addWitness");
             MyWidgets.showLoading(context);
@@ -1532,8 +1535,8 @@ class DonorApplicationState extends State<DonorApplication> {
             addOrganDonModel.donorName = textEditingController[0].text;
             addOrganDonModel.donorType = _selectedItem.key;
             addOrganDonModel.typeUserName = textEditingController[1].text;
-            //addOrganDonModel.dob = textEditingController[2].text;
-            addOrganDonModel.dob = toDate(patientProfileModel.body.dob);
+            addOrganDonModel.dob = textEditingController[2].text;
+            //addOrganDonModel.dob = toDate(patientProfileModel.body.dob);
             addOrganDonModel.age = year;
             addOrganDonModel.mob = textEditingController[4].text;
             addOrganDonModel.email = textEditingController[5].text;
