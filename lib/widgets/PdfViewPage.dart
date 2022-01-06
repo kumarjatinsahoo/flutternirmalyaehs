@@ -48,15 +48,17 @@ class _PdfViewPageState extends State<PdfViewPage> {
     Completer<File> completer = Completer();
     print("Start download file from internet!");
     try {
+      print(widget.model.pdfurl);
       //"https://berlin2017.droidcon.cod.newthinking.net/sites/global.droidcon.cod.newthinking.net/files/media/documents/Flutter%20-%2060FPS%20UI%20of%20the%20future%20%20-%20DroidconDE%2017.pdf";
       //final url = "https://pdfkit.org/docs/guide.pdf";
-      final url = /*widget.model.pdfurl*/"PDFs/Guide-v4.pdf";
+      final url = widget.model.pdfurl/*  "https://pdfkit.org/docs/guide.pdf"*/;
       final filename = url.substring(url.lastIndexOf("/") + 1);
       var request = await HttpClient().getUrl(Uri.parse(url));
       var response = await request.close();
       var bytes = await consolidateHttpClientResponseBytes(response);
       var dir = await getApplicationDocumentsDirectory();
       print("Download files");
+
       print("${dir.path}/$filename");
       File file = File("${dir.path}/$filename");
 
@@ -119,6 +121,7 @@ class _PDFScreenState extends State<PDFScreen> with WidgetsBindingObserver {
       body: Stack(
         children: <Widget>[
           PDFView(
+
             filePath: widget.path,
             enableSwipe: true,
             swipeHorizontal: true,
@@ -131,6 +134,8 @@ class _PDFScreenState extends State<PDFScreen> with WidgetsBindingObserver {
             // if set to true the link is handled in flutter
             onRender: (_pages) {
               setState(() {
+                print(widget.path);
+
                 pages = _pages;
                 isReady = true;
               });
