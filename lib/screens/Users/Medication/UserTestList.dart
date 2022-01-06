@@ -167,7 +167,7 @@ class _MedicineList extends State<UserTestList> {
             backgroundColor: AppData.kPrimaryColor,
             title: Text("Test List"),
             actions: <Widget>[
-              Padding(
+            /*  Padding(
                 padding: const EdgeInsets.only(right: 15.0,top: 20),
                 child: InkWell(
                   onTap: () {
@@ -175,7 +175,7 @@ class _MedicineList extends State<UserTestList> {
                   },
                   child: Text("Prescribed Test"),
                 ),
-              ),
+              ),*/
               /* Padding(
             padding: EdgeInsets.only(right: 18.0,top: 20),
            child:Text("Prescription"),
