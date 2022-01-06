@@ -25,7 +25,7 @@
   "EXPERIENCE": "अनुभव(वर्ष)",
   "ENTER_ZIP_CODE": "ज़िप/पिन कोड दर्ज करें",
   "UPLOAD": "डालना",
-
+  "CHANGE_PASSWORD": "पासवर्ड बदलें",
 
 
   "SIGNUP": "साइन अप करें",
@@ -105,7 +105,7 @@
   "PLEASE_SELECT_BLOCK": "कृपया ब्लॉक का चयन करें",
   "PLEASE_SELECT_DISTRICT": "कृपया जिला चुनें",
   "PLEASE_ENTER_ADDRESS": "कृपया पता दर्ज करें",
-
+  "ORDER_BLOOD": "ऑर्डर ब्लड",
 
   "MEDICATION": "दवाई",
   "MEDICAL_RECORD1": "चिकित्सा सम्बन्धी रिकार्ड्स",
