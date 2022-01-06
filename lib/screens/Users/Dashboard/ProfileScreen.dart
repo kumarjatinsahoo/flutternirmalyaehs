@@ -2651,10 +2651,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         setState(() {
                                           print(ApiFactory.COUNTRY_API);
                                           ProfileScreen.countrymodel = model;
-                                          patientProfileModel.body.countryid =
-                                              model.key;
-                                          patientProfileModel.body.country =
-                                              model.name;
+                                          patientProfileModel.body.countryid = model.key;
+                                          patientProfileModel.body.country = model.name;
                                           // updateProfileModel.bloodGroup = model.key;
                                         });
                                       }),
@@ -2662,8 +2660,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 SizedBox(height: 20),
                                 Column(
                                     mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Padding(
                                         padding: const EdgeInsets.only(
@@ -2683,16 +2680,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                           "State",
                                           ApiFactory.STATE_API +
                                               (ProfileScreen
-                                                      ?.countrymodel?.key ??
-                                                  ""),
+                                                      ?.countrymodel?.key ?? ""),
                                           "pstate", (KeyvalueModel model) {
                                         setState(() {
                                           print(ApiFactory.STATE_API);
                                           ProfileScreen.statemodel = model;
-                                          patientProfileModel.body.stateid =
-                                              model.key;
-                                          patientProfileModel.body.state =
-                                              model.name;
+                                          patientProfileModel.body.stateid = model.key;
+                                          patientProfileModel.body.state = model.name;
                                           // updateProfileModel.bloodGroup = model.key;
                                         });
                                       }),
@@ -2808,64 +2802,64 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     if (textEditingController[0].text == null ||
                         textEditingController[0].text == "") {
                       AppData.showInSnackBar(context, "Please Enter  Dob");
-                    } else if (ProfileScreen.bloodgroupmodel == null ||
-                        ProfileScreen.bloodgroupmodel == "") {
-                      AppData.showInSnackBar(
-                          context, "Please select Bloodgroup");
+                    // } else if (ProfileScreen.bloodgroupmodel == null ||
+                    //     ProfileScreen.bloodgroupmodel == "") {
+                    //   AppData.showInSnackBar(
+                    //       context, "Please select Bloodgroup");
                     } else if (textEditingController[1].text == "" ||
                         textEditingController[1].text == null) {
                       AppData.showInSnackBar(context, "Please enter Address");
-                    } else if (ProfileScreen.materialmodel == null ||
-                        ProfileScreen.materialmodel == "") {
-                      AppData.showInSnackBar(
-                          context, "Please select Marital Status");
-                    } else if (textEditingController[2].text == "" ||
-                        textEditingController[2].text.length == null) {
-                      AppData.showInSnackBar(
-                          context, "Please enter Occupation");
+                    // } else if (ProfileScreen.materialmodel == null ||
+                    //     ProfileScreen.materialmodel == "") {
+                    //   AppData.showInSnackBar(
+                    //       context, "Please select Marital Status");
+                    // } else if (textEditingController[2].text == "" ||
+                    //     textEditingController[2].text.length == null) {
+                    //   AppData.showInSnackBar(
+                    //       context, "Please enter Occupation");
                       // FocusScope.of(context).requestFocus(fnode2);
-                    } else if (textEditingController[3].text == "" ||
-                        textEditingController[3].text.length == null) {
-                      AppData.showInSnackBar(
-                          context, "Please enter Qualification");
+                    // } else if (textEditingController[3].text == "" ||
+                    //     textEditingController[3].text.length == null) {
+                    //   AppData.showInSnackBar(
+                    //       context, "Please enter Qualification");
                       // FocusScope.of(context).requestFocus(fnode3);
-                    } else if (textEditingController[4].text == "" &&
-                        textEditingController[4].text.length == null) {
-                      AppData.showInSnackBar(
-                          context, "Please enter  Specialization");
+                    // } else if (textEditingController[4].text == "" &&
+                    //     textEditingController[4].text.length == null) {
+                    //   AppData.showInSnackBar(
+                    //       context, "Please enter  Specialization");
                       // FocusScope.of(context).requestFocus(fnode4);
-                    } else if (textEditingController[5].text == "" ||
-                        textEditingController[5].text == null) {
-                      AppData.showInSnackBar(
-                          context, "Please enter Pan Card No");
+                    // } else if (textEditingController[5].text == "" ||
+                    //     textEditingController[5].text == null) {
+                    //   AppData.showInSnackBar(
+                    //       context, "Please enter Pan Card No");
                       // FocusScope.of(context).requestFocus(fnode5);
-                    } else if (textEditingController[6].text == "" ||
-                        textEditingController[6].text.length == null) {
-                      AppData.showInSnackBar(
-                          context, "Please enter a Passport No");
-                      FocusScope.of(context).requestFocus(fnode5);
-                    } else if (textEditingController[7].text == "" ||
-                        textEditingController[7].text == null) {
-                      AppData.showInSnackBar(context, "Please enter Aadhar No");
-                      FocusScope.of(context).requestFocus(fnode6);
-                    } else if (textEditingController[8].text == "" ||
-                        textEditingController[8].text == null) {
-                      AppData.showInSnackBar(
-                          context, "Please enter Votor Card No");
-                    } else if (textEditingController[9].text == "" ||
-                        textEditingController[9].text == null) {
-                      AppData.showInSnackBar(
-                          context, "Please enter Licence No.");
-                    } else if (textEditingController[10].text == "" ||
-                        textEditingController[10].text == null) {
-                      AppData.showInSnackBar(
-                          context, "Please enter Licence Authority");
-                    } else if (textEditingController[11].text == "" ||
-                        textEditingController[11].text == null) {
-                      AppData.showInSnackBar(context, "Please enter Email");
-                    } else if (textEditingController[12].text == "" ||
-                        textEditingController[12].text == null) {
-                      AppData.showInSnackBar(context, "Please enter PinCode");
+                    // } else if (textEditingController[6].text == "" ||
+                    //     textEditingController[6].text.length == null) {
+                    //   AppData.showInSnackBar(
+                    //       context, "Please enter a Passport No");
+                    //   FocusScope.of(context).requestFocus(fnode5);
+                    // } else if (textEditingController[7].text == "" ||
+                    //     textEditingController[7].text == null) {
+                    //   AppData.showInSnackBar(context, "Please enter Aadhar No");
+                    //   FocusScope.of(context).requestFocus(fnode6);
+                    // } else if (textEditingController[8].text == "" ||
+                    //     textEditingController[8].text == null) {
+                    //   AppData.showInSnackBar(
+                    //       context, "Please enter Votor Card No");
+                    // } else if (textEditingController[9].text == "" ||
+                    //     textEditingController[9].text == null) {
+                    //   AppData.showInSnackBar(
+                    //       context, "Please enter Licence No.");
+                    // } else if (textEditingController[10].text == "" ||
+                    //     textEditingController[10].text == null) {
+                    //   AppData.showInSnackBar(
+                    //       context, "Please enter Licence Authority");
+                    // } else if (textEditingController[11].text == "" ||
+                    //     textEditingController[11].text == null) {
+                    //   AppData.showInSnackBar(context, "Please enter Email");
+                    // } else if (textEditingController[12].text == "" ||
+                    //     textEditingController[12].text == null) {
+                    //   AppData.showInSnackBar(context, "Please enter PinCode");
                     } else if (textEditingController[13].text == "" ||
                         textEditingController[13].text == null) {
                       AppData.showInSnackBar(context, "Please enter Mobile no");
