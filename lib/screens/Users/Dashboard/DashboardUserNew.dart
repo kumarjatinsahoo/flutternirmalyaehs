@@ -1650,19 +1650,20 @@ class MyPage1Widget extends StatelessWidget {
                 width: 5,
               ),
               /*  Expanded(*/
-
               Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     _buildTilered(
-                      icon: "assets/offers.png",
+                      icon: "assets/blooddonationuser.png",
+                      //icon: Icons.search,
+                      //icon: FontAwesomeIcons.accusoft,
+                      title: " Order Blood ",
                       fun: () {
-                        AppData.showInSnackDone(context, "Coming Soon");
-                        // Navigator.pushNamed(context, "/discountoffer");
-                        //AppData.showInSnackBar(context, "Coming soon");
+                        Navigator.pushNamed(
+                            context, "/bookBloodBanklist");
+                        // Navigator.pushNamed(context, "/healthCheckup");
                       },
-                      //color: AppData.BG2BLUE,
                       color: AppData.BG1RED,
                       bordercolor: AppData.BG1RED,
                       //size: (size.width - 130) / 3,
@@ -1673,22 +1674,15 @@ class MyPage1Widget extends StatelessWidget {
                     Container(
                       width: 100,
                       height: 35,
-                      child: Text(
-                        MyLocalizations.of(context).text("DISCOUNT_OFFER"),
+                      child: Text(MyLocalizations.of(context)
+                          .text("ORDER_BLOOD"),
                         textAlign: TextAlign.center,
                         //overflow: TextOverflow.ellipsis,
                       ),
                     ),
-                    /*Align(
-                                          alignment: Alignment.center,
-                                          child: Expanded(
-                                            child: Text(
-                                              "Health               chat",
-                                              style: TextStyle(color: Colors.black),
-                                              textAlign: TextAlign.center,
-                                            ),
-                                          )),*/
                   ]),
+
+
             ],
           ),
           SizedBox(height: size.height * 0.01),
@@ -2434,7 +2428,7 @@ class MyPage2Widget extends StatelessWidget {
                   ],
                 ),
                 SizedBox(height: 5,),*/
-                Row(
+              /*  Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     // crossAxisAlignment: CrossAxisAlignment.center,
@@ -2473,7 +2467,7 @@ class MyPage2Widget extends StatelessWidget {
                       width: 15,
                     ),
 
-                   /* Column(
+                   *//* Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -2504,9 +2498,9 @@ class MyPage2Widget extends StatelessWidget {
                               //overflow: TextOverflow.ellipsis,
                             ),
                           ),
-                        ]),*/
+                        ]),*//*
                   ],
-                ),
+                ),*/
               ],
             ),
           ),
