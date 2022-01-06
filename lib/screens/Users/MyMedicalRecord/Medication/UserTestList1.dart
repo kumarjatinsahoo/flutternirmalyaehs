@@ -8,6 +8,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:geolocator/geolocator.dart' as loca;
 import 'package:geolocator/geolocator.dart';
+import 'package:user/localization/localizations.dart';
 import 'package:user/models/DocterMedicationlistModel.dart';
 import 'package:user/models/KeyvalueModel.dart';
 import 'package:user/models/LoginResponse1.dart';
@@ -324,9 +325,8 @@ class _MedicineList extends State<UserTestList1> {
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         alignment: Alignment.center,
-        child: (isDataNoFound) ? Text("Data Not Found"):
+        child: (isDataNoFound) ? Text(MyLocalizations.of(context).text("NO_DATA_FOUND")):
         callAPI(),
-
 
       ),
     );
