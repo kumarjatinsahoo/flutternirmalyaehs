@@ -212,7 +212,7 @@
   "EMERGENCY_CONTACT_NO": "आपत्कालीन संपर्क क्रमांक",
   "EMERGENCY_CONTACT_NAME": "आपत्कालीन संपर्क नाव",
   "RELATION": "नाते",
-  "EMERGENCY_ALERT": "",
+  "EMERGENCY_ALERT": "आणीबाणीचा इशारा! मला मदत हवी आहे",
   "WHAT_IS_ORGANDONATION": "अवयव दान म्हणजे काय?",
   "WHO_DONATE": "कोण देऊ शकतो?",
   "WHICH_ORGAN": "कुठले अवयव?",
@@ -383,7 +383,12 @@
   "RATE_DOCTOR": "डॉक्टरांना रेटिंग",
   "REVIEW": "पुनरावलोकन",
   "FIND_HEATH_CARE": "आरोग्य सेवा प्रदाता शोधा",
-
+  "LIST": "यादी",
+  "ORGAN_LIST": "अवयव यादी",
+  "PREVIEW": "पूर्वावलोकन",
+  "DONER_NAME": "देणाऱ्याचे नाव",
+  "GENERIC_STORE": "जेनेरिक स्टोअर्स",
+  "GOVT_SCHEME_LIST": "सरकारी योजनांची यादी",
 
 
   "USER_ADDRESS": "वापरकर्ता पत्ता"

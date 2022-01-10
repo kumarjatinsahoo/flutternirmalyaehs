@@ -77,8 +77,7 @@ class _OrganlistState extends State<Organlist> {
                   //_cropImage();
                 },
                 child: Center(
-                  child: Text(
-                    "Organ List",
+                  child: Text(MyLocalizations.of(context).text("ORGAN_LIST"),
                     style: TextStyle(color: Colors.white),
                   ),
                 ),
@@ -92,7 +91,7 @@ class _OrganlistState extends State<Organlist> {
                     onTap: () {
                       Navigator.pushNamed(context, "/organPriviewPage");
                     },
-                    child: Text("Preview"),
+                    child: Text(MyLocalizations.of(context).text("PREVIEW")),
                   ),
                 ),
               ),

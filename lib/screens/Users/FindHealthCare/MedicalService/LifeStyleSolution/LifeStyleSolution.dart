@@ -55,7 +55,7 @@ class _LifeStyleSolutionState extends State<LifeStyleSolution> {
                             GestureDetector(
                               onTap: () {
                                 widget.model.medicallserviceType =
-                                    "Child Caretaker";
+                                    MyLocalizations.of(context).text("CHILD_CARETAKER");
                                 Navigator.pushNamed(
                                     context, "/medicalsServiceOngooglePage");
 
@@ -116,7 +116,8 @@ class _LifeStyleSolutionState extends State<LifeStyleSolution> {
                             ),
                             GestureDetector(
                               onTap: () {
-                                widget.model.medicallserviceType = "Developing";
+                                widget.model.medicallserviceType =
+                                    MyLocalizations.of(context).text("DEVELOPING");
                                 Navigator.pushNamed(
                                     context, "/medicalsServiceOngooglePage");
 
@@ -179,7 +180,7 @@ class _LifeStyleSolutionState extends State<LifeStyleSolution> {
                             GestureDetector(
                               onTap: () {
                                 widget.model.medicallserviceType =
-                                    "Diagnostics";
+                                    MyLocalizations.of(context).text("DIAGNOSTICS");
                                 Navigator.pushNamed(
                                     context, "/medicalsServiceOngooglePage");
 
@@ -241,7 +242,8 @@ class _LifeStyleSolutionState extends State<LifeStyleSolution> {
                             ),
                             GestureDetector(
                               onTap: () {
-                                widget.model.medicallserviceType = "Gyms";
+                                widget.model.medicallserviceType =
+                                    MyLocalizations.of(context).text("GYMS");
                                 Navigator.pushNamed(
                                     context, "/medicalsServiceOngooglePage");
 
@@ -304,7 +306,7 @@ class _LifeStyleSolutionState extends State<LifeStyleSolution> {
                             GestureDetector(
                               onTap: () {
                                 widget.model.medicallserviceType =
-                                    "Hair Treatment Center";
+                                    MyLocalizations.of(context).text("HAIR_TREATMENT");
                                 Navigator.pushNamed(
                                     context, "/medicalsServiceOngooglePage");
 
@@ -366,7 +368,8 @@ class _LifeStyleSolutionState extends State<LifeStyleSolution> {
                             ),
                             GestureDetector(
                               onTap: () {
-                                widget.model.medicallserviceType = "Personal";
+                                widget.model.medicallserviceType =
+                                    MyLocalizations.of(context).text("PERSONAL");
                                 Navigator.pushNamed(
                                     context, "/medicalsServiceOngooglePage");
 
