@@ -8,6 +8,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:unicorndial/unicorndial.dart';
+import 'package:user/localization/localizations.dart';
 import 'package:user/models/AddBioMedicalModel.dart';
 import 'package:user/models/AddUploadDocumentModel.dart';
 import 'package:user/models/BiomedicalModel.dart' as bio;
@@ -134,7 +135,7 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: AppData.kPrimaryColor,
-        title: Text("Upload Document"),
+        title: Text(MyLocalizations.of(context).text("UPLOAD_DOCUMENT")),
       ),
 
       floatingActionButton: UnicornDialer(
@@ -166,7 +167,7 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
                     });
                   }),
                   SizedBox(height: 10),*/
-                  formField(1, "Document Name"),
+                  formField(1, MyLocalizations.of(context).text("DOCUUMENT_NAME")),
                   SizedBox(height: 10),
                   dob(),
                   SizedBox(height: 15),
@@ -248,8 +249,7 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
                           color: AppData.kPrimaryColor),
                       child: RaisedButton(
                         onPressed: null,
-                        child: Text(
-                          'Upload',
+                        child: Text(MyLocalizations.of(context).text("UPLOAD"),
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 16,
@@ -560,7 +560,7 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
                 AppData.fieldFocusChange(context, fnode3, fnode4);
               },
               decoration: InputDecoration(
-                hintText: (" Document Date"),
+                hintText: (MyLocalizations.of(context).text("DOCUUMENT_DATE")),
               //  hintStyle: TextStyle(color: AppData.hintColor, fontSize: 15),
                 border: InputBorder.none,
                 //contentPadding: EdgeInsets.symmetric(vertical: 10),

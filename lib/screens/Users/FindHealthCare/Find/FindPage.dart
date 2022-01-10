@@ -365,8 +365,7 @@ class _FindPageState extends State<FindPage> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
                       SizedBox(height: 20.0,),
-                      Text(
-                        'Find Healthcare Provider',
+                      Text(MyLocalizations.of(context).text("FIND_HEATH_CARE"),
                         style: TextStyle(
                             fontSize: 22,
                             fontWeight: FontWeight.w300,
@@ -640,7 +639,7 @@ class _FindPageState extends State<FindPage> {
 
   Widget _submitButton() {
     return MyWidgets.nextButton3(
-        text: "search".toUpperCase(),
+        text: MyLocalizations.of(context).text("SEARCH").toUpperCase(),
         context: context,
         fun: () {
           /* else if(FindScreen.healthcareProvider != null || FindScreen.healthcareProvider != ""

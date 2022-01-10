@@ -380,8 +380,7 @@ class _ImmunizationState extends State<Immunization> {
                       ),*/
                       SizedBox(height: 20),
                       Center(
-                              child: Text(
-                                "Are you Vaccinated ?",
+                              child: Text(MyLocalizations.of(context).text("VACCINATED"),
                                 style: TextStyle(
                                     color: Colors.black, fontSize: 23,fontWeight: FontWeight.w400, // light
                                   fontStyle: FontStyle.normal ),
@@ -397,8 +396,7 @@ class _ImmunizationState extends State<Immunization> {
             actions: <Widget>[
               FlatButton(
                 //textColor: Colors.grey,
-                child: Text(
-                  "Cancel",
+                child: Text(MyLocalizations.of(context).text("CANCEL"),
                   //style: TextStyle(color: Colors.grey),
                   style: TextStyle(color: Colors.deepOrange),
                 ),
@@ -433,7 +431,7 @@ class _ImmunizationState extends State<Immunization> {
               ),
               FlatButton(
                 //textColor: Colors.grey,
-                child: Text("No",
+                child: Text(MyLocalizations.of(context).text("NO"),
                     style: TextStyle(color: AppData.kPrimaryRedColor)),
                 onPressed: () {
                   widget.model.GETMETHODCALL_TOKEN(
@@ -467,8 +465,7 @@ class _ImmunizationState extends State<Immunization> {
               ),
               FlatButton(
                 //textColor: Colors.grey,
-                child: Text(
-                 "Yes",
+                child: Text(MyLocalizations.of(context).text("YES"),
                   //style: TextStyle(color: Colors.grey),
                   style: TextStyle(color: AppData.matruColor),
                 ),
@@ -533,8 +530,7 @@ class _ImmunizationState extends State<Immunization> {
                           child: Column(
                             children: [
                               Center(
-                                child: Text(
-                                  "Add Details",
+                                child: Text(MyLocalizations.of(context).text("ADD_DETAILS"),
                                   style: TextStyle(
                                       color: Colors.black, fontSize: 20),
                                 ),
@@ -555,7 +551,7 @@ class _ImmunizationState extends State<Immunization> {
                         // }),
 
                         DropDown.networkDropdownGetpartUser1(
-                            "Immunization Type",
+                           MyLocalizations.of(context).text("IMMUNIZATION_TYPE"),
                             ApiFactory.IMMUNIZATION_API,
                             "immunization",
                             Icons.location_on_rounded,
@@ -568,9 +564,9 @@ class _ImmunizationState extends State<Immunization> {
                         SizedBox(height: 8),
                         dob(),
                         SizedBox(height: 8),
-                        formField(1, "Prescribed By"),
+                        formField(1, MyLocalizations.of(context).text("PRESCRIBED_BY")),
                         SizedBox(height: 8),
-                        formField(2, "Immunization Details"),
+                        formField(2, MyLocalizations.of(context).text("IMMUNIZATION_DETAILS")),
                       ],
                     ),
                   ),

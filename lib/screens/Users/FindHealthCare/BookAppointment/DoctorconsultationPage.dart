@@ -279,8 +279,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                                     materialTapTargetSize:
                                         MaterialTapTargetSize.shrinkWrap,
                                   ),
-                                  Text(
-                                    "Hospital Visit",
+                                  Text(MyLocalizations.of(context).text("HOSPITAL_VISIT"),
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 12,
@@ -332,8 +331,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                                     materialTapTargetSize:
                                         MaterialTapTargetSize.shrinkWrap,
                                   ),
-                                  Text(
-                                    "Video Consult",
+                                  Text(MyLocalizations.of(context).text("VIDEO_CONSULT"),
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 12,
@@ -366,7 +364,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                           child: SizedBox(
                             height: 58,
                             child: DropDown.networkDropdownGetpartUser(
-                                ("Country"),
+                              MyLocalizations.of(context).text("COUNTRY"),
                                 ApiFactory.COUNTRY_API,
                                 "country",
                                 Icons.location_on_rounded,
@@ -389,7 +387,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                                 child: SizedBox(
                                   height: 58,
                                   child: DropDown.countryList(
-                                      "State",
+                                    MyLocalizations.of(context).text("STATE"),
                                       ApiFactory.STATE_API +
                                           DoctorconsultationPage
                                               .countryModel.key,
@@ -414,7 +412,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                                 child: SizedBox(
                                   height: 58,
                                   child: DropDown.countryList(
-                                      "Dist",
+                                    MyLocalizations.of(context).text("DIST"),
                                       ApiFactory.DISTRICT_API +
                                           DoctorconsultationPage.stateModel.key,
                                       "districtDA",
@@ -441,7 +439,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                                 child: SizedBox(
                                   height: 58,
                                   child: DropDown.countryList(
-                                      "City",
+                                    MyLocalizations.of(context).text("CITY"),
                                       ApiFactory.CITY_API +
                                           DoctorconsultationPage.distrModel.key,
                                       "cityDA",
@@ -673,8 +671,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
         child: Padding(
           padding:
               EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
-          child: Text(
-            "Take Appointment",
+          child: Text(MyLocalizations.of(context).text("TAKE_APPOINTMENT"),
             textAlign: TextAlign.center,
             style: TextStyle(color: Colors.white, fontSize: 16.0),
           ),
