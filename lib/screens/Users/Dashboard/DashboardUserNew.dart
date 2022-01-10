@@ -7,6 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter_share/flutter_share.dart';
 import 'package:intl/intl.dart';
 import 'package:pageview_indicator_plugins/pageview_indicator_plugins.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
@@ -21,6 +22,7 @@ import 'package:user/providers/api_factory.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import '../../../main.dart';
 import '../../../providers/app_data.dart';
+
 // import 'package:add_2_calendar/add_2_calendar.dart';
 
 class DashboardUserNew extends StatefulWidget {
@@ -579,7 +581,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                   //Navigator.pushNamed(context, "/biomedicalimplants");
                 },
               ),
-              /*ListTile(
+             /* ListTile(
                   leading: Image.asset(
                     "assets/images/share.png",
                     height: 30,
@@ -588,6 +590,13 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                   selected: _selectedDestination == 5,
                   onTap: () {
                     selectDestination(5);
+                    FlutterShare.share(
+                        title: 'Example share',
+                        text: 'Example share text',
+                        linkUrl: 'https://flutter.dev/',
+                        chooserTitle: 'Example Chooser Title'
+                    );
+                    //share();
                     //Navigator.pushNamed(context, "/dashboard1");
                     //Navigator.pushNamed(context, "/emergencydetails");
                   }),*/
@@ -1952,7 +1961,25 @@ class MyPage1Widget extends StatelessWidget {
       ),
     );
   }
+  Future<void> share() async {
+    await FlutterShare.share(
+        title: 'Example share',
+        text: 'Example share text',
+        linkUrl: 'https://flutter.dev/',
+        chooserTitle: 'Example Chooser Title'
+    );
+  }
 
+ /* Future<void> shareFile() async {
+    List<dynamic> docs = await DocumentsPicker.pickDocuments;
+    if (docs == null || docs.isEmpty) return null;
+
+    await FlutterShare.shareFile(
+      title: 'Example share',
+      text: 'Example share text',
+      filePath: docs[0] as String,
+    );
+  }*/
   Widget _buildTileblue(
       {String icon,
       /*IconData icon,*/
