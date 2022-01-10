@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:user/localization/localizations.dart';
 import 'package:user/models/GooglePlacesModel.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
@@ -59,7 +60,7 @@ class _GenericMedicineState extends State<GenericMedicine> {
     return Scaffold(
       appBar: AppBar(
     backgroundColor: AppData.kPrimaryColor,
-    title: Text("Generic Stores"),
+    title: Text(MyLocalizations.of(context).text("GENERIC_STORE")),
     centerTitle: true,
       ),
       body: Container(

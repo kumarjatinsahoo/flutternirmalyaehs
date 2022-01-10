@@ -218,13 +218,13 @@
   "EMERGENCY_CONTACT_NO": "ଜରୁରୀକାଳୀନ ଯୋଗାଯୋଗ ନମ୍ବର ",
   "EMERGENCY_CONTACT_NAME": "ଜରୁରୀକାଳୀନ ଯୋଗାଯୋଗ ନାମ",
   "RELATION": "ସମ୍ପର୍କ",
-  "EMERGENCY_ALERT": "",
+  "EMERGENCY_ALERT": "ଜରୁରୀକାଳୀନ ସତର୍କତା! ମତେ ସାହାଯ୍ୟ ଦରକାର",
   "WHAT_IS_ORGANDONATION": "ଅଙ୍ଗ ଦାନ କ’ଣ?",
   "WHO_DONATE": "କିଏ ଦାନ କରିପାରିବ?",
   "WHICH_ORGAN": "କେଉଁ ଅଙ୍ଗ ?",
   "HOW_DONATE": "କିପରି ଦାନ କରିବେ ?",
-  "APPLICATION": "ପ୍ରୟୋଗ",
-  "DONOR_APPLICATION": "ଦାତା ପ୍ରୟୋଗ ",
+  "APPLICATION": "ଆବେଦନ",
+  "DONOR_APPLICATION": "ଦାତା ଆବେଦନ ",
   "EMAILID": "ଇମେଲ୍ ",
   "ALTER_EMAILID": "ବିକଳ୍ପ ଇମେଲ୍ ଆଇଡି",
   "RELATION_OF": "ସମ୍ପର୍କ",
@@ -385,8 +385,12 @@
   "RATE_DOCTOR": "ଡାକ୍ତରଙ୍କୁ ରେଟ୍",
   "REVIEW": "ସମୀକ୍ଷା",
   "FIND_HEATH_CARE": "ସ୍ୱାସ୍ଥ୍ୟ ସେବା ପ୍ରଦାନକାରୀ ଖୋଜ",
-
-
+  "LIST": "ତାଲିକା",
+  "ORGAN_LIST": "ଅଙ୍ଗ ତାଲିକା",
+  "PREVIEW": "ପୂର୍ବାବଲୋକନ",
+  "DONER_NAME": "ଦାତା ନାମ",
+  "GENERIC_STORE": "ଜେନେରିକ୍ ଷ୍ଟୋର",
+  "GOVT_SCHEME_LIST": "ସରକାରୀ ଯୋଜନା ତାଲିକା",
 
 
   "USER_ADDRESS": "ଉପଯୋଗକର୍ତ୍ତା ଠିକଣା"

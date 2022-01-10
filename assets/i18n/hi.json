@@ -213,7 +213,7 @@
   "EMERGENCY_CONTACT_NAME": "आपातकालीन संपर्क नाम",
 
   "RELATION": "रिश्ता",
-  "EMERGENCY_ALERT": "",
+  "EMERGENCY_ALERT": "आपातकालीन चेतावनी! मुझे मदद की ज़रूरत है",
   "WHAT_IS_ORGANDONATION": "अवयव दान क्या है?",
   "WHO_DONATE": "कौन कर सकता है?",
   "WHICH_ORGAN": "कौन सा अवयव?",
@@ -385,8 +385,12 @@
   "RATE_DOCTOR": "डॉक्टर को रेटिंग",
   "REVIEW": "समीक्षा",
   "FIND_HEATH_CARE": "स्वास्थ्य सेवा प्रदाता खोजें",
-
-
+  "LIST": "सूची",
+  "ORGAN_LIST": "अंग सूची",
+  "PREVIEW": "पूर्वावलोकन",
+  "DONER_NAME": "दाता का नाम",
+  "GENERIC_STORE": "जेनेरिक स्टोर",
+  "GOVT_SCHEME_LIST": "सरकारी योजनाओं की सूची",
 
 
   "USER_ADDRESS": "उपयोगकर्ता का पता"

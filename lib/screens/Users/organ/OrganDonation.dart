@@ -50,7 +50,8 @@ class _OrganDonationState extends State<OrganDonation> {
                   });
                   // displayTextInputDialog(context);
                 },
-                child: Center(child: Text("List",style:TextStyle(fontSize:20,color: Colors.white,fontWeight: FontWeight.bold),)),
+                child: Center(child: Text(MyLocalizations.of(context).text("LIST"),
+                  style:TextStyle(fontSize:20,color: Colors.white,fontWeight: FontWeight.bold),)),
               ),
             ),
           ]

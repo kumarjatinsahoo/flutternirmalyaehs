@@ -225,7 +225,7 @@
   "EMERGENCY_CONTACT_NO": "Emergency Contact No.",
   "EMERGENCY_CONTACT_NAME": "Emergency Contact Name",
   "RELATION": "Relation",
-  "EMERGENCY_ALERT": "",
+  "EMERGENCY_ALERT": "Emergency alert ! I need help",
   "WHAT_IS_ORGANDONATION": "What is Organ Donation ? ",
   "WHO_DONATE": "Who Can Donate ?",
   "WHICH_ORGAN": "Which Organs ?",
@@ -389,7 +389,12 @@
   "RATE_DOCTOR": "Rate to Doctor",
   "REVIEW": "Review",
   "FIND_HEATH_CARE": "Find Healthcare Provider",
-
+  "LIST": "List",
+  "ORGAN_LIST": "Organ list",
+  "PREVIEW": "Preview",
+  "DONER_NAME": "Doner name",
+  "GENERIC_STORE": "Generic stores",
+  "GOVT_SCHEME_LIST": "Government Schemes List",
 
 
 

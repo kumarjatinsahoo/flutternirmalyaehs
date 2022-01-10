@@ -54,7 +54,7 @@ class _DonorOrganisationState extends State<DonorOrganisation> {
                       GestureDetector(
                         onTap: () {
                           widget.model.medicallserviceType =
-                              "Blood Donation";
+                              MyLocalizations.of(context).text("BLOOD_DONATION");
                           Navigator.pushNamed(context, "/medicalsServiceOngooglePage");
                                //AppData.showInSnackBar(context,"hi");
                         },
@@ -113,7 +113,7 @@ class _DonorOrganisationState extends State<DonorOrganisation> {
                       GestureDetector(
                         onTap: () {
                           widget.model.medicallserviceType =
-                              "Bone Marrow Registry";
+                              MyLocalizations.of(context).text("BONEMARROW_REGISTRY");
                           Navigator.pushNamed(
                               context, "/medicalsServiceOngooglePage");
 
