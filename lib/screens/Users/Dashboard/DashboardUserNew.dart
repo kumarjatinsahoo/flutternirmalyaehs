@@ -1655,15 +1655,13 @@ class MyPage1Widget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     _buildTilered(
-                      icon: "assets/blooddonationuser.png",
-                      //icon: Icons.search,
-                      //icon: FontAwesomeIcons.accusoft,
-                      title: " Order Blood ",
+                      icon: "assets/offers.png",
                       fun: () {
-                        Navigator.pushNamed(
-                            context, "/bookBloodBanklist");
-                        // Navigator.pushNamed(context, "/healthCheckup");
+                        AppData.showInSnackDone(context, "Coming Soon");
+                        // Navigator.pushNamed(context, "/discountoffer");
+                        //AppData.showInSnackBar(context, "Coming soon");
                       },
+                      //color: AppData.BG2BLUE,
                       color: AppData.BG1RED,
                       bordercolor: AppData.BG1RED,
                       //size: (size.width - 130) / 3,
@@ -1674,12 +1672,21 @@ class MyPage1Widget extends StatelessWidget {
                     Container(
                       width: 100,
                       height: 35,
-                      child: Text(MyLocalizations.of(context)
-                          .text("ORDER_BLOOD"),
+                      child: Text(
+                        MyLocalizations.of(context).text("DISCOUNT_OFFER"),
                         textAlign: TextAlign.center,
                         //overflow: TextOverflow.ellipsis,
                       ),
                     ),
+                    /*Align(
+                                          alignment: Alignment.center,
+                                          child: Expanded(
+                                            child: Text(
+                                              "Health               chat",
+                                              style: TextStyle(color: Colors.black),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          )),*/
                   ]),
 
 
@@ -1859,14 +1866,12 @@ class MyPage1Widget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     _buildTileblue(
-                      icon: "assets/ambulance.png",
-                      //icon: Icons.search,
-                      //icon: FontAwesomeIcons.accusoft,
-                      title: "Book Ambulance",
+                      icon: "assets/health-careF.png",
                       fun: () {
                         //AppData.showInSnackDone(context, "Coming Soon");
-                        Navigator.pushNamed(
-                            context, "/bookAmbulancelist");
+                        Navigator.pushNamed(context, "/vdo");
+                        // AppData.showSnack(
+                        //   context, "Coming soon", Colors.green);
                       },
                       color: AppData.BG2BLUE,
                       bordercolor: AppData.BG2BLUE,
@@ -1878,13 +1883,23 @@ class MyPage1Widget extends StatelessWidget {
                     Container(
                       width: 100,
                       height: 35,
+                      /* child: Expanded(*/
                       child: Text(
                         MyLocalizations.of(context)
-                            .text("BOOK_AMBULANCE"),
+                            .text("PREVENTIVE_HEALTHCARE"),
                         textAlign: TextAlign.center,
                         //overflow: TextOverflow.ellipsis,
                       ),
                     ),
+                    /* Align(
+                                          alignment: Alignment.center,
+                                          child: Expanded(
+                                            child: Text(
+                                              "Generic Medical Stores",
+                                              style: TextStyle(color: Colors.black),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          )),*/
                   ]),
               SizedBox(
                 width: 5,
@@ -2320,11 +2335,11 @@ class MyPage2Widget extends StatelessWidget {
                 SizedBox(
                   height: 10,
                 ),
-                /*    Row(
+                   /* Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     // crossAxisAlignment: CrossAxisAlignment.center,
-                 */ /*   Column(
+                     Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -2352,9 +2367,9 @@ class MyPage2Widget extends StatelessWidget {
                               //overflow: TextOverflow.ellipsis,
                             ),
                           ),
-                        ]),*/ /*
+                        ]),
                     Spacer(),
-                  */ /*  Column(
+                     Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -2383,7 +2398,7 @@ class MyPage2Widget extends StatelessWidget {
                             ),
                           ),
 
-                          */ /**/ /*  Align(
+                              Align(
                                           alignment: Alignment.center,
                                           child:SizedBox(
                                             width:100, child: FittedBox(child:Text(
@@ -2393,8 +2408,8 @@ class MyPage2Widget extends StatelessWidget {
                                           ),
                                           )
                                         ),
-                                        ),*/ /**/ /*
-                        ]),*/ /*
+                                        ),
+                        ]),
                     Spacer(),
                     Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -2428,7 +2443,7 @@ class MyPage2Widget extends StatelessWidget {
                   ],
                 ),
                 SizedBox(height: 5,),*/
-              /*  Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     // crossAxisAlignment: CrossAxisAlignment.center,
@@ -2467,7 +2482,7 @@ class MyPage2Widget extends StatelessWidget {
                       width: 15,
                     ),
 
-                   *//* Column(
+                    Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -2498,9 +2513,9 @@ class MyPage2Widget extends StatelessWidget {
                               //overflow: TextOverflow.ellipsis,
                             ),
                           ),
-                        ]),*//*
+                        ]),
                   ],
-                ),*/
+                ),
               ],
             ),
           ),
