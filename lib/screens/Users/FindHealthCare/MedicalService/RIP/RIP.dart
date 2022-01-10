@@ -54,7 +54,7 @@ class _RIPScreenState extends State<RIPScreen> {
                           GestureDetector(
                             onTap: () {
                               widget.model.medicallserviceType =
-                                  "Book a Hearse Van";
+                                  MyLocalizations.of(context).text("BOOK_HEARSE_VAN");
                               Navigator.pushNamed(
                                   context, "/medicalsServiceOngooglePage");
 
@@ -117,7 +117,7 @@ class _RIPScreenState extends State<RIPScreen> {
                           GestureDetector(
                             onTap: () {
                               widget.model.medicallserviceType =
-                                  "Book a Mortuary Freezer";
+                                  MyLocalizations.of(context).text("BOOOK_MORTUARY_FREEZER");
                               Navigator.pushNamed(
                                   context, "/medicalsServiceOngooglePage");
 
@@ -180,7 +180,7 @@ class _RIPScreenState extends State<RIPScreen> {
                           GestureDetector(
                             onTap: () {
                               widget.model.medicallserviceType =
-                                  "Book a Priest";
+                                  MyLocalizations.of(context).text("BOOK_PRIEST");
                               Navigator.pushNamed(
                                   context, "/medicalsServiceOngooglePage");
 
@@ -243,7 +243,7 @@ class _RIPScreenState extends State<RIPScreen> {
                           GestureDetector(
                             onTap: () {
                               widget.model.medicallserviceType =
-                                  "Book a Repatriation";
+                                  MyLocalizations.of(context).text("BOOK_REPATRIATION");
                               Navigator.pushNamed(
                                   context, "/medicalsServiceOngooglePage");
 
@@ -306,7 +306,7 @@ class _RIPScreenState extends State<RIPScreen> {
                           GestureDetector(
                             onTap: () {
                               widget.model.medicallserviceType =
-                                  "Book a Funeral Hall ";
+                                  MyLocalizations.of(context).text("BOOK_FUNERAL_HALL");
                               Navigator.pushNamed(
                                   context, "/medicalsServiceOngooglePage");
 
@@ -369,7 +369,7 @@ class _RIPScreenState extends State<RIPScreen> {
                           GestureDetector(
                             onTap: () {
                               widget.model.medicallserviceType =
-                                  "Dispersal of Ashes & Ums";
+                                  MyLocalizations.of(context).text("DISPERSAL_ASHES_UMS");
                               Navigator.pushNamed(
                                   context, "/medicalsServiceOngooglePage");
 

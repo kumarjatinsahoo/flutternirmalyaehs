@@ -52,8 +52,8 @@ class _TreatmentCentersState extends State<TreatmentCenters> {
                           children: [
                             GestureDetector(
                               onTap: () {
-                                widget.model.medicallserviceType = "Cancer";
-                                Navigator.pushNamed(
+                                widget.model.medicallserviceType =
+                                    MyLocalizations.of(context).text("CANCER");                                Navigator.pushNamed(
                                     context, "/medicalsServiceOngooglePage");
 
                                 // AppData.showInSnackBar(context,"hi");
@@ -117,7 +117,8 @@ class _TreatmentCentersState extends State<TreatmentCenters> {
                             ),
                             GestureDetector(
                               onTap: () {
-                                widget.model.medicallserviceType = "Cardiology";
+                                widget.model.medicallserviceType =
+                                    MyLocalizations.of(context).text("CARDIOLOGY");
                                 Navigator.pushNamed(
                                     context, "/medicalsServiceOngooglePage");
 
@@ -182,7 +183,8 @@ class _TreatmentCentersState extends State<TreatmentCenters> {
                             ),
                             GestureDetector(
                               onTap: () {
-                                widget.model.medicallserviceType = "Diabetic";
+                                widget.model.medicallserviceType =
+                                    MyLocalizations.of(context).text("DIABETIC");
                                 Navigator.pushNamed(
                                     context, "/medicalsServiceOngooglePage");
 
@@ -247,7 +249,8 @@ class _TreatmentCentersState extends State<TreatmentCenters> {
                             ),
                             GestureDetector(
                               onTap: () {
-                                widget.model.medicallserviceType = "Neurology";
+                                widget.model.medicallserviceType =
+                                    MyLocalizations.of(context).text("NEUROLOGY");
                                 Navigator.pushNamed(
                                     context, "/medicalsServiceOngooglePage");
 
@@ -312,7 +315,8 @@ class _TreatmentCentersState extends State<TreatmentCenters> {
                             ),
                             GestureDetector(
                               onTap: () {
-                                widget.model.medicallserviceType = "Nephrology";
+                                widget.model.medicallserviceType =
+                                    MyLocalizations.of(context).text("NEPHROLOGY");
                                 Navigator.pushNamed(
                                     context, "/medicalsServiceOngooglePage");
 
@@ -378,7 +382,7 @@ class _TreatmentCentersState extends State<TreatmentCenters> {
                             GestureDetector(
                               onTap: () {
                                 widget.model.medicallserviceType =
-                                    "Ophthalmology";
+                                    MyLocalizations.of(context).text("OPTHALMOLOGY");
                                 Navigator.pushNamed(
                                     context, "/medicalsServiceOngooglePage");
 

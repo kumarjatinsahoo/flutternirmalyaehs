@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:user/localization/localizations.dart';
 import 'package:user/models/GovtSchemeListModel.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/providers/Const.dart';
@@ -68,7 +69,7 @@ class _GovernmentSchemesListState extends State<GovernmentSchemesList> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppData.kPrimaryColor,
-        title: Text("Government Schemes List"),
+        title: Text(MyLocalizations.of(context).text("GOVT_SCHEME_LIST")),
       ),
       body: Container(
         child: (govetSchemeListModel !=null && govetSchemeListModel?.body!= null && govetSchemeListModel?.body.isNotEmpty)
@@ -132,7 +133,7 @@ class _GovernmentSchemesListState extends State<GovernmentSchemesList> {
                 height: double.maxFinite,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [(isDataNotFound)?Text("No Data Found"):CircularProgressIndicator()],
+                  children: [(isDataNotFound)?Text(MyLocalizations.of(context).text("NO_DATA_FOUND")):CircularProgressIndicator()],
                 ),
               ),
       ),

@@ -462,7 +462,7 @@ class _AllergicListListState extends State<AllergicListList> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Center(
-                                child: Text("Add Allergic",
+                                child: Text(MyLocalizations.of(context).text("ADD_ALLERGIC"),
                                   style: TextStyle(
                                     fontSize: 25,
                                     color: Colors.black,
@@ -936,8 +936,6 @@ class _AllergicListListState extends State<AllergicListList> {
           name: allergicModel.body[i].severity);
     }
 
-
-
     return showDialog(
         context: context,
         builder: (context) {
@@ -964,7 +962,7 @@ class _AllergicListListState extends State<AllergicListList> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Center(
-                                child: Text( "Edit Allergic",
+                                child: Text( MyLocalizations.of(context).text("EDIT_ALLERGIC"),
                                   style: TextStyle(
                                     fontSize: 25,
                                     color: Colors.black,
@@ -1094,10 +1092,10 @@ class _AllergicListListState extends State<AllergicListList> {
                       FocusScope.of(context).requestFocus(fnode2);
                       AppData.showInSnackBar(
                           context, "Please enter Updated by");
-                    } else if ( textEditingController[1].text != "" &&  textEditingController[1].text.length <= 2) {
+                    } /*else if ( textEditingController[1].text != "" &&  textEditingController[1].text.length <= 2) {
                       FocusScope.of(context).requestFocus(fnode2);
                       AppData.showInSnackBar(context, "Please enter valid Updated by");
-                    } else {
+                    }*/ else {
                       MyWidgets.showLoading(context);
                       AllergicPostModel allergicmodel = AllergicPostModel();
                       allergicmodel.userid = loginResponse.body.user;

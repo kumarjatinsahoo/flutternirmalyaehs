@@ -285,7 +285,7 @@ class _MedicalServiceState extends State<MedicalService> {
                             GestureDetector(
                               onTap: () {
                                 widget.model.medicallserviceType =
-                                    "Air Ambulance";
+                                    MyLocalizations.of(context).text("AIR_AMBULANCE");
                                 Navigator.pushNamed(
                                     context, "/medicalsServiceOngooglePage");
 

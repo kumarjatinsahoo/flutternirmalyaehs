@@ -583,7 +583,10 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                   SizedBox(
                     height: 15,
                   ),
-                  Text("  Smoking"),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8.0),
+                    child: Text(MyLocalizations.of(context).text("SMOKING")),
+                  ),
                   Padding(
                     //padding: const EdgeInsets.all(8.0),
                     padding: const EdgeInsets.only(
@@ -602,7 +605,10 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                     }),
                   ),
                   SizedBox(height: 5),
-                  Text("  Alcohol"),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8.0),
+                    child: Text(MyLocalizations.of(context).text("ALCOHOL")),
+                  ),
                   Padding(
                     //padding: const EdgeInsets.all(8.0),
                     padding: const EdgeInsets.only(
@@ -620,7 +626,10 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                     }),
                   ),
                   SizedBox(height: 5),
-                  Text("  Diet"),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8.0),
+                    child: Text(MyLocalizations.of(context).text("DIET")),
+                  ),
                   gender(),
                   /* Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 0),
@@ -669,8 +678,7 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
               style: TextStyle(color: AppData.kPrimaryRedColor)),
         ),
         new FlatButton(
-          child: Text(
-            'Update',
+          child: Text(MyLocalizations.of(context).text("UPDATE"),
             //style: TextStyle(color: Colors.grey),
             style: TextStyle(color: AppData.matruColor),
           ),

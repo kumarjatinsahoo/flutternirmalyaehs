@@ -3,8 +3,6 @@ import 'package:user/localization/localizations.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:flutter/material.dart';
-import 'package:user/screens/Users/FindHealthCare/BookAppointment/BookAppointmentPage.dart';
-import 'package:user/screens/Users/FindHealthCare/BookAppointment/DoctorconsultationPage.dart';
 import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/DocumentList.dart';
 import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/RecentDocument.dart';
 class UploadDocumentTab extends StatefulWidget {
@@ -30,7 +28,7 @@ class _BookAppointmentTab extends State<UploadDocumentTab> {
       child: Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: Text(MyLocalizations.of(context).text("Medical Data Upload")),
+          title: Text("Medical Data Upload"),
           backgroundColor: AppData.kPrimaryColor,
           actions: <Widget>[
 
@@ -43,11 +41,11 @@ class _BookAppointmentTab extends State<UploadDocumentTab> {
             dragStartBehavior: DragStartBehavior.down,
             tabs: [
               Tab(
-                text:MyLocalizations.of(context).text("RECENT"),
+                text:"Recent",
 
               ),
               Tab(
-                text:MyLocalizations.of(context).text("CATEGORIES"),
+                text:"Categories"
               ),
             ],
           ),

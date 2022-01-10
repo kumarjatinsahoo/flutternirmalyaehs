@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:user/localization/localizations.dart';
 import 'package:user/models/AddBioMedicalModel.dart';
 import 'package:user/models/BiomedicalModel.dart' as bio;
 import 'package:user/models/DocumentListModel.dart' as document;
@@ -185,7 +186,7 @@ class _UploadDocumentState extends State<UploadDocument> {
       appBar: AppBar(
           centerTitle: true,
           backgroundColor: AppData.kPrimaryColor,
-          title: Text("Upload Document"),
+          title: Text(MyLocalizations.of(context).text("UPLOAD_DOCUMENT")),
           actions: <Widget>[
             Padding(
               padding: EdgeInsets.only(right: 20.0),
@@ -211,7 +212,8 @@ class _UploadDocumentState extends State<UploadDocument> {
               ),
             ),
           ]),
-      body: isdata == true
+      body:
+      isdata == true
           ? Center(
               child: Column(
                 children: [
@@ -233,8 +235,7 @@ class _UploadDocumentState extends State<UploadDocument> {
                         SizedBox(
                           height: MediaQuery.of(context).size.height * 0.35,
                         ),
-                        Text(
-                          "Data Not Found",
+                        Text(MyLocalizations.of(context).text("NO_DATA_FOUND"),
                           style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                       ],

@@ -2195,6 +2195,51 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     ),
                                     SizedBox(height:20),
                                     Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 10.0, right: 10.0),
+                                      child: Row(
+                                        children: [
+                                          Icon(
+                                            Icons.person,
+                                            size: 20,
+                                          ),
+                                          SizedBox(width: 10),
+                                          Expanded(
+                                            flex: 1,
+                                            child: Text("UHID",
+                                              style: TextStyle(
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(width: 10),
+                                          Expanded(
+                                            flex: 1,
+                                            child: Text(
+                                              patientProfileModel
+                                                  ?.body
+                                                  ?.familyDetailsList[index]
+                                                  .userid ??
+                                                  "N/A",
+                                              style: TextStyle(fontSize: 14
+                                                // fontWeight: FontWeight.w500,
+                                                // color: AppData.kPrimaryColor,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding:
+                                      const EdgeInsets.symmetric(vertical: 10),
+                                      child: Divider(
+                                        color: AppData.lightgreyBorder,
+                                        height: 6,
+                                      ),
+                                    ),
+                                    Padding(
                                       padding: const EdgeInsets.only(left:10,right:10),
                                       child: Row(
                                         children: [
@@ -2335,6 +2380,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   ],
                                 ),
                               ),
+
                             ],
                           ),
                         ),
@@ -2653,6 +2699,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                           ProfileScreen.countrymodel = model;
                                           patientProfileModel.body.countryid = model.key;
                                           patientProfileModel.body.country = model.name;
+                                          ProfileScreen.statemodel = null;
+                                          ProfileScreen.districtmodel = null;
+                                          ProfileScreen.citymodel = null;
                                           // updateProfileModel.bloodGroup = model.key;
                                         });
                                       }),
@@ -2687,6 +2736,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                           ProfileScreen.statemodel = model;
                                           patientProfileModel.body.stateid = model.key;
                                           patientProfileModel.body.state = model.name;
+                                          ProfileScreen.districtmodel = null;
+                                          ProfileScreen.citymodel = null;
                                           // updateProfileModel.bloodGroup = model.key;
                                         });
                                       }),
@@ -2723,6 +2774,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                               model.key;
                                           patientProfileModel.body.dist =
                                               model.name;
+                                          ProfileScreen.citymodel = null;
                                           // updateProfileModel.bloodGroup = model.key;
                                         });
                                       }),
@@ -4598,18 +4650,61 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             width: 350,
                             height: 50,
                             decoration: BoxDecoration(
+                              color: Colors.blueGrey,
                               border: Border.all(
-                                color: Colors.grey,
+                                color: Colors.blueAccent,
                               ),
                               borderRadius: BorderRadius.circular(5.0),
                             ),
                             child: Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding: const EdgeInsets.only(top:12.00,left: 8,right: 8,bottom: 10),
                               child: Text(
-                                patientProfileModel
-                                    .body.familyDetailsList[index].memeberName,
+                                patientProfileModel.body.familyDetailsList[index].userid,style: TextStyle(color:Colors.white),
                               ),
                             ), //////
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            width: 350,
+                            height: 50,
+                            decoration: BoxDecoration(
+                              color: Colors.blueGrey,
+                              border: Border.all(
+                                color: Colors.blueAccent,
+                              ),
+                              borderRadius: BorderRadius.circular(5.0),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.only(top:12.00,left: 8,right: 8,bottom: 10),
+                              child: Text(
+                                patientProfileModel.body.familyDetailsList[index].memeberName,style: TextStyle(color:Colors.white),
+                              ),
+                            ), //////
+                          ),
+                        ),
+
+                        //SizedBox(height: 4),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            width: 350,
+                            height: 50,
+                            decoration: BoxDecoration(
+                              color: Colors.blueGrey,
+                              border: Border.all(
+                                color: Colors.blueAccent,
+                              ),
+                              borderRadius: BorderRadius.circular(5.0),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.only(top:12.00,left: 8,right: 8,bottom: 10),
+                              child: Text(
+                                patientProfileModel
+                                    .body.familyDetailsList[index].age,style: TextStyle(color:Colors.white),
+                              ),
+                            ),
                           ),
                         ),
                         SizedBox(height: 8),
@@ -4625,27 +4720,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             patientProfileModel.body.eRelation = model.name;
                           });
                         }),
-                        SizedBox(height: 8),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            width: 350,
-                            height: 50,
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                color: Colors.grey,
-                              ),
-                              borderRadius: BorderRadius.circular(5.0),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                patientProfileModel
-                                    .body.familyDetailsList[index].age,
-                              ),
-                            ),
-                          ),
-                        ),
                       ],
                     ),
                   ),

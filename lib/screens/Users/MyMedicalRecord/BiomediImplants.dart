@@ -164,8 +164,7 @@ class _BiomediImplantsState extends State<BiomediImplants> {
           : biomedicalModel == null || biomedicalModel == null
               ? Container(
                   child: Center(
-                    child: Text(
-                      "No Data Found",
+                    child: Text(MyLocalizations.of(context).text("NO_DATA_FOUND"),
                       style: TextStyle(color: Colors.black, fontSize: 15),
                     ),
                   ),
@@ -221,8 +220,7 @@ class _BiomediImplantsState extends State<BiomediImplants> {
                                                 children: [
                                                   Expanded(
                                                     flex: 1,
-                                                    child: Text(
-                                                      "Name",
+                                                    child: Text(MyLocalizations.of(context).text("NAME"),
                                                       style: TextStyle(
                                                           fontSize: 15,
                                                           fontWeight:
@@ -254,8 +252,7 @@ class _BiomediImplantsState extends State<BiomediImplants> {
                                                 children: [
                                                   Expanded(
                                                     flex: 1,
-                                                    child: Text(
-                                                      "Date",
+                                                    child: Text(MyLocalizations.of(context).text("DATE"),
                                                       style: TextStyle(
                                                           fontSize: 15,
                                                           fontWeight:
@@ -285,8 +282,7 @@ class _BiomediImplantsState extends State<BiomediImplants> {
                                                 children: [
                                                   Expanded(
                                                     flex: 1,
-                                                    child: Text(
-                                                      "Reason",
+                                                    child: Text(MyLocalizations.of(context).text("REASON"),
                                                       style: TextStyle(
                                                           fontSize: 15,
                                                           fontWeight:
@@ -375,8 +371,7 @@ class _BiomediImplantsState extends State<BiomediImplants> {
                           child: Column(
                             children: [
                               Center(
-                                child: Text(
-                                  "Add Details",
+                                child: Text(MyLocalizations.of(context).text("ADD_DETAILS"),
                                   style: TextStyle(
                                       color: Colors.black, fontSize: 20),
                                 ),
@@ -397,7 +392,7 @@ class _BiomediImplantsState extends State<BiomediImplants> {
                         // }),
 
                         DropDown.networkDropdownGetpartUser1(
-                            " Name",
+                            MyLocalizations.of(context).text("NAME"),
                             ApiFactory.ADM_EQUIPMENT_API,
                             "typelist",
                             Icons.location_on_rounded,
@@ -628,8 +623,7 @@ class _BiomediImplantsState extends State<BiomediImplants> {
                           child: Column(
                             children: [
                               Center(
-                                child: Text(
-                                  "Add Details",
+                                child: Text(MyLocalizations.of(context).text("ADD_DETAILS"),
                                   style: TextStyle(
                                       color: Colors.black, fontSize: 20),
                                 ),

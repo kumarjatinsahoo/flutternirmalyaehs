@@ -248,11 +248,8 @@ class _MedicineList extends State<UserTestList1> {
                                           CrossAxisAlignment
                                               .end,
                                           children: [
-                                            Text(
-                                              /*'Confirmed'*/
-                                              "Prescription Date",
+                                            Text(MyLocalizations.of(context).text("PRESCRIPTION_DATE"),
                                               style: TextStyle(
-
                                                   fontSize: 14,color: Colors
                                                   .grey),
                                             ),
@@ -280,10 +277,8 @@ class _MedicineList extends State<UserTestList1> {
                                           CrossAxisAlignment
                                               .end,
                                           children: [
-                                            Text(
-                                              "Dosage",
+                                            Text(MyLocalizations.of(context).text("DOSAGE"),
                                               style: TextStyle(
-
                                                   fontSize: 14,color: Colors
                                                   .grey),
                                             ),
