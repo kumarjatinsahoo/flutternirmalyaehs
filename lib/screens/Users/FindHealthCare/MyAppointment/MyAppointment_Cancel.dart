@@ -229,8 +229,7 @@ class _MyAppointmentCancleState extends State<MyAppointmentCancle> {
                                                           crossAxisAlignment:
                                                           CrossAxisAlignment.start,
                                                           children: [
-                                                            Text(
-                                                              'Doctor Name: ',
+                                                            Text(MyLocalizations.of(context).text("DOCTOR_NAME"),
                                                               style: TextStyle(
                                                                   color: Colors.blue,
                                                                   fontWeight:
@@ -267,8 +266,7 @@ class _MyAppointmentCancleState extends State<MyAppointmentCancle> {
                                                               ],
                                                             ),
                                                             SizedBox(height: 5,),
-                                                            Text(
-                                                              'Education: ',
+                                                            Text(MyLocalizations.of(context).text("EDUCATION1"),
                                                               style: TextStyle(
                                                                   color: Colors.blue,
                                                                   fontWeight:
@@ -318,8 +316,7 @@ class _MyAppointmentCancleState extends State<MyAppointmentCancle> {
                                                             SizedBox(
                                                               height: 4,
                                                             ),
-                                                            Text(
-                                                              'Speciality: ',
+                                                            Text(MyLocalizations.of(context).text("SPECIALITY"),
                                                               style: TextStyle(
                                                                   color: Colors.blue,
                                                                   fontWeight:
@@ -343,8 +340,7 @@ class _MyAppointmentCancleState extends State<MyAppointmentCancle> {
                                                             SizedBox(
                                                               height: 4,
                                                             ),
-                                                            Text(
-                                                              'Address: ',
+                                                            Text(MyLocalizations.of(context).text("ADDRESS"),
                                                               style: TextStyle(
                                                                   color: Colors.blue,
                                                                   fontWeight:
@@ -368,8 +364,7 @@ class _MyAppointmentCancleState extends State<MyAppointmentCancle> {
                                                             SizedBox(
                                                               height: 4,
                                                             ),
-                                                            Text(
-                                                              'Date: ',
+                                                            Text(MyLocalizations.of(context).text("DATE"),
                                                               style: TextStyle(
                                                                   color: Colors.blue,
                                                                   fontWeight:
@@ -395,8 +390,7 @@ class _MyAppointmentCancleState extends State<MyAppointmentCancle> {
                                                             SizedBox(
                                                               height: 4,
                                                             ),
-                                                            Text(
-                                                              'Consult Type: ',
+                                                            Text(MyLocalizations.of(context).text("CONSULT_TYPE"),
                                                               style: TextStyle(
                                                                   color: Colors.blue,
                                                                   fontWeight:

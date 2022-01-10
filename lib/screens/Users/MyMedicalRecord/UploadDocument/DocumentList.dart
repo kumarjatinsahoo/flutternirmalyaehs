@@ -90,7 +90,7 @@ class _DocumentListState extends State<DocumentList> {
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: AppData.kPrimaryColor,
-        title: Text("Document List"),
+        title: Text(MyLocalizations.of(context).text("DOCUMENT_LIST")),
       ),
       body: isdata == true
           ? CircularProgressIndicator(
@@ -99,8 +99,7 @@ class _DocumentListState extends State<DocumentList> {
           : documentListModel == null || documentListModel == null
               ? Container(
                   child: Center(
-                    child: Text(
-                      "No Data Found",
+                    child: Text(MyLocalizations.of(context).text("NO_DATA_FOUND"),
                       style: TextStyle(color: Colors.black, fontSize: 15),
                     ),
                   ),
@@ -117,8 +116,7 @@ class _DocumentListState extends State<DocumentList> {
                                 child: Center(
                                   child: Column(
                                     children: [
-                                      Text(
-                                        "Categories",
+                                      Text(MyLocalizations.of(context).text("CATEGORIES"),
                                         style: TextStyle(
                                           color: Colors.black,
                                           fontWeight: FontWeight.bold,

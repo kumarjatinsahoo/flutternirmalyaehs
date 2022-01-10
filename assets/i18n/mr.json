@@ -131,7 +131,8 @@
   "TEMPERATUREE": "तापमान(C/F)",
   "PULSE": "नाडीचे ठोके",
   "BLOOD_PRESSURE": "सिस्टोलिक/डायस्टोलिक रक्तदाब",
-  "DIASTOLIC_BLOOD_PRESSURE": "डायस्टोलिक रक्तदाब",
+  "DIASTOLIC_BLOOD_PRESSURE": "डायस्टोलिक रक्तदाब(mm Hg)",
+  "SYSTOLIC_BLOOD_PRESSURE": "सिस्टोलिक रक्तदाब(mm Hg)",
   "RESPIRATION": "श्वासोच्छवास",
   "OXYGEN_SATURATION": "ऑक्सिजन संपृक्ती",
   "UPDATE_VITAL": "महत्त्वपूर्ण चिन्ह अद्यतनित करा",
@@ -139,6 +140,7 @@
   "TYPE": "",
   "REMARK": "",
   "NO_IMMUNIZATION_FOUND": "No immunization found",
+  "VACCINATED":"आपण लसीकरण केले आहे?",
   "NAME": "नाव",
   "ALLERGEN": "ऍलर्जीन",
   "SEVERTY": "तीव्रता",
@@ -159,7 +161,6 @@
   "OTHER_DOCTOR": "इतर डॉक्टर",
   "REASON_FOR_DOCTOR":"डॉक्टर निवडण्याचे कारण",
   "NOTE": "नोट्स",
-  "TAKE_APPOINTMENT": "",
   "FIND_HEALTH_PROVIDER": "",
   "HEALTHCARE_PROVIDER": "",
   "SEARCH": "शोध",
@@ -362,6 +363,29 @@
 
   "UPDATE_PROFILE": "प्रोफाइल अपडेट",
   "DOC_MOBILE": "डॉक्टरांचा मोबाईल क्र",
+  "PRESCRIPTION_DATE": "प्रिस्क्रिप्शनची तारीख",
+  "DOSAGE": "डोस",
+  "NO": "नाही",
+  "YES": "होय",
+  "EDIT_ALLERGIC": "ऍलर्जी संपादित करा",
+  "DOCUMENT_LIST": "दस्तऐवज यादी",
+  "CATEGORIES": "श्रेण्या",
+  "DOCUUMENT_NAME": "दस्तऐवजाचे नाव",
+  "DOCUUMENT_DATE": "दस्तऐवज तारीख",
+  "HOSPITAL_VISIT": "हॉस्पिटल भेट",
+  "VIDEO_CONSULT": "व्हिडिओ सल्ला",
+  "TAKE_APPOINTMENT": "अपॉइंटमेंट घ्या",
+  "DOCTOR_NAME": "डॉक्टरांचे नाव",
+  "EDUCATION1": "शिक्षण",
+  "CONSULT_TYPE": "सल्ला प्रकार",
+  "RATE": "रेट",
+  "PRESCRIPTION": "प्रिस्क्रिप्शन दाखवा",
+  "RATE_DOCTOR": "डॉक्टरांना रेटिंग",
+  "REVIEW": "पुनरावलोकन",
+  "FIND_HEATH_CARE": "आरोग्य सेवा प्रदाता शोधा",
+
+
+
   "USER_ADDRESS": "वापरकर्ता पत्ता"
 }
 

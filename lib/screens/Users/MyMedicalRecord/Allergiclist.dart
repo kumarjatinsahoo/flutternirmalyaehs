@@ -462,7 +462,7 @@ class _AllergicListListState extends State<AllergicListList> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Center(
-                                child: Text("Add Allergic",
+                                child: Text(MyLocalizations.of(context).text("ADD_ALLERGIC"),
                                   style: TextStyle(
                                     fontSize: 25,
                                     color: Colors.black,
@@ -964,7 +964,7 @@ class _AllergicListListState extends State<AllergicListList> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Center(
-                                child: Text( "Edit Allergic",
+                                child: Text( MyLocalizations.of(context).text("EDIT_ALLERGIC"),
                                   style: TextStyle(
                                     fontSize: 25,
                                     color: Colors.black,

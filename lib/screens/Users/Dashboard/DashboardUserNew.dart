@@ -2324,7 +2324,8 @@ class MyPage2Widget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     // crossAxisAlignment: CrossAxisAlignment.center,
-                 */ /*   Column(
+                 */
+                /*   Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -2354,7 +2355,8 @@ class MyPage2Widget extends StatelessWidget {
                           ),
                         ]),*/ /*
                     Spacer(),
-                  */ /*  Column(
+                  */
+                /*  Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
