@@ -99,7 +99,7 @@ class _GovermentSchemesDitelsPageState extends State<GovermentSchemesDitelsPage>
           children: [
             Center(
               child: Text(
-                'Schemes Detai ls',
+                'Schemes Details',
                 style: TextStyle(color: Colors.white),
               ),
             ),
