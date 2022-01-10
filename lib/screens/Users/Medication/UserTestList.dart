@@ -195,7 +195,7 @@ class _MedicineList extends State<UserTestList> {
         //backgroundColor: AppData.matruColor,
       ),
           )
-          : userListModel == null || userListModel == null
+          : userListModel == "" || userListModel == null
           ? Container(
         child: Center(
           child: Text(

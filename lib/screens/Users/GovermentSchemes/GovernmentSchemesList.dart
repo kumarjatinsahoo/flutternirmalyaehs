@@ -38,8 +38,8 @@ class _GovernmentSchemesListState extends State<GovernmentSchemesList> {
   callApi() {
     widget.model.GETMETHODCALL_TOKEN(
         api: ApiFactory.GOVET_SCHEMES_LIST(
-                GovtSchemes.countryModel.key,
-                GovtSchemes.stateModel.key
+                GovtSchemes.countryModel?.key??"",
+                GovtSchemes.stateModel?.key??""
                /* GovtSchemes?.districtModel?.key??null,
                 GovtSchemes?.cityModel?.key??null*/), /*+
             loginResponse1.body.user,*/
@@ -71,9 +71,9 @@ class _GovernmentSchemesListState extends State<GovernmentSchemesList> {
         title: Text("Government Schemes List"),
       ),
       body: Container(
-        child: (govetSchemeListModel != null)
+        child: (govetSchemeListModel !=null && govetSchemeListModel?.body!= null && govetSchemeListModel?.body.isNotEmpty)
             ? ListView.builder(
-                itemCount: govetSchemeListModel.body.length,
+                itemCount: govetSchemeListModel?.body?.length,
                 shrinkWrap: true,
                 itemBuilder: (context, i) {
                   return InkWell(
@@ -86,7 +86,7 @@ class _GovernmentSchemesListState extends State<GovernmentSchemesList> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Image.network(govetSchemeListModel.body[i].name,
+                          child: Image.network(govetSchemeListModel?.body[i].name,
                           fit: BoxFit.fitWidth,
                           ),
                         ),
