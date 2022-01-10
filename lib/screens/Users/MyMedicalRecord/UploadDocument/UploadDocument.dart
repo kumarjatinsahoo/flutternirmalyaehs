@@ -211,7 +211,8 @@ class _UploadDocumentState extends State<UploadDocument> {
               ),
             ),
           ]),
-      body: isdata == true
+      body:
+      isdata == true
           ? Center(
               child: Column(
                 children: [

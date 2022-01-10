@@ -2235,7 +2235,7 @@ class DropDown {
         return BiomediImplants.admequipmentmodel;
         break;
         case "namelist":
-        return AllergicListList.nameModel;
+        return AllergicListList.typeModel;
         break;
         case "allergen":
         return AllergicListList.nameModel;
