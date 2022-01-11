@@ -43,7 +43,7 @@ class _UploadDocumentState extends State<UploadDocument> {
   DateTime selectedDate = DateTime.now();
   final df = new DateFormat('dd/MM/yyyy');
   String profilePath = null, idproof = null;
-  String doccategory;
+  String doccategory,rolee;
   TextEditingController _date = TextEditingController();
   TextEditingController _reason = TextEditingController();
   TextEditingController _name = TextEditingController();
@@ -77,6 +77,7 @@ class _UploadDocumentState extends State<UploadDocument> {
     //loginResponse1=widget.eHealthCardno;
 
     doccategory = widget.model.documentcategories;
+    rolee = widget.model.uploadbyrole;
     callAPI(currentMax);
     _scrollController.addListener(() {
       if (_scrollController.position.pixels ==

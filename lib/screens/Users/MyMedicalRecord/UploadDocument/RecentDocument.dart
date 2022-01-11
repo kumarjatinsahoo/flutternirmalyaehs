@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -6,6 +9,9 @@ import 'package:user/models/BiomedicalModel.dart' as bio;
 import 'package:user/models/DocumentListModel.dart' as document;
 import 'package:user/models/KeyvalueModel.dart';
 import 'package:user/models/LoginResponse1.dart';
+import 'package:user/models/RecentUploadDocument.dart';
+import 'package:user/providers/Const.dart';
+import 'package:user/providers/api_factory.dart';
 
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
@@ -27,6 +33,7 @@ class _RecentDocumentState extends State<RecentDocument> {
   LoginResponse1 loginResponse1;
   bio.BiomedicalModel biomedicalModel;
   document.DocumentListModel documentListModel;
+  RecentUploadDocument recentUploadDocument;
   ScrollController _scrollController = ScrollController();
   bool checkBoxValue = false;
   int currentMax = 1;
@@ -69,19 +76,45 @@ class _RecentDocumentState extends State<RecentDocument> {
     loginResponse1 = widget.model.loginResponse1;
     eHealthCardno = widget.model.patientseHealthCard;
     //loginResponse1=widget.eHealthCardno;
-
-    doccategory = widget.model.documentcategories;
+   // callAPI();
+    //doccategory = widget.model.documentcategories;
     //callAPI(currentMax);
     /*_scrollController.addListener(() {
       if (_scrollController.position.pixels ==
           _scrollController.position.maxScrollExtent) {
         if (documentListModel.body.length % 20 == 0) callAPI(++currentMax);
       }
-    }*/
-    //);
+    });*/
   }
 
-  /* callAPI(int i) {
+
+  callAPI() {
+    widget.model.GETMETHODCALL_TOKEN_FORM(
+        api: ApiFactory.ALLERGY_LIST + loginResponse1.body.user,
+        userId: loginResponse1.body.user,
+        token: widget.model.token,
+        fun: (Map<String, dynamic> map) {
+          setState(() {
+            log("Json Response>>>" + JsonEncoder().convert(map));
+            String msg = map[Const.MESSAGE];
+            if (map[Const.CODE] == Const.SUCCESS) {
+              // pocReportModel = PocReportModel.fromJson(map);
+             // allergicModel = allergic.AllergicModel.fromJson(map);
+            } else {
+              setState(() {
+                //isDataNoFound = true;
+                // AppData.showInSnackBar(context, msg);
+              });
+            }
+          });
+        });
+  }
+
+
+
+
+/*
+   callAPI(int i) {
     widget.model.GETMETHODCALL_TOKEN(
         api: ApiFactory.UPLOAD_DOCUMENT +
             widget.model.patientseHealthCard +
@@ -178,202 +211,201 @@ class _RecentDocumentState extends State<RecentDocument> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      body: ClipPath(
-        clipper: ShapeBorderClipper(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(5))),
-        child: Container(
-            child: SingleChildScrollView(
-          child: Padding(
-            padding:
-                const EdgeInsets.only(left: 15, right: 15, bottom: 5, top: 5),
-            child: ListView.builder(
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              itemBuilder: (context, i) {
-                return Container(
-                  width: 500,
-                  height: 210,
-                  //width: size.width * 0.20,
+      body: Container(
+          child: SingleChildScrollView(
+        child: Padding(
+          padding:
+              const EdgeInsets.only(left: 15, right: 15, bottom: 5, top: 5),
+          child:
+        //  (documentListModel != null && documentListModel.body!=null)?
+          ListView.builder(
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            itemBuilder: (context, i) {
+             // document.Body body = documentListModel.body[i];
+              return Container(
+                width: 500,
+                height: 210,
+                //width: size.width * 0.20,
 
-                  child: Card(
-                    clipBehavior: Clip.antiAliasWithSaveLayer,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.only(
-                        //topLeft: Radius.circular(20),
-                        topRight: Radius.circular(20),
-                        //bottomRight: Radius.circular(20),
-                        bottomLeft: Radius.circular(20),
-                      ),
-                      side: BorderSide(width: 1, color: Colors.blueGrey),
+                child: Card(
+                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                      //topLeft: Radius.circular(20),
+                      topRight: Radius.circular(20),
+                      //bottomRight: Radius.circular(20),
+                      bottomLeft: Radius.circular(20),
                     ),
-                    child: Container(
-                      child: Column(children: [
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.all(15.0),
-                                child: Container(
-                                  height: 120,
-                                  // width: 50,
-                                  decoration: new ShapeDecoration(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(3)),
-                                      side: BorderSide(color: Colors.grey),
-                                    ),
+                    side: BorderSide(width: 1, color: Colors.blueGrey),
+                  ),
+                  child: Container(
+                    child: Column(children: [
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.all(15.0),
+                              child: Container(
+                                height: 120,
+                                // width: 50,
+                                decoration: new ShapeDecoration(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(3)),
+                                    side: BorderSide(color: Colors.grey),
                                   ),
                                 ),
                               ),
                             ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.all(10.0),
-                                child: Container(
-                                    child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Uploaded By: ',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 15),
-                                    ),
-                                    SizedBox(
-                                      height: 3,
-                                    ),
-                                    Text(
-                                      "Ipsita",
-                                      overflow: TextOverflow.clip,
-                                      style: TextStyle(
-                                          color: Colors.black54, fontSize: 15),
-                                    ),
-                                    SizedBox(
-                                      height: 4,
-                                    ),
-                                    Text(
-                                      'Uploaded On: ',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 15),
-                                    ),
-                                    SizedBox(
-                                      height: 3,
-                                    ),
-                                    Text(
-                                      "18 sep 2017 06:58",
-                                      overflow: TextOverflow.clip,
-                                      style: TextStyle(
-                                          color: Colors.black54, fontSize: 15),
-                                    ),
-                                    SizedBox(
-                                      height: 4,
-                                    ),
-                                    Text(
-                                      'User Remark: ',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 15),
-                                    ),
-                                    SizedBox(
-                                      height: 3,
-                                    ),
-                                    Text(
-                                      "Asthama",
-                                      overflow: TextOverflow.clip,
-                                      style: TextStyle(
-                                          color: Colors.black54, fontSize: 15),
-                                    ),
-                                    SizedBox(
-                                      height: 4,
-                                    ),
-                                  ],
-                                )),
-                              ),
-                            ),
-                          ],
-                        ),
-                        //   SizedBox(height: 40,),
-                        Expanded(
-                          child: Container(
-                            width: 400,
-                            decoration: (i % 2 == 0)
-                                ? BoxDecoration(
-                                    borderRadius: BorderRadius.circular(5),
-                                    // border: Border.all(color: Colors.black12),
-                                    color:AppData.kPrimaryBlueColor)
-                                : BoxDecoration(
-                                    borderRadius: BorderRadius.circular(5),
-                                    //border: Border.all(color: Colors.black12),
-                                    color: AppData.kPrimaryRedColor),
-                            child: RaisedButton(
-                              onPressed: null,
-                              child: Row(
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Container(
+                                  child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Expanded(
-                                    child: Text(
-                                      "Capture",
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w400),
-                                    ),
+                                  Text(
+                                    'Uploaded By: ',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 15),
                                   ),
-                                  CircleAvatar(
-                                      // radius: 40,
-                                      backgroundColor: Colors.white,
+                                  SizedBox(
+                                    height: 3,
+                                  ),
+                                  Text(
+                                    "Ipsita",
+                                    overflow: TextOverflow.clip,
+                                    style: TextStyle(
+                                        color: Colors.black54, fontSize: 15),
+                                  ),
+                                  SizedBox(
+                                    height: 4,
+                                  ),
+                                  Text(
+                                    'Uploaded On: ',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 15),
+                                  ),
+                                  SizedBox(
+                                    height: 3,
+                                  ),
+                                  Text(
+                                    "18 sep 2017 06:58",
+                                    overflow: TextOverflow.clip,
+                                    style: TextStyle(
+                                        color: Colors.black54, fontSize: 15),
+                                  ),
+                                  SizedBox(
+                                    height: 4,
+                                  ),
+                                  Text(
+                                    'User Remark: ',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 15),
+                                  ),
+                                  SizedBox(
+                                    height: 3,
+                                  ),
+                                  Text(
+                                    "Asthama",
+                                    overflow: TextOverflow.clip,
+                                    style: TextStyle(
+                                        color: Colors.black54, fontSize: 15),
+                                  ),
+                                  SizedBox(
+                                    height: 4,
+                                  ),
+                                ],
+                              )),
+                            ),
+                          ),
+                        ],
+                      ),
+                      //   SizedBox(height: 40,),
+                      Expanded(
+                        child: Container(
+                          width: 400,
+                          decoration: (i % 2 == 0)
+                              ? BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5),
+                                  // border: Border.all(color: Colors.black12),
+                                  color:AppData.kPrimaryBlueColor)
+                              : BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5),
+                                  //border: Border.all(color: Colors.black12),
+                                  color: AppData.kPrimaryRedColor),
+                          child: RaisedButton(
+                            onPressed: null,
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    "Capture",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                ),
+                                CircleAvatar(
+                                    // radius: 40,
+                                    backgroundColor: Colors.white,
+                                    child: (i % 2 == 0)
+                                        ? Icon(
+                                            Icons.edit,
+                                            color: AppData.kPrimaryBlueColor,
+                                            size: 25,
+                                          )
+                                        : Icon(
+                                            Icons.edit,
+                                            size: 25,
+                                            color:AppData.kPrimaryRedColor,
+                                          )
+
+                                    // Image radius
+                                    ),
+                                SizedBox(
+                                  width: 15,
+                                ),
+                                CircleAvatar(
+                                  //radius: 40,
+                                  backgroundColor: Colors.white,
+                                  child: Container(
                                       child: (i % 2 == 0)
                                           ? Icon(
-                                              Icons.edit,
-                                              color: AppData.kPrimaryBlueColor,
+                                              Icons.download_rounded,
+                                              color:AppData.kPrimaryBlueColor,
                                               size: 25,
                                             )
                                           : Icon(
-                                              Icons.edit,
+                                              Icons.download_rounded,
                                               size: 25,
                                               color:AppData.kPrimaryRedColor,
-                                            )
-
-                                      // Image radius
-                                      ),
-                                  SizedBox(
-                                    width: 15,
-                                  ),
-                                  CircleAvatar(
-                                    //radius: 40,
-                                    backgroundColor: Colors.white,
-                                    child: Container(
-                                        child: (i % 2 == 0)
-                                            ? Icon(
-                                                Icons.download_rounded,
-                                                color:AppData.kPrimaryBlueColor,
-                                                size: 25,
-                                              )
-                                            : Icon(
-                                                Icons.download_rounded,
-                                                size: 25,
-                                                color:AppData.kPrimaryRedColor,
-                                              )), // Image radius
-                                  )
-                                ],
-                              ),
+                                            )), // Image radius
+                                )
+                              ],
                             ),
                           ),
                         ),
-                      ]),
-                    ),
+                      ),
+                    ]),
                   ),
-                );
-              },
-              itemCount: 3,
-            ),
-          ),
-        )),
-      ),
+                ),
+              );
+            },
+            itemCount: 3,
+          )
+                //:Container()
+        ),
+      )),
     );
   }
 }
