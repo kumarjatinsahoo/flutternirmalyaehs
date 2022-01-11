@@ -87,11 +87,11 @@ class _DocumentListState extends State<DocumentList> {
     double tileSize = 80;
     double spaceTab = 20;
     return Scaffold(
-      appBar: AppBar(
+     /* appBar: AppBar(
         centerTitle: true,
         backgroundColor: AppData.kPrimaryColor,
         title: Text(MyLocalizations.of(context).text("DOCUMENT_LIST")),
-      ),
+      ),*/
       body: isdata == true
           ? CircularProgressIndicator(
               backgroundColor: AppData.matruColor,

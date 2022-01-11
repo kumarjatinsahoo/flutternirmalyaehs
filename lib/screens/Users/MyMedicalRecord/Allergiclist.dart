@@ -84,7 +84,6 @@ class _AllergicListListState extends State<AllergicListList> {
               allergicModel = allergic.AllergicModel.fromJson(map);
             } else {
               setState(() {
-                //isDataNoFound = true;
                // AppData.showInSnackBar(context, msg);
               });
             }
