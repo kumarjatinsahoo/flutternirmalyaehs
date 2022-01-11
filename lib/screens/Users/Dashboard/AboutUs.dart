@@ -8,6 +8,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:geolocator/geolocator.dart' as loca;
 import 'package:geolocator/geolocator.dart';
+import 'package:user/localization/localizations.dart';
 import 'package:user/models/DocterMedicationlistModel.dart';
 import 'package:user/models/KeyvalueModel.dart';
 import 'package:user/models/LoginResponse1.dart';
@@ -60,7 +61,7 @@ class _AboutUs extends State<AboutUs> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text('About Us'),
+        title: Text(MyLocalizations.of(context).text("ABOUT_US")),
         backgroundColor: AppData.kPrimaryColor,
       ),
       body: SingleChildScrollView(

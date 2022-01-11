@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:flutter/services.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:user/localization/localizations.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/api_factory.dart';
@@ -71,8 +72,7 @@ class _ChangePasswordState extends State<ChangePassword> {
     /*leading: BackButton(
              color: Colors.white,
            ),*/
-    title: Text(
-      'Change Password',
+    title: Text(MyLocalizations.of(context).text("CHANGE_PASSWORD"),
       style: TextStyle(color: Colors.white),
     ),
     centerTitle: true,
@@ -88,7 +88,7 @@ class _ChangePasswordState extends State<ChangePassword> {
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 14),
-          child: fromFieldPass("Current Password"),
+          child: fromFieldPass(MyLocalizations.of(context).text("CURRENT_PASSWORD")),
         ),
         /*Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30),
@@ -104,7 +104,7 @@ class _ChangePasswordState extends State<ChangePassword> {
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 14),
-          child: fromFieldPass1("New Password"),
+          child: fromFieldPass1(MyLocalizations.of(context).text("NEW_PASSWORD")),
         ),
        /* Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30),
@@ -120,7 +120,7 @@ class _ChangePasswordState extends State<ChangePassword> {
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 14),
-          child: fromFieldPass2("Confirm Password"),
+          child: fromFieldPass2(MyLocalizations.of(context).text("CONFIRM_PASSWORD")),
         ),
         /*Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30),
@@ -368,7 +368,7 @@ class _ChangePasswordState extends State<ChangePassword> {
 
   Widget _submitButton() {
     return MyWidgets.nextButton(
-        text: "submit".toUpperCase(),
+        text: MyLocalizations.of(context).text("SUBMIT") .toUpperCase(),
         context: context,
         fun: () {
           if(textEditingController[0].text == "" || textEditingController[0].text == null) {

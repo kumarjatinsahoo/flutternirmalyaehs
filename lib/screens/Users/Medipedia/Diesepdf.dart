@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
+import 'package:user/localization/localizations.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
@@ -42,8 +43,7 @@ class _DiesepdfState extends State<Diesepdf> {
           "Patient List",
           style: TextStyle(color: Colors.white),
         ),*/
-        title: Text(
-          "Pdf",
+        title: Text(MyLocalizations.of(context).text("PDF"),
           style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
