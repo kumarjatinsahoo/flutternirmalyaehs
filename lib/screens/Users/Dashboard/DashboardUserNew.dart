@@ -98,11 +98,12 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
 
   List<String> imageSliders = [
     // "assets/intro/pm1.jpeg",
+    "assets/intro/banner2.jpg",
 
-    "assets/intro/mah1.jpeg",
-    "assets/intro/mah2.png",
+    "assets/intro/banner1.jpg",
+    /*"assets/intro/mah2.png",
     "assets/images/uk_two.jpeg",
-    "assets/images/uk_one.jpg",
+    "assets/images/uk_one.jpg",*/
   ];
 
   SharedPref sharedPref = SharedPref();
@@ -816,10 +817,10 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                         onTap: () {
                           int index = imageSliders.indexOf(item);
                           //https://www.youtube.com/embed/R0tHEJl_Y8E?start=68
-                          switch (index) {
+                         /* switch (index) {
                             case 0:
-                              /*AppData.launchURL(
-                                  "https://www.youtube.com/watch?v=QYcKscyUvuY");*/
+                              *//*AppData.launchURL(
+                                  "https://www.youtube.com/watch?v=QYcKscyUvuY");*//*
                               // AppData.launchURL("https://www.youtube.com/watch?v=CmPGUBJZqlA");
                               // AppData.launchURL("https://www.youtube.com/watch?v=cXU3FTZ4UzU");
                               // AppData.launchURL("https://www.youtube.com/watch?v=dPTSG6GZEJw");
@@ -852,7 +853,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                               AppData.launchURL(
                                   "https://www.youtube.com/watch?v=3F5Esq71WUQ");
                               break;
-                          }
+                          }*/
                         },
                         child: Container(
                           child: Container(
@@ -912,7 +913,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                       ),
                                     ),
                                   ),
-                                  Positioned(
+                                 /* Positioned(
                                     top: 0,
                                     bottom: 0,
                                     left: 0,
@@ -931,7 +932,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                             size: 45,
                                           )
                                         : Container(),
-                                  ),
+                                  ),*/
                                 ],
                               ),
                             ),

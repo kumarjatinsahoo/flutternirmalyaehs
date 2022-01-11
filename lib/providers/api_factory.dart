@@ -276,9 +276,9 @@ class ApiFactory {
   static String ORDER_DETAILS_LAB =
       MAIN_URL + 'view-requested-test-details?orderid=';
   static String ALLERGY_LIST = MAIN_URL + 'view-user-allergy-list-api?userid=';
+  static String RECENT_DOCUMENT_LIST = MAIN_URL + 'get-documents-using-limit?userid=';
   static String AMBULANCE_LIST =
       MAIN_URL + 'get-patient-ambulance-details?userid=';
-
   //static String AMBULANCE_LIST = MAIN_URL + 'get-patient-ambulance-details?userid=';
   static String MYPATIENTLIST_LIST =
       MAIN_URL + 'get-doctor-my-patientlist?drid=';

@@ -9,7 +9,7 @@ import 'package:user/models/BiomedicalModel.dart' as bio;
 import 'package:user/models/DocumentListModel.dart' as document;
 import 'package:user/models/KeyvalueModel.dart';
 import 'package:user/models/LoginResponse1.dart';
-import 'package:user/models/RecentUploadDocument.dart';
+import 'package:user/models/RecentUploadDocument.dart'as recent;
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/api_factory.dart';
 
@@ -33,7 +33,7 @@ class _RecentDocumentState extends State<RecentDocument> {
   LoginResponse1 loginResponse1;
   bio.BiomedicalModel biomedicalModel;
   document.DocumentListModel documentListModel;
-  RecentUploadDocument recentUploadDocument;
+  recent.RecentUploadDocument recentUploadDocument;
   ScrollController _scrollController = ScrollController();
   bool checkBoxValue = false;
   int currentMax = 1;
@@ -76,7 +76,7 @@ class _RecentDocumentState extends State<RecentDocument> {
     loginResponse1 = widget.model.loginResponse1;
     eHealthCardno = widget.model.patientseHealthCard;
     //loginResponse1=widget.eHealthCardno;
-   // callAPI();
+    callAPI();
     //doccategory = widget.model.documentcategories;
     //callAPI(currentMax);
     /*_scrollController.addListener(() {
@@ -90,7 +90,7 @@ class _RecentDocumentState extends State<RecentDocument> {
 
   callAPI() {
     widget.model.GETMETHODCALL_TOKEN_FORM(
-        api: ApiFactory.ALLERGY_LIST + loginResponse1.body.user,
+        api: ApiFactory.RECENT_DOCUMENT_LIST + loginResponse1.body.user,
         userId: loginResponse1.body.user,
         token: widget.model.token,
         fun: (Map<String, dynamic> map) {
@@ -99,7 +99,7 @@ class _RecentDocumentState extends State<RecentDocument> {
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
               // pocReportModel = PocReportModel.fromJson(map);
-             // allergicModel = allergic.AllergicModel.fromJson(map);
+             recentUploadDocument = recent.RecentUploadDocument.fromJson(map);
             } else {
               setState(() {
                 //isDataNoFound = true;
@@ -217,12 +217,12 @@ class _RecentDocumentState extends State<RecentDocument> {
           padding:
               const EdgeInsets.only(left: 15, right: 15, bottom: 5, top: 5),
           child:
-        //  (documentListModel != null && documentListModel.body!=null)?
+          (recentUploadDocument != null && recentUploadDocument.body!=null)?
           ListView.builder(
             shrinkWrap: true,
             physics: NeverScrollableScrollPhysics(),
             itemBuilder: (context, i) {
-             // document.Body body = documentListModel.body[i];
+              recent.Body body = recentUploadDocument.body[i];
               return Container(
                 width: 500,
                 height: 210,
@@ -279,7 +279,7 @@ class _RecentDocumentState extends State<RecentDocument> {
                                     height: 3,
                                   ),
                                   Text(
-                                    "Ipsita",
+                                    body.uploadedBy,
                                     overflow: TextOverflow.clip,
                                     style: TextStyle(
                                         color: Colors.black54, fontSize: 15),
@@ -297,7 +297,7 @@ class _RecentDocumentState extends State<RecentDocument> {
                                     height: 3,
                                   ),
                                   Text(
-                                    "18 sep 2017 06:58",
+                                    body.uploadedOn,
                                     overflow: TextOverflow.clip,
                                     style: TextStyle(
                                         color: Colors.black54, fontSize: 15),
@@ -305,21 +305,21 @@ class _RecentDocumentState extends State<RecentDocument> {
                                   SizedBox(
                                     height: 4,
                                   ),
-                                  Text(
+                                 /* Text(
                                     'User Remark: ',
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 15),
-                                  ),
+                                  ),*/
                                   SizedBox(
                                     height: 3,
                                   ),
-                                  Text(
-                                    "Asthama",
+                                 /* Text(
+                                    body.,
                                     overflow: TextOverflow.clip,
                                     style: TextStyle(
                                         color: Colors.black54, fontSize: 15),
-                                  ),
+                                  ),*/
                                   SizedBox(
                                     height: 4,
                                   ),
@@ -401,9 +401,9 @@ class _RecentDocumentState extends State<RecentDocument> {
                 ),
               );
             },
-            itemCount: 3,
+            itemCount: recentUploadDocument.body.length,
           )
-                //:Container()
+                :Container()
         ),
       )),
     );
