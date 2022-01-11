@@ -230,7 +230,7 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppData.kPrimaryColor,
-        title: Text("SIGN UP"),
+        title: Text(MyLocalizations.of(context).text("SIGNUP")),
         centerTitle: true,
       ),
       body: Container(

@@ -181,7 +181,7 @@ class _MedicineReminderState extends State<MedicineReminder> {
       appBar: AppBar(
         backgroundColor: AppData.kPrimaryColor,
         centerTitle: true,
-        title: Text("Medicine Reminder"),
+        title: Text(MyLocalizations.of(context).text("MEDICINE_REMINDER")),
       ),
       floatingActionButton: UnicornDialer(
           backgroundColor: Colors.transparent,
