@@ -98,11 +98,12 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
 
   List<String> imageSliders = [
     // "assets/intro/pm1.jpeg",
+    "assets/intro/banner2.jpg",
 
-    "assets/intro/mah1.jpeg",
-    "assets/intro/mah2.png",
+    "assets/intro/banner1.jpg",
+    /*"assets/intro/mah2.png",
     "assets/images/uk_two.jpeg",
-    "assets/images/uk_one.jpg",
+    "assets/images/uk_one.jpg",*/
   ];
 
   SharedPref sharedPref = SharedPref();
@@ -783,12 +784,12 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                   MyPage1Widget(
                     model: widget.model,
                   ),
-                  MyPage2Widget(),
+                  //MyPage2Widget(),
                 ],
               ),
             ),
             PageIndicator(
-              length: 2,
+              length: 1,
               pageController: _controller,
               currentColor: Colors.grey,
               normalColor: Colors.black12,
@@ -816,10 +817,10 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                         onTap: () {
                           int index = imageSliders.indexOf(item);
                           //https://www.youtube.com/embed/R0tHEJl_Y8E?start=68
-                          switch (index) {
+                         /* switch (index) {
                             case 0:
-                              /*AppData.launchURL(
-                                  "https://www.youtube.com/watch?v=QYcKscyUvuY");*/
+                              *//*AppData.launchURL(
+                                  "https://www.youtube.com/watch?v=QYcKscyUvuY");*//*
                               // AppData.launchURL("https://www.youtube.com/watch?v=CmPGUBJZqlA");
                               // AppData.launchURL("https://www.youtube.com/watch?v=cXU3FTZ4UzU");
                               // AppData.launchURL("https://www.youtube.com/watch?v=dPTSG6GZEJw");
@@ -852,7 +853,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                               AppData.launchURL(
                                   "https://www.youtube.com/watch?v=3F5Esq71WUQ");
                               break;
-                          }
+                          }*/
                         },
                         child: Container(
                           child: Container(
@@ -912,7 +913,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                       ),
                                     ),
                                   ),
-                                  Positioned(
+                                 /* Positioned(
                                     top: 0,
                                     bottom: 0,
                                     left: 0,
@@ -931,7 +932,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                             size: 45,
                                           )
                                         : Container(),
-                                  ),
+                                  ),*/
                                 ],
                               ),
                             ),
@@ -1658,8 +1659,39 @@ class MyPage1Widget extends StatelessWidget {
               SizedBox(
                 width: 5,
               ),
-              /*  Expanded(*/
               Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _buildTilered(
+                      icon: "assets/blooddonationuser.png",
+                      //icon: Icons.search,
+                      //icon: FontAwesomeIcons.accusoft,
+                      title: " Order Blood ",
+                      fun: () {
+                        Navigator.pushNamed(
+                            context, "/bookBloodBanklist");
+                        // Navigator.pushNamed(context, "/healthCheckup");
+                      },
+                      color: AppData.BG1RED,
+                      bordercolor: AppData.BG1RED,
+                      //size: (size.width - 130) / 3,
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      width: 100,
+                      height: 35,
+                      child: Text(MyLocalizations.of(context)
+                          .text("ORDER_BLOOD"),
+                        textAlign: TextAlign.center,
+                        //overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ]),
+
+              /*Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -1687,16 +1719,8 @@ class MyPage1Widget extends StatelessWidget {
                         //overflow: TextOverflow.ellipsis,
                       ),
                     ),
-                    /*Align(
-                                          alignment: Alignment.center,
-                                          child: Expanded(
-                                            child: Text(
-                                              "Health               chat",
-                                              style: TextStyle(color: Colors.black),
-                                              textAlign: TextAlign.center,
-                                            ),
-                                          )),*/
-                  ]),
+
+                  ]),*/
 
 
             ],
@@ -1868,9 +1892,39 @@ class MyPage1Widget extends StatelessWidget {
               SizedBox(
                 width: 5,
               ),
-              /*Expanded(*/
-
               Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _buildTileblue(
+                      icon: "assets/ambulance.png",
+                      //icon: Icons.search,
+                      //icon: FontAwesomeIcons.accusoft,
+                      title: "Book Ambulance",
+                      fun: () {
+                        //AppData.showInSnackDone(context, "Coming Soon");
+                        Navigator.pushNamed(
+                            context, "/bookAmbulancelist");
+                      },
+                      color: AppData.BG2BLUE,
+                      bordercolor: AppData.BG2BLUE,
+                      //size: (size.width - 130) / 3,
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      width: 100,
+                      height: 35,
+                      child: Text(
+                        MyLocalizations.of(context)
+                            .text("BOOK_AMBULANCE"),
+                        textAlign: TextAlign.center,
+                        //overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ]),
+             /* Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -1892,7 +1946,7 @@ class MyPage1Widget extends StatelessWidget {
                     Container(
                       width: 100,
                       height: 35,
-                      /* child: Expanded(*/
+                      *//* child: Expanded(*//*
                       child: Text(
                         MyLocalizations.of(context)
                             .text("PREVENTIVE_HEALTHCARE"),
@@ -1900,16 +1954,8 @@ class MyPage1Widget extends StatelessWidget {
                         //overflow: TextOverflow.ellipsis,
                       ),
                     ),
-                    /* Align(
-                                          alignment: Alignment.center,
-                                          child: Expanded(
-                                            child: Text(
-                                              "Generic Medical Stores",
-                                              style: TextStyle(color: Colors.black),
-                                              textAlign: TextAlign.center,
-                                            ),
-                                          )),*/
-                  ]),
+
+                  ]),*/
               SizedBox(
                 width: 5,
               ),
@@ -1932,7 +1978,7 @@ class MyPage1Widget extends StatelessWidget {
                     size: (size.width - 130) / 3,
                   ),
                   SizedBox(
-                    height: 5,
+                    height:5,
                   ),
                   Container(
                     width: 100,

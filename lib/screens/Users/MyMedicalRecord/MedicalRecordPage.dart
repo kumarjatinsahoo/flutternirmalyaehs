@@ -139,10 +139,7 @@ class _MedicalRecordPageState extends State<MedicalRecordPage> {
                                     )),
                               ),
                             ),  GestureDetector(
-                              onTap: () =>
-
-                                  Navigator.pushNamed(
-                                      context, "/vitalSigns"),
+                              onTap: () => Navigator.pushNamed(context, "/vitalSigns"),
                               child: Card(
                                 elevation: 5,
                                 child: Container(
@@ -189,9 +186,7 @@ class _MedicalRecordPageState extends State<MedicalRecordPage> {
                               ),
                             ),
                             GestureDetector(
-                              onTap: () =>
-                                  Navigator.pushNamed(
-                                      context, "/immunizationlist"),
+                              onTap: () => Navigator.pushNamed(context, "/immunizationlist"),
                               child: Card(
                                 elevation: 5,
                                 child: Container(
@@ -479,9 +474,10 @@ class _MedicalRecordPageState extends State<MedicalRecordPage> {
                             ),
                             GestureDetector(
                               onTap: () {
+                                String userrole="1";
+                                widget.model.uploadbyrole=userrole;
                                 widget.model.patientseHealthCard=widget.model.loginResponse1.body.user;
-                                Navigator.pushNamed(
-                                    context, "/uploaddocument");
+                                Navigator.pushNamed(context, "/uploaddocument");
                                 /*AppData.launchURL(
                                 "http://docs.google.com/gview?embedded=true&url=https://ehealthsystem.com/user/view-patient-test-report-pdf-download?id=" +
                                     "");*/

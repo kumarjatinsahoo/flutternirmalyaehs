@@ -42,10 +42,9 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
   bool isdata = false;
   DateTime selectedDate = DateTime.now();
   final df = new DateFormat('dd/MM/yyyy');
-  String profilePath = null,
-      idproof = null;
+  String profilePath = null, idproof = null;
   File pathUsr1 = null;
-  String doccategory;
+  String doccategory, rolee;
   AddUploadDocumentModel adduploaddocument = AddUploadDocumentModel();
 
   TextEditingController _date = TextEditingController();
@@ -83,6 +82,7 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
     super.initState();
     loginResponse1 = widget.model.loginResponse1;
     doccategory = widget.model.documentcategories;
+    rolee = widget.model.uploadbyrole;
     AddUploadDocument.getdocumentmodel = null;
     childButtons.add(UnicornButton(
         hasLabel: true,
@@ -167,7 +167,8 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
                     });
                   }),
                   SizedBox(height: 10),*/
-                  formField(1, MyLocalizations.of(context).text("DOCUUMENT_NAME")),
+                  formField(
+                      1, MyLocalizations.of(context).text("DOCUUMENT_NAME")),
                   SizedBox(height: 10),
                   dob(),
                   SizedBox(height: 15),
@@ -189,35 +190,35 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
                   SizedBox(height: 8),
                   (idproof != null)
                       ? Padding(
-                    padding: const EdgeInsets.only(left: 10, right: 10),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(
-                          child: Container(
-                            child: Text(
-                              "Report Path :" + idproof,
-                              style: TextStyle(color: Colors.green),
-                            ),
+                          padding: const EdgeInsets.only(left: 10, right: 10),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: Container(
+                                  child: Text(
+                                    "Report Path :" + idproof,
+                                    style: TextStyle(color: Colors.green),
+                                  ),
+                                ),
+                              ),
+                              InkWell(
+                                child: SizedBox(
+                                    width: 50.0, child: Icon(Icons.clear)),
+                                onTap: () {
+                                  setState(() {
+                                    idproof = null;
+                                    // registrationModel.profilePhotoBase64 =
+                                    null;
+                                    //registrationModel.profilePhotoExt =
+                                    null;
+                                  });
+                                },
+                              ),
+                            ],
                           ),
-                        ),
-                        InkWell(
-                          child: SizedBox(
-                              width: 50.0, child: Icon(Icons.clear)),
-                          onTap: () {
-                            setState(() {
-                              idproof = null;
-                              // registrationModel.profilePhotoBase64 =
-                              null;
-                              //registrationModel.profilePhotoExt =
-                              null;
-                            });
-                          },
-                        ),
-                      ],
-                    ),
-                  )
+                        )
                       : Container(),
                   SizedBox(
                     height: 20,
@@ -231,13 +232,10 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
                       } else if (_date.text == "" || _date.text == null) {
                         AppData.showInSnackBar(
                             context, "Please Enter Document Date");
-                      }
-                      else if (idproof == "" || idproof == null) {
-                        AppData.showInSnackBar(
-                            context,
+                      } else if (idproof == "" || idproof == null) {
+                        AppData.showInSnackBar(context,
                             "Please Select  at least One Image,Video,Document");
-                      }
-                      else {
+                      } else {
                         postMultiPart();
                       }
                     },
@@ -249,7 +247,8 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
                           color: AppData.kPrimaryColor),
                       child: RaisedButton(
                         onPressed: null,
-                        child: Text(MyLocalizations.of(context).text("UPLOAD"),
+                        child: Text(
+                          MyLocalizations.of(context).text("UPLOAD"),
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 16,
@@ -278,23 +277,32 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
         "," +
         widget.model.patientseHealthCard);
     var formData = FormData();
-    formData.fields..add(MapEntry('userid', widget.model.patientseHealthCard))..add(
-        MapEntry(
-          'docType',
-          doccategory,
-        ))..add(MapEntry(
-      'docName',
-      textEditingController[1].text,
-    ))..add(MapEntry(
-      'uploadDate',
-      _date.text,
-    ))..add(MapEntry(
-      'filetype',
-      selectedDocument,
-    ))..add(MapEntry(
-      'extension',
-      extension,
-    ));
+    formData.fields
+      ..add(MapEntry('userid',
+          widget.model.patientseHealthCard))
+      ..add(MapEntry(
+        'docType',
+        doccategory,
+      ))
+      ..add(MapEntry(
+        'uploadedBy',
+        rolee,
+      ))
+      ..add(MapEntry(
+        'docName',
+        textEditingController[1].text,
+      ))..add(MapEntry(
+        'uploadDate',
+        _date.text,
+      ))
+      ..add(MapEntry(
+        'filetype',
+        selectedDocument,
+      ))
+      ..add(MapEntry(
+        'extension',
+        extension,
+      ));
     formData.files.add(MapEntry(
       'mulFile',
       MultipartFile.fromFileSync(
@@ -321,14 +329,16 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
             });
           }
         },
-      );  Navigator.pop(context);
+      );
+      Navigator.pop(context);
       if (response.statusCode == 200) {
-
         log("value" + jsonEncode(response.data));
         if (response.data["code"] == "success") {
           //Navigator.pushNamed(context, "/uploaddocument");
 
-          popup(context,);
+          popup(
+            context,
+          );
         } else {
           AppData.showInSnackBar(context, "Something went wrong");
         }
@@ -387,14 +397,11 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
   Future getVideoUpload() async {
     var video = await ImagePicker.pickVideo(
       source: ImageSource.gallery,
-
     );
     var enc = await video.readAsBytes();
     String _path = video.path;
 
-    String _fileName = _path != null ? _path
-        .split('/')
-        .last : '...';
+    String _fileName = _path != null ? _path.split('/').last : '...';
     var pos = _fileName.lastIndexOf('.');
     String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
     print(extName);
@@ -406,8 +413,11 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
       extension = extName;
       print("size>>>" + AppData.formatBytes(enc.length, 0).toString());
       if (104857600 < enc.length) {
-        AppData.showInSnackBar(context,"Please select video with maximum size 100 MB ",);
-        idproof="";
+        AppData.showInSnackBar(
+          context,
+          "Please select video with maximum size 100 MB ",
+        );
+        idproof = "";
         return;
       }
       print("Message is: " +
@@ -417,9 +427,6 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
     });
   }
 
-
-
-
   Future getCerificateImage() async {
     var image = await ImagePicker.pickImage(
       source: ImageSource.gallery,
@@ -428,9 +435,7 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
     var enc = await image.readAsBytes();
     String _path = image.path;
 
-    String _fileName = _path != null ? _path
-        .split('/')
-        .last : '...';
+    String _fileName = _path != null ? _path.split('/').last : '...';
     var pos = _fileName.lastIndexOf('.');
     String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
     print(extName);
@@ -442,8 +447,11 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
       extension = extName;
       print("size>>>" + AppData.formatBytes(enc.length, 0).toString());
       if (104857600 < enc.length) {
-        AppData.showInSnackBar(context,"Please select video with maximum size 100 MB ",);
-        idproof="";
+        AppData.showInSnackBar(
+          context,
+          "Please select video with maximum size 100 MB ",
+        );
+        idproof = "";
         return;
       }
       print("Message is: " +
@@ -464,9 +472,7 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
     var enc = await file.readAsBytes();
     String _path = file.path;
 
-    String _fileName = _path != null ? _path
-        .split('/')
-        .last : '...';
+    String _fileName = _path != null ? _path.split('/').last : '...';
     var pos = _fileName.lastIndexOf('.');
     String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
     print(extName);
@@ -479,8 +485,11 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
         extension = extName;
         print("size>>>" + AppData.formatBytes(enc.length, 0).toString());
         if (104857600 < enc.length) {
-          AppData.showInSnackBar(context,"Please select video with maximum size 100 MB ",);
-          idproof="";
+          AppData.showInSnackBar(
+            context,
+            "Please select video with maximum size 100 MB ",
+          );
+          idproof = "";
           return;
         }
         print("Message is: " +
@@ -561,7 +570,7 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
               },
               decoration: InputDecoration(
                 hintText: (MyLocalizations.of(context).text("DOCUUMENT_DATE")),
-              //  hintStyle: TextStyle(color: AppData.hintColor, fontSize: 15),
+                //  hintStyle: TextStyle(color: AppData.hintColor, fontSize: 15),
                 border: InputBorder.none,
                 //contentPadding: EdgeInsets.symmetric(vertical: 10),
                 suffixIcon: Icon(
@@ -583,8 +592,8 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
         locale: Locale("en"),
         initialDate: DateTime.now(),
         firstDate: DateTime(1901, 1),
-        lastDate:
-        DateTime.now() /*.add(new Duration(days: 5))*/); //18 years is 6570 days
+        lastDate: DateTime
+            .now() /*.add(new Duration(days: 5))*/); //18 years is 6570 days
     // if (picked != null && picked != selectedDate)
     setState(() {
       selectedDate = picked;

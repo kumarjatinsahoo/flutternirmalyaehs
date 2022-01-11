@@ -69,6 +69,7 @@ class _WalkinRegisterListPageState extends State<WalkinRegisterListPage> {
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
+
         title: Row(
           children: [
             Padding(
