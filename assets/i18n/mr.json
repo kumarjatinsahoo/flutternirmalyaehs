@@ -405,6 +405,24 @@
   "VIEW_PDF": "पीडीएफ पहा",
   "HEALTH_TIPS_LIST": "आरोग्य टिप्स यादी",
   "PDF": "पीडीएफ",
+  "QR_CODE": "QR कोड",
+  "PIN_CODE": "पिन कोड",
+  "MARITAL_STATUS": "वैवाहिक स्थिती",
+  "QUALIFICATION": "पात्रता",
+  "SPECILAZATION": "स्पेशलायझेशन",
+  "AADHAAR_NO1": "आधार क्र",
+  "LICENSE_AUTHORITY": "परवाना प्राधिकरण",
+  "FAMILY_DETAILS": "कौटुंबिक तपशील",
+  "UPDATE_FAMILY_DETAILS": "कुटुंब तपशील अद्यतनित करा",
+  "ADD_FAMILY_DETAILS": "कुटुंब तपशील जोडा",
+  "ADD_FAMILY_DOCTORS_NAME": "फॅमिली डॉक्टरचे नाव जोडा",
+  "UPDATE_FAMILY_DOCTORS_NAME": "फॅमिली डॉक्टरचे नाव अपडेट करा",
+  "CONTACT_SCREEN": "संपर्क स्क्रीन",
+  "CURRENT_PASSWORD": "सध्याचा गुप्त शब्द",
+  "NEW_PASSWORD": "नवीन पासवर्ड",
+  "CONFIRM_PASSWORD": "पासवर्डची पुष्टी करा",
+
+
 
 
 

@@ -411,6 +411,22 @@
   "VIEW_PDF": "View Pdf",
   "HEALTH_TIPS_LIST": "Health Tips List",
   "PDF": "Pdf",
+  "QR_CODE": "QR Code",
+  "PIN_CODE": "Pin code",
+  "MARITAL_STATUS": "Marital Status",
+  "QUALIFICATION": "Qualification",
+  "SPECILAZATION": "Specilazation",
+  "AADHAAR_NO1": "Aadhaar no",
+  "LICENSE_AUTHORITY": "License Authority",
+  "FAMILY_DETAILS": "Family details",
+  "UPDATE_FAMILY_DETAILS": "Update family details",
+  "ADD_FAMILY_DETAILS": "Add family details",
+  "ADD_FAMILY_DOCTORS_NAME": "Add family doctor's name",
+  "UPDATE_FAMILY_DOCTORS_NAME": "Update family doctor's name",
+  "CONTACT_SCREEN": "Contact Screen",
+  "CURRENT_PASSWORD": "Current Password",
+  "NEW_PASSWORD": "New Password",
+  "CONFIRM_PASSWORD": "Confirm Password",
 
 
 

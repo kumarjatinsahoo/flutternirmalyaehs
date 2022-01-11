@@ -648,7 +648,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             padding: const EdgeInsets.symmetric(vertical: 12),
                             child: Text(
                                 MyLocalizations.of(context)
-                                    .text("FAMILY DETAILS")
+                                    .text("FAMILY_DETAILS")
                                     .toUpperCase(),
                                 style: TextStyle(
                                     fontWeight: FontWeight.w900,
@@ -1128,7 +1128,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           flex: 1,
                           child: Text(
                             /*'Confirmed'*/
-                            "Email",
+                            MyLocalizations.of(context).text("EMAILID"),
                             style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 15,
@@ -1170,7 +1170,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           flex: 1,
                           child: Text(
                             /*'Confirmed'*/
-                            "Pin Code",
+                            MyLocalizations.of(context).text("PIN_CODE"),
                             style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 15,
@@ -1213,8 +1213,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         Expanded(
                           flex: 1,
                           child: Text(
+                            MyLocalizations.of(context).text("MARITAL_STATUS"),
                             /*'Confirmed'*/
-                            "Marital Status",
                             style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 15,
@@ -1296,9 +1296,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         SizedBox(width: 10),
                         Expanded(
                           flex: 1,
-                          child: Text(
+                          child: Text( MyLocalizations.of(context).text("QUALIFICATION"),
                             /*'Confirmed'*/
-                            "Qualification",
                             style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 15,
@@ -1338,9 +1337,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         SizedBox(width: 10),
                         Expanded(
                           flex: 1,
-                          child: Text(
+                          child: Text(MyLocalizations.of(context).text("SPECILAZATION"),
                             /*'Confirmed'*/
-                            "Specilazation",
                             style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 15,
@@ -1380,9 +1378,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         SizedBox(width: 10),
                         Expanded(
                           flex: 1,
-                          child: Text(
+                          child: Text(MyLocalizations.of(context).text("PAN_CARD_NO"),
                             /*'Confirmed'*/
-                            "PAN Card No",
                             style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 15,
@@ -1422,9 +1419,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         SizedBox(width: 10),
                         Expanded(
                           flex: 1,
-                          child: Text(
+                          child: Text(MyLocalizations.of(context).text("PASSPORT_NO"),
                             /*'Confirmed'*/
-                            "Passport No",
                             style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 15,
@@ -1464,9 +1460,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         SizedBox(width: 10),
                         Expanded(
                           flex: 1,
-                          child: Text(
+                          child: Text(MyLocalizations.of(context).text("AADHAAR_NO1"),
                             /*'Confirmed'*/
-                            "Aadhaar No",
                             style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 15,
@@ -1506,9 +1501,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         SizedBox(width: 10),
                         Expanded(
                           flex: 1,
-                          child: Text(
+                          child: Text(MyLocalizations.of(context).text("VOTER_CARD_NO"),
                             /*'Confirmed'*/
-                            "Voter Card No",
                             style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 15,
@@ -1548,9 +1542,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         SizedBox(width: 10),
                         Expanded(
                           flex: 1,
-                          child: Text(
+                          child: Text(MyLocalizations.of(context).text("LICENCE_NO"),
                             /*'Confirmed'*/
-                            "License No ",
                             style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 15,
@@ -1590,9 +1583,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         SizedBox(width: 10),
                         Expanded(
                           flex: 1,
-                          child: Text(
+                          child: Text(MyLocalizations.of(context).text("LICENSE_AUTHORITY"),
                             /*'Confirmed'*/
-                            "License Authority ",
                             style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 15,
@@ -1878,7 +1870,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   onTap: () {
                     setState(() {
                       displayDialog2(context);
-
                     });
                   },
                   child: Visibility(
@@ -3961,8 +3952,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           child: Column(
                             children: [
                               Center(
-                                child: Text(
-                                  "Add Family Doctor's Name",
+                                child: Text(MyLocalizations.of(context).text("ADD_FAMILY_DOCTORS_NAME"),
                                   style: TextStyle(
                                       color: Colors.black, fontSize: 20),
                                 ),
@@ -3973,10 +3963,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         SizedBox(
                           height: 15,
                         ),
-                        formField1(15, "Name"),
+                        formField1(15, MyLocalizations.of(context).text("NAME")),
                         SizedBox(height: 8),
                         DropDown.networkDropdownGetpartUser1(
-                            "Speciality",
+                            MyLocalizations.of(context).text("SPECIALITY"),
                             ApiFactory.SPECIALITY_API,
                             "speciality",
                             Icons.people_alt_rounded,
@@ -3988,7 +3978,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           });
                         }),
                         SizedBox(height: 8),
-                        mobileformField1(16, "Mobile No"),
+                        mobileformField1(16,   MyLocalizations.of(context).text("MOBILE_NO")),
                       ],
                     ),
                   ),
@@ -4095,8 +4085,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           child: Column(
                             children: [
                               Center(
-                                child: Text(
-                                  "Add Family Details",
+                                child: Text(MyLocalizations.of(context).text("ADD_FAMILY_DETAILS") ,
                                   style: TextStyle(
                                       color: Colors.black, fontSize: 20),
                                 ),
@@ -4490,8 +4479,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           child: Column(
                             children: [
                               Center(
-                                child: Text(
-                                  "Update Family Doctor's Name",
+                                child: Text(MyLocalizations.of(context).text("UPDATE_FAMILY_DOCTORS_NAME"),
                                   style: TextStyle(
                                       color: Colors.black, fontSize: 20),
                                 ),
@@ -4502,10 +4490,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         SizedBox(
                           height: 15,
                         ),
-                        formField1(15, "Name"),
+                        formField1(15, MyLocalizations.of(context).text("NAME")),
                         SizedBox(height: 8),
                         DropDown.networkDropdownGetpartUser1(
-                            "Speciality",
+                        MyLocalizations.of(context).text("SPECIALITY"),
                             ApiFactory.SPECIALITY_API,
                             "spl",
                             Icons.people_alt_rounded,
@@ -4517,7 +4505,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           });
                         }),
                         SizedBox(height: 8),
-                        mobileformField1(16, "Mobile No"),
+                        mobileformField1(16, MyLocalizations.of(context).text("MOBILE_NO")),
                       ],
                     ),
                   ),
@@ -4632,8 +4620,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           child: Column(
                             children: [
                               Center(
-                                child: Text(
-                                  "Update Family Detail's Name",
+                                child: Text(MyLocalizations.of(context).text("UPDATE_FAMILY_DETAILS"),
                                   style: TextStyle(
                                       color: Colors.black, fontSize: 20),
                                 ),

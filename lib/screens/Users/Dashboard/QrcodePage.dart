@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:user/localization/localizations.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
@@ -35,7 +36,7 @@ class _QrcodePageState extends State<QrcodePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("QR Code"),
+        title: Text(MyLocalizations.of(context).text("QR_CODE")),
         centerTitle: true,
         backgroundColor: AppData.kPrimaryColor,
       ),
