@@ -341,15 +341,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
         title: Stack(
           children: [
             Center(
-              child: Text(
-                MyLocalizations.of(context).text("MY_PROFILE"),
-                style: TextStyle(color: Colors.white),
+              child: Padding(
+                padding: const EdgeInsets.only(right: 60.0),
+                child: Text(
+                  MyLocalizations.of(context).text("MY_PROFILE"),
+                  style: TextStyle(color: Colors.white),
+                ),
               ),
             ),
             Align(
               alignment: Alignment.topRight,
               child: Padding(
-                padding: const EdgeInsets.only(right: 70.0),
+                padding: const EdgeInsets.only(right: 80.0),
                 child: InkWell(
                   onTap: () {
                     Navigator.pushNamed(context, "/qrcode");
