@@ -109,7 +109,7 @@ class _DieseInfoState extends State<DieseInfo> {
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: AppData.kPrimaryColor,
-        title: Text("Disease Info"),
+        title: Text(MyLocalizations.of(context).text("DISEASE_INFO")),
         /*actions: <Widget>[
             Padding(
               padding: EdgeInsets.only(right: 20.0),
@@ -222,8 +222,7 @@ class _DieseInfoState extends State<DieseInfo> {
                                             color: AppData.kPrimaryColor),
                                         child: RaisedButton(
                                           onPressed: null,
-                                          child: Text(
-                                            'View Pdf',
+                                          child: Text(MyLocalizations.of(context).text("VIEW_PDF"),
                                             style: TextStyle(
                                                 color: Colors.white,
                                                 fontSize: 16,

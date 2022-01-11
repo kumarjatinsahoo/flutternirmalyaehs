@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:user/localization/localizations.dart';
 import 'package:user/models/InsuranceDetailsModel.dart' as insurancedetails;
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/api_factory.dart';
@@ -99,7 +100,7 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: AppData.kPrimaryColor,
-          title: Text("Insurance"),
+          title: Text(MyLocalizations.of(context).text("INSURANCE")),
           centerTitle: true,
         ),
         body: (insuranceDetailsModel != null)
@@ -147,8 +148,7 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
                                           SizedBox(
                                             height: 5,
                                           ),
-                                          Text(
-                                            'Policy No: ' +
+                                          Text(MyLocalizations.of(context).text("POLICY_NO") +
                                                     insuranceDetailsModel
                                                         .body.policyNo ??
                                                 "N/A",
@@ -190,8 +190,7 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      Text(
-                                        'Policy Name',
+                                      Text(MyLocalizations.of(context).text("POLICY_NAME"),
                                         style: TextStyle(
                                             color: Colors.black54, fontSize: 16),
                                       ),
@@ -230,8 +229,7 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          Text(
-                                            'Health Insurance Type',
+                                          Text(MyLocalizations.of(context).text("HEALTH_INSURANCE_TYPE"),
                                             style: TextStyle(
                                                 color: Colors.black54,
                                                 fontSize: 16),
@@ -273,8 +271,7 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          Text(
-                                            'Third party Administrator',
+                                          Text(MyLocalizations.of(context).text("THIRDPARTY_ADMINI"),
                                             style: TextStyle(
                                                 color: Colors.black54,
                                                 fontSize: 16),
@@ -315,8 +312,7 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          Text(
-                                            'Insurance Type',
+                                          Text(MyLocalizations.of(context).text("INSURANCE_TYPE"),
                                             style: TextStyle(
                                                 color: Colors.black54,
                                                 fontSize: 16),
@@ -357,8 +353,7 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          Text(
-                                            'Premium Due  Date',
+                                          Text(MyLocalizations.of(context).text("PREMIUM_DUE_DATE"),
                                             style: TextStyle(
                                                 color: Colors.black54,
                                                 fontSize: 16),
@@ -400,8 +395,7 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          Text(
-                                            'Premium Amount',
+                                          Text(MyLocalizations.of(context).text("PREMIUM_AMOUNT"),
                                             style: TextStyle(
                                                 color: Colors.black54,
                                                 fontSize: 16),
@@ -446,8 +440,7 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          Text(
-                                            'Sum Assured Amount',
+                                          Text(MyLocalizations.of(context).text("SUM_ASSURED_AMOUNT"),
                                             style: TextStyle(
                                                 color: Colors.black54,
                                                 fontSize: 16),
@@ -491,8 +484,7 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          Text(
-                                            'Total insurance Amount',
+                                          Text(MyLocalizations.of(context).text("TOTAL_INSURANCE_AMOUNT"),
                                             style: TextStyle(
                                                 color: Colors.black54,
                                                 fontSize: 16),
@@ -538,8 +530,7 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
                                             MainAxisAlignment.start,
                                         // crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
-                                          Text(
-                                            'Start Date',
+                                          Text(MyLocalizations.of(context).text("START_DATE"),
                                             style: TextStyle(
                                                 fontSize: 14,
                                                 color: Colors.black38),
@@ -640,8 +631,7 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
                                             MainAxisAlignment.start,
                                         // crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
-                                          Text(
-                                            'End Date',
+                                          Text(MyLocalizations.of(context).text("END_DATE"),
                                             style: TextStyle(
                                                 fontSize: 14,
                                                 color: Colors.black38),
