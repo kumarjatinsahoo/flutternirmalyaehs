@@ -251,7 +251,7 @@
   "ADD_INSURANCE": "बीमा जोड़ें",
   "INSURANCE_COMPANY": "बीमा कंपनी",
   "HEALTH_INSURANCE_TYPE": "स्वास्थ्य बीमा प्रकार",
-  "POLICY_NO": "पॉलिसी संख्या",
+  "POLICY_NO": "पॉलिसी संख्या :",
   "POLICY_START_DATE": "नीति प्रारंभ तिथि",
   "TOTAL_INSURANCE_AMOUNT": "कुल बीमा राशि",
   "PREMIUM_DUE_DATE": "प्रीमियम देय तिथि",
@@ -391,6 +391,23 @@
   "DONER_NAME": "दाता का नाम",
   "GENERIC_STORE": "जेनेरिक स्टोर",
   "GOVT_SCHEME_LIST": "सरकारी योजनाओं की सूची",
+  "ADD_INSURANCCE": "बीमा जोड़ें",
+  "DOCUMENT1": "दस्तावेज़ का नाम 1",
+  "DOCUMENT2": "दस्तावेज़ का नाम 2",
+  "DOCUMENT3": "दस्तावेज़ का नाम 3",
+  "DOCUMENT4": "दस्तावेज़ का नाम 4",
+  "UPLOAD_DOCUMENT1": "दस्तावेज़ अपलोड 1",
+  "UPLOAD_DOCUMENT2": "दस्तावेज़ अपलोड 2",
+  "UPLOAD_DOCUMENT3": "दस्तावेज़ अपलोड 3",
+  "UPLOAD_DOCUMENT4": "दस्तावेज़ अपलोड 4",
+  "POLICY_NAME": "पालिसी का नाम",
+  "THIRDPARTY_ADMINI": "थर्ड पार्टी एडमिनिस्ट्रेटर",
+  "START_DATE": "आरंभ तिथि",
+  "END_DATE": "समाप्ति तिथि",
+  "VIEW_PDF": "पीडीएफ देखें",
+  "HEALTH_TIPS_LIST": "स्वास्थ्य युक्तियाँ सूची",
+  "PDF": "पीडीएफ",
+
 
 
   "USER_ADDRESS": "उपयोगकर्ता का पता"

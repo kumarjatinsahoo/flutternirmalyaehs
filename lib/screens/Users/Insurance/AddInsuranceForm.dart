@@ -217,7 +217,7 @@ class AddinsuranceFormState extends State<AddinsuranceForm> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppData.kPrimaryColor,
-        title: Text("Add Insurance"),
+        title: Text(MyLocalizations.of(context).text("ADD_INSURANCCE")),
         centerTitle: true,
       ),
       body: Container(
@@ -324,7 +324,7 @@ class AddinsuranceFormState extends State<AddinsuranceForm> {
                                   SizedBox(
                                     height: 8,
                                   ),
-                                  formField1(12, "Document Name 1"),
+                                  formField1(12, MyLocalizations.of(context).text("DOCUMENT1")),
                                   SizedBox(
                                     height: 8,
                                   ),
@@ -336,7 +336,9 @@ class AddinsuranceFormState extends State<AddinsuranceForm> {
                                           Expanded(
                                             child: Padding(
                                               padding: const EdgeInsets.all(10.0),
-                                              child: Text("Upload Document 1",style: TextStyle(color:AppData.kPrimaryColor,fontSize: 18,fontWeight: FontWeight.bold),),
+                                              child: Text(MyLocalizations.of(context).text("UPLOAD_DOCUMENT1")
+                                                ,style: TextStyle(color:AppData.kPrimaryColor,
+                                                    fontSize: 18,fontWeight: FontWeight.bold),),
                                             ),
                                           ),
                                           SizedBox(width:5),
@@ -408,7 +410,7 @@ class AddinsuranceFormState extends State<AddinsuranceForm> {
                                     height: 18,
                                   ),
                                   (idproof != null)
-                                      ?  formField1(13, "Document Name 2"):Container(),
+                                      ?  formField1(13,  MyLocalizations.of(context).text("DOCUMENT2")):Container(),
                                   (idproof != null)
                                       ? SizedBox(
                                     height: 8,
@@ -422,7 +424,9 @@ class AddinsuranceFormState extends State<AddinsuranceForm> {
                                           Expanded(
                                             child: Padding(
                                               padding: const EdgeInsets.all(10.0),
-                                              child: Text("Upload Document 2",style: TextStyle(color:AppData.kPrimaryColor,fontSize: 18,fontWeight: FontWeight.bold),),
+                                              child: Text(MyLocalizations.of(context).text("UPLOAD_DOCUMENT2")
+                                                ,style: TextStyle(color:AppData.kPrimaryColor,
+                                                    fontSize: 18,fontWeight: FontWeight.bold),),
                                             ),
                                           ),
                                           SizedBox(width:5),
@@ -495,7 +499,7 @@ class AddinsuranceFormState extends State<AddinsuranceForm> {
                                     height: 18,
                                   ),
                                   (idproof1 != null)
-                                      ? formField1(14,"Document Name 3"):Container(),
+                                      ? formField1(14, MyLocalizations.of(context).text("DOCUMENT3")):Container(),
                                   (idproof1 != null)
                                       ? SizedBox(
                                     height: 8,
@@ -509,7 +513,9 @@ class AddinsuranceFormState extends State<AddinsuranceForm> {
                                           Expanded(
                                             child: Padding(
                                               padding: const EdgeInsets.all(10.0),
-                                              child: Text("Upload Document 3",style: TextStyle(color:AppData.kPrimaryColor,fontSize: 18,fontWeight: FontWeight.bold),),
+                                              child: Text(MyLocalizations.of(context).text("UPLOAD_DOCUMENT3")
+                                                ,style: TextStyle(color:AppData.kPrimaryColor,fontSize: 18,
+                                                    fontWeight: FontWeight.bold),),
                                             ),
                                           ),
                                           SizedBox(width:5),
@@ -583,7 +589,7 @@ class AddinsuranceFormState extends State<AddinsuranceForm> {
                                     height: 18,
                                   ),
                                   (idproof2 != null)
-                                      ?formField1(15, "Document Name 4"):Container(),
+                                      ?formField1(15, MyLocalizations.of(context).text("DOCUMENT4")):Container(),
                                   (idproof2 != null)
                                       ? SizedBox(
                                     height: 8,
@@ -597,7 +603,9 @@ class AddinsuranceFormState extends State<AddinsuranceForm> {
                                           Expanded(
                                             child: Padding(
                                               padding: const EdgeInsets.all(10.0),
-                                              child: Text("Upload Document 4",style: TextStyle(color:AppData.kPrimaryColor,fontSize: 18,fontWeight: FontWeight.bold),),
+                                              child: Text(MyLocalizations.of(context).text("UPLOAD_DOCUMENT4")
+                                                ,style: TextStyle(color:AppData.kPrimaryColor,fontSize: 18,
+                                                    fontWeight: FontWeight.bold),),
                                             ),
                                           ),
                                           SizedBox(width:5),
@@ -1670,7 +1678,7 @@ class AddinsuranceFormState extends State<AddinsuranceForm> {
 
   Widget nextButton1() {
     return MyWidgets.nextButton(
-      text:  "SUBMIT",
+      text:  MyLocalizations.of(context).text("SUBMIT"),
       context: context,
       fun: () {
         if (textEditingController[1].text == null ||

@@ -251,7 +251,7 @@
   "ADD_INSURANCE": "विमा जोडा",
   "INSURANCE_COMPANY": "विमा कंपनी",
   "HEALTH_INSURANCE_TYPE": "आरोग्य विमा प्रकार",
-  "POLICY_NO": "पॉलिसी क्र",
+  "POLICY_NO": "पॉलिसी क्र :",
   "POLICY_START_DATE": "पॉलिसी सुरू होण्याची तारीख",
   "TOTAL_INSURANCE_AMOUNT": "एकूण विम्याची रक्कम",
   "PREMIUM_DUE_DATE": "प्रीमियम देय तारीख",
@@ -389,6 +389,23 @@
   "DONER_NAME": "देणाऱ्याचे नाव",
   "GENERIC_STORE": "जेनेरिक स्टोअर्स",
   "GOVT_SCHEME_LIST": "सरकारी योजनांची यादी",
+  "ADD_INSURANCCE": "विमा जोडा",
+  "DOCUMENT1": "दस्तऐवजाचे नाव 1",
+  "DOCUMENT2": "दस्तऐवजाचे नाव 2",
+  "DOCUMENT3": "दस्तऐवजाचे नाव 3",
+  "DOCUMENT4": "दस्तऐवजाचे नाव 4",
+  "UPLOAD_DOCUMENT1": "दस्तऐवज अपलोड 1",
+  "UPLOAD_DOCUMENT2": "दस्तऐवज अपलोड 2",
+  "UPLOAD_DOCUMENT3": "दस्तऐवज अपलोड 3",
+  "UPLOAD_DOCUMENT4": "दस्तऐवज अपलोड 4",
+  "POLICY_NAME": "पॉलिसीचे नाव",
+  "THIRDPARTY_ADMINI": "तृतीय पक्ष प्रशासक",
+  "START_DATE": "प्रारंभ तारीख",
+  "END_DATE": "शेवटची तारीख",
+  "VIEW_PDF": "पीडीएफ पहा",
+  "HEALTH_TIPS_LIST": "आरोग्य टिप्स यादी",
+  "PDF": "पीडीएफ",
+
 
 
   "USER_ADDRESS": "वापरकर्ता पत्ता"

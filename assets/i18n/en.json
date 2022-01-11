@@ -255,7 +255,7 @@
   "BLOOD_VESSELS": "Blood Vessels",
   "ADD_WITNESS": "Add Witness",
   "FIND_GENERIC_STORE": "Find Generic Medical Store",
-  "FIND_HEALTH_SCHEMES": "Find Health schemes ",
+  "FIND_HEALTH_SCHEMES": "Find Health Schemes ",
   "WALK_IN_PATIENT": "Walk in Patient",
   "EMERGENCY_ACCESS": "Emergency Access",
   "SHARE_APPOINTMENT": "Share Appointment",
@@ -281,10 +281,10 @@
 
   "ADD_INSURANCE": "Add Insurance",
   "INSURANCE_COMPANY": "Insurance Company",
-  "HEALTH_INSURANCE_TYPE": "Health Insurance Type",
-  "POLICY_NO": "Policy No",
+  "HEALTH_INSURANCE_TYPE": "Health insurance type",
+  "POLICY_NO": "Policy No :",
   "POLICY_START_DATE": "Policy Start Date",
-  "TOTAL_INSURANCE_AMOUNT": "Total Insurance Amount",
+  "TOTAL_INSURANCE_AMOUNT": "Total insurance amount",
   "PREMIUM_DUE_DATE": "Premium Due Date",
   "INSURANCE_TYPE": "Insurance Type",
   "THIRDPARTY_ADMINSTRATOR": "Third Party Adminstrator",
@@ -395,6 +395,24 @@
   "DONER_NAME": "Doner name",
   "GENERIC_STORE": "Generic stores",
   "GOVT_SCHEME_LIST": "Government Schemes List",
+  "ADD_INSURANCCE": "Add Insurance",
+  "DOCUMENT1": "Document Name 1",
+  "DOCUMENT2": "Document Name 2",
+  "DOCUMENT3": "Document Name 3",
+  "DOCUMENT4": "Document Name 4",
+  "UPLOAD_DOCUMENT1": "Upload document 1",
+  "UPLOAD_DOCUMENT2": "Upload document 2",
+  "UPLOAD_DOCUMENT3": "Upload document 3",
+  "UPLOAD_DOCUMENT4": "Upload document 4",
+  "POLICY_NAME": "Policy name",
+  "THIRDPARTY_ADMINI": "Third party Administrator",
+  "START_DATE": "Start date",
+  "END_DATE": "End date",
+  "VIEW_PDF": "View Pdf",
+  "HEALTH_TIPS_LIST": "Health Tips List",
+  "PDF": "Pdf",
+
+
 
 
 

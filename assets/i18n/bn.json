@@ -256,7 +256,7 @@
   "ADD_INSURANCE": "ବୀମା ଯୋଡନ୍ତୁ ",
   "INSURANCE_COMPANY": "ବୀମା କମ୍ପାନୀ",
   "HEALTH_INSURANCE_TYPE": "ସ୍ୱାସ୍ଥ୍ୟ ବୀମା ପ୍ରକାର ",
-  "POLICY_NO": "ନୀତି ସଂଖ୍ୟା",
+  "POLICY_NO": "ନୀତି ସଂଖ୍ୟା :",
   "POLICY_START_DATE": "ନୀତି ଆରମ୍ଭ ତାରିଖ",
   "TOTAL_INSURANCE_AMOUNT": "ମୋଟ ବୀମା ରାଶି",
   "PREMIUM_DUE_DATE": "ପ୍ରିମିୟମ୍ ଦେୟ ତାରିଖ",
@@ -391,6 +391,23 @@
   "DONER_NAME": "ଦାତା ନାମ",
   "GENERIC_STORE": "ଜେନେରିକ୍ ଷ୍ଟୋର",
   "GOVT_SCHEME_LIST": "ସରକାରୀ ଯୋଜନା ତାଲିକା",
+  "ADD_INSURANCCE": "ବୀମା ଯୋଗକର",
+  "DOCUMENT1": "ଡକ୍ୟୁମେଣ୍ଟ୍ ନାମ 1",
+  "DOCUMENT2": "ଡକ୍ୟୁମେଣ୍ଟ୍ ନାମ 2",
+  "DOCUMENT3": "ଡକ୍ୟୁମେଣ୍ଟ୍ ନାମ 3",
+  "DOCUMENT4": "ଡକ୍ୟୁମେଣ୍ଟ୍ ନାମ 4",
+  "UPLOAD_DOCUMENT1": "ଡକ୍ୟୁମେଣ୍ଟ୍ ଅପଲୋଡ୍ 1",
+  "UPLOAD_DOCUMENT2": "ଡକ୍ୟୁମେଣ୍ଟ୍ ଅପଲୋଡ୍ 2",
+  "UPLOAD_DOCUMENT3": "ଡକ୍ୟୁମେଣ୍ଟ୍ ଅପଲୋଡ୍ 3",
+  "UPLOAD_DOCUMENT4": "ଡକ୍ୟୁମେଣ୍ଟ୍ ଅପଲୋଡ୍ 4",
+  "POLICY_NAME": "ନୀତି ନାମ",
+  "THIRDPARTY_ADMINI": "ତୃତୀୟ ପକ୍ଷ ପ୍ରଶାସକ ",
+  "START_DATE": "ପ୍ରାରମ୍ଭ ତାରିଖ",
+  "END_DATE": "ଶେଷ ତାରିଖ",
+  "VIEW_PDF": "Pdf ଦେଖନ୍ତୁ ",
+  "HEALTH_TIPS_LIST": "ସ୍ୱାସ୍ଥ୍ୟ ଟିପ୍ସ ତାଲିକା ",
+  "PDF": "Pdf",
+
 
 
   "USER_ADDRESS": "ଉପଯୋଗକର୍ତ୍ତା ଠିକଣା"

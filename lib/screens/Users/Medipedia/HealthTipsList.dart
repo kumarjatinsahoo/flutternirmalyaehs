@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:user/localization/localizations.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/models/MedipediaDTO.dart';
 import 'package:user/providers/MedipediaData.dart';
@@ -69,8 +70,7 @@ class _HealthTipsListState extends State<HealthTipsList> {
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
-        title: Text(
-          "Health Tips List",
+        title: Text(MyLocalizations.of(context).text("HEALTH_TIPS_LIST"),
           style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
