@@ -6,7 +6,7 @@ class ApiFactory {
   static String MAIN_URL1 = "https://1331.co.in/api";
   //static String REPORT_URL1 = "https://ehealthsystem.com/";
   static String REPORT_URL1 = "https://demo.ehealthsystem.com/";
- // static String MAIN_URL = "http:// 192.168.29.46:8062/nirmalyaRest/api/";
+  //static String MAIN_URL = "http://192.168.29.50:8062/nirmalyaRest/api/";
  // static String MAIN_URL = "http://192.168.137.1:8062/nirmalyaRest/api/";
    //static String MAIN_URL = "http://192.168.43.248:8062/nirmalyaRest/api/";
   static String VITALS_REPORT = MAIN_URL + 'medtel-screening-test-report';
@@ -60,8 +60,7 @@ class ApiFactory {
   static String ADM_EQUIPMENT_API = MAIN_URL + 'get-adm-equipment-list';
   static String SHARE_APPOINTMENT_UHID =
       MAIN_URL + 'get-confirmed-patient-list?drid=';
-  static String RECEPTIONLIST_DOCTOR =
-      MAIN_URL + 'get-doctor-list-by-org?userid=';
+  static String RECEPTIONLIST_DOCTOR =MAIN_URL + 'get-doctor-list-by-org?userid=';
   static String SHARE_APPOINTMENT_DOCTORRECEPTIONIST = MAIN_URL + 'get-doctorreceptionist-list?drid=';
   static String GET_DOCUMENT_API = MAIN_URL + 'get-document-type-list';
   static String IMMUNIZATION_API = MAIN_URL + 'get-immunization-type-list';

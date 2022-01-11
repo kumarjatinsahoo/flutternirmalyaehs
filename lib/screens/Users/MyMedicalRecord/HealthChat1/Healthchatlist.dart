@@ -77,7 +77,7 @@ class _MedicineList extends State<HealthChaatlist> {
     child: Container(
       child: Column(
         children: [
-          ListView(
+          /*ListView(
             shrinkWrap: true,
             physics: NeverScrollableScrollPhysics(),
             children: [
@@ -119,14 +119,14 @@ class _MedicineList extends State<HealthChaatlist> {
 
                                                   AppData.kPrimaryColor,
                                                   width: 5)))
-                                          /*: BoxDecoration(
+                                          *//*: BoxDecoration(
                                           border: Border(
                                               left: BorderSide(
                                                   color: AppData.kPrimaryColor,
-                                                  width: 5)))*/,
+                                                  width: 5)))*//*,
                                       child: Row(
-                                       /* crossAxisAlignment:
-                                        CrossAxisAlignment.center,*/
+                                       *//* crossAxisAlignment:
+                                        CrossAxisAlignment.center,*//*
                                         children: [
                                           Padding(
                                             padding: const EdgeInsets.symmetric(horizontal: 10.0,vertical: 10),
@@ -152,14 +152,14 @@ class _MedicineList extends State<HealthChaatlist> {
                                               ],
                                             ),
                                           ),
-                                         /* SizedBox(
+                                         *//* SizedBox(
                                             width: spaceTab,
-                                          ),*/
+                                          ),*//*
                                           Spacer(),
                                           Padding(
                                             padding: const EdgeInsets.only(right: 5.0),
                                             child:Icon(Icons.more_vert,size: 25),
-                                            /* Image.asset("assets/Forwordarrow.png",height: 25,),*/
+                                            *//* Image.asset("assets/Forwordarrow.png",height: 25,),*//*
                                           )
                                         ],
                                       )),
@@ -190,14 +190,14 @@ class _MedicineList extends State<HealthChaatlist> {
                                                   color:
                                                   AppData.kPrimaryRedColor,
                                                   width: 5)))
-                                      /*: BoxDecoration(
+                                      *//*: BoxDecoration(
                                           border: Border(
                                               left: BorderSide(
                                                   color: AppData.kPrimaryColor,
-                                                  width: 5)))*/,
+                                                  width: 5)))*//*,
                                       child: Row(
-                                        /* crossAxisAlignment:
-                                        CrossAxisAlignment.center,*/
+                                        *//* crossAxisAlignment:
+                                        CrossAxisAlignment.center,*//*
                                         children: [
                                           Padding(
                                             padding: const EdgeInsets.symmetric(horizontal: 10.0,vertical: 10),
@@ -223,14 +223,152 @@ class _MedicineList extends State<HealthChaatlist> {
                                               ],
                                             ),
                                           ),
-                                          /* SizedBox(
+                                          *//* SizedBox(
                                             width: spaceTab,
-                                          ),*/
+                                          ),*//*
                                           Spacer(),
                                           Padding(
                                             padding: const EdgeInsets.only(right: 5.0),
                                             child:Icon(Icons.more_vert,size: 25),
-                                            /* Image.asset("assets/Forwordarrow.png",height: 25,),*/
+                                            *//* Image.asset("assets/Forwordarrow.png",height: 25,),*//*
+                                          )
+                                        ],
+                                      )),
+                                ),
+                              ),
+                            )),
+                        Container(
+                            child: Card(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5.0),
+                              ),
+                              elevation: 5,
+                              child: ClipPath(
+                                clipper: ShapeBorderClipper(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(5))),
+                                child: Container(
+                                  //height: tileSize,
+                                  // width: double.maxFinite,
+                                    decoration: BoxDecoration(
+                                        border: Border(
+                                            left: BorderSide(
+                                                color:
+
+                                                AppData.kPrimaryColor,
+                                                width: 5)))
+                                    *//*: BoxDecoration(
+                                        border: Border(
+                                            left: BorderSide(
+                                                color: AppData.kPrimaryColor,
+                                                width: 5)))*//*,
+                                    child: Row(
+                                      *//* crossAxisAlignment:
+                                      CrossAxisAlignment.center,*//*
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(horizontal: 10.0,vertical: 10),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                            mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                            children: [
+                                              Text("Complete blood Count".toUpperCase(),
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 16),
+                                              ),
+                                              SizedBox(
+                                                height: 5,
+                                              ),
+                                              Expanded(child:
+                                              Text(
+                                                "Hb,WBCs,Nutrophils,Eosinophils,Basophis,Monocytes,platelets,ESR,Hct.....",
+                                                style: TextStyle(fontSize: 13,color:Colors.grey),
+                                                  )
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                        *//* SizedBox(
+                                          width: spaceTab,
+                                        ),*//*
+                                        Spacer(),
+                                        Padding(
+                                          padding: const EdgeInsets.only(right: 5.0),
+                                          child:Icon(Icons.more_vert,size: 25),
+                                          *//* Image.asset("assets/Forwordarrow.png",height: 25,),*//*
+                                        )
+                                      ],
+                                    )),
+                              ),
+                            )),
+                        Container(
+                            child: InkWell(
+                              onTap: () {
+
+
+                              },
+                              child: Card(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5.0),
+                                ),
+                                elevation: 5,
+                                child: ClipPath(
+                                  clipper: ShapeBorderClipper(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(5))),
+                                  child: Container(
+                                    //height: tileSize,
+                                    // width: double.maxFinite,
+                                      decoration: BoxDecoration(
+                                          border: Border(
+                                              left: BorderSide(
+                                                  color:
+                                                  AppData.kPrimaryRedColor,
+                                                  width: 5)))
+                                      *//*: BoxDecoration(
+                                          border: Border(
+                                              left: BorderSide(
+                                                  color: AppData.kPrimaryColor,
+                                                  width: 5)))*//*,
+                                      child: Row(
+                                        *//* crossAxisAlignment:
+                                        CrossAxisAlignment.center,*//*
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.symmetric(horizontal: 10.0,vertical: 10),
+                                            child: Column(
+                                              crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                              mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                              children: [
+                                                Text("Body Measurment".toUpperCase(),
+                                                  style: TextStyle(
+                                                      fontWeight: FontWeight.bold,
+                                                      fontSize: 16),
+                                                ),
+                                                SizedBox(
+                                                  height: 5,
+                                                ),
+
+                                                Text(
+                                                  "Weight,Height,BMI",
+                                                  style: TextStyle(fontSize: 13,color:Colors.grey),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                          *//* SizedBox(
+                                            width: spaceTab,
+                                          ),*//*
+                                          Spacer(),
+                                          Padding(
+                                            padding: const EdgeInsets.only(right: 5.0),
+                                            child:Icon(Icons.more_vert,size: 25),
+                                            *//* Image.asset("assets/Forwordarrow.png",height: 25,),*//*
                                           )
                                         ],
                                       )),
@@ -262,14 +400,14 @@ class _MedicineList extends State<HealthChaatlist> {
 
                                                   AppData.kPrimaryColor,
                                                   width: 5)))
-                                      /*: BoxDecoration(
+                                      *//*: BoxDecoration(
                                           border: Border(
                                               left: BorderSide(
                                                   color: AppData.kPrimaryColor,
-                                                  width: 5)))*/,
+                                                  width: 5)))*//*,
                                       child: Row(
-                                        /* crossAxisAlignment:
-                                        CrossAxisAlignment.center,*/
+                                        *//* crossAxisAlignment:
+                                        CrossAxisAlignment.center,*//*
                                         children: [
                                           Padding(
                                             padding: const EdgeInsets.symmetric(horizontal: 10.0,vertical: 10),
@@ -279,7 +417,7 @@ class _MedicineList extends State<HealthChaatlist> {
                                               mainAxisAlignment:
                                               MainAxisAlignment.center,
                                               children: [
-                                                Text("Complete blood Count".toUpperCase(),
+                                                Text("Body Measurment".toUpperCase(),
                                                   style: TextStyle(
                                                       fontWeight: FontWeight.bold,
                                                       fontSize: 16),
@@ -287,23 +425,22 @@ class _MedicineList extends State<HealthChaatlist> {
                                                 SizedBox(
                                                   height: 5,
                                                 ),
-                                                Expanded(child:
+
                                                 Text(
-                                                  "Hb,WBCs,Nutrophils,Eosinophils,Basophis,Monocytes,platelets,ESR,Hct.....",
+                                                  "Weight,Height,BMI",
                                                   style: TextStyle(fontSize: 13,color:Colors.grey),
-                                                    )
                                                 )
                                               ],
                                             ),
                                           ),
-                                          /* SizedBox(
+                                          *//* SizedBox(
                                             width: spaceTab,
-                                          ),*/
+                                          ),*//*
                                           Spacer(),
                                           Padding(
                                             padding: const EdgeInsets.only(right: 5.0),
                                             child:Icon(Icons.more_vert,size: 25),
-                                            /* Image.asset("assets/Forwordarrow.png",height: 25,),*/
+                                            *//* Image.asset("assets/Forwordarrow.png",height: 25,),*//*
                                           )
                                         ],
                                       )),
@@ -334,14 +471,14 @@ class _MedicineList extends State<HealthChaatlist> {
                                                   color:
                                                   AppData.kPrimaryRedColor,
                                                   width: 5)))
-                                      /*: BoxDecoration(
+                                      *//*: BoxDecoration(
                                           border: Border(
                                               left: BorderSide(
                                                   color: AppData.kPrimaryColor,
-                                                  width: 5)))*/,
+                                                  width: 5)))*//*,
                                       child: Row(
-                                        /* crossAxisAlignment:
-                                        CrossAxisAlignment.center,*/
+                                        *//* crossAxisAlignment:
+                                        CrossAxisAlignment.center,*//*
                                         children: [
                                           Padding(
                                             padding: const EdgeInsets.symmetric(horizontal: 10.0,vertical: 10),
@@ -367,157 +504,14 @@ class _MedicineList extends State<HealthChaatlist> {
                                               ],
                                             ),
                                           ),
-                                          /* SizedBox(
+                                          *//* SizedBox(
                                             width: spaceTab,
-                                          ),*/
+                                          ),*//*
                                           Spacer(),
                                           Padding(
                                             padding: const EdgeInsets.only(right: 5.0),
                                             child:Icon(Icons.more_vert,size: 25),
-                                            /* Image.asset("assets/Forwordarrow.png",height: 25,),*/
-                                          )
-                                        ],
-                                      )),
-                                ),
-                              ),
-                            )),
-                        Container(
-                            child: InkWell(
-                              onTap: () {
-
-
-                              },
-                              child: Card(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(5.0),
-                                ),
-                                elevation: 5,
-                                child: ClipPath(
-                                  clipper: ShapeBorderClipper(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(5))),
-                                  child: Container(
-                                    //height: tileSize,
-                                    // width: double.maxFinite,
-                                      decoration: BoxDecoration(
-                                          border: Border(
-                                              left: BorderSide(
-                                                  color:
-
-                                                  AppData.kPrimaryColor,
-                                                  width: 5)))
-                                      /*: BoxDecoration(
-                                          border: Border(
-                                              left: BorderSide(
-                                                  color: AppData.kPrimaryColor,
-                                                  width: 5)))*/,
-                                      child: Row(
-                                        /* crossAxisAlignment:
-                                        CrossAxisAlignment.center,*/
-                                        children: [
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(horizontal: 10.0,vertical: 10),
-                                            child: Column(
-                                              crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                              mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                              children: [
-                                                Text("Body Measurment".toUpperCase(),
-                                                  style: TextStyle(
-                                                      fontWeight: FontWeight.bold,
-                                                      fontSize: 16),
-                                                ),
-                                                SizedBox(
-                                                  height: 5,
-                                                ),
-
-                                                Text(
-                                                  "Weight,Height,BMI",
-                                                  style: TextStyle(fontSize: 13,color:Colors.grey),
-                                                )
-                                              ],
-                                            ),
-                                          ),
-                                          /* SizedBox(
-                                            width: spaceTab,
-                                          ),*/
-                                          Spacer(),
-                                          Padding(
-                                            padding: const EdgeInsets.only(right: 5.0),
-                                            child:Icon(Icons.more_vert,size: 25),
-                                            /* Image.asset("assets/Forwordarrow.png",height: 25,),*/
-                                          )
-                                        ],
-                                      )),
-                                ),
-                              ),
-                            )),
-                        Container(
-                            child: InkWell(
-                              onTap: () {
-
-
-                              },
-                              child: Card(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(5.0),
-                                ),
-                                elevation: 5,
-                                child: ClipPath(
-                                  clipper: ShapeBorderClipper(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(5))),
-                                  child: Container(
-                                    //height: tileSize,
-                                    // width: double.maxFinite,
-                                      decoration: BoxDecoration(
-                                          border: Border(
-                                              left: BorderSide(
-                                                  color:
-                                                  AppData.kPrimaryRedColor,
-                                                  width: 5)))
-                                      /*: BoxDecoration(
-                                          border: Border(
-                                              left: BorderSide(
-                                                  color: AppData.kPrimaryColor,
-                                                  width: 5)))*/,
-                                      child: Row(
-                                        /* crossAxisAlignment:
-                                        CrossAxisAlignment.center,*/
-                                        children: [
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(horizontal: 10.0,vertical: 10),
-                                            child: Column(
-                                              crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                              mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                              children: [
-                                                Text("Body Measurment".toUpperCase(),
-                                                  style: TextStyle(
-                                                      fontWeight: FontWeight.bold,
-                                                      fontSize: 16),
-                                                ),
-                                                SizedBox(
-                                                  height: 5,
-                                                ),
-
-                                                Text(
-                                                  "Weight,Height,BMI",
-                                                  style: TextStyle(fontSize: 13,color:Colors.grey),
-                                                )
-                                              ],
-                                            ),
-                                          ),
-                                          /* SizedBox(
-                                            width: spaceTab,
-                                          ),*/
-                                          Spacer(),
-                                          Padding(
-                                            padding: const EdgeInsets.only(right: 5.0),
-                                            child:Icon(Icons.more_vert,size: 25),
-                                            /* Image.asset("assets/Forwordarrow.png",height: 25,),*/
+                                            *//* Image.asset("assets/Forwordarrow.png",height: 25,),*//*
                                           )
                                         ],
                                       )),
@@ -534,7 +528,7 @@ class _MedicineList extends State<HealthChaatlist> {
                 ),
               ),
             ],
-          ),
+          ),*/
 
 
 
