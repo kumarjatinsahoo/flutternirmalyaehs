@@ -611,7 +611,7 @@ class _MedicineList extends State<HealthChaatlist> {
                                                     MainAxisAlignment.center,
                                                     children: [
                                                       Text(
-                                                        "Oxygem Saturation"
+                                                        "Oxygen Saturation"
                                                             .toUpperCase(),
                                                         style: TextStyle(
                                                             fontWeight:
@@ -622,7 +622,7 @@ class _MedicineList extends State<HealthChaatlist> {
                                                         height: 5,
                                                       ),
                                                       Text(
-                                                        "Oxygem Saturation",
+                                                        "Oxygen Saturation",
                                                         style: TextStyle(
                                                             fontSize: 13,
                                                             color: Colors.grey),
