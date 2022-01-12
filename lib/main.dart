@@ -8,6 +8,7 @@ import 'package:user/providers/Const.dart';
 import 'package:user/providers/SharedPref.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
+import 'package:user/screens/Admin/Admin.dart';
 import 'package:user/screens/Ambulance/Dashboard/AcceptAmbulance.dart';
 import 'package:user/screens/Ambulance/Dashboard/AllAmbulance.dart';
 import 'package:user/screens/Ambulance/Dashboard/AmbulanceDashboard.dart';
@@ -1077,11 +1078,14 @@ class _MyAppState extends State<MyApp> {
 
 ////////////////////////////////////////////////////////////////////////////////
              // syndicate partner
+              '/admin': (context) =>
+                  AdminUser(
+                    model: _model,
+                  ),
               '/syndicatesignUpformm': (context) =>
                   SyndicateSignupform(
                     model: _model,
                   ),
-
               '/syndicateDashboard': (context) =>
                   SyndicateDashboard(
                     model: _model,

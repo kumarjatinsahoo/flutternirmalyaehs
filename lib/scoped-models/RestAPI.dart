@@ -16,19 +16,15 @@ import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
 
 import 'PassData.dart';
-
 class RestAPI extends Model with PassData{
   var dio = Dio();
   SharedPref sharedPref = SharedPref();
   LoginResponse1 loginData1;
   HealthChartResponse healthChartData;
-
-
   Map<String, dynamic> failedMap = {
     Const.STATUS: Const.FAILED,
     Const.MESSAGE: Const.NETWORK_ISSUE,
   };
-
   GETMETHODCAL({@required String api, @required Function fun}) async {
     print("<<>>>>>API CALL>>>>>>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" + api);
     try {
@@ -58,7 +54,6 @@ class RestAPI extends Model with PassData{
       fun(failedMap);
     }
   }
-
 
   GETMETHODCALL({@required String api, @required Function fun}) async {
     print("<<>>>>>API CALL>>>>>>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" + api);

@@ -825,7 +825,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                               // AppData.launchURL("https://www.youtube.com/watch?v=cXU3FTZ4UzU");
                               // AppData.launchURL("https://www.youtube.com/watch?v=dPTSG6GZEJw");
                               AppData.launchURL(
-                                  "https://www.youtube.com/watch?v=O8lZfZ1CTyA");
+                         "https://www.youtube.com/watch?v=O8lZfZ1CTyA");
                               break;
                             case 1:
                               // AppData.launchURL("https://www.youtube.com/embed/-sTLaWKiklM&vs");

@@ -266,6 +266,9 @@ class _SplashScreenState extends State<SplashScreen> {
         } else if (loginResponse1.body.roles[0] == "22".toLowerCase()) {
           Navigator.of(context).pushNamedAndRemoveUntil(
               '/syndicateDashboard', (Route<dynamic> route) => false);
+        } else if (loginResponse1.body.roles[0] == "23".toLowerCase()) {
+          Navigator.of(context).pushNamedAndRemoveUntil(
+              '/admin', (Route<dynamic> route) => false);
         } else {
           Navigator.of(context).pushNamedAndRemoveUntil(
               '/login', (Route<dynamic> route) => false);
