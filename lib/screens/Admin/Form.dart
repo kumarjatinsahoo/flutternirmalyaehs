@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
+import 'package:dio/dio.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
@@ -14,12 +15,14 @@ import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/DoctorRegistrationModel.dart';
 import 'package:user/models/KeyvalueModel.dart';
+import 'package:user/models/NewsupdateModel.dart';
 import 'package:user/models/UserRegistrationModel.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/DropDown.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
+import 'package:user/screens/Admin/Admin.dart';
 import 'package:user/widgets/MyWidget.dart';
 import 'package:user/widgets/text_field_container.dart';
 
@@ -59,6 +62,9 @@ class MediaupdateState extends State<Mediaupdate> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   bool _autovalidate = false;
   DateTime selectedDate = DateTime.now();
+  String extension;
+  File selectFile;
+
   List<TextEditingController> textEditingController = [
     new TextEditingController(),
     new TextEditingController(),
@@ -82,6 +88,7 @@ class MediaupdateState extends State<Mediaupdate> {
   FocusNode fnode7 = new FocusNode();
   FocusNode fnode8 = new FocusNode();
   FocusNode fnode9 = new FocusNode();
+  var dio = Dio();
 
   List<KeyvalueModel> specialitylist = [
     KeyvalueModel(name: "Syndicate Partner", key: "57"),
@@ -103,9 +110,8 @@ class MediaupdateState extends State<Mediaupdate> {
   final df1 = new DateFormat('yyyy');
   bool ispartnercode = false;
   bool _checkbox = false;
-  String profilePath = null,
-      idproof = null;
-  DoctorRegistrationModel doctorModel = DoctorRegistrationModel();
+  String profilePath = null, idproof = null;
+  NewsupdateModel newsModel = NewsupdateModel();
 
   Future<Null> _selectDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
@@ -216,19 +222,6 @@ class MediaupdateState extends State<Mediaupdate> {
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
                       children: [
-
-/*                        Align(
-                          alignment: Alignment.center,
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 60.0, right: 60.0),
-                            child: Image.asset(
-                              "assets/logo1.png",
-                              fit: BoxFit.fitWidth,
-                              //width: ,
-                              height: 110.0,
-                            ),
-                          ),
-                        ),*/
                         SizedBox(
                           height: 10,
                         ),
@@ -260,7 +253,7 @@ class MediaupdateState extends State<Mediaupdate> {
                                     ),
                                     textInputAction: TextInputAction.next,
                                     keyboardType: TextInputType.text,
-                                    controller: textEditingController[2],
+                                    controller: textEditingController[1],
                                     //focusNode: fnode5,
                                     textAlignVertical: TextAlignVertical.center,
                                     inputFormatters: [
@@ -299,7 +292,7 @@ class MediaupdateState extends State<Mediaupdate> {
                                     ),
                                     textInputAction: TextInputAction.next,
                                     keyboardType: TextInputType.text,
-                                    controller: textEditingController[3],
+                                    controller: textEditingController[2],
                                     focusNode: fnode4,
                                     textAlignVertical:
                                     TextAlignVertical.center,
@@ -340,14 +333,14 @@ class MediaupdateState extends State<Mediaupdate> {
                                     ),
                                     textInputAction: TextInputAction.next,
                                     keyboardType: TextInputType.text,
-                                    controller: textEditingController[4],
+                                    controller: textEditingController[3],
                                     focusNode: fnode3,
                                     textAlignVertical:
                                     TextAlignVertical.center,
                                     //maxLength: 2,
                                     inputFormatters: [
                                       WhitelistingTextInputFormatter(
-                                          RegExp("[a-z A-Z. , /0-9]")),
+                                          RegExp("[a-z A-Z. , :,/0-9]")),
                                     ],
 
 
@@ -476,35 +469,31 @@ class MediaupdateState extends State<Mediaupdate> {
                                 children: [
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
-                                    child: Expanded(
-                                      child: Text(
-                                        "Upload Banner",
-                                        style: TextStyle(
-                                            fontSize: 20, color: Colors.black),
-                                      ),
+                                    child: Text(
+                                      "Upload Banner",
+                                      style: TextStyle(
+                                          fontSize: 20, color: Colors.black),
                                     ),
                                   ),
                                   SizedBox(width: 30),
-                                  Expanded(
-                                 child: Material(
-                                    elevation: 3,
-                                    color: AppData.kPrimaryColor,
-                                    borderRadius: BorderRadius.circular(5.0),
-                                    child: MaterialButton(
-                                      onPressed: () {
-                                        _settingModalBottomSheet(context);
-                                      },
-                                      minWidth: 120,
-                                      height: 40.0,
-                                      child: Text(
-                                        "Upload",
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 17.0),
-                                      ),
-                                    ),
-                                  ),
-                                  ),
+                                  Material(
+                                     elevation: 3,
+                                     color: AppData.kPrimaryColor,
+                                     borderRadius: BorderRadius.circular(5.0),
+                                     child: MaterialButton(
+                                       onPressed: () {
+                                         _settingModalBottomSheet(context);
+                                       },
+                                       minWidth: 120,
+                                       height: 40.0,
+                                       child: Text(
+                                         "Upload",
+                                         style: TextStyle(
+                                             color: Colors.white,
+                                             fontSize: 17.0),
+                                       ),
+                                     ),
+                                   ),
                                 ],
                               ),
                               SizedBox(
@@ -546,68 +535,6 @@ class MediaupdateState extends State<Mediaupdate> {
                                 ),
                               )
                                   : Container(),
-                            /*  Padding(
-                                padding:
-                                const EdgeInsets.symmetric(horizontal: 1),
-                                child: Row(
-                                  //  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Checkbox(
-                                      value: _checkbox,
-                                      onChanged: (value) {
-                                        setState(() {
-                                          _checkbox = !_checkbox;
-                                        });
-                                      },
-                                    ),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                    Expanded(
-                                        child: RichText(
-                                            textAlign: TextAlign.start,
-                                            text: TextSpan(
-                                              children: [
-                                                TextSpan(
-                                                  text: MyLocalizations.of(
-                                                      context)
-                                                      .text(
-                                                      "AGREE_EHEALTHSYSTEM"),
-                                                  *//* "Welcome back",*//*
-                                                  style: TextStyle(
-                                                    // fontWeight: FontWeight.w800,
-                                                    fontFamily: "Monte",
-                                                    // fontSize: 25.0,
-                                                    color: Colors.grey,
-                                                  ),
-                                                ),
-                                                // SizedBox(width: 10),
-                                                TextSpan(
-                                                    text: MyLocalizations.of(
-                                                        context)
-                                                        .text("T&C"),
-                                                    *//* "Welcome back",*//*
-                                                    style: TextStyle(
-                                                      fontWeight:
-                                                      FontWeight.bold,
-                                                      fontFamily: "Monte",
-                                                      // fontSize: 25.0,
-                                                      color:
-                                                      AppData.kPrimaryColor,
-                                                    ),
-                                                    recognizer:
-                                                    TapGestureRecognizer()
-                                                      ..onTap = () {
-                                                        Navigator.pushNamed(
-                                                            context,
-                                                            "/termsandConditionPage");
-                                                        // AppData.showInSnackBar(context, "Please select Gender");
-                                                      }),
-                                              ],
-                                            ))),
-                                  ],
-                                ),
-                              ),*/
                               SizedBox(
                                 height: 20,
                               ),
@@ -923,56 +850,18 @@ class MediaupdateState extends State<Mediaupdate> {
   }
 
   validate() async {
-    if (Mediaupdate.organizationModel == null ||
-        Mediaupdate.organizationModel == "") {
-      AppData.showInSnackBar(context, "Please Select Organization Name");
-    }else if (Mediaupdate.specialityModel == null ||
-        Mediaupdate.specialityModel == "") {
-      AppData.showInSnackBar(context, "Please Select Speciality Name");
-    }
-    else if (Mediaupdate.titleModel == null ||
-        Mediaupdate.titleModel == "") {
-      AppData.showInSnackBar(context, "Please select title");
-    } else if (Mediaupdate.genderModel == null ||
-        Mediaupdate.genderModel == "") {
-      AppData.showInSnackBar(context, "Please select gender");
-    } else if (textEditingController[2].text == null ||
-        textEditingController[2].text == "") {
-      AppData.showInSnackBar(context, "Please enter professional's Name");
-    }  else if (textEditingController[2].text.length<3) {
-      AppData.showInSnackBar(context, "Please enter valid professional's Name");
-    } else if (textEditingController[3].text == null ||
-        textEditingController[3].text == "") {
-      AppData.showInSnackBar(context, "Please enter address");
-    }  else if (textEditingController[3].text.length<3) {
+  if (textEditingController[1].text == null ||
+        textEditingController[1].text == "") {
+      AppData.showInSnackBar(context, "Please enter Title");
+    }  else if (textEditingController[1].text.length<3) {
       AppData.showInSnackBar(context, "Please enter valid address");
-    } else if (textEditingController[4].text ==null||
-        textEditingController[4].text == "" ) {
-      AppData.showInSnackBar(context, "Please enter experience");
+    } else if (textEditingController[2].text ==null||
+        textEditingController[2].text == "" ) {
+      AppData.showInSnackBar(context, "Please enter SubTitle");
       FocusScope.of(context).requestFocus(fnode3);
-    } else if (textEditingController[0].text == "" ||
-        textEditingController[0].text == null) {
-      AppData.showInSnackBar(context, "Please enter Zip/Pin code");
-    } else if (textEditingController[0].text == null ||
-        textEditingController[0].text.length != 6) {
-      AppData.showInSnackBar(context, "Please enter a valid Zip/Pin code");
-      FocusScope.of(context).requestFocus(fnode1);
-    } else if (textEditingController[1].text == "" ||
-        textEditingController[1].text == null) {
-      AppData.showInSnackBar(context, "Please enter e-mail Id");
-      FocusScope.of(context).requestFocus(fnode2);
-    } else if (textEditingController[1].text != "" &&
-        !AppData.isValidEmail(textEditingController[1].text)) {
-      AppData.showInSnackBar(context, "Please enter a valid e-mail Id");
-      FocusScope.of(context).requestFocus(fnode2);
-    } else if (textEditingController[5].text == "" ||
-        textEditingController[5].text == null) {
-      AppData.showInSnackBar(context, "Please enter mobile number");
-      FocusScope.of(context).requestFocus(fnode6);
-    } else if (textEditingController[5].text != "" &&
-        textEditingController[5].text.length != 10) {
-      AppData.showInSnackBar(context, "Please enter a valid mobile number");
-      FocusScope.of(context).requestFocus(fnode6);
+    } else if (textEditingController[3].text == "" ||
+        textEditingController[3].text == null) {
+      AppData.showInSnackBar(context, "Please enter VidioLink");
     } else if (Mediaupdate.countryModel == null ||
         Mediaupdate.countryModel == "") {
       AppData.showInSnackBar(context, "Please select country");
@@ -985,32 +874,24 @@ class MediaupdateState extends State<Mediaupdate> {
     } else if (Mediaupdate.cityModel == null ||
         Mediaupdate.cityModel == "") {
       AppData.showInSnackBar(context, "Please select city");
-    }else if (doctorModel.documentExt == null) {
-      AppData.showInSnackBar(context, "Please upload document");
-    } else if (_checkbox == false) {
-      AppData.showInSnackBar(context, "Please check terms and conditions");
+    }else if (idproof == null) {
+      AppData.showInSnackBar(context, "Please upload Image");
     }
     else {
-      doctorModel.titleid = Mediaupdate.titleModel.key;
-      doctorModel.organizationid = Mediaupdate.organizationModel.key;
-      doctorModel.gender = Mediaupdate.genderModel.key;
-      doctorModel.address = textEditingController[3].text;
-      doctorModel.pincode = textEditingController[0].text;
-      doctorModel.mobno = textEditingController[5].text;
-      doctorModel.email = textEditingController[1].text;
-      doctorModel.experience = textEditingController[4].text;
-      doctorModel.docname = textEditingController[2].text;
-      doctorModel.countryid = Mediaupdate.countryModel.key;
-      doctorModel.stateid = Mediaupdate.stateModel.key;
-      doctorModel.districtid = Mediaupdate.districtModel.key;
-      doctorModel.cityid = Mediaupdate.cityModel.key;
-      doctorModel.speciality ="57";
-      doctorModel.role = "22";
-      log("DOCTOR MODEL SEND>>>>" + jsonEncode(doctorModel.toJson()));
+    postMultiPart();
+     /* newsModel.title = textEditingController[1].text;
+      newsModel.subTitle = textEditingController[2].text;
+      newsModel.vdoURL = textEditingController[3].text;
+      newsModel.country = Mediaupdate.countryModel.key;
+      newsModel.state = Mediaupdate.stateModel.key;
+      newsModel.district = Mediaupdate.districtModel.key;
+      newsModel.city = Mediaupdate.cityModel.key;
+      newsModel.admId = "23";
+      log("DOCTOR MODEL SEND>>>>" + jsonEncode(newsModel.toJson()));
       MyWidgets.showLoading(context);
-      widget.model.POSTMETHOD(
-          api: ApiFactory.DOCTOR_REGISTRATION,
-          json: doctorModel.toJson(),
+      *//*widget.model.POSTMETHOD(
+          api: ApiFactory.NEWS_UPDATE_POST,
+          json: newsModel.toJson(),
           fun: (Map<String, dynamic> map) {
             Navigator.pop(context);
             if (map[Const.STATUS] == Const.SUCCESS) {
@@ -1018,16 +899,15 @@ class MediaupdateState extends State<Mediaupdate> {
             } else {
               AppData.showInSnackBar(context, map[Const.MESSAGE]);
             }
-          });
+          });*/
     };
 
   }
 
-  popup(BuildContext context, String message) {
+  popup(BuildContext context) {
     return Alert(
         context: context,
-        title: message,
-        desc: MyLocalizations.of(context).text("REG_SUCCESS_POPUP"),
+        title: "Successfully Uploaded",
         type: AlertType.success,
         onWillPopActive: true,
         closeIcon: Icon(
@@ -1043,9 +923,16 @@ class MediaupdateState extends State<Mediaupdate> {
               style: TextStyle(color: Colors.white, fontSize: 20),
             ),
             onPressed: () {
-              Navigator.pop(context);
-              Navigator.pop(context);
-              Navigator.pop(context);
+              setState(() {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            AdminUser(model: widget.model)));
+                //Navigator.pop(context, true);
+              });
+
+              //Navigator.pop(context, true);
             },
             color: Color.fromRGBO(0, 179, 134, 1.0),
             radius: BorderRadius.circular(0.0),
@@ -1103,14 +990,19 @@ class MediaupdateState extends State<Mediaupdate> {
         print(extName);
         //print("size>>>" + AppData.formatBytes(enc.length, 0).toString());
         setState(() {
+
+          selectFile = image;
+          idproof = image.path;
           // widget.model.patientimg =base64Encode(enc);
           // widget.model.patientimgtype =extName;
           _imageCertificate = image;
           idproof = _fileName;
           // Print("pathhh"+idproof);
           //userModel.profileImage = base64Encode(enc);
-          doctorModel.documentUpload=base64Encode(enc);
-          doctorModel.documentExt=extName;
+          //newsModel.documentUpload=base64Encode(enc);
+         // newsModel.documentExt=extName;
+         // extension=extName;
+
         });
       }
     } catch (e) {
@@ -1139,8 +1031,8 @@ class MediaupdateState extends State<Mediaupdate> {
         idproof = file.path;
         //userModel. = base64Encode(enc);
         //file1 = file; //file1 is a global variable which i created
-        doctorModel.documentUpload=base64Encode(enc);
-        doctorModel.documentExt=extName;
+       // newsModel.documentUpload=base64Encode(enc);
+        //newsModel.documentExt=extName;
       });
     }
   }
@@ -1159,11 +1051,14 @@ class MediaupdateState extends State<Mediaupdate> {
     print(extName);
 
     setState(() {
+      selectFile = image;
+      idproof = image.path;
+      extension=extName;
       _imageCertificate = image;
       idproof = _fileName;
       // userModel.profileImage = base64Encode(enc);
-      doctorModel.documentUpload=base64Encode(enc);
-      doctorModel.documentExt=extName;
+     // newsModel.documentUpload=base64Encode(enc);
+      //newsModel.documentExt=extName;
     });
   }
   chooseAppointment(BuildContext context) {
@@ -1278,4 +1173,103 @@ class MediaupdateState extends State<Mediaupdate> {
       ),
     );
   }
+
+  void postMultiPart() async {
+    MyWidgets.showLoading(context);
+    try {
+      Response response;
+      response = await dio.post(
+        ApiFactory.NEWS_UPDATE_POST,
+        data: await FormData2(),
+        onSendProgress: (received, total) {
+          if (total != -1) {
+            setState(() {
+              print((received / total * 100).toStringAsFixed(0) + '%');
+            });
+          }
+        },
+      );
+      Navigator.pop(context);
+      if (response.statusCode == 200) {
+        log("value" + jsonEncode(response.data));
+        if (response.data["code"] == "success") {
+          //Navigator.pushNamed(context, "/uploaddocument");
+          popup(context,);
+        } else {
+          AppData.showInSnackBar(context, "Something went wrong");
+        }
+      } else {
+        Navigator.pop(context);
+        AppData.showInSnackBar(context, "Something went wrong");
+      }
+    } on DioError catch (e) {
+      if (e.type == DioErrorType.CONNECT_TIMEOUT) {
+        log(e.response.data);
+      }
+      if (e.type == DioErrorType.RECEIVE_TIMEOUT) {
+        log(e.response.data);
+      }
+      if (e.type == DioErrorType.DEFAULT) {
+        log(e.response.data);
+      }
+      if (e.type == DioErrorType.RESPONSE) {
+        log(e.response.data);
+      }
+    }
+    //print(response);
+  }
+
+  Future<FormData> FormData2() async {
+    log("File extension is:::::>>>>>" +
+        textEditingController[1].text +
+        "," +
+        textEditingController[2].text +
+        "," +textEditingController[3].text+","+
+        extension +
+        ","+selectFile.path );
+    var formData = FormData();
+    formData.fields
+      ..add(MapEntry('title',
+          textEditingController[1].text ))
+      ..add(MapEntry(
+        'subTitle',
+        textEditingController[2].text,
+      ))..add(MapEntry(
+        'vdoURL',
+        textEditingController[3].text,
+      ))
+      ..add(MapEntry(
+        'admId',
+        "23",
+      ))
+      ..add(MapEntry(
+        'country',
+        Mediaupdate.countryModel.key,
+      ))
+      ..add(MapEntry(
+        'state',
+        Mediaupdate.cityModel.key,
+      ))
+      ..add(MapEntry(
+        'district',
+        Mediaupdate.districtModel.key,
+      ))..add(MapEntry(
+      'city',
+      Mediaupdate.cityModel.key,
+    ))..add(MapEntry(
+        'extension',
+        extension,
+      ));
+    formData.files.add(MapEntry(
+      'multipleFile',
+      MultipartFile.fromFileSync(
+        selectFile.path,
+        filename: selectFile.path,
+        //contentType: new MediaType('','')
+      ),
+    ));
+    return formData;
+  }
+
+
 }

@@ -102,7 +102,7 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
         hasLabel: true,
         labelText: "Document",
         currentButton: FloatingActionButton(
-          heroTag: "Document",
+          heroTag: "/Document",
           backgroundColor: AppData.kPrimaryColor,
           mini: true,
           child: Icon(Icons.file_copy),
@@ -336,8 +336,7 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
         if (response.data["code"] == "success") {
           //Navigator.pushNamed(context, "/uploaddocument");
 
-          popup(
-            context,
+          popup(context,
           );
         } else {
           AppData.showInSnackBar(context, "Something went wrong");

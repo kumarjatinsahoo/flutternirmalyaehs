@@ -2,11 +2,11 @@ class ApiFactory {
   //bool isRelease = bool.fromEnvironment("DEV");
   static String REG_DEVICE = "https://cca.medtel.in/Ziniai/manageDeviceId";
   //static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
-  static String MAIN_URL = "http://api-demo.ehealthsystem.com/nirmalyaRest/api/";
+ // static String MAIN_URL = "http://api-demo.ehealthsystem.com/nirmalyaRest/api/";
   static String MAIN_URL1 = "https://1331.co.in/api";
   //static String REPORT_URL1 = "https://ehealthsystem.com/";
   static String REPORT_URL1 = "https://demo.ehealthsystem.com/";
-  //static String MAIN_URL = "http://192.168.29.107:8062/nirmalyaRest/api/";
+  static String MAIN_URL = "http://192.168.137.1:8062/nirmalyaRest/api/";
  // static String MAIN_URL = "http://192.168.137.1:8062/nirmalyaRest/api/";
    //static String MAIN_URL = "http://192.168.43.248:8062/nirmalyaRest/api/";
   static String VITALS_REPORT = MAIN_URL + 'medtel-screening-test-report';
@@ -70,6 +70,7 @@ class ApiFactory {
   static String MEDICINE_API = MAIN_URL + 'get-medicine-list-with-type';
   static String USER_REGISTRATION = MAIN_URL + 'user-self-registration';
   static String DOCTOR_REGISTRATION = MAIN_URL + 'doctor-registration-details';
+  static String NEWS_UPDATE_POST = MAIN_URL + 'post-data-for-news-media';
   static String PHARMACY_REGISTRATION = MAIN_URL + 'post-pharmacy-registration';
   static String ALLERGIC_POST = MAIN_URL + 'post-allergies-api';
   static String INSURANCE_POST = MAIN_URL + 'post-insurance-details';
@@ -280,6 +281,7 @@ class ApiFactory {
       MAIN_URL + 'view-requested-test-details?orderid=';
   static String ALLERGY_LIST = MAIN_URL + 'view-user-allergy-list-api?userid=';
   static String RECENT_DOCUMENT_LIST = MAIN_URL + 'get-documents-using-limit?userid=';
+  static String NEWSUPDATE_VIEW = MAIN_URL + 'get-news-media-details-api';
   static String AMBULANCE_LIST =
       MAIN_URL + 'get-patient-ambulance-details?userid=';
   //static String AMBULANCE_LIST = MAIN_URL + 'get-patient-ambulance-details?userid=';

@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -7,15 +10,12 @@ import 'package:user/models/BiomedicalModel.dart' as bio;
 import 'package:user/models/DocumentListModel.dart' as document;
 import 'package:user/models/KeyvalueModel.dart';
 import 'package:user/models/LoginResponse1.dart';
+import 'package:user/models/NewsupdateModel.dart'as news;
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/screens/Admin/Form.dart';
-import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/AddUploadDocument.dart';
-import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/DocumentImageView.dart';
-import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/VideoDetailsPage.dart';
-import 'package:user/widgets/PdfViewPage.dart';
 
 class AdminUser extends StatefulWidget {
   final MainModel model;
@@ -34,6 +34,7 @@ class _AdminUserState extends State<AdminUser> {
   LoginResponse1 loginResponse1;
   bio.BiomedicalModel biomedicalModel;
   document.DocumentListModel documentListModel;
+ news. NewsupdateModel newsupdatemodel;
   ScrollController _scrollController = ScrollController();
   bool checkBoxValue = false;
   int currentMax = 1;
@@ -79,6 +80,7 @@ class _AdminUserState extends State<AdminUser> {
 
     doccategory = widget.model.documentcategories;
     rolee = widget.model.uploadbyrole;
+    callAPI();
     /*callAPI(currentMax);
     _scrollController.addListener(() {
       if (_scrollController.position.pixels ==
@@ -88,32 +90,26 @@ class _AdminUserState extends State<AdminUser> {
     });*/
   }
 
-  callAPI(int i) {
-    widget.model.GETMETHODCALL_TOKEN(
-        api: ApiFactory.UPLOAD_DOCUMENT +
-            widget.model.patientseHealthCard +
-            "&typeid=" +
-            doccategory +
-            "&page=" +
-            i.toString(),
-        token: widget.model.token,
+  callAPI() {
+    widget.model.GETMETHODCALL(
+        api: ApiFactory.NEWSUPDATE_VIEW,
         fun: (Map<String, dynamic> map) {
           setState(() {
+            log("Json Response>>>" + JsonEncoder().convert(map));
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
-              if (i == 1) {
-                documentListModel = document.DocumentListModel.fromJson(map);
-
-                //Navigator.pop(context);
-              } else {
-                //documentListModel.addMore(map);
-              }
+              // pocReportModel = PocReportModel.fromJson(map);
+              newsupdatemodel = news.NewsupdateModel.fromJson(map);
             } else {
-              //if (i == 1) AppData.showInSnackBar(context, msg);
+              setState(() {
+                //isDataNoFound = true;
+                // AppData.showInSnackBar(context, msg);
+              });
             }
           });
         });
   }
+
 
   getFormatType(String ext) {
     switch (ext.toLowerCase()) {
@@ -203,7 +199,7 @@ class _AdminUserState extends State<AdminUser> {
                     setState(() {
                       currentMax = 1;
                     });
-                    callAPI(currentMax);
+                    //callAPI(currentMax);
                   });
                   // displayTextInputDialog(context);
                 },
@@ -215,7 +211,7 @@ class _AdminUserState extends State<AdminUser> {
             ),
           ]),
       body:
-     /* isdata == true
+      isdata == true
           ? Center(
         child: Column(
           children: [
@@ -225,11 +221,7 @@ class _AdminUserState extends State<AdminUser> {
             CircularProgressIndicator(),
           ],
         ),
-      )
-      *//* Center(
-                child: CircularProgressIndicator(),
-              )*//*
-          : documentListModel == null || documentListModel.body == null
+      ) : newsupdatemodel == null || newsupdatemodel.body == null
           ? Container(
         child: Center(
           child: Column(
@@ -243,17 +235,16 @@ class _AdminUserState extends State<AdminUser> {
             ],
           ),
         ),
-      )
-          :*/
-      Container(
+      ) :Container(
         child: SingleChildScrollView(
           child:
-         // (documentListModel != null && documentListModel.body!=null) ?
+          (newsupdatemodel != null && newsupdatemodel.body!=null) ?
           ListView.builder(
             shrinkWrap: true,
             physics: NeverScrollableScrollPhysics(),
             itemBuilder: (context, i) {
-             // document.Body body = documentListModel.body[i];
+              news.Body body = newsupdatemodel.body[i];
+              print("video###############"+body.vdoURL);
               // String docTyp=getFormatType(body.extension);
               return Container(
                 //width: size.width * 0.20,
@@ -276,71 +267,101 @@ class _AdminUserState extends State<AdminUser> {
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
-                      child: Column(
-                          mainAxisAlignment:
-                          MainAxisAlignment.start,
+                      child: Stack(
                           children: [
-                            Row(
-                              children: [
-                                Text("Title :",
-                                    style: TextStyle(
-                                        fontSize: 13,
-                                        fontWeight:
-                                        FontWeight.bold)),
-                                SizedBox(
-                                  width: 5,
-                                ),
-                                /* Text(body.docName ?? "N/A",
-                                        style: TextStyle(
-                                            fontSize: 13,
-                                            fontWeight:
-                                            FontWeight.normal)),*/
-                              ],
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Row(
-                              children: [
-                                Text("SubTitle   :",
-                                    style: TextStyle(
-                                        fontSize: 13,
-                                        fontWeight:
-                                        FontWeight.bold)),
-                                SizedBox(
-                                  width: 5,
-                                ),
-                                /* Text(body.docType ?? "N/A",
-                                        style: TextStyle(
-                                            fontSize: 13,
-                                            fontWeight:
-                                            FontWeight.normal)),*/
-                              ],
-                            ),
-                             SizedBox(height: 10,),
-                             Container(
-                              // height:100,
-                               child: InkWell(
-                                 onTap: (){
-                                   AppData.launchURL(
-                                       "https://www.youtube.com/watch?v=O8lZfZ1CTyA");
-                                 },
-                                 child: Image.asset(
+                          Column(
+                            mainAxisAlignment:
+                            MainAxisAlignment.start,
+                            children: [
 
-                                  "assets/intro/banner1.jpg",
-                            ),
+                              Row(
+                                children: [
+                                  Text("Title :",
+                                      style: TextStyle(
+                                          fontSize: 13,
+                                          fontWeight:
+                                          FontWeight.bold)),
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+                                   Text(body.title ?? "N/A",
+                                          style: TextStyle(
+                                              fontSize: 13,
+                                              fontWeight:
+                                              FontWeight.normal)),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Row(
+                                children: [
+                                  Text("SubTitle   :",
+                                      style: TextStyle(
+                                          fontSize: 13,
+                                          fontWeight:
+                                          FontWeight.bold)),
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+                                   Text(body.subTitle ?? "N/A",
+                                          style: TextStyle(
+                                              fontSize: 13,
+                                              fontWeight:
+                                              FontWeight.normal)),
+                                ],
+                              ),
+                               SizedBox(height: 10,),
+                               Container(
+                                // height:100,
+                                 child: InkWell(
+                                   onTap: (){
+                                     AppData.launchURL(
+                                      body.vdoURL );
+
+                                   },
+                                     child: body.fileName != null
+                                         ? Image.network(
+                                       (body.fileName),
+                                       height: 200,
+                                       width: 350,
+                                       fit: BoxFit.cover,
+                                     )
+                                         : Image.network(
+                                         AppData.defultImgUrll),
+
+                                 ),
                                ),
-                             ),
-//child:NetworkImage("https://pixabay.com/photos/tree-sunset-clouds-sky-silhouette-736885/"),
-                          ]),
+                            ]),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                // crossAxisAlignment: CrossAxisAlignment.end,
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  InkWell(
+                                    onTap: () {
+
+                                    },
+                                    child: Icon(
+                                      Icons.delete_forever,
+                                      size: 28,color: Colors.red,
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                      ]
+                      ),
                     ),
                   ),
                 ),
               );
             },
-            itemCount: 4,
+            itemCount: newsupdatemodel.body.length,
           )
-             // : Container(),
+              : Container(),
         ),
       ),
     );
