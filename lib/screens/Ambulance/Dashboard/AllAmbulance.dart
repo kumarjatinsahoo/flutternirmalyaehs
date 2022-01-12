@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'package:user/localization/localizations.dart';
 import 'package:user/models/AmbulanceAllModel.dart' as ambulanceall;
 import 'package:user/models/AmbulanceAllModel.dart';
 import 'package:user/models/PharmacyorderModel.dart' as oderlist;
@@ -71,8 +72,7 @@ class _AllAmbulanceState extends State<AllAmbulance> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
         appBar: AppBar(
-          title: Text(
-            'Ambulance',
+          title: Text(MyLocalizations.of(context).text("AMBULANCE"),
             style: TextStyle(color: Colors.white),
           ),
           centerTitle: true,
@@ -88,8 +88,7 @@ class _AllAmbulanceState extends State<AllAmbulance> {
             : ambulanceallmodel == null || ambulanceallmodel == null
             ? Container(
           child: Center(
-            child: Text(
-              'No Data Found',
+            child: Text(MyLocalizations.of(context).text("NO_DATA_FOUND"),
               style:
               TextStyle(color: Colors.black, fontSize: 15),
             ),
@@ -145,7 +144,7 @@ class _AllAmbulanceState extends State<AllAmbulance> {
                                                   Container(
                                                     width: 140,
                                                     child: Text(
-                                                      "Name ",
+                                                      MyLocalizations.of(context).text("NAME"),
                                                       style: TextStyle(
                                                         fontWeight:
                                                             FontWeight.w600,
@@ -170,8 +169,7 @@ class _AllAmbulanceState extends State<AllAmbulance> {
                                                 children: [
                                                   Container(
                                                     width: 140,
-                                                    child: Text(
-                                                      "From",
+                                                    child: Text(MyLocalizations.of(context).text("FROM"),
                                                       style: TextStyle(
                                                         fontWeight:
                                                             FontWeight.w600,
@@ -197,7 +195,7 @@ class _AllAmbulanceState extends State<AllAmbulance> {
                                                   Container(
                                                     width: 140,
                                                     child: Text(
-                                                      "Destination",
+                                                     MyLocalizations.of(context).text("DESTINATION"),
                                                       style: TextStyle(
                                                         fontWeight:
                                                             FontWeight.w600,
@@ -223,7 +221,7 @@ class _AllAmbulanceState extends State<AllAmbulance> {
                                                   Container(
                                                     width: 140,
                                                     child: Text(
-                                                      'Patient Notes',
+                                                      MyLocalizations.of(context).text("PATIENT_NOTES"),
                                                       style: TextStyle(
                                                         fontWeight:
                                                             FontWeight.w600,

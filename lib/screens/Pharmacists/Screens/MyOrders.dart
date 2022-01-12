@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:user/localization/localizations.dart';
 import 'package:user/models/PharmacyorderModel.dart' as oderlist;
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/api_factory.dart';
@@ -68,8 +69,7 @@ class _MyOrdersState extends State<MyOrders> {
     final height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'Orders List',
+        title: Text(MyLocalizations.of(context).text("ORDER_LIST"),
           style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
@@ -197,8 +197,7 @@ class _MyOrdersState extends State<MyOrders> {
                                           SizedBox(
                                             height: size.height * 0.01,
                                           ),
-                                           Text(
-                                            'Order ID: ',
+                                           Text(MyLocalizations.of(context).text("ORDER_ID"),
                                             style: TextStyle(
                                                 color: Colors.blue,
                                                 fontWeight: FontWeight.w600),
@@ -216,8 +215,7 @@ class _MyOrdersState extends State<MyOrders> {
                                           SizedBox(
                                             height: 4,
                                           ),
-                                          Text(
-                                            'Address: ',
+                                          Text(MyLocalizations.of(context).text("ADDRESS"),
                                             style: TextStyle(
                                                 color: Colors.blue,
                                                 fontWeight: FontWeight.w600),
@@ -266,8 +264,7 @@ class _MyOrdersState extends State<MyOrders> {
                                           color: Colors.red[900]),
                                       child: RaisedButton(
                                         onPressed: null,
-                                        child: Text(
-                                          'Reject',
+                                        child: Text(MyLocalizations.of(context).text("Reject"),
                                           style: TextStyle(
                                               color: Colors.white,
                                               fontSize: 16,
@@ -296,8 +293,7 @@ class _MyOrdersState extends State<MyOrders> {
                                           color: Colors.blue),
                                       child: RaisedButton(
                                         onPressed: null,
-                                        child: Text(
-                                          'Accept',
+                                        child: Text(MyLocalizations.of(context).text("ACCEPT"),
                                           style: TextStyle(
                                               color: Colors.white,
                                               fontSize: 16,

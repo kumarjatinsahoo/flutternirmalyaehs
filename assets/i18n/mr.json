@@ -437,6 +437,16 @@
   "UPDATE_EMERGENCY_CONTACT": "आपत्कालीन संपर्क अद्यतनित करा",
   "VERIFICATION_PIN": "पडताळणी पिन",
   "PLEASE_ENTER_PIN": "कृपया पिन प्रविष्ट करा",
+  "ALL": "सर्व",
+  "REQUEST": "विनंती",
+  "DIGITAL_SIGNATURE": "डिजिटल स्वाक्षरी",
+  "CLEAR": "साफ",
+  "FROM": "पासून",
+  "FROM_DATE": "या तारखेपासून",
+  "TO_DATE": "आजपर्यंत",
+  "GO": "जा",
+  "MONTHLY_OVERVIEW_LIST": "मासिक विहंगावलोकन सूची",
+  "ORDER_ID": "ऑर्डर आयडी",
 
 
 

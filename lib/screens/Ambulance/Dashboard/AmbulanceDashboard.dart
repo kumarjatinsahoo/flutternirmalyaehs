@@ -129,8 +129,7 @@ class _AmbulanceDashboardState extends State<AmbulanceDashboard> {
     final orientation = MediaQuery.of(context).orientation;
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          "Dashboard",
+        title: Text(MyLocalizations.of(context).text("DASHBOARD"),
           style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
@@ -189,7 +188,7 @@ class _AmbulanceDashboardState extends State<AmbulanceDashboard> {
                               width: 100,
                               height: 35,
                               /* child: Expanded(*/
-                              child: Text("All",
+                              child: Text(MyLocalizations.of(context).text("ALL"),
                                 // MyLocalizations.of(context).text("My Orders"),
                                 textAlign: TextAlign.center,
                                 //overflow: TextOverflow.ellipsis,
@@ -225,7 +224,7 @@ class _AmbulanceDashboardState extends State<AmbulanceDashboard> {
                               width: 100,
                               height: 35,
                               /* child: Expanded(*/
-                              child: Text("Request",
+                              child: Text( MyLocalizations.of(context).text("REQUEST"),
                                 // MyLocalizations.of(context).text("Confirmed Order"),
                                 textAlign: TextAlign.center,
                                 //overflow: TextOverflow.ellipsis,
@@ -273,7 +272,7 @@ class _AmbulanceDashboardState extends State<AmbulanceDashboard> {
                               width: 100,
                               height: 35,
                               /* child: Expanded(*/
-                              child: Text("Accept",
+                              child: Text(MyLocalizations.of(context).text("ACCEPT"),
                                 // MyLocalizations.of(context).text("Processed Orders"),
                                 textAlign: TextAlign.center,
                                 //overflow: TextOverflow.ellipsis,
@@ -318,7 +317,7 @@ class _AmbulanceDashboardState extends State<AmbulanceDashboard> {
                             Container(
                               width: 100,
                               height: 35,
-                              child: Text("Reject",
+                              child: Text(MyLocalizations.of(context).text("REJECT"),
 /*
                             MyLocalizations.of(context).text("Deliverd Order").toString(),
 */
@@ -366,7 +365,7 @@ class _AmbulanceDashboardState extends State<AmbulanceDashboard> {
                               width: 100,
                               height: 35,
                               /* child: Expanded(*/
-                              child: Text(" Monthly Overview ",
+                              child: Text( MyLocalizations.of(context).text("MONTHLY_OVERVIEW"),
                                 // MyLocalizations.of(context).text("Invoices"),
                                 textAlign: TextAlign.center,
                                 //overflow: TextOverflow.ellipsis,

@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:pie_chart/pie_chart.dart';
+import 'package:user/localization/localizations.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/models/MonthlyoverviewModel.dart' as monthly;
 import 'package:user/providers/Const.dart';
@@ -177,7 +178,7 @@ class _MonthlyOverview extends State<MonthlyOverviewAmbulanc> {
     // Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Monthly Overview'),
+        title: Text(MyLocalizations.of(context).text("MONTHLY_OVERVIEW")),
         centerTitle: true,
         backgroundColor: AppData.kPrimaryColor,
       ),
@@ -195,8 +196,7 @@ class _MonthlyOverview extends State<MonthlyOverviewAmbulanc> {
                       child: Padding(
                         padding:
                         const EdgeInsets.only(left: 15, right: 15),
-                        child: Text(
-                          "From Date",
+                        child: Text(MyLocalizations.of(context).text("FROM_DATE"),
                           style: TextStyle(
                               color: Colors.grey,
                               fontSize: 13,
@@ -209,7 +209,7 @@ class _MonthlyOverview extends State<MonthlyOverviewAmbulanc> {
                         padding:
                         const EdgeInsets.only(left: 15, right: 15),
                         child: Text(
-                          "To Date",
+                          MyLocalizations.of(context).text("TO_DATE"),
                           style: TextStyle(
                               color: Colors.grey,
                               fontSize: 13,
@@ -363,8 +363,7 @@ class _MonthlyOverview extends State<MonthlyOverviewAmbulanc> {
                               children: <Widget>[
                                 Align(
                                   alignment: Alignment.center,
-                                  child: Text(
-                                    "CONFIRMED",
+                                  child: Text(MyLocalizations.of(context).text("CONFIRMED"),
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 13,
@@ -440,7 +439,7 @@ class _MonthlyOverview extends State<MonthlyOverviewAmbulanc> {
                                 Align(
                                   alignment: Alignment.center,
                                   child: Text(
-                                    "REQUESTED",
+                                    MyLocalizations.of(context).text("REQUESTED"),
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 13,
@@ -515,7 +514,7 @@ class _MonthlyOverview extends State<MonthlyOverviewAmbulanc> {
                                 Align(
                                   alignment: Alignment.center,
                                   child: Text(
-                                    "REJECTED",
+                                    MyLocalizations.of(context).text("REJECT"),
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 13,
@@ -632,7 +631,7 @@ class _MonthlyOverview extends State<MonthlyOverviewAmbulanc> {
           padding:
           EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
           child: Text(
-            "Go",
+            MyLocalizations.of(context).text("GO"),
             textAlign: TextAlign.center,
             style: TextStyle(color: Colors.white, fontSize: 16.0),
           ),
@@ -653,9 +652,7 @@ class _MonthlyOverview extends State<MonthlyOverviewAmbulanc> {
           Text(monthlyOverviewModel.body.todate??"N/A"),
         ],
       ),
-
     );
-
 }
 Widget monthendDate(){
     return Container(
