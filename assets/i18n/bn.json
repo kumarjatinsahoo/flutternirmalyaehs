@@ -427,6 +427,18 @@
   "ENTER_HOME_PHONE": "ହୋମ୍ ଫୋନ୍ ପ୍ରବେଶ କରନ୍ତୁ (ବିକଳ୍ପ)",
   "ENTER_OFFICE_PHONE": "ଅଫିସ୍ ଫୋନ୍ ପ୍ରବେଶ କରନ୍ତୁ (ବିକଳ୍ପ)",
   "HAVE_REG_YOUR_ORG": "ଆପଣ ସଂସ୍ଥାକୁ ଆମର eHealthSystems ରେ ପଞ୍ଜୀକୃତ କରିଛନ୍ତି କି?",
+  "BLOOD_BANK_NAME": "ବ୍ଲଡବ୍ୟାଙ୍କ ନାମ ",
+  "PATIENT_NOTES": "ରୋଗୀ ଟିପ୍ପଣୀ",
+  "REASON_FOR_BLOODBANK": "ବ୍ଲଡ ବ୍ୟାଙ୍କ ପସନ୍ଦ କରିବାର କାରଣ ",
+  "FROM_LOCATION": "ଅବସ୍ଥାନରୁ",
+  "DESTINATION": "ଗନ୍ତବ୍ୟସ୍ଥଳ",
+  "SELECT_TIME": "ସମୟ ଚୟନ କରନ୍ତୁ",
+  "REASON_FOR_AMBULANCE": "ଆମ୍ବୁଲାନ୍ସ ପାଇଁ କାରଣ",
+  "FNAME": "ପ୍ରଥମ ନାମ",
+  "LNAME": "ଶେଷ ନାମ",
+  "UPDATE_EMERGENCY_CONTACT": "ଜରୁରୀକାଳୀନ ସମ୍ପର୍କ ଅଦ୍ୟତନ କରନ୍ତୁ",
+  "VERIFICATION_PIN": "ଯାଞ୍ଚ PIN",
+  "PLEASE_ENTER_PIN": "ଦୟାକରି PIN ପ୍ରବେଶ କରନ୍ତୁ ",
 
 
 

@@ -429,6 +429,20 @@
   "NEW_PASSWORD": "New Password",
   "CONFIRM_PASSWORD": "Confirm Password",
   "HAVE_REG_YOUR_ORG": "Have you register your organisation in our eHealthSystems?",
+  "BLOOD_BANK_NAME": "Bloodbank name",
+  "PATIENT_NOTES": "Patient Notes",
+  "REASON_FOR_BLOODBANK": "Reason for choice of bloodbank",
+  "FROM_LOCATION": "From Location",
+  "DESTINATION": "Destination",
+  "SELECT_TIME": "Select Time",
+  "REASON_FOR_AMBULANCE": "Reason For Ambulance",
+  "FNAME": "First name",
+  "LNAME": "Last name",
+  "UPDATE_EMERGENCY_CONTACT": "Update Emergency Contact",
+  "VERIFICATION_PIN": "Verification PIN",
+  "PLEASE_ENTER_PIN": "Please enter the PIN",
+
+
 
 
 

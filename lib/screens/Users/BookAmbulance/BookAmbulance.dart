@@ -372,11 +372,6 @@ class BookAmbulancePageState extends State<BookAmbulancePage> {
                             ),
                           ),
                         ),
-
-
-
-
-
                         SizedBox(
                           height: 8,
                         ),
@@ -450,7 +445,7 @@ class BookAmbulancePageState extends State<BookAmbulancePage> {
                         comultationTime(),
                         fromAddress(
                             1,
-                            "Reason For Ambulance",
+                            MyLocalizations.of(context).text("REASON_FOR_AMBULANCE"),
                             TextInputAction.next,
                             TextInputType.text,
                             address_,
@@ -982,7 +977,7 @@ class BookAmbulancePageState extends State<BookAmbulancePage> {
               textAlign: TextAlign.left,
               decoration: InputDecoration(
                 hintText: //"Date Of Pregency",
-                    "Select Time",
+                   MyLocalizations.of(context).text("SELECT_TIME"),
                 border: InputBorder.none,
                 //contentPadding: EdgeInsets.symmetric(vertical: 10),
                 suffixIcon: Icon(

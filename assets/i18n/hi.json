@@ -427,6 +427,18 @@
   "ENTER_HOME_PHONE": "होम फोन दर्ज करें (वैकल्पिक)",
   "ENTER_OFFICE_PHONE": "कार्यालय फोन दर्ज करें (वैकल्पिक)",
   "HAVE_REG_YOUR_ORG": "क्या आपने अपने संगठन को हमारे eHealthSystems में पंजीकृत किया है?",
+  "BLOOD_BANK_NAME": "ब्लडबैंक का नाम",
+  "PATIENT_NOTES": "रोगी नोट्स",
+  "REASON_FOR_BLOODBANK": "ब्लड बैंक चुनने का कारण",
+  "FROM_LOCATION": "स्थान से",
+  "DESTINATION": "गंतव्य",
+  "SELECT_TIME": "समय चुनें",
+  "REASON_FOR_AMBULANCE": "एम्बुलेंस का कारण",
+  "FNAME": "पहला नाम",
+  "LNAME": "अंतिम नाम",
+  "UPDATE_EMERGENCY_CONTACT": "आपातकालीन संपर्क अपडेट करें",
+  "VERIFICATION_PIN": "सत्यापन पिन",
+  "PLEASE_ENTER_PIN": "कृपया पिन दर्ज करें",
 
 
 

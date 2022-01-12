@@ -2574,7 +2574,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   padding: const EdgeInsets.only(
                                       left: 0, right: 5, bottom: 0),
                                   child: Text(
-                                    "Marital Status",
+                                    MyLocalizations.of(context).text("MARITAL_STATUS"),
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
                                         color: Colors.black,
@@ -2584,7 +2584,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   ),
                                 ),
                                 DropDown.networkDropdownlabler1(
-                                    "Marital Status",
+                                    MyLocalizations.of(context).text("MARITAL_STATUS"),
                                     ApiFactory.MARITAL_API,
                                     "marital", (KeyvalueModel model) {
                                   setState(() {
@@ -2605,44 +2605,44 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     fnode2,
                                     fnode3),
                                 SizedBox(height: 20),
-                                formField(3, "Qualification", fnode3, fnode4),
+                                formField(3, MyLocalizations.of(context).text("QUALIFICATION"), fnode3, fnode4),
                                 SizedBox(height: 20),
-                                formField(4, "Specialization", fnode5, fnode6),
-                                SizedBox(height: 20),
-                                formFieldPassPortno(
-                                    5, "Pan Card No", fnode6, fnode7),
+                                formField(4, MyLocalizations.of(context).text("SPECILAZATION"), fnode5, fnode6),
                                 SizedBox(height: 20),
                                 formFieldPassPortno(
-                                    6, "Passport No", fnode7, fnode8),
+                                    5,MyLocalizations.of(context).text("PAN_CARD_NO"), fnode6, fnode7),
+                                SizedBox(height: 20),
+                                formFieldPassPortno(
+                                    6, MyLocalizations.of(context).text("PASSPORT_NO"), fnode7, fnode8),
                                 SizedBox(height: 20),
                                 formFieldAadhaaerno(
-                                    7, "Aadhar No", fnode8, fnode9),
+                                    7, MyLocalizations.of(context).text("AADHAAR_NO"),  fnode8, fnode9),
                                 SizedBox(height: 20),
                                 formFieldPassPortno(
-                                    8, "Voter Card No", fnode9, fnode10),
+                                    8, MyLocalizations.of(context).text("VOTER_CARD_NO"), fnode9, fnode10),
                                 SizedBox(height: 20),
                                 formFieldPassPortno(
-                                    9, "Licence No", fnode10, fnode11),
+                                    9,  MyLocalizations.of(context).text("LICENCE_NO"), fnode10, fnode11),
                                 SizedBox(height: 20),
                                 formField(
-                                    10, "Licence Authority", fnode11, fnode12),
+                                    10, MyLocalizations.of(context).text("LICENSE_AUTHORITY"), fnode11, fnode12),
                                 SizedBox(height: 20),
-                                formFieldemail(11, "Email", fnode12, fnode13),
+                                formFieldemail(11, MyLocalizations.of(context).text("EMAILID"), fnode12, fnode13),
                                 SizedBox(height: 20),
                                 formFieldPinno(
-                                    12, "Pin Code", fnode13, fnode14),
+                                    12,MyLocalizations.of(context).text("PIN_CODE"), fnode13, fnode14),
                                 SizedBox(height: 20),
-                                formFieldemail(13, "Mobile", fnode14, fnode15),
+                                formFieldemail(13, MyLocalizations.of(context).text("MOBILE_NO"), fnode14, fnode15),
                                 SizedBox(height: 20),
-                                formFieldemail(14, "Fname", fnode15, fnode16),
+                                formFieldemail(14, MyLocalizations.of(context).text("FNAME"), fnode15, fnode16),
                                 SizedBox(height: 20),
-                                formFieldemail(15, "Lname", fnode16, fnode17),
+                                formFieldemail(15, MyLocalizations.of(context).text("LNAME"), fnode16, fnode17),
                                 SizedBox(height: 20),
                                 Padding(
                                   padding: const EdgeInsets.only(
                                       left: 0, right: 5, bottom: 0),
                                   child: Text(
-                                    "Gender",
+                                    MyLocalizations.of(context).text("GENDER"),
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
                                         color: Colors.black,
@@ -2652,7 +2652,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   ),
                                 ),
                                 DropDown.networkDropdownlabler1(
-                                    "Gender", ApiFactory.GENDER_API, "gen",
+                                    MyLocalizations.of(context).text("GENDER"), ApiFactory.GENDER_API, "gen",
                                     (KeyvalueModel model) {
                                   setState(() {
                                     print(ApiFactory.GENDER_API);
@@ -2685,7 +2685,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         ),
                                       ),
                                       DropDown.networkDropdownlabler1(
-                                          "Country",
+                                          MyLocalizations.of(context)
+                                              .text("COUNTRY"),
                                           ApiFactory.COUNTRY_API,
                                           "pcountry", (KeyvalueModel model) {
                                         setState(() {
@@ -2720,7 +2721,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         ),
                                       ),
                                       DropDown.networkDropdownlabler1(
-                                          "State",
+                                          MyLocalizations.of(context)
+                                              .text("STATE"),
                                           ApiFactory.STATE_API +
                                               (ProfileScreen
                                                       ?.countrymodel?.key ?? ""),
@@ -2746,7 +2748,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         padding: const EdgeInsets.only(
                                             left: 0, right: 5, bottom: 0),
                                         child: Text(
-                                          "District",
+                                          MyLocalizations.of(context)
+                                              .text("DIST"),
                                           textAlign: TextAlign.left,
                                           style: TextStyle(
                                               color: Colors.black,
@@ -2756,7 +2759,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         ),
                                       ),
                                       DropDown.networkDropdownlabler1(
-                                          "District",
+                                          MyLocalizations.of(context)
+                                              .text("DIST"),
                                           ApiFactory.DISTRICT_API +
                                               (ProfileScreen?.statemodel?.key ??
                                                   ""),
@@ -2794,7 +2798,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         ),
                                       ),
                                       DropDown.networkDropdownlabler1(
-                                          "City",
+                                          MyLocalizations.of(context)
+                                              .text("CITY"),
                                           ApiFactory.CITY_API +
                                               (ProfileScreen
                                                       ?.districtmodel?.key ??
@@ -3813,8 +3818,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           child: Column(
                             children: [
                               Center(
-                                child: Text(
-                                  "Update Emergency Contact",
+                                child: Text(MyLocalizations.of(context).text("UPDATE_EMERGENCY_CONTACT"),
                                   style: TextStyle(
                                       color: Colors.black, fontSize: 20),
                                 ),
@@ -3825,10 +3829,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         SizedBox(
                           height: 15,
                         ),
-                        formField1(13, "Name"),
+                        formField1(13, MyLocalizations.of(context).text("NAME")),
                         SizedBox(height: 8),
                         DropDown.networkDropdownGetpartUser1(
-                            "Relation",
+                            MyLocalizations.of(context).text("RELATION"),
                             ApiFactory.RELATION_API,
                             "rln",
                             Icons.people_alt_rounded,
@@ -3840,7 +3844,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           });
                         }),
                         SizedBox(height: 8),
-                        mobileformField1(14, "Mobile No"),
+                        mobileformField1(14, MyLocalizations.of(context).text("MOBILE_NO")),
                       ],
                     ),
                   ),
