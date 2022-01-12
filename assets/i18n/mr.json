@@ -425,7 +425,18 @@
   "ENTER_HOME_PHONE": "होम फोन प्रविष्ट करा (पर्यायी)",
   "ENTER_OFFICE_PHONE": "ऑफिस फोन एंटर करा (पर्यायी)",
   "HAVE_REG_YOUR_ORG": "तुम्ही तुमच्या संस्थेची आमच्या eHealthSystems मध्ये नोंदणी केली आहे का?",
-
+  "BLOOD_BANK_NAME": "रक्तपेढीचे नाव",
+  "PATIENT_NOTES": "रुग्णाच्या नोट्स",
+  "REASON_FOR_BLOODBANK": "रक्तपेढी निवडण्याचे कारण",
+  "FROM_LOCATION": "स्थानावरून",
+  "DESTINATION": "गंतव्यस्थान",
+  "SELECT_TIME": "वेळ निवडा",
+  "REASON_FOR_AMBULANCE": "रुग्णवाहिकेचे कारण",
+  "FNAME": "पहिले नाव",
+  "LNAME": "आडनाव",
+  "UPDATE_EMERGENCY_CONTACT": "आपत्कालीन संपर्क अद्यतनित करा",
+  "VERIFICATION_PIN": "पडताळणी पिन",
+  "PLEASE_ENTER_PIN": "कृपया पिन प्रविष्ट करा",
 
 
 

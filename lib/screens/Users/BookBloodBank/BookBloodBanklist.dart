@@ -129,8 +129,7 @@ class _BookBloodBanklistState extends State<BookBloodBanklist> {
             : bloodbanklistModel == null || bloodbanklistModel == null
                 ? Container(
                     child: Center(
-                      child: Text(
-                        'No Data Found',
+                      child: Text(MyLocalizations.of(context).text("NO_DATA_FOUND"),
                         style: TextStyle(color: Colors.black, fontSize: 15),
                       ),
                     ),
@@ -184,8 +183,8 @@ class _BookBloodBanklistState extends State<BookBloodBanklist> {
                                                       Container(
                                                         width: 120,
                                                         child: Text(
+                                                          MyLocalizations.of(context).text("BLOOD_BANK_NAME"),
                                                           /*'Confirmed'*/
-                                                          "BloodBank Name",
                                                           style: TextStyle(
                                                             fontWeight:
                                                                 FontWeight.w600,
@@ -216,8 +215,8 @@ class _BookBloodBanklistState extends State<BookBloodBanklist> {
                                                       Container(
                                                         width: 120,
                                                         child: Text(
+                                                          MyLocalizations.of(context).text("BLOODGROUP"),
                                                           /*'Confirmed'*/
-                                                          "Blood Group",
                                                           style: TextStyle(
                                                             fontWeight:
                                                                 FontWeight.w600,
@@ -248,8 +247,8 @@ class _BookBloodBanklistState extends State<BookBloodBanklist> {
                                                       Container(
                                                         width: 120,
                                                         child: Text(
+                                                          MyLocalizations.of(context).text("DATE"),
                                                           /*'Confirmed'*/
-                                                          "Date",
                                                           style: TextStyle(
                                                             fontWeight:
                                                                 FontWeight.w600,
@@ -280,8 +279,8 @@ class _BookBloodBanklistState extends State<BookBloodBanklist> {
                                                       Container(
                                                         width: 120,
                                                         child: Text(
+                                                          MyLocalizations.of(context).text("PATIENT_NOTES"),
                                                           /*'Confirmed'*/
-                                                          "Patient Notes",
                                                           style: TextStyle(
                                                             fontWeight:
                                                                 FontWeight.w600,

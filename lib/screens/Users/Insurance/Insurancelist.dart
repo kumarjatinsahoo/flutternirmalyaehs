@@ -223,8 +223,7 @@ class _InsuranceListState extends State<InsuranceList> {
                                           SizedBox(
                                             height: 5,
                                           ),
-                                          Text(
-                                            'Premium Amount',
+                                          Text(MyLocalizations.of(context).text("PREMIUM_AMOUNT"),
                                             overflow: TextOverflow.clip,
                                             style:
                                                 TextStyle(color: Colors.grey),

@@ -660,7 +660,7 @@ class ReceptionlistSignUpFormmState extends State<ReceptionlistSignUpFormm> {
                                           fontSize: 20, color: Colors.black),
                                     ),
                                   ),
-                                  SizedBox(width: 30),
+                                  SizedBox(width: 20),
                                   Material(
                                     elevation: 3,
                                     color: AppData.kPrimaryColor,
@@ -671,8 +671,7 @@ class ReceptionlistSignUpFormmState extends State<ReceptionlistSignUpFormm> {
                                       },
                                       minWidth: 120,
                                       height: 40.0,
-                                      child: Text(
-                                        "Upload",
+                                      child: Text(MyLocalizations.of(context).text("UPLOAD"),
                                         style: TextStyle(
                                             color: Colors.white,
                                             fontSize: 17.0),
