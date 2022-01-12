@@ -45,6 +45,7 @@
   "DOCTOR": "Doctor",
   "HOSPITAL": "Hospital",
   "RECEPTIONIST": "Receptionist",
+  "SYNDICATE_PARTNER": "Syndicate Partner",
   "PHARMACY": "Pharmacy",
   "PATHOLOGYLAB": "PathologyLab",
   "NEXT": "NEXT",
@@ -427,6 +428,8 @@
   "CURRENT_PASSWORD": "Current Password",
   "NEW_PASSWORD": "New Password",
   "CONFIRM_PASSWORD": "Confirm Password",
+  "HAVE_REG_YOUR_ORG": "Have you register your organisation in our eHealthSystems?",
+
 
 
 

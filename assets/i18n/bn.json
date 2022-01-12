@@ -55,6 +55,7 @@
   "DOCTOR": "ଡାକ୍ତର",
   "HOSPITAL": "ଡାକ୍ତରଖାନା",
   "RECEPTIONIST": "ଗ୍ରହଣକାରୀ",
+  "SYNDICATE_PARTNER": "ସିଣ୍ଡିକେଟ୍ ପାର୍ଟନର",
   "PHARMACY": "ଫାର୍ମାସି",
   "PATHOLOGYLAB": "ପାଥୋଲୋଜି ଲ୍ୟାବ୍",
   "NEXT": "ପରବର୍ତ୍ତୀ",
@@ -62,7 +63,7 @@
   "ORGANIZATION_NAME": "ସଂଗଠନ ନାମ",
   "PROFESSIONAL_NAME": "ପ୍ରଫେସନାଲ୍ ନାମ",
   "EDUCATION": "ଶିକ୍ଷା ନାମ",
-  "ROLE": "ଭୂମିକା",
+  "ROLE": "ଭୂମିକା :",
   "SPECIALITY": "ବିଶେଷତା",
   "BLOODGROUP": "ବ୍ଲଡଗ୍ରୁପ୍",
   "WELCM_EHEALTHSYSTEM": "ୱେଲକମ୍ ଏହଲ୍ ସିଷ୍ଟମ୍ ",
@@ -73,7 +74,7 @@
   "HEALTHCARE_SERVICE": "ସ୍ୱାସ୍ଥ୍ୟ ସେବା ଖୋଜ",
   "APPOINTMENT": "ଆବେଦନ",
   "EMERGENCY_HELP": "ଜରୁରୀକାଳୀନ ସହାୟତା",
-  "MEDICINE_REMINDER": "Medicine ସ୍ମାରକ",
+  "MEDICINE_REMINDER": "ଓଷଧ ସ୍ମାରକ",
   "DISCOUNT_OFFER": "ରିହାତି ଏବଂ ଅଫର୍",
   "ORGAN_DONATION": "ଅଙ୍ଗ ଦାନ",
   "GENERIC_MEDICAL_STORE": "ଜେନେରିକ୍ ମେଡିକାଲ୍ ଷ୍ଟୋର",
@@ -423,6 +424,9 @@
   "CURRENT_PASSWORD": "ଏବେକାର ପାସୱାର୍ଡ଼",
   "NEW_PASSWORD": "ନୁତନ ପାସ୍ୱାର୍ଡ",
   "CONFIRM_PASSWORD": "ପାସ୍ବାଡ଼ ନିସ୍ଚିତ କର",
+  "ENTER_HOME_PHONE": "ହୋମ୍ ଫୋନ୍ ପ୍ରବେଶ କରନ୍ତୁ (ବିକଳ୍ପ)",
+  "ENTER_OFFICE_PHONE": "ଅଫିସ୍ ଫୋନ୍ ପ୍ରବେଶ କରନ୍ତୁ (ବିକଳ୍ପ)",
+  "HAVE_REG_YOUR_ORG": "ଆପଣ ସଂସ୍ଥାକୁ ଆମର eHealthSystems ରେ ପଞ୍ଜୀକୃତ କରିଛନ୍ତି କି?",
 
 
 

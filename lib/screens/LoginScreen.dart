@@ -924,7 +924,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         Divider(),
                         ListTile(
-                          title: Center(child: Text("Receptionist")),
+                          title: Center(child: Text(MyLocalizations.of(context)
+                                         .text("RECEPTIONIST"))),
                           // leading: Icon(
                           //   CupertinoIcons.calendar_today,
                           //   size: 40,
@@ -939,7 +940,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         Divider(),
                         ListTile(
-                          title: Center(child: Text("Syndicate Partner")),
+                          title: Center(child: Text(MyLocalizations.of(context)
+                              .text("SYNDICATE_PARTNER"))),
                           // leading: Icon(
                           //   CupertinoIcons.calendar_today,
                           //   size: 40,
@@ -975,7 +977,8 @@ class _LoginScreenState extends State<LoginScreen> {
   organisationDialog(BuildContext context, String organisation) {
     // set up the buttons
     Widget cancelButton = TextButton(
-      child: Text("Cancel", style: TextStyle(color: AppData.kPrimaryRedColor)),
+      child: Text(MyLocalizations.of(context).text("CANCEL"),
+          style: TextStyle(color: AppData.kPrimaryRedColor)),
       onPressed: () {
         Navigator.pop(context);
         Navigator.pop(context);
@@ -983,7 +986,7 @@ class _LoginScreenState extends State<LoginScreen> {
       },
     );
     Widget noButton = TextButton(
-      child: Text("No", style: TextStyle(color: AppData.kPrimaryRedColor)),
+      child: Text(MyLocalizations.of(context).text("NO"), style: TextStyle(color: AppData.kPrimaryRedColor)),
       onPressed: () {
         Navigator.pop(context);
         // Navigator.pop(context);
@@ -992,7 +995,7 @@ class _LoginScreenState extends State<LoginScreen> {
       },
     );
     Widget continueButton = TextButton(
-      child: Text("Yes", style: TextStyle(color: AppData.matruColor)),
+      child: Text(MyLocalizations.of(context).text("YES"), style: TextStyle(color: AppData.matruColor)),
       onPressed: () {
         Navigator.pop(context);
         //Navigator.pop(context);
@@ -1008,7 +1011,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
-      title: Text("Have you register your organisation in our eHealthSystems?"),
+      title: Text(MyLocalizations.of(context).text("HAVE_REG_YOUR_ORG")),
       // content: Text("Do You Want to Delete ?"),
       actions: [
         cancelButton,

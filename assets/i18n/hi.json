@@ -54,6 +54,7 @@
   "DOCTOR": "चिकित्सक",
   "HOSPITAL": "अस्पताल",
   "RECEPTIONIST": "रिसेप्शनिस्ट",
+  "SYNDICATE_PARTNER": "सिंडिकेट पार्टनर",
   "PHARMACY": "फार्मेसी",
   "PATHOLOGYLAB": "पैथोलोजीलैब",
   "NEXT": "अगला",
@@ -61,7 +62,7 @@
   "ORGANIZATION_NAME": "संस्था का नाम",
   "PROFESSIONAL_NAME": "पेशेवर नाम",
   "EDUCATION": "शिक्षा का नाम",
-  "ROLE": "भूमिका",
+  "ROLE": "भूमिका :",
   "SPECIALITY": "स्पेशलिटी",
   "BLOODGROUP": "ब्लड ग्रुप",
   "WELCM_EHEALTHSYSTEM": "स्वागत स्वास्थ्य प्रणाली",
@@ -423,6 +424,9 @@
   "CURRENT_PASSWORD": "वर्तमान पासवर्ड",
   "NEW_PASSWORD": "नया पासवर्ड",
   "CONFIRM_PASSWORD": "पासवर्ड की पुष्टि कीजिये",
+  "ENTER_HOME_PHONE": "होम फोन दर्ज करें (वैकल्पिक)",
+  "ENTER_OFFICE_PHONE": "कार्यालय फोन दर्ज करें (वैकल्पिक)",
+  "HAVE_REG_YOUR_ORG": "क्या आपने अपने संगठन को हमारे eHealthSystems में पंजीकृत किया है?",
 
 
 
