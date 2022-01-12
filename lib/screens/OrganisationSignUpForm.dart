@@ -15,15 +15,9 @@ import 'package:user/providers/DropDown.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
-import 'package:user/widgets/TextFormatter.dart';
 import 'package:user/widgets/text_field_container.dart';
-import 'dart:async';
 import '../../../localization/localizations.dart';
 import '../../../models/KeyvalueModel.dart';
-import '../../../models/KeyvalueModel.dart';
-import '../../../models/KeyvalueModel.dart';
-import '../../../providers/app_data.dart';
-import '../../../providers/app_data.dart';
 import '../../../providers/app_data.dart';
 
 

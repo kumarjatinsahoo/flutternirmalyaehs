@@ -642,6 +642,9 @@ class _LoginScreenState extends State<LoginScreen> {
             } else if (map["body"]["roleid"] == "22".toLowerCase()) {
               Navigator.of(context).pushNamedAndRemoveUntil(
                   '/syndicateDashboard', (Route<dynamic> route) => false);
+            } else if (map["body"]["roleid"] == "23".toLowerCase()) {
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                  '/admin', (Route<dynamic> route) => false);
             } else {
               AppData.showInSnackBar(context, "No Role Assign");
             }
