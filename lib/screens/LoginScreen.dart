@@ -642,7 +642,7 @@ class _LoginScreenState extends State<LoginScreen> {
             } else if (map["body"]["roleid"] == "22".toLowerCase()) {
               Navigator.of(context).pushNamedAndRemoveUntil(
                   '/syndicateDashboard', (Route<dynamic> route) => false);
-            } else if (map["body"]["roleid"] == "23".toLowerCase()) {
+            } else if (map["body"]["roleid"] == "24".toLowerCase()) {
               Navigator.of(context).pushNamedAndRemoveUntil(
                   '/admin', (Route<dynamic> route) => false);
             } else {

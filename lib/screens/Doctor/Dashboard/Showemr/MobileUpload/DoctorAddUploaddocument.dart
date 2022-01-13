@@ -135,7 +135,7 @@ class _DoctorAddUploadDocumentState extends State<DoctorAddUploadDocument> {
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: AppData.kPrimaryColor,
-        title: Text(MyLocalizations.of(context).text("UPLOAD_DOCUMENT")),
+        title: Text("Upload Documemnt"),
       ),
 
       floatingActionButton: UnicornDialer(
@@ -168,7 +168,7 @@ class _DoctorAddUploadDocumentState extends State<DoctorAddUploadDocument> {
                   }),
                   SizedBox(height: 10),*/
                   formField(
-                      1, MyLocalizations.of(context).text("DOCUUMENT_NAME")),
+                      1, "Document Name"),
                   SizedBox(height: 10),
                   dob(),
                   SizedBox(height: 15),
@@ -248,7 +248,7 @@ class _DoctorAddUploadDocumentState extends State<DoctorAddUploadDocument> {
                       child: RaisedButton(
                         onPressed: null,
                         child: Text(
-                          MyLocalizations.of(context).text("UPLOAD"),
+                          "Upload",
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 16,
@@ -568,7 +568,7 @@ class _DoctorAddUploadDocumentState extends State<DoctorAddUploadDocument> {
                 AppData.fieldFocusChange(context, fnode3, fnode4);
               },
               decoration: InputDecoration(
-                hintText: (MyLocalizations.of(context).text("DOCUUMENT_DATE")),
+                hintText: ("Document Date"),
                 //  hintStyle: TextStyle(color: AppData.hintColor, fontSize: 15),
                 border: InputBorder.none,
                 //contentPadding: EdgeInsets.symmetric(vertical: 10),
