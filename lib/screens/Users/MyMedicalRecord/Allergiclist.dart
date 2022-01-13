@@ -439,9 +439,8 @@ class _AllergicListListState extends State<AllergicListList> {
         context: context,
         builder: (context) {
           return AlertDialog(
-            // title: Text('TextField in Dialog'),
+            //title: Text('TextField in Dialog'),
             insetPadding: EdgeInsets.zero,
-
             //contentPadding: EdgeInsets.symmetric(horizontal: 10),
             content: StatefulBuilder(
               builder: (BuildContext context, StateSetter setState) {
@@ -497,7 +496,7 @@ class _AllergicListListState extends State<AllergicListList> {
                                   "namelist",
                                   Icons.location_on_rounded,
                                   23.0, (KeyvalueModel data) {
-                                setState(() {
+                                 setState(() {
                                   print(ApiFactory.NAME_API);
                                   AllergicListList.nameModel = data;
                                 });
