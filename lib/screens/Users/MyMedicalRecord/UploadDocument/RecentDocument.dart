@@ -216,8 +216,7 @@ class _RecentDocumentState extends State<RecentDocument> {
         child: Padding(
           padding:
               const EdgeInsets.only(left: 15, right: 15, bottom: 5, top: 5),
-          child:
-          (recentUploadDocument != null && recentUploadDocument.body!=null)?
+          child: (recentUploadDocument != null && recentUploadDocument.body!=null)?
           ListView.builder(
             shrinkWrap: true,
             physics: NeverScrollableScrollPhysics(),

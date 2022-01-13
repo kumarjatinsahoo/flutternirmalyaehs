@@ -1892,7 +1892,43 @@ class MyPage1Widget extends StatelessWidget {
               SizedBox(
                 width: 5,
               ),
+
               Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _buildTileblue(
+                      icon: "assets/health-careF.png",
+                      fun: () {
+                        //AppData.showInSnackDone(context, "Coming Soon");
+                        Navigator.pushNamed(context, "/vdo");
+                        // AppData.showSnack(
+                        //   context, "Coming soon", Colors.green);
+                      },
+                      color: AppData.BG2BLUE,
+                      bordercolor: AppData.BG2BLUE,
+                      //size: (size.width - 130) / 3,
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      width: 100,
+                      height: 35,
+                      child: Expanded(
+                        child: Text(
+                          MyLocalizations.of(context)
+                              .text("PREVENTIVE_HEALTHCARE"),
+                          textAlign: TextAlign.center,
+                          //overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    )
+                  ]),
+
+
+
+              /*Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -1923,8 +1959,11 @@ class MyPage1Widget extends StatelessWidget {
                         //overflow: TextOverflow.ellipsis,
                       ),
                     ),
-                  ]),
-             /* Column(
+                  ]),*/
+
+
+/*
+              Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -1946,7 +1985,7 @@ class MyPage1Widget extends StatelessWidget {
                     Container(
                       width: 100,
                       height: 35,
-                      *//* child: Expanded(*//*
+                       child: Expanded(
                       child: Text(
                         MyLocalizations.of(context)
                             .text("PREVENTIVE_HEALTHCARE"),
@@ -1954,8 +1993,9 @@ class MyPage1Widget extends StatelessWidget {
                         //overflow: TextOverflow.ellipsis,
                       ),
                     ),
-
-                  ]),*/
+                    )
+                  ]),
+*/
               SizedBox(
                 width: 5,
               ),
