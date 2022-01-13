@@ -1174,7 +1174,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                   ),
 
                 ),*/
-                Padding(
+/*                Padding(
                   padding: const EdgeInsets.only(top: 10, left: 3, right: 3),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -1195,7 +1195,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                       ),
                     ],
                   ),
-                ),
+                ),*/
               ],
             ),
           ],

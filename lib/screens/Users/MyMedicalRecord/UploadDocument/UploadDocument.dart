@@ -295,6 +295,12 @@ class _UploadDocumentState extends State<UploadDocument> {
                                                         String format =
                                                         getFormatType(extension);
                                                         if (format == "img") {
+                                                         /* Image.network(
+                                                            (body.fileName),
+                                                            height: 200,
+                                                            width: 350,
+                                                            fit: BoxFit.cover,
+                                                          );*/
                                                           Navigator.push(
                                                               context,
                                                               MaterialPageRoute(

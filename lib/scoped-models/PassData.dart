@@ -152,6 +152,7 @@ class PassData extends Model {
 
   String insuranceid;
   String pdfurl;
+  String recentpdfurl;
   String diesepdf;
 
   String emergencyrelation;
