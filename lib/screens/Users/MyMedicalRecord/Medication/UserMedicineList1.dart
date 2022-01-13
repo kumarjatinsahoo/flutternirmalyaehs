@@ -299,6 +299,20 @@ class _MedicineList extends State<UserMedicineList1> {
                                             ),
                                           ],
                                         ),
+                                        /*SizedBox(height: 10,),
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.end,
+                                          children: [
+                                            Container(
+                                              decoration:BoxDecoration(
+                                                borderRadius: BorderRadius.circular(20),
+                                                color: Colors.blue
+                                              ),
+                                              padding: EdgeInsets.symmetric(horizontal: 10,vertical: 5),
+                                              child: Text("SET REMINDER",style: TextStyle(color: Colors.white),),
+                                            )
+                                          ],
+                                        )*/
                                       ],
                                     ),
                                   ),
