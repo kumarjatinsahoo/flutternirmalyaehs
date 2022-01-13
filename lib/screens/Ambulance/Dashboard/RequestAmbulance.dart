@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:user/localization/localizations.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
@@ -69,8 +70,7 @@ class _RequestAmbulanceState extends State<RequestAmbulance> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
         appBar: AppBar(
-          title: Text(
-            'Requested',
+          title: Text(MyLocalizations.of(context).text("REQUESTED"),
             style: TextStyle(color: Colors.white),
           ),
           centerTitle: true,
@@ -90,7 +90,7 @@ class _RequestAmbulanceState extends State<RequestAmbulance> {
             ? Container(
           child: Center(
             child: Text(
-              'No Data Found',
+              MyLocalizations.of(context).text("NO_DATA_FOUND"),
               style:
               TextStyle(color: Colors.black, fontSize: 15),
             ),
@@ -146,7 +146,7 @@ class _RequestAmbulanceState extends State<RequestAmbulance> {
                                       Container(
                                         width: 180,
                                         child: Text(
-                                          "Name :",
+                                          MyLocalizations.of(context).text("NAME"),
                                           style: TextStyle(
                                             fontWeight:
                                             FontWeight.w600,
@@ -174,7 +174,7 @@ class _RequestAmbulanceState extends State<RequestAmbulance> {
                                       Container(
                                         width: 180,
                                         child: Text(
-                                          "From :",
+                                          MyLocalizations.of(context).text("FROM"),
                                           style: TextStyle(
                                             fontWeight:
                                             FontWeight.w600,
@@ -202,7 +202,7 @@ class _RequestAmbulanceState extends State<RequestAmbulance> {
                                       Container(
                                         width: 180,
                                         child: Text(
-                                          "Destination :",
+                                          MyLocalizations.of(context).text("DESTINATION"),
                                           style: TextStyle(
                                             fontWeight:
                                             FontWeight.w600,
@@ -228,7 +228,7 @@ class _RequestAmbulanceState extends State<RequestAmbulance> {
                                       Container(
                                         width: 180,
                                         child: Text(
-                                          "Patient Notes :",
+                                          MyLocalizations.of(context).text("PATIENT_NOTES"),
                                           style: TextStyle(
                                             fontWeight:
                                             FontWeight.w600,
@@ -272,7 +272,7 @@ class _RequestAmbulanceState extends State<RequestAmbulance> {
                                             child: RaisedButton(
                                               onPressed: null,
                                               child: Text(
-                                                'Reject',
+                                                MyLocalizations.of(context).text("REJECT"),
                                                 style: TextStyle(
                                                     color: Colors.white,
                                                     fontSize: 16,
@@ -302,7 +302,7 @@ class _RequestAmbulanceState extends State<RequestAmbulance> {
                                             child: RaisedButton(
                                               onPressed: null,
                                               child: Text(
-                                                'Accept',
+                                                MyLocalizations.of(context).text("ACCEPT"),
                                                 style: TextStyle(
                                                     color: Colors.white,
                                                     fontSize: 16,

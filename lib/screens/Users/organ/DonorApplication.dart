@@ -979,7 +979,7 @@ class DonorApplicationState extends State<DonorApplication> {
                 height: 20,
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
+                padding: const EdgeInsets.symmetric(horizontal: 0),
                 child: _submitButton(),
               ),
               SizedBox(

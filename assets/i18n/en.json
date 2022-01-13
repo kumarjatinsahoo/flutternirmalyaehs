@@ -441,6 +441,18 @@
   "UPDATE_EMERGENCY_CONTACT": "Update Emergency Contact",
   "VERIFICATION_PIN": "Verification PIN",
   "PLEASE_ENTER_PIN": "Please enter the PIN",
+  "ALL": "All",
+  "REQUEST": "Request",
+  "DIGITAL_SIGNATURE": "Digital Signature",
+  "CLEAR": "Clear",
+  "FROM": "From",
+  "ACCEPTED": "Accepted",
+  "FROM_DATE": "From Date",
+  "TO_DATE": "To Date",
+  "GO": "Go",
+  "MONTHLY_OVERVIEW_LIST": "Monthly Overview List",
+  "ORDER_ID": "Order ID",
+
 
 
 

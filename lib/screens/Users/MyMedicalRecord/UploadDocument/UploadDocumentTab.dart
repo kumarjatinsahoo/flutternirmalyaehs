@@ -31,7 +31,6 @@ class _BookAppointmentTab extends State<UploadDocumentTab> {
           title: Text("Medical Data Upload"),
           backgroundColor: AppData.kPrimaryColor,
           actions: <Widget>[
-
           ],
 
           bottom: TabBar(

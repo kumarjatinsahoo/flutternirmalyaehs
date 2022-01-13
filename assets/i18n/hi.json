@@ -439,6 +439,16 @@
   "UPDATE_EMERGENCY_CONTACT": "आपातकालीन संपर्क अपडेट करें",
   "VERIFICATION_PIN": "सत्यापन पिन",
   "PLEASE_ENTER_PIN": "कृपया पिन दर्ज करें",
+  "ALL": "सभी",
+  "REQUEST": "निवेदन",
+  "DIGITAL_SIGNATURE": "अंगुली का हस्ताक्षर",
+  "CLEAR": "स्पष्ट",
+  "FROM": "से",
+  "FROM_DATE": "की तिथि से",
+  "TO_DATE": "तारीख तक",
+  "GO": "जाओ",
+  "MONTHLY_OVERVIEW_LIST": "मासिक अवलोकन सूची",
+  "ORDER_ID": "आदेश ID",
 
 
 
