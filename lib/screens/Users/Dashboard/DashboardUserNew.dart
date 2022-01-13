@@ -79,8 +79,9 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
   );
   List<String> imageSliders = [
 
-    "assets/intro/banner2.jpg",
-    "assets/intro/banner1.jpg",
+    "assets/intro/banner3.jpg",
+
+    "assets/intro/banner4.jpg",
   ];
 
   SharedPref sharedPref = SharedPref();
