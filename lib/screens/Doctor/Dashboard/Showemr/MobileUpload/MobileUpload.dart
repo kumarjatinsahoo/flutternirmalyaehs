@@ -12,6 +12,7 @@ import 'package:user/providers/Const.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
+import 'package:user/screens/Doctor/Dashboard/Showemr/MobileUpload/DoctorUploaddocument.dart';
 import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/UploadDocument.dart';
 
 class MobileUpload extends StatefulWidget {
@@ -178,7 +179,7 @@ class _MobileUploadState extends State<MobileUpload> {
                                // Navigator.pushNamed(context, "/upload");,
                                //  widget.model.patientseHealthCard=widget.model.loginResponse1.body.user;
                                 Navigator.push(context,MaterialPageRoute(builder:
-                                    (context)=>UploadDocument(model:widget.model,
+                                    (context)=>DoctorUploadDocument(model:widget.model,
                                     )));
                               },
                               child: Row(

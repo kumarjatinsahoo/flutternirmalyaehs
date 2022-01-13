@@ -22,18 +22,18 @@ import 'package:user/widgets/MyWidget.dart';
 import 'package:file_picker/file_picker.dart';
 import 'dart:io';
 
-class AddUploadDocument extends StatefulWidget {
+class DoctorAddUploadDocument extends StatefulWidget {
   final MainModel model;
   static KeyvalueModel admequipmentmodel = null;
   static KeyvalueModel getdocumentmodel = null;
 
-  const AddUploadDocument({Key key, this.model}) : super(key: key);
+  const DoctorAddUploadDocument({Key key, this.model}) : super(key: key);
 
   @override
-  _AddUploadDocumentState createState() => _AddUploadDocumentState();
+  _DoctorAddUploadDocumentState createState() => _DoctorAddUploadDocumentState();
 }
 
-class _AddUploadDocumentState extends State<AddUploadDocument> {
+class _DoctorAddUploadDocumentState extends State<DoctorAddUploadDocument> {
   LoginResponse1 loginResponse1;
   bio.BiomedicalModel biomedicalModel;
   bool isDataNoFound = false;
@@ -83,7 +83,7 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
     loginResponse1 = widget.model.loginResponse1;
     doccategory = widget.model.documentcategories;
     rolee = widget.model.uploadbyrole;
-    AddUploadDocument.getdocumentmodel = null;
+    DoctorAddUploadDocument.getdocumentmodel = null;
     childButtons.add(UnicornButton(
         hasLabel: true,
         labelText: "Image",
@@ -190,35 +190,35 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
                   SizedBox(height: 8),
                   (idproof != null)
                       ? Padding(
-                          padding: const EdgeInsets.only(left: 10, right: 10),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Expanded(
-                                child: Container(
-                                  child: Text(
-                                    "Report Path :" + idproof,
-                                    style: TextStyle(color: Colors.green),
-                                  ),
-                                ),
-                              ),
-                              InkWell(
-                                child: SizedBox(
-                                    width: 50.0, child: Icon(Icons.clear)),
-                                onTap: () {
-                                  setState(() {
-                                    idproof = null;
-                                    // registrationModel.profilePhotoBase64 =
-                                    null;
-                                    //registrationModel.profilePhotoExt =
-                                    null;
-                                  });
-                                },
-                              ),
-                            ],
+                    padding: const EdgeInsets.only(left: 10, right: 10),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: Container(
+                            child: Text(
+                              "Report Path :" + idproof,
+                              style: TextStyle(color: Colors.green),
+                            ),
                           ),
-                        )
+                        ),
+                        InkWell(
+                          child: SizedBox(
+                              width: 50.0, child: Icon(Icons.clear)),
+                          onTap: () {
+                            setState(() {
+                              idproof = null;
+                              // registrationModel.profilePhotoBase64 =
+                              null;
+                              //registrationModel.profilePhotoExt =
+                              null;
+                            });
+                          },
+                        ),
+                      ],
+                    ),
+                  )
                       : Container(),
                   SizedBox(
                     height: 20,
@@ -286,15 +286,15 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
       ))
       ..add(MapEntry(
         'uploadedBy',
-        "1",
+        "2",
       ))
       ..add(MapEntry(
         'docName',
         textEditingController[1].text,
       ))..add(MapEntry(
-        'uploadDate',
-        _date.text,
-      ))
+      'uploadDate',
+      _date.text,
+    ))
       ..add(MapEntry(
         'filetype',
         selectedDocument,
