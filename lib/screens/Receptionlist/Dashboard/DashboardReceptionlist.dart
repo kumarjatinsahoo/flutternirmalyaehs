@@ -231,8 +231,8 @@ class _DashboardReceptionlistState extends State<DashboardReceptionlist> {
                                   icon: "assets/images/appointment.png",
                                   fun: () {
                                     // Navigator.pushNamed(context, "/myAppointment");
-                                    Navigator.pushNamed(
-                                        context, "/doctorAppointment");
+                                    // Navigator.pushNamed(
+                                    //     context, "/doctorAppointment");
                                   },
                                   color: AppData.BG1RED,
                                   bordercolor: AppData.BG1RED,
@@ -279,8 +279,8 @@ class _DashboardReceptionlistState extends State<DashboardReceptionlist> {
                                                 context, "/medipedia");*/
                                     // AppData.showSnack(
                                     //     context, "Coming soon", Colors.green);
-                                    Navigator.pushNamed(
-                                        context, "/docWalkInReg");
+                                    // Navigator.pushNamed(
+                                    //     context, "/docWalkInReg");
                                   },
                                   color: AppData.BG2BLUE,
                                   bordercolor: AppData.BG2BLUE,
@@ -323,8 +323,8 @@ class _DashboardReceptionlistState extends State<DashboardReceptionlist> {
                                 _buildTilered(
                                   icon: "assets/images/emergency.png",
                                   fun: () {
-                                    Navigator.pushNamed(
-                                        context, "/emegencyAccess");
+                                    // Navigator.pushNamed(
+                                    //     context, "/emegencyAccess");
                                     // AppData.showInSnackDone(context, "Coming Soon");
                                     // Navigator.pushNamed(context, "/discountoffer");
                                     //AppData.showInSnackBar(context, "Coming soon");
@@ -363,7 +363,7 @@ class _DashboardReceptionlistState extends State<DashboardReceptionlist> {
                                   title: "Share_appointment",
                                   fun: () {
                                     // AppData.showInSnackDone(context, "Coming Soon");
-                                    Navigator.pushNamed(context, "/shareappointment");
+                                    //Navigator.pushNamed(context, "/shareappointment");
                                     // AppData.showSnack(
                                     //     context, "Coming soon", Colors.green);
                                   },
@@ -396,7 +396,7 @@ class _DashboardReceptionlistState extends State<DashboardReceptionlist> {
                                   icon: "assets/images/mypatient.png",
                                   fun: () {
                                     // AppData.showInSnackDone(context, "Coming Soon");
-                                    Navigator.pushNamed(context, "/myPatientlist");
+                                   // Navigator.pushNamed(context, "/myPatientlist");
                                     //AppData.showInSnackBar(context, "Coming soon");
                                   },
                                   //color: AppData.BG2BLUE,
@@ -794,6 +794,7 @@ class _DashboardReceptionlistState extends State<DashboardReceptionlist> {
               ),
               title: Text(MyLocalizations.of(context).text("CONTACT_US")),
               onTap: () {
+                widget.model.contactscreen = "Contact Screen";
                 Navigator.pushNamed(context, "/contactus");
               },
             ),

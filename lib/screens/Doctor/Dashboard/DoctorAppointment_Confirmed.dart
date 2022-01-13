@@ -10,12 +10,9 @@ import 'package:user/screens/Doctor/Dashboard/MedicationAddScreen.dart';
 import 'package:user/widgets/MyWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 class DoctorAppointmentConfirmed extends StatefulWidget {
   MainModel model;
-
   DoctorAppointmentConfirmed({Key key, this.model}) : super(key: key);
-
   @override
   _DoctorAppointmentConfirmedState createState() =>
       _DoctorAppointmentConfirmedState();
@@ -464,8 +461,8 @@ class _DoctorAppointmentConfirmedState
                                                                 children: [
                                                                  Expanded(child: InkWell(
                                                                     onTap:(){
-                                                                      widget.model.patientseHealthCard =
-                                                                          appointmentlist.userid;
+                                                                      widget.model.patientseHealthCard = appointmentlist.userid;
+                                                                      widget.model.uploadbyrole ="2";
                                                                       Navigator.pushNamed(context, "/showemr");
                                                                     },
                                                                     child:

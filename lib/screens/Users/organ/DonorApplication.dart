@@ -144,7 +144,6 @@ class DonorApplicationState extends State<DonorApplication> {
       // final DateTime formatter =
       //DateFormat("yyyy-MM-dd\'T\'HH:mm:ss.SSSZ\'").parse(date);
       //DateFormat("dd/MM/yyyy").parse(date);
-
       DateFormat toNeed = DateFormat("dd/MM/yyyy");
       final String formatted = toNeed.format(formatter);
       return formatted;
@@ -980,7 +979,7 @@ class DonorApplicationState extends State<DonorApplication> {
                 height: 20,
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
+                padding: const EdgeInsets.symmetric(horizontal: 0),
                 child: _submitButton(),
               ),
               SizedBox(
@@ -1513,26 +1512,32 @@ class DonorApplicationState extends State<DonorApplication> {
           } else if (textEditingController[4].text != "" &&
               textEditingController[4].text.length != 10) {
             AppData.showInSnackBar(context, "Please enter valid Mobile Number");
-          } else if (textEditingController[5].text == '') {
-            AppData.showInSnackBar(context, "Please enter E-mail");
-          } else if (textEditingController[5].text != '' &&
-              !AppData.isValidEmail(textEditingController[5].text)) {
-            AppData.showInSnackBar(context, "Please enter a valid E-mail");
-          } else if (textEditingController[6].text == "" ||
-              textEditingController[6].text == null) {
-            AppData.showInSnackBar(context, "Please enter Address");
-          } else if (textEditingController[15].text == "" ||
-              textEditingController[15].text == null) {
-            AppData.showInSnackBar(context, "Please enter Blood Group");
+          // } else if (textEditingController[5].text == '') {
+          //   AppData.showInSnackBar(context, "Please enter E-mail");
+          // } else if (textEditingController[5].text != '' &&
+          //     !AppData.isValidEmail(textEditingController[5].text)) {
+          //   AppData.showInSnackBar(context, "Please enter a valid E-mail");
+          // } else if (textEditingController[6].text == "" ||
+          //     textEditingController[6].text == null) {
+          //   AppData.showInSnackBar(context, "Please enter Address");
+          // } else if (textEditingController[15].text == "" ||
+          //     textEditingController[15].text == null) {
+          //   AppData.showInSnackBar(context, "Please enter Blood Group");
+          } else if (patientProfileModel.body.bloodGroup == null && DonorApplication.bloodgroupModel == null ||
+              DonorApplication.bloodgroupModel == "") {
+            AppData.showInSnackBar(context, "Please select blood group");
           } else {
             // Navigator.pushNamed(context, "/addWitness");
-            MyWidgets.showLoading(context);
+
             AddOrganDonModel addOrganDonModel = AddOrganDonModel();
             addOrganDonModel.patientId = widget.model.user;
             addOrganDonModel.donorName = textEditingController[0].text;
             addOrganDonModel.donorType = _selectedItem.key;
             addOrganDonModel.typeUserName = textEditingController[1].text;
-            //addOrganDonModel.dob = textEditingController[2].text;
+            (patientProfileModel != null &&
+                patientProfileModel.body.dob != null)
+                ?addOrganDonModel.dob = toDate(patientProfileModel.body.dob):
+            addOrganDonModel.dob = textEditingController[2].text;
             addOrganDonModel.dob = toDate(patientProfileModel.body.dob);
             addOrganDonModel.age = year;
             addOrganDonModel.mob = textEditingController[4].text;
@@ -1548,6 +1553,7 @@ class DonorApplicationState extends State<DonorApplication> {
             log("Post json>>>>" + jsonEncode(addOrganDonModel.toJson()));
 
             //AppData.showInSnackBar(context, "add Successfully");
+            MyWidgets.showLoading(context);
             widget.model.POSTMETHOD1(
                 api: ApiFactory.POST_ORGAN_DONOR,
                 token: widget.model.token,

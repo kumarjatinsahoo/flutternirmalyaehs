@@ -34,7 +34,7 @@ class _DisitaTestPageState extends State<DisitaTestPage> {
     super.initState();
     loginResponse1=widget.model.loginResponse1;
 
-        id=base64.encode(utf8.encode(loginResponse1.body.user));
+    id=base64.encode(utf8.encode(loginResponse1.body.user));
     doctorid=base64.encode(utf8.encode( widget?.model?.doctorst));
     datest=base64.encode(utf8.encode( widget?.model?.meddatest));
   }
@@ -49,7 +49,7 @@ class _DisitaTestPageState extends State<DisitaTestPage> {
         disableHorizontalScroll: false,
         supportZoom: true,
         disableVerticalScroll: false,
-      ),
+       ),
   );
 /* final Completer<InAppWebViewController> _controller1 =
   Completer<InAppWebViewController>();
@@ -121,14 +121,14 @@ class _DisitaTestPageState extends State<DisitaTestPage> {
         // iconTheme: IconThemeData(color: AppData.kPrimaryColor,),
       ),
       body: Builder(builder: (BuildContext context) {
-        print(ApiFactory.MEDICATION_VIEW_PRESCRIPTION+id+"&id="+doctorid+"&date="+datest);
+        print(ApiFactory.TEST_VIEW_PRESCRIPTION+id+"&id2="+datest);
         return Container(
           width: MediaQuery.of(context).size.width,
           child: SizedBox(
             // width: MediaQuery.of(context).size.height,
             child: InAppWebView(
               initialUrlRequest: URLRequest(
-                  url: Uri.parse(ApiFactory.MEDICATION_VIEW_PRESCRIPTION+id+"&id="+doctorid+"&date="+datest)),
+                  url: Uri.parse(ApiFactory.TEST_VIEW_PRESCRIPTION+id+"&id2="+datest)),
               initialOptions: _options,
               shouldOverrideUrlLoading: (controller, action) {
                 print("override");
@@ -137,13 +137,13 @@ class _DisitaTestPageState extends State<DisitaTestPage> {
               onWebViewCreated: (webViewController) {
                 _controller1.complete(webViewController);
               },
-              onEnterFullscreen: (controller) {
+              onEnterFullscreen: (_controller1) {
                 SystemChrome.setPreferredOrientations([
                   DeviceOrientation.landscapeRight,
                   DeviceOrientation.landscapeLeft,
                 ]);
               },
-              onExitFullscreen: (controller) {
+              onExitFullscreen: (_controller1) {
                 SystemChrome.setPreferredOrientations([
                   DeviceOrientation.portraitDown,
                   DeviceOrientation.portraitUp,

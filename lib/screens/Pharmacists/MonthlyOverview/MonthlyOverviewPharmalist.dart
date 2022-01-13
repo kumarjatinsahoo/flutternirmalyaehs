@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'package:user/localization/localizations.dart';
 import 'package:user/models/AmbulanceAllModel.dart' as ambulanceall;
 import 'package:user/models/AmbulanceAllModel.dart';
 import 'package:user/models/MonthlyoverviewlisModel.dart'as monthlyoverview;
@@ -126,8 +127,7 @@ class _MonthlyOverviewPharmaklistState extends State<MonthlyOverviewPharmaklist>
     Size size = MediaQuery.of(context).size;
     return Scaffold(
         appBar: AppBar(
-          title: Text(
-            'Monthly Overview List',
+          title: Text(MyLocalizations.of(context).text("MONTHLY_OVERVIEW_LIST"),
             style: TextStyle(color: Colors.white),
           ),
           centerTitle: true,
@@ -144,12 +144,11 @@ class _MonthlyOverviewPharmaklistState extends State<MonthlyOverviewPharmaklist>
             ? Container(
           child: Center(
             child: Text(
-              'No Data Found',
+              MyLocalizations.of(context).text("NO_DATA_FOUND"),
               style:
               TextStyle(color: Colors.black, fontSize: 15),
             ),
           ),
-
         ):
              SingleChildScrollView(
                 child: (monthlyOverviewlistModel != null)

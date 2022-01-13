@@ -341,15 +341,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
         title: Stack(
           children: [
             Center(
-              child: Text(
-                MyLocalizations.of(context).text("MY_PROFILE"),
-                style: TextStyle(color: Colors.white),
+              child: Padding(
+                padding: const EdgeInsets.only(right: 60.0),
+                child: Text(
+                  MyLocalizations.of(context).text("MY_PROFILE"),
+                  style: TextStyle(color: Colors.white),
+                ),
               ),
             ),
             Align(
               alignment: Alignment.topRight,
               child: Padding(
-                padding: const EdgeInsets.only(right: 70.0),
+                padding: const EdgeInsets.only(right: 80.0),
                 child: InkWell(
                   onTap: () {
                     Navigator.pushNamed(context, "/qrcode");
@@ -648,7 +651,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             padding: const EdgeInsets.symmetric(vertical: 12),
                             child: Text(
                                 MyLocalizations.of(context)
-                                    .text("FAMILY DETAILS")
+                                    .text("FAMILY_DETAILS")
                                     .toUpperCase(),
                                 style: TextStyle(
                                     fontWeight: FontWeight.w900,
@@ -1128,7 +1131,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           flex: 1,
                           child: Text(
                             /*'Confirmed'*/
-                            "Email",
+                            MyLocalizations.of(context).text("EMAILID"),
                             style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 15,
@@ -1170,7 +1173,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           flex: 1,
                           child: Text(
                             /*'Confirmed'*/
-                            "Pin Code",
+                            MyLocalizations.of(context).text("PIN_CODE"),
                             style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 15,
@@ -1213,8 +1216,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         Expanded(
                           flex: 1,
                           child: Text(
+                            MyLocalizations.of(context).text("MARITAL_STATUS"),
                             /*'Confirmed'*/
-                            "Marital Status",
                             style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 15,
@@ -1296,9 +1299,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         SizedBox(width: 10),
                         Expanded(
                           flex: 1,
-                          child: Text(
+                          child: Text( MyLocalizations.of(context).text("QUALIFICATION"),
                             /*'Confirmed'*/
-                            "Qualification",
                             style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 15,
@@ -1338,9 +1340,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         SizedBox(width: 10),
                         Expanded(
                           flex: 1,
-                          child: Text(
+                          child: Text(MyLocalizations.of(context).text("SPECILAZATION"),
                             /*'Confirmed'*/
-                            "Specilazation",
                             style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 15,
@@ -1380,9 +1381,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         SizedBox(width: 10),
                         Expanded(
                           flex: 1,
-                          child: Text(
+                          child: Text(MyLocalizations.of(context).text("PAN_CARD_NO"),
                             /*'Confirmed'*/
-                            "PAN Card No",
                             style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 15,
@@ -1422,9 +1422,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         SizedBox(width: 10),
                         Expanded(
                           flex: 1,
-                          child: Text(
+                          child: Text(MyLocalizations.of(context).text("PASSPORT_NO"),
                             /*'Confirmed'*/
-                            "Passport No",
                             style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 15,
@@ -1464,9 +1463,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         SizedBox(width: 10),
                         Expanded(
                           flex: 1,
-                          child: Text(
+                          child: Text(MyLocalizations.of(context).text("AADHAAR_NO1"),
                             /*'Confirmed'*/
-                            "Aadhaar No",
                             style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 15,
@@ -1506,9 +1504,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         SizedBox(width: 10),
                         Expanded(
                           flex: 1,
-                          child: Text(
+                          child: Text(MyLocalizations.of(context).text("VOTER_CARD_NO"),
                             /*'Confirmed'*/
-                            "Voter Card No",
                             style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 15,
@@ -1548,9 +1545,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         SizedBox(width: 10),
                         Expanded(
                           flex: 1,
-                          child: Text(
+                          child: Text(MyLocalizations.of(context).text("LICENCE_NO"),
                             /*'Confirmed'*/
-                            "License No ",
                             style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 15,
@@ -1590,9 +1586,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         SizedBox(width: 10),
                         Expanded(
                           flex: 1,
-                          child: Text(
+                          child: Text(MyLocalizations.of(context).text("LICENSE_AUTHORITY"),
                             /*'Confirmed'*/
-                            "License Authority ",
                             style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 15,
@@ -1878,7 +1873,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   onTap: () {
                     setState(() {
                       displayDialog2(context);
-
                     });
                   },
                   child: Visibility(
@@ -2195,6 +2189,51 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     ),
                                     SizedBox(height:20),
                                     Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 10.0, right: 10.0),
+                                      child: Row(
+                                        children: [
+                                          Icon(
+                                            Icons.person,
+                                            size: 20,
+                                          ),
+                                          SizedBox(width: 10),
+                                          Expanded(
+                                            flex: 1,
+                                            child: Text("UHID",
+                                              style: TextStyle(
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(width: 10),
+                                          Expanded(
+                                            flex: 1,
+                                            child: Text(
+                                              patientProfileModel
+                                                  ?.body
+                                                  ?.familyDetailsList[index]
+                                                  .userid ??
+                                                  "N/A",
+                                              style: TextStyle(fontSize: 14
+                                                // fontWeight: FontWeight.w500,
+                                                // color: AppData.kPrimaryColor,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding:
+                                      const EdgeInsets.symmetric(vertical: 10),
+                                      child: Divider(
+                                        color: AppData.lightgreyBorder,
+                                        height: 6,
+                                      ),
+                                    ),
+                                    Padding(
                                       padding: const EdgeInsets.only(left:10,right:10),
                                       child: Row(
                                         children: [
@@ -2335,6 +2374,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   ],
                                 ),
                               ),
+
                             ],
                           ),
                         ),
@@ -2534,7 +2574,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   padding: const EdgeInsets.only(
                                       left: 0, right: 5, bottom: 0),
                                   child: Text(
-                                    "Marital Status",
+                                    MyLocalizations.of(context).text("MARITAL_STATUS"),
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
                                         color: Colors.black,
@@ -2544,7 +2584,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   ),
                                 ),
                                 DropDown.networkDropdownlabler1(
-                                    "Marital Status",
+                                    MyLocalizations.of(context).text("MARITAL_STATUS"),
                                     ApiFactory.MARITAL_API,
                                     "marital", (KeyvalueModel model) {
                                   setState(() {
@@ -2565,44 +2605,44 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     fnode2,
                                     fnode3),
                                 SizedBox(height: 20),
-                                formField(3, "Qualification", fnode3, fnode4),
+                                formField(3, MyLocalizations.of(context).text("QUALIFICATION"), fnode3, fnode4),
                                 SizedBox(height: 20),
-                                formField(4, "Specialization", fnode5, fnode6),
-                                SizedBox(height: 20),
-                                formFieldPassPortno(
-                                    5, "Pan Card No", fnode6, fnode7),
+                                formField(4, MyLocalizations.of(context).text("SPECILAZATION"), fnode5, fnode6),
                                 SizedBox(height: 20),
                                 formFieldPassPortno(
-                                    6, "Passport No", fnode7, fnode8),
+                                    5,MyLocalizations.of(context).text("PAN_CARD_NO"), fnode6, fnode7),
+                                SizedBox(height: 20),
+                                formFieldPassPortno(
+                                    6, MyLocalizations.of(context).text("PASSPORT_NO"), fnode7, fnode8),
                                 SizedBox(height: 20),
                                 formFieldAadhaaerno(
-                                    7, "Aadhar No", fnode8, fnode9),
+                                    7, MyLocalizations.of(context).text("AADHAAR_NO"),  fnode8, fnode9),
                                 SizedBox(height: 20),
                                 formFieldPassPortno(
-                                    8, "Voter Card No", fnode9, fnode10),
+                                    8, MyLocalizations.of(context).text("VOTER_CARD_NO"), fnode9, fnode10),
                                 SizedBox(height: 20),
                                 formFieldPassPortno(
-                                    9, "Licence No", fnode10, fnode11),
+                                    9,  MyLocalizations.of(context).text("LICENCE_NO"), fnode10, fnode11),
                                 SizedBox(height: 20),
                                 formField(
-                                    10, "Licence Authority", fnode11, fnode12),
+                                    10, MyLocalizations.of(context).text("LICENSE_AUTHORITY"), fnode11, fnode12),
                                 SizedBox(height: 20),
-                                formFieldemail(11, "Email", fnode12, fnode13),
+                                formFieldemail(11, MyLocalizations.of(context).text("EMAILID"), fnode12, fnode13),
                                 SizedBox(height: 20),
                                 formFieldPinno(
-                                    12, "Pin Code", fnode13, fnode14),
+                                    12,MyLocalizations.of(context).text("PIN_CODE"), fnode13, fnode14),
                                 SizedBox(height: 20),
-                                formFieldemail(13, "Mobile", fnode14, fnode15),
+                                formFieldemail(13, MyLocalizations.of(context).text("MOBILE_NO"), fnode14, fnode15),
                                 SizedBox(height: 20),
-                                formFieldemail(14, "Fname", fnode15, fnode16),
+                                formFieldemail(14, MyLocalizations.of(context).text("FNAME"), fnode15, fnode16),
                                 SizedBox(height: 20),
-                                formFieldemail(15, "Lname", fnode16, fnode17),
+                                formFieldemail(15, MyLocalizations.of(context).text("LNAME"), fnode16, fnode17),
                                 SizedBox(height: 20),
                                 Padding(
                                   padding: const EdgeInsets.only(
                                       left: 0, right: 5, bottom: 0),
                                   child: Text(
-                                    "Gender",
+                                    MyLocalizations.of(context).text("GENDER"),
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
                                         color: Colors.black,
@@ -2612,7 +2652,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   ),
                                 ),
                                 DropDown.networkDropdownlabler1(
-                                    "Gender", ApiFactory.GENDER_API, "gen",
+                                    MyLocalizations.of(context).text("GENDER"), ApiFactory.GENDER_API, "gen",
                                     (KeyvalueModel model) {
                                   setState(() {
                                     print(ApiFactory.GENDER_API);
@@ -2645,16 +2685,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         ),
                                       ),
                                       DropDown.networkDropdownlabler1(
-                                          "Country",
+                                          MyLocalizations.of(context)
+                                              .text("COUNTRY"),
                                           ApiFactory.COUNTRY_API,
                                           "pcountry", (KeyvalueModel model) {
                                         setState(() {
                                           print(ApiFactory.COUNTRY_API);
                                           ProfileScreen.countrymodel = model;
-                                          patientProfileModel.body.countryid =
-                                              model.key;
-                                          patientProfileModel.body.country =
-                                              model.name;
+                                          patientProfileModel.body.countryid = model.key;
+                                          patientProfileModel.body.country = model.name;
+                                          ProfileScreen.statemodel = null;
+                                          ProfileScreen.districtmodel = null;
+                                          ProfileScreen.citymodel = null;
                                           // updateProfileModel.bloodGroup = model.key;
                                         });
                                       }),
@@ -2662,8 +2704,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 SizedBox(height: 20),
                                 Column(
                                     mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Padding(
                                         padding: const EdgeInsets.only(
@@ -2680,19 +2721,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         ),
                                       ),
                                       DropDown.networkDropdownlabler1(
-                                          "State",
+                                          MyLocalizations.of(context)
+                                              .text("STATE"),
                                           ApiFactory.STATE_API +
                                               (ProfileScreen
-                                                      ?.countrymodel?.key ??
-                                                  ""),
+                                                      ?.countrymodel?.key ?? ""),
                                           "pstate", (KeyvalueModel model) {
                                         setState(() {
                                           print(ApiFactory.STATE_API);
                                           ProfileScreen.statemodel = model;
-                                          patientProfileModel.body.stateid =
-                                              model.key;
-                                          patientProfileModel.body.state =
-                                              model.name;
+                                          patientProfileModel.body.stateid = model.key;
+                                          patientProfileModel.body.state = model.name;
+                                          ProfileScreen.districtmodel = null;
+                                          ProfileScreen.citymodel = null;
                                           // updateProfileModel.bloodGroup = model.key;
                                         });
                                       }),
@@ -2707,7 +2748,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         padding: const EdgeInsets.only(
                                             left: 0, right: 5, bottom: 0),
                                         child: Text(
-                                          "District",
+                                          MyLocalizations.of(context)
+                                              .text("DIST"),
                                           textAlign: TextAlign.left,
                                           style: TextStyle(
                                               color: Colors.black,
@@ -2717,7 +2759,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         ),
                                       ),
                                       DropDown.networkDropdownlabler1(
-                                          "District",
+                                          MyLocalizations.of(context)
+                                              .text("DIST"),
                                           ApiFactory.DISTRICT_API +
                                               (ProfileScreen?.statemodel?.key ??
                                                   ""),
@@ -2729,6 +2772,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                               model.key;
                                           patientProfileModel.body.dist =
                                               model.name;
+                                          ProfileScreen.citymodel = null;
                                           // updateProfileModel.bloodGroup = model.key;
                                         });
                                       }),
@@ -2754,7 +2798,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         ),
                                       ),
                                       DropDown.networkDropdownlabler1(
-                                          "City",
+                                          MyLocalizations.of(context)
+                                              .text("CITY"),
                                           ApiFactory.CITY_API +
                                               (ProfileScreen
                                                       ?.districtmodel?.key ??
@@ -2808,64 +2853,64 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     if (textEditingController[0].text == null ||
                         textEditingController[0].text == "") {
                       AppData.showInSnackBar(context, "Please Enter  Dob");
-                    } else if (ProfileScreen.bloodgroupmodel == null ||
-                        ProfileScreen.bloodgroupmodel == "") {
-                      AppData.showInSnackBar(
-                          context, "Please select Bloodgroup");
+                    // } else if (ProfileScreen.bloodgroupmodel == null ||
+                    //     ProfileScreen.bloodgroupmodel == "") {
+                    //   AppData.showInSnackBar(
+                    //       context, "Please select Bloodgroup");
                     } else if (textEditingController[1].text == "" ||
                         textEditingController[1].text == null) {
                       AppData.showInSnackBar(context, "Please enter Address");
-                    } else if (ProfileScreen.materialmodel == null ||
-                        ProfileScreen.materialmodel == "") {
-                      AppData.showInSnackBar(
-                          context, "Please select Marital Status");
-                    } else if (textEditingController[2].text == "" ||
-                        textEditingController[2].text.length == null) {
-                      AppData.showInSnackBar(
-                          context, "Please enter Occupation");
+                    // } else if (ProfileScreen.materialmodel == null ||
+                    //     ProfileScreen.materialmodel == "") {
+                    //   AppData.showInSnackBar(
+                    //       context, "Please select Marital Status");
+                    // } else if (textEditingController[2].text == "" ||
+                    //     textEditingController[2].text.length == null) {
+                    //   AppData.showInSnackBar(
+                    //       context, "Please enter Occupation");
                       // FocusScope.of(context).requestFocus(fnode2);
-                    } else if (textEditingController[3].text == "" ||
-                        textEditingController[3].text.length == null) {
-                      AppData.showInSnackBar(
-                          context, "Please enter Qualification");
+                    // } else if (textEditingController[3].text == "" ||
+                    //     textEditingController[3].text.length == null) {
+                    //   AppData.showInSnackBar(
+                    //       context, "Please enter Qualification");
                       // FocusScope.of(context).requestFocus(fnode3);
-                    } else if (textEditingController[4].text == "" &&
-                        textEditingController[4].text.length == null) {
-                      AppData.showInSnackBar(
-                          context, "Please enter  Specialization");
+                    // } else if (textEditingController[4].text == "" &&
+                    //     textEditingController[4].text.length == null) {
+                    //   AppData.showInSnackBar(
+                    //       context, "Please enter  Specialization");
                       // FocusScope.of(context).requestFocus(fnode4);
-                    } else if (textEditingController[5].text == "" ||
-                        textEditingController[5].text == null) {
-                      AppData.showInSnackBar(
-                          context, "Please enter Pan Card No");
+                    // } else if (textEditingController[5].text == "" ||
+                    //     textEditingController[5].text == null) {
+                    //   AppData.showInSnackBar(
+                    //       context, "Please enter Pan Card No");
                       // FocusScope.of(context).requestFocus(fnode5);
-                    } else if (textEditingController[6].text == "" ||
-                        textEditingController[6].text.length == null) {
-                      AppData.showInSnackBar(
-                          context, "Please enter a Passport No");
-                      FocusScope.of(context).requestFocus(fnode5);
-                    } else if (textEditingController[7].text == "" ||
-                        textEditingController[7].text == null) {
-                      AppData.showInSnackBar(context, "Please enter Aadhar No");
-                      FocusScope.of(context).requestFocus(fnode6);
-                    } else if (textEditingController[8].text == "" ||
-                        textEditingController[8].text == null) {
-                      AppData.showInSnackBar(
-                          context, "Please enter Votor Card No");
-                    } else if (textEditingController[9].text == "" ||
-                        textEditingController[9].text == null) {
-                      AppData.showInSnackBar(
-                          context, "Please enter Licence No.");
-                    } else if (textEditingController[10].text == "" ||
-                        textEditingController[10].text == null) {
-                      AppData.showInSnackBar(
-                          context, "Please enter Licence Authority");
-                    } else if (textEditingController[11].text == "" ||
-                        textEditingController[11].text == null) {
-                      AppData.showInSnackBar(context, "Please enter Email");
-                    } else if (textEditingController[12].text == "" ||
-                        textEditingController[12].text == null) {
-                      AppData.showInSnackBar(context, "Please enter PinCode");
+                    // } else if (textEditingController[6].text == "" ||
+                    //     textEditingController[6].text.length == null) {
+                    //   AppData.showInSnackBar(
+                    //       context, "Please enter a Passport No");
+                    //   FocusScope.of(context).requestFocus(fnode5);
+                    // } else if (textEditingController[7].text == "" ||
+                    //     textEditingController[7].text == null) {
+                    //   AppData.showInSnackBar(context, "Please enter Aadhar No");
+                    //   FocusScope.of(context).requestFocus(fnode6);
+                    // } else if (textEditingController[8].text == "" ||
+                    //     textEditingController[8].text == null) {
+                    //   AppData.showInSnackBar(
+                    //       context, "Please enter Votor Card No");
+                    // } else if (textEditingController[9].text == "" ||
+                    //     textEditingController[9].text == null) {
+                    //   AppData.showInSnackBar(
+                    //       context, "Please enter Licence No.");
+                    // } else if (textEditingController[10].text == "" ||
+                    //     textEditingController[10].text == null) {
+                    //   AppData.showInSnackBar(
+                    //       context, "Please enter Licence Authority");
+                    // } else if (textEditingController[11].text == "" ||
+                    //     textEditingController[11].text == null) {
+                    //   AppData.showInSnackBar(context, "Please enter Email");
+                    // } else if (textEditingController[12].text == "" ||
+                    //     textEditingController[12].text == null) {
+                    //   AppData.showInSnackBar(context, "Please enter PinCode");
                     } else if (textEditingController[13].text == "" ||
                         textEditingController[13].text == null) {
                       AppData.showInSnackBar(context, "Please enter Mobile no");
@@ -3773,8 +3818,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           child: Column(
                             children: [
                               Center(
-                                child: Text(
-                                  "Update Emergency Contact",
+                                child: Text(MyLocalizations.of(context).text("UPDATE_EMERGENCY_CONTACT"),
                                   style: TextStyle(
                                       color: Colors.black, fontSize: 20),
                                 ),
@@ -3785,10 +3829,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         SizedBox(
                           height: 15,
                         ),
-                        formField1(13, "Name"),
+                        formField1(13, MyLocalizations.of(context).text("NAME")),
                         SizedBox(height: 8),
                         DropDown.networkDropdownGetpartUser1(
-                            "Relation",
+                            MyLocalizations.of(context).text("RELATION"),
                             ApiFactory.RELATION_API,
                             "rln",
                             Icons.people_alt_rounded,
@@ -3800,7 +3844,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           });
                         }),
                         SizedBox(height: 8),
-                        mobileformField1(14, "Mobile No"),
+                        mobileformField1(14, MyLocalizations.of(context).text("MOBILE_NO")),
                       ],
                     ),
                   ),
@@ -3866,7 +3910,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           json: updateEmergencyModel.toJson(),
                           token: widget.model.token,
                           fun: (Map<String, dynamic> map) {
-                            Navigator.pop(context);
+                           // Navigator.pop(context);
 
                             if (map[Const.STATUS1] == Const.SUCCESS) {
                               Navigator.pop(context);
@@ -3915,8 +3959,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           child: Column(
                             children: [
                               Center(
-                                child: Text(
-                                  "Add Family Doctor's Name",
+                                child: Text(MyLocalizations.of(context).text("ADD_FAMILY_DOCTORS_NAME"),
                                   style: TextStyle(
                                       color: Colors.black, fontSize: 20),
                                 ),
@@ -3927,10 +3970,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         SizedBox(
                           height: 15,
                         ),
-                        formField1(15, "Name"),
+                        formField1(15, MyLocalizations.of(context).text("NAME")),
                         SizedBox(height: 8),
                         DropDown.networkDropdownGetpartUser1(
-                            "Speciality",
+                            MyLocalizations.of(context).text("SPECIALITY"),
                             ApiFactory.SPECIALITY_API,
                             "speciality",
                             Icons.people_alt_rounded,
@@ -3942,7 +3985,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           });
                         }),
                         SizedBox(height: 8),
-                        mobileformField1(16, "Mobile No"),
+                        mobileformField1(16,   MyLocalizations.of(context).text("MOBILE_NO")),
                       ],
                     ),
                   ),
@@ -4049,8 +4092,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           child: Column(
                             children: [
                               Center(
-                                child: Text(
-                                  "Add Family Details",
+                                child: Text(MyLocalizations.of(context).text("ADD_FAMILY_DETAILS") ,
                                   style: TextStyle(
                                       color: Colors.black, fontSize: 20),
                                 ),
@@ -4174,7 +4216,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           controller: textEditingController[index],
           textAlignVertical: TextAlignVertical.center,
           inputFormatters: [
-            WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
+            WhitelistingTextInputFormatter(RegExp("[a-zA-Z.]")),
           ],
         ),
       ),
@@ -4444,8 +4486,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           child: Column(
                             children: [
                               Center(
-                                child: Text(
-                                  "Update Family Doctor's Name",
+                                child: Text(MyLocalizations.of(context).text("UPDATE_FAMILY_DOCTORS_NAME"),
                                   style: TextStyle(
                                       color: Colors.black, fontSize: 20),
                                 ),
@@ -4456,10 +4497,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         SizedBox(
                           height: 15,
                         ),
-                        formField1(15, "Name"),
+                        formField1(15, MyLocalizations.of(context).text("NAME")),
                         SizedBox(height: 8),
                         DropDown.networkDropdownGetpartUser1(
-                            "Speciality",
+                        MyLocalizations.of(context).text("SPECIALITY"),
                             ApiFactory.SPECIALITY_API,
                             "spl",
                             Icons.people_alt_rounded,
@@ -4471,7 +4512,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           });
                         }),
                         SizedBox(height: 8),
-                        mobileformField1(16, "Mobile No"),
+                        mobileformField1(16, MyLocalizations.of(context).text("MOBILE_NO")),
                       ],
                     ),
                   ),
@@ -4586,8 +4627,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           child: Column(
                             children: [
                               Center(
-                                child: Text(
-                                  "Update Family Detail's Name",
+                                child: Text(MyLocalizations.of(context).text("UPDATE_FAMILY_DETAILS"),
                                   style: TextStyle(
                                       color: Colors.black, fontSize: 20),
                                 ),
@@ -4604,18 +4644,61 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             width: 350,
                             height: 50,
                             decoration: BoxDecoration(
+                              color: Colors.blueGrey,
                               border: Border.all(
-                                color: Colors.grey,
+                                color: Colors.blueAccent,
                               ),
                               borderRadius: BorderRadius.circular(5.0),
                             ),
                             child: Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding: const EdgeInsets.only(top:12.00,left: 8,right: 8,bottom: 10),
                               child: Text(
-                                patientProfileModel
-                                    .body.familyDetailsList[index].memeberName,
+                                patientProfileModel.body.familyDetailsList[index].userid,style: TextStyle(color:Colors.white),
                               ),
                             ), //////
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            width: 350,
+                            height: 50,
+                            decoration: BoxDecoration(
+                              color: Colors.blueGrey,
+                              border: Border.all(
+                                color: Colors.blueAccent,
+                              ),
+                              borderRadius: BorderRadius.circular(5.0),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.only(top:12.00,left: 8,right: 8,bottom: 10),
+                              child: Text(
+                                patientProfileModel.body.familyDetailsList[index].memeberName,style: TextStyle(color:Colors.white),
+                              ),
+                            ), //////
+                          ),
+                        ),
+
+                        //SizedBox(height: 4),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            width: 350,
+                            height: 50,
+                            decoration: BoxDecoration(
+                              color: Colors.blueGrey,
+                              border: Border.all(
+                                color: Colors.blueAccent,
+                              ),
+                              borderRadius: BorderRadius.circular(5.0),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.only(top:12.00,left: 8,right: 8,bottom: 10),
+                              child: Text(
+                                patientProfileModel
+                                    .body.familyDetailsList[index].age,style: TextStyle(color:Colors.white),
+                              ),
+                            ),
                           ),
                         ),
                         SizedBox(height: 8),
@@ -4631,27 +4714,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             patientProfileModel.body.eRelation = model.name;
                           });
                         }),
-                        SizedBox(height: 8),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            width: 350,
-                            height: 50,
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                color: Colors.grey,
-                              ),
-                              borderRadius: BorderRadius.circular(5.0),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                patientProfileModel
-                                    .body.familyDetailsList[index].age,
-                              ),
-                            ),
-                          ),
-                        ),
                       ],
                     ),
                   ),

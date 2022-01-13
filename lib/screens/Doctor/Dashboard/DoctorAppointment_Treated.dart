@@ -560,7 +560,7 @@ class _DoctorAppointmentTreatedState extends State<DoctorAppointmentTreated> {
                                                                           child:
                                                                               Text(
                                                                             /*'Confirmed'*/
-                                                                            "Give prescription",
+                                                                            "Give Prescription",
                                                                             style: TextStyle(
                                                                                 fontWeight: FontWeight.bold,
                                                                                 fontSize: 15,

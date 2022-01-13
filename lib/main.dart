@@ -8,6 +8,7 @@ import 'package:user/providers/Const.dart';
 import 'package:user/providers/SharedPref.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
+import 'package:user/screens/Admin/Admin.dart';
 import 'package:user/screens/Ambulance/Dashboard/AcceptAmbulance.dart';
 import 'package:user/screens/Ambulance/Dashboard/AllAmbulance.dart';
 import 'package:user/screens/Ambulance/Dashboard/AmbulanceDashboard.dart';
@@ -56,6 +57,7 @@ import 'package:user/screens/Users/BookBloodBank/BookBloodBanklist.dart';
 import 'package:user/screens/Users/Dashboard/ChangePassword.dart';
 import 'package:user/screens/Users/Dashboard/QrcodePage.dart';
 import 'package:user/screens/Users/Dashboard/TermsandConditionPage.dart';
+import 'package:user/screens/Users/GovermentSchemes/GovermentSchemesDitelsPage.dart';
 import 'package:user/screens/Users/GovermentSchemes/GovernmentSchemesList.dart';
 import 'package:user/screens/Pharmacists/screens/OrdersTabPharmacy.dart';
 import 'package:user/screens/Users/Dashboard/AboutUs.dart';
@@ -85,6 +87,8 @@ import 'package:user/screens/Users/Medipedia/DieseInfo.dart';
 import 'package:user/screens/Users/Medipedia/Diesepdf.dart';
 import 'package:user/screens/Users/Medipedia/HealthTipsList.dart';
 import 'package:user/screens/Users/Medication/UserMedicineTab.dart';
+import 'package:user/screens/Users/MyMedicalRecord/HealthChat1/Healthchatlist.dart';
+import 'package:user/screens/Users/MyMedicalRecord/Medication/DigitalTestPage.dart';
 import 'package:user/screens/Users/MyMedicalRecord/Medication/DigitalprescriptionPage.dart';
 import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/AddUploadDocument.dart';
 import 'package:user/screens/Users/MyMedicalRecord/BiomediImplants.dart';
@@ -98,15 +102,16 @@ import 'package:user/screens/Users/Dashboard/EmergencyDetails.dart';
 import 'package:user/screens/Users/GenericMedicine/GenericMedicine.dart';
 import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/DocumentImageView.dart';
 import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/DocumentList.dart';
-import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/DocumentPdfView.dart';
-import 'package:user/screens/Users/MyMedicalRecord/HealthChart.dart';
+import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/UploadDocumentTab.dart';
+import 'screens/Syndicate Partner/Dashboard/SyndicateDashboard.dart';
+import 'screens/Syndicate Partner/Registration/Syndicatepartner.dart';
+import 'screens/Users/MyMedicalRecord/HealthChat1/HealthChart.dart';
 import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/UploadDocument.dart';
 import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/VideoDetailsPage.dart';
 import 'package:user/screens/Users/organ/OrganPreviewPage.dart';
 import 'package:user/screens/Users/organ/Organlist.dart';
 import 'package:user/screens/VideoCall/VideoCallPage.dart';
 import 'package:user/screens/walkin_labrotry/LabDashboard.dart';
-import 'package:user/screens/walkin_labrotry/Screen/LabMyProfile.dart';
 import 'package:user/screens/walkin_labrotry/Screen/LabQrCode.dart';
 import 'package:user/widgets/PdfViewPage.dart';
 import 'screens/Users/MyMedicalRecord/LifeStyleHistory.dart';
@@ -1007,7 +1012,7 @@ class _MyAppState extends State<MyApp> {
               '/myPatientlist': (context) => MyPatientlist(
                     model: _model,
                   ),
-              '/uploaddocument': (context) => DocumentList(
+              '/uploaddocument': (context) => UploadDocumentTab(
                     model: _model,
                   ),
               '/upload': (context) => UploadDocument(
@@ -1022,6 +1027,10 @@ class _MyAppState extends State<MyApp> {
               '/documentpdf': (context) => PdfViewPage(
                     model: _model,
                   ),
+              '/govermentSchemesDitelsPage': (context) => GovermentSchemesDitelsPage(
+                model: _model,
+              ),
+
               '/documentimage': (context) => DocumentImage(
                     model: _model,
                   ),
@@ -1049,6 +1058,10 @@ class _MyAppState extends State<MyApp> {
               '/userTestList': (context) => UserTestList(
                     model: _model,
                   ),
+              '/disitaTestPage': (context) => DisitaTestPage(
+                model: _model,
+              ),
+
 
               '/monthlyoverview': (context) => MonthlyOverview(
                     model: _model,
@@ -1059,7 +1072,24 @@ class _MyAppState extends State<MyApp> {
               '/receptionlistsignup': (context) => MonthlyOverviewlist(
                     model: _model,
                   ),
+              '/healthChaatlist': (context) => HealthChaatlist(
+                model: _model,
+              ),
+
 ////////////////////////////////////////////////////////////////////////////////
+             // syndicate partner
+              '/admin': (context) =>
+                  AdminUser(
+                    model: _model,
+                  ),
+              '/syndicatesignUpformm': (context) =>
+                  SyndicateSignupform(
+                    model: _model,
+                  ),
+              '/syndicateDashboard': (context) =>
+                  SyndicateDashboard(
+                    model: _model,
+                  ),
               // RECEPTIONLIST
               '/receptionlistsignUpformm': (context) =>
                   ReceptionlistSignUpFormm(

@@ -409,8 +409,7 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
                                           },
                                           minWidth: 120,
                                           height: 40.0,
-                                          child: Text(
-                                            "Upload",
+                                          child: Text(MyLocalizations.of(context).text("UPLOAD"),
                                             style: TextStyle(
                                                 color: Colors.white,
                                                 fontSize: 17.0),
@@ -446,11 +445,12 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
                                                     child: Icon(Icons.clear)),
                                                 onTap: () {
                                                   setState(() {
+                                                    pharmaSignupModel.documentExt = null;
                                                     idproof = null;
                                                     // registrationModel.profilePhotoBase64 =
-                                                    null;
+                                                   // null;
                                                     //registrationModel.profilePhotoExt =
-                                                    null;
+                                                    //null;
                                                   });
                                                 },
                                               )
@@ -710,38 +710,38 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
       fun: () {
         if (PharmaSignUpForm3.countryModel == null ||
             PharmaSignUpForm3.countryModel == "") {
-          AppData.showInSnackBar(context, "Please select Country");
+          AppData.showInSnackBar(context, "Please select country");
         } else if (PharmaSignUpForm3.stateModel == null ||
             PharmaSignUpForm3.stateModel == "") {
-          AppData.showInSnackBar(context, "Please select State");
+          AppData.showInSnackBar(context, "Please select state");
         } else if (PharmaSignUpForm3.districtModel == null ||
             PharmaSignUpForm3.districtModel == "") {
-          AppData.showInSnackBar(context, "Please select District");
+          AppData.showInSnackBar(context, "Please select district");
         } else if (PharmaSignUpForm3.citymodel == null ||
             PharmaSignUpForm3.citymodel == "") {
-          AppData.showInSnackBar(context, "Please select City");
+          AppData.showInSnackBar(context, "Please select city");
         } else if (textEditingController[5].text == "" ||
             textEditingController[5].text == null) {
-          AppData.showInSnackBar(context, "Please enter Zip/Pin Code");
+          AppData.showInSnackBar(context, "Please enter Zip/Pin code");
         } else if (textEditingController[5].text == "" ||
             textEditingController[5].text.length != 6) {
-          AppData.showInSnackBar(context, "Please enter Valid Zip/Pin Code");
+          AppData.showInSnackBar(context, "Please enter valid Zip/Pin code");
         } else if (textEditingController[10].text == "" ||
             textEditingController[10].text == null) {
-          AppData.showInSnackBar(context, "Please enter Mobile Number");
+          AppData.showInSnackBar(context, "Please enter mobile number");
         } else if (textEditingController[10].text != "" &&
             textEditingController[10].text.length != 10) {
-          AppData.showInSnackBar(context, "Please enter a valid Mobile No");
+          AppData.showInSnackBar(context, "Please enter a valid mobile no");
         } else if (textEditingController[11].text == "" ||
             textEditingController[11].text == null) {
-          AppData.showInSnackBar(context, "Please enter Email Id");
+          AppData.showInSnackBar(context, "Please enter email Id");
         } else if (textEditingController[11].text != "" &&
             !AppData.isValidEmail(textEditingController[11].text)) {
-          AppData.showInSnackBar(context, "Please enter a valid E-mail");
+          AppData.showInSnackBar(context, "Please enter a valid e-mail");
         }else if (pharmaSignupModel.documentExt == null) {
-          AppData.showInSnackBar(context, "Please Upload Document");
-        } else if (_checkbox == false) {
-          AppData.showInSnackBar(context, "Please check Terms and Condition");
+          AppData.showInSnackBar(context, "Please upload document");
+        } else if (_checkbox == false){
+          AppData.showInSnackBar(context, "Please check Terms and Conditions");
         } else {
           MyWidgets.showLoading(context);
           pharmaSignupModel.organizationid = pharmaorganisation;
@@ -1372,7 +1372,7 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
                   maxLength: 10,
                   keyboardType: TextInputType.number,
                   inputFormatters: [
-                    WhitelistingTextInputFormatter(RegExp("[0-9 ]")),
+                    WhitelistingTextInputFormatter(RegExp("[0-9]")),
                   ],
                   decoration: InputDecoration(
                     //suffixIcon: Icon(Icons.phone),

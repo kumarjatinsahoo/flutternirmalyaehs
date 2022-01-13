@@ -55,7 +55,7 @@ class _AYUSHDoctorsState extends State<AYUSHDoctors> {
                           children: [
                             InkWell(
                               onTap: () {
-                                widget.model.medicallserviceType = "Ayurveda";
+                                widget.model.medicallserviceType = MyLocalizations.of(context).text("AYURVEDA");
                                 Navigator.pushNamed(
                                     context, "/medicalsServiceOngooglePage");
 
@@ -119,7 +119,7 @@ class _AYUSHDoctorsState extends State<AYUSHDoctors> {
                             ),
                             InkWell(
                               onTap: () {
-                                widget.model.medicallserviceType = "Homeopathy";
+                                widget.model.medicallserviceType = MyLocalizations.of(context).text("HOMEOPATHY");
                                 Navigator.pushNamed(
                                     context, "/medicalsServiceOngooglePage");
                               },
@@ -178,8 +178,7 @@ class _AYUSHDoctorsState extends State<AYUSHDoctors> {
                             ),
                             InkWell(
                               onTap: () {
-                                widget.model.medicallserviceType =
-                                    "Siddha Treatment";
+                                widget.model.medicallserviceType = MyLocalizations.of(context).text("SIDDHA_TREATMENT");
                                 Navigator.pushNamed(
                                     context, "/medicalsServiceOngooglePage");
                               },
@@ -238,7 +237,7 @@ class _AYUSHDoctorsState extends State<AYUSHDoctors> {
                             ),
                             GestureDetector(
                               onTap: () {
-                                widget.model.medicallserviceType = "Unani";
+                                widget.model.medicallserviceType = MyLocalizations.of(context).text("UNANI");
                                 Navigator.pushNamed(
                                     context, "/medicalsServiceOngooglePage");
                               },
@@ -300,7 +299,7 @@ class _AYUSHDoctorsState extends State<AYUSHDoctors> {
                             GestureDetector(
                                 onTap: () {
                                   widget.model.medicallserviceType =
-                                      "Yoga & Naturopathy";
+                                      MyLocalizations.of(context).text("YOGA_NATUROPATHY");
                                   Navigator.pushNamed(
                                       context, "/medicalsServiceOngooglePage");
                                 },

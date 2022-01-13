@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'package:user/localization/localizations.dart';
 import 'package:user/models/AmbulanceAllModel.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/api_factory.dart';
@@ -26,7 +27,6 @@ class _RejectAmbulanceState extends State<RejectAmbulance> {
   bool isDataNotAvail = false;
   bool isdata = true;
   ambulanceappoint.AmbulanceAppointmentModel ambulanceAppointmentModel;
-
 
   void selectDestination(int index) {
     setState(() {
@@ -70,8 +70,7 @@ class _RejectAmbulanceState extends State<RejectAmbulance> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
         appBar: AppBar(
-          title: Text(
-            'Rejected',
+          title: Text(MyLocalizations.of(context).text("REJECT"),
             style: TextStyle(color: Colors.white),
           ),
           centerTitle: true,
@@ -143,7 +142,7 @@ class _RejectAmbulanceState extends State<RejectAmbulance> {
                                       Container(
                                         width: 140.00,
                                         child: Text(
-                                          "Name ",
+                                          MyLocalizations.of(context).text("NAME"),
                                           style: TextStyle(
                                             fontWeight:
                                             FontWeight.w600,
@@ -153,7 +152,7 @@ class _RejectAmbulanceState extends State<RejectAmbulance> {
                                       ),
                                     //  Spacer(),
                                       Text(
-                                        body.patientName,
+                                        body.patientName.trim(),
                                         style: TextStyle(
                                             fontSize: 15),
                                         textAlign:
@@ -169,7 +168,7 @@ class _RejectAmbulanceState extends State<RejectAmbulance> {
                                       Container(
                                         width:140.00,
                                         child: Text(
-                                          "From",
+                                          MyLocalizations.of(context).text("FROM"),
                                           style: TextStyle(
                                             fontWeight:
                                             FontWeight.w600,
@@ -180,7 +179,7 @@ class _RejectAmbulanceState extends State<RejectAmbulance> {
                                      // Spacer(),
                                       Expanded(
                                         child: Text(
-                                          body.fromLocation,
+                                          body.fromLocation.trim(),
                                           style: TextStyle(
                                               fontSize: 15),
                                         ),
@@ -195,7 +194,7 @@ class _RejectAmbulanceState extends State<RejectAmbulance> {
                                       Container(
                                         width:140.00,
                                         child: Text(
-                                          "Destination",
+                                          MyLocalizations.of(context).text("DESTINATION"),
                                           style: TextStyle(
                                             fontWeight:
                                             FontWeight.w600,
@@ -206,7 +205,7 @@ class _RejectAmbulanceState extends State<RejectAmbulance> {
                                     //  Spacer(),
                                       Expanded(
                                         child: Text(
-                                          body.toDestination,
+                                          body.toDestination.trim(),
                                           style: TextStyle(
                                               fontSize: 15),
                                         ),
@@ -221,7 +220,7 @@ class _RejectAmbulanceState extends State<RejectAmbulance> {
                                       Container(
                                         width:140.00,
                                         child: Text(
-                                          'Patient Notes',
+                                          MyLocalizations.of(context).text("PATIENT_NOTES"),
                                           style: TextStyle(
                                             fontWeight:
                                             FontWeight.w600,
@@ -232,7 +231,7 @@ class _RejectAmbulanceState extends State<RejectAmbulance> {
                                      // Spacer(),
                                       Expanded(
                                         child: Text(
-                                          body.patientNote,
+                                          body.patientNote.trim(),
                                           style: TextStyle(
                                               fontSize: 15),
                                         ),

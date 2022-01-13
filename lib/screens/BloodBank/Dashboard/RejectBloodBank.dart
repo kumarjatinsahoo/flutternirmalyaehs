@@ -154,7 +154,7 @@ class _RejectBloodBankState extends State<RejectBloodBank> {
                                                       //  Spacer(),
                                                       Expanded(
                                                         child: Text(
-                                                          body.patientName,
+                                                          body.patientName.trim(),
                                                           style: TextStyle(
                                                               fontSize: 15),
 
@@ -182,7 +182,7 @@ class _RejectBloodBankState extends State<RejectBloodBank> {
                                                       // Spacer(),
                                                       Expanded(
                                                         child: Text(
-                                                          body.bloodGrName,
+                                                          body.bloodGrName.trim(),
                                                           style: TextStyle(
                                                               fontSize: 15),
 
@@ -210,7 +210,7 @@ class _RejectBloodBankState extends State<RejectBloodBank> {
                                                       //   Spacer(),
                                                       Expanded(
                                                         child: Text(
-                                                          body.bookedDate,
+                                                          body.bookedDate.trim(),
                                                           style: TextStyle(
                                                               fontSize: 15),
                                                         ),
@@ -237,7 +237,7 @@ class _RejectBloodBankState extends State<RejectBloodBank> {
                                                       //   Spacer(),
                                                       Expanded(
                                                         child: Text(
-                                                          body.patientNote,
+                                                          body.patientNote.trim(),
                                                           style: TextStyle(
                                                               fontSize: 15),
                                                         ),

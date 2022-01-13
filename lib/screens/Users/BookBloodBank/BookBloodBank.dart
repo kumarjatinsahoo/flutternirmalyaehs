@@ -343,7 +343,7 @@ class BookBloodBankPageState extends State<BookBloodBankPage> {
                         //comultationTime(),
                         fromAddress(
                             1,
-                            MyLocalizations.of(context).text("REASON FOR CHOICE OF BLOOD BANK").toUpperCase(),
+                            MyLocalizations.of(context).text("REASON_FOR_BLOODBANK").toUpperCase(),
                             TextInputAction.next,
                             TextInputType.text,
                             address_,

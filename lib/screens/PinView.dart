@@ -190,8 +190,7 @@ class _PinViewState extends State<PinView> with SingleTickerProviderStateMixin {
 
   // Return "Verification Code" label
   get _getVerificationCodeLabel {
-    return Text(
-      "Verification PIN",
+    return Text(MyLocalizations.of(context).text("VERIFICATION_PIN"),
       /*"Verification Code"*/
       textAlign: TextAlign.center,
       style: TextStyle(
@@ -204,8 +203,7 @@ class _PinViewState extends State<PinView> with SingleTickerProviderStateMixin {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10.0),
       child: Text(
-        //MyLocalizations.of(context).text("PLEASE_ENTER_THE_OTP_SENT"),
-         "Please enter the PIN",
+        MyLocalizations.of(context).text("PLEASE_ENTER_PIN"),
         textAlign: TextAlign.center,
         style: TextStyle(
             fontSize: 18.0, color: Colors.white, fontWeight: FontWeight.w600),

@@ -263,8 +263,7 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                                                               CrossAxisAlignment
                                                                   .start,
                                                           children: [
-                                                            Text(
-                                                              'Doctor Name: ',
+                                                            Text(MyLocalizations.of(context).text("DOCTOR_NAME"),
                                                               style: TextStyle(
                                                                   color: Colors
                                                                       .blue,
@@ -312,8 +311,7 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                                                             SizedBox(
                                                               height: 5,
                                                             ),
-                                                            Text(
-                                                              'Education: ',
+                                                            Text(MyLocalizations.of(context).text("EDUCATION1"),
                                                               style: TextStyle(
                                                                   color: Colors
                                                                       .blue,
@@ -374,8 +372,7 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                                                             SizedBox(
                                                               height: 4,
                                                             ),
-                                                            Text(
-                                                              'Speciality: ',
+                                                            Text(MyLocalizations.of(context).text("SPECIALITY"),
                                                               style: TextStyle(
                                                                   color: Colors
                                                                       .blue,
@@ -402,8 +399,7 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                                                             SizedBox(
                                                               height: 4,
                                                             ),
-                                                            Text(
-                                                              'Address: ',
+                                                            Text(MyLocalizations.of(context).text("ADDRESS"),
                                                               style: TextStyle(
                                                                   color: Colors
                                                                       .blue,
@@ -431,8 +427,7 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                                                             SizedBox(
                                                               height: 4,
                                                             ),
-                                                            Text(
-                                                              'Date: ',
+                                                            Text(MyLocalizations.of(context).text("DATE"),
                                                               style: TextStyle(
                                                                   color: Colors
                                                                       .blue,
@@ -463,8 +458,7 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                                                             SizedBox(
                                                               height: 4,
                                                             ),
-                                                            Text(
-                                                              'Consult Type: ',
+                                                            Text(MyLocalizations.of(context).text("CONSULT_TYPE"),
                                                               style: TextStyle(
                                                                   color: Colors
                                                                       .blue,
@@ -572,8 +566,7 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                                                                       height:
                                                                           40.0,
                                                                       child:
-                                                                          Text(
-                                                                        "Rate",
+                                                                          Text(MyLocalizations.of(context).text("RATE"),
                                                                         style: TextStyle(
                                                                             fontWeight: FontWeight
                                                                                 .bold,
@@ -616,8 +609,7 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                                                                       height:
                                                                           40.0,
                                                                       child:
-                                                                          Text(
-                                                                        "Show Prescription",
+                                                                          Text(MyLocalizations.of(context).text("PRESCRIPTION"),
                                                                         style: TextStyle(
                                                                             fontWeight: FontWeight
                                                                                 .bold,
@@ -1153,8 +1145,7 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                           padding: const EdgeInsets.only(left: 0, right: 0),
                           child: Column(
                             children: [
-                              Text(
-                                "Rate to Doctor",
+                              Text(MyLocalizations.of(context).text("RATE_DOCTOR"),
                                 style: TextStyle(
                                     color: Colors.black, fontSize: 20),
                               ),
@@ -1180,7 +1171,7 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                                 ],
                               ),
                               fromAddress(1,
-                                  "Review",
+                                  MyLocalizations.of(context).text("REVIEW"),
                                   TextInputAction.next,
                                   TextInputType.text,
                                   "review"),

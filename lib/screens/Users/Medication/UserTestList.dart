@@ -167,9 +167,21 @@ class _MedicineList extends State<UserTestList> {
             backgroundColor: AppData.kPrimaryColor,
             title: Text("Test List"),
             actions: <Widget>[
-              Padding(
-                padding: EdgeInsets.only(right: 20.0),
-              ),
+            /*  Padding(
+                padding: const EdgeInsets.only(right: 15.0,top: 20),
+                child: InkWell(
+                  onTap: () {
+                    Navigator.pushNamed(context, "/disitaTestPage");
+                  },
+                  child: Text("Prescribed Test"),
+                ),
+              ),*/
+              /* Padding(
+            padding: EdgeInsets.only(right: 18.0,top: 20),
+           child:Text("Prescription"),
+
+
+          ),*/
             ],
             toolbarHeight:
             (widget.model.apntUserType == Const.HEALTH_CHKUP_APNT)
@@ -183,7 +195,7 @@ class _MedicineList extends State<UserTestList> {
         //backgroundColor: AppData.matruColor,
       ),
           )
-          : userListModel == null || userListModel == null
+          : userListModel == "" || userListModel == null
           ? Container(
         child: Center(
           child: Text(

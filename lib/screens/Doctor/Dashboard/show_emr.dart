@@ -10,7 +10,7 @@ import 'package:user/screens/Doctor/Dashboard/Showemr/FamilyDetails.dart';
 import 'package:user/screens/Doctor/Dashboard/Showemr/Immunization.dart';
 import 'package:user/screens/Doctor/Dashboard/Showemr/LifestyleHistory.dart';
 import 'package:user/screens/Doctor/Dashboard/Showemr/Medication.dart';
-import 'package:user/screens/Doctor/Dashboard/Showemr/MobileUpload.dart';
+import 'package:user/screens/Doctor/Dashboard/Showemr/MobileUpload/MobileUpload.dart';
 import 'package:user/screens/Doctor/Dashboard/Showemr/PatientDetail.dart';
 import 'package:user/screens/Doctor/Dashboard/Showemr/PatientHistory.dart';
 import 'package:user/screens/Doctor/Dashboard/Showemr/TestReport.dart';

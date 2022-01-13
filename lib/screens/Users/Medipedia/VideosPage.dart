@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:user/localization/localizations.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/models/MedipediaDTO.dart';
 import 'package:user/providers/MedipediaData.dart';
@@ -51,8 +52,7 @@ class _VideosPageState extends State<VideosPage> {
           "Patient List",
           style: TextStyle(color: Colors.white),
         ),*/
-        title: Text(
-          "Videos",
+        title: Text(MyLocalizations.of(context).text("VIDEOS"),
           style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,

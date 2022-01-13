@@ -233,8 +233,7 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                                                           crossAxisAlignment:
                                                           CrossAxisAlignment.start,
                                                           children: [
-                                                            Text(
-                                                              'Doctor Name: ',
+                                                            Text(MyLocalizations.of(context).text("DOCTOR_NAME"),
                                                               style: TextStyle(
                                                                   color: Colors.blue,
                                                                   fontWeight:
@@ -271,8 +270,7 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                                                               ],
                                                             ),
                                                             SizedBox(height: 5,),
-                                                            Text(
-                                                              'Education: ',
+                                                            Text(MyLocalizations.of(context).text("EDUCATION1"),
                                                               style: TextStyle(
                                                                   color: Colors.blue,
                                                                   fontWeight:
@@ -322,8 +320,7 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                                                             SizedBox(
                                                               height: 4,
                                                             ),
-                                                            Text(
-                                                              'Speciality: ',
+                                                            Text(MyLocalizations.of(context).text("SPECIALITY"),
                                                               style: TextStyle(
                                                                   color: Colors.blue,
                                                                   fontWeight:
@@ -347,8 +344,7 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                                                             SizedBox(
                                                               height: 4,
                                                             ),
-                                                            Text(
-                                                              'Address: ',
+                                                            Text(MyLocalizations.of(context).text("ADDRESS"),
                                                               style: TextStyle(
                                                                   color: Colors.blue,
                                                                   fontWeight:
@@ -372,8 +368,7 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                                                             SizedBox(
                                                               height: 4,
                                                             ),
-                                                            Text(
-                                                              'Date: ',
+                                                            Text(MyLocalizations.of(context).text("DATE"),
                                                               style: TextStyle(
                                                                   color: Colors.blue,
                                                                   fontWeight:
@@ -399,8 +394,7 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                                                             SizedBox(
                                                               height: 4,
                                                             ),
-                                                            Text(
-                                                              'Consult Type: ',
+                                                            Text(MyLocalizations.of(context).text("CONSULT_TYPE"),
                                                               style: TextStyle(
                                                                   color: Colors.blue,
                                                                   fontWeight:
@@ -570,7 +564,8 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                                                                       Text(
                                                                         appointmentlist.doctorName ??
                                                                             "N/A",
-                                                                        *//*"",*//*
+                                                                        *//*"",*/
+                                    /*
                                                                         style: TextStyle(
                                                                             fontWeight:
                                                                             FontWeight.bold,
@@ -653,7 +648,8 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                                                                   SizedBox(
                                                                     height: 3,
                                                                   ),
-                                                                  *//*  Text(
+                                                                  */
+                                    /*  Text(
                                                                 appointmentlist
                                                                     .patname ??
                                                                     "N/A",
@@ -663,7 +659,8 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                                                                 style: TextStyle(
                                                                     color: Colors
                                                                         .blue,fontSize: 13),
-                                                              ),*//*
+                                                              ),*/
+                                    /*
                                                                   Row(
                                                                     children: [
                                                                       RatingBar
@@ -700,7 +697,8 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                                                             ],
                                                           ),
                                                           //  SizedBox(width: 10,),
-                                                          *//*new Spacer(),*//*
+                                                          *//*new Spacer(),*/
+                                    /*
                                                           Padding(
                                                             padding:
                                                             const EdgeInsets
@@ -722,7 +720,8 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                                                           Container(
                                                             width: 110,
                                                             child: Text(
-                                                              *//*'Confirmed'*//*
+                                                              *//*'Confirmed'*/
+                                    /*
                                                               "Address",
                                                               style: TextStyle(
                                                                 fontWeight:
@@ -734,7 +733,8 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                                                           ),
                                                           Text(" : "),
                                                           Text(
-                                                            *//*'23-Nov-2020-11:30AM'*//*
+                                                            *//*'23-Nov-2020-11:30AM'*/
+                                    /*
                                                             appointmentlist
                                                                 .dochospital,
                                                             overflow:
@@ -749,7 +749,8 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                                                       SizedBox(
                                                         height: 10,
                                                       ),
-                                                      *//* Text(
+                                                      */
+                                    /* Text(
                                                     "Patient Notes: " +
                                                         appointmentlist
                                                             .notes ??
@@ -759,7 +760,8 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                                                         .clip,
                                                     style:
                                                     TextStyle(fontSize: 13),
-                                                  ),*//*
+                                                  ),*/
+                                    /*
                                                       Row(
                                                         // mainAxisAlignment: MainAxisAlignment.center,
                                                         crossAxisAlignment:

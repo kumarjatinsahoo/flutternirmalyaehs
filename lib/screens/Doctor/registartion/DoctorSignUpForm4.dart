@@ -419,8 +419,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                                   },
                                   minWidth: 120,
                                   height: 40.0,
-                                  child: Text(
-                                    "Upload",
+                                  child: Text(MyLocalizations.of(context).text("UPLOAD"),
                                     style: TextStyle(
                                         color: Colors.white, fontSize: 17.0),
                                   ),

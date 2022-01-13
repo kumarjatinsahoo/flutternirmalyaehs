@@ -223,8 +223,7 @@ class _InsuranceListState extends State<InsuranceList> {
                                           SizedBox(
                                             height: 5,
                                           ),
-                                          Text(
-                                            'Premium Amount',
+                                          Text(MyLocalizations.of(context).text("PREMIUM_AMOUNT"),
                                             overflow: TextOverflow.clip,
                                             style:
                                                 TextStyle(color: Colors.grey),
@@ -345,8 +344,7 @@ class _InsuranceListState extends State<InsuranceList> {
                         SizedBox(
                           height: 8,
                         ),
-                        formField(
-                            8,
+                        formField1(8,
                             MyLocalizations.of(context)
                                 .text("THIRDPARTY_ADMINSTRATOR")),
                         SizedBox(
@@ -367,11 +365,9 @@ class _InsuranceListState extends State<InsuranceList> {
                             MyLocalizations.of(context)
                                 .text("SUM_ASSURED_AMOUNT")),
                         SizedBox(
-                          height: 8,
+                          height: 16,
                         ),
-                        SizedBox(
-                          height: 8,
-                        ),
+
                         formField1(12, "Document Name 1"),
                         SizedBox(
                           height: 8,

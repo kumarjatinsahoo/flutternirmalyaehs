@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:user/localization/localizations.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
@@ -44,7 +45,7 @@ class _Medication extends State<Medication> {
               madicationlistModel = apnt.MadicationlistModel.fromJson(map);
             } else {
               isDataNotAvail = true;
-              AppData.showInSnackBar(context, msg);
+              //AppData.showInSnackBar(context, msg);
             }
           });
         });
@@ -55,22 +56,8 @@ class _Medication extends State<Medication> {
     return Scaffold(
       // backgroundColor: Color(0xfff3f4f4),
 
-      body: isdata == true
-          ? Center(
-              child: CircularProgressIndicator(
-                backgroundColor: AppData.matruColor,
-              ),
-            )
-          : madicationlistModel == null || madicationlistModel == null
-              ? Container(
-                  child: Center(
-                    child: Text(
-                      "Data Not Found",
-                      style: TextStyle(color: Colors.black, fontSize: 15),
-                    ),
-                  ),
-                )
-              : SingleChildScrollView(
+      body: madicationlistModel != null
+          ? SingleChildScrollView(
                   physics: ScrollPhysics(),
                   child: Padding(
                     padding: const EdgeInsets.all(15.0),
@@ -315,7 +302,35 @@ class _Medication extends State<Medication> {
                       ]),
                     ),
                   ),
-                ),
+                ): isDataNotAvail
+          ? Container(
+        child: Center(
+          child: Column(
+            children: [
+              SizedBox(
+                height:
+                MediaQuery.of(context).size.height * 0.35,
+              ),
+              //CircularProgressIndicator()
+              Text(
+                MyLocalizations.of(context).text("NO_DATA_FOUND"),
+                style: TextStyle(
+                    color: Colors.black, fontSize: 15),
+              ),
+            ],
+          ),
+        ),
+      ):Center(
+        child: Column(
+          children: [
+            SizedBox(
+              height:
+              MediaQuery.of(context).size.height * 0.35,
+            ),
+            CircularProgressIndicator(),
+          ],
+        ),
+      ),
     );
   }
 }

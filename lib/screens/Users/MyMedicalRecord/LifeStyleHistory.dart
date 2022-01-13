@@ -583,7 +583,10 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                   SizedBox(
                     height: 15,
                   ),
-                  Text("  Smoking"),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8.0),
+                    child: Text(MyLocalizations.of(context).text("SMOKING")),
+                  ),
                   Padding(
                     //padding: const EdgeInsets.all(8.0),
                     padding: const EdgeInsets.only(
@@ -602,7 +605,10 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                     }),
                   ),
                   SizedBox(height: 5),
-                  Text("  Alcohol"),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8.0),
+                    child: Text(MyLocalizations.of(context).text("ALCOHOL")),
+                  ),
                   Padding(
                     //padding: const EdgeInsets.all(8.0),
                     padding: const EdgeInsets.only(
@@ -620,7 +626,10 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                     }),
                   ),
                   SizedBox(height: 5),
-                  Text("  Diet"),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8.0),
+                    child: Text(MyLocalizations.of(context).text("DIET")),
+                  ),
                   gender(),
                   /* Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 0),
@@ -669,22 +678,21 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
               style: TextStyle(color: AppData.kPrimaryRedColor)),
         ),
         new FlatButton(
-          child: Text(
-            'Update',
+          child: Text(MyLocalizations.of(context).text("UPDATE"),
             //style: TextStyle(color: Colors.grey),
             style: TextStyle(color: AppData.matruColor),
           ),
           onPressed: () {
             //AppData.showInSnackBar(context, "click");
             setState(() {
-              if (LifeStyleHistory.smokingmodel == null ||
+              if (LifeStyleHistory.smokingmodel.name == "N/A" || LifeStyleHistory.smokingmodel == null ||
                   LifeStyleHistory.smokingmodel == "") {
                 AppData.showInSnackBar(context, "Please select Smoking");
               } else if (LifeStyleHistory.alcoholmodel == null ||
-                  LifeStyleHistory.alcoholmodel == "") {
+                  LifeStyleHistory.alcoholmodel == "" || LifeStyleHistory.alcoholmodel.name == "N/A") {
                 AppData.showInSnackBar(context, "Please select Alcohol");
               } else if (LifeStyleHistory.ditemodel == null ||
-                  LifeStyleHistory.ditemodel == "") {
+                  LifeStyleHistory.ditemodel == "" || LifeStyleHistory.ditemodel.name == "N/A") {
                 AppData.showInSnackBar(context, "Please select Diet");
               } else if (textEditingController[0].text == "N/A" ||
                   textEditingController[0].text == null ||
@@ -712,6 +720,7 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                 log("API NAME>>>>" + ApiFactory.patient_lifestyle_details);
                 log("TO POST>>>>" + jsonEncode(sendData));
                 MyWidgets.showLoading(context);
+                Navigator.pop(context);
                 widget.model.POSTMETHOD_TOKEN(
                     api: ApiFactory.patient_lifestyle_details,
                     json: sendData,

@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:share/share.dart';
+import 'package:user/localization/localizations.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
@@ -84,8 +85,7 @@ class _HealthChart extends State<HealthChart> {
         title: Stack(
           children: [
             Center(
-              child: Text(
-                'Health Chart',
+              child: Text(MyLocalizations.of(context).text("HEALTH_CHART"),
                 style: TextStyle(color: Colors.white),
               ),
             ),

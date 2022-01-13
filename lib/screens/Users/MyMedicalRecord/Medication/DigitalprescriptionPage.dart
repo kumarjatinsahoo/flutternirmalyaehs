@@ -99,7 +99,7 @@ class _DisitalPrescriptionPageState extends State<DisitalPrescriptionPage> {
           children: [
             Center(
               child: Text(
-                'Preview',
+                'Prescription',
                 style: TextStyle(color: Colors.white),
               ),
             ),

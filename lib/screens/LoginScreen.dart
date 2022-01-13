@@ -477,14 +477,17 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget dialogUserView(BuildContext context,List<master.Body> data) {
+  Widget dialogUserView(BuildContext context, List<master.Body> data) {
     return AlertDialog(
       contentPadding: EdgeInsets.zero,
       insetPadding: EdgeInsets.zero,
       actions: [
-        MaterialButton(onPressed: (){
-          Navigator.pop(context);
-        },child: Text("Cancel"),)
+        MaterialButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: Text("Cancel"),
+        )
       ],
       content: StatefulBuilder(
         builder: (BuildContext context, StateSetter setState) {
@@ -503,7 +506,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     fontWeight: FontWeight.w500,
                   ),
                 ),
-                SizedBox(height: 20,),
+                SizedBox(
+                  height: 20,
+                ),
                 Expanded(
                   child: SingleChildScrollView(
                     child: Column(
@@ -514,18 +519,21 @@ class _LoginScreenState extends State<LoginScreen> {
                         //_buildLogoAttribution(),
 
                         ListView.separated(
-                          separatorBuilder: (c,i){
+                          separatorBuilder: (c, i) {
                             return Divider();
                           },
                           physics: NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
                           itemBuilder: (c, i) {
                             return ListTile(
-                              leading: Icon(CupertinoIcons.person_alt_circle,size: 44,),
+                              leading: Icon(
+                                CupertinoIcons.person_alt_circle,
+                                size: 44,
+                              ),
                               title: Text(data[i].userName),
                               subtitle: Text(data[i].user),
-                              onTap: (){
-                              /*  sharedPref.save(Const.LOGIN_phoneno, _loginId.text);
+                              onTap: () {
+                                /*  sharedPref.save(Const.LOGIN_phoneno, _loginId.text);
                                 sharedPref.save(Const.LOGIN_password, passController.text);
                                 LoginResponse1 loginResponse = LoginResponse1();
                                 // loginResponse.acceptValue(data[i]);
@@ -545,8 +553,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 sharedPref.save(Const.LOGIN_DATA, loginResponse);
                                 widget.model.setLoginData1(loginResponse);
                                 sharedPref.save(Const.IS_LOGIN, "true");*/
-                                roleUpdateApi(data[i].user,data[i]);
-
+                                roleUpdateApi(data[i].user, data[i]);
                               },
                               trailing: Icon(Icons.arrow_right),
                             );
@@ -578,73 +585,71 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  roleUpdateApi(userId,data){
+  roleUpdateApi(userId, data) {
     MyWidgets.showLoading(context);
-    widget.model.GETMETHODCALL(api: ApiFactory.GET_ROLE+userId, fun: (Map<String,dynamic> map){
-      Navigator.pop(context);
-      if(map["code"]=="success"){
+    widget.model.GETMETHODCALL(
+        api: ApiFactory.GET_ROLE + userId,
+        fun: (Map<String, dynamic> map) {
+          Navigator.pop(context);
+          log("Respomnse for role>>>>>" + jsonEncode(map));
+          if (map["code"] == "success") {
+            sharedPref.save(Const.LOGIN_phoneno, _loginId.text);
+            sharedPref.save(Const.LOGIN_password, passController.text);
+            LoginResponse1 loginResponse = LoginResponse1();
+            // loginResponse.acceptValue(data[i]);
+            Body body = Body();
+            body.user = data.user;
+            body.userName = data.userName;
+            body.userAddress = data.userAddress;
+            body.userPassword = data.userPassword;
+            body.userMobile = data.userMobile;
+            body.userStatus = data.userStatus;
+            body.token = data.token;
+            body.roles = [];
+            body.roles.add(map["body"]["roleid"]);
+            loginResponse.body = body;
+            widget.model.token = data.token;
+            widget.model.masterResponse = masterResponse;
+            widget.model.user = data.user;
+            log("Response after assign>>>>" +
+                jsonEncode(loginResponse.toJson()));
+            sharedPref.save(Const.LOGIN_DATA, loginResponse);
+            sharedPref.save(Const.MASTER_RESPONSE, masterResponse);
+            widget.model.setLoginData1(loginResponse);
+            sharedPref.save(Const.IS_LOGIN, "true");
 
-
-        sharedPref.save(Const.LOGIN_phoneno, _loginId.text);
-        sharedPref.save(Const.LOGIN_password, passController.text);
-        LoginResponse1 loginResponse = LoginResponse1();
-        // loginResponse.acceptValue(data[i]);
-        Body body=Body();
-        body.user=data.user;
-        body.userName=data.userName;
-        body.userAddress=data.userAddress;
-        body.userPassword=data.userPassword;
-        body.userMobile=data.userMobile;
-        body.userStatus=data.userStatus;
-        body.token=data.token;
-        body.roles=[];
-        body.roles.add(map["body"]["roleid"]);
-        loginResponse.body=body;
-        widget.model.token = data.token;
-        widget.model.masterResponse = masterResponse;
-        widget.model.user = data.user;
-        log("Response after assign>>>>"+jsonEncode(loginResponse.toJson()));
-        sharedPref.save(Const.LOGIN_DATA, loginResponse);
-        sharedPref.save(Const.MASTER_RESPONSE, masterResponse);
-        widget.model.setLoginData1(loginResponse);
-        sharedPref.save(Const.IS_LOGIN, "true");
-
-
-        if (map["body"]["roleid"] == "1".toLowerCase()) {
-          Navigator.of(context).pushNamedAndRemoveUntil(
-              '/dashboard', (Route<dynamic> route) => false);
-        } else if (map["body"]["roleid"] ==
-            "2".toLowerCase()) {
-          Navigator.of(context).pushNamedAndRemoveUntil(
-              '/dashDoctor', (Route<dynamic> route) => false);
-        } else if (map["body"]["roleid"] ==
-            "5".toLowerCase()) {
-          Navigator.of(context).pushNamedAndRemoveUntil(
-              '/dashboardreceptionlist',
-                  (Route<dynamic> route) => false);
-        } else if (map["body"]["roleid"] ==
-            "7".toLowerCase()) {
-          Navigator.of(context).pushNamedAndRemoveUntil(
-              '/dashboardpharmacy',
-                  (Route<dynamic> route) => false);
-        } else if (map["body"]["roleid"] ==
-            "8".toLowerCase()) {
-          Navigator.of(context).pushNamedAndRemoveUntil(
-              '/labDash', (Route<dynamic> route) => false);
-        } else if (map["body"]["roleid"] ==
-            "12".toLowerCase()) {
-          Navigator.of(context).pushNamedAndRemoveUntil(
-              '/ambulancedash', (Route<dynamic> route) => false);
-        } else if (map["body"]["roleid"] ==
-            "13".toLowerCase()) {
-          Navigator.of(context).pushNamedAndRemoveUntil(
-              '/bloodBankDashboard',
-                  (Route<dynamic> route) => false);
-        } else {
-          AppData.showInSnackBar(context, "No Role Assign");
-        }
-      }
-    });
+            if (map["body"]["roleid"] == "1".toLowerCase()) {
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                  '/dashboard', (Route<dynamic> route) => false);
+            } else if (map["body"]["roleid"] == "2".toLowerCase()) {
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                  '/dashDoctor', (Route<dynamic> route) => false);
+            } else if (map["body"]["roleid"] == "5".toLowerCase()) {
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                  '/dashboardreceptionlist', (Route<dynamic> route) => false);
+            } else if (map["body"]["roleid"] == "7".toLowerCase()) {
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                  '/dashboardpharmacy', (Route<dynamic> route) => false);
+            } else if (map["body"]["roleid"] == "8".toLowerCase()) {
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                  '/labDash', (Route<dynamic> route) => false);
+            } else if (map["body"]["roleid"] == "12".toLowerCase()) {
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                  '/ambulancedash', (Route<dynamic> route) => false);
+            } else if (map["body"]["roleid"] == "13".toLowerCase()) {
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                  '/bloodBankDashboard', (Route<dynamic> route) => false);
+            } else if (map["body"]["roleid"] == "22".toLowerCase()) {
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                  '/syndicateDashboard', (Route<dynamic> route) => false);
+            } else if (map["body"]["roleid"] == "24".toLowerCase()) {
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                  '/admin', (Route<dynamic> route) => false);
+            } else {
+              AppData.showInSnackBar(context, "No Role Assign");
+            }
+          }
+        });
   }
 
   Widget _loginButton() {
@@ -665,7 +670,8 @@ class _LoginScreenState extends State<LoginScreen> {
           widget.model.passWord = passController.text;
           MyWidgets.showLoading(context);
           widget.model.GETMETHODCALL(
-              api: ApiFactory.LOGIN_PASS_MULTIPLE(_loginId.text, passController.text),
+              api: ApiFactory.LOGIN_PASS_MULTIPLE(
+                  _loginId.text, passController.text),
               fun: (Map<String, dynamic> map) {
                 Navigator.pop(context);
                 log("LOGIN RESPONSE>>>>" + jsonEncode(map));
@@ -679,7 +685,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     masterResponse = master.MasterLoginResponse.fromJson(map);
                     showDialog(
                       context: context,
-                      builder: (BuildContext context) => dialogUserView(context,masterResponse.body),
+                      builder: (BuildContext context) =>
+                          dialogUserView(context, masterResponse.body),
                     );
                     /* sharedPref.save(Const.LOGIN_phoneno, _loginId.text);
                     sharedPref.save(Const.LOGIN_password, passController.text);
@@ -704,6 +711,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     //Role 15- NGO
                     //Role 2- Doctor
                     //Role 5- Reception
+                    //Role 22- syndicate partner
 
                     if (loginResponse.body.roles[0] == "1".toLowerCase()) {
                       Navigator.of(context).pushNamedAndRemoveUntil(
@@ -861,13 +869,14 @@ class _LoginScreenState extends State<LoginScreen> {
                         Divider(),
                         ListTile(
                           title: Center(
-                              child: Text(MyLocalizations.of(context).text("PHARMACISTS"))),
+                              child: Text(MyLocalizations.of(context)
+                                  .text("PHARMACISTS"))),
                           // leading: Icon(
                           //   CupertinoIcons.calendar_today,
                           //   size: 40,
                           // ),
                           onTap: () {
-                           // Navigator.pop(context);
+                            // Navigator.pop(context);
                             organisationDialog(context, "/pharmacists");
                           },
                         ),
@@ -881,7 +890,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           //   size: 40,
                           // ),
                           onTap: () {
-                           // Navigator.pop(context);
+                            // Navigator.pop(context);
                             organisationDialog(context, "/ambulance");
                           },
                         ),
@@ -895,7 +904,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           //   size: 40,
                           // ),
                           onTap: () {
-                           // Navigator.pop(context);
+                            // Navigator.pop(context);
                             organisationDialog(context, "/ngo");
                           },
                         ),
@@ -915,14 +924,32 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         Divider(),
                         ListTile(
-                          title: Center(child: Text("Receptionist")),
+                          title: Center(child: Text(MyLocalizations.of(context)
+                                         .text("RECEPTIONIST"))),
                           // leading: Icon(
                           //   CupertinoIcons.calendar_today,
                           //   size: 40,
                           // ),
                           onTap: () {
                             //Navigator.pop(context);
-                            organisationDialog(context, "/receptionlistsignUpformm");
+                            organisationDialog(
+                                context, "/receptionlistsignUpformm");
+                            // Navigator.pushNamed(context, "/doctorsignupform");
+                            //_validate();
+                          },
+                        ),
+                        Divider(),
+                        ListTile(
+                          title: Center(child: Text(MyLocalizations.of(context)
+                              .text("SYNDICATE_PARTNER"))),
+                          // leading: Icon(
+                          //   CupertinoIcons.calendar_today,
+                          //   size: 40,
+                          // ),
+                          onTap: () {
+                            //Navigator.pop(context);
+                            organisationDialog(
+                                context, "/syndicatesignUpformm");
                             // Navigator.pushNamed(context, "/doctorsignupform");
                             //_validate();
                           },
@@ -946,61 +973,60 @@ class _LoginScreenState extends State<LoginScreen> {
           );
         });
   }
-  organisationDialog(BuildContext context ,String organisation
-      ) {
-      // set up the buttons
-      Widget cancelButton = TextButton(
-        child: Text("Cancel",style: TextStyle(color: AppData.kPrimaryRedColor)),
-        onPressed:  () {
-          Navigator.pop(context);
-          Navigator.pop(context);
-         // Navigator.pushNamed(context, "/organisationSignUpForm");
-        },
-      );
-      Widget noButton = TextButton(
-        child: Text("No",style: TextStyle(color: AppData.kPrimaryRedColor)),
-        onPressed:  () {
-          Navigator.pop(context);
-         // Navigator.pop(context);
-          //Navigator.pop(context);
-          Navigator.pushNamed(context, "/organisationSignUpForm");
-        },
-      );
-      Widget continueButton = TextButton(
-        child: Text("Yes",style: TextStyle(color: AppData.matruColor)),
-        onPressed:  () {
-          Navigator.pop(context);
-          //Navigator.pop(context);
 
-          //Navigator.pushNamed(context, "/doctorsignupform2");
-          Navigator.pushNamed(context,organisation);
-         // String listid = patientProfileModel.body.familyDetailsList[index].famid;
-         // String familydetails="3";
+  organisationDialog(BuildContext context, String organisation) {
+    // set up the buttons
+    Widget cancelButton = TextButton(
+      child: Text(MyLocalizations.of(context).text("CANCEL"),
+          style: TextStyle(color: AppData.kPrimaryRedColor)),
+      onPressed: () {
+        Navigator.pop(context);
+        Navigator.pop(context);
+        // Navigator.pushNamed(context, "/organisationSignUpForm");
+      },
+    );
+    Widget noButton = TextButton(
+      child: Text(MyLocalizations.of(context).text("NO"), style: TextStyle(color: AppData.kPrimaryRedColor)),
+      onPressed: () {
+        Navigator.pop(context);
+        // Navigator.pop(context);
+        //Navigator.pop(context);
+        Navigator.pushNamed(context, "/organisationSignUpForm");
+      },
+    );
+    Widget continueButton = TextButton(
+      child: Text(MyLocalizations.of(context).text("YES"), style: TextStyle(color: AppData.matruColor)),
+      onPressed: () {
+        Navigator.pop(context);
+        //Navigator.pop(context);
+
+        //Navigator.pushNamed(context, "/doctorsignupform2");
+        Navigator.pushNamed(context, organisation);
+        // String listid = patientProfileModel.body.familyDetailsList[index].famid;
+        // String familydetails="3";
 
         //  FamilyDeleteApi(listid,familydetails);
+      },
+    );
 
-        },
-      );
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Text(MyLocalizations.of(context).text("HAVE_REG_YOUR_ORG")),
+      // content: Text("Do You Want to Delete ?"),
+      actions: [
+        cancelButton,
+        noButton,
+        continueButton,
+      ],
+    );
 
-      // set up the AlertDialog
-      AlertDialog alert = AlertDialog(
-        title: Text("Have you register your organisation in our eHealthSystems?"),
-        // content: Text("Do You Want to Delete ?"),
-        actions: [
-          cancelButton,
-          noButton,
-          continueButton,
-        ],
-      );
-
-      // show the dialog
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return alert;
-        },
-      );
-
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
 
 /*
     showDialog(
@@ -1017,7 +1043,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                     *//* Positioned(
+                     */ /* Positioned(
                         right: 10.0,
                         child: GestureDetector(
                           onTap: () {
@@ -1032,7 +1058,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           ),
                         ),
-                      ),*//*
+                      ),*/ /*
                    Align(
                   alignment: Alignment.center,
                     child: Text(
@@ -1064,7 +1090,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   "Yes", style: TextStyle(color: AppData.matruColor),
                 ),
                 onPressed: () {
-                  Navigator.pushNamed(context,organisation *//*"/doctorsignupform2"*//*);
+                  Navigator.pushNamed(context,organisation */ /*"/doctorsignupform2"*/ /*);
 
 
                 },
@@ -1074,5 +1100,4 @@ class _LoginScreenState extends State<LoginScreen> {
         },
         context: context);*/
   }
-
 }

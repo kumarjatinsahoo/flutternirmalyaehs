@@ -79,6 +79,7 @@ class BookAmbulancePageState extends State<BookAmbulancePage> {
   TextEditingController expdt = TextEditingController();
   TextEditingController fromPlace = TextEditingController();
   TextEditingController toPlace = TextEditingController();
+  TextEditingController stime = TextEditingController();
   List<bool> error = [false, false, false, false, false, false];
   FocusNode firstname_ = new FocusNode();
   FocusNode middelname_ = new FocusNode();
@@ -126,6 +127,7 @@ class BookAmbulancePageState extends State<BookAmbulancePage> {
   String toatitudes;
   String fromllongitudes;
   String tolongitudes;
+  String selectTime24;
 
   Future<Null> _selectDate(
     BuildContext context,
@@ -160,6 +162,8 @@ class BookAmbulancePageState extends State<BookAmbulancePage> {
     KeyvalueModel(key: "0", name: "8PM-10PM "),
   ];
   TimeOfDay selectedTime = TimeOfDay.now();
+  TimeOfDay selectedStartTime;
+  TimeOfDay selectedEndTime;
 
   String time;
 
@@ -211,22 +215,25 @@ class BookAmbulancePageState extends State<BookAmbulancePage> {
 
   List<int> _availableHours = [1, 4, 6, 8, 12];
 
-  Future<Null> _selectTime(BuildContext context, bool isIn) async {
-    final TimeOfDay picked = await showTimePicker(
-      context: context,
-      initialTime: TimeOfDay.now(),
-    );
-
-    if (picked != null)
-      setState(() {
-        formattime = picked.hour.toString() + ":" + picked.minute.toString();
-        selectedTime = picked;
-        time = formatTimeOfDay(picked);
-        print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n selecteed time$time");
-        setState(() {
-
+  _selectTime(BuildContext context) async {
+    final TimeOfDay timeOfDay = await showTimePicker(
+        context: context,
+        initialTime: selectedTime,
+        initialEntryMode: TimePickerEntryMode.dial,
+        builder: (BuildContext context, Widget child) {
+          return MediaQuery(
+            data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
+            child: child,
+          );
         });
+    /*if (timeOfDay != null && timeOfDay != selectedTime) {*/
+      setState(() {
+        selectedTime = timeOfDay;
+        selectedStartTime = timeOfDay;
+        selectTime24 = (timeOfDay.hour).toString()+":"+(timeOfDay.minute).toString();
+        stime.text = formatTimeOfDay(timeOfDay);
       });
+    /*}*/
   }
 
   String formatTimeOfDay(TimeOfDay tod) {
@@ -290,7 +297,7 @@ class BookAmbulancePageState extends State<BookAmbulancePage> {
                                 MyLocalizations.of(context).text("AMBULANCE_NAME"),
                                 ApiFactory.AMBULANCE_API,
                                 "ambulancename",
-                                Icons.location_on_rounded,
+                                Icons.account_box,
                                 23.0, (KeyvalueModel data) {
                               setState(() {
                                 print(ApiFactory.AMBULANCE_API);
@@ -365,11 +372,6 @@ class BookAmbulancePageState extends State<BookAmbulancePage> {
                             ),
                           ),
                         ),
-
-
-
-
-
                         SizedBox(
                           height: 8,
                         ),
@@ -436,11 +438,14 @@ class BookAmbulancePageState extends State<BookAmbulancePage> {
                           height: 8,
                         ),
                         appointdate(),
-
-                        //comultationTime(),
+                        //stTime(),
+                        SizedBox(
+                          height: 8,
+                        ),
+                        comultationTime(),
                         fromAddress(
                             1,
-                            MyLocalizations.of(context).text("REASON_FOR_DOCTOR"),
+                            MyLocalizations.of(context).text("REASON_FOR_AMBULANCE"),
                             TextInputAction.next,
                             TextInputType.text,
                             address_,
@@ -528,6 +533,45 @@ class BookAmbulancePageState extends State<BookAmbulancePage> {
             }*/
           });
         });
+  }
+  Widget stTime() {
+    return Padding(
+      //padding: const EdgeInsets.symmetric(horizontal: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 0),
+      child: GestureDetector(
+        onTap: () => _selectTime(context),
+        child: AbsorbPointer(
+          child: Container(
+            // margin: EdgeInsets.symmetric(vertical: 10),
+            height: 50,
+            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 0),
+            // width: size.width * 0.8,
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(5),
+                border: Border.all(color: Colors.black, width: 0.3)),
+            child: TextFormField(
+              //focusNode: fnode4,
+              enabled: false,
+              controller: stime,
+              // textAlignVertical: TextAlignVertical.center,
+              keyboardType: TextInputType.datetime,
+              textAlign: TextAlign.left,
+              decoration: InputDecoration(
+                hintText: " Select Time",
+                border: InputBorder.none,
+                //contentPadding: EdgeInsets.symmetric(vertical: 10),
+                // prefixIcon: Icon(
+                //   Icons.calendar_today,
+                //   size: 18,
+                //   color: AppData.kPrimaryColor,
+                // ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
   }
   locationData1(placeId) {
     MyWidgets.showLoading(context);
@@ -652,6 +696,7 @@ class BookAmbulancePageState extends State<BookAmbulancePage> {
       "fromLatitude":fromlatitudes,
       "toLongitude":tolongitudes,
       "toLatitude":toatitudes,
+      "bookingTime":selectTime24,
       "bookedDate": appointmentdate.text.toString(),
       "patientNote": textEditingController[1].text,
       "patientId": widget.model.user,
@@ -910,7 +955,7 @@ class BookAmbulancePageState extends State<BookAmbulancePage> {
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: GestureDetector(
         onTap: () {
-          _selectTime(context, true);
+          _selectTime(context);
           // _selectDate(context, "validity");
         },
         child: AbsorbPointer(
@@ -926,19 +971,19 @@ class BookAmbulancePageState extends State<BookAmbulancePage> {
             child: TextFormField(
               //focusNode: fnode4,
               //enabled: !widget.isConfirmPage ? false : true,
-              controller: validitytime,
+              controller:stime,
               textAlignVertical: TextAlignVertical.center,
               keyboardType: TextInputType.datetime,
               textAlign: TextAlign.left,
               decoration: InputDecoration(
                 hintText: //"Date Of Pregency",
-                    "Consultation Time",
+                   MyLocalizations.of(context).text("SELECT_TIME"),
                 border: InputBorder.none,
                 //contentPadding: EdgeInsets.symmetric(vertical: 10),
                 suffixIcon: Icon(
                   Icons.watch_later_outlined,
                   size: 18,
-                  color: AppData.kPrimaryColor,
+                  color:Colors.grey,
                 ),
               ),
             ),

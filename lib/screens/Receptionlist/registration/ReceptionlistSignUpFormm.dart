@@ -325,7 +325,7 @@ class ReceptionlistSignUpFormmState extends State<ReceptionlistSignUpFormm> {
                               SizedBox(height: 10),
                               Padding(
                                 padding:
-                                const EdgeInsets.symmetric(horizontal: 5),
+                                const EdgeInsets.symmetric(horizontal: 8),
                                 child: Container(
                                   height: 50,
                                   decoration: BoxDecoration(
@@ -362,7 +362,7 @@ class ReceptionlistSignUpFormmState extends State<ReceptionlistSignUpFormm> {
                               ),
                               Padding(
                                 padding: const EdgeInsets.symmetric(
-                                    horizontal: 5),
+                                    horizontal: 8),
                                 child: Container(
                                   height: 50,
                                   decoration: BoxDecoration(
@@ -404,7 +404,7 @@ class ReceptionlistSignUpFormmState extends State<ReceptionlistSignUpFormm> {
                               ),
                               Padding(
                                 padding: const EdgeInsets.symmetric(
-                                    horizontal: 5),
+                                    horizontal: 8),
                                 child: Container(
                                   height: 50,
                                   decoration: BoxDecoration(
@@ -447,7 +447,7 @@ class ReceptionlistSignUpFormmState extends State<ReceptionlistSignUpFormm> {
                               ),
                               Padding(
                                 padding:
-                                const EdgeInsets.symmetric(horizontal: 5),
+                                const EdgeInsets.symmetric(horizontal: 8),
                                 child: Container(
                                   height: 50,
                                   decoration: BoxDecoration(
@@ -487,7 +487,7 @@ class ReceptionlistSignUpFormmState extends State<ReceptionlistSignUpFormm> {
                               ),
                               Padding(
                                 padding:
-                                const EdgeInsets.symmetric(horizontal: 5),
+                                const EdgeInsets.symmetric(horizontal: 8),
                                 child: Container(
                                   height: 50,
                                   decoration: BoxDecoration(
@@ -660,7 +660,7 @@ class ReceptionlistSignUpFormmState extends State<ReceptionlistSignUpFormm> {
                                           fontSize: 20, color: Colors.black),
                                     ),
                                   ),
-                                  SizedBox(width: 30),
+                                  SizedBox(width: 20),
                                   Material(
                                     elevation: 3,
                                     color: AppData.kPrimaryColor,
@@ -671,8 +671,7 @@ class ReceptionlistSignUpFormmState extends State<ReceptionlistSignUpFormm> {
                                       },
                                       minWidth: 120,
                                       height: 40.0,
-                                      child: Text(
-                                        "Upload",
+                                      child: Text(MyLocalizations.of(context).text("UPLOAD"),
                                         style: TextStyle(
                                             color: Colors.white,
                                             fontSize: 17.0),
@@ -1097,64 +1096,66 @@ class ReceptionlistSignUpFormmState extends State<ReceptionlistSignUpFormm> {
   }
 
   validate() async {
-    if (ReceptionlistSignUpFormm.organizationModel == "" ||
-        ReceptionlistSignUpFormm.organizationModel == null) {
-      AppData.showInSnackBar(context, "Please Select Organization Name");
-      FocusScope.of(context).requestFocus(fnode1);
+    if (ReceptionlistSignUpFormm.organizationModel == null ||
+        ReceptionlistSignUpFormm.organizationModel == "") {
+      AppData.showInSnackBar(context, "Please Select organization name");
     } else if (ReceptionlistSignUpFormm.titleModel == null ||
         ReceptionlistSignUpFormm.titleModel == "") {
-      AppData.showInSnackBar(context, "Please select Title");
+      AppData.showInSnackBar(context, "Please select title");
     } else if (ReceptionlistSignUpFormm.genderModel == null ||
         ReceptionlistSignUpFormm.genderModel == "") {
-      AppData.showInSnackBar(context, "Please select Gender");
+      AppData.showInSnackBar(context, "Please select gender");
     } else if (textEditingController[2].text == null ||
         textEditingController[2].text == "") {
-      AppData.showInSnackBar(context, "Please Enter Professional Name");
+      AppData.showInSnackBar(context, "Please enter professional's name");
     }  else if (textEditingController[2].text.length<3) {
-      AppData.showInSnackBar(context, "Please enter valid Professional's Name");
+      AppData.showInSnackBar(context, "Please enter valid professional's name");
     } else if (textEditingController[3].text == null ||
         textEditingController[3].text == "") {
-      AppData.showInSnackBar(context, "Please Enter Address");
+      AppData.showInSnackBar(context, "Please enter address");
     }  else if (textEditingController[3].text.length<3) {
       AppData.showInSnackBar(context, "Please enter valid address");
     } else if (textEditingController[4].text ==null||
         textEditingController[4].text == "" ) {
-      AppData.showInSnackBar(context, "Please enter Experience");
+      AppData.showInSnackBar(context, "Please enter experience");
       FocusScope.of(context).requestFocus(fnode3);
+    } else if (textEditingController[0].text == "" ||
+        textEditingController[0].text == null) {
+      AppData.showInSnackBar(context, "Please enter Zip/Pin code");
     } else if (textEditingController[0].text == null ||
         textEditingController[0].text.length != 6) {
-      AppData.showInSnackBar(context, "Please enter a valid Zip/Pin Code");
+      AppData.showInSnackBar(context, "Please enter a valid Zip/Pin code");
       FocusScope.of(context).requestFocus(fnode1);
     } else if (textEditingController[1].text == "" ||
         textEditingController[1].text == null) {
-      AppData.showInSnackBar(context, "Please enter E-mail Id");
+      AppData.showInSnackBar(context, "Please enter e-mail Id");
       FocusScope.of(context).requestFocus(fnode2);
     } else if (textEditingController[1].text != "" &&
         !AppData.isValidEmail(textEditingController[1].text)) {
-      AppData.showInSnackBar(context, "Please enter a valid E-mail Id");
+      AppData.showInSnackBar(context, "Please enter a valid e-mail Id");
       FocusScope.of(context).requestFocus(fnode2);
     } else if (textEditingController[5].text == "" ||
         textEditingController[5].text == null) {
-      AppData.showInSnackBar(context, "Please enter Mobile Number");
+      AppData.showInSnackBar(context, "Please enter mobile number");
       FocusScope.of(context).requestFocus(fnode6);
     } else if (textEditingController[5].text != "" &&
         textEditingController[5].text.length != 10) {
-      AppData.showInSnackBar(context, "Please enter a valid Mobile Number");
+      AppData.showInSnackBar(context, "Please enter a valid mobile number");
       FocusScope.of(context).requestFocus(fnode6);
     } else if (ReceptionlistSignUpFormm.countryModel == null ||
         ReceptionlistSignUpFormm.countryModel == "") {
-      AppData.showInSnackBar(context, "Please select Country");
+      AppData.showInSnackBar(context, "Please select country");
     } else if (ReceptionlistSignUpFormm.stateModel == null ||
         ReceptionlistSignUpFormm.stateModel == "") {
-      AppData.showInSnackBar(context, "Please select State");
+      AppData.showInSnackBar(context, "Please select state");
     } else if (ReceptionlistSignUpFormm.districtModel == null ||
         ReceptionlistSignUpFormm.districtModel == "") {
-      AppData.showInSnackBar(context, "Please select District");
+      AppData.showInSnackBar(context, "Please select district");
     } else if (ReceptionlistSignUpFormm.cityModel == null ||
         ReceptionlistSignUpFormm.cityModel == "") {
-      AppData.showInSnackBar(context, "Please select City");
+      AppData.showInSnackBar(context, "Please select city");
     }else if (doctorModel.documentExt == null) {
-      AppData.showInSnackBar(context, "Please Upload Document");
+      AppData.showInSnackBar(context, "Please upload document");
      } else if (_checkbox == false) {
       AppData.showInSnackBar(context, "Please check terms and conditions");
     }

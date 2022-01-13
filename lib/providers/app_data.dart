@@ -14,7 +14,7 @@ class AppData {
   static String ODISHA = 'ODISHA';
   static String defaultImgUrl =
       'https://thumbs.dreamstime.com/b/faceless-businessman-avatar-man-suit-blue-tie-human-profile-userpic-face-features-web-picture-gentlemen-85824471.jpg';
-
+static String defultImgUrll="https://pixabay.com/photos/tree-sunset-clouds-sky-silhouette-736885";
   static int bgColor = 00000000;
   static int textColor = 00000000;
 

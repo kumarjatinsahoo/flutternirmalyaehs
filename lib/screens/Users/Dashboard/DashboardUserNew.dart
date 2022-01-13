@@ -7,6 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter_share/flutter_share.dart';
 import 'package:intl/intl.dart';
 import 'package:pageview_indicator_plugins/pageview_indicator_plugins.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
@@ -14,6 +15,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:user/localization/application.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/LoginResponse1.dart';
+import 'package:user/models/NewsupdateModel.dart'as news;
 import 'package:user/models/UserDashboardModel.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/SharedPref.dart';
@@ -21,6 +23,7 @@ import 'package:user/providers/api_factory.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import '../../../main.dart';
 import '../../../providers/app_data.dart';
+
 // import 'package:add_2_calendar/add_2_calendar.dart';
 
 class DashboardUserNew extends StatefulWidget {
@@ -41,7 +44,8 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
   int _selectedDestination = -1;
   UserDashboardModel userDashboardModel;
   bool isDataNotAvail = false;
-
+  news. NewsupdateModel newsupdatemodel;
+//List<String>imageSliders;
   static final List<String> languageCodesList =
       application.supportedLanguagesCodes;
   static final List<String> languagesList = application.supportedLanguages;
@@ -73,34 +77,11 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
   PageController _controller = PageController(
     initialPage: 0,
   );
-
-  /* List<String> imageSliders = [
-    "assets/modiji_banner.jpg",
-    "assets/AjitPawarji.PNG",
-    "assets/JaiRamThakurji.jpg",
-    "assets/NitishKumarji.jpg",
-    "assets/PramodAgrawalji .jpg",
-    "assets/PramodSawantji.jpg",
-    "assets/UddhavThackeryji.jfif",
-    "assets/YogiAdityanathji.jpg",
-    "assets/intro/img_coll.jpg",
-    "assets/images/thumb.jpg",
-    "assets/images/tmc.png"
-  ];*/
-  /*List<String> imageSliders = [
-    // "assets/intro/pm1.jpeg",
-
-    "assets/images/uk_two.jpeg",
-    "assets/images/uk_one.jpg",
-  ];*/
-
   List<String> imageSliders = [
-    // "assets/intro/pm1.jpeg",
 
-    "assets/intro/mah1.jpeg",
-    "assets/intro/mah2.png",
-    "assets/images/uk_two.jpeg",
-    "assets/images/uk_one.jpg",
+    "assets/intro/banner3.jpg",
+
+    "assets/intro/banner4.jpg",
   ];
 
   SharedPref sharedPref = SharedPref();
@@ -117,6 +98,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
     });*/
 
     callApi();
+    callNewsApi();
 
     /*if(loginResponse1.body.userPic==null){
       callProfApi();
@@ -228,6 +210,27 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
           }
         });
   }
+  callNewsApi() {
+    widget.model.GETMETHODCALL(
+        api: ApiFactory.NEWSUPDATE_VIEW,
+        fun: (Map<String, dynamic> map) {
+          setState(() {
+            log("Json Response>>>" + JsonEncoder().convert(map));
+            String msg = map[Const.MESSAGE];
+            if (map[Const.CODE] == Const.SUCCESS) {
+              // pocReportModel = PocReportModel.fromJson(map);
+              newsupdatemodel = news.NewsupdateModel.fromJson(map);
+
+            } else {
+              setState(() {
+                //isDataNoFound = true;
+                // AppData.showInSnackBar(context, msg);
+              });
+            }
+          });
+        });
+  }
+
 
   String getTime(String date) {
     List<String> split = date.split("-");
@@ -579,7 +582,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                   //Navigator.pushNamed(context, "/biomedicalimplants");
                 },
               ),
-              ListTile(
+             /* ListTile(
                   leading: Image.asset(
                     "assets/images/share.png",
                     height: 30,
@@ -588,9 +591,16 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                   selected: _selectedDestination == 5,
                   onTap: () {
                     selectDestination(5);
+                    FlutterShare.share(
+                        title: 'Example share',
+                        text: 'Example share text',
+                        linkUrl: 'https://flutter.dev/',
+                        chooserTitle: 'Example Chooser Title'
+                    );
+                    //share();
                     //Navigator.pushNamed(context, "/dashboard1");
-                    Navigator.pushNamed(context, "/emergencydetails");
-                  }),
+                    //Navigator.pushNamed(context, "/emergencydetails");
+                  }),*/
               ListTile(
                   leading: Image.asset(
                     "assets/images/contact us.png",
@@ -622,7 +632,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                     "assets/images/changepassword.png",
                     height: 30,
                   ),
-                  title: Text("Change Password"),
+                  title: Text(MyLocalizations.of(context).text("CHANGE_PASSWORD")),
                   selected: _selectedDestination == 8,
                   onTap: () {
                     selectDestination(8);
@@ -774,12 +784,12 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                   MyPage1Widget(
                     model: widget.model,
                   ),
-                  MyPage2Widget(),
+                  //MyPage2Widget(),
                 ],
               ),
             ),
             PageIndicator(
-              length: 2,
+              length: 1,
               pageController: _controller,
               currentColor: Colors.grey,
               normalColor: Colors.black12,
@@ -802,48 +812,14 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                       },
                     );
                   }),
-              items: imageSliders
-                  .map((item) => InkWell(
+    /*items: imageSliders
+        .map((item) => InkWell(
+*/
+              items:(newsupdatemodel!=null)? newsupdatemodel.body.map
+                ((item) => InkWell(
                         onTap: () {
-                          int index = imageSliders.indexOf(item);
-                          //https://www.youtube.com/embed/R0tHEJl_Y8E?start=68
-                          switch (index) {
-                            case 0:
-                              /*AppData.launchURL(
-                                  "https://www.youtube.com/watch?v=QYcKscyUvuY");*/
-                              // AppData.launchURL("https://www.youtube.com/watch?v=CmPGUBJZqlA");
-                              // AppData.launchURL("https://www.youtube.com/watch?v=cXU3FTZ4UzU");
-                              // AppData.launchURL("https://www.youtube.com/watch?v=dPTSG6GZEJw");
-                              AppData.launchURL(
-                                  "https://www.youtube.com/watch?v=O8lZfZ1CTyA");
-                              break;
-                            case 1:
-                              // AppData.launchURL("https://www.youtube.com/embed/-sTLaWKiklM&vs");
-                              AppData.launchURL(
-                                  "https://www.youtube.com/watch?v=dPTSG6GZEJw");
-                              break;
-                            case 2:
-                              AppData.launchURL(
-                                  "https://www.youtube.com/watch?v=8RXHYZczFBw");
-                              break;
-                            case 3:
-                              //AppData.launchURL("https://www.youtube.com/watch?v=axzWoVaF4N4");
-                              AppData.launchURL(
-                                  "https://www.youtube.com/watch?v=-sTLaWKiklM&vs");
-                              break;
-                            case 7:
-                              AppData.launchURL(
-                                  "https://www.youtube.com/watch?v=ckYGlJwCmlg");
-                              break;
-
-                            case 9:
-                              AppData.launchURL("https://youtu.be/0eV8xuExrA4");
-                              break;
-                            case 10:
-                              AppData.launchURL(
-                                  "https://www.youtube.com/watch?v=3F5Esq71WUQ");
-                              break;
-                          }
+                         // int index = imageSliders.indexOf(item);
+                          AppData.launchURL(item.vdoURL);
                         },
                         child: Container(
                           child: Container(
@@ -853,20 +829,13 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                   BorderRadius.all(Radius.circular(5)),
                               child: Stack(
                                 children: [
-                                  Image.asset(
-                                    item,
+                                  Image.network(
+                                    item.fileName,
                                     fit: BoxFit.fill,
                                     width: 1000,
                                     height: double.maxFinite,
                                     //height: 100,
                                   ),
-                                  /* Image.network(
-                                       item.bannerImage,
-                                       fit: BoxFit.fill,
-                                       width: 1000,
-                                       height: double.maxFinite,
-                                     ),*/
-
                                   Positioned(
                                     bottom: 0,
                                     left: 0,
@@ -889,10 +858,10 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                             MainAxisAlignment.spaceBetween,
                                         children: [
                                           Text(
-                                            (imageSliders.indexOf(item) + 1)
+                                            (newsupdatemodel.body.indexOf(item) + 1)
                                                     .toString() +
                                                 "/" +
-                                                imageSliders.length.toString(),
+                                                newsupdatemodel.body.length.toString(),
                                             style: TextStyle(
                                               color: Colors.white,
                                               fontSize: 13.0,
@@ -903,7 +872,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                       ),
                                     ),
                                   ),
-                                  Positioned(
+                                 /* Positioned(
                                     top: 0,
                                     bottom: 0,
                                     left: 0,
@@ -922,13 +891,97 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                             size: 45,
                                           )
                                         : Container(),
-                                  ),
+                                  ),*/
                                 ],
                               ),
                             ),
                           ),
                         ),
                       ))
+                  .toList():
+              imageSliders.map
+                ((item) => InkWell(
+                onTap: () {
+                  // int index = imageSliders.indexOf(item);
+                 // AppData.launchURL(item.vdoURL);
+                },
+                child: Container(
+                  child: Container(
+                    margin: EdgeInsets.all(10),
+                    child: ClipRRect(
+                      borderRadius:
+                      BorderRadius.all(Radius.circular(5)),
+                      child: Stack(
+                        children: [
+                          Image.asset(
+                            item,
+                            fit: BoxFit.fill,
+                            width: 1000,
+                            height: double.maxFinite,
+                            //height: 100,
+                          ),
+                          Positioned(
+                            bottom: 0,
+                            left: 0,
+                            right: 0,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  colors: [
+                                    Color.fromARGB(200, 0, 0, 0),
+                                    Color.fromARGB(0, 0, 0, 0)
+                                  ],
+                                  begin: Alignment.bottomCenter,
+                                  end: Alignment.topCenter,
+                                ),
+                              ),
+                              padding: EdgeInsets.symmetric(
+                                  vertical: 10.0, horizontal: 20.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    (imageSliders.indexOf(item) + 1)
+                                        .toString() +
+                                        "/" +
+                                        imageSliders.length.toString(),
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 13.0,
+                                      fontWeight: FontWeight.w200,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          /* Positioned(
+                                    top: 0,
+                                    bottom: 0,
+                                    left: 0,
+                                    right: 0,
+                                    child: (imageSliders.indexOf(item) == 0 ||
+                                            imageSliders.indexOf(item) == 1 ||
+                                            imageSliders.indexOf(item) == 2 ||
+                                            imageSliders.indexOf(item) == 3 ||
+                                            imageSliders.indexOf(item) == 4 ||
+                                            imageSliders.indexOf(item) == 7 ||
+                                            imageSliders.indexOf(item) == 9 ||
+                                            imageSliders.indexOf(item) == 10)
+                                        ? Icon(
+                                            Icons.play_circle_fill,
+                                            color: Colors.white,
+                                            size: 45,
+                                          )
+                                        : Container(),
+                                  ),*/
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ))
                   .toList(),
             ),
             SizedBox(
@@ -1122,7 +1175,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                   ),
 
                 ),*/
-                Padding(
+/*                Padding(
                   padding: const EdgeInsets.only(top: 10, left: 3, right: 3),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -1143,7 +1196,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                       ),
                     ],
                   ),
-                ),
+                ),*/
               ],
             ),
           ],
@@ -1649,9 +1702,39 @@ class MyPage1Widget extends StatelessWidget {
               SizedBox(
                 width: 5,
               ),
-              /*  Expanded(*/
-
               Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _buildTilered(
+                      icon: "assets/blooddonationuser.png",
+                      //icon: Icons.search,
+                      //icon: FontAwesomeIcons.accusoft,
+                      title: " Order Blood ",
+                      fun: () {
+                        Navigator.pushNamed(
+                            context, "/bookBloodBanklist");
+                        // Navigator.pushNamed(context, "/healthCheckup");
+                      },
+                      color: AppData.BG1RED,
+                      bordercolor: AppData.BG1RED,
+                      //size: (size.width - 130) / 3,
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      width: 100,
+                      height: 35,
+                      child: Text(MyLocalizations.of(context)
+                          .text("ORDER_BLOOD"),
+                        textAlign: TextAlign.center,
+                        //overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ]),
+
+              /*Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -1679,16 +1762,10 @@ class MyPage1Widget extends StatelessWidget {
                         //overflow: TextOverflow.ellipsis,
                       ),
                     ),
-                    /*Align(
-                                          alignment: Alignment.center,
-                                          child: Expanded(
-                                            child: Text(
-                                              "Health               chat",
-                                              style: TextStyle(color: Colors.black),
-                                              textAlign: TextAlign.center,
-                                            ),
-                                          )),*/
-                  ]),
+
+                  ]),*/
+
+
             ],
           ),
           SizedBox(height: size.height * 0.01),
@@ -1858,8 +1935,8 @@ class MyPage1Widget extends StatelessWidget {
               SizedBox(
                 width: 5,
               ),
-              /*Expanded(*/
-              Column(
+
+              /*Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -1867,7 +1944,7 @@ class MyPage1Widget extends StatelessWidget {
                       icon: "assets/health-careF.png",
                       fun: () {
                         //AppData.showInSnackDone(context, "Coming Soon");
-                         Navigator.pushNamed(context, "/vdo");
+                        Navigator.pushNamed(context, "/vdo");
                         // AppData.showSnack(
                         //   context, "Coming soon", Colors.green);
                       },
@@ -1881,7 +1958,74 @@ class MyPage1Widget extends StatelessWidget {
                     Container(
                       width: 100,
                       height: 35,
-                      /* child: Expanded(*/
+                      child: Expanded(
+                        child: Text(
+                          MyLocalizations.of(context)
+                              .text("PREVENTIVE_HEALTHCARE"),
+                          textAlign: TextAlign.center,
+                          //overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    )
+                  ]),*/
+              Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _buildTileblue(
+                      icon: "assets/ambulance.png",
+                      //icon: Icons.search,
+                      //icon: FontAwesomeIcons.accusoft,
+                      title: "Book Ambulance",
+                      fun: () {
+                        //AppData.showInSnackDone(context, "Coming Soon");
+                        Navigator.pushNamed(
+                            context, "/bookAmbulancelist");
+                      },
+                      color: AppData.BG2BLUE,
+                      bordercolor: AppData.BG2BLUE,
+                      //size: (size.width - 130) / 3,
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      width: 100,
+                      height: 35,
+                      child: Text(
+                        MyLocalizations.of(context)
+                            .text("BOOK_AMBULANCE"),
+                        textAlign: TextAlign.center,
+                        //overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ]),
+
+
+/*
+              Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _buildTileblue(
+                      icon: "assets/health-careF.png",
+                      fun: () {
+                        //AppData.showInSnackDone(context, "Coming Soon");
+                        Navigator.pushNamed(context, "/vdo");
+                        // AppData.showSnack(
+                        //   context, "Coming soon", Colors.green);
+                      },
+                      color: AppData.BG2BLUE,
+                      bordercolor: AppData.BG2BLUE,
+                      //size: (size.width - 130) / 3,
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      width: 100,
+                      height: 35,
+                       child: Expanded(
                       child: Text(
                         MyLocalizations.of(context)
                             .text("PREVENTIVE_HEALTHCARE"),
@@ -1889,16 +2033,9 @@ class MyPage1Widget extends StatelessWidget {
                         //overflow: TextOverflow.ellipsis,
                       ),
                     ),
-                    /* Align(
-                                          alignment: Alignment.center,
-                                          child: Expanded(
-                                            child: Text(
-                                              "Generic Medical Stores",
-                                              style: TextStyle(color: Colors.black),
-                                              textAlign: TextAlign.center,
-                                            ),
-                                          )),*/
+                    )
                   ]),
+*/
               SizedBox(
                 width: 5,
               ),
@@ -1921,7 +2058,7 @@ class MyPage1Widget extends StatelessWidget {
                     size: (size.width - 130) / 3,
                   ),
                   SizedBox(
-                    height: 5,
+                    height:5,
                   ),
                   Container(
                     width: 100,
@@ -1950,7 +2087,25 @@ class MyPage1Widget extends StatelessWidget {
       ),
     );
   }
+  Future<void> share() async {
+    await FlutterShare.share(
+        title: 'Example share',
+        text: 'Example share text',
+        linkUrl: 'https://flutter.dev/',
+        chooserTitle: 'Example Chooser Title'
+    );
+  }
 
+ /* Future<void> shareFile() async {
+    List<dynamic> docs = await DocumentsPicker.pickDocuments;
+    if (docs == null || docs.isEmpty) return null;
+
+    await FlutterShare.shareFile(
+      title: 'Example share',
+      text: 'Example share text',
+      filePath: docs[0] as String,
+    );
+  }*/
   Widget _buildTileblue(
       {String icon,
       /*IconData icon,*/
@@ -2333,11 +2488,11 @@ class MyPage2Widget extends StatelessWidget {
                 SizedBox(
                   height: 10,
                 ),
-                /*    Row(
+                   /* Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     // crossAxisAlignment: CrossAxisAlignment.center,
-                 */ /*   Column(
+                     Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -2365,9 +2520,9 @@ class MyPage2Widget extends StatelessWidget {
                               //overflow: TextOverflow.ellipsis,
                             ),
                           ),
-                        ]),*/ /*
+                        ]),
                     Spacer(),
-                  */ /*  Column(
+                     Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -2396,7 +2551,7 @@ class MyPage2Widget extends StatelessWidget {
                             ),
                           ),
 
-                          */ /**/ /*  Align(
+                              Align(
                                           alignment: Alignment.center,
                                           child:SizedBox(
                                             width:100, child: FittedBox(child:Text(
@@ -2406,8 +2561,8 @@ class MyPage2Widget extends StatelessWidget {
                                           ),
                                           )
                                         ),
-                                        ),*/ /**/ /*
-                        ]),*/ /*
+                                        ),
+                        ]),
                     Spacer(),
                     Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -2469,8 +2624,8 @@ class MyPage2Widget extends StatelessWidget {
                           Container(
                             width: 100,
                             height: 35,
-                            child: Text(
-                              "Order Blood",
+                            child: Text(MyLocalizations.of(context)
+                                .text("ORDER_BLOOD"),
                               textAlign: TextAlign.center,
                               //overflow: TextOverflow.ellipsis,
                             ),

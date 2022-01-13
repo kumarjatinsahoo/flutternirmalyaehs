@@ -73,8 +73,7 @@ class _AcceptAmbulanceState extends State<AcceptAmbulance> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
         appBar: AppBar(
-          title: Text(
-            'Accepted',
+          title: Text(MyLocalizations.of(context).text("ACCEPT"),
             style: TextStyle(color: Colors.white),
           ),
           centerTitle: true,
@@ -160,8 +159,7 @@ class _AcceptAmbulanceState extends State<AcceptAmbulance> {
                                                     children: [
                                                       Container(
                                                         width: 140,
-                                                        child: Text(
-                                                          "Name ",
+                                                        child: Text(MyLocalizations.of(context).text("NAME"),
                                                           style: TextStyle(
                                                             fontWeight:
                                                                 FontWeight
@@ -188,7 +186,7 @@ class _AcceptAmbulanceState extends State<AcceptAmbulance> {
                                                       Container(
                                                         width: 140,
                                                         child: Text(
-                                                          "From",
+                                                          MyLocalizations.of(context).text("FROM"),
                                                           style: TextStyle(
                                                             fontWeight:
                                                                 FontWeight
@@ -215,7 +213,7 @@ class _AcceptAmbulanceState extends State<AcceptAmbulance> {
                                                       Container(
                                                         width: 140,
                                                         child: Text(
-                                                          "Destination",
+                                                          MyLocalizations.of(context).text("DESTINATION"),
                                                           style: TextStyle(
                                                             fontWeight:
                                                                 FontWeight
@@ -242,7 +240,7 @@ class _AcceptAmbulanceState extends State<AcceptAmbulance> {
                                                       Container(
                                                         width: 140,
                                                         child: Text(
-                                                          'Patient Notes',
+                                                          MyLocalizations.of(context).text("PATIENT_NOTES"),
                                                           style: TextStyle(
                                                             fontWeight:
                                                                 FontWeight

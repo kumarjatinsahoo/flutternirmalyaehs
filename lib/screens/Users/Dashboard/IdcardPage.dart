@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:share/share.dart';
+import 'package:user/localization/localizations.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
@@ -83,8 +84,7 @@ class _IdCardPageState extends State<IdCardPage> {
         title: Stack(
           children: [
             Center(
-              child: Text(
-                'Id Card',
+              child: Text(MyLocalizations.of(context).text("ID_CARD"),
                 style: TextStyle(color: Colors.white),
               ),
             ),

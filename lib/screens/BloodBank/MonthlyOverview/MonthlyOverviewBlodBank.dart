@@ -33,7 +33,7 @@ class _MonthlyOverview extends State<MonthlyOverviewBloodBank> {
   TextEditingController toThis_ = TextEditingController();
   String selectedDatestr;
   bool isdata = false;
-  final df = new DateFormat('dd/MM/yyyy');
+  final df = new DateFormat('dd-MM-yyyy');
   var selectedMinValue;
   DateTime date = DateTime.now();
   monthly.MonthlyOverviewModel monthlyOverviewModel;

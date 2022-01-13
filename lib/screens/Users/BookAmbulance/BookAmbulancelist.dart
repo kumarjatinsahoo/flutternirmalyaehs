@@ -131,7 +131,7 @@ body: isdata == true
     ? Container(
   child: Center(
     child: Text(
-      'No Data Found',
+      MyLocalizations.of(context).text("NO_DATA_FOUND"),
       style:
       TextStyle(color: Colors.black, fontSize: 15),
     ),
@@ -184,8 +184,8 @@ SingleChildScrollView(
                               Container(
                                //width: 120,
                                 child: Text(
+                                  MyLocalizations.of(context).text("AMBULANCE_NAME"),
                                   /*'Confirmed'*/
-                                  "Ambulance Name",
                                   style: TextStyle(
                                     fontWeight:
                                     FontWeight
@@ -219,8 +219,8 @@ SingleChildScrollView(
                               Container(
                                 width: 120,
                                 child: Text(
+                                  MyLocalizations.of(context).text("FROM_LOCATION"),
                                   /*'Confirmed'*/
-                                  "From Location",
                                   style: TextStyle(
                                     fontWeight:
                                     FontWeight
@@ -263,8 +263,8 @@ SingleChildScrollView(
                               Container(
                                 width: 120,
                                 child: Text(
+                                  MyLocalizations.of(context).text("DESTINATION"),
                                   /*'Confirmed'*/
-                                  "Destination",
                                   style: TextStyle(
                                     fontWeight:
                                     FontWeight
@@ -300,8 +300,9 @@ SingleChildScrollView(
                               Container(
                                 width: 120,
                                 child: Text(
+                                  MyLocalizations.of(context).text("PATIENT_NOTES"),
                                   /*'Confirmed'*/
-                                  "Patient Notes",
+
                                   style: TextStyle(
                                     fontWeight:
                                     FontWeight
@@ -335,8 +336,8 @@ SingleChildScrollView(
                               Container(
                                 width: 120,
                                 child: Text(
+                                  MyLocalizations.of(context).text("DATE"),
                                   /*'Confirmed'*/
-                                  "Date",
                                   style: TextStyle(
                                     fontWeight:
                                     FontWeight

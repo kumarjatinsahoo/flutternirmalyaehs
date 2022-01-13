@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:user/localization/localizations.dart';
 import 'package:user/models/GovtSchemeListModel.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/providers/Const.dart';
@@ -38,11 +39,11 @@ class _GovernmentSchemesListState extends State<GovernmentSchemesList> {
   callApi() {
     widget.model.GETMETHODCALL_TOKEN(
         api: ApiFactory.GOVET_SCHEMES_LIST(
-                GovtSchemes.countryModel.key,
-                GovtSchemes.stateModel.key,
-                GovtSchemes?.districtModel?.key??null,
-                GovtSchemes?.cityModel?.key??null) +
-            loginResponse1.body.user,
+                GovtSchemes.countryModel?.key??"",
+                GovtSchemes.stateModel?.key??""
+               /* GovtSchemes?.districtModel?.key??null,
+                GovtSchemes?.cityModel?.key??null*/), /*+
+            loginResponse1.body.user,*/
         token: widget.model.token,
         fun: (Map<String, dynamic> map) {
           setState(() {
@@ -68,25 +69,25 @@ class _GovernmentSchemesListState extends State<GovernmentSchemesList> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppData.kPrimaryColor,
-        title: Text("Government Schemes List"),
+        title: Text(MyLocalizations.of(context).text("GOVT_SCHEME_LIST")),
       ),
       body: Container(
-        child: (govetSchemeListModel != null)
+        child: (govetSchemeListModel !=null && govetSchemeListModel?.body!= null && govetSchemeListModel?.body.isNotEmpty)
             ? ListView.builder(
-                itemCount: govetSchemeListModel.body.length,
+                itemCount: govetSchemeListModel?.body?.length,
                 shrinkWrap: true,
                 itemBuilder: (context, i) {
                   return InkWell(
                     onTap: () {
                       widget.model.pdfurl = govetSchemeListModel.body[i].code;
-                      Navigator.pushNamed(context, "/documentpdf");
+                      Navigator.pushNamed(context, "/govermentSchemesDitelsPage");
                      //Navigator.pushNamed(context, "/govetschem1");
                     },
                     child: Stack(
                       children: [
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Image.network(govetSchemeListModel.body[i].name,
+                          child: Image.network(govetSchemeListModel?.body[i].name,
                           fit: BoxFit.fitWidth,
                           ),
                         ),
@@ -132,7 +133,7 @@ class _GovernmentSchemesListState extends State<GovernmentSchemesList> {
                 height: double.maxFinite,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [(isDataNotFound)?Text("No Data Found"):CircularProgressIndicator()],
+                  children: [(isDataNotFound)?Text(MyLocalizations.of(context).text("NO_DATA_FOUND")):CircularProgressIndicator()],
                 ),
               ),
       ),
