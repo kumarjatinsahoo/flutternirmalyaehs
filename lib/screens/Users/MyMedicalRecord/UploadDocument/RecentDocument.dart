@@ -15,6 +15,9 @@ import 'package:user/providers/api_factory.dart';
 
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
+import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/DocumentImageView.dart';
+import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/VideoDetailsPage.dart';
+import 'package:user/widgets/PdfViewPage.dart';
 
 class RecentDocument extends StatefulWidget {
   final MainModel model;
@@ -249,6 +252,66 @@ class _RecentDocumentState extends State<RecentDocument> {
                               child: Container(
                                 height: 120,
                                 // width: 50,
+
+                                    child: InkWell(
+                                      onTap: () {
+                                        String pdfurl = body.fileName;
+                                        String extension =
+                                        AppData.getExt(pdfurl);
+                                        print("eeeessssssssstttt" +
+                                            extension);
+                                        widget.model.pdfurl = pdfurl;
+                                        print("ppppdddddddddddffffff" +
+                                            pdfurl);
+                                        String format =
+                                        getFormatType(extension);
+                                        if (format == "img") {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      DocumentImage(
+                                                        model: widget
+                                                            .model,
+                                                      ))).then(
+                                                  (value) =>
+                                              widget.model.pdfurl);
+
+                                          /*  Navigator.pushNamed(context, "/documentimage",).then((
+                                          value) => widget.model.pdfurl);*/
+                                        } else if (format == "doc") {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      PdfViewPage(
+                                                        model: widget
+                                                            .model,
+                                                      ))).then(
+                                                  (value) =>
+                                              widget.model.pdfurl);
+                                        } else if (format == "vdo") {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      VideoDetailsPage(
+                                                        model: widget
+                                                            .model,
+                                                      ))).then(
+                                                  (value) =>
+                                              widget.model.pdfurl);
+
+                                        }
+                                      },
+                                      child: Icon(
+                                        getIconFormat(AppData.getExt(
+                                            body.fileName)),
+                                        color: AppData.kPrimaryRedColor,
+                                        size: 100,
+                                      ),
+                                    ),
+
                                 decoration: new ShapeDecoration(
                                   shape: RoundedRectangleBorder(
                                     borderRadius:

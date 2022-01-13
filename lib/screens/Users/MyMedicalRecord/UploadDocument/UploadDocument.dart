@@ -244,186 +244,249 @@ class _UploadDocumentState extends State<UploadDocument> {
                   ),
                 )
               : Container(
-                  child: SingleChildScrollView(
-                    child: (documentListModel != null && documentListModel.body!=null)
-                        ? ListView.builder(
-                            shrinkWrap: true,
-                            physics: NeverScrollableScrollPhysics(),
-                            itemBuilder: (context, i) {
-                              document.Body body = documentListModel.body[i];
-                              // String docTyp=getFormatType(body.extension);
+                  child: Container(
+                      child: SingleChildScrollView(
+                        child: Padding(
+                            padding:
+                            const EdgeInsets.only(left: 15, right: 15, bottom: 5, top: 5),
+                            child:
+                            (documentListModel != null && documentListModel.body!=null)?
+                            ListView.builder(
+                              shrinkWrap: true,
+                              physics: NeverScrollableScrollPhysics(),
+                              itemBuilder: (context, i) {
+                                document.Body body = documentListModel.body[i];
+                                return Container(
+                                  width: 500,
+                                  height: 210,
+                                  //width: size.width * 0.20,
 
-                              return Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 10.0, right: 10, top: 5, bottom: 5),
-                                child: Container(
-                                  width: size.width * 0.20,
                                   child: Card(
                                     clipBehavior: Clip.antiAliasWithSaveLayer,
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.only(
-                                        topLeft: Radius.circular(20),
+                                        //topLeft: Radius.circular(20),
                                         topRight: Radius.circular(20),
-                                        bottomRight: Radius.circular(20),
+                                        //bottomRight: Radius.circular(20),
                                         bottomLeft: Radius.circular(20),
                                       ),
-                                      side: BorderSide(
-                                          width: 1,
-                                          color: AppData.kPrimaryColor),
+                                      side: BorderSide(width: 1, color: Colors.blueGrey),
                                     ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(10.0),
-                                      child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
+                                    child: Container(
+                                      child: Column(children: [
+                                        Row(
                                           children: [
-                                            SizedBox(
-                                              height: 10,
-                                            ),
-                                            Container(
-                                                child: Icon(
-                                              getIconFormat(AppData.getExt(
-                                                  body.fileName)),
-                                              color: AppData.kPrimaryRedColor,
-                                              size: 100,
-                                            )),
-                                            SizedBox(
-                                              height: 20,
-                                            ),
-                                            Row(
-                                              children: [
-                                                Text("Document Name :",
-                                                    style: TextStyle(
-                                                        fontSize: 15,
-                                                        fontWeight:
-                                                            FontWeight.bold)),
-                                                SizedBox(
-                                                  width: 5,
-                                                ),
-                                                Text(body.docName ?? "N/A",
-                                                    style: TextStyle(
-                                                        fontSize: 13,
-                                                        fontWeight:
-                                                            FontWeight.normal)),
-                                              ],
-                                            ),
-                                            SizedBox(
-                                              height: 10,
-                                            ),
-                                            Row(
-                                              children: [
-                                                Text("Document Type   :",
-                                                    style: TextStyle(
-                                                        fontSize: 15,
-                                                        fontWeight:
-                                                            FontWeight.bold)),
-                                                SizedBox(
-                                                  width: 5,
-                                                ),
-                                                Text(body.docType ?? "N/A",
-                                                    style: TextStyle(
-                                                        fontSize: 13,
-                                                        fontWeight:
-                                                            FontWeight.normal)),
-                                              ],
-                                            ),
-                                            SizedBox(
-                                              height: 5,
-                                            ),
-                                            InkWell(
-                                              onTap: () {
-                                                String pdfurl = body.fileName;
-                                                String extension =
-                                                    AppData.getExt(pdfurl);
-                                                print("eeeessssssssstttt" +
-                                                    extension);
-                                                widget.model.pdfurl = pdfurl;
-                                                print("ppppdddddddddddffffff" +
-                                                    pdfurl);
-                                                String format =
-                                                    getFormatType(extension);
-                                                if (format == "img") {
-                                                  Navigator.push(
-                                                      context,
-                                                      MaterialPageRoute(
-                                                          builder: (context) =>
-                                                              DocumentImage(
-                                                                model: widget
-                                                                    .model,
-                                                              ))).then(
-                                                      (value) =>
-                                                          widget.model.pdfurl);
+                                            Expanded(
+                                              child: Padding(
+                                                padding: const EdgeInsets.all(15.0),
+                                                child: Container(
+                                                  height: 120,
+                                                  // width: 50,
+                                                    child: InkWell(
+                                                      onTap: () {
+                                                        String pdfurl = body.fileName;
+                                                        String extension =
+                                                        AppData.getExt(pdfurl);
+                                                        print("eeeessssssssstttt" +
+                                                            extension);
+                                                        widget.model.pdfurl = pdfurl;
+                                                        print("ppppdddddddddddffffff" +
+                                                            pdfurl);
+                                                        String format =
+                                                        getFormatType(extension);
+                                                        if (format == "img") {
+                                                          Navigator.push(
+                                                              context,
+                                                              MaterialPageRoute(
+                                                                  builder: (context) =>
+                                                                      DocumentImage(
+                                                                        model: widget
+                                                                            .model,
+                                                                      ))).then(
+                                                                  (value) =>
+                                                              widget.model.pdfurl);
 
-                                                  /*  Navigator.pushNamed(context, "/documentimage",).then((
+                                                          /*  Navigator.pushNamed(context, "/documentimage",).then((
                                       value) => widget.model.pdfurl);*/
-                                                } else if (format == "doc") {
-                                                  Navigator.push(
-                                                      context,
-                                                      MaterialPageRoute(
-                                                          builder: (context) =>
-                                                              PdfViewPage(
-                                                                model: widget
-                                                                    .model,
-                                                              ))).then(
-                                                      (value) =>
-                                                          widget.model.pdfurl);
+                                                        } else if (format == "doc") {
+                                                          Navigator.push(
+                                                              context,
+                                                              MaterialPageRoute(
+                                                                  builder: (context) =>
+                                                                      PdfViewPage(
+                                                                        model: widget
+                                                                            .model,
+                                                                      ))).then(
+                                                                  (value) =>
+                                                              widget.model.pdfurl);
 /*                                  Navigator.pushNamed(context, "/documentpdf",)
                                       .then((value) => widget.model.pdfurl);*/
-                                                } else if (format == "vdo") {
-                                                  Navigator.push(
-                                                      context,
-                                                      MaterialPageRoute(
-                                                          builder: (context) =>
-                                                              VideoDetailsPage(
-                                                                model: widget
-                                                                    .model,
-                                                              ))).then(
-                                                      (value) =>
-                                                          widget.model.pdfurl);
+                                                        } else if (format == "vdo") {
+                                                          Navigator.push(
+                                                              context,
+                                                              MaterialPageRoute(
+                                                                  builder: (context) =>
+                                                                      VideoDetailsPage(
+                                                                        model: widget
+                                                                            .model,
+                                                                      ))).then(
+                                                                  (value) =>
+                                                              widget.model.pdfurl);
 
-                                                }
-                                              },
-                                              child: Center(
-                                                child: Container(
-                                                  width: 400,
-                                                  decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              5),
-                                                      border: Border.all(
-                                                          color:
-                                                              Colors.black12),
-                                                      color: AppData
-                                                          .kPrimaryColor),
-                                                  child: RaisedButton(
-                                                    onPressed: null,
-                                                    child: Text(
-                                                      'VIEW',
-                                                      style: TextStyle(
-                                                          color: Colors.white,
-                                                          fontSize: 16,
-                                                          fontWeight:
-                                                              FontWeight.w400),
+                                                        }
+                                                      },
+
+                                                      child: Icon(
+                                                        getIconFormat(AppData.getExt(
+                                                            body.fileName)),
+                                                        color: AppData.kPrimaryRedColor,
+                                                        size: 100,
+                                                      ),
                                                     ),
-                                                    disabledColor:
-                                                        AppData.kPrimaryColor,
+                                                  decoration: new ShapeDecoration(
+                                                    shape: RoundedRectangleBorder(
+                                                      borderRadius:
+                                                      BorderRadius.all(Radius.circular(3)),
+                                                      side: BorderSide(color: Colors.grey),
+                                                    ),
                                                   ),
                                                 ),
                                               ),
                                             ),
                                             SizedBox(
-                                              height: 5,
+                                              width: 10,
                                             ),
-                                          ]),
+                                            Expanded(
+                                              child: Padding(
+                                                padding: const EdgeInsets.all(10.0),
+                                                child: Container(
+                                                    child: Column(
+                                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                                      children: [
+                                                        Column(
+                                                          children: [
+                                                            Text("Document Name :",
+                                                                style: TextStyle(
+                                                                    fontSize: 15,
+                                                                    fontWeight:
+                                                                    FontWeight.bold)),
+                                                            SizedBox(
+                                                              width: 5,
+                                                            ),
+                                                            Text(body.docName ?? "N/A",
+                                                                style: TextStyle(
+                                                                    fontSize: 13,
+                                                                    fontWeight:
+                                                                    FontWeight.normal)),
+                                                          ],
+                                                        ),
+                                                        SizedBox(
+                                                          height: 10,
+                                                        ),
+                                                        Column(
+                                                          children: [
+                                                            Text("Document Type   :",
+                                                                style: TextStyle(
+                                                                    fontSize: 15,
+                                                                    fontWeight:
+                                                                    FontWeight.bold)),
+                                                            SizedBox(
+                                                              width: 5,
+                                                            ),
+                                                            Text(body.docType ?? "N/A",
+                                                                style: TextStyle(
+                                                                    fontSize: 13,
+                                                                    fontWeight:
+                                                                    FontWeight.normal)),
+                                                          ],
+                                                        ),
+
+
+
+
+                                                      ],
+                                                    )),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        //   SizedBox(height: 40,),
+                                        Expanded(
+                                          child: Container(
+                                            width: 400,
+                                            decoration: (i % 2 == 0)
+                                                ? BoxDecoration(
+                                                borderRadius: BorderRadius.circular(5),
+                                                // border: Border.all(color: Colors.black12),
+                                                color:AppData.kPrimaryBlueColor)
+                                                : BoxDecoration(
+                                                borderRadius: BorderRadius.circular(5),
+                                                //border: Border.all(color: Colors.black12),
+                                                color: AppData.kPrimaryRedColor),
+                                            child: RaisedButton(
+                                              onPressed: null,
+                                              child: Row(
+                                                children: [
+                                                  Expanded(
+                                                    child: Text(
+                                                      "Capture",
+                                                      style: TextStyle(
+                                                          color: Colors.white,
+                                                          fontSize: 16,
+                                                          fontWeight: FontWeight.w400),
+                                                    ),
+                                                  ),
+                                                  CircleAvatar(
+                                                    // radius: 40,
+                                                      backgroundColor: Colors.white,
+                                                      child: (i % 2 == 0)
+                                                          ? Icon(
+                                                        Icons.edit,
+                                                        color: AppData.kPrimaryBlueColor,
+                                                        size: 25,
+                                                      )
+                                                          : Icon(
+                                                        Icons.edit,
+                                                        size: 25,
+                                                        color:AppData.kPrimaryRedColor,
+                                                      )
+
+                                                    // Image radius
+                                                  ),
+                                                  SizedBox(
+                                                    width: 15,
+                                                  ),
+                                                  CircleAvatar(
+                                                    //radius: 40,
+                                                    backgroundColor: Colors.white,
+                                                    child: Container(
+                                                        child: (i % 2 == 0)
+                                                            ? Icon(
+                                                          Icons.download_rounded,
+                                                          color:AppData.kPrimaryBlueColor,
+                                                          size: 25,
+                                                        )
+                                                            : Icon(
+                                                          Icons.download_rounded,
+                                                          size: 25,
+                                                          color:AppData.kPrimaryRedColor,
+                                                        )), // Image radius
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ]),
                                     ),
                                   ),
-                                ),
-                              );
-                            },
-                            itemCount: documentListModel.body.length,
-                          )
-                        : Container(),
-                  ),
+                                );
+                              },
+                              itemCount: documentListModel.body.length,
+                            )
+                                :Container()
+                        ),
+                      )),
                 ),
     );
   }

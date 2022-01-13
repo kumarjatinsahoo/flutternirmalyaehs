@@ -467,33 +467,38 @@ class MediaupdateState extends State<Mediaupdate> {
                               ),
                               Row(
                                 children: [
-                                  Padding(
+                                 Expanded(child: Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
                                       "Upload Banner",
                                       style: TextStyle(
                                           fontSize: 20, color: Colors.black),
                                     ),
-                                  ),
-                                  SizedBox(width: 30),
-                                  Material(
-                                     elevation: 3,
-                                     color: AppData.kPrimaryColor,
-                                     borderRadius: BorderRadius.circular(5.0),
-                                     child: MaterialButton(
-                                       onPressed: () {
-                                         _settingModalBottomSheet(context);
-                                       },
-                                       minWidth: 120,
-                                       height: 40.0,
-                                       child: Text(
-                                         "Upload",
-                                         style: TextStyle(
-                                             color: Colors.white,
-                                             fontSize: 17.0),
+                                  ),),
+                                  //SizedBox(width: 30),
+                                  Expanded(
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(right: 8.0),
+                                      child: Material(
+                                         elevation: 3,
+                                         color: AppData.kPrimaryColor,
+                                         borderRadius: BorderRadius.circular(5.0),
+                                         child: MaterialButton(
+                                           onPressed: () {
+                                             _settingModalBottomSheet(context);
+                                           },
+                                           minWidth: 120,
+                                           height: 40.0,
+                                           child: Text(
+                                             "Upload",
+                                             style: TextStyle(
+                                                 color: Colors.white,
+                                                 fontSize: 17.0),
+                                           ),
+                                         ),
                                        ),
-                                     ),
-                                   ),
+                                    ),
+                                  ),
                                 ],
                               ),
                               SizedBox(
