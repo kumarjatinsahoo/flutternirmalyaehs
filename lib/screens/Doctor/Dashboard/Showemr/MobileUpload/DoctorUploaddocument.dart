@@ -188,7 +188,7 @@ class _DoctorUploadDocumentState extends State<DoctorUploadDocument> {
       appBar: AppBar(
           centerTitle: true,
           backgroundColor: AppData.kPrimaryColor,
-          title: Text(MyLocalizations.of(context).text("UPLOAD_DOCUMENT")),
+          title: Text("Upload Document"),
           actions: <Widget>[
             Padding(
               padding: EdgeInsets.only(right: 20.0),
@@ -237,7 +237,7 @@ class _DoctorUploadDocumentState extends State<DoctorUploadDocument> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.35,
               ),
-              Text(MyLocalizations.of(context).text("NO_DATA_FOUND"),
+              Text("No Data Found",
                 style: TextStyle(color: Colors.black, fontSize: 15),
               ),
             ],

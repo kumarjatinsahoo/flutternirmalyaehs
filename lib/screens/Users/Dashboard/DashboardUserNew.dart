@@ -15,6 +15,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:user/localization/application.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/LoginResponse1.dart';
+import 'package:user/models/NewsupdateModel.dart'as news;
 import 'package:user/models/UserDashboardModel.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/SharedPref.dart';
@@ -75,27 +76,6 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
   PageController _controller = PageController(
     initialPage: 0,
   );
-
-  /* List<String> imageSliders = [
-    "assets/modiji_banner.jpg",
-    "assets/AjitPawarji.PNG",
-    "assets/JaiRamThakurji.jpg",
-    "assets/NitishKumarji.jpg",
-    "assets/PramodAgrawalji .jpg",
-    "assets/PramodSawantji.jpg",
-    "assets/UddhavThackeryji.jfif",
-    "assets/YogiAdityanathji.jpg",
-    "assets/intro/img_coll.jpg",
-    "assets/images/thumb.jpg",
-    "assets/images/tmc.png"
-  ];*/
-  /*List<String> imageSliders = [
-    // "assets/intro/pm1.jpeg",
-
-    "assets/images/uk_two.jpeg",
-    "assets/images/uk_one.jpg",
-  ];*/
-
   List<String> imageSliders = [
     // "assets/intro/pm1.jpeg",
     "assets/intro/banner2.jpg",
@@ -104,6 +84,10 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
     /*"assets/intro/mah2.png",
     "assets/images/uk_two.jpeg",
     "assets/images/uk_one.jpg",*/
+
+    "assets/intro/banner3.jpg",
+
+    "assets/intro/banner4.jpg",
   ];
 
   SharedPref sharedPref = SharedPref();
@@ -1132,7 +1116,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                   ),
 
                 ),*/
-                Padding(
+/*                Padding(
                   padding: const EdgeInsets.only(top: 10, left: 3, right: 3),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -1153,7 +1137,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                       ),
                     ],
                   ),
-                ),
+                ),*/
               ],
             ),
           ],
