@@ -293,7 +293,7 @@ class OrganisationSignUpFormState extends State<OrganisationSignUpForm> {
                                   DropDown.countryList(
                                       MyLocalizations.of(context).text("STATE"),
                                       ApiFactory.STATE_API +
-                                          (OrganisationSignUpForm?.countryModel?.key ?? ""),"stateph",
+                                          (OrganisationSignUpForm?.countryModel?.key ?? ""),"stateOgan",
                                       Icons.location_on_rounded,
                                       23.0, (KeyvalueModel data) {
                                     setState(() {
@@ -309,7 +309,7 @@ class OrganisationSignUpFormState extends State<OrganisationSignUpForm> {
                                       ApiFactory.DISTRICT_API +
                                           (OrganisationSignUpForm?.stateModel?.key ??
                                               ""),
-                                      "districtph",
+                                      "districtOgan",
                                       Icons.location_on_rounded,
                                       23.0, (KeyvalueModel data) {
                                     setState(() {
@@ -324,7 +324,7 @@ class OrganisationSignUpFormState extends State<OrganisationSignUpForm> {
                                       ApiFactory.CITY_API +
                                           (OrganisationSignUpForm
                                               ?.districtModel?.key ??""),
-                                      "cityph",
+                                      "cityOgan",
                                       Icons.location_on_rounded,
                                       23.0, (KeyvalueModel data) {
                                     setState(() {

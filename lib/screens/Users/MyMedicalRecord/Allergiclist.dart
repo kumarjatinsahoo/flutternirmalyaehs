@@ -493,7 +493,7 @@ class _AllergicListListState extends State<AllergicListList> {
                               DropDown.networkDropdownGetpartUser1(
                                   MyLocalizations.of(context).text("ALLERGEN"),
                                   ApiFactory.NAME_API,
-                                  "namelist",
+                                  "namelistt",
                                   Icons.location_on_rounded,
                                   23.0, (KeyvalueModel data) {
                                  setState(() {
