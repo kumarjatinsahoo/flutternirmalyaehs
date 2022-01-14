@@ -166,7 +166,13 @@ class _SplashScreenState extends State<SplashScreen> {
     if (isFirstTime != null) {
       if (isFirstTime.replaceAll("\"", "") == "false") {
         // callResourceTimer();
-        getVersion();
+        if(isOffline){
+          log("Offline mode");
+          callResourceTimer();
+        }else {
+          log("Online mode");
+          getVersion();
+        }
         setState(() => isFirstTym = false);
       } else {
         setState(() => isFirstTym = true);
