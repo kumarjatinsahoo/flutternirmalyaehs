@@ -159,7 +159,12 @@ class _SplashScreenState extends State<SplashScreen> {
     loginData = await sharedPref.getKey(Const.LOGIN_DATA);
     phnNostr = await sharedPref.getKey(Const.LOGIN_phoneno);
     passWordstr = await sharedPref.getKey(Const.LOGIN_password);
-    masterResponse = await sharedPref.getKey(Const.MASTER_RESPONSE);
+    bool isMultiUser=await sharedPref.contain(Const.MASTER_RESPONSE);
+    if(isMultiUser) {
+      masterResponse = await sharedPref.getKey(Const.MASTER_RESPONSE);
+    }else if(loginData!=null && (login.replaceAll("\"", "") == "true" || login.toString() == "true") && isMultiUser){
+      _exitApp();
+    }
 
      String phnNostr1 =phnNostr.replaceAll("\"", "") ;
     String passWordstr1= passWordstr.replaceAll("\"", "");
@@ -200,6 +205,22 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void callResourceTimer() {
     Timer(Duration(seconds: 5), navigationPage);
+  }
+
+  _exitApp() async {
+    /*FirebaseMessaging.instance
+        .unsubscribeFromTopic(loginResponse1.body.user);
+    FirebaseMessaging.instance
+        .unsubscribeFromTopic(loginResponse1.body.userMobile);*/
+    sharedPref.save(Const.IS_LOGIN, false.toString());
+    sharedPref.save(Const.IS_REGISTRATION, false.toString());
+    sharedPref.remove(Const.IS_REGISTRATION);
+    sharedPref.remove(Const.IS_LOGIN);
+    sharedPref.remove(Const.LOGIN_DATA);
+    sharedPref.remove(Const.IS_REG_SERVER);
+    sharedPref.remove(Const.MASTER_RESPONSE);
+    Navigator.of(context)
+        .pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
   }
 
   void navigationPage() async {
