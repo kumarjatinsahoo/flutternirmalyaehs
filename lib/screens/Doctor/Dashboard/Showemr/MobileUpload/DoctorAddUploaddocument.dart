@@ -45,6 +45,7 @@ class _DoctorAddUploadDocumentState extends State<DoctorAddUploadDocument> {
   String profilePath = null, idproof = null;
   File pathUsr1 = null;
   String doccategory, rolee;
+  String docuploadby="2";
   AddUploadDocumentModel adduploaddocument = AddUploadDocumentModel();
 
   TextEditingController _date = TextEditingController();
@@ -274,7 +275,7 @@ class _DoctorAddUploadDocumentState extends State<DoctorAddUploadDocument> {
         textEditingController[1].text +
         "," +
         doccategory +
-        "," +
+        "," +docuploadby+","+
         widget.model.patientseHealthCard);
     var formData = FormData();
     formData.fields
@@ -286,7 +287,7 @@ class _DoctorAddUploadDocumentState extends State<DoctorAddUploadDocument> {
       ))
       ..add(MapEntry(
         'uploadedBy',
-        "2",
+        docuploadby,
       ))
       ..add(MapEntry(
         'docName',
