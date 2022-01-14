@@ -34,6 +34,7 @@ class ApiFactory {
   static String DELETE_TEST_LIST = MAIN_URL + 'delete-test-by-app-no?appno=';
   static String BIOMEDICAL_IMPLANTS = MAIN_URL + 'view-user-biomedical-implant-list-api?userid=';
   static String lab_list_by_searchvalue = MAIN_URL + 'get-lab-list-by-searchvalue?search=';
+  static String GET_VERSION = MAIN_URL + 'get-version';
 
   /*static String BIOMEDICAL_IMPLANTS =
       MAIN_URL + 'view-user-biomedical-implant-list-api?userid=';*/
@@ -318,6 +319,10 @@ class ApiFactory {
 
   static String TIME_SLOT1 = MAIN_URL + "/Doc/GetDocSlotInfo?doctor=";
   static String GET_ROLE = MAIN_URL + "get-role-api?id=";
+
+  static String API_VERSION = MAIN_URL + "get-version";
+
+
 /* (
       String doctor, String appointdate, String hospitalid) {
     return

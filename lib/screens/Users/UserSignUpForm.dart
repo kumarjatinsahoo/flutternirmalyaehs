@@ -112,7 +112,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
         locale: Locale("en"),
         /*initialDate: DateTime.now(),
         firstDate: DateTime.now().subtract(Duration(days: 100)),
-        lastDate: DateTime.now(),*/ 
+        lastDate: DateTime.now(),*/
         initialDate: DateTime.now().subtract(Duration(days: 6570)),
         firstDate: DateTime(1901, 1),
         lastDate: DateTime.now()
@@ -170,7 +170,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
       case 0:
         AppData.showInSnackBar(context, "Privacy Setting");
 
-       /* Navigator.of(context)
+        /* Navigator.of(context)
             .push(MaterialPageRoute(builder: (context) => SettingPage()));*/
         break;
       case 1:
@@ -218,10 +218,10 @@ class UserSignUpFormState extends State<UserSignUpForm> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-    title: Text(MyLocalizations.of(context).text("SIGNUP")),
-    centerTitle: true,
-    backgroundColor: AppData.kPrimaryColor,
-    iconTheme: IconThemeData(color: Colors.white),
+        title: Text(MyLocalizations.of(context).text("SIGNUP")),
+        centerTitle: true,
+        backgroundColor: AppData.kPrimaryColor,
+        iconTheme: IconThemeData(color: Colors.white),
         /*actions: [
           Theme(
             data: Theme.of(context).copyWith(
@@ -241,349 +241,349 @@ class UserSignUpFormState extends State<UserSignUpForm> {
       ),
 
       body: Container(
-    child: SingleChildScrollView(
-      child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(
-              left: 10.0,
-              right: 10.0,
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(
-                  height: 10,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: 10.0,
+                  right: 10.0,
                 ),
-                ListView(
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SizedBox(
-                      height: 30,
+                      height: 10,
                     ),
-                    Align(
-                      alignment: Alignment.topCenter,
-                      child: Container(
-                        height: 83,
-                        width: 83,
-                        child: Stack(
-                          //mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            (pathUsr != null)
-                                ? Material(
-                                    elevation: 5.0,
-                                    shape: CircleBorder(),
-                                    child: CircleAvatar(
-                                      radius: 40.0,
-                                      backgroundImage:
-                                          FileImage(pathUsr),
-                                    ),
-                                  )
-                                : Material(
-                                    elevation: 5.0,
-                                    shape: CircleBorder(),
-                                    child: CircleAvatar(
-                                      radius: 40.0,
-                                      backgroundImage: NetworkImage(
-                                          AppData.defaultImgUrl),
+                    ListView(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      children: [
+                        SizedBox(
+                          height: 30,
+                        ),
+                        Align(
+                          alignment: Alignment.topCenter,
+                          child: Container(
+                            height: 83,
+                            width: 83,
+                            child: Stack(
+                              //mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                (pathUsr != null)
+                                    ? Material(
+                                  elevation: 5.0,
+                                  shape: CircleBorder(),
+                                  child: CircleAvatar(
+                                    radius: 40.0,
+                                    backgroundImage:
+                                    FileImage(pathUsr),
+                                  ),
+                                )
+                                    : Material(
+                                  elevation: 5.0,
+                                  shape: CircleBorder(),
+                                  child: CircleAvatar(
+                                    radius: 40.0,
+                                    backgroundImage: NetworkImage(
+                                        AppData.defaultImgUrl),
+                                  ),
+                                ),
+                                Align(
+                                  alignment: Alignment.bottomRight,
+                                  child: InkWell(
+                                    onTap: () {
+                                      _settingModalBottomSheet(context);
+                                    },
+                                    child: Icon(
+                                      Icons.camera_alt,
+                                      color: AppData.kPrimaryColor,
                                     ),
                                   ),
-                            Align(
-                              alignment: Alignment.bottomRight,
-                              child: InkWell(
-                                onTap: () {
-                                  _settingModalBottomSheet(context);
-                                },
-                                child: Icon(
-                                  Icons.camera_alt,
-                                  color: AppData.kPrimaryColor,
-                                ),
-                              ),
-                            )
-                          ],
+                                )
+                              ],
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Form(
-                      key: _formKey,
-                      // ignore: deprecated_member_use
-                      autovalidate: _autovalidate,
-                      child: Column(
-                        children: <Widget>[
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 0),
-                            child: SizedBox(
-                              height: 58,
-                              child:
-                              DropDown.
-                              networkDropdownGetpartUserundreline1(
-                                     // "TITLE"
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Form(
+                          key: _formKey,
+                          // ignore: deprecated_member_use
+                          autovalidate: _autovalidate,
+                          child: Column(
+                            children: <Widget>[
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 0),
+                                child: SizedBox(
+                                  height: 58,
+                                  child:
+                                  DropDown.
+                                  networkDropdownGetpartUserundreline1(
+                                    // "TITLE"
                                       MyLocalizations.of(context)
                                           .text("TITLE") +"*",
                                       ApiFactory.TITLE_API,
                                       "title",
                                       Icons.person_rounded,
                                       23.0, (KeyvalueModel data) {
-                                setState(() {
-                                  print(ApiFactory.TITLE_API);
-                                  UserSignUpForm.titleModel = data;
-                                  userModel.title = data.key;
-                                });
-                              }),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 8),
-                            child: Container(
-                              height: 50,
-                              padding:
+                                    setState(() {
+                                      print(ApiFactory.TITLE_API);
+                                      UserSignUpForm.titleModel = data;
+                                      userModel.title = data.key;
+                                    });
+                                  }),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 8),
+                                child: Container(
+                                  height: 50,
+                                  padding:
                                   EdgeInsets.symmetric(horizontal: 0),
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius:
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius:
                                     BorderRadius.circular(5),
-                                border: Border.all(
-                                    color: Colors.black, width: 0.3),
-                              ),
-                              child: TextFormField(
-                                decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  hintText: MyLocalizations.of(context)
-                                              .text("FIRST_NAME") + "*",
-                                  prefixIcon:
+                                    border: Border.all(
+                                        color: Colors.black, width: 0.3),
+                                  ),
+                                  child: TextFormField(
+                                    decoration: InputDecoration(
+                                      border: InputBorder.none,
+                                      hintText: MyLocalizations.of(context)
+                                          .text("FIRST_NAME") + "*",
+                                      prefixIcon:
                                       Icon(Icons.person_rounded),
-                                  hintStyle: TextStyle(
-                                      color: AppData.hintColor,
-                                      fontSize: 16),
-                                ),
-                                textInputAction: TextInputAction.next,
-                                keyboardType: TextInputType.text,
-                                controller: textEditingController[0],
-                                focusNode: fnode1,
-                                textAlignVertical:
+                                      hintStyle: TextStyle(
+                                          color: AppData.hintColor,
+                                          fontSize: 16),
+                                    ),
+                                    textInputAction: TextInputAction.next,
+                                    keyboardType: TextInputType.text,
+                                    controller: textEditingController[0],
+                                    focusNode: fnode1,
+                                    textAlignVertical:
                                     TextAlignVertical.center,
-                                inputFormatters: [
-                                  WhitelistingTextInputFormatter(
-                                      RegExp("[a-z A-Z]")),
-                                ],
-                                onFieldSubmitted: (value) {
-                                  AppData.fieldFocusChange(context, fnode1, fnode2);
-                                },
+                                    inputFormatters: [
+                                      WhitelistingTextInputFormatter(
+                                          RegExp("[a-z A-Z]")),
+                                    ],
+                                    onFieldSubmitted: (value) {
+                                      AppData.fieldFocusChange(context, fnode1, fnode2);
+                                    },
+                                  ),
+                                ),
                               ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 8),
-                            child: Container(
-                              height: 50,
-                              padding:
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 8),
+                                child: Container(
+                                  height: 50,
+                                  padding:
                                   EdgeInsets.symmetric(horizontal: 0),
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius:
+                                  decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius:
                                       BorderRadius.circular(5),
-                                  border: Border.all(
-                                      color: Colors.black,
-                                      width: 0.3)),
-                              child: TextFormField(
-                                decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  hintText:
+                                      border: Border.all(
+                                          color: Colors.black,
+                                          width: 0.3)),
+                                  child: TextFormField(
+                                    decoration: InputDecoration(
+                                      border: InputBorder.none,
+                                      hintText:
                                       MyLocalizations.of(context)
-                                              .text("LAST_NAME") +
+                                          .text("LAST_NAME") +
                                           "*",
-                                  prefixIcon:
+                                      prefixIcon:
                                       Icon(Icons.person_rounded),
-                                  hintStyle: TextStyle(
-                                      color: AppData.hintColor,
-                                      fontSize: 16),
-                                ),
-                                textInputAction: TextInputAction.next,
-                                textAlignVertical:
+                                      hintStyle: TextStyle(
+                                          color: AppData.hintColor,
+                                          fontSize: 16),
+                                    ),
+                                    textInputAction: TextInputAction.next,
+                                    textAlignVertical:
                                     TextAlignVertical.center,
-                                controller: textEditingController[1],
-                                focusNode: fnode2,
-                                keyboardType: TextInputType.text,
-                                inputFormatters: [
-                                  WhitelistingTextInputFormatter(
-                                      RegExp("[a-zA-Z]")),
-                                ],
-                                onFieldSubmitted: (value) {
-                                  AppData.fieldFocusChange(context, fnode2, fnode3);
-                                },
+                                    controller: textEditingController[1],
+                                    focusNode: fnode2,
+                                    keyboardType: TextInputType.text,
+                                    inputFormatters: [
+                                      WhitelistingTextInputFormatter(
+                                          RegExp("[a-zA-Z]")),
+                                    ],
+                                    onFieldSubmitted: (value) {
+                                      AppData.fieldFocusChange(context, fnode2, fnode3);
+                                    },
+                                  ),
+                                ),
                               ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 2,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 0),
-                            child: SizedBox(
-                              height: 58,
+                              SizedBox(
+                                height: 2,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 0),
+                                child: SizedBox(
+                                  height: 58,
 
 
-                              child:DropDown.networkDropdownGetpartUserundreline1(
-                                      //"Gender"
+                                  child:DropDown.networkDropdownGetpartUserundreline1(
+                                    //"Gender"
                                       MyLocalizations.of(context)
                                           .text("GENDER") +"*",
                                       ApiFactory.GENDER_API,
                                       "gender",
                                       Icons.wc_outlined,
                                       23.0, (KeyvalueModel data) {
-                                setState(() {
-                                  print(ApiFactory.GENDER_API);
-                                  UserSignUpForm.genderModel = data;
-                                  userModel.gender = data.key;
-                                  // UserSignUpForm.cityModel = null;
-                                });
-                              }),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                                right: 10.0, left: 0),
-                            child: mobileNoOTPSearch(),
-                          ),
-                          SizedBox(
-                            height: 2,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                                left: 0, right: 0),
-                            child: SizedBox(
-                              height: 58,
-                              child:DropDown.
-                              networkDropdownGetpartUserundreline1(
-                                     // "Country",
+                                    setState(() {
+                                      print(ApiFactory.GENDER_API);
+                                      UserSignUpForm.genderModel = data;
+                                      userModel.gender = data.key;
+                                      // UserSignUpForm.cityModel = null;
+                                    });
+                                  }),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    right: 10.0, left: 0),
+                                child: mobileNoOTPSearch(),
+                              ),
+                              SizedBox(
+                                height: 2,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 0, right: 0),
+                                child: SizedBox(
+                                  height: 58,
+                                  child:DropDown.
+                                  networkDropdownGetpartUserundreline1(
+                                    // "Country",
                                       MyLocalizations.of(context)
                                           .text("COUNTRY")+"*" ,
                                       ApiFactory.COUNTRY_API,
                                       "country",
                                       Icons.location_on_rounded,
                                       23.0, (KeyvalueModel data) {
-                                setState(() {
-                                  print(ApiFactory.COUNTRY_API);
-                                  UserSignUpForm.countryModel = data;
-                                  UserSignUpForm.stateModel = null;
-                                  UserSignUpForm.districtModel = null;
-                                  UserSignUpForm.cityModel = null;
-                                });
-                              }),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          (UserSignUpForm.countryModel != null)
-                              ? Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 0, right: 0, bottom: 0),
-                                  child: SizedBox(
-                                    height: 58,
-                                    child: DropDown.countryList(
-                                            //"State",
-                                        MyLocalizations.of(context)
-                                            .text("STATE") +"*",
-                                            ApiFactory.STATE_API +
-                                                UserSignUpForm
-                                                    .countryModel.key,
-                                            "stateU",
-                                            Icons.location_on_rounded,
-                                            23.0,
-                                            (KeyvalueModel data) {
-                                      setState(() {
-                                        UserSignUpForm.stateModel = data;
-                                        UserSignUpForm.districtModel = null;
-                                        UserSignUpForm.cityModel = null;
-                                        /*userModel.state=data.key;
-                                      userModel.stateCode=data.code;*/
-                                      });
-                                    }),
-                                  ),
-                                )
-                              : Container(),
-
-                          SizedBox(
-                            height: size.height * 0.01,
-                          ),
-                          (UserSignUpForm.stateModel != null)
-                              ?Padding(
-                            padding: const EdgeInsets.only(
-                                left: 0, right: 0),
-                            child: SizedBox(
-                              height: 58,
-                                child: DropDown.
-                              countryList(
-                                  //"District",
-                                  MyLocalizations.of(context)
-                                      .text("DIST")+"*" ,
-                                  ApiFactory.DISTRICT_API +
-                                      UserSignUpForm.stateModel.key,
-                                  "districtU",
-                                  Icons.location_on_rounded,
-                                  23.0, (KeyvalueModel data) {
-                                setState(() {
-                                  print(ApiFactory.COUNTRY_API);
-                                  UserSignUpForm.districtModel = data;
-                                  UserSignUpForm.cityModel = null ;
-                                });
-                              }),
-                            ),
-                          ) : Container(),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          (UserSignUpForm.districtModel != null)
-                              ? Padding(
-                            padding: const EdgeInsets.only(
-                                left: 0, right: 0, bottom: 0),
-                            child: SizedBox(
-                              height: 58,
-                              child: DropDown
-                                  .countryList(
-                                  //"City",
-                                  MyLocalizations.of(context)
-                                      .text("CITY") +"*",
-                                  ApiFactory.CITY_API +
-                                      UserSignUpForm
-                                          .districtModel.key,
-                                  "cityU",
-                                  Icons.location_on_rounded,
-                                  23.0,
-                                      (KeyvalueModel data) {
                                     setState(() {
-                                      UserSignUpForm.cityModel = data;
-                                      /*userModel.state=data.key;
-                                      userModel.stateCode=data.code;*/
+                                      print(ApiFactory.COUNTRY_API);
+                                      UserSignUpForm.countryModel = data;
+                                      UserSignUpForm.stateModel = null;
+                                      UserSignUpForm.districtModel = null;
+                                      UserSignUpForm.cityModel = null;
                                     });
                                   }),
-                            ),
-                          )
-                              : Container(),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              (UserSignUpForm.countryModel != null)
+                                  ? Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 0, right: 0, bottom: 0),
+                                child: SizedBox(
+                                  height: 58,
+                                  child: DropDown.countryList(
+                                    //"State",
+                                      MyLocalizations.of(context)
+                                          .text("STATE") +"*",
+                                      ApiFactory.STATE_API +
+                                          UserSignUpForm
+                                              .countryModel.key,
+                                      "stateU",
+                                      Icons.location_on_rounded,
+                                      23.0,
+                                          (KeyvalueModel data) {
+                                        setState(() {
+                                          UserSignUpForm.stateModel = data;
+                                          UserSignUpForm.districtModel = null;
+                                          UserSignUpForm.cityModel = null;
+                                          /*userModel.state=data.key;
+                                      userModel.stateCode=data.code;*/
+                                        });
+                                      }),
+                                ),
+                              )
+                                  : Container(),
 
-                          SizedBox(
-                            height: size.height * 0.01,
-                          ),
+                              SizedBox(
+                                height: size.height * 0.01,
+                              ),
+                              (UserSignUpForm.stateModel != null)
+                                  ?Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 0, right: 0),
+                                child: SizedBox(
+                                  height: 58,
+                                  child: DropDown.
+                                  countryList(
+                                    //"District",
+                                      MyLocalizations.of(context)
+                                          .text("DIST")+"*" ,
+                                      ApiFactory.DISTRICT_API +
+                                          UserSignUpForm.stateModel.key,
+                                      "districtU",
+                                      Icons.location_on_rounded,
+                                      23.0, (KeyvalueModel data) {
+                                    setState(() {
+                                      print(ApiFactory.COUNTRY_API);
+                                      UserSignUpForm.districtModel = data;
+                                      UserSignUpForm.cityModel = null ;
+                                    });
+                                  }),
+                                ),
+                              ) : Container(),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              (UserSignUpForm.districtModel != null)
+                                  ? Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 0, right: 0, bottom: 0),
+                                child: SizedBox(
+                                  height: 58,
+                                  child: DropDown
+                                      .countryList(
+                                    //"City",
+                                      MyLocalizations.of(context)
+                                          .text("CITY") +"*",
+                                      ApiFactory.CITY_API +
+                                          UserSignUpForm
+                                              .districtModel.key,
+                                      "cityU",
+                                      Icons.location_on_rounded,
+                                      23.0,
+                                          (KeyvalueModel data) {
+                                        setState(() {
+                                          UserSignUpForm.cityModel = data;
+                                          /*userModel.state=data.key;
+                                      userModel.stateCode=data.code;*/
+                                        });
+                                      }),
+                                ),
+                              )
+                                  : Container(),
 
-                         /* Row(
+                              SizedBox(
+                                height: size.height * 0.01,
+                              ),
+
+                              /* Row(
                             children: [
                               Expanded(
                                 child: ListTile(
@@ -703,7 +703,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                           //_selectDate1(context);
 
                                           */
-                          /*showDialog(
+                              /*showDialog(
                                             context: context,
                                             builder: (BuildContext
                                                 context) {
@@ -748,7 +748,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                               );
                                             },
                                           );*/
-                          /*
+                              /*
                                         },
                                         child: Padding(
                                           padding:
@@ -853,85 +853,85 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                           SizedBox(
                             height: 10,
                           ),*/
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 10),
-                            child: Row(
-                              //  mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Checkbox(
-                                  value: _checkbox,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      _checkbox = !_checkbox;
-                                    });
-                                  },
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                            Expanded(
-                                child:RichText(
-                                    textAlign: TextAlign.start,
-                                    text: TextSpan(
-                                      children: [
-                                        TextSpan(
-                                          text:MyLocalizations.of(context).text("AGREE_EHEALTHSYSTEM"),
-                                          /* "Welcome back",*/
-                                          style: TextStyle(
-                                            // fontWeight: FontWeight.w800,
-                                            fontFamily: "Monte",
-                                            // fontSize: 25.0,
-                                            color: Colors.grey,
-                                          ),
-                                        ),
-                                       // SizedBox(width: 10),
-                                        TextSpan(
-                                          text:MyLocalizations.of(context).text("T&C"),
-                                          /* "Welcome back",*/
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontFamily: "Monte",
-                                            // fontSize: 25.0,
-                                            color: AppData
-                                                .kPrimaryColor,
-                                          ),
-                                            recognizer: TapGestureRecognizer()
-                                              ..onTap = () {
-                                                Navigator.pushNamed(context, "/termsandConditionPage");
-                                               // AppData.showInSnackBar(context, "Please select Gender");
-                                              }),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 10),
+                                child: Row(
+                                  //  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Checkbox(
+                                      value: _checkbox,
+                                      onChanged: (value) {
+                                        setState(() {
+                                          _checkbox = !_checkbox;
+                                        });
+                                      },
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Expanded(
+                                        child:RichText(
+                                            textAlign: TextAlign.start,
+                                            text: TextSpan(
+                                              children: [
+                                                TextSpan(
+                                                  text:MyLocalizations.of(context).text("AGREE_EHEALTHSYSTEM"),
+                                                  /* "Welcome back",*/
+                                                  style: TextStyle(
+                                                    // fontWeight: FontWeight.w800,
+                                                    fontFamily: "Monte",
+                                                    // fontSize: 25.0,
+                                                    color: Colors.grey,
+                                                  ),
+                                                ),
+                                                // SizedBox(width: 10),
+                                                TextSpan(
+                                                    text:MyLocalizations.of(context).text("T&C"),
+                                                    /* "Welcome back",*/
+                                                    style: TextStyle(
+                                                      fontWeight: FontWeight.bold,
+                                                      fontFamily: "Monte",
+                                                      // fontSize: 25.0,
+                                                      color: AppData
+                                                          .kPrimaryColor,
+                                                    ),
+                                                    recognizer: TapGestureRecognizer()
+                                                      ..onTap = () {
+                                                        Navigator.pushNamed(context, "/termsandConditionPage");
+                                                        // AppData.showInSnackBar(context, "Please select Gender");
+                                                      }),
 
-                                      ],
-                                    ))),
-                              ],
-                            ),
+                                              ],
+                                            ))),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 10),
+                                child: nextButton(),
+                              ),
+                              SizedBox(
+                                height: 25,
+                              ),
+                            ],
                           ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 10),
-                            child: nextButton(),
-                          ),
-                          SizedBox(
-                            height: 25,
-                          ),
-                        ],
-                      ),
-                    )
+                        )
+                      ],
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
                   ],
                 ),
-                SizedBox(
-                  height: 10,
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
-        ],
-      ),
-    ),
+        ),
       ),
     );
   }
@@ -978,12 +978,12 @@ class UserSignUpFormState extends State<UserSignUpForm> {
 
   Widget gender() {
     return DropDown.searchDropdowntyp("Gender", "genderPartner", genderList,
-        (KeyvalueModel model) {
-      UserSignUpForm.genderModel = model;
-    });
+            (KeyvalueModel model) {
+          UserSignUpForm.genderModel = model;
+        });
   }
 
-   Widget newContainer(child) {
+  Widget newContainer(child) {
     return Padding(
       padding:
       const EdgeInsets.only(top: 8.0, left: 8.0, right: 8.0, bottom: 0.0),
@@ -1044,7 +1044,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
   Widget inputFieldContainer(child) {
     return Padding(
       padding:
-          const EdgeInsets.only(top: 8.0, left: 8.0, right: 8.0, bottom: 0.0),
+      const EdgeInsets.only(top: 8.0, left: 8.0, right: 8.0, bottom: 0.0),
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 15),
         // decoration: BoxDecoration(
@@ -1121,7 +1121,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                 colors: [Colors.blue, AppData.kPrimaryColor])),
         child: Padding(
           padding:
-              EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
+          EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
           child: Text(
             MyLocalizations.of(context).text("SUBMIT"),
             textAlign: TextAlign.center,
@@ -1136,7 +1136,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
     return Padding(
       //padding: const EdgeInsets.all(8.0),
       padding:
-          const EdgeInsets.only(top: 0.0, left: 10.0, right: 10.0, bottom: 0.0),
+      const EdgeInsets.only(top: 0.0, left: 10.0, right: 10.0, bottom: 0.0),
       child: Container(
         // decoration: BoxDecoration(
         //   color: AppData.kPrimaryLightColor,
@@ -1193,7 +1193,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                   border: InputBorder.none,
                   counterText: "",
                   hintText:
-                      MyLocalizations.of(context).text("PHONE_NUMBER") + "*",
+                  MyLocalizations.of(context).text("PHONE_NUMBER") + "*",
                   hintStyle: TextStyle(color: AppData.hintColor, fontSize: 16),
                 ),
                 validator: (value) {
@@ -1300,8 +1300,8 @@ class UserSignUpFormState extends State<UserSignUpForm> {
       userModel.fName = textEditingController[0].text;
       userModel.lName = textEditingController[1].text;
       userModel.mobile = textEditingController[2].text;
-    //  userModel.age = (textEditingController[3].text=="")?null:textEditingController[3].text;
-   //  userModel.ageYears = textEditingController[4].text;
+      //  userModel.age = (textEditingController[3].text=="")?null:textEditingController[3].text;
+      //  userModel.ageYears = textEditingController[4].text;
       //userModel.dob =(textEditingController[5].text=="")?null:textEditingController[5].text;
       userModel.country = UserSignUpForm.countryModel.key;
       userModel.countryCode = UserSignUpForm.countryModel.code;
@@ -1309,6 +1309,8 @@ class UserSignUpFormState extends State<UserSignUpForm> {
       userModel.state = UserSignUpForm.stateModel.key;
       userModel.districtid = UserSignUpForm.districtModel.key;
       userModel.cityid = UserSignUpForm.cityModel.key;
+      userModel.title=UserSignUpForm.titleModel.key;
+      userModel.gender=UserSignUpForm.genderModel.key;
 
       print("API NAME>>>>" + ApiFactory.USER_REGISTRATION);
       print("TO POST>>>>" + jsonEncode(userModel.toJson()));
@@ -1333,7 +1335,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
         context: context,
         title: message,
         desc:
-            MyLocalizations.of(context).text("REG_SUCCESS_POPUP"),
+        MyLocalizations.of(context).text("REG_SUCCESS_POPUP"),
         type: AlertType.success,
         onWillPopActive: true,
         closeIcon: Icon(
@@ -1351,7 +1353,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
             onPressed: () {
               Navigator.pop(context);
               Navigator.pop(context);
-             // Navigator.pop(context);
+              // Navigator.pop(context);
             },
             color: Color.fromRGBO(0, 179, 134, 1.0),
             radius: BorderRadius.circular(0.0),
@@ -1370,17 +1372,17 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                     leading: new Icon(Icons.camera),
                     title: new Text('Camera'),
                     onTap: () => {
-                          Navigator.pop(context),
-                          //getCameraImage(),
-                    getImage(ImageSource.camera),
-                        }),
+                      Navigator.pop(context),
+                      //getCameraImage(),
+                      getImage(ImageSource.camera),
+                    }),
                 new ListTile(
                   leading: new Icon(Icons.folder),
                   title: new Text('Gallery'),
                   onTap: () => {
                     Navigator.pop(context),
                     //getGalleryImage(),
-                  getImage(ImageSource.gallery),
+                    getImage(ImageSource.gallery),
                   },
                 ),
               ],
@@ -1396,7 +1398,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
     if (image != null) {
       var enc = await image.readAsBytes();
       String _path = image.path;
-     setState(() => pathUsr = File(_path));
+      setState(() => pathUsr = File(_path));
 
       String _fileName = _path != null ? _path.split('/').last : '...';
       var pos = _fileName.lastIndexOf('.');

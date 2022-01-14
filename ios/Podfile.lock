@@ -96,6 +96,8 @@ PODS:
     - Flutter
   - flutter_pdfview (1.0.2):
     - Flutter
+  - flutter_share (0.0.1):
+    - Flutter
   - flutter_sms (1.1.0):
     - Flutter
   - flutter_webview_plugin (0.0.1):
@@ -187,6 +189,7 @@ DEPENDENCIES:
   - flutter_keyboard_visibility (from `.symlinks/plugins/flutter_keyboard_visibility/ios`)
   - flutter_local_notifications (from `.symlinks/plugins/flutter_local_notifications/ios`)
   - flutter_pdfview (from `.symlinks/plugins/flutter_pdfview/ios`)
+  - flutter_share (from `.symlinks/plugins/flutter_share/ios`)
   - flutter_sms (from `.symlinks/plugins/flutter_sms/ios`)
   - flutter_webview_plugin (from `.symlinks/plugins/flutter_webview_plugin/ios`)
   - geocoder (from `.symlinks/plugins/geocoder/ios`)
@@ -255,6 +258,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/flutter_local_notifications/ios"
   flutter_pdfview:
     :path: ".symlinks/plugins/flutter_pdfview/ios"
+  flutter_share:
+    :path: ".symlinks/plugins/flutter_share/ios"
   flutter_sms:
     :path: ".symlinks/plugins/flutter_sms/ios"
   flutter_webview_plugin:
@@ -319,6 +324,7 @@ SPEC CHECKSUMS:
   flutter_keyboard_visibility: 0339d06371254c3eb25eeb90ba8d17dca8f9c069
   flutter_local_notifications: 0c0b1ae97e741e1521e4c1629a459d04b9aec743
   flutter_pdfview: 25f53dd6097661e6395b17de506e6060585946bd
+  flutter_share: 4be0208963c60b537e6255ed2ce1faae61cd9ac2
   flutter_sms: 91ce41530f55c85d6524d82307a5d555844c086a
   flutter_webview_plugin: ed9e8a6a96baf0c867e90e1bce2673913eeac694
   geocoder: 3cfab70531a0b367e917bafe82df4c30f6d4c45a

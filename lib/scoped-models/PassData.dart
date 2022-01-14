@@ -167,4 +167,24 @@ class PassData extends Model {
 
   String contactscreen;
   MasterLoginResponse masterResponse;
+
+  ///usersignupform
+String firstname;
+String lastname;
+String usertitle;
+String usergender;
+String userphoneno;
+String usercountry;
+String userstate;
+String userdistrict;
+String usercity;
+String countrycode;
+String statecode;
+String userrphoneno;
+String userproimage;
+String userextesion;
+
+
+
+
 }
