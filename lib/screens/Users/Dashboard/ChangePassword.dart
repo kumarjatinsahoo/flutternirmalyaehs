@@ -404,6 +404,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                     //callAPI();
                     //AppData.showInSnackDone(context, map[Const.MESSAGE]);
                   } else {
+                    Navigator.pop(context);
                     AppData.showInSnackBar(context, map[Const.MESSAGE]);
                   }
                 });
