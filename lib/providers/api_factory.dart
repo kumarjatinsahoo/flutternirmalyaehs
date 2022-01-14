@@ -38,11 +38,9 @@ class ApiFactory {
 
   /*static String BIOMEDICAL_IMPLANTS =
       MAIN_URL + 'view-user-biomedical-implant-list-api?userid=';*/
-  static String UPLOAD_DOCUMENT =
-      MAIN_URL + 'get-medical-upload-details-api?userid=';
+  static String UPLOAD_DOCUMENT = MAIN_URL + 'get-medical-upload-details-api?userid=';
   static String DIESEINFO = MAIN_URL + 'get-disease-info-list';
-  static String IMMUNIZATION_LIST =
-      MAIN_URL + 'get-immunization-patient-details?userid=';
+  static String IMMUNIZATION_LIST = MAIN_URL + 'get-immunization-patient-details?userid=';
   static String INSURANCE_list = MAIN_URL + 'get-patient-insurance-list-api?userid=';
   static String UPDATE_DOCTER_PROFILE= MAIN_URL + 'update-doctor-profile';
   static String INSURANCE_Details =
@@ -321,6 +319,10 @@ class ApiFactory {
 
   static String TIME_SLOT1 = MAIN_URL + "/Doc/GetDocSlotInfo?doctor=";
   static String GET_ROLE = MAIN_URL + "get-role-api?id=";
+
+  static String API_VERSION = MAIN_URL + "get-version";
+
+
 /* (
       String doctor, String appointdate, String hospitalid) {
     return

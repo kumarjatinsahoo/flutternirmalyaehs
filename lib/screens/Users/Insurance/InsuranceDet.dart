@@ -405,7 +405,7 @@ class _InsuranceDetalisState extends State<InsuranceDetalis> {
                                           ),
                                           Text(
                                             insuranceDetailsModel
-                                                    .body.premiumDueDt ??
+                                                    .body.premiumAmount ??
                                                 "N/A",
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold,
