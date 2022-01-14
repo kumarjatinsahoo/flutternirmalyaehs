@@ -584,6 +584,9 @@ class _MyAppState extends State<MyApp> {
               '/userSignUpForm': (context) => UserSignUpForm(
                     model: _model,
                   ),
+             /* '/intrestsignup': (context) => IntrestSignUpForm(
+                    model: _model,
+                  ),*/
               '/biomedicalimplants': (context) => BiomediImplants(
                     model: _model,
                   ),
