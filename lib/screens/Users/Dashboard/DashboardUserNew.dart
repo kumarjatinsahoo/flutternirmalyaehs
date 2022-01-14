@@ -1936,7 +1936,7 @@ class MyPage1Widget extends StatelessWidget {
                 width: 5,
               ),
 
-              Column(
+              /*Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -1967,11 +1967,8 @@ class MyPage1Widget extends StatelessWidget {
                         ),
                       ),
                     )
-                  ]),
-
-
-
-              /*Column(
+                  ]),*/
+              Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -2002,7 +1999,7 @@ class MyPage1Widget extends StatelessWidget {
                         //overflow: TextOverflow.ellipsis,
                       ),
                     ),
-                  ]),*/
+                  ]),
 
 
 /*
