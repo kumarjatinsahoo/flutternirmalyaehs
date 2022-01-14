@@ -2233,9 +2233,9 @@ class DropDown {
         break;
       case "biotype":
         return BiomediImplants.admequipmentmodel;
-        /*break;
+        break;
         case "namelist":
-        return AllergicListList.typeModel;*/
+        return AllergicListList.typeModel;
         break;
         case "allergen":
         return AllergicListList.nameModel;
@@ -2942,8 +2942,18 @@ class DropDown {
           case "city_Ngo":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
+            case "stateOgan":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+            case "districtOgan":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+            case "cityOgan":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
           default:
             list = KeyvalueModel.fromJsonList(response.data["body"]);
+
         }
 
         return list;
@@ -3801,9 +3811,9 @@ class DropDown {
           case "biotype":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
-           /* case "namelist":
+            case "namelistt":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
-            break;*/
+            break;
             case "allergen":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
