@@ -1,7 +1,7 @@
 class ApiFactory {
   //bool isRelease = bool.fromEnvironment("DEV");
   static String REG_DEVICE = "https://cca.medtel.in/Ziniai/manageDeviceId";
-  //static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
+  static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
   //static String MAIN_URL = "http://api-demo.ehealthsystem.com/nirmalyaRest/api/";
   static String MAIN_URL1 = "https://1331.co.in/api";
   //static String REPORT_URL1 = "https://ehealthsystem.com/";
@@ -11,6 +11,11 @@ class ApiFactory {
     //static String MAIN_URL = "http://192.168.29.137.1:8062/nirmalyaRest/api/";
    static String MAIN_URL = "http://192.168.55.208:8062/nirmalyaRest/api/";
    //static String MAIN_URL = "http://192.168.43.248:8062/nirmalyaRest/api/";
+  // static String MAIN_URL = "http://192.168.29.107:8062/nirmalyaRest/api/";
+  // static String MAIN_URL = "http://192.168.137.1:8062/nirmalyaRest/api/";
+  // static String MAIN_URL = "http://192.168.29.137.1:8062/nirmalyaRest/api/";
+  //static String MAIN_URL = "http://192.168.137.1:8062/nirmalyaRest/api/";
+  //static String MAIN_URL = "http://192.168.43.248:8062/nirmalyaRest/api/";
   static String VITALS_REPORT = MAIN_URL + 'medtel-screening-test-report';
   static String COUNTRY_API = MAIN_URL + 'get-country-list';
   static String VIEW_PATIENT_HEALTH_API = REPORT_URL1 + 'user/mobile-view-patient-health-chart?id=';
@@ -37,11 +42,9 @@ class ApiFactory {
 
   /*static String BIOMEDICAL_IMPLANTS =
       MAIN_URL + 'view-user-biomedical-implant-list-api?userid=';*/
-  static String UPLOAD_DOCUMENT =
-      MAIN_URL + 'get-medical-upload-details-api?userid=';
+  static String UPLOAD_DOCUMENT = MAIN_URL + 'get-medical-upload-details-api?userid=';
   static String DIESEINFO = MAIN_URL + 'get-disease-info-list';
-  static String IMMUNIZATION_LIST =
-      MAIN_URL + 'get-immunization-patient-details?userid=';
+  static String IMMUNIZATION_LIST = MAIN_URL + 'get-immunization-patient-details?userid=';
   static String INSURANCE_list = MAIN_URL + 'get-patient-insurance-list-api?userid=';
   static String UPDATE_DOCTER_PROFILE= MAIN_URL + 'update-doctor-profile';
   static String INSURANCE_Details =
