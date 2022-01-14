@@ -1,5 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:developer';
+import 'dart:io';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:intro_slider/intro_slider.dart';
 import 'package:intro_slider/slide_object.dart';
@@ -8,6 +10,8 @@ import 'package:user/models/MasterLoginResponse.dart';
 import 'package:user/providers/ConnectionStatusSingleton.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/SharedPref.dart';
+import 'package:user/providers/api_factory.dart';
+import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -19,9 +23,8 @@ class SplashScreen extends StatefulWidget {
   final MainModel model;
   final String mobNo, passWord;
 
-  const SplashScreen({
-    Key key,
-    this.model,this.mobNo, this.passWord}) : super(key: key);
+  const SplashScreen({Key key, this.model, this.mobNo, this.passWord})
+      : super(key: key);
 
   @override
   _SplashScreenState createState() => _SplashScreenState();
@@ -41,8 +44,10 @@ class _SplashScreenState extends State<SplashScreen> {
   var masterResponse; //= await sharedPref.getKey(Const.LOGIN_DATA);
   LoginResponse1 loginResponse1;
   String value;
-  var phnNostr,passWordstr;
+  var phnNostr, passWordstr;
   String selectedLan = "";
+  String androidVersion;
+  String iosVersion;
 
   /*@override
   void initState() {
@@ -52,8 +57,10 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
+    // getVersion();
     fetchLocalData();
-    callResourceTimer();
+    isFirstTimes();
+    // callResourceTimer();
     ConnectionStatusSingleton connectionStatus =
         ConnectionStatusSingleton.getInstance();
     _connectionChangeStream =
@@ -65,9 +72,87 @@ class _SplashScreenState extends State<SplashScreen> {
         color = Colors.green;
       }
     });
-    isFirstTimes();
+
   }
 
+  getVersion() {
+    widget.model.GETMETHODCALL(
+        api: ApiFactory.GET_VERSION,
+        fun: (Map<String, dynamic> map) {
+          log("Response>>>"+jsonEncode(map));
+          if (map["code"] == "success") {
+            setState(() {
+              androidVersion = map["body"]["android"];
+              iosVersion = map["body"]["ios"];
+              log("Version>>>"+androidVersion+"<>>"+iosVersion);
+              callResourceTimer();
+            });
+          }else{
+            callResourceTimer();
+          }
+        });
+  }
+
+  Widget dialogVersionUpdate(BuildContext context) {
+    return AlertDialog(
+      contentPadding: EdgeInsets.zero,
+      insetPadding: EdgeInsets.zero,
+      actions: [
+        MaterialButton(
+          onPressed: () {
+            Navigator.pop(context);
+            setState(() {
+              androidVersion = null;
+              navigationPage();
+            });
+          },
+          child: Text("Cancel"),
+        ),
+        MaterialButton(
+          onPressed: () {
+            // Navigator.pop(context);
+            // if(PlatForm.)
+            if (Platform.isAndroid) {
+              AppData.launchURL(
+                  "https://play.google.com/store/apps/details?id=com.ehealthsystem.user");
+            } else if (Platform.isIOS) {
+              AppData.launchURL(
+                  "https://apps.apple.com/in/app/ehealthsystems/id1588667912");
+            }
+          },
+          child: Text("Update"),
+        ),
+      ],
+      content: StatefulBuilder(
+        builder: (BuildContext context, StateSetter setState) {
+          return Container(
+            // padding: EdgeInsets.only(left: 5, right: 5, top: 20),
+            //color: Colors.grey,
+            width: MediaQuery.of(context).size.width * 0.9,
+            height: 100,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Text(
+                    "New features added on the latest app please update your app.",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
+      ),
+    );
+  }
 
   void connectionChanged(dynamic hasConnection) {
     if (mounted)
@@ -80,7 +165,8 @@ class _SplashScreenState extends State<SplashScreen> {
     String isFirstTime = await sharedPref.getKey('first_time');
     if (isFirstTime != null) {
       if (isFirstTime.replaceAll("\"", "") == "false") {
-        callResourceTimer();
+        // callResourceTimer();
+        getVersion();
         setState(() => isFirstTym = false);
       } else {
         setState(() => isFirstTym = true);
@@ -157,23 +243,25 @@ class _SplashScreenState extends State<SplashScreen> {
     phnNostr = await sharedPref.getKey(Const.LOGIN_phoneno);
     passWordstr = await sharedPref.getKey(Const.LOGIN_password);
     masterResponse = await sharedPref.getKey(Const.MASTER_RESPONSE);
-    bool isMultiUser=(masterResponse!=null)?true:false;
+    bool isMultiUser = (masterResponse != null) ? true : false;
 
-   if(loginData!=null && (login.replaceAll("\"", "") == "true" || login.toString() == "true") && (isMultiUser==null || isMultiUser==false)){
+    if (loginData != null &&
+        (login.replaceAll("\"", "") == "true" || login.toString() == "true") &&
+        (isMultiUser == null || isMultiUser == false)) {
       _exitApp();
     }
 
-     String phnNostr1 =phnNostr.replaceAll("\"", "") ;
-    String passWordstr1= passWordstr.replaceAll("\"", "");
+    String phnNostr1 = phnNostr.replaceAll("\"", "");
+    String passWordstr1 = passWordstr.replaceAll("\"", "");
 
     //passWordstr = await sharedPref. getValue() ;
-   /* if (login != null && login.replaceAll("\"", "") == "true") {
+    /* if (login != null && login.replaceAll("\"", "") == "true") {
 
       setState(() {
 
      //   MyWidgets.showLoading(context);
-        *//*String phnNostr = sharedPref.getKey("phnNo");
-        String passWordstr = sharedPref.getKey("passWord");*//*
+        */ /*String phnNostr = sharedPref.getKey("phnNo");
+        String passWordstr = sharedPref.getKey("passWord");*/ /*
         widget.model.GETMETHODCALL(
             api: ApiFactory.LOGIN_PASS(phnNostr1,passWordstr1),
             fun: (Map<String, dynamic> map) {
@@ -201,7 +289,8 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void callResourceTimer() {
-    Timer(Duration(seconds: 5), navigationPage);
+    // if(androidVersion!=null)
+    Timer(Duration(seconds: 2), navigationPage);
   }
 
   _exitApp() async {
@@ -222,86 +311,81 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void navigationPage() async {
     //SharedPref sharedPref = SharedPref();
-    var login = await sharedPref.getKey(Const.IS_LOGIN);
-    if (login != null) {
-      if (login.replaceAll("\"", "") == "true" || login.toString() == "true") {
-     /*   String phnNostr1 =phnNostr.replaceAll("\"", "") ;
-        String passWordstr1= passWordstr.replaceAll("\"", "");*/
-      /*  widget.model.GETMETHODCALL(
-            api: ApiFactory.LOGIN_PASS(phnNostr1,passWordstr1),
-            fun: (Map<String, dynamic> map) {
-              Navigator.pop(context);
-              log("LOGIN RESPONSE>>>>" + jsonEncode(map));
-              //AppData.showInSnackBar(context, map[Const.MESSAGE]);
-              if (map[Const.CODE] == Const.SUCCESS) {
-                setState(() {
-                  loginResponse1 = LoginResponse1.fromJson(map);
-                  widget.model.token = loginResponse1.body.token;
-                  widget.model.user = loginResponse1.body.user;
-                  //sharedPref.save(Const.LOGIN_DATA, loginResponse1);
-                  widget.model.setLoginData1(loginResponse1);
-                  //sharedPref.save(Const.IS_LOGIN, "true");
-                  FirebaseMessaging.instance
-                      .subscribeToTopic(loginResponse1.body.user);
-                  FirebaseMessaging.instance
-                      .subscribeToTopic(loginResponse1.body.userMobile);
-                });
-              } else {
-                AppData.showInSnackBar(context, map[Const.MESSAGE]);
-              }
-            });*/
-        LoginResponse1 loginResponse1 =LoginResponse1.fromJson(jsonDecode(loginData));
-        MasterLoginResponse master =MasterLoginResponse.fromJson(jsonDecode(masterResponse));
-        widget.model.setLoginData1(loginResponse1);
-        widget.model.token = loginResponse1.body.token;
-        widget.model.masterResponse = master;
-        widget.model.user = loginResponse1.body.user;
+    if (androidVersion != null &&
+        int.tryParse(androidVersion) > int.tryParse(Const.ANDROID)) {
+      // log("Out login>>>>>>>");
+      showDialog(
+        context: context,
+        builder: (BuildContext context) =>
+            dialogVersionUpdate(context),
+      );
+    } else {
+      log("In Login>>>>>>>");
+      //////////////////////////////////////////////////////////
+      var login = await sharedPref.getKey(Const.IS_LOGIN);
+      if (login != null) {
+        if (login.replaceAll("\"", "") == "true" ||
+            login.toString() == "true") {
+          LoginResponse1 loginResponse1 =
+              LoginResponse1.fromJson(jsonDecode(loginData));
+          MasterLoginResponse master =
+              MasterLoginResponse.fromJson(jsonDecode(masterResponse));
+          widget.model.setLoginData1(loginResponse1);
+          widget.model.token = loginResponse1.body.token;
+          widget.model.masterResponse = master;
+          widget.model.user = loginResponse1.body.user;
 
-        if (loginResponse1.body.roles[0] == "8".toLowerCase()) {
-          Navigator.of(context).pushNamedAndRemoveUntil(
-              '/labDash', (Route<dynamic> route) => false);
-        } else if (loginResponse1.body.roles[0] == "1".toLowerCase()) {
-          Navigator.of(context).pushNamedAndRemoveUntil(
-              '/dashboard', (Route<dynamic> route) => false);
-        } else if (loginResponse1.body.roles[0] == "7".toLowerCase()) {
-          Navigator.of(context).pushNamedAndRemoveUntil(
-              '/dashboardpharmacy', (Route<dynamic> route) => false);
-        } else if (loginResponse1.body.roles[0] == "2".toLowerCase()) {
-          /*widget.model.token = loginResponse.body.token;widget.model.user = loginResponse.body.user;*/
-          Navigator.of(context).pushNamedAndRemoveUntil(
-              '/dashDoctor', (Route<dynamic> route) => false);
-        } else if (loginResponse1.body.roles[0] == "5".toLowerCase()) {
-          /*widget.model.token = loginResponse.body.token;widget.model.user = loginResponse.body.user;*/
-          Navigator.of(context).pushNamedAndRemoveUntil(
-              '/dashboardreceptionlist', (Route<dynamic> route) => false);
-        } else if (loginResponse1.body.roles[0] == "12".toLowerCase()) {
-          /*widget.model.token = loginResponse.body.token;widget.model.user = loginResponse.body.user;*/
-          Navigator.of(context).pushNamedAndRemoveUntil(
-              '/ambulancedash', (Route<dynamic> route) => false);
-        } else if (loginResponse1.body.roles[0] == "13".toLowerCase()) {
-          Navigator.of(context).pushNamedAndRemoveUntil(
-              '/bloodBankDashboard', (Route<dynamic> route) => false);
-        } else if (loginResponse1.body.roles[0] == "22".toLowerCase()) {
-          Navigator.of(context).pushNamedAndRemoveUntil(
-              '/syndicateDashboard', (Route<dynamic> route) => false);
-        } else if (loginResponse1.body.roles[0] == "24".toLowerCase()) {
-          Navigator.of(context).pushNamedAndRemoveUntil(
-              '/admin', (Route<dynamic> route) => false);
+          /*if (androidVersion != null &&
+            int.tryParse(androidVersion) > int.tryParse(Const.ANDROID)) {
+          dialogVersionUpdate(context);
+        } else {*/
+          if (loginResponse1.body.roles[0] == "8".toLowerCase()) {
+            Navigator.of(context).pushNamedAndRemoveUntil(
+                '/labDash', (Route<dynamic> route) => false);
+          } else if (loginResponse1.body.roles[0] == "1".toLowerCase()) {
+            Navigator.of(context).pushNamedAndRemoveUntil(
+                '/dashboard', (Route<dynamic> route) => false);
+          } else if (loginResponse1.body.roles[0] == "7".toLowerCase()) {
+            Navigator.of(context).pushNamedAndRemoveUntil(
+                '/dashboardpharmacy', (Route<dynamic> route) => false);
+          } else if (loginResponse1.body.roles[0] == "2".toLowerCase()) {
+            /*widget.model.token = loginResponse.body.token;widget.model.user = loginResponse.body.user;*/
+            Navigator.of(context).pushNamedAndRemoveUntil(
+                '/dashDoctor', (Route<dynamic> route) => false);
+          } else if (loginResponse1.body.roles[0] == "5".toLowerCase()) {
+            /*widget.model.token = loginResponse.body.token;widget.model.user = loginResponse.body.user;*/
+            Navigator.of(context).pushNamedAndRemoveUntil(
+                '/dashboardreceptionlist', (Route<dynamic> route) => false);
+          } else if (loginResponse1.body.roles[0] == "12".toLowerCase()) {
+            /*widget.model.token = loginResponse.body.token;widget.model.user = loginResponse.body.user;*/
+            Navigator.of(context).pushNamedAndRemoveUntil(
+                '/ambulancedash', (Route<dynamic> route) => false);
+          } else if (loginResponse1.body.roles[0] == "13".toLowerCase()) {
+            Navigator.of(context).pushNamedAndRemoveUntil(
+                '/bloodBankDashboard', (Route<dynamic> route) => false);
+          } else if (loginResponse1.body.roles[0] == "22".toLowerCase()) {
+            Navigator.of(context).pushNamedAndRemoveUntil(
+                '/syndicateDashboard', (Route<dynamic> route) => false);
+          } else if (loginResponse1.body.roles[0] == "24".toLowerCase()) {
+            Navigator.of(context).pushNamedAndRemoveUntil(
+                '/admin', (Route<dynamic> route) => false);
+          } else {
+            Navigator.of(context).pushNamedAndRemoveUntil(
+                '/login', (Route<dynamic> route) => false);
+          }
         } else {
           Navigator.of(context).pushNamedAndRemoveUntil(
               '/login', (Route<dynamic> route) => false);
         }
       } else {
-        Navigator.of(context)
-            .pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
+        if (isFirstTym)
+          Navigator.of(context).pushNamedAndRemoveUntil(
+              '/intro', (Route<dynamic> route) => false);
+        else
+          Navigator.of(context).pushNamedAndRemoveUntil(
+              '/login', (Route<dynamic> route) => false);
       }
-    } else {
-      if (isFirstTym)
-        Navigator.of(context)
-            .pushNamedAndRemoveUntil('/intro', (Route<dynamic> route) => false);
-      else
-        Navigator.of(context)
-            .pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
+      //////////////////////////////////////////////////////////
     }
   }
 /*void navigationPage() async {
