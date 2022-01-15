@@ -61,36 +61,40 @@ class _SplashScreenState extends State<SplashScreen> {
     fetchLocalData();
     isFirstTimes();
     // callResourceTimer();
-    ConnectionStatusSingleton connectionStatus =
-        ConnectionStatusSingleton.getInstance();
-    _connectionChangeStream =
-        connectionStatus.connectionChange.listen(connectionChanged);
+    // ConnectionStatusSingleton connectionStatus =
+    //     ConnectionStatusSingleton.getInstance();
+    // _connectionChangeStream =
+    //     connectionStatus.connectionChange.listen(connectionChanged);
 
-    setState(() {
+   /* setState(() {
       isOffline = !connectionStatus.hasConnection;
       if (!connectionStatus.hasConnection) {
         color = Colors.green;
       }
-    });
+    });*/
 
   }
 
   getVersion() {
-    widget.model.GETMETHODCALL(
-        api: ApiFactory.GET_VERSION,
-        fun: (Map<String, dynamic> map) {
-          log("Response>>>"+jsonEncode(map));
-          if (map["code"] == "success") {
-            setState(() {
-              androidVersion = map["body"]["android"];
-              iosVersion = map["body"]["ios"];
-              log("Version>>>"+androidVersion+"<>>"+iosVersion);
+    try {
+      widget.model.GETMETHODCALL(
+          api: ApiFactory.GET_VERSION,
+          fun: (Map<String, dynamic> map) {
+            log("Response>>>" + jsonEncode(map));
+            if (map["code"] == "success") {
+              setState(() {
+                androidVersion = map["body"]["android"];
+                iosVersion = map["body"]["ios"];
+                log("Version>>>" + androidVersion + "<>>" + iosVersion);
+                callResourceTimer();
+              });
+            } else {
               callResourceTimer();
-            });
-          }else{
-            callResourceTimer();
-          }
-        });
+            }
+          });
+    }catch(e){
+      _exitApp();
+    }
   }
 
   Widget dialogVersionUpdate(BuildContext context) {
@@ -166,7 +170,13 @@ class _SplashScreenState extends State<SplashScreen> {
     if (isFirstTime != null) {
       if (isFirstTime.replaceAll("\"", "") == "false") {
         // callResourceTimer();
-        getVersion();
+        // if(isOffline){
+        //   log("Offline mode");
+        //   callResourceTimer();
+        // }else {
+          log("Online mode");
+          getVersion();
+        // }
         setState(() => isFirstTym = false);
       } else {
         setState(() => isFirstTym = true);
@@ -238,24 +248,26 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   fetchLocalData() async {
-    login = await sharedPref.getKey(Const.IS_LOGIN);
-    loginData = await sharedPref.getKey(Const.LOGIN_DATA);
-    phnNostr = await sharedPref.getKey(Const.LOGIN_phoneno);
-    passWordstr = await sharedPref.getKey(Const.LOGIN_password);
-    masterResponse = await sharedPref.getKey(Const.MASTER_RESPONSE);
-    bool isMultiUser = (masterResponse != null) ? true : false;
+    try {
+      login = await sharedPref.getKey(Const.IS_LOGIN);
+      loginData = await sharedPref.getKey(Const.LOGIN_DATA);
+      phnNostr = await sharedPref.getKey(Const.LOGIN_phoneno);
+      passWordstr = await sharedPref.getKey(Const.LOGIN_password);
+      masterResponse = await sharedPref.getKey(Const.MASTER_RESPONSE);
+      bool isMultiUser = (masterResponse != null) ? true : false;
 
-    if (loginData != null &&
-        (login.replaceAll("\"", "") == "true" || login.toString() == "true") &&
-        (isMultiUser == null || isMultiUser == false)) {
-      _exitApp();
-    }
+      if (loginData != null &&
+          (login.replaceAll("\"", "") == "true" ||
+              login.toString() == "true") &&
+          (isMultiUser == null || isMultiUser == false)) {
+        _exitApp();
+      }
 
-    String phnNostr1 = phnNostr.replaceAll("\"", "");
-    String passWordstr1 = passWordstr.replaceAll("\"", "");
+      String phnNostr1 = phnNostr.replaceAll("\"", "");
+      String passWordstr1 = passWordstr.replaceAll("\"", "");
 
-    //passWordstr = await sharedPref. getValue() ;
-    /* if (login != null && login.replaceAll("\"", "") == "true") {
+      //passWordstr = await sharedPref. getValue() ;
+      /* if (login != null && login.replaceAll("\"", "") == "true") {
 
       setState(() {
 
@@ -286,6 +298,9 @@ class _SplashScreenState extends State<SplashScreen> {
         //loginResponse1 = LoginResponse1.fromJson(jsonDecode(loginData));
       });
     }*/
+    }catch(e){
+      _exitApp();
+    }
   }
 
   void callResourceTimer() {
@@ -311,81 +326,85 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void navigationPage() async {
     //SharedPref sharedPref = SharedPref();
-    if (androidVersion != null &&
-        int.tryParse(androidVersion) > int.tryParse(Const.ANDROID)) {
-      // log("Out login>>>>>>>");
-      showDialog(
-        context: context,
-        builder: (BuildContext context) =>
-            dialogVersionUpdate(context),
-      );
-    } else {
-      log("In Login>>>>>>>");
-      //////////////////////////////////////////////////////////
-      var login = await sharedPref.getKey(Const.IS_LOGIN);
-      if (login != null) {
-        if (login.replaceAll("\"", "") == "true" ||
-            login.toString() == "true") {
-          LoginResponse1 loginResponse1 =
-              LoginResponse1.fromJson(jsonDecode(loginData));
-          MasterLoginResponse master =
-              MasterLoginResponse.fromJson(jsonDecode(masterResponse));
-          widget.model.setLoginData1(loginResponse1);
-          widget.model.token = loginResponse1.body.token;
-          widget.model.masterResponse = master;
-          widget.model.user = loginResponse1.body.user;
+    try {
+      if (androidVersion != null &&
+          int.tryParse(androidVersion) > int.tryParse(Const.ANDROID)) {
+        // log("Out login>>>>>>>");
+        showDialog(
+          context: context,
+          builder: (BuildContext context) =>
+              dialogVersionUpdate(context),
+        );
+      } else {
+        log("In Login>>>>>>>");
+        //////////////////////////////////////////////////////////
+        var login = await sharedPref.getKey(Const.IS_LOGIN);
+        if (login != null) {
+          if (login.replaceAll("\"", "") == "true" ||
+              login.toString() == "true") {
+            LoginResponse1 loginResponse1 =
+            LoginResponse1.fromJson(jsonDecode(loginData));
+            MasterLoginResponse master =
+            MasterLoginResponse.fromJson(jsonDecode(masterResponse));
+            widget.model.setLoginData1(loginResponse1);
+            widget.model.token = loginResponse1.body.token;
+            widget.model.masterResponse = master;
+            widget.model.user = loginResponse1.body.user;
 
-          /*if (androidVersion != null &&
+            /*if (androidVersion != null &&
             int.tryParse(androidVersion) > int.tryParse(Const.ANDROID)) {
           dialogVersionUpdate(context);
         } else {*/
-          if (loginResponse1.body.roles[0] == "8".toLowerCase()) {
-            Navigator.of(context).pushNamedAndRemoveUntil(
-                '/labDash', (Route<dynamic> route) => false);
-          } else if (loginResponse1.body.roles[0] == "1".toLowerCase()) {
-            Navigator.of(context).pushNamedAndRemoveUntil(
-                '/dashboard', (Route<dynamic> route) => false);
-          } else if (loginResponse1.body.roles[0] == "7".toLowerCase()) {
-            Navigator.of(context).pushNamedAndRemoveUntil(
-                '/dashboardpharmacy', (Route<dynamic> route) => false);
-          } else if (loginResponse1.body.roles[0] == "2".toLowerCase()) {
-            /*widget.model.token = loginResponse.body.token;widget.model.user = loginResponse.body.user;*/
-            Navigator.of(context).pushNamedAndRemoveUntil(
-                '/dashDoctor', (Route<dynamic> route) => false);
-          } else if (loginResponse1.body.roles[0] == "5".toLowerCase()) {
-            /*widget.model.token = loginResponse.body.token;widget.model.user = loginResponse.body.user;*/
-            Navigator.of(context).pushNamedAndRemoveUntil(
-                '/dashboardreceptionlist', (Route<dynamic> route) => false);
-          } else if (loginResponse1.body.roles[0] == "12".toLowerCase()) {
-            /*widget.model.token = loginResponse.body.token;widget.model.user = loginResponse.body.user;*/
-            Navigator.of(context).pushNamedAndRemoveUntil(
-                '/ambulancedash', (Route<dynamic> route) => false);
-          } else if (loginResponse1.body.roles[0] == "13".toLowerCase()) {
-            Navigator.of(context).pushNamedAndRemoveUntil(
-                '/bloodBankDashboard', (Route<dynamic> route) => false);
-          } else if (loginResponse1.body.roles[0] == "22".toLowerCase()) {
-            Navigator.of(context).pushNamedAndRemoveUntil(
-                '/syndicateDashboard', (Route<dynamic> route) => false);
-          } else if (loginResponse1.body.roles[0] == "24".toLowerCase()) {
-            Navigator.of(context).pushNamedAndRemoveUntil(
-                '/admin', (Route<dynamic> route) => false);
+            if (loginResponse1.body.roles[0] == "8".toLowerCase()) {
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                  '/labDash', (Route<dynamic> route) => false);
+            } else if (loginResponse1.body.roles[0] == "1".toLowerCase()) {
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                  '/dashboard', (Route<dynamic> route) => false);
+            } else if (loginResponse1.body.roles[0] == "7".toLowerCase()) {
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                  '/dashboardpharmacy', (Route<dynamic> route) => false);
+            } else if (loginResponse1.body.roles[0] == "2".toLowerCase()) {
+              /*widget.model.token = loginResponse.body.token;widget.model.user = loginResponse.body.user;*/
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                  '/dashDoctor', (Route<dynamic> route) => false);
+            } else if (loginResponse1.body.roles[0] == "5".toLowerCase()) {
+              /*widget.model.token = loginResponse.body.token;widget.model.user = loginResponse.body.user;*/
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                  '/dashboardreceptionlist', (Route<dynamic> route) => false);
+            } else if (loginResponse1.body.roles[0] == "12".toLowerCase()) {
+              /*widget.model.token = loginResponse.body.token;widget.model.user = loginResponse.body.user;*/
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                  '/ambulancedash', (Route<dynamic> route) => false);
+            } else if (loginResponse1.body.roles[0] == "13".toLowerCase()) {
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                  '/bloodBankDashboard', (Route<dynamic> route) => false);
+            } else if (loginResponse1.body.roles[0] == "22".toLowerCase()) {
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                  '/syndicateDashboard', (Route<dynamic> route) => false);
+            } else if (loginResponse1.body.roles[0] == "24".toLowerCase()) {
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                  '/admin', (Route<dynamic> route) => false);
+            } else {
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                  '/login', (Route<dynamic> route) => false);
+            }
           } else {
             Navigator.of(context).pushNamedAndRemoveUntil(
                 '/login', (Route<dynamic> route) => false);
           }
         } else {
-          Navigator.of(context).pushNamedAndRemoveUntil(
-              '/login', (Route<dynamic> route) => false);
+          if (isFirstTym)
+            Navigator.of(context).pushNamedAndRemoveUntil(
+                '/intro', (Route<dynamic> route) => false);
+          else
+            Navigator.of(context).pushNamedAndRemoveUntil(
+                '/login', (Route<dynamic> route) => false);
         }
-      } else {
-        if (isFirstTym)
-          Navigator.of(context).pushNamedAndRemoveUntil(
-              '/intro', (Route<dynamic> route) => false);
-        else
-          Navigator.of(context).pushNamedAndRemoveUntil(
-              '/login', (Route<dynamic> route) => false);
+        //////////////////////////////////////////////////////////
       }
-      //////////////////////////////////////////////////////////
+    }catch(e){
+      _exitApp();
     }
   }
 /*void navigationPage() async {
