@@ -179,12 +179,13 @@ class _SplashScreenState extends State<SplashScreen> {
         // }
         setState(() => isFirstTym = false);
       } else {
-        setState(() => isFirstTym = true);
         getVersion();
+        setState(() => isFirstTym = true);
       }
     } else {
-      setState(() => isFirstTym = true);
       getVersion();
+      setState(() => isFirstTym = true);
+
     }
   }
   /*Future<Null> isFirstTimes() async {
