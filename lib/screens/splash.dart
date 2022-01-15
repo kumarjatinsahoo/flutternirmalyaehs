@@ -180,12 +180,28 @@ class _SplashScreenState extends State<SplashScreen> {
         setState(() => isFirstTym = false);
       } else {
         setState(() => isFirstTym = true);
+        getVersion();
       }
     } else {
       setState(() => isFirstTym = true);
+      getVersion();
     }
   }
-
+  /*Future<Null> isFirstTimes() async {
+    String isFirstTime = await sharedPref.getKey('first_time');
+    if (isFirstTime != null) {
+      if (isFirstTime.replaceAll("\"", "") == "false") {
+        //callResourceTimer();
+        getVersion();
+        setState(() => isFirstTym = true);
+      } else {
+        setState(() => isFirstTym = true);
+      }
+    } else {
+      getVersion();
+      setState(() => isFirstTym = false);
+    }
+  }*/
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -327,8 +343,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void navigationPage() async {
     //SharedPref sharedPref = SharedPref();
     try {
-      if (androidVersion != null &&
-          int.tryParse(androidVersion) > int.tryParse(Const.ANDROID)) {
+      if (androidVersion != null &&int.tryParse(androidVersion) > int.tryParse(Const.ANDROID)) {
         // log("Out login>>>>>>>");
         showDialog(
           context: context,
