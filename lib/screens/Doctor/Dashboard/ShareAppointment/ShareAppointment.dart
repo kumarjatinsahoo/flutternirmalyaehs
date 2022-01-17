@@ -130,7 +130,7 @@ class _ShareAppointment extends State<ShareAppointment> {
                           },
                         ),
                         Text(
-                          "Receptionlist",
+                          "Receptionist",
                           style: TextStyle(color: Colors.black, fontSize: 12),
                         )
                       ],

@@ -16,6 +16,7 @@ class ApiFactory {
   static String VIEW_PATIENT_HEALTH_API = REPORT_URL1 + 'user/mobile-view-patient-health-chart?id=';
   static String MEDICATION_VIEW_PRESCRIPTION = REPORT_URL1 + 'user/view-patient-medication-view-prescription?userid=';
   static String TEST_VIEW_PRESCRIPTION = REPORT_URL1 + 'user/view-patient-test-report-pdf-download-digital?id=';
+  static String TEST_VIEW_ORGANCARD= REPORT_URL1 + 'user/patient-organ-donation-card?id=';
   //static String VIEW_PATIENT_HEALTH_API = MAIN_URL + 'user/mobile-view-patient-health-chart?id=';
   static String AMBULANCE_API = MAIN_URL + 'get-ambulance-orglist';
   static String BLOODBBANKNAME_API = MAIN_URL + 'get-bloodbank-orglist';
@@ -142,8 +143,11 @@ class ApiFactory {
     return MAIN_URL + "login-multiple-user?mobileNo=$mob&password=$pass";
   }
 
-  static String LOGIN_Otp(String mob) {
+  /*static String LOGIN_Otp(String mob) {
     return MAIN_URL + "login-with-otp?mobileNo=$mob";
+  }*/
+  static String LOGIN_Otp(String mob) {
+    return MAIN_URL + "login-multiple-user-with-otp?mobileNo=$mob";
   }
 
   static String ADD_BIOMEDICAL_IMPLANTS =

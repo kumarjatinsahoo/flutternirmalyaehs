@@ -4,13 +4,14 @@ import 'dart:math';
 
 import 'package:dio/dio.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/providers/Const.dart';
-// import 'package:user/models/CredentialModel.dart';
+import 'package:user/models/MasterLoginResponse.dart' as master;
 
 // import 'package:user/models/LoginResponse1.dart';
 // import 'package:user/providers/Contsants.dart';
@@ -26,14 +27,14 @@ import 'package:rflutter_alert/rflutter_alert.dart';
 class PinView extends StatefulWidget {
   // final String email;
   MainModel model;
-  LoginResponse1 loginData;
+  master.MasterLoginResponse masterLoginResponse;
 
   // final bool isGuestCheckOut;
 
   PinView({
     Key key,
     this.model,
-    this.loginData,
+    this.masterLoginResponse,
   }) : super(key: key);
 
   @override
@@ -44,7 +45,7 @@ class _PinViewState extends State<PinView> with SingleTickerProviderStateMixin {
   // Constants
   final int time = 120;
   AnimationController _controller;
-
+  master.MasterLoginResponse masterResponse;
   // Variables
   Size _screenSize;
   int _currentDigit;
@@ -74,7 +75,14 @@ class _PinViewState extends State<PinView> with SingleTickerProviderStateMixin {
   void initState() {
 
     totalTimeInSeconds = time;
-    otpGenerateStr = widget.loginData.body.otp;
+   //LoginResponse1 loginResponse = LoginResponse1();
+    // loginResponse.acceptValue(data[i]);
+    //Body body = Body();
+    print("OTP IS>>>>>>>>>>>>>>>>>>>>>>" +widget.masterLoginResponse.body[0].otp );
+    otpGenerateStr = widget.masterLoginResponse.body[0].otp ;
+
+    //print("OTP IS>>>>>>>>>>>>>>>>>>>>>>" + otpGenerateStr.toString());
+
     otpGenerate = int.parse(otpGenerateStr);
 
     print("OTP IS>>>>>>>>>>>>>>>>>>>>>>" + otpGenerate.toString());
@@ -127,35 +135,36 @@ class _PinViewState extends State<PinView> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     _screenSize = MediaQuery.of(context).size;
     return Scaffold(
-
       appBar: _getAppbar,
       backgroundColor: AppData.kPrimaryColor,
       body: Stack(
         children: <Widget>[
           Container(
             width: _screenSize.width,
+            //height:_screenSize.height,
             color: AppData.kPrimaryColor,
-            //        padding: new EdgeInsets.only(bottom: 16.0),
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-
-                _getVerificationCodeLabel,
-                _getEmailLabel,
-                _getInputField,
-                _hideResendButton ? _getTimerText : _getResendButton1(context),
-                _getOtpKeyboard
-              ],
-            ),
+            //
+            //padding: new EdgeInsets.only(bottom: 16.0),
+           /* child: SingleChildScrollView(*/
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            _getVerificationCodeLabel,
+            _getEmailLabel,
+            _getInputField,
+            _hideResendButton ? _getTimerText : _getResendButton1(context),
+            _getOtpKeyboard
+          ],
+        ),
+        /*),*/
           ),
           isLoading
               ? Stack(
                   children: [
                     new Opacity(
                       opacity: 0.1,
-                      child: const ModalBarrier(
-                          dismissible: false, color: Colors.grey),
+                      child: const ModalBarrier(dismissible: false, color: Colors.grey),
                     ),
                     new Center(
                       child: new CircularProgressIndicator(),
@@ -201,7 +210,7 @@ class _PinViewState extends State<PinView> with SingleTickerProviderStateMixin {
   // Return "Email" label
   get _getEmailLabel {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+      padding: const EdgeInsets.symmetric(horizontal: 0.0),
       child: Text(
         MyLocalizations.of(context).text("PLEASE_ENTER_PIN"),
         textAlign: TextAlign.center,
@@ -326,9 +335,10 @@ class _PinViewState extends State<PinView> with SingleTickerProviderStateMixin {
             //AppData.showInSnackBar(context, map[Const.MESSAGE]);
             if (map[Const.CODE] == Const.SUCCESS) {
               setState(() {
-                LoginResponse1 loginResponse = LoginResponse1.fromJson(map);
+               // LoginResponse1 loginResponse = LoginResponse1.fromJson(map);
+                masterResponse = master.MasterLoginResponse.fromJson(map);
                // widget.loginData=loginResponse;
-                otpGenerateStr = loginResponse.body.otp;
+                otpGenerateStr = masterResponse.body[0].otp;
                 otpGenerate = int.parse(otpGenerateStr);
               /*  Navigator.push(
                   context,
@@ -460,35 +470,15 @@ class _PinViewState extends State<PinView> with SingleTickerProviderStateMixin {
                         child: Text("Submit"),
                         onPressed: () {
                           if (otpType == otpGenerate) {
-                            widget.model.token = widget.loginData.body.token;
-                            widget.model.user = widget.loginData.body.user;
-                            sharedPref.save(Const.LOGIN_DATA, widget.loginData);
-                            widget.model.setLoginData1(widget.loginData);
-                            sharedPref.save(Const.IS_LOGIN, "true");
-                            FirebaseMessaging.instance.subscribeToTopic(widget.loginData.body.user);
-                            FirebaseMessaging.instance.subscribeToTopic(widget.loginData.body.userMobile);
-                            if(widget.loginData.body.roles[0] == "8".toLowerCase()) {
-                            Navigator.of(context).pushNamedAndRemoveUntil(
-                            '/labDash', (Route<dynamic> route) => false);
-                            } else if (widget.loginData.body.roles[0] == "1".toLowerCase()) {
-                            Navigator.of(context).pushNamedAndRemoveUntil(
-                                '/dashboard', (Route<dynamic> route) => false);
-                            } else if (widget.loginData.body.roles[0] == "2".toLowerCase()) {
-                            Navigator.of(context).pushNamedAndRemoveUntil(
-                            '/dashDoctor', (Route<dynamic> route) => false);
-                            } else if (widget.loginData.body.roles[0] =="3".toLowerCase()) {
-                                  Navigator.of(context).pushNamedAndRemoveUntil('/dashboardpharmacy',
-                                (Route<dynamic> route) => false);
-                            }else{
-                             // AppData.showInSnackBar(context, map[Const.MESSAGE]);
-                            }
-                           // AppData.showInSnackBar(context, widget.loginData.message);
-                           // Navigator.pushNamed(context, "/navigation");
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) =>
+                                  dialogUserView(context,widget.masterLoginResponse.body),
+                            );
+
                           }else{
                             AppData.showInSnackBar(context, "Please enter valid OTP");
                           }
-
-
 
                         },
                         shape: new RoundedRectangleBorder(
@@ -525,7 +515,178 @@ class _PinViewState extends State<PinView> with SingleTickerProviderStateMixin {
           ],
         ));
   }
+  Widget dialogUserView(BuildContext context, List<master.Body> data) {
+    return AlertDialog(
+      contentPadding: EdgeInsets.zero,
+      insetPadding: EdgeInsets.zero,
+      actions: [
+        MaterialButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: Text("Cancel"),
+        )
+      ],
+      content: StatefulBuilder(
+        builder: (BuildContext context, StateSetter setState) {
+          return Container(
+            padding: EdgeInsets.only(left: 5, right: 5, top: 20),
+            //color: Colors.grey,
+            width: MediaQuery.of(context).size.width * 0.9,
+            height: 450,
+            child: Column(
+              children: [
+                Text(
+                  "Login Users",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 23,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        //_buildAboutText(),
+                        //_buildLogoAttribution(),
 
+                        ListView.separated(
+                          separatorBuilder: (c, i) {
+                            return Divider();
+                          },
+                          physics: NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemBuilder: (c, i) {
+                            return ListTile(
+                              leading: Icon(
+                                CupertinoIcons.person_alt_circle,
+                                size: 44,
+                              ),
+                              title: Text(data[i].userName),
+                              subtitle: Text(data[i].user),
+                              onTap: () {
+                                /*  sharedPref.save(Const.LOGIN_phoneno, _loginId.text);
+                                sharedPref.save(Const.LOGIN_password, passController.text);
+                                LoginResponse1 loginResponse = LoginResponse1();
+                                // loginResponse.acceptValue(data[i]);
+                                Body body=Body();
+                                body.user=data[i].user;
+                                body.userName=data[i].userName;
+                                body.userAddress=data[i].userAddress;
+                                body.userPassword=data[i].userPassword;
+                                body.userMobile=data[i].userMobile;
+                                body.userStatus=data[i].userStatus;
+                                body.token=data[i].token;
+                                body.roles.add(value)
+                                loginResponse.body=body;
+                                widget.model.token = data[i].token;
+                                widget.model.user = data[i].user;
+                                log("Response after assign>>>>"+jsonEncode(loginResponse.toJson()));
+                                sharedPref.save(Const.LOGIN_DATA, loginResponse);
+                                widget.model.setLoginData1(loginResponse);
+                                sharedPref.save(Const.IS_LOGIN, "true");*/
+                                roleUpdateApi(data[i].user, data[i]);
+                              },
+                              trailing: Icon(Icons.arrow_right),
+                            );
+                          },
+                          itemCount: data.length,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
+      ),
+      /*actions: <Widget>[
+        new FlatButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          textColor: Colors.grey[900],
+          child: Text("Cancel"),
+        ),
+        new FlatButton(
+          textColor: Theme.of(context).primaryColor,
+          child: const Text('SEARCH'),
+        ),
+      ],*/
+    );
+  }
+  roleUpdateApi(userId, data) {
+    MyWidgets.showLoading(context);
+    widget.model.GETMETHODCALL(
+        api: ApiFactory.GET_ROLE + userId,
+        fun: (Map<String, dynamic> map) {
+          Navigator.pop(context);
+          print("Respomnse for role>>>>>" + jsonEncode(map));
+          if (map["code"] == "success") {
+           // sharedPref.save(Const.LOGIN_phoneno, _loginId.text);
+            //sharedPref.save(Const.LOGIN_password, passController.text);
+            LoginResponse1 loginResponse = LoginResponse1();
+            // loginResponse.acceptValue(data[i]);
+            Body body = Body();
+            body.user = data.user;
+            body.userName = data.userName;
+            body.userAddress = data.userAddress;
+            body.userPassword = data.userPassword;
+            body.userMobile = data.userMobile;
+            body.userStatus = data.userStatus;
+            body.token = data.token;
+            body.roles = [];
+            body.roles.add(map["body"]["roleid"]);
+            loginResponse.body = body;
+            widget.model.token = data.token;
+            widget.model.masterResponse = masterResponse;
+            widget.model.user = data.user;
+            print("Response after assign>>>>" + jsonEncode(loginResponse.toJson()));
+            sharedPref.save(Const.LOGIN_DATA, loginResponse);
+            sharedPref.save(Const.MASTER_RESPONSE, masterResponse);
+            widget.model.setLoginData1(loginResponse);
+            sharedPref.save(Const.IS_LOGIN, "true");
+
+            if (map["body"]["roleid"] == "1".toLowerCase()) {
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                  '/dashboard', (Route<dynamic> route) => false);
+            } else if (map["body"]["roleid"] == "2".toLowerCase()) {
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                  '/dashDoctor', (Route<dynamic> route) => false);
+            } else if (map["body"]["roleid"] == "5".toLowerCase()) {
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                  '/dashboardreceptionlist', (Route<dynamic> route) => false);
+            } else if (map["body"]["roleid"] == "7".toLowerCase()) {
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                  '/dashboardpharmacy', (Route<dynamic> route) => false);
+            } else if (map["body"]["roleid"] == "8".toLowerCase()) {
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                  '/labDash', (Route<dynamic> route) => false);
+            } else if (map["body"]["roleid"] == "12".toLowerCase()) {
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                  '/ambulancedash', (Route<dynamic> route) => false);
+            } else if (map["body"]["roleid"] == "13".toLowerCase()) {
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                  '/bloodBankDashboard', (Route<dynamic> route) => false);
+            } else if (map["body"]["roleid"] == "22".toLowerCase()) {
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                  '/syndicateDashboard', (Route<dynamic> route) => false);
+            } else if (map["body"]["roleid"] == "24".toLowerCase()) {
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                  '/admin', (Route<dynamic> route) => false);
+            } else {
+              AppData.showInSnackBar(context, "No Role Assign");
+            }
+          }
+        });
+  }
   // Returns "Otp custom text field"
   Widget _otpTextField(int digit) {
     return Container(
@@ -658,6 +819,7 @@ class _PinViewState extends State<PinView> with SingleTickerProviderStateMixin {
   // }
 
 }
+
 
 class OtpTimer extends StatelessWidget {
   final AnimationController controller;

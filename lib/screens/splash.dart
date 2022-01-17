@@ -270,11 +270,11 @@ class _SplashScreenState extends State<SplashScreen> {
       String passWordstr1 = passWordstr.replaceAll("\"", "");
 
       //passWordstr = await sharedPref. getValue() ;
-      /* if (login != null && login.replaceAll("\"", "") == "true") {
+      /*if (login != null && login.replaceAll("\"", "") == "true") {
 
       setState(() {
 
-     //   MyWidgets.showLoading(context);
+     //MyWidgets.showLoading(context);
         */ /*String phnNostr = sharedPref.getKey("phnNo");
         String passWordstr = sharedPref.getKey("passWord");*/ /*
         widget.model.GETMETHODCALL(

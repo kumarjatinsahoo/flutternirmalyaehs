@@ -38,8 +38,7 @@ class _LoginwithOTPState extends State<LoginwithOTP> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   final _formKey = GlobalKey<FormState>();
 
-  static final List<String> languageCodesList =
-      application.supportedLanguagesCodes;
+  static final List<String> languageCodesList = application.supportedLanguagesCodes;
   static final List<String> languagesList = application.supportedLanguages;
 
   final Map<dynamic, dynamic> languagesMap = {
