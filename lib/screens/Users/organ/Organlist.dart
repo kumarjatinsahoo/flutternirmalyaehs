@@ -86,24 +86,24 @@ class _OrganlistState extends State<Organlist> {
               Align(
                 alignment: Alignment.topRight,
                 child: Padding(
-                  padding: const EdgeInsets.only(right: 10.0),
+                  padding: const EdgeInsets.only(right: 50.0),
                   child: InkWell(
                     onTap: () {
                       Navigator.pushNamed(context, "/organPriviewPage");
                     },
-                    child: Text(MyLocalizations.of(context).text("PREVIEW"),style: TextStyle(fontSize: 10.0)),
+                    child: Text(MyLocalizations.of(context).text("PREVIEW"),style: TextStyle(fontSize: 15.0)),
                   ),
                 ),
               ),
               Align(
                 alignment: Alignment.topRight,
                 child: Padding(
-                  padding: const EdgeInsets.only(right: 10.0),
+                  padding: const EdgeInsets.only(right: 5.0),
                   child: InkWell(
                     onTap: () {
                       Navigator.pushNamed(context, "/organcardPage");
                     },
-                    child: Text("Card",style: TextStyle(fontSize: 10.0)),
+                    child: Text("Card",style: TextStyle(fontSize: 15.0)),
                   ),
                 ),
               ),
