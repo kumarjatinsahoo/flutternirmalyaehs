@@ -2,7 +2,7 @@ class ApiFactory {
   //bool isRelease = bool.fromEnvironment("DEV");
   static String REG_DEVICE = "https://cca.medtel.in/Ziniai/manageDeviceId";
   //static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
-  static String MAIN_URL = "http://api-demo.ehealthsystem.com/nirmalyaRest/api/";
+  //static String MAIN_URL = "http://api-demo.ehealthsystem.com/nirmalyaRest/api/";
   static String MAIN_URL1 = "https://1331.co.in/api";
   static String REPORT_URL1 = "https://ehealthsystem.com/";
     //static String REPORT_URL1 = "https://demo.ehealthsystem.com/";
@@ -10,7 +10,7 @@ class ApiFactory {
    // static String MAIN_URL = "http://192.168.137.1:8062/nirmalyaRest/api/";
    //static String MAIN_URL = "http://192.168.29.137.1:8062/nirmalyaRest/api/";
    //static String MAIN_URL = "http://192.168.137.1:8062/nirmalyaRest/api/";
-   //static String MAIN_URL = "http://192.168.43.248:8062/nirmalyaRest/api/";
+   static String MAIN_URL = "http://192.168.43.56:8062/nirmalyaRest/api/";
   static String VITALS_REPORT = MAIN_URL + 'medtel-screening-test-report';
   static String COUNTRY_API = MAIN_URL + 'get-country-list';
   static String VIEW_PATIENT_HEALTH_API = REPORT_URL1 + 'user/mobile-view-patient-health-chart?id=';

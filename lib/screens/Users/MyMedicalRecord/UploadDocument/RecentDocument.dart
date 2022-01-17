@@ -341,7 +341,7 @@ class _RecentDocumentState extends State<RecentDocument> {
                                     height: 3,
                                   ),
                                   Text(
-                                    body.uploadedBy,
+                                    body.uploadedBy ?? "N/A",
                                     overflow: TextOverflow.clip,
                                     style: TextStyle(
                                         color: Colors.black54, fontSize: 15),
