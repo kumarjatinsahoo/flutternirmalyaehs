@@ -88,8 +88,8 @@ class Const {
   static const String INTERNET_CONNECTION = "PLEASE CHECK YOUR INTERNET";
   static const String EDIT_BENEFICIARY = "Edit Beneficiary";
   static const String POST = "Edit Beneficiary";
-  static const String ANDROID = "1";
-  static const String IOS = "1";
+  static const String ANDROID = "2";
+  static const String IOS = "2";
 
   static GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
