@@ -57,7 +57,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    // getVersion();
+     getVersion();
     fetchLocalData();
     isFirstTimes();
     // callResourceTimer();
@@ -179,30 +179,14 @@ class _SplashScreenState extends State<SplashScreen> {
         // }
         setState(() => isFirstTym = false);
       } else {
-        getVersion();
         setState(() => isFirstTym = true);
       }
     } else {
-      getVersion();
+      // getVersion();
       setState(() => isFirstTym = true);
-
     }
   }
-  /*Future<Null> isFirstTimes() async {
-    String isFirstTime = await sharedPref.getKey('first_time');
-    if (isFirstTime != null) {
-      if (isFirstTime.replaceAll("\"", "") == "false") {
-        //callResourceTimer();
-        getVersion();
-        setState(() => isFirstTym = true);
-      } else {
-        setState(() => isFirstTym = true);
-      }
-    } else {
-      getVersion();
-      setState(() => isFirstTym = false);
-    }
-  }*/
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -316,6 +300,7 @@ class _SplashScreenState extends State<SplashScreen> {
       });
     }*/
     }catch(e){
+      log("Error>>>>"+e.getMessage());
       _exitApp();
     }
   }
@@ -326,11 +311,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   _exitApp() async {
-    /*FirebaseMessaging.instance
-        .unsubscribeFromTopic(loginResponse1.body.user);
-    FirebaseMessaging.instance
-        .unsubscribeFromTopic(loginResponse1.body.userMobile);*/
-    sharedPref.save(Const.IS_LOGIN, false.toString());
+     sharedPref.save(Const.IS_LOGIN, false.toString());
     sharedPref.save(Const.IS_REGISTRATION, false.toString());
     sharedPref.remove(Const.IS_REGISTRATION);
     sharedPref.remove(Const.IS_LOGIN);
@@ -344,7 +325,8 @@ class _SplashScreenState extends State<SplashScreen> {
   void navigationPage() async {
     //SharedPref sharedPref = SharedPref();
     try {
-      if (androidVersion != null &&int.tryParse(androidVersion) > int.tryParse(Const.ANDROID)) {
+      if (androidVersion != null &&
+          int.tryParse(androidVersion) > int.tryParse(Const.ANDROID)) {
         // log("Out login>>>>>>>");
         showDialog(
           context: context,
@@ -420,6 +402,7 @@ class _SplashScreenState extends State<SplashScreen> {
         //////////////////////////////////////////////////////////
       }
     }catch(e){
+      log("Error>>>>"+e.getMessage());
       _exitApp();
     }
   }
