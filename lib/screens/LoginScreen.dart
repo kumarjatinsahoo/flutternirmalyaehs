@@ -784,7 +784,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       context,
                       MaterialPageRoute(
                           builder: (BuildContext context) => PinView(
-                                loginData: masterResponse,
+                            masterLoginResponse: masterResponse,
                                 model: widget.model,
                               )),
                     );
