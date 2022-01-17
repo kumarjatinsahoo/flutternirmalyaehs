@@ -6,7 +6,7 @@ class ApiFactory {
   static String MAIN_URL1 = "https://1331.co.in/api";
   static String REPORT_URL1 = "https://ehealthsystem.com/";
     //static String REPORT_URL1 = "https://demo.ehealthsystem.com/";
-  //static String MAIN_URL = "http://192.168.43.56:8062/nirmalyaRest/api/";
+   // static String MAIN_URL = "http://192.168.29.107:8062/nirmalyaRest/api/";
    // static String MAIN_URL = "http://192.168.137.1:8062/nirmalyaRest/api/";
    //static String MAIN_URL = "http://192.168.29.137.1:8062/nirmalyaRest/api/";
    //static String MAIN_URL = "http://192.168.137.1:8062/nirmalyaRest/api/";
@@ -148,7 +148,7 @@ class ApiFactory {
   static String LOGIN_Otp(String mob) {
     return MAIN_URL + "login-multiple-user-with-otp?mobileNo=$mob";
   }
-   //login-multiple-user-with-otp
+
   static String ADD_BIOMEDICAL_IMPLANTS =
       MAIN_URL + 'post-biomedical-implants-api';
   static String POST_SHARE_APPOINTMENT =
