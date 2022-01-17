@@ -167,6 +167,6 @@ class _GovermentSchemesDitelsPageState extends State<GovermentSchemesDitelsPage>
 
   _onShareWithEmptyFields(BuildContext context) async {
 
-    await Share.share("https://demo.ehealthsystem.com/user/mobile-organ-donation-pdf-download?id="+id,);
+    await Share.share("https://ehealthsystem.com/user/mobile-organ-donation-pdf-download?id="+id,);
   }
 }
