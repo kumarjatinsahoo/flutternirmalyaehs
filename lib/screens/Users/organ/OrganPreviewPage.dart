@@ -123,7 +123,7 @@ class _OrganPriviewPageState extends State<OrganPriviewPage> {
             // width: MediaQuery.of(context).size.height,
             child: InAppWebView(
               initialUrlRequest: URLRequest(
-                  url: Uri.parse("https://demo.ehealthsystem.com/user/mobile-organ-donation-pdf-download?id="+id)),
+                  url: Uri.parse("https://ehealthsystem.com/user/mobile-organ-donation-pdf-download?id="+id)),
               initialOptions: _options,
               shouldOverrideUrlLoading: (controller, action) {
                 print("override");

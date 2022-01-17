@@ -2,7 +2,7 @@ class ApiFactory {
   //bool isRelease = bool.fromEnvironment("DEV");
   static String REG_DEVICE = "https://cca.medtel.in/Ziniai/manageDeviceId";
   //static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
-  //static String MAIN_URL = "http://api-demo.ehealthsystem.com/nirmalyaRest/api/";
+  static String MAIN_URL = "http://api-demo.ehealthsystem.com/nirmalyaRest/api/";
   static String MAIN_URL1 = "https://1331.co.in/api";
   static String REPORT_URL1 = "https://ehealthsystem.com/";
     //static String REPORT_URL1 = "https://demo.ehealthsystem.com/";
@@ -16,7 +16,7 @@ class ApiFactory {
   static String VIEW_PATIENT_HEALTH_API = REPORT_URL1 + 'user/mobile-view-patient-health-chart?id=';
   static String MEDICATION_VIEW_PRESCRIPTION = REPORT_URL1 + 'user/view-patient-medication-view-prescription?userid=';
   static String TEST_VIEW_PRESCRIPTION = REPORT_URL1 + 'user/view-patient-test-report-pdf-download-digital?id=';
-  static String TEST_VIEW_ORGAN= REPORT_URL1 + 'user/view-patient-test-report-pdf-download-digital?id=';
+  static String TEST_VIEW_ORGANCARD= REPORT_URL1 + 'user/patient-organ-donation-card?id=';
   //static String VIEW_PATIENT_HEALTH_API = MAIN_URL + 'user/mobile-view-patient-health-chart?id=';
   static String AMBULANCE_API = MAIN_URL + 'get-ambulance-orglist';
   static String BLOODBBANKNAME_API = MAIN_URL + 'get-bloodbank-orglist';

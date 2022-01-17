@@ -91,7 +91,19 @@ class _OrganlistState extends State<Organlist> {
                     onTap: () {
                       Navigator.pushNamed(context, "/organPriviewPage");
                     },
-                    child: Text(MyLocalizations.of(context).text("PREVIEW")),
+                    child: Text(MyLocalizations.of(context).text("PREVIEW"),style: TextStyle(fontSize: 10.0)),
+                  ),
+                ),
+              ),
+              Align(
+                alignment: Alignment.topRight,
+                child: Padding(
+                  padding: const EdgeInsets.only(right: 10.0),
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, "/organcardPage");
+                    },
+                    child: Text("Card",style: TextStyle(fontSize: 10.0)),
                   ),
                 ),
               ),
