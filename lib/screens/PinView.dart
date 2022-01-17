@@ -144,11 +144,11 @@ class _PinViewState extends State<PinView> with SingleTickerProviderStateMixin {
             //height:_screenSize.height,
             color: AppData.kPrimaryColor,
             //
-            //        padding: new EdgeInsets.only(bottom: 16.0),
-        child: SingleChildScrollView(
+            //padding: new EdgeInsets.only(bottom: 16.0),
+           /* child: SingleChildScrollView(*/
         child: Column(
           mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             _getVerificationCodeLabel,
             _getEmailLabel,
@@ -157,15 +157,14 @@ class _PinViewState extends State<PinView> with SingleTickerProviderStateMixin {
             _getOtpKeyboard
           ],
         ),
-        ),
+        /*),*/
           ),
           isLoading
               ? Stack(
                   children: [
                     new Opacity(
                       opacity: 0.1,
-                      child: const ModalBarrier(
-                          dismissible: false, color: Colors.grey),
+                      child: const ModalBarrier(dismissible: false, color: Colors.grey),
                     ),
                     new Center(
                       child: new CircularProgressIndicator(),
