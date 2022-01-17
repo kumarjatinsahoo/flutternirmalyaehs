@@ -252,7 +252,7 @@ class _AllergicListListState extends State<AllergicListList> {
                                                                 ),
                                                               ),
                                                               Text(
-                                                                body.alltypeid ??
+                                                                body.alltypeid??
                                                                     "N/A",
                                                                 style: TextStyle(
                                                                     color: Colors
