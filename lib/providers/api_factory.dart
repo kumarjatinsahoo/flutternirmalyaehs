@@ -16,6 +16,7 @@ class ApiFactory {
   static String VIEW_PATIENT_HEALTH_API = REPORT_URL1 + 'user/mobile-view-patient-health-chart?id=';
   static String MEDICATION_VIEW_PRESCRIPTION = REPORT_URL1 + 'user/view-patient-medication-view-prescription?userid=';
   static String TEST_VIEW_PRESCRIPTION = REPORT_URL1 + 'user/view-patient-test-report-pdf-download-digital?id=';
+  static String TEST_VIEW_ORGAN= REPORT_URL1 + 'user/view-patient-test-report-pdf-download-digital?id=';
   //static String VIEW_PATIENT_HEALTH_API = MAIN_URL + 'user/mobile-view-patient-health-chart?id=';
   static String AMBULANCE_API = MAIN_URL + 'get-ambulance-orglist';
   static String BLOODBBANKNAME_API = MAIN_URL + 'get-bloodbank-orglist';
