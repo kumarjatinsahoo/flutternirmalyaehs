@@ -777,13 +777,14 @@ class _LoginScreenState extends State<LoginScreen> {
                 //AppData.showInSnackBar(context, map[Const.MESSAGE]);
                 if (map[Const.CODE] == Const.SUCCESS) {
                   setState(() {
-                    LoginResponse1 loginResponse = LoginResponse1.fromJson(map);
+                    masterResponse = master.MasterLoginResponse.fromJson(map);
+                   // LoginResponse1 loginResponse = LoginResponse1.fromJson(map);
                     // widget.model.loginData=loginResponse;
                     Navigator.push(
                       context,
                       MaterialPageRoute(
                           builder: (BuildContext context) => PinView(
-                                loginData: loginResponse,
+                                loginData: masterResponse,
                                 model: widget.model,
                               )),
                     );
