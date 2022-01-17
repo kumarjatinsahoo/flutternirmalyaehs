@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/LoginResponse1.dart';
+import 'package:user/models/MasterLoginResponse.dart';
 import 'package:user/providers/Const.dart';
 // import 'package:user/models/CredentialModel.dart';
 
@@ -26,7 +27,7 @@ import 'package:rflutter_alert/rflutter_alert.dart';
 class PinView extends StatefulWidget {
   // final String email;
   MainModel model;
-  LoginResponse1 loginData;
+ MasterLoginResponse loginData;
 
   // final bool isGuestCheckOut;
 
@@ -74,7 +75,7 @@ class _PinViewState extends State<PinView> with SingleTickerProviderStateMixin {
   void initState() {
 
     totalTimeInSeconds = time;
-    otpGenerateStr = widget.loginData.body.otp;
+    //otpGenerateStr = widget.loginData.body.otp;
     otpGenerate = int.parse(otpGenerateStr);
 
     print("OTP IS>>>>>>>>>>>>>>>>>>>>>>" + otpGenerate.toString());
@@ -459,8 +460,14 @@ class _PinViewState extends State<PinView> with SingleTickerProviderStateMixin {
                         color: Colors.white,
                         child: Text("Submit"),
                         onPressed: () {
-                          if (otpType == otpGenerate) {
-                            widget.model.token = widget.loginData.body.token;
+   /*                       if (otpType == otpGenerate) {
+    masterResponse = master.MasterLoginResponse.fromJson(map);
+    showDialog(
+    context: context,
+    builder: (BuildContext context) =>
+    dialogUserView(context, masterResponse.body),
+    );*/
+                           /* widget.model.token = widget.loginData.body.token;
                             widget.model.user = widget.loginData.body.user;
                             sharedPref.save(Const.LOGIN_DATA, widget.loginData);
                             widget.model.setLoginData1(widget.loginData);
@@ -486,7 +493,7 @@ class _PinViewState extends State<PinView> with SingleTickerProviderStateMixin {
                            // Navigator.pushNamed(context, "/navigation");
                           }else{
                             AppData.showInSnackBar(context, "Please enter valid OTP");
-                          }
+                          }*/
 
 
 

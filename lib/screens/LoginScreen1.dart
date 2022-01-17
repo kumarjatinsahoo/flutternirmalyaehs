@@ -508,7 +508,6 @@ class _LoginScreen1State extends State<LoginScreen1> {
                     sharedPref.save(Const.LOGIN_DATA, loginResponse);
                     widget.model.setLoginData1(loginResponse);
                     sharedPref.save(Const.IS_LOGIN, "true");
-
                     FirebaseMessaging.instance.subscribeToTopic(loginResponse.body.user);
                     FirebaseMessaging.instance.subscribeToTopic(loginResponse.body.userMobile);
 
@@ -533,7 +532,6 @@ class _LoginScreen1State extends State<LoginScreen1> {
                     }else if (loginResponse.body.roles[0] == "13".toLowerCase()) {
                       Navigator.of(context).pushNamedAndRemoveUntil(
                           '/bloodBankDashboard',(Route<dynamic> route) => false);
-
                     } else {
                       AppData.showInSnackBar(context, "No Role Assign");
                     }
@@ -574,8 +572,8 @@ class _LoginScreen1State extends State<LoginScreen1> {
                       context,
                       MaterialPageRoute(
                           builder: (BuildContext context) => PinView(
-                                loginData: loginResponse,
-                                model: widget.model,
+                                // loginData: loginResponse,
+                                // model: widget.model,
                               )),
                     );
                   });
