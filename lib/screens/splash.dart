@@ -57,7 +57,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-     getVersion();
+    //getVersion();
     fetchLocalData();
     isFirstTimes();
     // callResourceTimer();
@@ -179,9 +179,11 @@ class _SplashScreenState extends State<SplashScreen> {
         // }
         setState(() => isFirstTym = false);
       } else {
+        getVersion();
         setState(() => isFirstTym = true);
       }
     } else {
+      getVersion();
       // getVersion();
       setState(() => isFirstTym = true);
     }
