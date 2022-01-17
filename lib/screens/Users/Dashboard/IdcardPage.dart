@@ -118,7 +118,7 @@ class _IdCardPageState extends State<IdCardPage> {
               alignment: Alignment.topRight,
               child: InkWell(
                 onTap: () {
-                  AppData.launchURL('https://demo.ehealthsystem.com/download-ehealthcard?userid='+id);
+                  AppData.launchURL('https://ehealthsystem.com/download-ehealthcard?userid='+id);
                   },
                 child: Icon(Icons.download),
               ),
@@ -140,7 +140,7 @@ class _IdCardPageState extends State<IdCardPage> {
       ),
       body: Builder(builder: (BuildContext context) {
         print("api......" +
-            'https://demo.ehealthsystem.com/download-ehealthcard?userid=userid=' +
+            'https://ehealthsystem.com/download-ehealthcard?userid=userid=' +
             id);
         return Container(
           width: MediaQuery.of(context).size.width,
@@ -148,7 +148,7 @@ class _IdCardPageState extends State<IdCardPage> {
             // width: MediaQuery.of(context).size.height,
             child: InAppWebView(
               initialUrlRequest: URLRequest(
-                  url: Uri.parse('https://demo.ehealthsystem.com/download-ehealthcard?userid='+id)),
+                  url: Uri.parse('https://ehealthsystem.com/download-ehealthcard?userid='+id)),
               initialOptions: _options,
               shouldOverrideUrlLoading: (controller, action) {
                 print("override");
@@ -222,6 +222,6 @@ class _IdCardPageState extends State<IdCardPage> {
   }
 
   _onShareWithEmptyFields(BuildContext context) async {
-    await Share.share('https://demo.ehealthsystem.com/download-ehealthcard?userid='+id,subject: "Please Check My Id");
+    await Share.share('https://ehealthsystem.com/download-ehealthcard?userid='+id,subject: "Please Check My Id");
   }
 }

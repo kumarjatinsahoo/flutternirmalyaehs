@@ -26,8 +26,7 @@ class _DonorOrganisationState extends State<DonorOrganisation> {
     backgroundColor:AppData.kPrimaryColor,
     title: Text(
       MyLocalizations.of(context).text("DONOR_ORGANIZATION"),
-      style: TextStyle(
-          fontWeight: FontWeight.w300, fontSize: 20, color: Colors.white),
+      style: TextStyle(color: AppData.white),
     ),
       ),
       body: Container(
