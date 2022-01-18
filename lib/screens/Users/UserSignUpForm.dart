@@ -104,7 +104,9 @@ class UserSignUpFormState extends State<UserSignUpForm> {
   bool _inProcess = false;
   LoginResponse1 loginResponse1;
   bool isDataNotAvail = false;
-
+  String useridd;
+  String password;
+  String msg;
 
   Future<Null> _selectDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
@@ -1321,28 +1323,119 @@ class UserSignUpFormState extends State<UserSignUpForm> {
           json: userModel.toJson(),
           fun: (Map<String, dynamic> map) {
             Navigator.pop(context);
+            String msg = map["message"].toString();
             if (map[Const.STATUS] == Const.SUCCESS) {
-              popup(context, map[Const.MESSAGE]);
+              setState(() {
+
+                useridd = map["body"]["key"];
+                password = map["body"]["name"];
+                log("Version>>>" + useridd + "<>>" + password);
+                popup(msg, context,password,useridd);
+              });
+              //popup(context, map[Const.MESSAGE]);
             } else {
-              AppData.showInSnackBar(context, map[Const.MESSAGE]);
+              AppData.showInSnackBar(context, msg);
+             // AppData.showInSnackBar(context, map[Const.MESSAGE]);
             }
           });
     }
   }
 
-  popup(BuildContext context, String message) {
+  // popup(BuildContext context, String message) {
+  //   return Alert(
+  //       context: context,
+  //       title: message,
+  //       desc:
+  //       MyLocalizations.of(context).text("REG_SUCCESS_POPUP"),
+  //       type: AlertType.success,
+  //       onWillPopActive: true,
+  //       closeIcon: Icon(
+  //         Icons.info,
+  //         color: Colors.transparent,
+  //       ),
+  //       //image: Image.asset("assets/success.png"),
+  //       closeFunction: () {},
+  //       buttons: [
+  //         DialogButton(
+  //           child: Text(
+  //             "OK",
+  //             style: TextStyle(color: Colors.white, fontSize: 20),
+  //           ),
+  //           onPressed: () {
+  //             Navigator.pop(context);
+  //             Navigator.pop(context);
+  //             // Navigator.pop(context);
+  //           },
+  //           color: Color.fromRGBO(0, 179, 134, 1.0),
+  //           radius: BorderRadius.circular(0.0),
+  //         ),
+  //       ]).show();
+  // }
+
+  popup(String msg, BuildContext context,String password,String useridd) {
     return Alert(
         context: context,
-        title: message,
-        desc:
-        MyLocalizations.of(context).text("REG_SUCCESS_POPUP"),
-        type: AlertType.success,
+        //title: "Success",
+        title: "Success",
+        //type: AlertType.info,
         onWillPopActive: true,
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              Icons.check_circle_outline_outlined,
+              size: 140,
+              color: Colors.green,
+            ),
+            SizedBox(
+              height: 5,
+            ),
+            Text(
+              msg,
+              style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 17,
+                  fontWeight: FontWeight.w400),
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(
+              height: 5,
+            ),
+            /*Text(
+              "Mobile No. :"+mobile,
+              style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 17,
+                  fontWeight: FontWeight.w400),
+              textAlign: TextAlign.center,
+            ),*/
+            SizedBox(
+              height: 5,
+            ),
+            Text(
+              "UserId:"+useridd,
+              style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 17,
+                  fontWeight: FontWeight.w400),
+              textAlign: TextAlign.center,
+            ),SizedBox(
+              height: 5,
+            ),
+            Text(
+              "Password is:"+password,
+              style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 17,
+                  fontWeight: FontWeight.w400),
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ),
         closeIcon: Icon(
           Icons.info,
           color: Colors.transparent,
         ),
-        //image: Image.asset("assets/success.png"),
         closeFunction: () {},
         buttons: [
           DialogButton(
@@ -1360,6 +1453,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
           ),
         ]).show();
   }
+
 
   void _settingModalBottomSheet(context) {
     showModalBottomSheet(
