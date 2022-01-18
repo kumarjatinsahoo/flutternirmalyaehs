@@ -597,6 +597,8 @@ class _LoginScreenState extends State<LoginScreen> {
             sharedPref.save(Const.LOGIN_password, passController.text);
             LoginResponse1 loginResponse = LoginResponse1();
             FirebaseMessaging.instance.subscribeToTopic(loginResponse.body.user);
+            FirebaseMessaging.instance.subscribeToTopic(loginResponse.body.userMobile);
+            // FirebaseMessaging.instance.subscribeToTopic(loginResponse.body.userMobile);
             // loginResponse.acceptValue(data[i]);
             Body body = Body();
             body.user = data.user;
