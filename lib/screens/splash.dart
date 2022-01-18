@@ -328,7 +328,7 @@ class _SplashScreenState extends State<SplashScreen> {
     //SharedPref sharedPref = SharedPref();
     try {
       if (androidVersion != null &&
-          int.tryParse(androidVersion) > int.tryParse(Const.ANDROID)) {
+          int.tryParse(androidVersion) > int.tryParse((Platform.isAndroid)?Const.ANDROID:Const.IOS)) {
         // log("Out login>>>>>>>");
         showDialog(
           context: context,
