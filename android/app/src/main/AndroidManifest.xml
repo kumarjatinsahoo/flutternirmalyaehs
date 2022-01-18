@@ -80,6 +80,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
+            <intent-filter>
+                <data android:scheme="com.ehealthsystem.mobile" />
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+            </intent-filter>
 
             <meta-data
                 android:name="com.google.firebase.messaging.default_notification_channel_id"
@@ -100,7 +106,7 @@
         -->
         <meta-data
             android:name="flutterEmbedding"
-            android:value="2" />
+            android:value="2"/>
     </application>
 
 </manifest>

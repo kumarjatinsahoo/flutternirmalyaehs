@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -27,6 +28,8 @@ class _PatientRegistration4State extends State<PatientRegistration4> {
   String profileImage = null;
   String valueText = null;
   String codeDialog = null;
+  String useridd;
+  String password;
   TextEditingController _name = TextEditingController();
   TextEditingController _address = TextEditingController();
   TextEditingController _email = TextEditingController();
@@ -355,19 +358,23 @@ class _PatientRegistration4State extends State<PatientRegistration4> {
         widget.model.postSignUp(token, patientSignupModel.toJson(),
             (Map<String, dynamic> map) {
           String msg = map["message"].toString();
-          String userid = map["body"].toString();
+          //String userid = map["body"].toString();
           if (map["code"] == "success") {
-            popup(msg, context,userid,patientphnNo);
+            setState(() {
+              useridd = map["body"]["key"];
+              password = map["body"]["name"];
+              log("Version>>>" + useridd + "<>>" + password);
+              popup(msg, context,patientphnNo,password,useridd);
+            });
           } else {
             AppData.showInSnackBar(context, msg);
           }
         });
-
       },
     );
   }
 
-  popup(String msg, BuildContext context,String userid,String mobile) {
+  popup(String msg, BuildContext context,String mobile,String password,String useridd) {
     return Alert(
         context: context,
         //title: "Success",
@@ -408,7 +415,7 @@ class _PatientRegistration4State extends State<PatientRegistration4> {
               height: 5,
             ),
             Text(
-              "UserId:"+userid,
+              "UserId:"+useridd,
               style: TextStyle(
                   color: Colors.black,
                   fontSize: 17,
@@ -418,7 +425,7 @@ class _PatientRegistration4State extends State<PatientRegistration4> {
               height: 5,
             ),
             Text(
-              "Password is: User@123",
+              "Password is:"+password,
               style: TextStyle(
                   color: Colors.black,
                   fontSize: 17,

@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/services.dart';
@@ -803,7 +804,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
         log("Response after assign>>>>"+jsonEncode(loginResponse.toJson()));
         sharedPref.save(Const.LOGIN_DATA, loginResponse);
         widget.model.setLoginData1(loginResponse);
-
+/*
+        FirebaseMessaging.instance.subscribeToTopic(data.user);
+        FirebaseMessaging.instance.subscribeToTopic(data.userMobile);*/
 
         if (map["body"]["roleid"] == "1".toLowerCase()) {
           Navigator.of(context).pushNamedAndRemoveUntil(

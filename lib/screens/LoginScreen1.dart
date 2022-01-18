@@ -5,7 +5,6 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:user/localization/application.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/LoginResponse1.dart';
-import 'package:user/models/MasterLoginResponse.dart' as master;
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/SharedPref.dart';
 import 'package:user/providers/api_factory.dart';
@@ -18,18 +17,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class LoginScreen extends StatefulWidget {
+class LoginScreen1 extends StatefulWidget {
   final MainModel model;
   final String mobNo, aadharNo;
 
-  LoginScreen({Key key, this.model, this.mobNo, this.aadharNo})
+  LoginScreen1({Key key, this.model, this.mobNo, this.aadharNo})
       : super(key: key);
 
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _LoginScreen1State createState() => _LoginScreen1State();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _LoginScreen1State extends State<LoginScreen1> {
   TextEditingController beniTextController = new TextEditingController();
   TextEditingController aadharTextController = new TextEditingController();
   TextEditingController mobileTextController = new TextEditingController();
@@ -41,8 +40,7 @@ class _LoginScreenState extends State<LoginScreen> {
   FocusNode fnode3 = new FocusNode();
   FocusNode fnode4 = new FocusNode();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
-  static final List<String> languageCodesList =
-      application.supportedLanguagesCodes;
+  static final List<String> languageCodesList = application.supportedLanguagesCodes;
   static final List<String> languagesList = application.supportedLanguages;
 
   final Map<dynamic, dynamic> languagesMap = {
@@ -80,8 +78,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
   var pin;
   String token = "";
-
-  master.MasterLoginResponse masterResponse;
 
   @override
   void initState() {
@@ -166,8 +162,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       Container(
                         width: size.width,
                         height: 60,
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                        padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
                         margin: EdgeInsets.only(top: 10.0),
                         decoration: BoxDecoration(
                           // color: Colors.grey.withOpacity(0.5),
@@ -177,8 +172,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: <Widget>[
                             Container(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 5, vertical: 2),
+                              padding: EdgeInsets.symmetric(horizontal: 5, vertical: 2),
                               alignment: Alignment.center,
                               child: DropdownButtonHideUnderline(
                                 child: DropdownButton<String>(
@@ -477,187 +471,6 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget dialogUserView(BuildContext context, List<master.Body> data) {
-    return AlertDialog(
-      contentPadding: EdgeInsets.zero,
-      insetPadding: EdgeInsets.zero,
-      actions: [
-        MaterialButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: Text("Cancel"),
-        )
-      ],
-      content: StatefulBuilder(
-        builder: (BuildContext context, StateSetter setState) {
-          return Container(
-            padding: EdgeInsets.only(left: 5, right: 5, top: 20),
-            //color: Colors.grey,
-            width: MediaQuery.of(context).size.width * 0.9,
-            height: 450,
-            child: Column(
-              children: [
-                Text(
-                  "Login Users",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 23,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Expanded(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        //_buildAboutText(),
-                        //_buildLogoAttribution(),
-
-                        ListView.separated(
-                          separatorBuilder: (c, i) {
-                            return Divider();
-                          },
-                          physics: NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          itemBuilder: (c, i) {
-                            return ListTile(
-                              leading: Icon(
-                                CupertinoIcons.person_alt_circle,
-                                size: 44,
-                              ),
-                              title: Text(data[i].userName),
-                              subtitle: Text(data[i].user),
-                              onTap: () {
-                                /*  sharedPref.save(Const.LOGIN_phoneno, _loginId.text);
-                                sharedPref.save(Const.LOGIN_password, passController.text);
-                                LoginResponse1 loginResponse = LoginResponse1();
-                                // loginResponse.acceptValue(data[i]);
-                                Body body=Body();
-                                body.user=data[i].user;
-                                body.userName=data[i].userName;
-                                body.userAddress=data[i].userAddress;
-                                body.userPassword=data[i].userPassword;
-                                body.userMobile=data[i].userMobile;
-                                body.userStatus=data[i].userStatus;
-                                body.token=data[i].token;
-                                body.roles.add(value)
-                                loginResponse.body=body;
-                                widget.model.token = data[i].token;
-                                widget.model.user = data[i].user;
-                                log("Response after assign>>>>"+jsonEncode(loginResponse.toJson()));
-                                sharedPref.save(Const.LOGIN_DATA, loginResponse);
-                                widget.model.setLoginData1(loginResponse);
-                                sharedPref.save(Const.IS_LOGIN, "true");*/
-                                roleUpdateApi(data[i].user, data[i]);
-                              },
-                              trailing: Icon(Icons.arrow_right),
-                            );
-                          },
-                          itemCount: data.length,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          );
-        },
-      ),
-      /*actions: <Widget>[
-        new FlatButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          textColor: Colors.grey[900],
-          child: Text("Cancel"),
-        ),
-        new FlatButton(
-          textColor: Theme.of(context).primaryColor,
-          child: const Text('SEARCH'),
-        ),
-      ],*/
-    );
-  }
-
-  roleUpdateApi(userId, data) {
-    MyWidgets.showLoading(context);
-    widget.model.GETMETHODCALL(
-        api: ApiFactory.GET_ROLE + userId,
-        fun: (Map<String, dynamic> map) {
-          Navigator.pop(context);
-          log("Respomnse for role>>>>>" + jsonEncode(map));
-          if (map["code"] == "success") {
-            sharedPref.save(Const.LOGIN_phoneno, _loginId.text);
-            sharedPref.save(Const.LOGIN_password, passController.text);
-            LoginResponse1 loginResponse = LoginResponse1();
-            /*FirebaseMessaging.instance.subscribeToTopic(loginResponse.body.user);
-            FirebaseMessaging.instance.subscribeToTopic(loginResponse.body.userMobile);*/
-            // FirebaseMessaging.instance.subscribeToTopic(loginResponse.body.userMobile);
-            // loginResponse.acceptValue(data[i]);
-            Body body = Body();
-            body.user = data.user;
-            body.userName = data.userName;
-            body.userAddress = data.userAddress;
-            body.userPassword = data.userPassword;
-            body.userMobile = data.userMobile;
-            body.userStatus = data.userStatus;
-            body.token = data.token;
-            body.roles = [];
-            body.roles.add(map["body"]["roleid"]);
-            loginResponse.body = body;
-            widget.model.token = data.token;
-            widget.model.masterResponse = masterResponse;
-            widget.model.user = data.user;
-            log("Response after assign>>>>" +
-                jsonEncode(loginResponse.toJson()));
-            sharedPref.save(Const.LOGIN_DATA, loginResponse);
-            sharedPref.save(Const.MASTER_RESPONSE, masterResponse);
-            widget.model.setLoginData1(loginResponse);
-            sharedPref.save(Const.IS_LOGIN, "true");
-
-        FirebaseMessaging.instance.subscribeToTopic(data.user);
-        FirebaseMessaging.instance.subscribeToTopic(data.userMobile);
-
-            if (map["body"]["roleid"] == "1".toLowerCase()) {
-              Navigator.of(context).pushNamedAndRemoveUntil(
-                  '/dashboard', (Route<dynamic> route) => false);
-            } else if (map["body"]["roleid"] == "2".toLowerCase()) {
-              Navigator.of(context).pushNamedAndRemoveUntil(
-                  '/dashDoctor', (Route<dynamic> route) => false);
-            } else if (map["body"]["roleid"] == "5".toLowerCase()) {
-              Navigator.of(context).pushNamedAndRemoveUntil(
-                  '/dashboardreceptionlist', (Route<dynamic> route) => false);
-            } else if (map["body"]["roleid"] == "7".toLowerCase()) {
-              Navigator.of(context).pushNamedAndRemoveUntil(
-                  '/dashboardpharmacy', (Route<dynamic> route) => false);
-            } else if (map["body"]["roleid"] == "8".toLowerCase()) {
-              Navigator.of(context).pushNamedAndRemoveUntil(
-                  '/labDash', (Route<dynamic> route) => false);
-            } else if (map["body"]["roleid"] == "12".toLowerCase()) {
-              Navigator.of(context).pushNamedAndRemoveUntil(
-                  '/ambulancedash', (Route<dynamic> route) => false);
-            } else if (map["body"]["roleid"] == "13".toLowerCase()) {
-              Navigator.of(context).pushNamedAndRemoveUntil(
-                  '/bloodBankDashboard', (Route<dynamic> route) => false);
-            } else if (map["body"]["roleid"] == "22".toLowerCase()) {
-              Navigator.of(context).pushNamedAndRemoveUntil(
-                  '/syndicateDashboard', (Route<dynamic> route) => false);
-            } else if (map["body"]["roleid"] == "24".toLowerCase()) {
-              Navigator.of(context).pushNamedAndRemoveUntil(
-                  '/admin', (Route<dynamic> route) => false);
-            } else {
-              AppData.showInSnackBar(context, "No Role Assign");
-            }
-          }
-        });
-  }
-
   Widget _loginButton() {
     return MyWidgets.nextButton(
       text: MyLocalizations.of(context).text("LOGIN"),
@@ -673,90 +486,60 @@ class _LoginScreenState extends State<LoginScreen> {
           AppData.showInSnackBar(context, "Please enter Password");
         } else {
           widget.model.phnNo = _loginId.text;
-          widget.model.passWord = passController.text;
+          widget.model.passWord = passController.text ;
           MyWidgets.showLoading(context);
           widget.model.GETMETHODCALL(
-              api: ApiFactory.LOGIN_PASS_MULTIPLE(
-                  _loginId.text, passController.text),
+              api: ApiFactory.LOGIN_PASS(_loginId.text, passController.text),
               fun: (Map<String, dynamic> map) {
                 Navigator.pop(context);
                 log("LOGIN RESPONSE>>>>" + jsonEncode(map));
                 //AppData.showInSnackBar(context, map[Const.MESSAGE]);
                 if (map[Const.CODE] == Const.SUCCESS) {
-                  /*widget.model.phnNo = _loginId.text;
+                 /*widget.model.phnNo = _loginId.text;
                   widget.model.passWord = passController.text ;*/
                   setState(() {
                     widget.model.phnNo = _loginId.text;
                     widget.model.passWord = passController.text;
-                    masterResponse = master.MasterLoginResponse.fromJson(map);
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) =>
-                          dialogUserView(context, masterResponse.body),
-                    );
-                    /* sharedPref.save(Const.LOGIN_phoneno, _loginId.text);
-                    sharedPref.save(Const.LOGIN_password, passController.text);
+                    sharedPref.save(Const.LOGIN_phoneno,_loginId.text);
+                    sharedPref.save(Const.LOGIN_password, passController.text );
                     LoginResponse1 loginResponse = LoginResponse1.fromJson(map);
                     widget.model.token = loginResponse.body.token;
                     widget.model.user = loginResponse.body.user;
                     sharedPref.save(Const.LOGIN_DATA, loginResponse);
                     widget.model.setLoginData1(loginResponse);
                     sharedPref.save(Const.IS_LOGIN, "true");
+                    FirebaseMessaging.instance.subscribeToTopic(loginResponse.body.user);
+                    FirebaseMessaging.instance.subscribeToTopic(loginResponse.body.userMobile);
 
-                    FirebaseMessaging.instance
-                        .subscribeToTopic(loginResponse.body.user);
-                    FirebaseMessaging.instance
-                        .subscribeToTopic(loginResponse.body.userMobile);
-
-                    /////By Sanjaya
-                    //Role 8- Lab Technician
-                    //Role 7- Pharmacy
-                    //Role 1- User
-                    //Role 12- Ambulance
-                    //Role 13- Blood bank
-                    //Role 15- NGO
-                    //Role 2- Doctor
-                    //Role 5- Reception
-                    //Role 22- syndicate partner
-
-                    if (loginResponse.body.roles[0] == "1".toLowerCase()) {
+                    if (loginResponse.body.roles[0] == "8".toLowerCase()) {
+                      Navigator.of(context).pushNamedAndRemoveUntil(
+                          '/patientDashboard', (Route<dynamic> route) => false);
+                    } else if (loginResponse.body.roles[0] == "1".toLowerCase()) {
                       Navigator.of(context).pushNamedAndRemoveUntil(
                           '/dashboard', (Route<dynamic> route) => false);
-                    } else if (loginResponse.body.roles[0] ==
-                        "2".toLowerCase()) {
+                    } else if (loginResponse.body.roles[0] == "2".toLowerCase()) {
                       Navigator.of(context).pushNamedAndRemoveUntil(
                           '/dashDoctor', (Route<dynamic> route) => false);
-                    } else if (loginResponse.body.roles[0] ==
-                        "5".toLowerCase()) {
+                    } else if(loginResponse.body.roles[0] == "7".toLowerCase()) {
                       Navigator.of(context).pushNamedAndRemoveUntil(
-                          '/dashboardreceptionlist',
-                          (Route<dynamic> route) => false);
-                    } else if (loginResponse.body.roles[0] ==
-                        "7".toLowerCase()) {
+                          '/dashboardpharmacy',(Route<dynamic> route) => false);
+                    }else if (loginResponse.body.roles[0] == "8".toLowerCase()) {
                       Navigator.of(context).pushNamedAndRemoveUntil(
-                          '/dashboardpharmacy',
-                          (Route<dynamic> route) => false);
-                    } else if (loginResponse.body.roles[0] ==
-                        "8".toLowerCase()) {
+                          '/labDash',(Route<dynamic> route) => false);
+                    }else if (loginResponse.body.roles[0] == "12".toLowerCase()) {
                       Navigator.of(context).pushNamedAndRemoveUntil(
-                          '/labDash', (Route<dynamic> route) => false);
-                    } else if (loginResponse.body.roles[0] ==
-                        "12".toLowerCase()) {
+                          '/ambulancedash',(Route<dynamic> route) => false);
+                    }else if (loginResponse.body.roles[0] == "13".toLowerCase()) {
                       Navigator.of(context).pushNamedAndRemoveUntil(
-                          '/ambulancedash', (Route<dynamic> route) => false);
-                    } else if (loginResponse.body.roles[0] ==
-                        "13".toLowerCase()) {
-                      Navigator.of(context).pushNamedAndRemoveUntil(
-                          '/bloodBankDashboard',
-                          (Route<dynamic> route) => false);
+                          '/bloodBankDashboard',(Route<dynamic> route) => false);
                     } else {
                       AppData.showInSnackBar(context, "No Role Assign");
-                    }*/
+                    }
                   });
-                } else {
-                  AppData.showInSnackBar(context, map[Const.MESSAGE]);
-                }
-              });
+    } else {
+    AppData.showInSnackBar(context, map[Const.MESSAGE]);
+    }
+  });
         }
       },
     );
@@ -783,15 +566,14 @@ class _LoginScreenState extends State<LoginScreen> {
                 //AppData.showInSnackBar(context, map[Const.MESSAGE]);
                 if (map[Const.CODE] == Const.SUCCESS) {
                   setState(() {
-                    masterResponse = master.MasterLoginResponse.fromJson(map);
-                   // LoginResponse1 loginResponse = LoginResponse1.fromJson(map);
+                    LoginResponse1 loginResponse = LoginResponse1.fromJson(map);
                     // widget.model.loginData=loginResponse;
                     Navigator.push(
                       context,
                       MaterialPageRoute(
                           builder: (BuildContext context) => PinView(
-                            masterLoginResponse: masterResponse,
-                                model: widget.model,
+                                // loginData: loginResponse,
+                                // model: widget.model,
                               )),
                     );
                   });
@@ -834,8 +616,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           //   size: 40,
                           // ),
                           onTap: () {
-                            Navigator.pop(context);
-
+                            //Navigator.pop(context);
                             Navigator.pushNamed(context, "/userSignUpForm");
                             //_validate();
                           },
@@ -851,9 +632,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           // ),
                           onTap: () {
                             //Navigator.pop(context);
-                            organisationDialog(context, "/doctorsignupform2");
-                            //Navigator.pop(context);
-                            //Navigator.pushNamed(context, "/doctorsignupform2");
+                            Navigator.pushNamed(context, "/doctorsignupform2");
                             // Navigator.pushNamed(context, "/doctorsignupform");
                             //_validate();
                           },
@@ -868,9 +647,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           //   size: 40,
                           // ),
                           onTap: () {
-                            //Navigator.pop(context);
-                            organisationDialog(context, "/labsignupform");
-                            //Navigator.pushNamed(context, "/labsignupform");
+                            Navigator.pop(context);
+                            Navigator.pushNamed(context, "/labsignupform");
                           },
                         ),
                         Divider(),
@@ -883,8 +661,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           //   size: 40,
                           // ),
                           onTap: () {
-                            // Navigator.pop(context);
-                            organisationDialog(context, "/pharmacists");
+                            Navigator.pop(context);
+                            Navigator.pushNamed(context, "/pharmacists");
                           },
                         ),
                         Divider(),
@@ -897,8 +675,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           //   size: 40,
                           // ),
                           onTap: () {
-                            // Navigator.pop(context);
-                            organisationDialog(context, "/ambulance");
+                            Navigator.pop(context);
+                            Navigator.pushNamed(context, "/ambulance");
                           },
                         ),
                         Divider(),
@@ -911,8 +689,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           //   size: 40,
                           // ),
                           onTap: () {
-                            // Navigator.pop(context);
-                            organisationDialog(context, "/ngo");
+                            Navigator.pop(context);
+                            Navigator.pushNamed(context, "/ngo");
                           },
                         ),
                         Divider(),
@@ -925,40 +703,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           //   size: 40,
                           // ),
                           onTap: () {
-                            //Navigator.pop(context);
-                            organisationDialog(context, "/bloodbank");
-                          },
-                        ),
-                        Divider(),
-                        ListTile(
-                          title: Center(child: Text(MyLocalizations.of(context)
-                                         .text("RECEPTIONIST"))),
-                          // leading: Icon(
-                          //   CupertinoIcons.calendar_today,
-                          //   size: 40,
-                          // ),
-                          onTap: () {
-                            //Navigator.pop(context);
-                            organisationDialog(
-                                context, "/receptionlistsignUpformm");
-                            // Navigator.pushNamed(context, "/doctorsignupform");
-                            //_validate();
-                          },
-                        ),
-                        Divider(),
-                        ListTile(
-                          title: Center(child: Text(MyLocalizations.of(context)
-                              .text("SYNDICATE_PARTNER"))),
-                          // leading: Icon(
-                          //   CupertinoIcons.calendar_today,
-                          //   size: 40,
-                          // ),
-                          onTap: () {
-                            //Navigator.pop(context);
-                            organisationDialog(
-                                context, "/syndicatesignUpformm");
-                            // Navigator.pushNamed(context, "/doctorsignupform");
-                            //_validate();
+                            Navigator.pop(context);
+                            Navigator.pushNamed(context, "/bloodbank");
                           },
                         ),
                         Divider(),
@@ -979,132 +725,5 @@ class _LoginScreenState extends State<LoginScreen> {
             },
           );
         });
-  }
-
-  organisationDialog(BuildContext context, String organisation) {
-    // set up the buttons
-    Widget cancelButton = TextButton(
-      child: Text(MyLocalizations.of(context).text("CANCEL"),
-          style: TextStyle(color: AppData.kPrimaryRedColor)),
-      onPressed: () {
-        Navigator.pop(context);
-        Navigator.pop(context);
-        // Navigator.pushNamed(context, "/organisationSignUpForm");
-      },
-    );
-    Widget noButton = TextButton(
-      child: Text(MyLocalizations.of(context).text("NO"), style: TextStyle(color: AppData.kPrimaryRedColor)),
-      onPressed: () {
-        Navigator.pop(context);
-        // Navigator.pop(context);
-        //Navigator.pop(context);
-        Navigator.pushNamed(context, "/organisationSignUpForm");
-      },
-    );
-    Widget continueButton = TextButton(
-      child: Text(MyLocalizations.of(context).text("YES"), style: TextStyle(color: AppData.matruColor)),
-      onPressed: () {
-        Navigator.pop(context);
-        //Navigator.pop(context);
-
-        //Navigator.pushNamed(context, "/doctorsignupform2");
-        Navigator.pushNamed(context, organisation);
-        // String listid = patientProfileModel.body.familyDetailsList[index].famid;
-        // String familydetails="3";
-
-        //  FamilyDeleteApi(listid,familydetails);
-      },
-    );
-
-    // set up the AlertDialog
-    AlertDialog alert = AlertDialog(
-      title: Text(MyLocalizations.of(context).text("HAVE_REG_YOUR_ORG")),
-      // content: Text("Do You Want to Delete ?"),
-      actions: [
-        cancelButton,
-        noButton,
-        continueButton,
-      ],
-    );
-
-    // show the dialog
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return alert;
-      },
-    );
-
-/*
-    showDialog(
-        builder: (context) {
-          return AlertDialog(
-            contentPadding: EdgeInsets.only(left: 5, right: 5, top: 5),
-            insetPadding: EdgeInsets.only(left: 5, right: 5, top: 5),
-            content: StatefulBuilder(
-              builder: (BuildContext context, StateSetter setState) {
-                return Container(
-                  width: MediaQuery.of(context).size.width * 0.86,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                     */ /* Positioned(
-                        right: 10.0,
-                        child: GestureDetector(
-                          onTap: () {
-                            Navigator.of(context).pop();
-                          },
-                          child: Align(
-                            alignment: Alignment.topRight,
-                            child: CircleAvatar(
-                              radius: 10.0,
-                              backgroundColor: Colors.white,
-                              child: Icon(Icons.close, color: Colors.red,size: 25,),
-                            ),
-                          ),
-                        ),
-                      ),*/ /*
-                   Align(
-                  alignment: Alignment.center,
-                    child: Text(
-                        "Have you register your organisation in our eHealthSystems?",
-                        style: TextStyle(
-                            color: Colors.black, fontSize: 20,fontWeight: FontWeight.w400, // light
-                            fontStyle: FontStyle.normal ),
-                      ),
-                   ),
-                      SizedBox(height: 10),
-
-                    ],
-                  ),
-                );
-              },
-            ),
-            actions: <Widget>[
-              FlatButton(
-                //textColor: Colors.grey,
-                child: Text("No", style: TextStyle(color: AppData.kPrimaryRedColor)),
-                onPressed: () {
-                 // Navigator.pushNamed(context, "/doctorsignupform2");
-
-                },
-              ),
-              FlatButton(
-                //textColor: Colors.grey,
-                child: Text(
-                  "Yes", style: TextStyle(color: AppData.matruColor),
-                ),
-                onPressed: () {
-                  Navigator.pushNamed(context,organisation */ /*"/doctorsignupform2"*/ /*);
-
-
-                },
-              ),
-            ],
-          );
-        },
-        context: context);*/
   }
 }

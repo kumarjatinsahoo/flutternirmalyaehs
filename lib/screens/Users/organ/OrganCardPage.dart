@@ -10,20 +10,18 @@ import 'package:user/scoped-models/MainModel.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'dart:convert';
 
-class GovermentSchemesDitelsPage extends StatefulWidget {
+class OrgancardPage extends StatefulWidget {
   final MainModel model;
-  const GovermentSchemesDitelsPage({Key key,this.model}) : super(key: key);
+  const OrgancardPage({Key key,this.model}) : super(key: key);
 
   @override
-  _GovermentSchemesDitelsPageState createState() => _GovermentSchemesDitelsPageState();
+  _OrgancardPageState createState() => _OrgancardPageState();
 }
 
-class _GovermentSchemesDitelsPageState extends State<GovermentSchemesDitelsPage> {
+class _OrgancardPageState extends State<OrgancardPage> {
   Completer<WebViewController> _controller = Completer<WebViewController>();
 
   String id;
-  String doctorid;
-  String datest;
   LoginResponse1 loginResponse1;
 
 
@@ -32,10 +30,7 @@ class _GovermentSchemesDitelsPageState extends State<GovermentSchemesDitelsPage>
     // TODO: implement initState
     super.initState();
     loginResponse1=widget.model.loginResponse1;
-
-    /*    id=base64.encode(utf8.encode(loginResponse1.body.user));
-    doctorid=base64.encode(utf8.encode( widget?.model?.doctorst));
-    datest=base64.encode(utf8.encode( widget?.model?.meddatest));*/
+    id=base64.encode(utf8.encode(loginResponse1.body.user));
   }
   final Completer<InAppWebViewController> _controller1 =
   Completer<InAppWebViewController>();
@@ -50,7 +45,7 @@ class _GovermentSchemesDitelsPageState extends State<GovermentSchemesDitelsPage>
         disableVerticalScroll: false,
       ),
   );
-/* final Completer<InAppWebViewController> _controller1 =
+/*  final Completer<InAppWebViewController> _controller1 =
   Completer<InAppWebViewController>();
 
   final InAppWebViewGroupOptions _options = InAppWebViewGroupOptions(
@@ -99,7 +94,7 @@ class _GovermentSchemesDitelsPageState extends State<GovermentSchemesDitelsPage>
           children: [
             Center(
               child: Text(
-                'Schemes Details',
+                'Organ Card',
                 style: TextStyle(color: Colors.white),
               ),
             ),
@@ -120,16 +115,18 @@ class _GovermentSchemesDitelsPageState extends State<GovermentSchemesDitelsPage>
         // iconTheme: IconThemeData(color: AppData.kPrimaryColor,),
       ),
       body: Builder(builder: (BuildContext context) {
-        print(widget.model.pdfurl);
+        print("api......" +
+            ApiFactory.TEST_VIEW_ORGANCARD+id);
         return Container(
           width: MediaQuery.of(context).size.width,
           child: SizedBox(
             // width: MediaQuery.of(context).size.height,
             child: InAppWebView(
               initialUrlRequest: URLRequest(
-                  url: Uri.parse(widget.model.pdfurl)),
+                  //ApiFactory.TEST_VIEW_PRESCRIPTION+id
+                  url: Uri.parse(ApiFactory.TEST_VIEW_ORGANCARD+id)),
               initialOptions: _options,
-              shouldOverrideUrlLoading:(controller, action) {
+              shouldOverrideUrlLoading: (controller, action) {
                 print("override");
                 return Future.value(NavigationActionPolicy.ALLOW);
               },
@@ -167,6 +164,6 @@ class _GovermentSchemesDitelsPageState extends State<GovermentSchemesDitelsPage>
 
   _onShareWithEmptyFields(BuildContext context) async {
 
-    await Share.share("https://ehealthsystem.com/user/mobile-organ-donation-pdf-download?id="+id,);
+    await Share.share("https://demo.ehealthsystem.com/user/mobile-organ-donation-pdf-download?id="+id,);
   }
 }
