@@ -67,7 +67,6 @@ class Const {
   static const String NEXT_SERVER_LOAD = "next_server_load";
   static const String ALREADY_REG_STATUS = "registered";
   static const String APP_ID = "8036d1868bd71fb6b500cb18eeec3936";
-
   static String DOC_APNT = "DOC_APNT";
   static String HEALTH_SCREENING_APNT = "HEALTH_SCREENING_APNT";
   static String CONFIRMED = "CONFIRMED";
