@@ -804,8 +804,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
         log("Response after assign>>>>"+jsonEncode(loginResponse.toJson()));
         sharedPref.save(Const.LOGIN_DATA, loginResponse);
         widget.model.setLoginData1(loginResponse);
-        FirebaseMessaging.instance.subscribeToTopic(loginResponse.body.user);
-        FirebaseMessaging.instance.subscribeToTopic(loginResponse.body.userMobile);
+
+        FirebaseMessaging.instance.subscribeToTopic(data.user);
+        FirebaseMessaging.instance.subscribeToTopic(data.userMobile);
 
         if (map["body"]["roleid"] == "1".toLowerCase()) {
           Navigator.of(context).pushNamedAndRemoveUntil(
