@@ -2,25 +2,19 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
-import 'package:dio/dio.dart';
-import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:image_cropper/image_cropper.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:user/models/IntrestSignupModel.dart'as intrest;
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/models/UserRegistrationModel.dart';
 import 'package:user/providers/Const.dart';
-import 'package:user/providers/DropDown.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
-import 'package:user/widgets/text_field_container.dart';
 import '../../localization/localizations.dart';
 import '../../models/KeyvalueModel.dart';
 import '../../providers/app_data.dart';
@@ -59,6 +53,8 @@ class IntrestSignUpFormState extends State<IntrestSignUpForm> {
   bool _autovalidate = false;
   DateTime selectedDate = DateTime.now();
   bool isChecked = false;
+ intrest. IntrestSignUp intrestSignUp;
+
   List<TextEditingController> textEditingController = [
     new TextEditingController(),
     new TextEditingController(),
@@ -156,7 +152,31 @@ class IntrestSignUpFormState extends State<IntrestSignUpForm> {
     IntrestSignUpForm.stateModel = null;
     IntrestSignUpForm.districtModel = null;
     IntrestSignUpForm.cityModel = null;
+    callAPI();
   }
+  callAPI() {
+    widget.model.GETMETHODCALL(
+        api: ApiFactory.INTREST_SIGNUP ,
+        fun: (Map<String, dynamic> map) {
+          setState(() {
+            log("Json Response>>>" + JsonEncoder().convert(map));
+            String msg = map[Const.MESSAGE];
+            if (map[Const.CODE] == Const.SUCCESS) {
+              setState(() {
+                intrestSignUp =
+                    intrest.IntrestSignUp.fromJson(map);
+                //isdata = false;
+              });
+            } else {
+
+
+              //isDataNotAvail = true;
+              //AppData.showInSnackBar(context, msg);
+            }
+          });
+        });
+  }
+
 
   void connectionChanged(dynamic hasConnection) {
     setState(() {
@@ -220,7 +240,7 @@ class IntrestSignUpFormState extends State<IntrestSignUpForm> {
         backgroundColor: AppData.kPrimaryColor,
         iconTheme: IconThemeData(color: Colors.white),
       ),
-      body: Container(
+      body:  (intrestSignUp!=null)?  Container(
         child: SingleChildScrollView(
           child: Column(
             children: [
@@ -238,14 +258,14 @@ class IntrestSignUpFormState extends State<IntrestSignUpForm> {
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
                 itemBuilder: (context, i) {
-//                  news.Body body = newsupdatemodel.body[i];
+                  intrest.Body body = intrestSignUp.body[i];
                   //  print("video###############"+body.vdoURL);
                   // String docTyp=getFormatType(body.extension);
                   return Container(
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Column(children: [
-                        Text("Environment" + " : ",
+                        Text(body.catagory + " : ",
                             style: TextStyle(
                                 color: AppData.kPrimaryColor,
                                 fontSize: 20,
@@ -254,7 +274,7 @@ class IntrestSignUpFormState extends State<IntrestSignUpForm> {
                           shrinkWrap: true,
                           physics: NeverScrollableScrollPhysics(),
                           itemBuilder: (context, i) {
-//                  news.Body body = newsupdatemodel.body[i];
+                            intrest.Body body = intrestSignUp.body[i];
                             //  print("video###############"+body.vdoURL);
                             // String docTyp=getFormatType(body.extension);
                             return Container(
@@ -267,9 +287,7 @@ class IntrestSignUpFormState extends State<IntrestSignUpForm> {
                                       activeColor: Colors.blue[300],
                                       dense: true,
                                       title: new Text(
-                                        MyLocalizations.of(context)
-                                            .text("ALL_ORGAN")
-                                            .toUpperCase(),
+                                            "body.subCatagoryList",
                                         style: TextStyle(
                                             fontSize: 14,
                                             fontWeight: FontWeight.bold,
@@ -328,7 +346,7 @@ class IntrestSignUpFormState extends State<IntrestSignUpForm> {
             ],
           ),
         ),
-      ),
+      ):Container(),
     );
   }
 

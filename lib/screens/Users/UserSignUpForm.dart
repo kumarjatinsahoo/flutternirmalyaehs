@@ -39,7 +39,6 @@ class UserSignUpForm extends StatefulWidget {
   static KeyvalueModel cityModel = null;
 
 
-
   UserSignUpForm({
     Key key,
     @required this.updateTab,
@@ -1125,7 +1124,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
           padding:
           EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
           child: Text(
-            MyLocalizations.of(context).text("SUBMIT"),
+            MyLocalizations.of(context).text("NEXT"),
             textAlign: TextAlign.center,
             style: TextStyle(color: Colors.white, fontSize: 16.0),
           ),
@@ -1298,6 +1297,21 @@ class UserSignUpFormState extends State<UserSignUpForm> {
       AppData.showInSnackBar(context, "Please check terms and conditions");
     }
     else {
+
+     /* widget.model.title = UserSignUpForm.titleModel.key;
+      widget.model.firstname = textEditingController[0].text;
+      widget.model.lastname = textEditingController[1].text;
+      widget.model.userrphoneno = textEditingController[2].text;
+      widget.model.usercountry = UserSignUpForm.countryModel.key;
+      widget.model.countrycode = UserSignUpForm.countryModel.code;
+      widget.model.statecode = UserSignUpForm.stateModel.code;
+      widget.model.userstate = UserSignUpForm.stateModel.key;
+      widget.model.userdistrict = UserSignUpForm.districtModel.key;
+      widget.model.city = UserSignUpForm.cityModel.key;
+      widget.model.usergender = UserSignUpForm.genderModel.key;
+      Navigator.pushNamed(context, "/intrestsignup");
+
+    }*/
       // PatientSignupModel patientSignupModel = PatientSignupModel();
       userModel.fName = textEditingController[0].text;
       userModel.lName = textEditingController[1].text;
