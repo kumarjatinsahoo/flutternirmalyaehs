@@ -38,7 +38,7 @@ class ApiFactory {
   static String GET_VERSION = MAIN_URL + 'get-version';
 
   /*static String BIOMEDICAL_IMPLANTS =
-      MAIN_URL + 'view-user-biomedical-implant-list-api?userid=';*/
+        MAIN_URL + 'view-user-biomedical-implant-list-api?userid=';*/
   static String UPLOAD_DOCUMENT = MAIN_URL + 'get-medical-upload-details-api?userid=';
   static String DIESEINFO = MAIN_URL + 'get-disease-info-list';
   static String IMMUNIZATION_LIST = MAIN_URL + 'get-immunization-patient-details?userid=';
