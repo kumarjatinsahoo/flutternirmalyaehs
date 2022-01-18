@@ -45,7 +45,7 @@ class _ChemistsOngooglePageState extends State<ChemistsOngooglePage> {
     addr = widget.model.addr;
     healthpro = widget.model.healthproname;
     type = widget.model.type;
-    speciality = FindPage.specialistModel.name;
+    speciality = FindPage.specialistModel?.name??"";
     callAPI();
   }
 

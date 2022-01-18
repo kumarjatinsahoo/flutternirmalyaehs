@@ -27,6 +27,8 @@ class _PatientRegistration4State extends State<PatientRegistration4> {
   String profileImage = null;
   String valueText = null;
   String codeDialog = null;
+  String useridd;
+  String password;
   TextEditingController _name = TextEditingController();
   TextEditingController _address = TextEditingController();
   TextEditingController _email = TextEditingController();
@@ -357,7 +359,11 @@ class _PatientRegistration4State extends State<PatientRegistration4> {
           String msg = map["message"].toString();
           String userid = map["body"].toString();
           if (map["code"] == "success") {
-            popup(msg, context,userid,patientphnNo);
+            setState(() {
+              useridd = map["body"]["key"];
+              password = map["body"]["name"];
+              popup(msg, context,userid,patientphnNo,password,useridd);
+            });
           } else {
             AppData.showInSnackBar(context, msg);
           }
@@ -367,7 +373,7 @@ class _PatientRegistration4State extends State<PatientRegistration4> {
     );
   }
 
-  popup(String msg, BuildContext context,String userid,String mobile) {
+  popup(String msg, BuildContext context,String userid,String mobile,String useridd,String password) {
     return Alert(
         context: context,
         //title: "Success",
@@ -408,7 +414,7 @@ class _PatientRegistration4State extends State<PatientRegistration4> {
               height: 5,
             ),
             Text(
-              "UserId:"+userid,
+              "UserId:"+useridd,
               style: TextStyle(
                   color: Colors.black,
                   fontSize: 17,
@@ -418,7 +424,7 @@ class _PatientRegistration4State extends State<PatientRegistration4> {
               height: 5,
             ),
             Text(
-              "Password is: User@123",
+              "Password is:"+password,
               style: TextStyle(
                   color: Colors.black,
                   fontSize: 17,

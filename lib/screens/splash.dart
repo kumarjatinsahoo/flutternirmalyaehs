@@ -216,19 +216,19 @@ class _SplashScreenState extends State<SplashScreen> {
                       ),
                     ),
                     SizedBox(
-                      height: 5.0,
+                      height: 170.0,
                     ),
-                    /*Padding(
+                    Padding(
                       padding: const EdgeInsets.only(left: 25.0, right: 25.0),
                       child: Text(
-                        "Matrujyoti",
+                        "Version : 2.1.1",
                         style: TextStyle(
                             color: AppData.kPrimaryColor,
-                            fontSize: 22.0,
+                            fontSize: 15.0,
                             fontWeight: FontWeight.bold),
                         textAlign: TextAlign.center,
                       ),
-                    )*/
+                    )
                   ],
                 ),
               ),
