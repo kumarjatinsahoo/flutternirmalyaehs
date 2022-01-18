@@ -454,7 +454,6 @@ class _PatientRegistration4State extends State<PatientRegistration4> {
               Navigator.pop(context);
               Navigator.pop(context);
               Navigator.pop(context);*/
-
               Navigator.pop(context);
              /* widget.model.patientphnNo = null;
               widget.model.patientemail = null;
