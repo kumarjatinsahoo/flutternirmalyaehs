@@ -4,20 +4,21 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
 import 'package:share/share.dart';
 import 'package:user/models/LoginResponse1.dart';
+import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'dart:convert';
 
-class OrganPriviewPage extends StatefulWidget {
+class OrgancardPage extends StatefulWidget {
   final MainModel model;
-  const OrganPriviewPage({Key key,this.model}) : super(key: key);
+  const OrgancardPage({Key key,this.model}) : super(key: key);
 
   @override
-  _OrganPriviewPageState createState() => _OrganPriviewPageState();
+  _OrgancardPageState createState() => _OrgancardPageState();
 }
 
-class _OrganPriviewPageState extends State<OrganPriviewPage> {
+class _OrgancardPageState extends State<OrgancardPage> {
   Completer<WebViewController> _controller = Completer<WebViewController>();
 
   String id;
@@ -115,15 +116,15 @@ class _OrganPriviewPageState extends State<OrganPriviewPage> {
       ),
       body: Builder(builder: (BuildContext context) {
         print("api......" +
-            'https://ehealthsystem.com/download-ehealthcard?userid=' +
-            id);
+            ApiFactory.TEST_VIEW_ORGANCARD+id);
         return Container(
           width: MediaQuery.of(context).size.width,
           child: SizedBox(
             // width: MediaQuery.of(context).size.height,
             child: InAppWebView(
               initialUrlRequest: URLRequest(
-                  url: Uri.parse("https://demo.ehealthsystem.com/user/mobile-organ-donation-pdf-download?id="+id)),
+                  //ApiFactory.TEST_VIEW_PRESCRIPTION+id
+                  url: Uri.parse(ApiFactory.TEST_VIEW_ORGANCARD+id)),
               initialOptions: _options,
               shouldOverrideUrlLoading: (controller, action) {
                 print("override");

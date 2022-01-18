@@ -133,13 +133,13 @@ class _SplashScreenState extends State<SplashScreen> {
             // padding: EdgeInsets.only(left: 5, right: 5, top: 20),
             //color: Colors.grey,
             width: MediaQuery.of(context).size.width * 0.9,
-            height: 100,
+            height: 110,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
                   child: Text(
                     "New features added on the latest app please update your app.",
                     style: TextStyle(
@@ -328,7 +328,7 @@ class _SplashScreenState extends State<SplashScreen> {
     //SharedPref sharedPref = SharedPref();
     try {
       if (androidVersion != null &&
-          int.tryParse(androidVersion) > int.tryParse(Const.ANDROID)) {
+          int.tryParse(androidVersion) > int.tryParse((Platform.isAndroid)?Const.ANDROID:Const.IOS)) {
         // log("Out login>>>>>>>");
         showDialog(
           context: context,

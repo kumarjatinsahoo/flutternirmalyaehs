@@ -11,6 +11,7 @@ class ResultsServer {
         this.formattedAddress,
         this.geometry,
         this.placeId,
+
         //this.plusCode,
         this.types});
 
@@ -23,8 +24,7 @@ class ResultsServer {
     }
     formattedAddress = json['formatted_address'];
     geometry = json['geometry'] != null
-        ? new Geometry.fromJson(json['geometry'])
-        : null;
+        ? new Geometry.fromJson(json['geometry']): null;
     placeId = json['place_id'];
    /* plusCode = json['plus_code'] != null
         ? new PlusCode.fromJson(json['plus_code'])
