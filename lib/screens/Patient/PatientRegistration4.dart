@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -357,23 +358,23 @@ class _PatientRegistration4State extends State<PatientRegistration4> {
         widget.model.postSignUp(token, patientSignupModel.toJson(),
             (Map<String, dynamic> map) {
           String msg = map["message"].toString();
-          String userid = map["body"].toString();
+          //String userid = map["body"].toString();
           if (map["code"] == "success") {
             setState(() {
               useridd = map["body"]["key"];
               password = map["body"]["name"];
-              popup(msg, context,userid,patientphnNo,password,useridd);
+              log("Version>>>" + useridd + "<>>" + password);
+              popup(msg, context,patientphnNo,password,useridd);
             });
           } else {
             AppData.showInSnackBar(context, msg);
           }
         });
-
       },
     );
   }
 
-  popup(String msg, BuildContext context,String userid,String mobile,String useridd,String password) {
+  popup(String msg, BuildContext context,String mobile,String password,String useridd) {
     return Alert(
         context: context,
         //title: "Success",
