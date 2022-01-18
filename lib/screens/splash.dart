@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:intro_slider/intro_slider.dart';
 import 'package:intro_slider/slide_object.dart';
+import 'package:package_info/package_info.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/models/MasterLoginResponse.dart';
 import 'package:user/providers/ConnectionStatusSingleton.dart';
@@ -54,12 +55,20 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
 
   }*/
+  PackageInfo _packageInfo = PackageInfo(
+    appName: 'Unknown',
+    packageName: 'Unknown',
+    version: 'Unknown',
+    buildNumber: 'Unknown',
+  );
+
   @override
   void initState() {
     super.initState();
     //getVersion();
     fetchLocalData();
     isFirstTimes();
+    _initPackageInfo();
     // callResourceTimer();
     // ConnectionStatusSingleton connectionStatus =
     //     ConnectionStatusSingleton.getInstance();
@@ -73,6 +82,12 @@ class _SplashScreenState extends State<SplashScreen> {
       }
     });*/
 
+  }
+  Future<void> _initPackageInfo() async {
+    final PackageInfo info = await PackageInfo.fromPlatform();
+    setState(() {
+      _packageInfo = info;
+    });
   }
 
   getVersion() {
@@ -215,13 +230,13 @@ class _SplashScreenState extends State<SplashScreen> {
                         height: 210.0,
                       ),
                     ),
-                    SizedBox(
+                    /*SizedBox(
                       height: 170.0,
-                    ),
+                    ),*/
                     Padding(
                       padding: const EdgeInsets.only(left: 25.0, right: 25.0),
                       child: Text(
-                        "Version : 2.1.1",
+                        "Version :"+ _packageInfo.version,
                         style: TextStyle(
                             color: AppData.kPrimaryColor,
                             fontSize: 15.0,
@@ -249,7 +264,12 @@ class _SplashScreenState extends State<SplashScreen> {
       ),
     );
   }
-
+  /*PackageInfo.fromPlatform().then((PackageInfo packageInfo) {
+  String appName = packageInfo.appName;
+  String packageName = packageInfo.packageName;
+  String version = packageInfo.version;
+  String buildNumber = packageInfo.buildNumber;
+  });*/
   fetchLocalData() async {
     try {
       login = await sharedPref.getKey(Const.IS_LOGIN);

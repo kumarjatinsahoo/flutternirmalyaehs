@@ -1334,8 +1334,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
     return Alert(
         context: context,
         title: message,
-        desc:
-        MyLocalizations.of(context).text("REG_SUCCESS_POPUP"),
+        desc: MyLocalizations.of(context).text("REG_SUCCESS_POPUP"),
         type: AlertType.success,
         onWillPopActive: true,
         closeIcon: Icon(
