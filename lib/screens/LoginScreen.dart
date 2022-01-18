@@ -596,8 +596,8 @@ class _LoginScreenState extends State<LoginScreen> {
             sharedPref.save(Const.LOGIN_phoneno, _loginId.text);
             sharedPref.save(Const.LOGIN_password, passController.text);
             LoginResponse1 loginResponse = LoginResponse1();
-            FirebaseMessaging.instance.subscribeToTopic(loginResponse.body.user);
-            FirebaseMessaging.instance.subscribeToTopic(loginResponse.body.userMobile);
+            /*FirebaseMessaging.instance.subscribeToTopic(loginResponse.body.user);
+            FirebaseMessaging.instance.subscribeToTopic(loginResponse.body.userMobile);*/
             // FirebaseMessaging.instance.subscribeToTopic(loginResponse.body.userMobile);
             // loginResponse.acceptValue(data[i]);
             Body body = Body();
@@ -620,6 +620,9 @@ class _LoginScreenState extends State<LoginScreen> {
             sharedPref.save(Const.MASTER_RESPONSE, masterResponse);
             widget.model.setLoginData1(loginResponse);
             sharedPref.save(Const.IS_LOGIN, "true");
+
+        FirebaseMessaging.instance.subscribeToTopic(data.user);
+        FirebaseMessaging.instance.subscribeToTopic(data.userMobile);
 
             if (map["body"]["roleid"] == "1".toLowerCase()) {
               Navigator.of(context).pushNamedAndRemoveUntil(
