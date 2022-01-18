@@ -71,7 +71,6 @@ class _MedicineList extends State<HealthChaatlist> {
     new TextEditingController(),
     new TextEditingController(),
     new TextEditingController(),
-
   ];
   TimeOfDay selectedTime = TimeOfDay.now();
   FocusNode fnode1 = new FocusNode();
@@ -98,6 +97,7 @@ class _MedicineList extends State<HealthChaatlist> {
   String time;
 
   bool isActive = true;
+
   void initState() {
     // TODO: implement initState
     super.initState();
@@ -144,7 +144,8 @@ class _MedicineList extends State<HealthChaatlist> {
                                 onTap: () {
                                   showDialog(
                                     context: context,
-                                    builder: (BuildContext context) => dialogUserView(context),
+                                    builder: (BuildContext context) =>
+                                        dialogUserView(context),
                                   );
                                 },
                                 child: Card(
@@ -213,485 +214,513 @@ class _MedicineList extends State<HealthChaatlist> {
                               )),
                               Container(
                                   child: InkWell(
-                                    onTap: () {
-                                      showDialog(
-                                        context: context,
-                                        builder: (BuildContext context) => dialogUserViewBloodpressur(context),
-                                      );
-                                    },
-                                    child: Card(
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(5.0),
-                                      ),
-                                      elevation: 5,
-                                      child: ClipPath(
-                                        clipper: ShapeBorderClipper(
-                                            shape: RoundedRectangleBorder(
-                                                borderRadius:
+                                onTap: () {
+                                  showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) =>
+                                        dialogUserViewBloodpressur(context),
+                                  );
+                                },
+                                child: Card(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(5.0),
+                                  ),
+                                  elevation: 5,
+                                  child: ClipPath(
+                                    clipper: ShapeBorderClipper(
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
                                                 BorderRadius.circular(5))),
-                                        child: Container(
-                                          //height: tileSize,
-                                          // width: double.maxFinite,
-                                            decoration: BoxDecoration(
-                                                border: Border(
-                                                    left: BorderSide(
-                                                        color:
-                                                        AppData.kPrimaryRedColor,
-                                                        width: 5))),
-                                            child: Row(
-                                              children: [
-                                                Padding(
-                                                  padding:
+                                    child: Container(
+                                        //height: tileSize,
+                                        // width: double.maxFinite,
+                                        decoration: BoxDecoration(
+                                            border: Border(
+                                                left: BorderSide(
+                                                    color: AppData
+                                                        .kPrimaryRedColor,
+                                                    width: 5))),
+                                        child: Row(
+                                          children: [
+                                            Padding(
+                                              padding:
                                                   const EdgeInsets.symmetric(
                                                       horizontal: 10.0,
                                                       vertical: 16),
-                                                  child: Column(
-                                                    crossAxisAlignment:
+                                              child: Column(
+                                                crossAxisAlignment:
                                                     CrossAxisAlignment.start,
-                                                    mainAxisAlignment:
+                                                mainAxisAlignment:
                                                     MainAxisAlignment.center,
-                                                    children: [
-                                                      Text(
-                                                        "Blood Pressure"
-                                                            .toUpperCase(),
-                                                        style: TextStyle(
-                                                            fontWeight:
+                                                children: [
+                                                  Text(
+                                                    "Blood Pressure"
+                                                        .toUpperCase(),
+                                                    style: TextStyle(
+                                                        fontWeight:
                                                             FontWeight.bold,
-                                                            fontSize: 16),
-                                                      ),
-                                                      SizedBox(
-                                                        height: 5,
-                                                      ),
-                                                      Text(
-                                                        "Systolic/Diastolic",
-                                                        style: TextStyle(
-                                                            fontSize: 13,
-                                                            color: Colors.grey),
-                                                      )
-                                                    ],
+                                                        fontSize: 16),
                                                   ),
-                                                ),
-                                                Spacer(),
-                                                Padding(
-                                                  padding: const EdgeInsets.only(
-                                                      right: 5.0),
-                                                  child: Icon(Icons.more_vert,
-                                                      size: 25),
-                                                )
-                                              ],
-                                            )),
-                                      ),
-                                    ),
-                                  )),
+                                                  SizedBox(
+                                                    height: 5,
+                                                  ),
+                                                  Text(
+                                                    "Systolic/Diastolic",
+                                                    style: TextStyle(
+                                                        fontSize: 13,
+                                                        color: Colors.grey),
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                            Spacer(),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  right: 5.0),
+                                              child: Icon(Icons.more_vert,
+                                                  size: 25),
+                                            )
+                                          ],
+                                        )),
+                                  ),
+                                ),
+                              )),
                               Container(
                                   child: InkWell(
-                                      //
-                                    onTap: () {
-                                      showDialog(
-                                        context: context,
-                                        builder: (BuildContext context) => dialogUserViewCompleteBloodCount(context),
-                                      );
-                                    },
-                                    child: Card(
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(5.0),
-                                      ),
-                                      elevation: 5,
-                                      child: ClipPath(
-                                        clipper: ShapeBorderClipper(
-                                            shape: RoundedRectangleBorder(
-                                                borderRadius:
+                                //
+                                onTap: () {
+                                  showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) =>
+                                        dialogUserViewCompleteBloodCount(
+                                            context),
+                                  );
+                                },
+                                child: Card(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(5.0),
+                                  ),
+                                  elevation: 5,
+                                  child: ClipPath(
+                                    clipper: ShapeBorderClipper(
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
                                                 BorderRadius.circular(5))),
-                                        child: Container(
-                                          //height: tileSize,
-                                          // width: double.maxFinite,
-                                            decoration: BoxDecoration(
-                                                border: Border(
-                                                    left: BorderSide(
-                                                        color:
+                                    child: Container(
+                                        //height: tileSize,
+                                        // width: double.maxFinite,
+                                        decoration: BoxDecoration(
+                                            border: Border(
+                                                left: BorderSide(
+                                                    color:
                                                         AppData.kPrimaryColor,
-                                                        width: 5))),
-                                            child: Row(
-                                              children: [
+                                                    width: 5))),
+                                        child: Row(
+                                          children: [
                                             Expanded(
-                                              child:  Padding(
-                                                  padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 10.0,
-                                                      vertical: 10),
-                                                  child: Column(
-                                                    crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                    mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                    children: [
-                                                      Text(
-                                                        "Complete blood Count"
-                                                            .toUpperCase(),
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 10.0,
+                                                        vertical: 10),
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Text(
+                                                      "Complete blood Count"
+                                                          .toUpperCase(),
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontSize: 16),
+                                                    ),
+                                                    SizedBox(
+                                                      height: 5,
+                                                    ),
+                                                    Text(
+                                                        "Hb,WBCs,Nutrophils,Eosinophils,Basophis,Monocytes,platelets,ESR,Hct.....",
                                                         style: TextStyle(
-                                                            fontWeight:
-                                                            FontWeight.bold,
-                                                            fontSize: 16),
-                                                      ),
-                                                      SizedBox(
-                                                        height: 5,
-                                                      ),
-                                        Text(
-                                           "Hb,WBCs,Nutrophils,Eosinophils,Basophis,Monocytes,platelets,ESR,Hct.....",
-                                           style: TextStyle(
-                                               fontSize: 13,
-                                               color: Colors.grey))
-                                                    ],
-                                                  ),
-                                                ),),
-
-                                                Padding(
-                                                  padding: const EdgeInsets.only(
-                                                      right: 5.0),
-                                                  child: Icon(Icons.more_vert,
-                                                      size: 25),
-                                                )
-                                              ],
-                                            )),
-                                      ),
-                                    ),
-                                  )),
+                                                            fontSize: 13,
+                                                            color: Colors.grey))
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  right: 5.0),
+                                              child: Icon(Icons.more_vert,
+                                                  size: 25),
+                                            )
+                                          ],
+                                        )),
+                                  ),
+                                ),
+                              )),
                               Container(
                                   child: InkWell(
-                                    onTap: () {},
-                                    child: Card(
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(5.0),
-                                      ),
-                                      elevation: 5,
-                                      child: ClipPath(
-                                        clipper: ShapeBorderClipper(
-                                            shape: RoundedRectangleBorder(
-                                                borderRadius:
+                                onTap: () {
+                                  showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) =>
+                                        dialogUserViewSugerpanel(context),
+                                  );
+                                },
+                                child: Card(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(5.0),
+                                  ),
+                                  elevation: 5,
+                                  child: ClipPath(
+                                    clipper: ShapeBorderClipper(
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
                                                 BorderRadius.circular(5))),
-                                        child: Container(
-                                          //height: tileSize,
-                                          // width: double.maxFinite,
-                                            decoration: BoxDecoration(
-                                                border: Border(
-                                                    left: BorderSide(
-                                                        color:
-                                                        AppData.kPrimaryRedColor,
-                                                        width: 5))),
-                                            child: Row(
-                                              children: [
-                                                Padding(
-                                                  padding:
+                                    child: Container(
+                                        //height: tileSize,
+                                        // width: double.maxFinite,
+                                        decoration: BoxDecoration(
+                                            border: Border(
+                                                left: BorderSide(
+                                                    color: AppData
+                                                        .kPrimaryRedColor,
+                                                    width: 5))),
+                                        child: Row(
+                                          children: [
+                                            Padding(
+                                              padding:
                                                   const EdgeInsets.symmetric(
                                                       horizontal: 10.0,
                                                       vertical: 16),
-                                                  child: Column(
-                                                    crossAxisAlignment:
+                                              child: Column(
+                                                crossAxisAlignment:
                                                     CrossAxisAlignment.start,
-                                                    mainAxisAlignment:
+                                                mainAxisAlignment:
                                                     MainAxisAlignment.center,
-                                                    children: [
-                                                      Text(
-                                                        "Suger panel"
-                                                            .toUpperCase(),
-                                                        style: TextStyle(
-                                                            fontWeight:
+                                                children: [
+                                                  Text(
+                                                    "Suger panel".toUpperCase(),
+                                                    style: TextStyle(
+                                                        fontWeight:
                                                             FontWeight.bold,
-                                                            fontSize: 16),
-                                                      ),
-                                                      SizedBox(
-                                                        height: 5,
-                                                      ),
-                                                      Text(
-                                                        "Fasting,Random,HbAlc",
-                                                        style: TextStyle(
-                                                            fontSize: 13,
-                                                            color: Colors.grey),
-                                                      )
-                                                    ],
+                                                        fontSize: 16),
                                                   ),
-                                                ),
-                                                Spacer(),
-                                                Padding(
-                                                  padding: const EdgeInsets.only(
-                                                      right: 5.0),
-                                                  child: Icon(Icons.more_vert,
-                                                      size: 25),
-                                                )
-                                              ],
-                                            )),
-                                      ),
-                                    ),
-                                  )),
+                                                  SizedBox(
+                                                    height: 5,
+                                                  ),
+                                                  Text(
+                                                    "Fasting,Random,HbAlc",
+                                                    style: TextStyle(
+                                                        fontSize: 13,
+                                                        color: Colors.grey),
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                            Spacer(),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  right: 5.0),
+                                              child: Icon(Icons.more_vert,
+                                                  size: 25),
+                                            )
+                                          ],
+                                        )),
+                                  ),
+                                ),
+                              )),
                               Container(
                                   child: InkWell(
-                                    onTap: () {},
-                                    child: Card(
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(5.0),
-                                      ),
-                                      elevation: 5,
-                                      child: ClipPath(
-                                        clipper: ShapeBorderClipper(
-                                            shape: RoundedRectangleBorder(
-                                                borderRadius:
+                                onTap: () {
+                                  showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) =>
+                                        dialogUserViewTemperature(context),
+                                  );
+                                },
+                                child: Card(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(5.0),
+                                  ),
+                                  elevation: 5,
+                                  child: ClipPath(
+                                    clipper: ShapeBorderClipper(
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
                                                 BorderRadius.circular(5))),
-                                        child: Container(
-                                          //height: tileSize,
-                                          // width: double.maxFinite,
-                                            decoration: BoxDecoration(
-                                                border: Border(
-                                                    left: BorderSide(
-                                                        color:
+                                    child: Container(
+                                        //height: tileSize,
+                                        // width: double.maxFinite,
+                                        decoration: BoxDecoration(
+                                            border: Border(
+                                                left: BorderSide(
+                                                    color:
                                                         AppData.kPrimaryColor,
-                                                        width: 5))),
-                                            child: Row(
-                                              children: [
-                                                Padding(
-                                                  padding:
+                                                    width: 5))),
+                                        child: Row(
+                                          children: [
+                                            Padding(
+                                              padding:
                                                   const EdgeInsets.symmetric(
                                                       horizontal: 10.0,
                                                       vertical: 16),
-                                                  child: Column(
-                                                    crossAxisAlignment:
+                                              child: Column(
+                                                crossAxisAlignment:
                                                     CrossAxisAlignment.start,
-                                                    mainAxisAlignment:
+                                                mainAxisAlignment:
                                                     MainAxisAlignment.center,
-                                                    children: [
-                                                      Text(
-                                                        "Temperature"
-                                                            .toUpperCase(),
-                                                        style: TextStyle(
-                                                            fontWeight:
+                                                children: [
+                                                  Text(
+                                                    "Temperature".toUpperCase(),
+                                                    style: TextStyle(
+                                                        fontWeight:
                                                             FontWeight.bold,
-                                                            fontSize: 16),
-                                                      ),
-                                                      SizedBox(
-                                                        height: 5,
-                                                      ),
-                                                      Text(
-                                                        "Temperature",
-                                                        style: TextStyle(
-                                                            fontSize: 13,
-                                                            color: Colors.grey),
-                                                      )
-                                                    ],
+                                                        fontSize: 16),
                                                   ),
-                                                ),
-                                                Spacer(),
-                                                Padding(
-                                                  padding: const EdgeInsets.only(
-                                                      right: 5.0),
-                                                  child: Icon(Icons.more_vert,
-                                                      size: 25),
-                                                )
-                                              ],
-                                            )),
-                                      ),
-                                    ),
-                                  )),
+                                                  SizedBox(
+                                                    height: 5,
+                                                  ),
+                                                  Text(
+                                                    "Temperature",
+                                                    style: TextStyle(
+                                                        fontSize: 13,
+                                                        color: Colors.grey),
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                            Spacer(),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  right: 5.0),
+                                              child: Icon(Icons.more_vert,
+                                                  size: 25),
+                                            )
+                                          ],
+                                        )),
+                                  ),
+                                ),
+                              )),
                               Container(
                                   child: InkWell(
-                                    onTap: () {},
-                                    child: Card(
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(5.0),
-                                      ),
-                                      elevation: 5,
-                                      child: ClipPath(
-                                        clipper: ShapeBorderClipper(
-                                            shape: RoundedRectangleBorder(
-                                                borderRadius:
+                                onTap: () {
+                                  showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) =>
+                                        dialogUserViewPulse(context),
+                                  );
+                                },
+                                child: Card(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(5.0),
+                                  ),
+                                  elevation: 5,
+                                  child: ClipPath(
+                                    clipper: ShapeBorderClipper(
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
                                                 BorderRadius.circular(5))),
-                                        child: Container(
-                                          //height: tileSize,
-                                          // width: double.maxFinite,
-                                            decoration: BoxDecoration(
-                                                border: Border(
-                                                    left: BorderSide(
-                                                        color:
-                                                        AppData.kPrimaryRedColor,
-                                                        width: 5))),
-                                            child: Row(
-                                              children: [
-                                                Padding(
-                                                  padding:
+                                    child: Container(
+                                        //height: tileSize,
+                                        // width: double.maxFinite,
+                                        decoration: BoxDecoration(
+                                            border: Border(
+                                                left: BorderSide(
+                                                    color: AppData
+                                                        .kPrimaryRedColor,
+                                                    width: 5))),
+                                        child: Row(
+                                          children: [
+                                            Padding(
+                                              padding:
                                                   const EdgeInsets.symmetric(
                                                       horizontal: 10.0,
                                                       vertical: 16),
-                                                  child: Column(
-                                                    crossAxisAlignment:
+                                              child: Column(
+                                                crossAxisAlignment:
                                                     CrossAxisAlignment.start,
-                                                    mainAxisAlignment:
+                                                mainAxisAlignment:
                                                     MainAxisAlignment.center,
-                                                    children: [
-                                                      Text(
-                                                        "pulse"
-                                                            .toUpperCase(),
-                                                        style: TextStyle(
-                                                            fontWeight:
+                                                children: [
+                                                  Text(
+                                                    "pulse".toUpperCase(),
+                                                    style: TextStyle(
+                                                        fontWeight:
                                                             FontWeight.bold,
-                                                            fontSize: 16),
-                                                      ),
-                                                      SizedBox(
-                                                        height: 5,
-                                                      ),
-                                                      Text(
-                                                        "Pulse",
-                                                        style: TextStyle(
-                                                            fontSize: 13,
-                                                            color: Colors.grey),
-                                                      )
-                                                    ],
+                                                        fontSize: 16),
                                                   ),
-                                                ),
-                                                Spacer(),
-                                                Padding(
-                                                  padding: const EdgeInsets.only(
-                                                      right: 5.0),
-                                                  child: Icon(Icons.more_vert,
-                                                      size: 25),
-                                                )
-                                              ],
-                                            )),
-                                      ),
-                                    ),
-                                  )),
+                                                  SizedBox(
+                                                    height: 5,
+                                                  ),
+                                                  Text(
+                                                    "Pulse",
+                                                    style: TextStyle(
+                                                        fontSize: 13,
+                                                        color: Colors.grey),
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                            Spacer(),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  right: 5.0),
+                                              child: Icon(Icons.more_vert,
+                                                  size: 25),
+                                            )
+                                          ],
+                                        )),
+                                  ),
+                                ),
+                              )),
                               Container(
                                   child: InkWell(
-                                    onTap: () {},
-                                    child: Card(
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(5.0),
-                                      ),
-                                      elevation: 5,
-                                      child: ClipPath(
-                                        clipper: ShapeBorderClipper(
-                                            shape: RoundedRectangleBorder(
-                                                borderRadius:
+                                onTap: () {
+                                  showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) =>
+                                        dialogUserViewRespiration(context),
+                                  );
+                                },
+                                child: Card(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(5.0),
+                                  ),
+                                  elevation: 5,
+                                  child: ClipPath(
+                                    clipper: ShapeBorderClipper(
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
                                                 BorderRadius.circular(5))),
-                                        child: Container(
-                                          //height: tileSize,
-                                          // width: double.maxFinite,
-                                            decoration: BoxDecoration(
-                                                border: Border(
-                                                    left: BorderSide(
-                                                        color:
+                                    child: Container(
+                                        //height: tileSize,
+                                        // width: double.maxFinite,
+                                        decoration: BoxDecoration(
+                                            border: Border(
+                                                left: BorderSide(
+                                                    color:
                                                         AppData.kPrimaryColor,
-                                                        width: 5))),
-                                            child: Row(
-                                              children: [
-                                                Padding(
-                                                  padding:
+                                                    width: 5))),
+                                        child: Row(
+                                          children: [
+                                            Padding(
+                                              padding:
                                                   const EdgeInsets.symmetric(
                                                       horizontal: 10.0,
                                                       vertical: 16),
-                                                  child: Column(
-                                                    crossAxisAlignment:
+                                              child: Column(
+                                                crossAxisAlignment:
                                                     CrossAxisAlignment.start,
-                                                    mainAxisAlignment:
+                                                mainAxisAlignment:
                                                     MainAxisAlignment.center,
-                                                    children: [
-                                                      Text(
-                                                        "Respiration"
-                                                            .toUpperCase(),
-                                                        style: TextStyle(
-                                                            fontWeight:
+                                                children: [
+                                                  Text(
+                                                    "Respiration".toUpperCase(),
+                                                    style: TextStyle(
+                                                        fontWeight:
                                                             FontWeight.bold,
-                                                            fontSize: 16),
-                                                      ),
-                                                      SizedBox(
-                                                        height: 5,
-                                                      ),
-                                                      Text(
-                                                        "Respiration",
-                                                        style: TextStyle(
-                                                            fontSize: 13,
-                                                            color: Colors.grey),
-                                                      )
-                                                    ],
+                                                        fontSize: 16),
                                                   ),
-                                                ),
-                                                Spacer(),
-                                                Padding(
-                                                  padding: const EdgeInsets.only(
-                                                      right: 5.0),
-                                                  child: Icon(Icons.more_vert,
-                                                      size: 25),
-                                                )
-                                              ],
-                                            )),
-                                      ),
-                                    ),
-                                  )),
+                                                  SizedBox(
+                                                    height: 5,
+                                                  ),
+                                                  Text(
+                                                    "Respiration",
+                                                    style: TextStyle(
+                                                        fontSize: 13,
+                                                        color: Colors.grey),
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                            Spacer(),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  right: 5.0),
+                                              child: Icon(Icons.more_vert,
+                                                  size: 25),
+                                            )
+                                          ],
+                                        )),
+                                  ),
+                                ),
+                              )),
                               Container(
                                   child: InkWell(
-                                    onTap: () {},
-                                    child: Card(
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(5.0),
-                                      ),
-                                      elevation: 5,
-                                      child: ClipPath(
-                                        clipper: ShapeBorderClipper(
-                                            shape: RoundedRectangleBorder(
-                                                borderRadius:
+                                onTap: () {
+                                  showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) =>
+                                        dialogUserViewOxygensaturation(context),
+                                  );
+                                },
+                                child: Card(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(5.0),
+                                  ),
+                                  elevation: 5,
+                                  child: ClipPath(
+                                    clipper: ShapeBorderClipper(
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
                                                 BorderRadius.circular(5))),
-                                        child: Container(
-                                          //height: tileSize,
-                                          // width: double.maxFinite,
-                                            decoration: BoxDecoration(
-                                                border: Border(
-                                                    left: BorderSide(
-                                                        color:
-                                                        AppData.kPrimaryRedColor,
-                                                        width: 5))),
-                                            child: Row(
-                                              children: [
-                                                Padding(
-                                                  padding:
+                                    child: Container(
+                                        //height: tileSize,
+                                        // width: double.maxFinite,
+                                        decoration: BoxDecoration(
+                                            border: Border(
+                                                left: BorderSide(
+                                                    color: AppData
+                                                        .kPrimaryRedColor,
+                                                    width: 5))),
+                                        child: Row(
+                                          children: [
+                                            Padding(
+                                              padding:
                                                   const EdgeInsets.symmetric(
                                                       horizontal: 10.0,
                                                       vertical: 16),
-                                                  child: Column(
-                                                    crossAxisAlignment:
+                                              child: Column(
+                                                crossAxisAlignment:
                                                     CrossAxisAlignment.start,
-                                                    mainAxisAlignment:
+                                                mainAxisAlignment:
                                                     MainAxisAlignment.center,
-                                                    children: [
-                                                      Text(
-                                                        "Oxygen Saturation"
-                                                            .toUpperCase(),
-                                                        style: TextStyle(
-                                                            fontWeight:
+                                                children: [
+                                                  Text(
+                                                    "Oxygen Saturation"
+                                                        .toUpperCase(),
+                                                    style: TextStyle(
+                                                        fontWeight:
                                                             FontWeight.bold,
-                                                            fontSize: 16),
-                                                      ),
-                                                      SizedBox(
-                                                        height: 5,
-                                                      ),
-                                                      Text(
-                                                        "Oxygen Saturation",
-                                                        style: TextStyle(
-                                                            fontSize: 13,
-                                                            color: Colors.grey),
-                                                      )
-                                                    ],
+                                                        fontSize: 16),
                                                   ),
-                                                ),
-                                                Spacer(),
-                                                Padding(
-                                                  padding: const EdgeInsets.only(
-                                                      right: 5.0),
-                                                  child: Icon(Icons.more_vert,
-                                                      size: 25),
-                                                )
-                                              ],
-                                            )),
-                                      ),
-                                    ),
-                                  )),
-
+                                                  SizedBox(
+                                                    height: 5,
+                                                  ),
+                                                  Text(
+                                                    "Oxygen Saturation",
+                                                    style: TextStyle(
+                                                        fontSize: 13,
+                                                        color: Colors.grey),
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                            Spacer(),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  right: 5.0),
+                                              child: Icon(Icons.more_vert,
+                                                  size: 25),
+                                            )
+                                          ],
+                                        )),
+                                  ),
+                                ),
+                              )),
                             ],
                           ),
                           SizedBox(
@@ -703,20 +732,24 @@ class _MedicineList extends State<HealthChaatlist> {
                   ],
                 ),
               ),
-                      ],
+            ],
           ),
         ),
       ),
     );
   }
+
   Widget dialogUserView(BuildContext context) {
     return AlertDialog(
       contentPadding: EdgeInsets.zero,
       insetPadding: EdgeInsets.zero,
       actions: [
-        MaterialButton(onPressed: (){
-          Navigator.pop(context);
-        },child: Text("Cancel"),)
+        MaterialButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: Text("Cancel"),
+        )
       ],
       content: StatefulBuilder(
         builder: (BuildContext context, StateSetter setState) {
@@ -735,7 +768,9 @@ class _MedicineList extends State<HealthChaatlist> {
                     fontWeight: FontWeight.w700,
                   ),
                 ),
-                SizedBox(height: 20,),
+                SizedBox(
+                  height: 20,
+                ),
                 Expanded(
                   child: SingleChildScrollView(
                     child: Column(
@@ -761,33 +796,32 @@ class _MedicineList extends State<HealthChaatlist> {
                                   indicatorSize: TabBarIndicatorSize.tab,
                                   tabs: [
                                     Padding(
-                                      padding: const EdgeInsets.symmetric(vertical: 12),
-                                      child: Text(
-                                         "Weight(kg)",
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 12),
+                                      child: Text("Weight(kg)",
                                           style: TextStyle(
                                               color: Colors.black,
                                               fontWeight: FontWeight.w700,
                                               fontSize: 13)),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.symmetric(vertical: 12),
-                                      child: Text(
-                                         "Height(cm)",
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 12),
+                                      child: Text("Height(cm)",
                                           style: TextStyle(
                                               fontWeight: FontWeight.w700,
                                               color: Colors.black,
                                               fontSize: 13)),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.symmetric(vertical: 12),
-                                      child: Text(
-                                         "Body Mass Index",
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 12),
+                                      child: Text("Body Mass Index",
                                           style: TextStyle(
                                               fontWeight: FontWeight.w700,
                                               color: Colors.black,
                                               fontSize: 13)),
                                     ),
-
                                   ],
                                 ),
                                 /*Container(
@@ -803,7 +837,7 @@ class _MedicineList extends State<HealthChaatlist> {
 
                                         ])),*/
 
-                                 /*Expanded( //height: widget.layoutHeight,
+                                /*Expanded( //height: widget.layoutHeight,
                                     child: new TabBarView(
                                       ///controller: _controller,
                                       children: <Widget>[
@@ -819,7 +853,8 @@ class _MedicineList extends State<HealthChaatlist> {
                                       border: Border(
                                           top: BorderSide(
                                               color: Colors.grey, width: 0.5))),
-                                  child:LimitedBox( // use this
+                                  child: LimitedBox(
+                                      // use this
                                       maxHeight: 300,
                                       child: TabBarView(
                                         children: [
@@ -827,12 +862,10 @@ class _MedicineList extends State<HealthChaatlist> {
                                           height(),
                                           heightBMI(),
                                         ],
-                                      )
-                                  ),
+                                      )),
                                 ),
                               ],
                             ))
-
                       ],
                     ),
                   ),
@@ -842,17 +875,20 @@ class _MedicineList extends State<HealthChaatlist> {
           );
         },
       ),
-
     );
   }
+
   Widget dialogUserViewBloodpressur(BuildContext context) {
     return AlertDialog(
       contentPadding: EdgeInsets.zero,
       insetPadding: EdgeInsets.zero,
       actions: [
-        MaterialButton(onPressed: (){
-          Navigator.pop(context);
-        },child: Text("Cancel"),)
+        MaterialButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: Text("Cancel"),
+        )
       ],
       content: StatefulBuilder(
         builder: (BuildContext context, StateSetter setState) {
@@ -871,7 +907,9 @@ class _MedicineList extends State<HealthChaatlist> {
                     fontWeight: FontWeight.w700,
                   ),
                 ),
-                SizedBox(height: 20,),
+                SizedBox(
+                  height: 20,
+                ),
                 Expanded(
                   child: SingleChildScrollView(
                     child: Column(
@@ -897,25 +935,23 @@ class _MedicineList extends State<HealthChaatlist> {
                                   indicatorSize: TabBarIndicatorSize.tab,
                                   tabs: [
                                     Padding(
-                                      padding: const EdgeInsets.symmetric(vertical: 12),
-                                      child: Text(
-                                          "Systolic",
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 12),
+                                      child: Text("Systolic",
                                           style: TextStyle(
                                               color: Colors.black,
                                               fontWeight: FontWeight.w700,
                                               fontSize: 13)),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.symmetric(vertical: 12),
-                                      child: Text(
-                                          "Diastalic",
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 12),
+                                      child: Text("Diastalic",
                                           style: TextStyle(
                                               fontWeight: FontWeight.w700,
                                               color: Colors.black,
                                               fontSize: 13)),
                                     ),
-
-
                                   ],
                                 ),
                                 /*Container(
@@ -947,19 +983,18 @@ class _MedicineList extends State<HealthChaatlist> {
                                       border: Border(
                                           top: BorderSide(
                                               color: Colors.grey, width: 0.5))),
-                                  child:LimitedBox( // use this
+                                  child: LimitedBox(
+                                      // use this
                                       maxHeight: 300,
                                       child: TabBarView(
                                         children: [
                                           Systolic(),
                                           Diastolic(),
                                         ],
-                                      )
-                                  ),
+                                      )),
                                 ),
                               ],
                             ))
-
                       ],
                     ),
                   ),
@@ -969,7 +1004,6 @@ class _MedicineList extends State<HealthChaatlist> {
           );
         },
       ),
-
     );
   }
 
@@ -978,9 +1012,12 @@ class _MedicineList extends State<HealthChaatlist> {
       contentPadding: EdgeInsets.zero,
       insetPadding: EdgeInsets.zero,
       actions: [
-        MaterialButton(onPressed: (){
-          Navigator.pop(context);
-        },child: Text("Cancel"),)
+        MaterialButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: Text("Cancel"),
+        )
       ],
       content: StatefulBuilder(
         builder: (BuildContext context, StateSetter setState) {
@@ -999,7 +1036,9 @@ class _MedicineList extends State<HealthChaatlist> {
                     fontWeight: FontWeight.w700,
                   ),
                 ),
-                SizedBox(height: 20,),
+                SizedBox(
+                  height: 20,
+                ),
                 Expanded(
                   child: SingleChildScrollView(
                     child: Column(
@@ -1007,7 +1046,7 @@ class _MedicineList extends State<HealthChaatlist> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
                         DefaultTabController(
-                            length: 5,
+                            length: 9,
                             initialIndex: 0,
                             //backgroundColor: Colors.white,
                             child: Column(
@@ -1025,45 +1064,81 @@ class _MedicineList extends State<HealthChaatlist> {
                                   indicatorSize: TabBarIndicatorSize.tab,
                                   tabs: [
                                     Padding(
-                                      padding: const EdgeInsets.symmetric(vertical: 12),
-                                      child: Text(
-                                          "Haemoglobin",
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 12),
+                                      child: Text("Haemoglobin",
                                           style: TextStyle(
                                               color: Colors.black,
                                               fontWeight: FontWeight.w700,
                                               fontSize: 13)),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.symmetric(vertical: 12),
-                                      child: Text(
-                                          "WBCs",
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 12),
+                                      child: Text("WBCs",
                                           style: TextStyle(
                                               fontWeight: FontWeight.w700,
                                               color: Colors.black,
                                               fontSize: 13)),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.symmetric(vertical: 12),
-                                      child: Text(
-                                          "Neutrophils",
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 12),
+                                      child: Text("Neutrophils",
                                           style: TextStyle(
                                               fontWeight: FontWeight.w700,
                                               color: Colors.black,
                                               fontSize: 13)),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.symmetric(vertical: 12),
-                                      child: Text(
-                                          "Eosinophils",
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 12),
+                                      child: Text("Eosinophils",
                                           style: TextStyle(
                                               fontWeight: FontWeight.w700,
                                               color: Colors.black,
                                               fontSize: 13)),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.symmetric(vertical: 12),
-                                      child: Text(
-                                          "Basophils",
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 12),
+                                      child: Text("Basophils",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w700,
+                                              color: Colors.black,
+                                              fontSize: 13)),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 12),
+                                      child: Text("Manocytes",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w700,
+                                              color: Colors.black,
+                                              fontSize: 13)),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 12),
+                                      child: Text("Platelets",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w700,
+                                              color: Colors.black,
+                                              fontSize: 13)),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 12),
+                                      child: Text("ESR",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w700,
+                                              color: Colors.black,
+                                              fontSize: 13)),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 12),
+                                      child: Text("HCT",
                                           style: TextStyle(
                                               fontWeight: FontWeight.w700,
                                               color: Colors.black,
@@ -1071,36 +1146,13 @@ class _MedicineList extends State<HealthChaatlist> {
                                     ),
                                   ],
                                 ),
-                                /*Container(
-                                    decoration: BoxDecoration(
-                                        border: Border(
-                                            top: BorderSide(
-                                                color: Colors.grey, width: 0.5))),
-                                    child: TabBarView(
-                                        children: <Widget>[
-                                          rowValue(),
-                                          rowValue(),
-                                          rowValue(),
-
-                                        ])),*/
-
-                                /*Expanded( //height: widget.layoutHeight,
-                                    child: new TabBarView(
-                                      ///controller: _controller,
-                                      children: <Widget>[
-                                       rowValue(),
-                                       rowValue(),
-                                       rowValue(),
-
-                                      ],
-                                    )
-                                )*/
                                 Container(
                                   decoration: BoxDecoration(
                                       border: Border(
                                           top: BorderSide(
                                               color: Colors.grey, width: 0.5))),
-                                  child:LimitedBox( // use this
+                                  child: LimitedBox(
+                                      // use this
                                       maxHeight: 300,
                                       child: TabBarView(
                                         children: [
@@ -1109,13 +1161,15 @@ class _MedicineList extends State<HealthChaatlist> {
                                           Diastolic(),
                                           Diastolic(),
                                           Diastolic(),
+                                          Diastolic(),
+                                          Diastolic(),
+                                          Diastolic(),
+                                          Diastolic(),
                                         ],
-                                      )
-                                  ),
+                                      )),
                                 ),
                               ],
                             ))
-
                       ],
                     ),
                   ),
@@ -1125,1297 +1179,2479 @@ class _MedicineList extends State<HealthChaatlist> {
           );
         },
       ),
-
     );
   }
-  Widget weight(){
-    return
-     SingleChildScrollView(
-        child: Card(
-          elevation: 0,
-          child: Padding(
-            padding: const EdgeInsets.only(left: 8.0, right: 0.0, top: 4.0),
-            child: Container(
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding:
-                      const EdgeInsets.only(left: 5.0, top: 0, right: 5.0),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            flex: 1,
-                            child: Text(
-                              "Enter Value(kg)",
-                              style: TextStyle(
-                                fontSize: 15,
-                                // color: Colors.black54,
-                                fontWeight: FontWeight.w800,
-                              ),
+
+  Widget dialogUserViewTemperature(BuildContext context) {
+    return AlertDialog(
+      contentPadding: EdgeInsets.zero,
+      insetPadding: EdgeInsets.zero,
+      actions: [
+        MaterialButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: Text("Cancel"),
+        )
+      ],
+      content: StatefulBuilder(
+        builder: (BuildContext context, StateSetter setState) {
+          return Container(
+            padding: EdgeInsets.only(left: 5, right: 5, top: 5),
+            //color: Colors.grey,
+            width: MediaQuery.of(context).size.width * 0.9,
+            height: 410,
+            child: Column(
+              children: [
+                Text(
+                  "Temperature".toUpperCase(),
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        DefaultTabController(
+                            length: 1,
+                            initialIndex: 0,
+                            //backgroundColor: Colors.white,
+                            child: Column(
+                              children: [
+                                TabBar(
+                                  isScrollable: true,
+                                  automaticIndicatorColorAdjustment: true,
+                                  indicatorColor: AppData.kPrimaryRedColor,
+                                  unselectedLabelColor: Colors.black,
+                                  labelColor: Color(0xffF15C22),
+                                  indicatorSize: TabBarIndicatorSize.tab,
+                                  tabs: [
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 12),
+                                      child: Text("Temperature",
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.w700,
+                                              fontSize: 13)),
+                                    ),
+                                  ],
+                                ),
+                                Container(
+                                  decoration: BoxDecoration(
+                                      border: Border(
+                                          top: BorderSide(
+                                              color: Colors.grey, width: 0.5))),
+                                  child: LimitedBox(
+                                      // use this
+                                      maxHeight: 300,
+                                      child: TabBarView(
+                                        children: [
+                                          Diastolictemp(),
+                                        ],
+                                      )),
+                                ),
+                              ],
+                            ))
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  Widget dialogUserViewPulse(BuildContext context) {
+    return AlertDialog(
+      contentPadding: EdgeInsets.zero,
+      insetPadding: EdgeInsets.zero,
+      actions: [
+        MaterialButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: Text("Cancel"),
+        )
+      ],
+      content: StatefulBuilder(
+        builder: (BuildContext context, StateSetter setState) {
+          return Container(
+            padding: EdgeInsets.only(left: 5, right: 5, top: 5),
+            //color: Colors.grey,
+            width: MediaQuery.of(context).size.width * 0.9,
+            height: 410,
+            child: Column(
+              children: [
+                Text(
+                  "Pulse".toUpperCase(),
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        DefaultTabController(
+                            length: 1,
+                            initialIndex: 0,
+                            //backgroundColor: Colors.white,
+                            child: Column(
+                              children: [
+                                TabBar(
+                                  isScrollable: true,
+                                  automaticIndicatorColorAdjustment: true,
+                                  indicatorColor: AppData.kPrimaryRedColor,
+                                  unselectedLabelColor: Colors.black,
+                                  labelColor: Color(0xffF15C22),
+                                  indicatorSize: TabBarIndicatorSize.tab,
+                                  tabs: [
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 12),
+                                      child: Text("Pulse",
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.w700,
+                                              fontSize: 13)),
+                                    ),
+                                  ],
+                                ),
+                                Container(
+                                  decoration: BoxDecoration(
+                                      border: Border(
+                                          top: BorderSide(
+                                              color: Colors.grey, width: 0.5))),
+                                  child: LimitedBox(
+                                      // use this
+                                      maxHeight: 300,
+                                      child: TabBarView(
+                                        children: [
+                                          Pulse(),
+                                        ],
+                                      )),
+                                ),
+                              ],
+                            ))
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  Widget dialogUserViewRespiration(BuildContext context) {
+    return AlertDialog(
+      contentPadding: EdgeInsets.zero,
+      insetPadding: EdgeInsets.zero,
+      actions: [
+        MaterialButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: Text("Cancel"),
+        )
+      ],
+      content: StatefulBuilder(
+        builder: (BuildContext context, StateSetter setState) {
+          return Container(
+            padding: EdgeInsets.only(left: 5, right: 5, top: 5),
+            //color: Colors.grey,
+            width: MediaQuery.of(context).size.width * 0.9,
+            height: 410,
+            child: Column(
+              children: [
+                Text(
+                  "Respiration".toUpperCase(),
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        DefaultTabController(
+                            length: 1,
+                            initialIndex: 0,
+                            //backgroundColor: Colors.white,
+                            child: Column(
+                              children: [
+                                TabBar(
+                                  isScrollable: true,
+                                  automaticIndicatorColorAdjustment: true,
+                                  indicatorColor: AppData.kPrimaryRedColor,
+                                  unselectedLabelColor: Colors.black,
+                                  labelColor: Color(0xffF15C22),
+                                  indicatorSize: TabBarIndicatorSize.tab,
+                                  tabs: [
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 12),
+                                      child: Text("Respiration",
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.w700,
+                                              fontSize: 13)),
+                                    ),
+                                  ],
+                                ),
+                                Container(
+                                  decoration: BoxDecoration(
+                                      border: Border(
+                                          top: BorderSide(
+                                              color: Colors.grey, width: 0.5))),
+                                  child: LimitedBox(
+                                      // use this
+                                      maxHeight: 300,
+                                      child: TabBarView(
+                                        children: [
+                                          Respiration(),
+                                        ],
+                                      )),
+                                ),
+                              ],
+                            ))
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  Widget dialogUserViewOxygensaturation(BuildContext context) {
+    return AlertDialog(
+      contentPadding: EdgeInsets.zero,
+      insetPadding: EdgeInsets.zero,
+      actions: [
+        MaterialButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: Text("Cancel"),
+        )
+      ],
+      content: StatefulBuilder(
+        builder: (BuildContext context, StateSetter setState) {
+          return Container(
+            padding: EdgeInsets.only(left: 5, right: 5, top: 5),
+            //color: Colors.grey,
+            width: MediaQuery.of(context).size.width * 0.9,
+            height: 410,
+            child: Column(
+              children: [
+                Text(
+                  "Oxygensaturation".toUpperCase(),
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        DefaultTabController(
+                            length: 1,
+                            initialIndex: 0,
+                            //backgroundColor: Colors.white,
+                            child: Column(
+                              children: [
+                                TabBar(
+                                  isScrollable: true,
+                                  automaticIndicatorColorAdjustment: true,
+                                  indicatorColor: AppData.kPrimaryRedColor,
+                                  unselectedLabelColor: Colors.black,
+                                  labelColor: Color(0xffF15C22),
+                                  indicatorSize: TabBarIndicatorSize.tab,
+                                  tabs: [
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 12),
+                                      child: Text("Oxygensaturation",
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.w700,
+                                              fontSize: 13)),
+                                    ),
+                                  ],
+                                ),
+                                Container(
+                                  decoration: BoxDecoration(
+                                      border: Border(
+                                          top: BorderSide(
+                                              color: Colors.grey, width: 0.5))),
+                                  child: LimitedBox(
+                                      // use this
+                                      maxHeight: 300,
+                                      child: TabBarView(
+                                        children: [
+                                          OxygenSaturation(),
+                                        ],
+                                      )),
+                                ),
+                              ],
+                            ))
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  Widget dialogUserViewSugerpanel(BuildContext context) {
+    return AlertDialog(
+      contentPadding: EdgeInsets.zero,
+      insetPadding: EdgeInsets.zero,
+      actions: [
+        MaterialButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: Text("Cancel"),
+        )
+      ],
+      content: StatefulBuilder(
+        builder: (BuildContext context, StateSetter setState) {
+          return Container(
+            padding: EdgeInsets.only(left: 5, right: 5, top: 5),
+            //color: Colors.grey,
+            width: MediaQuery.of(context).size.width * 0.9,
+            height: 410,
+            child: Column(
+              children: [
+                Text(
+                  "Sugar Panel".toUpperCase(),
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        DefaultTabController(
+                            length: 3,
+                            initialIndex: 0,
+                            //backgroundColor: Colors.white,
+                            child: Column(
+                              children: [
+                                TabBar(
+                                  isScrollable: true,
+                                  automaticIndicatorColorAdjustment: true,
+                                  indicatorColor: AppData.kPrimaryRedColor,
+                                  unselectedLabelColor: Colors.black,
+                                  labelColor: Color(0xffF15C22),
+                                  /*indicator: UnderlineTabIndicator(
+                          borderSide: BorderSide(color: Color(0xDD613896), width: 8.0),
+                          insets: EdgeInsets.fromLTRB(50.0, 0.0, 50.0, 40.0),
+                        ),*/
+                                  indicatorSize: TabBarIndicatorSize.tab,
+                                  tabs: [
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 12),
+                                      child: Text("Fasting",
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.w700,
+                                              fontSize: 13)),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 12),
+                                      child: Text("Random",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w700,
+                                              color: Colors.black,
+                                              fontSize: 13)),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 12),
+                                      child: Text("HbAlc",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w700,
+                                              color: Colors.black,
+                                              fontSize: 13)),
+                                    ),
+                                  ],
+                                ),
+                                Container(
+                                  decoration: BoxDecoration(
+                                      border: Border(
+                                          top: BorderSide(
+                                              color: Colors.grey, width: 0.5))),
+                                  child: LimitedBox(
+                                      // use this
+                                      maxHeight: 300,
+                                      child: TabBarView(
+                                        children: [
+                                          Haemoglobin(),
+                                          Diastolic(),
+                                          Diastolic(),
+                                        ],
+                                      )),
+                                ),
+                              ],
+                            )),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  Widget weight() {
+    return SingleChildScrollView(
+      child: Card(
+        elevation: 0,
+        child: Padding(
+          padding: const EdgeInsets.only(left: 8.0, right: 0.0, top: 4.0),
+          child: Container(
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 5.0, top: 0, right: 5.0),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            "Enter Value(kg)",
+                            style: TextStyle(
+                              fontSize: 15,
+                              // color: Colors.black54,
+                              fontWeight: FontWeight.w800,
                             ),
                           ),
-                          /* SizedBox(
+                        ),
+                        /* SizedBox(
                       width: spaceTab,
                     ),*/
-                          SizedBox(width: 2),
-                          Expanded(
-                            flex: 2,
-                            child:Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 8),
-                              child: Container(
-                                height: 50,
-                                padding:
-                                EdgeInsets.only(left: 18),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius:
+                        SizedBox(width: 2),
+                        Expanded(
+                          flex: 2,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 8),
+                            child: Container(
+                              height: 50,
+                              padding: EdgeInsets.only(left: 18),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(5),
+                                border:
+                                    Border.all(color: Colors.black, width: 0.3),
+                              ),
+                              child: TextFormField(
+                                maxLength: 5,
+                                decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  hintText: "Value",
+                                  counterText: "",
 
-                                  BorderRadius.circular(5),
-                                  border: Border.all(
-                                      color: Colors.black, width: 0.3),
-                                ),
-                                child: TextFormField(
-                                  maxLength: 5,
-                                  decoration: InputDecoration(
-                                    border: InputBorder.none,
-                                    hintText:"Value",
-                                    counterText: "",
-
-                                    /*prefixIcon:
+                                  /*prefixIcon:
                                     Icon(Icons.person_rounded),*/
-                                    hintStyle: TextStyle(
-                                        color: AppData.hintColor,
-                                        fontSize: 16),
-                                  ),
-                                  textInputAction: TextInputAction.next,
-                                  keyboardType: TextInputType.number,
-                                  controller: textEditingController[0],
-                                  focusNode: fnode1,
-                                  textAlignVertical:
-
-                                  TextAlignVertical.center,
-                                  inputFormatters: [
-                                    WhitelistingTextInputFormatter(
-                                        RegExp("[0-9.]")),
-                                  ],
-                                  /*onFieldSubmitted: (value) {
+                                  hintStyle: TextStyle(
+                                      color: AppData.hintColor, fontSize: 16),
+                                ),
+                                textInputAction: TextInputAction.next,
+                                keyboardType: TextInputType.number,
+                                controller: textEditingController[0],
+                                focusNode: fnode1,
+                                textAlignVertical: TextAlignVertical.center,
+                                inputFormatters: [
+                                  WhitelistingTextInputFormatter(
+                                      RegExp("[0-9.]")),
+                                ],
+                                /*onFieldSubmitted: (value) {
                                     AppData.fieldFocusChange(context, fnode1, fnode2);
                                   },*/
-                                ),
                               ),
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                    /*SizedBox(
+                  ),
+                  /*SizedBox(
                   height: 6,
                 ),*/
-                   // SizedBox(width: 20),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 5.0,  top: 10,right: 5.0),
-                      child: Row(
-                        children: [
-                          //Icon(Icons.bloodtype,size: 20),
-                          Expanded(
-                            flex: 1,
-                            child: Text("Select Date"
-                             /* MyLocalizations.of(context).text("BLOODGROUP")*/,
-                              style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w800,
-                              ),
+                  // SizedBox(width: 20),
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 5.0, top: 10, right: 5.0),
+                    child: Row(
+                      children: [
+                        //Icon(Icons.bloodtype,size: 20),
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            "Select Date"
+                            /* MyLocalizations.of(context).text("BLOODGROUP")*/,
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w800,
                             ),
                           ),
-                          SizedBox(width: 2),
-                          Expanded(
-                            flex: 2,
-                            child:appointdate(), /*Text(
+                        ),
+                        SizedBox(width: 2),
+                        Expanded(
+                          flex: 2,
+                          child:
+                              appointdate(), /*Text(
                              "N/A",
                               style: TextStyle(fontSize: 14
                                 //fontWeight: FontWeight.w500,
                               ),
                             ),*/
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                    //SizedBox(width: 20),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 5.0, top: 10, right: 5.0,bottom: 10),
-                      child: Row(
-                        children: [
-
-                          Expanded(
-                            flex: 1,
-                            child: Container(
-                              alignment: Alignment.centerLeft,
-                              width: 100,
-                              child: Text(
-                                "Select Time",
-                                style: TextStyle(
-                                  fontSize: 15, fontWeight: FontWeight.w800,
-                                  // color: AppData.kPrimaryColor,
-                                  /*fontWeight: FontWeight.w600*/
-                                ),
+                  ),
+                  //SizedBox(width: 20),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        left: 5.0, top: 10, right: 5.0, bottom: 10),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: Container(
+                            alignment: Alignment.centerLeft,
+                            width: 100,
+                            child: Text(
+                              "Select Time",
+                              style: TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.w800,
+                                // color: AppData.kPrimaryColor,
+                                /*fontWeight: FontWeight.w600*/
                               ),
                             ),
                           ),
-                          SizedBox(width: 2),
-                          Expanded(
-                            flex: 2,
-                            child: Container(
-                              alignment: Alignment.centerLeft,
-                              width: 100,
-                              child: comultationTime(),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                     Container(
-                      alignment: Alignment.centerRight,
-                       child: Padding(
-                        padding: const EdgeInsets.only(right: 14.0,top: 5.0,bottom: 5.0),
-                        child:  Image.asset(
-                          "assets/images/line_chart.png",
-                          height: 25,
                         ),
+                        SizedBox(width: 2),
+                        Expanded(
+                          flex: 2,
+                          child: Container(
+                            alignment: Alignment.centerLeft,
+                            width: 100,
+                            child: comultationTime(),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    alignment: Alignment.centerRight,
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                          right: 14.0, top: 5.0, bottom: 5.0),
+                      child: Image.asset(
+                        "assets/images/line_chart.png",
+                        height: 25,
                       ),
                     ),
+                  ),
 
-                     Divider(
-                      color: AppData.lightgreyBorder,
-                      height: 6,
-                    ),
-                    SizedBox(height: 15),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child:
-                      nextButton(), /*Buttons.nextButton(
+                  Divider(
+                    color: AppData.lightgreyBorder,
+                    height: 6,
+                  ),
+                  SizedBox(height: 15),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child:
+                        nextButton(), /*Buttons.nextButton(
                               function: () {
                                 //Navigator.pushNamed(context, "/UserRegister1");
                                 //personalFormValidate();
                               },
                               title: "PAY",
                               context: context),*/
-                    ),
-                    //SizedBox(height: 10),
-                  ],
-                ),
+                  ),
+                  //SizedBox(height: 10),
+                ],
               ),
             ),
           ),
         ),
-      );
+      ),
+    );
   }
+
   Widget height() {
-    return
-      SingleChildScrollView(
-        child: Card(
-          elevation: 0,
-          child: Padding(
-            padding: const EdgeInsets.only(left: 8.0, right: 0.0, top: 4.0),
-            child: Container(
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding:
-                      const EdgeInsets.only(left: 5.0, top: 0, right: 5.0),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            flex: 1,
-                            child: Text(
-                              "Enter Value(cm)",
-                              style: TextStyle(
-                                fontSize: 15,
-                                // color: Colors.black54,
-                                fontWeight: FontWeight.w800,
-                              ),
+    return SingleChildScrollView(
+      child: Card(
+        elevation: 0,
+        child: Padding(
+          padding: const EdgeInsets.only(left: 8.0, right: 0.0, top: 4.0),
+          child: Container(
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 5.0, top: 0, right: 5.0),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            "Enter Value(cm)",
+                            style: TextStyle(
+                              fontSize: 15,
+                              // color: Colors.black54,
+                              fontWeight: FontWeight.w800,
                             ),
                           ),
-                          /* SizedBox(
+                        ),
+                        /* SizedBox(
                       width: spaceTab,
                     ),*/
-                          SizedBox(width: 2),
-                          Expanded(
-                            flex: 2,
-                            child:    Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 8),
-                              child: Container(
-                                height: 50,
-                                padding:
-                                EdgeInsets.only(left: 18),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius:
+                        SizedBox(width: 2),
+                        Expanded(
+                          flex: 2,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 8),
+                            child: Container(
+                              height: 50,
+                              padding: EdgeInsets.only(left: 18),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(5),
+                                border:
+                                    Border.all(color: Colors.black, width: 0.3),
+                              ),
+                              child: TextFormField(
+                                maxLength: 5,
+                                decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  hintText: "Value",
+                                  counterText: "",
 
-                                  BorderRadius.circular(5),
-                                  border: Border.all(
-                                      color: Colors.black, width: 0.3),
-                                ),
-                                child: TextFormField(
-                                  maxLength: 5,
-                                  decoration: InputDecoration(
-                                    border: InputBorder.none,
-                                    hintText:"Value",
-                                    counterText: "",
-
-                                    /*prefixIcon:
+                                  /*prefixIcon:
                                     Icon(Icons.person_rounded),*/
-                                    hintStyle: TextStyle(
-                                        color: AppData.hintColor,
-                                        fontSize: 16),
-                                  ),
-                                  textInputAction: TextInputAction.next,
-                                  keyboardType: TextInputType.number,
-                                  controller: textEditingController[1],
-                                  focusNode: fnode2,
-                                  textAlignVertical:
-
-                                  TextAlignVertical.center,
-                                  inputFormatters: [
-                                    WhitelistingTextInputFormatter(
-                                        RegExp("[0-9.]")),
-                                  ],
-                                  /*onFieldSubmitted: (value) {
+                                  hintStyle: TextStyle(
+                                      color: AppData.hintColor, fontSize: 16),
+                                ),
+                                textInputAction: TextInputAction.next,
+                                keyboardType: TextInputType.number,
+                                controller: textEditingController[1],
+                                focusNode: fnode2,
+                                textAlignVertical: TextAlignVertical.center,
+                                inputFormatters: [
+                                  WhitelistingTextInputFormatter(
+                                      RegExp("[0-9.]")),
+                                ],
+                                /*onFieldSubmitted: (value) {
                                     AppData.fieldFocusChange(context, fnode1, fnode2);
                                   },*/
-                                ),
                               ),
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                    /*SizedBox(
+                  ),
+                  /*SizedBox(
                   height: 6,
                 ),*/
-                    // SizedBox(width: 20),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 5.0,  top: 10,right: 5.0),
-                      child: Row(
-                        children: [
-                          //Icon(Icons.bloodtype,size: 20),
-                          Expanded(
-                            flex: 1,
-                            child: Text("Select Date"
-                              /* MyLocalizations.of(context).text("BLOODGROUP")*/,
-                              style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w800,
-                              ),
+                  // SizedBox(width: 20),
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 5.0, top: 10, right: 5.0),
+                    child: Row(
+                      children: [
+                        //Icon(Icons.bloodtype,size: 20),
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            "Select Date"
+                            /* MyLocalizations.of(context).text("BLOODGROUP")*/,
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w800,
                             ),
                           ),
-                          SizedBox(width: 2),
-                          Expanded(
-                            flex: 2,
-                            child: heightappointdate(), /*Text(
+                        ),
+                        SizedBox(width: 2),
+                        Expanded(
+                          flex: 2,
+                          child:
+                              heightappointdate(), /*Text(
                              "N/A",
                               style: TextStyle(fontSize: 14
                                 //fontWeight: FontWeight.w500,
                               ),
                             ),*/
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                    //SizedBox(width: 20),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 5.0, top: 10, right: 5.0,bottom: 10),
-                      child: Row(
-                        children: [
-
-                          Expanded(
-                            flex: 1,
-                            child: Container(
-                              alignment: Alignment.centerLeft,
-                              width: 100,
-                              child: Text(
-                                "Select Time",
-                                style: TextStyle(
-                                  fontSize: 15, fontWeight: FontWeight.w800,
-                                  // color: AppData.kPrimaryColor,
-                                  /*fontWeight: FontWeight.w600*/
-                                ),
+                  ),
+                  //SizedBox(width: 20),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        left: 5.0, top: 10, right: 5.0, bottom: 10),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: Container(
+                            alignment: Alignment.centerLeft,
+                            width: 100,
+                            child: Text(
+                              "Select Time",
+                              style: TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.w800,
+                                // color: AppData.kPrimaryColor,
+                                /*fontWeight: FontWeight.w600*/
                               ),
                             ),
                           ),
-                          SizedBox(width: 2),
-                          Expanded(
-                            flex: 2,
-                            child: Container(
-                              alignment: Alignment.centerLeft,
-                              width: 100,
-                              child:  heightTime(),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      alignment: Alignment.centerRight,
-
-                      child: Padding(
-                        padding: const EdgeInsets.only(right: 14.0,top: 5.0,bottom: 5.0),
-                        child:  Image.asset(
-                          "assets/images/line_chart.png",
-                          height: 25,
                         ),
+                        SizedBox(width: 2),
+                        Expanded(
+                          flex: 2,
+                          child: Container(
+                            alignment: Alignment.centerLeft,
+                            width: 100,
+                            child: heightTime(),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    alignment: Alignment.centerRight,
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                          right: 14.0, top: 5.0, bottom: 5.0),
+                      child: Image.asset(
+                        "assets/images/line_chart.png",
+                        height: 25,
                       ),
                     ),
+                  ),
 
-                    Divider(
-                      color: AppData.lightgreyBorder,
-                      height: 6,
-                    ),
-                    SizedBox(height: 15),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: nextButtonheight(), /*Buttons.nextButton(
+                  Divider(
+                    color: AppData.lightgreyBorder,
+                    height: 6,
+                  ),
+                  SizedBox(height: 15),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child:
+                        nextButtonheight(), /*Buttons.nextButton(
                               function: () {
                                 //Navigator.pushNamed(context, "/UserRegister1");
                                 //personalFormValidate();
                               },
                               title: "PAY",
                               context: context),*/
-                    ),
-                    //SizedBox(height: 10),
-                  ],
-                ),
+                  ),
+                  //SizedBox(height: 10),
+                ],
               ),
             ),
           ),
         ),
-      );
+      ),
+    );
   }
+
   Widget heightBMI() {
-    return
-      SingleChildScrollView(
-        child: Card(
-          elevation: 0,
-          child: Padding(
-            padding: const EdgeInsets.only(left: 8.0, right: 0.0, top: 4.0),
-            child: Container(
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding:
-                      const EdgeInsets.only(left: 5.0, top: 0, right: 5.0),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            flex: 1,
-                            child: Text(
-                              "Enter Value",
-                              style: TextStyle(
-                                fontSize: 15,
-                                // color: Colors.black54,
-                                fontWeight: FontWeight.w800,
-                              ),
+    return SingleChildScrollView(
+      child: Card(
+        elevation: 0,
+        child: Padding(
+          padding: const EdgeInsets.only(left: 8.0, right: 0.0, top: 4.0),
+          child: Container(
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 5.0, top: 0, right: 5.0),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            "Enter Value",
+                            style: TextStyle(
+                              fontSize: 15,
+                              // color: Colors.black54,
+                              fontWeight: FontWeight.w800,
                             ),
                           ),
-                          /* SizedBox(
+                        ),
+                        /* SizedBox(
                       width: spaceTab,
                     ),*/
-                          SizedBox(width: 2),
-                          Expanded(
-                            flex: 2,
-                            child:    Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 8),
-                              child: Container(
-                                height: 50,
-                                padding:
-                                EdgeInsets.only(left: 18),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius:
+                        SizedBox(width: 2),
+                        Expanded(
+                          flex: 2,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 8),
+                            child: Container(
+                              height: 50,
+                              padding: EdgeInsets.only(left: 18),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(5),
+                                border:
+                                    Border.all(color: Colors.black, width: 0.3),
+                              ),
+                              child: TextFormField(
+                                maxLength: 5,
+                                decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  hintText: "Value",
+                                  counterText: "",
 
-                                  BorderRadius.circular(5),
-                                  border: Border.all(
-                                      color: Colors.black, width: 0.3),
-                                ),
-                                child: TextFormField(
-                                  maxLength: 5,
-                                  decoration: InputDecoration(
-                                    border: InputBorder.none,
-                                    hintText:"Value",
-                                    counterText: "",
-
-                                    /*prefixIcon:
+                                  /*prefixIcon:
                                     Icon(Icons.person_rounded),*/
-                                    hintStyle: TextStyle(
-                                        color: AppData.hintColor,
-                                        fontSize: 16),
-                                  ),
-                                  textInputAction: TextInputAction.next,
-                                  keyboardType: TextInputType.number,
-                                  controller: textEditingController[2],
-                                  focusNode: fnode3,
-                                  textAlignVertical:
-
-                                  TextAlignVertical.center,
-                                  inputFormatters: [
-                                    WhitelistingTextInputFormatter(
-                                        RegExp("[0-9.]")),
-                                  ],
-                                  /*onFieldSubmitted: (value) {
+                                  hintStyle: TextStyle(
+                                      color: AppData.hintColor, fontSize: 16),
+                                ),
+                                textInputAction: TextInputAction.next,
+                                keyboardType: TextInputType.number,
+                                controller: textEditingController[2],
+                                focusNode: fnode3,
+                                textAlignVertical: TextAlignVertical.center,
+                                inputFormatters: [
+                                  WhitelistingTextInputFormatter(
+                                      RegExp("[0-9.]")),
+                                ],
+                                /*onFieldSubmitted: (value) {
                                     AppData.fieldFocusChange(context, fnode1, fnode2);
                                   },*/
-                                ),
                               ),
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                    /*SizedBox(
+                  ),
+                  /*SizedBox(
                   height: 6,
                 ),*/
-                    // SizedBox(width: 20),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 5.0,  top: 10,right: 5.0),
-                      child: Row(
-                        children: [
-                          //Icon(Icons.bloodtype,size: 20),
-                          Expanded(
-                            flex: 1,
-                            child: Text("Select Date"
-                              /* MyLocalizations.of(context).text("BLOODGROUP")*/,
-                              style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w800,
-                              ),
+                  // SizedBox(width: 20),
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 5.0, top: 10, right: 5.0),
+                    child: Row(
+                      children: [
+                        //Icon(Icons.bloodtype,size: 20),
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            "Select Date"
+                            /* MyLocalizations.of(context).text("BLOODGROUP")*/,
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w800,
                             ),
                           ),
-                          SizedBox(width: 2),
-                          Expanded(
-                            flex: 2,
-                            child: bMIappointdate(), /*Text(
+                        ),
+                        SizedBox(width: 2),
+                        Expanded(
+                          flex: 2,
+                          child:
+                              bMIappointdate(), /*Text(
                              "N/A",
                               style: TextStyle(fontSize: 14
                                 //fontWeight: FontWeight.w500,
                               ),
                             ),*/
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                    //SizedBox(width: 20),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 5.0, top: 10, right: 5.0,bottom: 10),
-                      child: Row(
-                        children: [
-
-                          Expanded(
-                            flex: 1,
-                            child: Container(
-                              alignment: Alignment.centerLeft,
-                              width: 100,
-                              child: Text(
-                                "Select Time",
-                                style: TextStyle(
-                                  fontSize: 15, fontWeight: FontWeight.w800,
-                                  // color: AppData.kPrimaryColor,
-                                  /*fontWeight: FontWeight.w600*/
-                                ),
+                  ),
+                  //SizedBox(width: 20),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        left: 5.0, top: 10, right: 5.0, bottom: 10),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: Container(
+                            alignment: Alignment.centerLeft,
+                            width: 100,
+                            child: Text(
+                              "Select Time",
+                              style: TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.w800,
+                                // color: AppData.kPrimaryColor,
+                                /*fontWeight: FontWeight.w600*/
                               ),
                             ),
                           ),
-                          SizedBox(width: 2),
-                          Expanded(
-                            flex: 2,
-                            child: Container(
-                              alignment: Alignment.centerLeft,
-                              width: 100,
-                              child:  bMITime(),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      alignment: Alignment.centerRight,
-
-                      child: Padding(
-                        padding: const EdgeInsets.only(right: 14.0,top: 5.0,bottom: 5.0),
-                        child:  Image.asset(
-                          "assets/images/line_chart.png",
-                          height: 25,
                         ),
+                        SizedBox(width: 2),
+                        Expanded(
+                          flex: 2,
+                          child: Container(
+                            alignment: Alignment.centerLeft,
+                            width: 100,
+                            child: bMITime(),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    alignment: Alignment.centerRight,
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                          right: 14.0, top: 5.0, bottom: 5.0),
+                      child: Image.asset(
+                        "assets/images/line_chart.png",
+                        height: 25,
                       ),
                     ),
+                  ),
 
-                    Divider(
-                      color: AppData.lightgreyBorder,
-                      height: 6,
-                    ),
-                    SizedBox(height: 15),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: nextButtonBMI(), /*Buttons.nextButton(
+                  Divider(
+                    color: AppData.lightgreyBorder,
+                    height: 6,
+                  ),
+                  SizedBox(height: 15),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child:
+                        nextButtonBMI(), /*Buttons.nextButton(
                               function: () {
                                 //Navigator.pushNamed(context, "/UserRegister1");
                                 //personalFormValidate();
                               },
                               title: "PAY",
                               context: context),*/
-                    ),
-                    //SizedBox(height: 10),
-                  ],
-                ),
+                  ),
+                  //SizedBox(height: 10),
+                ],
               ),
             ),
           ),
         ),
-      );
+      ),
+    );
   }
+
   Widget Systolic() {
-    return
-      SingleChildScrollView(
-        child: Card(
-          elevation: 0,
-          child: Padding(
-            padding: const EdgeInsets.only(left: 8.0, right: 0.0, top: 4.0),
-            child: Container(
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding:
-                      const EdgeInsets.only(left: 5.0, top: 0, right: 5.0),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            flex: 1,
-                            child: Text(
-                              "Enter Value(mmHg)",
-                              style: TextStyle(
-                                fontSize: 15,
-                                // color: Colors.black54,
-                                fontWeight: FontWeight.w800,
-                              ),
+    return SingleChildScrollView(
+      child: Card(
+        elevation: 0,
+        child: Padding(
+          padding: const EdgeInsets.only(left: 8.0, right: 0.0, top: 4.0),
+          child: Container(
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 5.0, top: 0, right: 5.0),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            "Enter Value(mmHg)",
+                            style: TextStyle(
+                              fontSize: 15,
+                              // color: Colors.black54,
+                              fontWeight: FontWeight.w800,
                             ),
                           ),
-                          /* SizedBox(
+                        ),
+                        /* SizedBox(
                       width: spaceTab,
                     ),*/
-                          SizedBox(width: 2),
-                          Expanded(
-                            flex: 2,
-                            child:    Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 8),
-                              child: Container(
-                                height: 50,
-                                padding:
-                                EdgeInsets.only(left: 18),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius:
+                        SizedBox(width: 2),
+                        Expanded(
+                          flex: 2,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 8),
+                            child: Container(
+                              height: 50,
+                              padding: EdgeInsets.only(left: 18),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(5),
+                                border:
+                                    Border.all(color: Colors.black, width: 0.3),
+                              ),
+                              child: TextFormField(
+                                maxLength: 5,
+                                decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  hintText: "Value",
+                                  counterText: "",
 
-                                  BorderRadius.circular(5),
-                                  border: Border.all(
-                                      color: Colors.black, width: 0.3),
-                                ),
-                                child: TextFormField(
-                                  maxLength: 5,
-                                  decoration: InputDecoration(
-                                    border: InputBorder.none,
-                                    hintText:"Value",
-                                    counterText: "",
-
-                                    /*prefixIcon:
+                                  /*prefixIcon:
                                     Icon(Icons.person_rounded),*/
-                                    hintStyle: TextStyle(
-                                        color: AppData.hintColor,
-                                        fontSize: 16),
-                                  ),
-                                  textInputAction: TextInputAction.next,
-                                  keyboardType: TextInputType.number,
-                                  controller: textEditingController[3],
-                                  focusNode: fnode3,
-                                  textAlignVertical:
-
-                                  TextAlignVertical.center,
-                                  inputFormatters: [
-                                    WhitelistingTextInputFormatter(
-                                        RegExp("[0-9.]")),
-                                  ],
-                                  /*onFieldSubmitted: (value) {
+                                  hintStyle: TextStyle(
+                                      color: AppData.hintColor, fontSize: 16),
+                                ),
+                                textInputAction: TextInputAction.next,
+                                keyboardType: TextInputType.number,
+                                controller: textEditingController[3],
+                                focusNode: fnode3,
+                                textAlignVertical: TextAlignVertical.center,
+                                inputFormatters: [
+                                  WhitelistingTextInputFormatter(
+                                      RegExp("[0-9.]")),
+                                ],
+                                /*onFieldSubmitted: (value) {
                                     AppData.fieldFocusChange(context, fnode1, fnode2);
                                   },*/
-                                ),
                               ),
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                    /*SizedBox(
+                  ),
+                  /*SizedBox(
                   height: 6,
                 ),*/
-                    // SizedBox(width: 20),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 5.0,  top: 10,right: 5.0),
-                      child: Row(
-                        children: [
-                          //Icon(Icons.bloodtype,size: 20),
-                          Expanded(
-                            flex: 1,
-                            child: Text("Select Date"
-                              /* MyLocalizations.of(context).text("BLOODGROUP")*/,
-                              style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w800,
-                              ),
+                  // SizedBox(width: 20),
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 5.0, top: 10, right: 5.0),
+                    child: Row(
+                      children: [
+                        //Icon(Icons.bloodtype,size: 20),
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            "Select Date"
+                            /* MyLocalizations.of(context).text("BLOODGROUP")*/,
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w800,
                             ),
                           ),
-                          SizedBox(width: 2),
-                          Expanded(
-                            flex: 2,
-                            child: sYstolicappointdate(), /*Text(
+                        ),
+                        SizedBox(width: 2),
+                        Expanded(
+                          flex: 2,
+                          child:
+                              sYstolicappointdate(), /*Text(
                              "N/A",
                               style: TextStyle(fontSize: 14
                                 //fontWeight: FontWeight.w500,
                               ),
                             ),*/
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                    //SizedBox(width: 20),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 5.0, top: 10, right: 5.0,bottom: 10),
-                      child: Row(
-                        children: [
-
-                          Expanded(
-                            flex: 1,
-                            child: Container(
-                              alignment: Alignment.centerLeft,
-                              width: 100,
-                              child: Text(
-                                "Select Time",
-                                style: TextStyle(
-                                  fontSize: 15, fontWeight: FontWeight.w800,
-                                  // color: AppData.kPrimaryColor,
-                                  /*fontWeight: FontWeight.w600*/
-                                ),
+                  ),
+                  //SizedBox(width: 20),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        left: 5.0, top: 10, right: 5.0, bottom: 10),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: Container(
+                            alignment: Alignment.centerLeft,
+                            width: 100,
+                            child: Text(
+                              "Select Time",
+                              style: TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.w800,
+                                // color: AppData.kPrimaryColor,
+                                /*fontWeight: FontWeight.w600*/
                               ),
                             ),
                           ),
-                          SizedBox(width: 2),
-                          Expanded(
-                            flex: 2,
-                            child: Container(
-                              alignment: Alignment.centerLeft,
-                              width: 100,
-                              child:  sYstolicTime(),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      alignment: Alignment.centerRight,
-
-                      child: Padding(
-                        padding: const EdgeInsets.only(right: 14.0,top: 5.0,bottom: 5.0),
-                        child:  Image.asset(
-                          "assets/images/line_chart.png",
-                          height: 25,
                         ),
+                        SizedBox(width: 2),
+                        Expanded(
+                          flex: 2,
+                          child: Container(
+                            alignment: Alignment.centerLeft,
+                            width: 100,
+                            child: sYstolicTime(),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    alignment: Alignment.centerRight,
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                          right: 14.0, top: 5.0, bottom: 5.0),
+                      child: Image.asset(
+                        "assets/images/line_chart.png",
+                        height: 25,
                       ),
                     ),
+                  ),
 
-                    Divider(
-                      color: AppData.lightgreyBorder,
-                      height: 6,
-                    ),
-                    SizedBox(height: 15),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: nextButtonSystolic(), /*Buttons.nextButton(
+                  Divider(
+                    color: AppData.lightgreyBorder,
+                    height: 6,
+                  ),
+                  SizedBox(height: 15),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child:
+                        nextButtonSystolic(), /*Buttons.nextButton(
                               function: () {
                                 //Navigator.pushNamed(context, "/UserRegister1");
                                 //personalFormValidate();
                               },
                               title: "PAY",
                               context: context),*/
-                    ),
-                    //SizedBox(height: 10),
-                  ],
-                ),
+                  ),
+                  //SizedBox(height: 10),
+                ],
               ),
             ),
           ),
         ),
-      );
+      ),
+    );
   }
+
+  Widget Diastolictemp() {
+    return SingleChildScrollView(
+      child: Card(
+        elevation: 0,
+        child: Padding(
+          padding: const EdgeInsets.only(left: 8.0, right: 0.0, top: 4.0),
+          child: Container(
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 5.0, top: 0, right: 5.0),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            "Enter Value(C)",
+                            style: TextStyle(
+                              fontSize: 15,
+                              // color: Colors.black54,
+                              fontWeight: FontWeight.w800,
+                            ),
+                          ),
+                        ),
+                        /* SizedBox(
+                      width: spaceTab,
+                    ),*/
+                        SizedBox(width: 2),
+                        Expanded(
+                          flex: 2,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 8),
+                            child: Container(
+                              height: 50,
+                              padding: EdgeInsets.only(left: 18),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(5),
+                                border:
+                                    Border.all(color: Colors.black, width: 0.3),
+                              ),
+                              child: TextFormField(
+                                maxLength: 5,
+                                decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  hintText: "Value",
+                                  counterText: "",
+
+                                  /*prefixIcon:
+                                    Icon(Icons.person_rounded),*/
+                                  hintStyle: TextStyle(
+                                      color: AppData.hintColor, fontSize: 16),
+                                ),
+                                textInputAction: TextInputAction.next,
+                                keyboardType: TextInputType.number,
+                                controller: textEditingController[4],
+                                focusNode: fnode4,
+                                textAlignVertical: TextAlignVertical.center,
+                                inputFormatters: [
+                                  WhitelistingTextInputFormatter(
+                                      RegExp("[0-9.]")),
+                                ],
+                                /*onFieldSubmitted: (value) {
+                                    AppData.fieldFocusChange(context, fnode1, fnode2);
+                                  },*/
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  /*SizedBox(
+                  height: 6,
+                ),*/
+                  // SizedBox(width: 20),
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 5.0, top: 10, right: 5.0),
+                    child: Row(
+                      children: [
+                        //Icon(Icons.bloodtype,size: 20),
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            "Select Date"
+                            /* MyLocalizations.of(context).text("BLOODGROUP")*/,
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w800,
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 2),
+                        Expanded(
+                          flex: 2,
+                          child:
+                              diastolicappointdate(), /*Text(
+                             "N/A",
+                              style: TextStyle(fontSize: 14
+                                //fontWeight: FontWeight.w500,
+                              ),
+                            ),*/
+                        ),
+                      ],
+                    ),
+                  ),
+                  //SizedBox(width: 20),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        left: 5.0, top: 10, right: 5.0, bottom: 10),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: Container(
+                            alignment: Alignment.centerLeft,
+                            width: 100,
+                            child: Text(
+                              "Select Time",
+                              style: TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.w800,
+                                // color: AppData.kPrimaryColor,
+                                /*fontWeight: FontWeight.w600*/
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 2),
+                        Expanded(
+                          flex: 2,
+                          child: Container(
+                            alignment: Alignment.centerLeft,
+                            width: 100,
+                            child: diastolicTime(),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    alignment: Alignment.centerRight,
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                          right: 14.0, top: 5.0, bottom: 5.0),
+                      child: Image.asset(
+                        "assets/images/line_chart.png",
+                        height: 25,
+                      ),
+                    ),
+                  ),
+
+                  Divider(
+                    color: AppData.lightgreyBorder,
+                    height: 6,
+                  ),
+                  SizedBox(height: 15),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child:
+                        nextButtondiastolic(), /*Buttons.nextButton(
+                              function: () {
+                                //Navigator.pushNamed(context, "/UserRegister1");
+                                //personalFormValidate();
+                              },
+                              title: "PAY",
+                              context: context),*/
+                  ),
+                  //SizedBox(height: 10),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget Respiration() {
+    return SingleChildScrollView(
+      child: Card(
+        elevation: 0,
+        child: Padding(
+          padding: const EdgeInsets.only(left: 8.0, right: 0.0, top: 4.0),
+          child: Container(
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 5.0, top: 0, right: 5.0),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            "Enter Value(per minute)",
+                            style: TextStyle(
+                              fontSize: 15,
+                              // color: Colors.black54,
+                              fontWeight: FontWeight.w800,
+                            ),
+                          ),
+                        ),
+                        /* SizedBox(
+                      width: spaceTab,
+                    ),*/
+                        SizedBox(width: 2),
+                        Expanded(
+                          flex: 2,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 8),
+                            child: Container(
+                              height: 50,
+                              padding: EdgeInsets.only(left: 18),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(5),
+                                border:
+                                    Border.all(color: Colors.black, width: 0.3),
+                              ),
+                              child: TextFormField(
+                                maxLength: 5,
+                                decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  hintText: "Value",
+                                  counterText: "",
+
+                                  /*prefixIcon:
+                                    Icon(Icons.person_rounded),*/
+                                  hintStyle: TextStyle(
+                                      color: AppData.hintColor, fontSize: 16),
+                                ),
+                                textInputAction: TextInputAction.next,
+                                keyboardType: TextInputType.number,
+                                controller: textEditingController[4],
+                                focusNode: fnode4,
+                                textAlignVertical: TextAlignVertical.center,
+                                inputFormatters: [
+                                  WhitelistingTextInputFormatter(
+                                      RegExp("[0-9.]")),
+                                ],
+                                /*onFieldSubmitted: (value) {
+                                    AppData.fieldFocusChange(context, fnode1, fnode2);
+                                  },*/
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  /*SizedBox(
+                  height: 6,
+                ),*/
+                  // SizedBox(width: 20),
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 5.0, top: 10, right: 5.0),
+                    child: Row(
+                      children: [
+                        //Icon(Icons.bloodtype,size: 20),
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            "Select Date"
+                            /* MyLocalizations.of(context).text("BLOODGROUP")*/,
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w800,
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 2),
+                        Expanded(
+                          flex: 2,
+                          child:
+                              diastolicappointdate(), /*Text(
+                             "N/A",
+                              style: TextStyle(fontSize: 14
+                                //fontWeight: FontWeight.w500,
+                              ),
+                            ),*/
+                        ),
+                      ],
+                    ),
+                  ),
+                  //SizedBox(width: 20),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        left: 5.0, top: 10, right: 5.0, bottom: 10),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: Container(
+                            alignment: Alignment.centerLeft,
+                            width: 100,
+                            child: Text(
+                              "Select Time",
+                              style: TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.w800,
+                                // color: AppData.kPrimaryColor,
+                                /*fontWeight: FontWeight.w600*/
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 2),
+                        Expanded(
+                          flex: 2,
+                          child: Container(
+                            alignment: Alignment.centerLeft,
+                            width: 100,
+                            child: diastolicTime(),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    alignment: Alignment.centerRight,
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                          right: 14.0, top: 5.0, bottom: 5.0),
+                      child: Image.asset(
+                        "assets/images/line_chart.png",
+                        height: 25,
+                      ),
+                    ),
+                  ),
+
+                  Divider(
+                    color: AppData.lightgreyBorder,
+                    height: 6,
+                  ),
+                  SizedBox(height: 15),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child:
+                        nextButtondiastolic(), /*Buttons.nextButton(
+                              function: () {
+                                //Navigator.pushNamed(context, "/UserRegister1");
+                                //personalFormValidate();
+                              },
+                              title: "PAY",
+                              context: context),*/
+                  ),
+                  //SizedBox(height: 10),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget OxygenSaturation() {
+    return SingleChildScrollView(
+      child: Card(
+        elevation: 0,
+        child: Padding(
+          padding: const EdgeInsets.only(left: 8.0, right: 0.0, top: 4.0),
+          child: Container(
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 5.0, top: 0, right: 5.0),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            "Enter Value(%)",
+                            style: TextStyle(
+                              fontSize: 15,
+                              // color: Colors.black54,
+                              fontWeight: FontWeight.w800,
+                            ),
+                          ),
+                        ),
+                        /* SizedBox(
+                      width: spaceTab,
+                    ),*/
+                        SizedBox(width: 2),
+                        Expanded(
+                          flex: 2,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 8),
+                            child: Container(
+                              height: 50,
+                              padding: EdgeInsets.only(left: 18),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(5),
+                                border:
+                                    Border.all(color: Colors.black, width: 0.3),
+                              ),
+                              child: TextFormField(
+                                maxLength: 5,
+                                decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  hintText: "Value",
+                                  counterText: "",
+
+                                  /*prefixIcon:
+                                    Icon(Icons.person_rounded),*/
+                                  hintStyle: TextStyle(
+                                      color: AppData.hintColor, fontSize: 16),
+                                ),
+                                textInputAction: TextInputAction.next,
+                                keyboardType: TextInputType.number,
+                                controller: textEditingController[4],
+                                focusNode: fnode4,
+                                textAlignVertical: TextAlignVertical.center,
+                                inputFormatters: [
+                                  WhitelistingTextInputFormatter(
+                                      RegExp("[0-9.]")),
+                                ],
+                                /*onFieldSubmitted: (value) {
+                                    AppData.fieldFocusChange(context, fnode1, fnode2);
+                                  },*/
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  /*SizedBox(
+                  height: 6,
+                ),*/
+                  // SizedBox(width: 20),
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 5.0, top: 10, right: 5.0),
+                    child: Row(
+                      children: [
+                        //Icon(Icons.bloodtype,size: 20),
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            "Select Date"
+                            /* MyLocalizations.of(context).text("BLOODGROUP")*/,
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w800,
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 2),
+                        Expanded(
+                          flex: 2,
+                          child:
+                              diastolicappointdate(), /*Text(
+                             "N/A",
+                              style: TextStyle(fontSize: 14
+                                //fontWeight: FontWeight.w500,
+                              ),
+                            ),*/
+                        ),
+                      ],
+                    ),
+                  ),
+                  //SizedBox(width: 20),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        left: 5.0, top: 10, right: 5.0, bottom: 10),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: Container(
+                            alignment: Alignment.centerLeft,
+                            width: 100,
+                            child: Text(
+                              "Select Time",
+                              style: TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.w800,
+                                // color: AppData.kPrimaryColor,
+                                /*fontWeight: FontWeight.w600*/
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 2),
+                        Expanded(
+                          flex: 2,
+                          child: Container(
+                            alignment: Alignment.centerLeft,
+                            width: 100,
+                            child: diastolicTime(),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    alignment: Alignment.centerRight,
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                          right: 14.0, top: 5.0, bottom: 5.0),
+                      child: Image.asset(
+                        "assets/images/line_chart.png",
+                        height: 25,
+                      ),
+                    ),
+                  ),
+
+                  Divider(
+                    color: AppData.lightgreyBorder,
+                    height: 6,
+                  ),
+                  SizedBox(height: 15),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child:
+                        nextButtondiastolic(), /*Buttons.nextButton(
+                              function: () {
+                                //Navigator.pushNamed(context, "/UserRegister1");
+                                //personalFormValidate();
+                              },
+                              title: "PAY",
+                              context: context),*/
+                  ),
+                  //SizedBox(height: 10),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
   Widget Diastolic() {
-    return
-      SingleChildScrollView(
-        child: Card(
-          elevation: 0,
-          child: Padding(
-            padding: const EdgeInsets.only(left: 8.0, right: 0.0, top: 4.0),
-            child: Container(
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding:
-                      const EdgeInsets.only(left: 5.0, top: 0, right: 5.0),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            flex: 1,
-                            child: Text(
-                              "Enter Value(mmHg)",
-                              style: TextStyle(
-                                fontSize: 15,
-                                // color: Colors.black54,
-                                fontWeight: FontWeight.w800,
-                              ),
+    return SingleChildScrollView(
+      child: Card(
+        elevation: 0,
+        child: Padding(
+          padding: const EdgeInsets.only(left: 8.0, right: 0.0, top: 4.0),
+          child: Container(
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 5.0, top: 0, right: 5.0),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            "Enter Value(mmHg)",
+                            style: TextStyle(
+                              fontSize: 15,
+                              // color: Colors.black54,
+                              fontWeight: FontWeight.w800,
                             ),
                           ),
-                          /* SizedBox(
+                        ),
+                        /* SizedBox(
                       width: spaceTab,
                     ),*/
-                          SizedBox(width: 2),
-                          Expanded(
-                            flex: 2,
-                            child:    Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 8),
-                              child: Container(
-                                height: 50,
-                                padding:
-                                EdgeInsets.only(left: 18),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius:
+                        SizedBox(width: 2),
+                        Expanded(
+                          flex: 2,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 8),
+                            child: Container(
+                              height: 50,
+                              padding: EdgeInsets.only(left: 18),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(5),
+                                border:
+                                    Border.all(color: Colors.black, width: 0.3),
+                              ),
+                              child: TextFormField(
+                                maxLength: 5,
+                                decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  hintText: "Value",
+                                  counterText: "",
 
-                                  BorderRadius.circular(5),
-                                  border: Border.all(
-                                      color: Colors.black, width: 0.3),
-                                ),
-                                child: TextFormField(
-                                  maxLength: 5,
-                                  decoration: InputDecoration(
-                                    border: InputBorder.none,
-                                    hintText:"Value",
-                                    counterText: "",
-
-                                    /*prefixIcon:
+                                  /*prefixIcon:
                                     Icon(Icons.person_rounded),*/
-                                    hintStyle: TextStyle(
-                                        color: AppData.hintColor,
-                                        fontSize: 16),
-                                  ),
-                                  textInputAction: TextInputAction.next,
-                                  keyboardType: TextInputType.number,
-                                  controller: textEditingController[4],
-                                  focusNode: fnode4,
-                                  textAlignVertical:
-
-                                  TextAlignVertical.center,
-                                  inputFormatters: [
-                                    WhitelistingTextInputFormatter(
-                                        RegExp("[0-9.]")),
-                                  ],
-                                  /*onFieldSubmitted: (value) {
+                                  hintStyle: TextStyle(
+                                      color: AppData.hintColor, fontSize: 16),
+                                ),
+                                textInputAction: TextInputAction.next,
+                                keyboardType: TextInputType.number,
+                                controller: textEditingController[4],
+                                focusNode: fnode4,
+                                textAlignVertical: TextAlignVertical.center,
+                                inputFormatters: [
+                                  WhitelistingTextInputFormatter(
+                                      RegExp("[0-9.]")),
+                                ],
+                                /*onFieldSubmitted: (value) {
                                     AppData.fieldFocusChange(context, fnode1, fnode2);
                                   },*/
-                                ),
                               ),
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                    /*SizedBox(
+                  ),
+                  /*SizedBox(
                   height: 6,
                 ),*/
-                    // SizedBox(width: 20),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 5.0,  top: 10,right: 5.0),
-                      child: Row(
-                        children: [
-                          //Icon(Icons.bloodtype,size: 20),
-                          Expanded(
-                            flex: 1,
-                            child: Text("Select Date"
-                              /* MyLocalizations.of(context).text("BLOODGROUP")*/,
-                              style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w800,
-                              ),
+                  // SizedBox(width: 20),
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 5.0, top: 10, right: 5.0),
+                    child: Row(
+                      children: [
+                        //Icon(Icons.bloodtype,size: 20),
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            "Select Date"
+                            /* MyLocalizations.of(context).text("BLOODGROUP")*/,
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w800,
                             ),
                           ),
-                          SizedBox(width: 2),
-                          Expanded(
-                            flex: 2,
-                            child: diastolicappointdate(), /*Text(
+                        ),
+                        SizedBox(width: 2),
+                        Expanded(
+                          flex: 2,
+                          child:
+                              diastolicappointdate(), /*Text(
                              "N/A",
                               style: TextStyle(fontSize: 14
                                 //fontWeight: FontWeight.w500,
                               ),
                             ),*/
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                    //SizedBox(width: 20),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 5.0, top: 10, right: 5.0,bottom: 10),
-                      child: Row(
-                        children: [
-
-                          Expanded(
-                            flex: 1,
-                            child: Container(
-                              alignment: Alignment.centerLeft,
-                              width: 100,
-                              child: Text(
-                                "Select Time",
-                                style: TextStyle(
-                                  fontSize: 15, fontWeight: FontWeight.w800,
-                                  // color: AppData.kPrimaryColor,
-                                  /*fontWeight: FontWeight.w600*/
-                                ),
+                  ),
+                  //SizedBox(width: 20),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        left: 5.0, top: 10, right: 5.0, bottom: 10),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: Container(
+                            alignment: Alignment.centerLeft,
+                            width: 100,
+                            child: Text(
+                              "Select Time",
+                              style: TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.w800,
+                                // color: AppData.kPrimaryColor,
+                                /*fontWeight: FontWeight.w600*/
                               ),
                             ),
                           ),
-                          SizedBox(width: 2),
-                          Expanded(
-                            flex: 2,
-                            child: Container(
-                              alignment: Alignment.centerLeft,
-                              width: 100,
-                              child:  diastolicTime(),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      alignment: Alignment.centerRight,
-
-                      child: Padding(
-                        padding: const EdgeInsets.only(right: 14.0,top: 5.0,bottom: 5.0),
-                        child:  Image.asset(
-                          "assets/images/line_chart.png",
-                          height: 25,
                         ),
+                        SizedBox(width: 2),
+                        Expanded(
+                          flex: 2,
+                          child: Container(
+                            alignment: Alignment.centerLeft,
+                            width: 100,
+                            child: diastolicTime(),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    alignment: Alignment.centerRight,
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                          right: 14.0, top: 5.0, bottom: 5.0),
+                      child: Image.asset(
+                        "assets/images/line_chart.png",
+                        height: 25,
                       ),
                     ),
+                  ),
 
-                    Divider(
-                      color: AppData.lightgreyBorder,
-                      height: 6,
-                    ),
-                    SizedBox(height: 15),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: nextButtondiastolic(), /*Buttons.nextButton(
+                  Divider(
+                    color: AppData.lightgreyBorder,
+                    height: 6,
+                  ),
+                  SizedBox(height: 15),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child:
+                        nextButtondiastolic(), /*Buttons.nextButton(
                               function: () {
                                 //Navigator.pushNamed(context, "/UserRegister1");
                                 //personalFormValidate();
                               },
                               title: "PAY",
                               context: context),*/
-                    ),
-                    //SizedBox(height: 10),
-                  ],
-                ),
+                  ),
+                  //SizedBox(height: 10),
+                ],
               ),
             ),
           ),
         ),
-      );
+      ),
+    );
   }
+
+  Widget Pulse() {
+    return SingleChildScrollView(
+      child: Card(
+        elevation: 0,
+        child: Padding(
+          padding: const EdgeInsets.only(left: 8.0, right: 0.0, top: 4.0),
+          child: Container(
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 5.0, top: 0, right: 5.0),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            "Enter Value(bpm)",
+                            style: TextStyle(
+                              fontSize: 15,
+                              // color: Colors.black54,
+                              fontWeight: FontWeight.w800,
+                            ),
+                          ),
+                        ),
+                        /* SizedBox(
+                      width: spaceTab,
+                    ),*/
+                        SizedBox(width: 2),
+                        Expanded(
+                          flex: 2,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 8),
+                            child: Container(
+                              height: 50,
+                              padding: EdgeInsets.only(left: 18),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(5),
+                                border:
+                                    Border.all(color: Colors.black, width: 0.3),
+                              ),
+                              child: TextFormField(
+                                maxLength: 5,
+                                decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  hintText: "Value",
+                                  counterText: "",
+
+                                  /*prefixIcon:
+                                    Icon(Icons.person_rounded),*/
+                                  hintStyle: TextStyle(
+                                      color: AppData.hintColor, fontSize: 16),
+                                ),
+                                textInputAction: TextInputAction.next,
+                                keyboardType: TextInputType.number,
+                                controller: textEditingController[4],
+                                focusNode: fnode4,
+                                textAlignVertical: TextAlignVertical.center,
+                                inputFormatters: [
+                                  WhitelistingTextInputFormatter(
+                                      RegExp("[0-9.]")),
+                                ],
+                                /*onFieldSubmitted: (value) {
+                                    AppData.fieldFocusChange(context, fnode1, fnode2);
+                                  },*/
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  /*SizedBox(
+                  height: 6,
+                ),*/
+                  // SizedBox(width: 20),
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 5.0, top: 10, right: 5.0),
+                    child: Row(
+                      children: [
+                        //Icon(Icons.bloodtype,size: 20),
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            "Select Date"
+                            /* MyLocalizations.of(context).text("BLOODGROUP")*/,
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w800,
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 2),
+                        Expanded(
+                          flex: 2,
+                          child:
+                              diastolicappointdate(), /*Text(
+                             "N/A",
+                              style: TextStyle(fontSize: 14
+                                //fontWeight: FontWeight.w500,
+                              ),
+                            ),*/
+                        ),
+                      ],
+                    ),
+                  ),
+                  //SizedBox(width: 20),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        left: 5.0, top: 10, right: 5.0, bottom: 10),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: Container(
+                            alignment: Alignment.centerLeft,
+                            width: 100,
+                            child: Text(
+                              "Select Time",
+                              style: TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.w800,
+                                // color: AppData.kPrimaryColor,
+                                /*fontWeight: FontWeight.w600*/
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 2),
+                        Expanded(
+                          flex: 2,
+                          child: Container(
+                            alignment: Alignment.centerLeft,
+                            width: 100,
+                            child: diastolicTime(),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    alignment: Alignment.centerRight,
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                          right: 14.0, top: 5.0, bottom: 5.0),
+                      child: Image.asset(
+                        "assets/images/line_chart.png",
+                        height: 25,
+                      ),
+                    ),
+                  ),
+
+                  Divider(
+                    color: AppData.lightgreyBorder,
+                    height: 6,
+                  ),
+                  SizedBox(height: 15),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child:
+                        nextButtondiastolic(), /*Buttons.nextButton(
+                              function: () {
+                                //Navigator.pushNamed(context, "/UserRegister1");
+                                //personalFormValidate();
+                              },
+                              title: "PAY",
+                              context: context),*/
+                  ),
+                  //SizedBox(height: 10),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
   Widget Haemoglobin() {
-    return
-      SingleChildScrollView(
-        child: Card(
-          elevation: 0,
-          child: Padding(
-            padding: const EdgeInsets.only(left: 8.0, right: 0.0, top: 4.0),
-            child: Container(
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding:
-                      const EdgeInsets.only(left: 5.0, top: 0, right: 5.0),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            flex: 1,
-                            child: Text(
-                              "Enter Value(gm/dl)",
-                              style: TextStyle(
-                                fontSize: 15,
-                                // color: Colors.black54,
-                                fontWeight: FontWeight.w800,
-                              ),
+    return SingleChildScrollView(
+      child: Card(
+        elevation: 0,
+        child: Padding(
+          padding: const EdgeInsets.only(left: 8.0, right: 0.0, top: 4.0),
+          child: Container(
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 5.0, top: 0, right: 5.0),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            "Enter Value(gm/dl)",
+                            style: TextStyle(
+                              fontSize: 15,
+                              // color: Colors.black54,
+                              fontWeight: FontWeight.w800,
                             ),
                           ),
-                          /* SizedBox(
+                        ),
+                        /* SizedBox(
                       width: spaceTab,
                     ),*/
-                          SizedBox(width: 2),
-                          Expanded(
-                            flex: 2,
-                            child:    Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 8),
-                              child: Container(
-                                height: 50,
-                                padding:
-                                EdgeInsets.only(left: 18),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius:
+                        SizedBox(width: 2),
+                        Expanded(
+                          flex: 2,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 8),
+                            child: Container(
+                              height: 50,
+                              padding: EdgeInsets.only(left: 18),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(5),
+                                border:
+                                    Border.all(color: Colors.black, width: 0.3),
+                              ),
+                              child: TextFormField(
+                                maxLength: 5,
+                                decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  hintText: "Value",
+                                  counterText: "",
 
-                                  BorderRadius.circular(5),
-                                  border: Border.all(
-                                      color: Colors.black, width: 0.3),
-                                ),
-                                child: TextFormField(
-                                  maxLength: 5,
-                                  decoration: InputDecoration(
-                                    border: InputBorder.none,
-                                    hintText:"Value",
-                                    counterText: "",
-
-                                    /*prefixIcon:
+                                  /*prefixIcon:
                                     Icon(Icons.person_rounded),*/
-                                    hintStyle: TextStyle(
-                                        color: AppData.hintColor,
-                                        fontSize: 16),
-                                  ),
-                                  textInputAction: TextInputAction.next,
-                                  keyboardType: TextInputType.number,
-                                  controller: textEditingController[5],
-                                  focusNode: fnode5,
-                                  textAlignVertical:
-
-                                  TextAlignVertical.center,
-                                  inputFormatters: [
-                                    WhitelistingTextInputFormatter(
-                                        RegExp("[0-9.]")),
-                                  ],
-                                  /*onFieldSubmitted: (value) {
+                                  hintStyle: TextStyle(
+                                      color: AppData.hintColor, fontSize: 16),
+                                ),
+                                textInputAction: TextInputAction.next,
+                                keyboardType: TextInputType.number,
+                                controller: textEditingController[5],
+                                focusNode: fnode5,
+                                textAlignVertical: TextAlignVertical.center,
+                                inputFormatters: [
+                                  WhitelistingTextInputFormatter(
+                                      RegExp("[0-9.]")),
+                                ],
+                                /*onFieldSubmitted: (value) {
                                     AppData.fieldFocusChange(context, fnode1, fnode2);
                                   },*/
-                                ),
                               ),
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                    /*SizedBox(
+                  ),
+                  /*SizedBox(
                   height: 6,
                 ),*/
-                    // SizedBox(width: 20),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 5.0,  top: 10,right: 5.0),
-                      child: Row(
-                        children: [
-                          //Icon(Icons.bloodtype,size: 20),
-                          Expanded(
-                            flex: 1,
-                            child: Text("Select Date"
-                              /* MyLocalizations.of(context).text("BLOODGROUP")*/,
-                              style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w800,
-                              ),
+                  // SizedBox(width: 20),
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 5.0, top: 10, right: 5.0),
+                    child: Row(
+                      children: [
+                        //Icon(Icons.bloodtype,size: 20),
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            "Select Date"
+                            /* MyLocalizations.of(context).text("BLOODGROUP")*/,
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w800,
                             ),
                           ),
-                          SizedBox(width: 2),
-                          Expanded(
-                            flex: 2,
-                            child: haemoglobinappointdate(), /*Text(
+                        ),
+                        SizedBox(width: 2),
+                        Expanded(
+                          flex: 2,
+                          child:
+                              haemoglobinappointdate(), /*Text(
                              "N/A",
                               style: TextStyle(fontSize: 14
                                 //fontWeight: FontWeight.w500,
                               ),
                             ),*/
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                    //SizedBox(width: 20),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 5.0, top: 10, right: 5.0,bottom: 10),
-                      child: Row(
-                        children: [
-
-                          Expanded(
-                            flex: 1,
-                            child: Container(
-                              alignment: Alignment.centerLeft,
-                              width: 100,
-                              child: Text(
-                                "Select Time",
-                                style: TextStyle(
-                                  fontSize: 15, fontWeight: FontWeight.w800,
-                                  // color: AppData.kPrimaryColor,
-                                  /*fontWeight: FontWeight.w600*/
-                                ),
+                  ),
+                  //SizedBox(width: 20),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        left: 5.0, top: 10, right: 5.0, bottom: 10),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: Container(
+                            alignment: Alignment.centerLeft,
+                            width: 100,
+                            child: Text(
+                              "Select Time",
+                              style: TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.w800,
+                                // color: AppData.kPrimaryColor,
+                                /*fontWeight: FontWeight.w600*/
                               ),
                             ),
                           ),
-                          SizedBox(width: 2),
-                          Expanded(
-                            flex: 2,
-                            child: Container(
-                              alignment: Alignment.centerLeft,
-                              width: 100,
-                              child:  haemoglobinTime(),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      alignment: Alignment.centerRight,
-
-                      child: Padding(
-                        padding: const EdgeInsets.only(right: 14.0,top: 5.0,bottom: 5.0),
-                        child:  Image.asset(
-                          "assets/images/line_chart.png",
-                          height: 25,
                         ),
+                        SizedBox(width: 2),
+                        Expanded(
+                          flex: 2,
+                          child: Container(
+                            alignment: Alignment.centerLeft,
+                            width: 100,
+                            child: haemoglobinTime(),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    alignment: Alignment.centerRight,
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                          right: 14.0, top: 5.0, bottom: 5.0),
+                      child: Image.asset(
+                        "assets/images/line_chart.png",
+                        height: 25,
                       ),
                     ),
+                  ),
 
-                    Divider(
-                      color: AppData.lightgreyBorder,
-                      height: 6,
-                    ),
-                    SizedBox(height: 15),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: nextButtonhaemoglobin(), /*Buttons.nextButton(
+                  Divider(
+                    color: AppData.lightgreyBorder,
+                    height: 6,
+                  ),
+                  SizedBox(height: 15),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child:
+                        nextButtonhaemoglobin(), /*Buttons.nextButton(
                               function: () {
                                 //Navigator.pushNamed(context, "/UserRegister1");
                                 //personalFormValidate();
                               },
                               title: "PAY",
                               context: context),*/
-                    ),
-                    //SizedBox(height: 10),
-                  ],
-                ),
+                  ),
+                  //SizedBox(height: 10),
+                ],
               ),
             ),
           ),
         ),
-      );
+      ),
+    );
   }
+
   Widget WBCs() {
-    return
-      SingleChildScrollView(
-        child: Card(
-          elevation: 0,
-          child: Padding(
-            padding: const EdgeInsets.only(left: 8.0, right: 0.0, top: 4.0),
-            child: Container(
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding:
-                      const EdgeInsets.only(left: 5.0, top: 0, right: 5.0),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            flex: 1,
-                            child: Text(
-                              "Enter Value",
-                              style: TextStyle(
-                                fontSize: 15,
-                                // color: Colors.black54,
-                                fontWeight: FontWeight.w800,
-                              ),
+    return SingleChildScrollView(
+      child: Card(
+        elevation: 0,
+        child: Padding(
+          padding: const EdgeInsets.only(left: 8.0, right: 0.0, top: 4.0),
+          child: Container(
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 5.0, top: 0, right: 5.0),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            "Enter Value",
+                            style: TextStyle(
+                              fontSize: 15,
+                              // color: Colors.black54,
+                              fontWeight: FontWeight.w800,
                             ),
                           ),
-                          /* SizedBox(
+                        ),
+                        /* SizedBox(
                       width: spaceTab,
                     ),*/
-                          SizedBox(width: 2),
-                          Expanded(
-                            flex: 2,
-                            child:    Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 8),
-                              child: Container(
-                                height: 50,
-                                padding:
-                                EdgeInsets.only(left: 18),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius:
+                        SizedBox(width: 2),
+                        Expanded(
+                          flex: 2,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 8),
+                            child: Container(
+                              height: 50,
+                              padding: EdgeInsets.only(left: 18),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(5),
+                                border:
+                                    Border.all(color: Colors.black, width: 0.3),
+                              ),
+                              child: TextFormField(
+                                maxLength: 5,
+                                decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  hintText: "Value",
+                                  counterText: "",
 
-                                  BorderRadius.circular(5),
-                                  border: Border.all(
-                                      color: Colors.black, width: 0.3),
-                                ),
-                                child: TextFormField(
-                                  maxLength: 5,
-                                  decoration: InputDecoration(
-                                    border: InputBorder.none,
-                                    hintText:"Value",
-                                    counterText: "",
-
-                                    /*prefixIcon:
+                                  /*prefixIcon:
                                     Icon(Icons.person_rounded),*/
-                                    hintStyle: TextStyle(
-                                        color: AppData.hintColor,
-                                        fontSize: 16),
-                                  ),
-                                  textInputAction: TextInputAction.next,
-                                  keyboardType: TextInputType.number,
-                                  controller: textEditingController[6],
-                                  focusNode: fnode6,
-                                  textAlignVertical:
-
-                                  TextAlignVertical.center,
-                                  inputFormatters: [
-                                    WhitelistingTextInputFormatter(
-                                        RegExp("[0-9.]")),
-                                  ],
-                                  /*onFieldSubmitted: (value) {
+                                  hintStyle: TextStyle(
+                                      color: AppData.hintColor, fontSize: 16),
+                                ),
+                                textInputAction: TextInputAction.next,
+                                keyboardType: TextInputType.number,
+                                controller: textEditingController[6],
+                                focusNode: fnode6,
+                                textAlignVertical: TextAlignVertical.center,
+                                inputFormatters: [
+                                  WhitelistingTextInputFormatter(
+                                      RegExp("[0-9.]")),
+                                ],
+                                /*onFieldSubmitted: (value) {
                                     AppData.fieldFocusChange(context, fnode1, fnode2);
                                   },*/
-                                ),
                               ),
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                    /*SizedBox(
+                  ),
+                  /*SizedBox(
                   height: 6,
                 ),*/
-                    // SizedBox(width: 20),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 5.0,  top: 10,right: 5.0),
-                      child: Row(
-                        children: [
-                          //Icon(Icons.bloodtype,size: 20),
-                          Expanded(
-                            flex: 1,
-                            child: Text("Select Date"
-                              /* MyLocalizations.of(context).text("BLOODGROUP")*/,
-                              style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w800,
-                              ),
+                  // SizedBox(width: 20),
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 5.0, top: 10, right: 5.0),
+                    child: Row(
+                      children: [
+                        //Icon(Icons.bloodtype,size: 20),
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            "Select Date"
+                            /* MyLocalizations.of(context).text("BLOODGROUP")*/,
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w800,
                             ),
                           ),
-                          SizedBox(width: 2),
-                          Expanded(
-                            flex: 2,
-                            child: haemoglobinappointdate(), /*Text(
+                        ),
+                        SizedBox(width: 2),
+                        Expanded(
+                          flex: 2,
+                          child:
+                              haemoglobinappointdate(), /*Text(
                              "N/A",
                               style: TextStyle(fontSize: 14
                                 //fontWeight: FontWeight.w500,
                               ),
                             ),*/
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                    //SizedBox(width: 20),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 5.0, top: 10, right: 5.0,bottom: 10),
-                      child: Row(
-                        children: [
-
-                          Expanded(
-                            flex: 1,
-                            child: Container(
-                              alignment: Alignment.centerLeft,
-                              width: 100,
-                              child: Text(
-                                "Select Time",
-                                style: TextStyle(
-                                  fontSize: 15, fontWeight: FontWeight.w800,
-                                  // color: AppData.kPrimaryColor,
-                                  /*fontWeight: FontWeight.w600*/
-                                ),
+                  ),
+                  //SizedBox(width: 20),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        left: 5.0, top: 10, right: 5.0, bottom: 10),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: Container(
+                            alignment: Alignment.centerLeft,
+                            width: 100,
+                            child: Text(
+                              "Select Time",
+                              style: TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.w800,
+                                // color: AppData.kPrimaryColor,
+                                /*fontWeight: FontWeight.w600*/
                               ),
                             ),
                           ),
-                          SizedBox(width: 2),
-                          Expanded(
-                            flex: 2,
-                            child: Container(
-                              alignment: Alignment.centerLeft,
-                              width: 100,
-                              child:  haemoglobinTime(),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      alignment: Alignment.centerRight,
-
-                      child: Padding(
-                        padding: const EdgeInsets.only(right: 14.0,top: 5.0,bottom: 5.0),
-                        child:  Image.asset(
-                          "assets/images/line_chart.png",
-                          height: 25,
                         ),
+                        SizedBox(width: 2),
+                        Expanded(
+                          flex: 2,
+                          child: Container(
+                            alignment: Alignment.centerLeft,
+                            width: 100,
+                            child: haemoglobinTime(),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    alignment: Alignment.centerRight,
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                          right: 14.0, top: 5.0, bottom: 5.0),
+                      child: Image.asset(
+                        "assets/images/line_chart.png",
+                        height: 25,
                       ),
                     ),
+                  ),
 
-                    Divider(
-                      color: AppData.lightgreyBorder,
-                      height: 6,
-                    ),
-                    SizedBox(height: 15),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: nextButtonhaemoglobin(), /*Buttons.nextButton(
+                  Divider(
+                    color: AppData.lightgreyBorder,
+                    height: 6,
+                  ),
+                  SizedBox(height: 15),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child:
+                        nextButtonhaemoglobin(), /*Buttons.nextButton(
                               function: () {
                                 //Navigator.pushNamed(context, "/UserRegister1");
                                 //personalFormValidate();
                               },
                               title: "PAY",
                               context: context),*/
-                    ),
-                    //SizedBox(height: 10),
-                  ],
-                ),
+                  ),
+                  //SizedBox(height: 10),
+                ],
               ),
             ),
           ),
         ),
-      );
+      ),
+    );
   }
+
   Widget nextButton() {
     return GestureDetector(
       onTap: () {
@@ -2434,7 +3670,7 @@ class _MedicineList extends State<HealthChaatlist> {
                 colors: [Colors.blue, AppData.kPrimaryColor])),
         child: Padding(
           padding:
-          EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
+              EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
           child: Text(
             MyLocalizations.of(context).text("SAVE"),
             textAlign: TextAlign.center,
@@ -2445,16 +3681,15 @@ class _MedicineList extends State<HealthChaatlist> {
     );
   }
 
-
   validate() async {
     //_formKey.currentState.validate();
-    if (textEditingController[0].text == "" || textEditingController[0].text == null) {
+    if (textEditingController[0].text == "" ||
+        textEditingController[0].text == null) {
       AppData.showInSnackBar(context, "Please enter value");
-    }  else if (appointmentdate.text == "" || appointmentdate.text == null) {
+    } else if (appointmentdate.text == "" || appointmentdate.text == null) {
       AppData.showInSnackBar(context, "Please select Date");
     } else if (stime.text == "" || stime.text == null) {
       AppData.showInSnackBar(context, "Please select time");
-
     } else {
       saveDb();
       // PatientSignupModel patientSignupModel = PatientSignupModel();
@@ -2474,10 +3709,10 @@ class _MedicineList extends State<HealthChaatlist> {
   saveDb() {
     Map<String, dynamic> map = {
       "userid": widget.model.user,
-      "recorddate":appointmentdate.text,
-      "recordtime":selectTime24,
-      "testname":"Weight",
-      "testresult":textEditingController[0].text,
+      "recorddate": appointmentdate.text,
+      "recordtime": selectTime24,
+      "testname": "Weight",
+      "testresult": textEditingController[0].text,
     };
     // http://localhost/matrujyoti/api/post-childsRegistration?
     // regNo=9121378234815204&childname=Aryan Sahu&address=Rourkela Town&city=Sundargarh&state=Odisha&
@@ -2498,16 +3733,15 @@ class _MedicineList extends State<HealthChaatlist> {
               Navigator.pop(context);
               Navigator.pop(context);
               Navigator.pop(context);
-             // Navigator.pop(context);
+              // Navigator.pop(context);
               AppData.showInSnackDone(context, map[Const.MESSAGE]);
             } else {
-
               Navigator.pop(context);
               Navigator.pop(context);
               AppData.showInSnackBar(context, map[Const.MESSAGE]);
             }
           });
-         /* if (map[Const.STATUS] == Const.SUCCESS) {
+          /* if (map[Const.STATUS] == Const.SUCCESS) {
 
             Navigator.pop(context);
             Navigator.pop(context);
@@ -2549,7 +3783,7 @@ class _MedicineList extends State<HealthChaatlist> {
                 colors: [Colors.blue, AppData.kPrimaryColor])),
         child: Padding(
           padding:
-          EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
+              EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
           child: Text(
             MyLocalizations.of(context).text("SAVE"),
             textAlign: TextAlign.center,
@@ -2559,15 +3793,16 @@ class _MedicineList extends State<HealthChaatlist> {
       ),
     );
   }
+
   validateheight() async {
     //_formKey.currentState.validate();
-    if (textEditingController[1].text == "" || textEditingController[1].text == null) {
+    if (textEditingController[1].text == "" ||
+        textEditingController[1].text == null) {
       AppData.showInSnackBar(context, "Please enter value");
-    }  else if (heightdate.text == "" || heightdate.text == null) {
+    } else if (heightdate.text == "" || heightdate.text == null) {
       AppData.showInSnackBar(context, "Please select Date");
     } else if (heighttime.text == "" || heighttime.text == null) {
       AppData.showInSnackBar(context, "Please select time");
-
     } else {
       saveDbheight();
       // PatientSignupModel patientSignupModel = PatientSignupModel();
@@ -2583,13 +3818,14 @@ class _MedicineList extends State<HealthChaatlist> {
           });*/
     }
   }
+
   saveDbheight() {
     Map<String, dynamic> map = {
       "userid": widget.model.user,
-      "recorddate":heightdate.text,
-      "recordtime":selectTimeheigth24,
-      "testname":"Height",
-      "testresult":textEditingController[1].text,
+      "recorddate": heightdate.text,
+      "recordtime": selectTimeheigth24,
+      "testname": "Height",
+      "testresult": textEditingController[1].text,
     };
     // http://localhost/matrujyoti/api/post-childsRegistration?
     // regNo=9121378234815204&childname=Aryan Sahu&address=Rourkela Town&city=Sundargarh&state=Odisha&
@@ -2612,7 +3848,6 @@ class _MedicineList extends State<HealthChaatlist> {
               // Navigator.pop(context);
               AppData.showInSnackDone(context, map[Const.MESSAGE]);
             } else {
-
               Navigator.pop(context);
               Navigator.pop(context);
               AppData.showInSnackBar(context, map[Const.MESSAGE]);
@@ -2629,6 +3864,7 @@ class _MedicineList extends State<HealthChaatlist> {
           }
         });*/
   }
+
   Widget nextButtonBMI() {
     return GestureDetector(
       onTap: () {
@@ -2647,7 +3883,7 @@ class _MedicineList extends State<HealthChaatlist> {
                 colors: [Colors.blue, AppData.kPrimaryColor])),
         child: Padding(
           padding:
-          EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
+              EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
           child: Text(
             MyLocalizations.of(context).text("SAVE"),
             textAlign: TextAlign.center,
@@ -2657,15 +3893,16 @@ class _MedicineList extends State<HealthChaatlist> {
       ),
     );
   }
+
   validateBMI() async {
     //_formKey.currentState.validate();
-    if (textEditingController[2].text == "" || textEditingController[2].text == null) {
+    if (textEditingController[2].text == "" ||
+        textEditingController[2].text == null) {
       AppData.showInSnackBar(context, "Please enter value");
-    }  else if (bMIdate.text == "" || bMIdate.text == null) {
+    } else if (bMIdate.text == "" || bMIdate.text == null) {
       AppData.showInSnackBar(context, "Please select Date");
     } else if (bMItime.text == "" || bMItime.text == null) {
       AppData.showInSnackBar(context, "Please select time");
-
     } else {
       saveDbBMI();
       // PatientSignupModel patientSignupModel = PatientSignupModel();
@@ -2681,13 +3918,14 @@ class _MedicineList extends State<HealthChaatlist> {
           });*/
     }
   }
+
   saveDbBMI() {
     Map<String, dynamic> map = {
       "userid": widget.model.user,
-      "recorddate":bMIdate.text,
-      "recordtime":selectTimeBMI24,
-      "testname":"BMI",
-      "testresult":textEditingController[2].text,
+      "recorddate": bMIdate.text,
+      "recordtime": selectTimeBMI24,
+      "testname": "BMI",
+      "testresult": textEditingController[2].text,
     };
     // http://localhost/matrujyoti/api/post-childsRegistration?
     // regNo=9121378234815204&childname=Aryan Sahu&address=Rourkela Town&city=Sundargarh&state=Odisha&
@@ -2710,7 +3948,6 @@ class _MedicineList extends State<HealthChaatlist> {
               // Navigator.pop(context);
               AppData.showInSnackDone(context, map[Const.MESSAGE]);
             } else {
-
               Navigator.pop(context);
               Navigator.pop(context);
               AppData.showInSnackBar(context, map[Const.MESSAGE]);
@@ -2727,6 +3964,7 @@ class _MedicineList extends State<HealthChaatlist> {
           }
         });*/
   }
+
   Widget nextButtonSystolic() {
     return GestureDetector(
       onTap: () {
@@ -2745,7 +3983,7 @@ class _MedicineList extends State<HealthChaatlist> {
                 colors: [Colors.blue, AppData.kPrimaryColor])),
         child: Padding(
           padding:
-          EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
+              EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
           child: Text(
             MyLocalizations.of(context).text("SAVE"),
             textAlign: TextAlign.center,
@@ -2755,15 +3993,16 @@ class _MedicineList extends State<HealthChaatlist> {
       ),
     );
   }
+
   validateSystolic() async {
     //_formKey.currentState.validate();
-    if (textEditingController[3].text == "" || textEditingController[3].text == null) {
+    if (textEditingController[3].text == "" ||
+        textEditingController[3].text == null) {
       AppData.showInSnackBar(context, "Please enter value");
-    }  else if (systolicdate.text == "" || systolicdate.text == null) {
+    } else if (systolicdate.text == "" || systolicdate.text == null) {
       AppData.showInSnackBar(context, "Please select Date");
     } else if (systolictime.text == "" || systolictime.text == null) {
       AppData.showInSnackBar(context, "Please select time");
-
     } else {
       saveDbSystolic();
       // PatientSignupModel patientSignupModel = PatientSignupModel();
@@ -2779,13 +4018,14 @@ class _MedicineList extends State<HealthChaatlist> {
           });*/
     }
   }
+
   saveDbSystolic() {
     Map<String, dynamic> map = {
       "userid": widget.model.user,
-      "recorddate":systolicdate.text,
-      "recordtime":selectTimesYstolic24,
-      "testname":"Systolic",
-      "testresult":textEditingController[3].text,
+      "recorddate": systolicdate.text,
+      "recordtime": selectTimesYstolic24,
+      "testname": "Systolic",
+      "testresult": textEditingController[3].text,
     };
     // http://localhost/matrujyoti/api/post-childsRegistration?
     // regNo=9121378234815204&childname=Aryan Sahu&address=Rourkela Town&city=Sundargarh&state=Odisha&
@@ -2808,7 +4048,6 @@ class _MedicineList extends State<HealthChaatlist> {
               // Navigator.pop(context);
               AppData.showInSnackDone(context, map[Const.MESSAGE]);
             } else {
-
               Navigator.pop(context);
               Navigator.pop(context);
               AppData.showInSnackBar(context, map[Const.MESSAGE]);
@@ -2825,6 +4064,7 @@ class _MedicineList extends State<HealthChaatlist> {
           }
         });*/
   }
+
   Widget nextButtondiastolic() {
     return GestureDetector(
       onTap: () {
@@ -2843,7 +4083,7 @@ class _MedicineList extends State<HealthChaatlist> {
                 colors: [Colors.blue, AppData.kPrimaryColor])),
         child: Padding(
           padding:
-          EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
+              EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
           child: Text(
             MyLocalizations.of(context).text("SAVE"),
             textAlign: TextAlign.center,
@@ -2853,15 +4093,16 @@ class _MedicineList extends State<HealthChaatlist> {
       ),
     );
   }
+
   validatediastolic() async {
     //_formKey.currentState.validate();
-    if (textEditingController[4].text == "" || textEditingController[4].text == null) {
+    if (textEditingController[4].text == "" ||
+        textEditingController[4].text == null) {
       AppData.showInSnackBar(context, "Please enter value");
-    }  else if (diastolicdate.text == "" || diastolicdate.text == null) {
+    } else if (diastolicdate.text == "" || diastolicdate.text == null) {
       AppData.showInSnackBar(context, "Please select Date");
     } else if (diastolictime.text == "" || diastolictime.text == null) {
       AppData.showInSnackBar(context, "Please select time");
-
     } else {
       saveDbDiastolic();
       // PatientSignupModel patientSignupModel = PatientSignupModel();
@@ -2877,13 +4118,14 @@ class _MedicineList extends State<HealthChaatlist> {
           });*/
     }
   }
+
   saveDbDiastolic() {
     Map<String, dynamic> map = {
       "userid": widget.model.user,
-      "recorddate":diastolicdate.text,
-      "recordtime":selectTimediastolic24,
-      "testname":"Diastolic",
-      "testresult":textEditingController[4].text,
+      "recorddate": diastolicdate.text,
+      "recordtime": selectTimediastolic24,
+      "testname": "Diastolic",
+      "testresult": textEditingController[4].text,
     };
     // http://localhost/matrujyoti/api/post-childsRegistration?
     // regNo=9121378234815204&childname=Aryan Sahu&address=Rourkela Town&city=Sundargarh&state=Odisha&
@@ -2906,7 +4148,6 @@ class _MedicineList extends State<HealthChaatlist> {
               // Navigator.pop(context);
               AppData.showInSnackDone(context, map[Const.MESSAGE]);
             } else {
-
               Navigator.pop(context);
               Navigator.pop(context);
               AppData.showInSnackBar(context, map[Const.MESSAGE]);
@@ -2923,6 +4164,7 @@ class _MedicineList extends State<HealthChaatlist> {
           }
         });*/
   }
+
   Widget nextButtonhaemoglobin() {
     return GestureDetector(
       onTap: () {
@@ -2941,7 +4183,7 @@ class _MedicineList extends State<HealthChaatlist> {
                 colors: [Colors.blue, AppData.kPrimaryColor])),
         child: Padding(
           padding:
-          EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
+              EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
           child: Text(
             MyLocalizations.of(context).text("SAVE"),
             textAlign: TextAlign.center,
@@ -2951,15 +4193,16 @@ class _MedicineList extends State<HealthChaatlist> {
       ),
     );
   }
+
   validatehaemoglobin() async {
     //_formKey.currentState.validate();
-    if (textEditingController[5].text == "" || textEditingController[5].text == null) {
+    if (textEditingController[5].text == "" ||
+        textEditingController[5].text == null) {
       AppData.showInSnackBar(context, "Please enter value");
-    }  else if (haemoglobindate.text == "" || haemoglobindate.text == null) {
+    } else if (haemoglobindate.text == "" || haemoglobindate.text == null) {
       AppData.showInSnackBar(context, "Please select Date");
     } else if (haemoglobintime.text == "" || haemoglobintime.text == null) {
       AppData.showInSnackBar(context, "Please select time");
-
     } else {
       saveDbhaemoglobin();
       // PatientSignupModel patientSignupModel = PatientSignupModel();
@@ -2975,13 +4218,14 @@ class _MedicineList extends State<HealthChaatlist> {
           });*/
     }
   }
+
   saveDbhaemoglobin() {
     Map<String, dynamic> map = {
       "userid": widget.model.user,
-      "recorddate":haemoglobindate.text,
-      "recordtime":selectTimehaemoglobin24,
-      "testname":"HB",
-      "testresult":textEditingController[5].text,
+      "recorddate": haemoglobindate.text,
+      "recordtime": selectTimehaemoglobin24,
+      "testname": "HB",
+      "testresult": textEditingController[5].text,
     };
     // http://localhost/matrujyoti/api/post-childsRegistration?
     // regNo=9121378234815204&childname=Aryan Sahu&address=Rourkela Town&city=Sundargarh&state=Odisha&
@@ -3004,7 +4248,6 @@ class _MedicineList extends State<HealthChaatlist> {
               // Navigator.pop(context);
               AppData.showInSnackDone(context, map[Const.MESSAGE]);
             } else {
-
               Navigator.pop(context);
               Navigator.pop(context);
               AppData.showInSnackBar(context, map[Const.MESSAGE]);
@@ -3021,6 +4264,7 @@ class _MedicineList extends State<HealthChaatlist> {
           }
         });*/
   }
+
   /* Widget nextButtonheight() {
     return GestureDetector(
       onTap: () {
@@ -3063,7 +4307,7 @@ class _MedicineList extends State<HealthChaatlist> {
     } else {
       saveDb();
       // PatientSignupModel patientSignupModel = PatientSignupModel();
-      *//* MyWidgets.showLoading(context);
+      */ /* MyWidgets.showLoading(context);
       widget.model.POSTMETHOD(api: ApiFactory.POST_APPOINTMENT, json: userModel.toJson(),
           fun: (Map<String, dynamic> map) {
             Navigator.pop(context);
@@ -3072,7 +4316,7 @@ class _MedicineList extends State<HealthChaatlist> {
             } else {
               AppData.showInSnackBar(context, map[Const.MESSAGE]);
             }
-          });*//*
+          });*/ /*
     }
   }
 
@@ -3108,7 +4352,7 @@ class _MedicineList extends State<HealthChaatlist> {
             Navigator.pop(context);
           }
         });
-    *//*widget.model.POSTMETHOD(api: ApiFactory.POST_APPOINTMENT,
+    */ /*widget.model.POSTMETHOD(api: ApiFactory.POST_APPOINTMENT,
         json: map,
         fun: (Map<String, dynamic> map) {
           if (map[Const.STATUS] == Const.SUCCESS) {
@@ -3116,11 +4360,9 @@ class _MedicineList extends State<HealthChaatlist> {
           } else {
             AppData.showInSnackBar(context, map[Const.MESSAGE]);
           }
-        });*//*
+        });*/ /*
   }*/
-  Future<Null> _selectDate(
-      BuildContext context,String _responseStatus
-      ) async {
+  Future<Null> _selectDate(BuildContext context, String _responseStatus) async {
     // MyWidgets.showLoading(context);
     final DateTime picked = await showDatePicker(
         context: context,
@@ -3128,7 +4370,7 @@ class _MedicineList extends State<HealthChaatlist> {
         initialDate: DateTime.now(),
         firstDate: DateTime.now(),
         lastDate:
-        DateTime.now().add(Duration(days: 6570))); //18 years is 6570 days
+            DateTime.now().add(Duration(days: 6570))); //18 years is 6570 days
     //if (picked != null && picked != selectedDate)
     setState(() {
       selectedDate = picked;
@@ -3136,10 +4378,10 @@ class _MedicineList extends State<HealthChaatlist> {
 
       switch (_responseStatus) {
         case 'weight':
-          return  appointmentdate.text = df.format(picked);
-          case 'height':
+          return appointmentdate.text = df.format(picked);
+        case 'height':
           return heightdate.text = df.format(picked);
-          case 'BMI':
+        case 'BMI':
           return bMIdate.text = df.format(picked);
         case 'Systolic':
           return systolicdate.text = df.format(picked);
@@ -3147,12 +4389,11 @@ class _MedicineList extends State<HealthChaatlist> {
           return diastolicdate.text = df.format(picked);
         case 'Haemoglobin':
           return haemoglobindate.text = df.format(picked);
-
-
       }
     });
   }
-  _selectTime(BuildContext context ) async {
+
+  _selectTime(BuildContext context) async {
     final TimeOfDay timeOfDay = await showTimePicker(
         context: context,
         initialTime: selectedTime,
@@ -3167,7 +4408,8 @@ class _MedicineList extends State<HealthChaatlist> {
     setState(() {
       selectedTime = timeOfDay;
       selectedStartTime = timeOfDay;
-      selectTime24 = (timeOfDay.hour).toString()+":"+(timeOfDay.minute).toString();
+      selectTime24 =
+          (timeOfDay.hour).toString() + ":" + (timeOfDay.minute).toString();
       stime.text = formatTimeOfDay(timeOfDay);
       /*switch (_responseStatus1) {
         case 'weight':
@@ -3177,13 +4419,11 @@ class _MedicineList extends State<HealthChaatlist> {
         case 'PENDING':
           return stime.text = formatTimeOfDay(timeOfDay);
       }*/
-
-
-
     });
     /*}*/
   }
-  _selectTimehight(BuildContext context ) async {
+
+  _selectTimehight(BuildContext context) async {
     final TimeOfDay timeOfDay = await showTimePicker(
         context: context,
         initialTime: selectedTime,
@@ -3198,14 +4438,14 @@ class _MedicineList extends State<HealthChaatlist> {
     setState(() {
       selectedTime = timeOfDay;
       selectedStartTime = timeOfDay;
-      selectTimeheigth24 = (timeOfDay.hour).toString()+":"+(timeOfDay.minute).toString();
+      selectTimeheigth24 =
+          (timeOfDay.hour).toString() + ":" + (timeOfDay.minute).toString();
       heighttime.text = formatTimeOfDay(timeOfDay);
-
-
     });
     /*}*/
   }
-  _selectTimeBMI(BuildContext context ) async {
+
+  _selectTimeBMI(BuildContext context) async {
     final TimeOfDay timeOfDay = await showTimePicker(
         context: context,
         initialTime: selectedTime,
@@ -3220,14 +4460,14 @@ class _MedicineList extends State<HealthChaatlist> {
     setState(() {
       selectedTime = timeOfDay;
       selectedStartTime = timeOfDay;
-      selectTimeBMI24 = (timeOfDay.hour).toString()+":"+(timeOfDay.minute).toString();
+      selectTimeBMI24 =
+          (timeOfDay.hour).toString() + ":" + (timeOfDay.minute).toString();
       bMItime.text = formatTimeOfDay(timeOfDay);
-
-
     });
     /*}*/
   }
-  _selectTimesYstolic(BuildContext context ) async {
+
+  _selectTimesYstolic(BuildContext context) async {
     final TimeOfDay timeOfDay = await showTimePicker(
         context: context,
         initialTime: selectedTime,
@@ -3242,14 +4482,14 @@ class _MedicineList extends State<HealthChaatlist> {
     setState(() {
       selectedTime = timeOfDay;
       selectedStartTime = timeOfDay;
-      selectTimesYstolic24 = (timeOfDay.hour).toString()+":"+(timeOfDay.minute).toString();
+      selectTimesYstolic24 =
+          (timeOfDay.hour).toString() + ":" + (timeOfDay.minute).toString();
       systolictime.text = formatTimeOfDay(timeOfDay);
-
-
     });
     /*}*/
   }
-  _selectTimesYdiastolic(BuildContext context ) async {
+
+  _selectTimesYdiastolic(BuildContext context) async {
     final TimeOfDay timeOfDay = await showTimePicker(
         context: context,
         initialTime: selectedTime,
@@ -3264,14 +4504,14 @@ class _MedicineList extends State<HealthChaatlist> {
     setState(() {
       selectedTime = timeOfDay;
       selectedStartTime = timeOfDay;
-      selectTimediastolic24 = (timeOfDay.hour).toString()+":"+(timeOfDay.minute).toString();
+      selectTimediastolic24 =
+          (timeOfDay.hour).toString() + ":" + (timeOfDay.minute).toString();
       diastolictime.text = formatTimeOfDay(timeOfDay);
-
-
     });
     /*}*/
   }
-  _selectTimesHaemoglobin(BuildContext context ) async {
+
+  _selectTimesHaemoglobin(BuildContext context) async {
     final TimeOfDay timeOfDay = await showTimePicker(
         context: context,
         initialTime: selectedTime,
@@ -3286,15 +4526,12 @@ class _MedicineList extends State<HealthChaatlist> {
     setState(() {
       selectedTime = timeOfDay;
       selectedStartTime = timeOfDay;
-      selectTimehaemoglobin24 = (timeOfDay.hour).toString()+":"+(timeOfDay.minute).toString();
+      selectTimehaemoglobin24 =
+          (timeOfDay.hour).toString() + ":" + (timeOfDay.minute).toString();
       haemoglobintime.text = formatTimeOfDay(timeOfDay);
-
-
     });
     /*}*/
   }
-
-
 
   String formatTimeOfDay(TimeOfDay tod) {
     print("Value is>>>>>>\n\n\n\n" + tod.toString());
@@ -3309,9 +4546,8 @@ class _MedicineList extends State<HealthChaatlist> {
       //padding: const EdgeInsets.symmetric(horizontal: 8),
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: GestureDetector(
-
         onTap: () => /*_selectDate(context,),*/
-        _selectDate(context, "weight"),
+            _selectDate(context, "weight"),
         child: AbsorbPointer(
           child: Container(
             // margin: EdgeInsets.symmetric(vertical: 10),
@@ -3335,7 +4571,7 @@ class _MedicineList extends State<HealthChaatlist> {
                 onSaved: (value) {
                   // registrationModel.dathOfBirth = value;
                 },
-              /*  validator: (value) {
+                /*  validator: (value) {
                   if (value.isEmpty) {
                     error[3] = true;
                     return null;
@@ -3352,10 +4588,10 @@ class _MedicineList extends State<HealthChaatlist> {
                 },
                 decoration: InputDecoration(
                   hintText: //"Last Period Date",
-                  "Date",
+                      "Date",
                   border: InputBorder.none,
                   //contentPadding: EdgeInsets.symmetric(vertical: 10),
-                 /* suffixIcon: Icon(
+                  /* suffixIcon: Icon(
                     Icons.calendar_today,
                     size: 18,
                     color:Colors.grey,
@@ -3368,14 +4604,14 @@ class _MedicineList extends State<HealthChaatlist> {
       ),
     );
   }
+
   Widget heightappointdate() {
     return Padding(
       //padding: const EdgeInsets.symmetric(horizontal: 8),
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: GestureDetector(
-
         onTap: () => /*_selectDate(context,),*/
-        _selectDate(context, "height"),
+            _selectDate(context, "height"),
         child: AbsorbPointer(
           child: Container(
             // margin: EdgeInsets.symmetric(vertical: 10),
@@ -3416,7 +4652,7 @@ class _MedicineList extends State<HealthChaatlist> {
                 },
                 decoration: InputDecoration(
                   hintText: //"Last Period Date",
-                  "Date",
+                      "Date",
                   border: InputBorder.none,
                   //contentPadding: EdgeInsets.symmetric(vertical: 10),
                   /* suffixIcon: Icon(
@@ -3432,14 +4668,14 @@ class _MedicineList extends State<HealthChaatlist> {
       ),
     );
   }
+
   Widget bMIappointdate() {
     return Padding(
       //padding: const EdgeInsets.symmetric(horizontal: 8),
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: GestureDetector(
-
         onTap: () => /*_selectDate(context,),*/
-        _selectDate(context, "BMI"),
+            _selectDate(context, "BMI"),
         child: AbsorbPointer(
           child: Container(
             // margin: EdgeInsets.symmetric(vertical: 10),
@@ -3480,7 +4716,7 @@ class _MedicineList extends State<HealthChaatlist> {
                 },
                 decoration: InputDecoration(
                   hintText: //"Last Period Date",
-                  "Date",
+                      "Date",
                   border: InputBorder.none,
                   //contentPadding: EdgeInsets.symmetric(vertical: 10),
                   /* suffixIcon: Icon(
@@ -3496,14 +4732,14 @@ class _MedicineList extends State<HealthChaatlist> {
       ),
     );
   }
+
   Widget sYstolicappointdate() {
     return Padding(
       //padding: const EdgeInsets.symmetric(horizontal: 8),
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: GestureDetector(
-
         onTap: () => /*_selectDate(context,),*/
-        _selectDate(context, "Systolic"),
+            _selectDate(context, "Systolic"),
         child: AbsorbPointer(
           child: Container(
             // margin: EdgeInsets.symmetric(vertical: 10),
@@ -3544,7 +4780,7 @@ class _MedicineList extends State<HealthChaatlist> {
                 },
                 decoration: InputDecoration(
                   hintText: //"Last Period Date",
-                  "Date",
+                      "Date",
                   border: InputBorder.none,
                   //contentPadding: EdgeInsets.symmetric(vertical: 10),
                   /* suffixIcon: Icon(
@@ -3560,14 +4796,14 @@ class _MedicineList extends State<HealthChaatlist> {
       ),
     );
   }
+
   Widget diastolicappointdate() {
     return Padding(
       //padding: const EdgeInsets.symmetric(horizontal: 8),
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: GestureDetector(
-
         onTap: () => /*_selectDate(context,),*/
-        _selectDate(context, "Diastolic"),
+            _selectDate(context, "Diastolic"),
         child: AbsorbPointer(
           child: Container(
             // margin: EdgeInsets.symmetric(vertical: 10),
@@ -3608,7 +4844,7 @@ class _MedicineList extends State<HealthChaatlist> {
                 },
                 decoration: InputDecoration(
                   hintText: //"Last Period Date",
-                  "Date",
+                      "Date",
                   border: InputBorder.none,
                   //contentPadding: EdgeInsets.symmetric(vertical: 10),
                   /* suffixIcon: Icon(
@@ -3624,14 +4860,14 @@ class _MedicineList extends State<HealthChaatlist> {
       ),
     );
   }
-  Widget haemoglobinappointdate(){
+
+  Widget haemoglobinappointdate() {
     return Padding(
       //padding: const EdgeInsets.symmetric(horizontal: 8),
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: GestureDetector(
-
         onTap: () => /*_selectDate(context,),*/
-        _selectDate(context,"Haemoglobin"),
+            _selectDate(context, "Haemoglobin"),
         child: AbsorbPointer(
           child: Container(
             // margin: EdgeInsets.symmetric(vertical: 10),
@@ -3672,7 +4908,7 @@ class _MedicineList extends State<HealthChaatlist> {
                 },
                 decoration: InputDecoration(
                   hintText: //"Last Period Date",
-                  "Date",
+                      "Date",
                   border: InputBorder.none,
                   //contentPadding: EdgeInsets.symmetric(vertical: 10),
                   /* suffixIcon: Icon(
@@ -3688,14 +4924,14 @@ class _MedicineList extends State<HealthChaatlist> {
       ),
     );
   }
+
   Widget wBCsappointdate() {
     return Padding(
       //padding: const EdgeInsets.symmetric(horizontal: 8),
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: GestureDetector(
-
         onTap: () => /*_selectDate(context,),*/
-        _selectDate(context,"Haemoglobin"),
+            _selectDate(context, "Haemoglobin"),
         child: AbsorbPointer(
           child: Container(
             // margin: EdgeInsets.symmetric(vertical: 10),
@@ -3736,7 +4972,7 @@ class _MedicineList extends State<HealthChaatlist> {
                 },
                 decoration: InputDecoration(
                   hintText: //"Last Period Date",
-                  "Date",
+                      "Date",
                   border: InputBorder.none,
                   //contentPadding: EdgeInsets.symmetric(vertical: 10),
                   /* suffixIcon: Icon(
@@ -3752,12 +4988,12 @@ class _MedicineList extends State<HealthChaatlist> {
       ),
     );
   }
-  Widget formFieldExperience(
-      int index, String hint, FocusNode currentfn) {
+
+  Widget formFieldExperience(int index, String hint, FocusNode currentfn) {
     return Padding(
       //padding: const EdgeInsets.all(8.0),
       padding:
-      const EdgeInsets.only(top: 0.0, left: 8.0, right: 8.0, bottom: 0.0),
+          const EdgeInsets.only(top: 0.0, left: 8.0, right: 8.0, bottom: 0.0),
       child: Container(
         decoration: BoxDecoration(
             color: AppData.white,
@@ -3785,11 +5021,11 @@ class _MedicineList extends State<HealthChaatlist> {
                     counterText: "",
                     hintText: hint,
                     hintStyle:
-                    TextStyle(color: AppData.hintColor, fontSize: 15),
+                        TextStyle(color: AppData.hintColor, fontSize: 15),
                   ),
                   onFieldSubmitted: (value) {
                     // print(error[2]);
-                   // error[4] = false;
+                    // error[4] = false;
                     setState(() {});
                     //AppData.fieldFocusChange(context, currentfn);
                   },
@@ -3804,6 +5040,7 @@ class _MedicineList extends State<HealthChaatlist> {
       ),
     );
   }
+
   Widget comultationTime() {
     return Padding(
       //padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -3826,16 +5063,16 @@ class _MedicineList extends State<HealthChaatlist> {
             child: TextFormField(
               //focusNode: fnode4,
               //enabled: !widget.isConfirmPage ? false : true,
-              controller:stime,
+              controller: stime,
               textAlignVertical: TextAlignVertical.center,
               keyboardType: TextInputType.datetime,
               textAlign: TextAlign.left,
               decoration: InputDecoration(
                 hintText: //"Date Of Pregency",
-                "Time",
+                    "Time",
                 border: InputBorder.none,
                 //contentPadding: EdgeInsets.symmetric(vertical: 10),
-               /* suffixIcon: Icon(
+                /* suffixIcon: Icon(
                   Icons.watch_later_outlined,
                   size: 18,
                   color:Colors.grey,
@@ -3870,13 +5107,13 @@ class _MedicineList extends State<HealthChaatlist> {
             child: TextFormField(
               //focusNode: fnode4,
               //enabled: !widget.isConfirmPage ? false : true,
-              controller:heighttime,
+              controller: heighttime,
               textAlignVertical: TextAlignVertical.center,
               keyboardType: TextInputType.datetime,
               textAlign: TextAlign.left,
               decoration: InputDecoration(
                 hintText: //"Date Of Pregency",
-                "Time",
+                    "Time",
                 border: InputBorder.none,
                 //contentPadding: EdgeInsets.symmetric(vertical: 10),
                 /* suffixIcon: Icon(
@@ -3891,6 +5128,7 @@ class _MedicineList extends State<HealthChaatlist> {
       ),
     );
   }
+
   Widget bMITime() {
     return Padding(
       //padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -3913,13 +5151,13 @@ class _MedicineList extends State<HealthChaatlist> {
             child: TextFormField(
               //focusNode: fnode4,
               //enabled: !widget.isConfirmPage ? false : true,
-              controller:bMItime,
+              controller: bMItime,
               textAlignVertical: TextAlignVertical.center,
               keyboardType: TextInputType.datetime,
               textAlign: TextAlign.left,
               decoration: InputDecoration(
                 hintText: //"Date Of Pregency",
-                "Time",
+                    "Time",
                 border: InputBorder.none,
                 //contentPadding: EdgeInsets.symmetric(vertical: 10),
                 /* suffixIcon: Icon(
@@ -3934,6 +5172,7 @@ class _MedicineList extends State<HealthChaatlist> {
       ),
     );
   }
+
   Widget sYstolicTime() {
     return Padding(
       //padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -3956,13 +5195,13 @@ class _MedicineList extends State<HealthChaatlist> {
             child: TextFormField(
               //focusNode: fnode4,
               //enabled: !widget.isConfirmPage ? false : true,
-              controller:systolictime,
+              controller: systolictime,
               textAlignVertical: TextAlignVertical.center,
               keyboardType: TextInputType.datetime,
               textAlign: TextAlign.left,
               decoration: InputDecoration(
                 hintText: //"Date Of Pregency",
-                "Time",
+                    "Time",
                 border: InputBorder.none,
                 //contentPadding: EdgeInsets.symmetric(vertical: 10),
                 /* suffixIcon: Icon(
@@ -3977,6 +5216,7 @@ class _MedicineList extends State<HealthChaatlist> {
       ),
     );
   }
+
   Widget diastolicTime() {
     return Padding(
       //padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -3999,13 +5239,13 @@ class _MedicineList extends State<HealthChaatlist> {
             child: TextFormField(
               //focusNode: fnode4,
               //enabled: !widget.isConfirmPage ? false : true,
-              controller:diastolictime,
+              controller: diastolictime,
               textAlignVertical: TextAlignVertical.center,
               keyboardType: TextInputType.datetime,
               textAlign: TextAlign.left,
               decoration: InputDecoration(
                 hintText: //"Date Of Pregency",
-                "Time",
+                    "Time",
                 border: InputBorder.none,
                 //contentPadding: EdgeInsets.symmetric(vertical: 10),
                 /* suffixIcon: Icon(
@@ -4020,6 +5260,7 @@ class _MedicineList extends State<HealthChaatlist> {
       ),
     );
   }
+
   Widget haemoglobinTime() {
     return Padding(
       //padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -4042,13 +5283,13 @@ class _MedicineList extends State<HealthChaatlist> {
             child: TextFormField(
               //focusNode: fnode4,
               //enabled: !widget.isConfirmPage ? false : true,
-              controller:diastolictime,
+              controller: diastolictime,
               textAlignVertical: TextAlignVertical.center,
               keyboardType: TextInputType.datetime,
               textAlign: TextAlign.left,
               decoration: InputDecoration(
                 hintText: //"Date Of Pregency",
-                "Time",
+                    "Time",
                 border: InputBorder.none,
                 //contentPadding: EdgeInsets.symmetric(vertical: 10),
                 /* suffixIcon: Icon(
