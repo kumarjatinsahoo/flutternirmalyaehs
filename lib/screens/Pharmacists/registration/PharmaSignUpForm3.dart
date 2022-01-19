@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:file_picker/file_picker.dart';
@@ -143,6 +144,10 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
   final df = new DateFormat('dd/MM/yyyy');
   bool ispartnercode = false;
   bool _checkbox = false;
+  String useridd;
+  String password;
+  String msg;
+
 
   Future<Null> _selectDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
@@ -770,8 +775,15 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
               json: pharmaSignupModel.toJson(),
               fun: (Map<String, dynamic> map) {
                 Navigator.pop(context);
+                String msg = map["message"].toString();
                 if (map[Const.STATUS] == Const.SUCCESS) {
-                  popup(context, map[Const.MESSAGE]);
+                  setState(() {
+                    useridd = map["body"]["key"];
+                    password = map["body"]["name"];
+                    log("Version>>>" + useridd + "<>>" + password);
+                    popup(msg, context,password,useridd);
+                  });
+                 // popup(context, map[Const.MESSAGE]);
                 } else {
                   AppData.showInSnackBar(context, map[Const.MESSAGE]);
                 }
@@ -783,24 +795,120 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
     );
   }
 
-  popup(BuildContext context, String message) {
+  // popup(BuildContext context, String message) {
+  //   return Alert(
+  //       context: context,
+  //       //title: "Success",
+  //       title: message,
+  //       desc: MyLocalizations.of(context).text("REG_SUCCESS_POPUP"),
+  //       type: AlertType.success, //type: AlertType.info,
+  //       onWillPopActive: true,
+  //       content: Column(
+  //         mainAxisSize: MainAxisSize.min,
+  //         children: [
+  //        /*   Icon(
+  //             Icons.check_circle_outline_outlined,
+  //             size: 140,
+  //             color: Colors.green,
+  //           ),*/
+  //           SizedBox(
+  //             height: 5,
+  //           ),
+  //         ],
+  //       ),
+  //       closeIcon: Icon(
+  //         Icons.info,
+  //         color: Colors.transparent,
+  //       ),
+  //       closeFunction: () {},
+  //       buttons: [
+  //         DialogButton(
+  //           child: Text(
+  //             "OK",
+  //             style: TextStyle(color: Colors.white, fontSize: 20),
+  //           ),
+  //           onPressed: () {
+  //             //   widget.model.patientName = null;
+  //             Navigator.pop(context);
+  //             widget.model.patientphnNo = null;
+  //             widget.model.patientemail = null;
+  //             widget.model.patientaadhar = null;
+  //             widget.model.patientheight = null;
+  //             widget.model.patientweight = null;
+  //             widget.model.patientimg = null;
+  //             widget.model.patientage = null;
+  //             widget.model.patientgender = null;
+  //             widget.model.patienCitycode = null;
+  //             widget.model.patienCitykey = null;
+  //             widget.model.patienStatecode = null;
+  //             widget.model.patienStatekey = null;
+  //             widget.model.patientimgtype = null;
+  //             Navigator.of(context).pushNamedAndRemoveUntil(
+  //                 "/login", (Route<dynamic> route) => false);
+  //           },
+  //           color: Color.fromRGBO(0, 179, 134, 1.0),
+  //           radius: BorderRadius.circular(0.0),
+  //         ),
+  //       ]).show();
+  // }
+
+  popup(String msg, BuildContext context,String password,String useridd) {
     return Alert(
         context: context,
         //title: "Success",
-        title: message,
-        desc: MyLocalizations.of(context).text("REG_SUCCESS_POPUP"),
-        type: AlertType.success, //type: AlertType.info,
+        title: "Success",
+        //type: AlertType.info,
         onWillPopActive: true,
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-         /*   Icon(
+            Icon(
               Icons.check_circle_outline_outlined,
               size: 140,
               color: Colors.green,
+            ),
+            SizedBox(
+              height: 5,
+            ),
+            Text(
+              msg,
+              style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 17,
+                  fontWeight: FontWeight.w400),
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(
+              height: 5,
+            ),
+            /*Text(
+              "Mobile No. :"+mobile,
+              style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 17,
+                  fontWeight: FontWeight.w400),
+              textAlign: TextAlign.center,
             ),*/
             SizedBox(
               height: 5,
+            ),
+            Text(
+              "UserId:"+useridd,
+              style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 17,
+                  fontWeight: FontWeight.w400),
+              textAlign: TextAlign.center,
+            ),SizedBox(
+              height: 5,
+            ),
+            Text(
+              "Password is:"+password,
+              style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 17,
+                  fontWeight: FontWeight.w400),
+              textAlign: TextAlign.center,
             ),
           ],
         ),

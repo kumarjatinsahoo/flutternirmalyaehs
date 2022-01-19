@@ -1340,7 +1340,6 @@ class UserSignUpFormState extends State<UserSignUpForm> {
             String msg = map["message"].toString();
             if (map[Const.STATUS] == Const.SUCCESS) {
               setState(() {
-
                 useridd = map["body"]["key"];
                 password = map["body"]["name"];
                 log("Version>>>" + useridd + "<>>" + password);
