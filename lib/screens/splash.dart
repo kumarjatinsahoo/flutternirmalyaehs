@@ -55,6 +55,7 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
 
   }*/
+
   PackageInfo _packageInfo = PackageInfo(
     appName: 'Unknown',
     packageName: 'Unknown',
@@ -69,6 +70,11 @@ class _SplashScreenState extends State<SplashScreen> {
     fetchLocalData();
     isFirstTimes();
     _initPackageInfo();
+    FirebaseMessaging.instance.getToken().then((value) {
+      String token = value;
+      print("token dart locale>>>" + token);
+
+    });
     // callResourceTimer();
     // ConnectionStatusSingleton connectionStatus =
     //     ConnectionStatusSingleton.getInstance();
@@ -204,6 +210,56 @@ class _SplashScreenState extends State<SplashScreen> {
     }
   }
 
+ /* @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: SafeArea(
+        child: Align(
+          alignment: Alignment.center,
+          child: Column(
+           *//* mainAxisAlignment: MainAxisAlignment.center,*//*
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: 20.0,
+                  right: 20.0,
+                ),
+                child: Image.asset(
+                  //"assets/logo_matru.png",
+                  "assets/images/eHealthlogo1.png",
+                  fit: BoxFit.fitWidth,
+                  //width: 120,
+                  height: 210.0,
+                ),
+              ),
+              *//*SizedBox(
+                height: 170.0,
+              ),*//*
+              Container(
+                child: Align(
+                  alignment: Alignment(0.0, 1.0),
+                   *//*  Alignment(0.0, 1.0)*//*
+                  child: Padding(
+                  padding: const EdgeInsets.only(left: 25.0, right: 25.0),
+                  child: Text(
+                    "Version :"+ _packageInfo.version,
+                    style: TextStyle(
+                        color: AppData.kPrimaryColor,
+                        fontSize: 15.0,
+                        fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              )
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }*/
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -218,47 +274,38 @@ class _SplashScreenState extends State<SplashScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(
-                        left: 20.0,
-                        right: 20.0,
-                      ),
-                      child: Image.asset(
-                        //"assets/logo_matru.png",
-                        "assets/images/eHealthlogo1.png",
-                        fit: BoxFit.fitWidth,
-                        //width: 120,
-                        height: 210.0,
-                      ),
-                    ),
-                    /*SizedBox(
-                      height: 170.0,
-                    ),*/
-                    Padding(
-                      padding: const EdgeInsets.only(left: 25.0, right: 25.0),
-                      child: Text(
-                        "Version :"+ _packageInfo.version,
-                        style: TextStyle(
-                            color: AppData.kPrimaryColor,
-                            fontSize: 15.0,
-                            fontWeight: FontWeight.bold),
-                        textAlign: TextAlign.center,
-                      ),
-                    )
+                padding: const EdgeInsets.only(
+                  left: 20.0,
+                  right: 20.0,
+                ),
+          child: Image.asset(
+            //"assets/logo_matru.png",
+            "assets/images/eHealthlogo1.png",
+            fit: BoxFit.fitWidth,
+            //width: 120,
+            height: 210.0,
+          ),
+        ),
+
                   ],
                 ),
               ),
             ),
-            /* Padding(
-              padding: const EdgeInsets.only(bottom: 0.0),
+
+            Padding(
+              padding: const EdgeInsets.only(bottom: 5.0),
               child: Align(
-                alignment: Alignment.bottomLeft,
-                child: Image.asset(
-                  "assets/mobile_bg.png",
-                  fit: BoxFit.fitWidth,
-                  height: 140,
+                alignment: Alignment.bottomCenter,
+                child: Text(
+                  "Version :"+ _packageInfo.version,
+                  style: TextStyle(
+                      color: AppData.kPrimaryColor,
+                      fontSize: 15.0,
+                      fontWeight: FontWeight.bold),
+                  textAlign: TextAlign.center,
                 ),
               ),
-            ),*/
+            )
           ],
         ),
       ),
@@ -270,6 +317,7 @@ class _SplashScreenState extends State<SplashScreen> {
   String version = packageInfo.version;
   String buildNumber = packageInfo.buildNumber;
   });*/
+
   fetchLocalData() async {
     try {
       login = await sharedPref.getKey(Const.IS_LOGIN);
@@ -427,7 +475,9 @@ class _SplashScreenState extends State<SplashScreen> {
       log("Error>>>>"+e.getMessage());
       _exitApp();
     }
+
   }
+
 /*void navigationPage() async {
     //Navigator.of(context)
     //.pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
