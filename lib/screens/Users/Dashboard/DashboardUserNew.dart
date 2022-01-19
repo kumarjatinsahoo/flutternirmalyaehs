@@ -1936,7 +1936,7 @@ class MyPage1Widget extends StatelessWidget {
                 width: 5,
               ),
 
-              /*Column(
+              Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -1944,7 +1944,7 @@ class MyPage1Widget extends StatelessWidget {
                       icon: "assets/health-careF.png",
                       fun: () {
                         //AppData.showInSnackDone(context, "Coming Soon");
-                        Navigator.pushNamed(context, "/vdo");
+                        Navigator.pushNamed(context, "/preventivehealthcare");
                         // AppData.showSnack(
                         //   context, "Coming soon", Colors.green);
                       },
@@ -1967,8 +1967,8 @@ class MyPage1Widget extends StatelessWidget {
                         ),
                       ),
                     )
-                  ]),*/
-              Column(
+                  ]),
+  /*            Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -2000,8 +2000,7 @@ class MyPage1Widget extends StatelessWidget {
                       ),
                     ),
                   ]),
-
-
+*/
 /*
               Column(
                   crossAxisAlignment: CrossAxisAlignment.center,

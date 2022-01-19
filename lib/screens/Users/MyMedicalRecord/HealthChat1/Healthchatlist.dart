@@ -181,7 +181,7 @@ class _MedicineList extends State<HealthChaatlist> {
                                                     MainAxisAlignment.center,
                                                 children: [
                                                   Text(
-                                                    "Body Measurment"
+                                                    "Body Measurement"
                                                         .toUpperCase(),
                                                     style: TextStyle(
                                                         fontWeight:
@@ -402,7 +402,7 @@ class _MedicineList extends State<HealthChaatlist> {
                                                     MainAxisAlignment.center,
                                                 children: [
                                                   Text(
-                                                    "Suger panel".toUpperCase(),
+                                                    "Sugar panel".toUpperCase(),
                                                     style: TextStyle(
                                                         fontWeight:
                                                             FontWeight.bold,
@@ -746,7 +746,11 @@ class _MedicineList extends State<HealthChaatlist> {
       actions: [
         MaterialButton(
           onPressed: () {
+            textEditingController[0].text = "";
+            appointmentdate.text="";
+            stime.text="";
             Navigator.pop(context);
+
           },
           child: Text("Cancel"),
         )
@@ -789,10 +793,6 @@ class _MedicineList extends State<HealthChaatlist> {
                                   indicatorColor: AppData.kPrimaryRedColor,
                                   unselectedLabelColor: Colors.black,
                                   labelColor: Color(0xffF15C22),
-                                  /*indicator: UnderlineTabIndicator(
-                          borderSide: BorderSide(color: Color(0xDD613896), width: 8.0),
-                          insets: EdgeInsets.fromLTRB(50.0, 0.0, 50.0, 40.0),
-                        ),*/
                                   indicatorSize: TabBarIndicatorSize.tab,
                                   tabs: [
                                     Padding(
@@ -824,30 +824,6 @@ class _MedicineList extends State<HealthChaatlist> {
                                     ),
                                   ],
                                 ),
-                                /*Container(
-                                    decoration: BoxDecoration(
-                                        border: Border(
-                                            top: BorderSide(
-                                                color: Colors.grey, width: 0.5))),
-                                    child: TabBarView(
-                                        children: <Widget>[
-                                          rowValue(),
-                                          rowValue(),
-                                          rowValue(),
-
-                                        ])),*/
-
-                                /*Expanded( //height: widget.layoutHeight,
-                                    child: new TabBarView(
-                                      ///controller: _controller,
-                                      children: <Widget>[
-                                       rowValue(),
-                                       rowValue(),
-                                       rowValue(),
-
-                                      ],
-                                    )
-                                )*/
                                 Container(
                                   decoration: BoxDecoration(
                                       border: Border(
@@ -1014,6 +990,9 @@ class _MedicineList extends State<HealthChaatlist> {
       actions: [
         MaterialButton(
           onPressed: () {
+            textEditingController[0].text = "";
+            appointmentdate.text="";
+            stime.text="";
             Navigator.pop(context);
           },
           child: Text("Cancel"),
@@ -1189,6 +1168,9 @@ class _MedicineList extends State<HealthChaatlist> {
       actions: [
         MaterialButton(
           onPressed: () {
+            textEditingController[0].text = "";
+            appointmentdate.text="";
+            stime.text="";
             Navigator.pop(context);
           },
           child: Text("Cancel"),
@@ -1371,6 +1353,9 @@ class _MedicineList extends State<HealthChaatlist> {
       actions: [
         MaterialButton(
           onPressed: () {
+            textEditingController[0].text = "";
+            appointmentdate.text="";
+            stime.text="";
             Navigator.pop(context);
           },
           child: Text("Cancel"),
@@ -1641,9 +1626,11 @@ class _MedicineList extends State<HealthChaatlist> {
                                       maxHeight: 300,
                                       child: TabBarView(
                                         children: [
-                                          Haemoglobin(),
-                                          Diastolic(),
-                                          Diastolic(),
+                                          SugarFasting(),
+                                          SugarRandom(),
+                                          SugarHbAIc(),
+                                         // Diastolic(),
+                                          //Diastolic(),
                                         ],
                                       )),
                                 ),
@@ -1662,6 +1649,9 @@ class _MedicineList extends State<HealthChaatlist> {
   }
 
   Widget weight() {
+    textEditingController[0].text = "";
+    appointmentdate.text="";
+    stime.text="";
     return SingleChildScrollView(
       child: Card(
         elevation: 0,
@@ -1843,6 +1833,9 @@ class _MedicineList extends State<HealthChaatlist> {
   }
 
   Widget height() {
+    textEditingController[1].text ="";
+    heightdate.text = "";
+    heighttime.text = "";
     return SingleChildScrollView(
       child: Card(
         elevation: 0,
@@ -2024,6 +2017,9 @@ class _MedicineList extends State<HealthChaatlist> {
   }
 
   Widget heightBMI() {
+    textEditingController[2].text="";
+    bMIdate.text="";
+    bMItime.text="";
     return SingleChildScrollView(
       child: Card(
         elevation: 0,
@@ -2205,6 +2201,9 @@ class _MedicineList extends State<HealthChaatlist> {
   }
 
   Widget Systolic() {
+    textEditingController[3].text ="";
+    systolicdate.text ="";
+    systolictime.text="";
     return SingleChildScrollView(
       child: Card(
         elevation: 0,
@@ -2386,6 +2385,9 @@ class _MedicineList extends State<HealthChaatlist> {
   }
 
   Widget Diastolictemp() {
+    textEditingController[4].text ="";
+    diastolicdate.text ="";
+    diastolictime.text ="";
     return SingleChildScrollView(
       child: Card(
         elevation: 0,
@@ -2567,6 +2569,10 @@ class _MedicineList extends State<HealthChaatlist> {
   }
 
   Widget Respiration() {
+    textEditingController[4].text ="";
+    diastolicdate.text ="";
+    diastolictime.text ="";
+
     return SingleChildScrollView(
       child: Card(
         elevation: 0,
@@ -2748,6 +2754,9 @@ class _MedicineList extends State<HealthChaatlist> {
   }
 
   Widget OxygenSaturation() {
+    textEditingController[4].text ="";
+    diastolicdate.text ="";
+    diastolictime.text ="";
     return SingleChildScrollView(
       child: Card(
         elevation: 0,
@@ -2929,6 +2938,9 @@ class _MedicineList extends State<HealthChaatlist> {
   }
 
   Widget Diastolic() {
+    textEditingController[4].text ="";
+    diastolicdate.text ="";
+    diastolictime.text ="";
     return SingleChildScrollView(
       child: Card(
         elevation: 0,
@@ -3105,11 +3117,383 @@ class _MedicineList extends State<HealthChaatlist> {
             ),
           ),
         ),
+
+      ),
+    );
+  }
+ Widget SugarRandom() {
+    textEditingController[7].text ="";
+    diastolicdate.text ="";
+    diastolictime.text ="";
+    return SingleChildScrollView(
+      child: Card(
+        elevation: 0,
+        child: Padding(
+          padding: const EdgeInsets.only(left: 8.0, right: 0.0, top: 4.0),
+          child: Container(
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 5.0, top: 0, right: 5.0),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            "Enter Value(mmHg)",
+                            style: TextStyle(
+                              fontSize: 15,
+                              // color: Colors.black54,
+                              fontWeight: FontWeight.w800,
+                            ),
+                          ),
+                        ),
+                        /* SizedBox(
+                      width: spaceTab,
+                    ),*/
+                        SizedBox(width: 2),
+                        Expanded(
+                          flex: 2,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 8),
+                            child: Container(
+                              height: 50,
+                              padding: EdgeInsets.only(left: 18),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(5),
+                                border:
+                                    Border.all(color: Colors.black, width: 0.3),
+                              ),
+                              child: TextFormField(
+                                maxLength: 5,
+                                decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  hintText: "Value",
+                                  counterText: "",
+
+                                  /*prefixIcon:
+                                    Icon(Icons.person_rounded),*/
+                                  hintStyle: TextStyle(
+                                      color: AppData.hintColor, fontSize: 16),
+                                ),
+                                textInputAction: TextInputAction.next,
+                                keyboardType: TextInputType.number,
+                                controller: textEditingController[7],
+                                //focusNode: fnode4,
+                                textAlignVertical: TextAlignVertical.center,
+                                inputFormatters: [
+                                  WhitelistingTextInputFormatter(
+                                      RegExp("[0-9.]")),
+                                ],
+                                /*onFieldSubmitted: (value) {
+                                    AppData.fieldFocusChange(context, fnode1, fnode2);
+                                  },*/
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  /*SizedBox(
+                  height: 6,
+                ),*/
+                  // SizedBox(width: 20),
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 5.0, top: 10, right: 5.0),
+                    child: Row(
+                      children: [
+                        //Icon(Icons.bloodtype,size: 20),
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            "Select Date"
+                            /* MyLocalizations.of(context).text("BLOODGROUP")*/,
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w800,
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 2),
+                        Expanded(
+                          flex: 2,
+                          child:
+                              diastolicappointdate(), /*Text(
+                             "N/A",
+                              style: TextStyle(fontSize: 14
+                                //fontWeight: FontWeight.w500,
+                              ),
+                            ),*/
+                        ),
+                      ],
+                    ),
+                  ),
+                  //SizedBox(width: 20),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        left: 5.0, top: 10, right: 5.0, bottom: 10),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: Container(
+                            alignment: Alignment.centerLeft,
+                            width: 100,
+                            child: Text(
+                              "Select Time",
+                              style: TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.w800,
+                                // color: AppData.kPrimaryColor,
+                                /*fontWeight: FontWeight.w600*/
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 2),
+                        Expanded(
+                          flex: 2,
+                          child: Container(
+                            alignment: Alignment.centerLeft,
+                            width: 100,
+                            child: diastolicTime(),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    alignment: Alignment.centerRight,
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                          right: 14.0, top: 5.0, bottom: 5.0),
+                      child: Image.asset(
+                        "assets/images/line_chart.png",
+                        height: 25,
+                      ),
+                    ),
+                  ),
+
+                  Divider(
+                    color: AppData.lightgreyBorder,
+                    height: 6,
+                  ),
+                  SizedBox(height: 15),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: nextSugarRandom(),
+                    /*Buttons.nextButton(
+                              function: () {
+                                //Navigator.pushNamed(context, "/UserRegister1");
+                                //personalFormValidate();
+                              },
+                              title: "PAY",
+                              context: context),*/
+                  ),
+                  //SizedBox(height: 10),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+  Widget SugarHbAIc() {
+    textEditingController[8].text ="";
+    diastolicdate.text ="";
+    diastolictime.text ="";
+    return SingleChildScrollView(
+      child: Card(
+        elevation: 0,
+        child: Padding(
+          padding: const EdgeInsets.only(left: 8.0, right: 0.0, top: 4.0),
+          child: Container(
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 5.0, top: 0, right: 5.0),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            "Enter Value(mmHg)",
+                            style: TextStyle(
+                              fontSize: 15,
+                              // color: Colors.black54,
+                              fontWeight: FontWeight.w800,
+                            ),
+                          ),
+                        ),
+                        /* SizedBox(
+                      width: spaceTab,
+                    ),*/
+                        SizedBox(width: 2),
+                        Expanded(
+                          flex: 2,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 8),
+                            child: Container(
+                              height: 50,
+                              padding: EdgeInsets.only(left: 18),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(5),
+                                border:
+                                    Border.all(color: Colors.black, width: 0.3),
+                              ),
+                              child: TextFormField(
+                                maxLength: 5,
+                                decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  hintText: "Value",
+                                  counterText: "",
+
+                                  /*prefixIcon:
+                                    Icon(Icons.person_rounded),*/
+                                  hintStyle: TextStyle(
+                                      color: AppData.hintColor, fontSize: 16),
+                                ),
+                                textInputAction: TextInputAction.next,
+                                keyboardType: TextInputType.number,
+                                controller: textEditingController[8],
+                                //focusNode: fnode4,
+                                textAlignVertical: TextAlignVertical.center,
+                                inputFormatters: [
+                                  WhitelistingTextInputFormatter(
+                                      RegExp("[0-9.]")),
+                                ],
+                                /*onFieldSubmitted: (value) {
+                                    AppData.fieldFocusChange(context, fnode1, fnode2);
+                                  },*/
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  /*SizedBox(
+                  height: 6,
+                ),*/
+                  // SizedBox(width: 20),
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 5.0, top: 10, right: 5.0),
+                    child: Row(
+                      children: [
+                        //Icon(Icons.bloodtype,size: 20),
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            "Select Date"
+                            /* MyLocalizations.of(context).text("BLOODGROUP")*/,
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w800,
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 2),
+                        Expanded(
+                          flex: 2,
+                          child:
+                              diastolicappointdate(), /*Text(
+                             "N/A",
+                              style: TextStyle(fontSize: 14
+                                //fontWeight: FontWeight.w500,
+                              ),
+                            ),*/
+                        ),
+                      ],
+                    ),
+                  ),
+                  //SizedBox(width: 20),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        left: 5.0, top: 10, right: 5.0, bottom: 10),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: Container(
+                            alignment: Alignment.centerLeft,
+                            width: 100,
+                            child: Text(
+                              "Select Time",
+                              style: TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.w800,
+                                // color: AppData.kPrimaryColor,
+                                /*fontWeight: FontWeight.w600*/
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 2),
+                        Expanded(
+                          flex: 2,
+                          child: Container(
+                            alignment: Alignment.centerLeft,
+                            width: 100,
+                            child: diastolicTime(),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    alignment: Alignment.centerRight,
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                          right: 14.0, top: 5.0, bottom: 5.0),
+                      child: Image.asset(
+                        "assets/images/line_chart.png",
+                        height: 25,
+                      ),
+                    ),
+                  ),
+
+                  Divider(
+                    color: AppData.lightgreyBorder,
+                    height: 6,
+                  ),
+                  SizedBox(height: 15),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child:
+                   // nextSugarRandom(),
+                    nextSugarhbaic(),
+                    /*Buttons.nextButton(
+                              function: () {
+                                //Navigator.pushNamed(context, "/UserRegister1");
+                                //personalFormValidate();
+                              },
+                              title: "PAY",
+                              context: context),*/
+                  ),
+                  //SizedBox(height: 10),
+                ],
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }
 
   Widget Pulse() {
+    textEditingController[4].text ="";
+    diastolicdate.text ="";
+    diastolictime.text ="";
     return SingleChildScrollView(
       child: Card(
         elevation: 0,
@@ -3291,6 +3675,9 @@ class _MedicineList extends State<HealthChaatlist> {
   }
 
   Widget Haemoglobin() {
+    textEditingController[5].text ="";
+    haemoglobindate.text ="";
+    haemoglobintime.text ="";
     return SingleChildScrollView(
       child: Card(
         elevation: 0,
@@ -3454,6 +3841,189 @@ class _MedicineList extends State<HealthChaatlist> {
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child:
                         nextButtonhaemoglobin(), /*Buttons.nextButton(
+                              function: () {
+                                //Navigator.pushNamed(context, "/UserRegister1");
+                                //personalFormValidate();
+                              },
+                              title: "PAY",
+                              context: context),*/
+                  ),
+                  //SizedBox(height: 10),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+  Widget SugarFasting() {
+    textEditingController[6].text ="";
+    haemoglobindate.text ="";
+    haemoglobintime.text ="";
+    return SingleChildScrollView(
+      child: Card(
+        elevation: 0,
+        child: Padding(
+          padding: const EdgeInsets.only(left: 8.0, right: 0.0, top: 4.0),
+          child: Container(
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 5.0, top: 0, right: 5.0),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            "Enter Value(gm/dl)",
+                            style: TextStyle(
+                              fontSize: 15,
+                              // color: Colors.black54,
+                              fontWeight: FontWeight.w800,
+                            ),
+                          ),
+                        ),
+                        /* SizedBox(
+                      width: spaceTab,
+                    ),*/
+                        SizedBox(width: 2),
+                        Expanded(
+                          flex: 2,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 8),
+                            child: Container(
+                              height: 50,
+                              padding: EdgeInsets.only(left: 18),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(5),
+                                border:
+                                    Border.all(color: Colors.black, width: 0.3),
+                              ),
+                              child: TextFormField(
+                                maxLength: 5,
+                                decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  hintText: "Value",
+                                  counterText: "",
+
+                                  /*prefixIcon:
+                                    Icon(Icons.person_rounded),*/
+                                  hintStyle: TextStyle(
+                                      color: AppData.hintColor, fontSize: 16),
+                                ),
+                                textInputAction: TextInputAction.next,
+                                keyboardType: TextInputType.number,
+                                controller: textEditingController[6],
+                                focusNode: fnode5,
+                                textAlignVertical: TextAlignVertical.center,
+                                inputFormatters: [
+                                  WhitelistingTextInputFormatter(
+                                      RegExp("[0-9.]")),
+                                ],
+                                /*onFieldSubmitted: (value) {
+                                    AppData.fieldFocusChange(context, fnode1, fnode2);
+                                  },*/
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  /*SizedBox(
+                  height: 6,
+                ),*/
+                  // SizedBox(width: 20),
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 5.0, top: 10, right: 5.0),
+                    child: Row(
+                      children: [
+                        //Icon(Icons.bloodtype,size: 20),
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            "Select Date"
+                            /* MyLocalizations.of(context).text("BLOODGROUP")*/,
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w800,
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 2),
+                        Expanded(
+                          flex: 2,
+                          child:
+                              haemoglobinappointdate(), /*Text(
+                             "N/A",
+                              style: TextStyle(fontSize: 14
+                                //fontWeight: FontWeight.w500,
+                              ),
+                            ),*/
+                        ),
+                      ],
+                    ),
+                  ),
+                  //SizedBox(width: 20),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        left: 5.0, top: 10, right: 5.0, bottom: 10),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: Container(
+                            alignment: Alignment.centerLeft,
+                            width: 100,
+                            child: Text(
+                              "Select Time",
+                              style: TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.w800,
+                                // color: AppData.kPrimaryColor,
+                                /*fontWeight: FontWeight.w600*/
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 2),
+                        Expanded(
+                          flex: 2,
+                          child: Container(
+                            alignment: Alignment.centerLeft,
+                            width: 100,
+                            child: haemoglobinTime(),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    alignment: Alignment.centerRight,
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                          right: 14.0, top: 5.0, bottom: 5.0),
+                      child: Image.asset(
+                        "assets/images/line_chart.png",
+                        height: 25,
+                      ),
+                    ),
+                  ),
+
+                  Divider(
+                    color: AppData.lightgreyBorder,
+                    height: 6,
+                  ),
+                  SizedBox(height: 15),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child:
+                    nextButtonsugarfasting(), /*Buttons.nextButton(
                               function: () {
                                 //Navigator.pushNamed(context, "/UserRegister1");
                                 //personalFormValidate();
@@ -4093,6 +4663,64 @@ class _MedicineList extends State<HealthChaatlist> {
       ),
     );
   }
+  Widget nextSugarRandom() {
+    return GestureDetector(
+      onTap: () {
+        //AppData.showInSnackBar(context, "Please select Title");
+        validatesugarrandom();
+      },
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        margin: EdgeInsets.only(left: 30.0, right: 30.0),
+        decoration: BoxDecoration(
+            color: AppData.kPrimaryColor,
+            borderRadius: BorderRadius.circular(10.0),
+            gradient: LinearGradient(
+                begin: Alignment.bottomRight,
+                end: Alignment.topLeft,
+                colors: [Colors.blue, AppData.kPrimaryColor])),
+        child: Padding(
+          padding:
+              EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
+          child: Text(
+            MyLocalizations.of(context).text("SAVE"),
+            textAlign: TextAlign.center,
+            style: TextStyle(color: Colors.white, fontSize: 16.0),
+          ),
+        ),
+      ),
+    );
+  }
+
+ Widget nextSugarhbaic() {
+    return GestureDetector(
+      onTap: () {
+        //AppData.showInSnackBar(context, "Please select Title");
+        validateSugarhbaic();
+        validatesugarrandom();
+      },
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        margin: EdgeInsets.only(left: 30.0, right: 30.0),
+        decoration: BoxDecoration(
+            color: AppData.kPrimaryColor,
+            borderRadius: BorderRadius.circular(10.0),
+            gradient: LinearGradient(
+                begin: Alignment.bottomRight,
+                end: Alignment.topLeft,
+                colors: [Colors.blue, AppData.kPrimaryColor])),
+        child: Padding(
+          padding:
+              EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
+          child: Text(
+            MyLocalizations.of(context).text("SAVE"),
+            textAlign: TextAlign.center,
+            style: TextStyle(color: Colors.white, fontSize: 16.0),
+          ),
+        ),
+      ),
+    );
+  }
 
   validatediastolic() async {
     //_formKey.currentState.validate();
@@ -4118,6 +4746,55 @@ class _MedicineList extends State<HealthChaatlist> {
           });*/
     }
   }
+  validatesugarrandom() async {
+    //_formKey.currentState.validate();
+    if (textEditingController[7].text == "" ||
+        textEditingController[7].text == null) {
+      AppData.showInSnackBar(context, "Please enter value");
+    } else if (diastolicdate.text == "" || diastolicdate.text == null) {
+      AppData.showInSnackBar(context, "Please select Date");
+    } else if (diastolictime.text == "" || diastolictime.text == null) {
+      AppData.showInSnackBar(context, "Please select time");
+    } else {
+      saveDbSugarrandom();
+      // PatientSignupModel patientSignupModel = PatientSignupModel();
+      /* MyWidgets.showLoading(context);
+      widget.model.POSTMETHOD(api: ApiFactory.POST_APPOINTMENT, json: userModel.toJson(),
+          fun: (Map<String, dynamic> map) {
+            Navigator.pop(context);
+            if (map[Const.STATUS] == Const.SUCCESS) {
+              popup(context, map[Const.MESSAGE]);
+            } else {
+              AppData.showInSnackBar(context, map[Const.MESSAGE]);
+            }
+          });*/
+    }
+  }
+
+  validateSugarhbaic() async {
+    //_formKey.currentState.validate();
+    if (textEditingController[8].text == "" ||
+        textEditingController[8].text == null) {
+      AppData.showInSnackBar(context, "Please enter value");
+    } else if (diastolicdate.text == "" || diastolicdate.text == null) {
+      AppData.showInSnackBar(context, "Please select Date");
+    } else if (diastolictime.text == "" || diastolictime.text == null) {
+      AppData.showInSnackBar(context, "Please select time");
+    } else {
+      saveDbSugarhbaic();
+      // PatientSignupModel patientSignupModel = PatientSignupModel();
+      /* MyWidgets.showLoading(context);
+      widget.model.POSTMETHOD(api: ApiFactory.POST_APPOINTMENT, json: userModel.toJson(),
+          fun: (Map<String, dynamic> map) {
+            Navigator.pop(context);
+            if (map[Const.STATUS] == Const.SUCCESS) {
+              popup(context, map[Const.MESSAGE]);
+            } else {
+              AppData.showInSnackBar(context, map[Const.MESSAGE]);
+            }
+          });*/
+    }
+  }
 
   saveDbDiastolic() {
     Map<String, dynamic> map = {
@@ -4126,6 +4803,97 @@ class _MedicineList extends State<HealthChaatlist> {
       "recordtime": selectTimediastolic24,
       "testname": "Diastolic",
       "testresult": textEditingController[4].text,
+    };
+    // http://localhost/matrujyoti/api/post-childsRegistration?
+    // regNo=9121378234815204&childname=Aryan Sahu&address=Rourkela Town&city=Sundargarh&state=Odisha&
+    // zip=751024&dateofbirth=09/08/2021&birthtime=07:00 AM&gender=Female&birthweight=2.45 Kg&birthlength=30
+    // pediatriciannm=Dr. Ranju Rani&pediatricianphnno=9876543215&motherName=Anjana
+    // Sahu&motherPhoneNo=9623587541&fatherName=Bijaykanta Sahu&fatherPhoneNo=7894561323&othrcaregivernm=xyz
+    MyWidgets.showLoading(context);
+    widget.model.POSTMETHOD1(
+        api: ApiFactory.POST_USERHEALTHRECORD,
+        token: widget.model.token,
+        json: map,
+        fun: (Map<String, dynamic> map) {
+          setState(() {
+            if (map[Const.STATUS1] == Const.SUCCESS) {
+              AppData.showInSnackDone(context, map[Const.MESSAGE]);
+              //Navigator.pop(context);
+              Navigator.pop(context);
+              Navigator.pop(context);
+              Navigator.pop(context);
+              // Navigator.pop(context);
+              AppData.showInSnackDone(context, map[Const.MESSAGE]);
+            } else {
+              Navigator.pop(context);
+              Navigator.pop(context);
+              AppData.showInSnackBar(context, map[Const.MESSAGE]);
+            }
+          });
+        });
+    /*widget.model.POSTMETHOD(api: ApiFactory.POST_APPOINTMENT,
+        json: map,
+        fun: (Map<String, dynamic> map) {
+          if (map[Const.STATUS] == Const.SUCCESS) {
+            AppData.showInSnackBar(context, map[Const.MESSAGE]);
+          } else {
+            AppData.showInSnackBar(context, map[Const.MESSAGE]);
+          }
+        });*/
+  }
+  saveDbSugarrandom() {
+    Map<String, dynamic> map = {
+      "userid": widget.model.user,
+      "recorddate": diastolicdate.text,
+      "recordtime": selectTimediastolic24,
+      "testname": "Diastolic",
+      "testresult": textEditingController[7].text,
+    };
+    // http://localhost/matrujyoti/api/post-childsRegistration?
+    // regNo=9121378234815204&childname=Aryan Sahu&address=Rourkela Town&city=Sundargarh&state=Odisha&
+    // zip=751024&dateofbirth=09/08/2021&birthtime=07:00 AM&gender=Female&birthweight=2.45 Kg&birthlength=30
+    // pediatriciannm=Dr. Ranju Rani&pediatricianphnno=9876543215&motherName=Anjana
+    // Sahu&motherPhoneNo=9623587541&fatherName=Bijaykanta Sahu&fatherPhoneNo=7894561323&othrcaregivernm=xyz
+    MyWidgets.showLoading(context);
+    widget.model.POSTMETHOD1(
+        api: ApiFactory.POST_USERHEALTHRECORD,
+        token: widget.model.token,
+        json: map,
+        fun: (Map<String, dynamic> map) {
+          setState(() {
+            if (map[Const.STATUS1] == Const.SUCCESS) {
+              AppData.showInSnackDone(context, map[Const.MESSAGE]);
+              //Navigator.pop(context);
+              Navigator.pop(context);
+              Navigator.pop(context);
+              Navigator.pop(context);
+              // Navigator.pop(context);
+              AppData.showInSnackDone(context, map[Const.MESSAGE]);
+            } else {
+              Navigator.pop(context);
+              Navigator.pop(context);
+              AppData.showInSnackBar(context, map[Const.MESSAGE]);
+            }
+          });
+        });
+    /*widget.model.POSTMETHOD(api: ApiFactory.POST_APPOINTMENT,
+        json: map,
+        fun: (Map<String, dynamic> map) {
+          if (map[Const.STATUS] == Const.SUCCESS) {
+            AppData.showInSnackBar(context, map[Const.MESSAGE]);
+          } else {
+            AppData.showInSnackBar(context, map[Const.MESSAGE]);
+          }
+        });*/
+  }
+
+  saveDbSugarhbaic() {
+    Map<String, dynamic> map = {
+      "userid": widget.model.user,
+      "recorddate": diastolicdate.text,
+      "recordtime": selectTimediastolic24,
+      "testname": "Diastolic",
+      "testresult": textEditingController[8].text,
     };
     // http://localhost/matrujyoti/api/post-childsRegistration?
     // regNo=9121378234815204&childname=Aryan Sahu&address=Rourkela Town&city=Sundargarh&state=Odisha&
@@ -4193,6 +4961,34 @@ class _MedicineList extends State<HealthChaatlist> {
       ),
     );
   }
+ Widget nextButtonsugarfasting() {
+    return GestureDetector(
+      onTap: () {
+        //AppData.showInSnackBar(context, "Please select Title");
+        validatesugarfasting();
+      },
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        margin: EdgeInsets.only(left: 30.0, right: 30.0),
+        decoration: BoxDecoration(
+            color: AppData.kPrimaryColor,
+            borderRadius: BorderRadius.circular(10.0),
+            gradient: LinearGradient(
+                begin: Alignment.bottomRight,
+                end: Alignment.topLeft,
+                colors: [Colors.blue, AppData.kPrimaryColor])),
+        child: Padding(
+          padding:
+              EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
+          child: Text(
+            MyLocalizations.of(context).text("SAVE"),
+            textAlign: TextAlign.center,
+            style: TextStyle(color: Colors.white, fontSize: 16.0),
+          ),
+        ),
+      ),
+    );
+  }
 
   validatehaemoglobin() async {
     //_formKey.currentState.validate();
@@ -4219,6 +5015,32 @@ class _MedicineList extends State<HealthChaatlist> {
     }
   }
 
+ validatesugarfasting() async {
+    //_formKey.currentState.validate();
+    if (textEditingController[6].text == "" ||
+        textEditingController[6].text == null) {
+      AppData.showInSnackBar(context, "Please enter value");
+    } else if (haemoglobindate.text == "" || haemoglobindate.text == null) {
+      AppData.showInSnackBar(context, "Please select Date");
+    } else if (haemoglobintime.text == "" || haemoglobintime.text == null) {
+      AppData.showInSnackBar(context, "Please select time");
+    } else {
+      saveDbsugarfasting();
+     // saveDbhaemoglobin();
+      // PatientSignupModel patientSignupModel = PatientSignupModel();
+      /* MyWidgets.showLoading(context);
+      widget.model.POSTMETHOD(api: ApiFactory.POST_APPOINTMENT, json: userModel.toJson(),
+          fun: (Map<String, dynamic> map) {
+            Navigator.pop(context);
+            if (map[Const.STATUS] == Const.SUCCESS) {
+              popup(context, map[Const.MESSAGE]);
+            } else {
+              AppData.showInSnackBar(context, map[Const.MESSAGE]);
+            }
+          });*/
+    }
+  }
+
   saveDbhaemoglobin() {
     Map<String, dynamic> map = {
       "userid": widget.model.user,
@@ -4226,6 +5048,51 @@ class _MedicineList extends State<HealthChaatlist> {
       "recordtime": selectTimehaemoglobin24,
       "testname": "HB",
       "testresult": textEditingController[5].text,
+    };
+    // http://localhost/matrujyoti/api/post-childsRegistration?
+    // regNo=9121378234815204&childname=Aryan Sahu&address=Rourkela Town&city=Sundargarh&state=Odisha&
+    // zip=751024&dateofbirth=09/08/2021&birthtime=07:00 AM&gender=Female&birthweight=2.45 Kg&birthlength=30
+    // pediatriciannm=Dr. Ranju Rani&pediatricianphnno=9876543215&motherName=Anjana
+    // Sahu&motherPhoneNo=9623587541&fatherName=Bijaykanta Sahu&fatherPhoneNo=7894561323&othrcaregivernm=xyz
+    MyWidgets.showLoading(context);
+    widget.model.POSTMETHOD1(
+        api: ApiFactory.POST_USERHEALTHRECORD,
+        token: widget.model.token,
+        json: map,
+        fun: (Map<String, dynamic> map) {
+          setState(() {
+            if (map[Const.STATUS1] == Const.SUCCESS) {
+              AppData.showInSnackDone(context, map[Const.MESSAGE]);
+              //Navigator.pop(context);
+              Navigator.pop(context);
+              Navigator.pop(context);
+              Navigator.pop(context);
+              // Navigator.pop(context);
+              AppData.showInSnackDone(context, map[Const.MESSAGE]);
+            } else {
+              Navigator.pop(context);
+              Navigator.pop(context);
+              AppData.showInSnackBar(context, map[Const.MESSAGE]);
+            }
+          });
+        });
+    /*widget.model.POSTMETHOD(api: ApiFactory.POST_APPOINTMENT,
+        json: map,
+        fun: (Map<String, dynamic> map) {
+          if (map[Const.STATUS] == Const.SUCCESS) {
+            AppData.showInSnackBar(context, map[Const.MESSAGE]);
+          } else {
+            AppData.showInSnackBar(context, map[Const.MESSAGE]);
+          }
+        });*/
+  }
+  saveDbsugarfasting() {
+    Map<String, dynamic> map = {
+      "userid": widget.model.user,
+      "recorddate": haemoglobindate.text,
+      "recordtime": selectTimehaemoglobin24,
+      "testname": "HB",
+      "testresult": textEditingController[6].text,
     };
     // http://localhost/matrujyoti/api/post-childsRegistration?
     // regNo=9121378234815204&childname=Aryan Sahu&address=Rourkela Town&city=Sundargarh&state=Odisha&

@@ -104,6 +104,7 @@ import 'package:user/screens/Users/GenericMedicine/GenericMedicine.dart';
 import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/DocumentImageView.dart';
 import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/DocumentList.dart';
 import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/UploadDocumentTab.dart';
+import 'package:user/screens/Users/Preventivehealthcare/PreventiveHealthCare.dart';
 import 'package:user/screens/Users/organ/OrganCardPage.dart';
 import 'screens/Syndicate Partner/Dashboard/SyndicateDashboard.dart';
 import 'screens/Syndicate Partner/Registration/Syndicatepartner.dart';
@@ -1067,7 +1068,6 @@ class _MyAppState extends State<MyApp> {
                 model: _model,
               ),
 
-
               '/monthlyoverview': (context) => MonthlyOverview(
                     model: _model,
                   ),
@@ -1169,6 +1169,10 @@ class _MyAppState extends State<MyApp> {
 
               '/vdo': (context) =>
                   VideoCallPage(
+               //     model: _model,
+                  ),
+              '/preventivehealthcare': (context) =>
+                  PreventiveHealthCare(
                //     model: _model,
                   ),
             },
