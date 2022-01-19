@@ -685,6 +685,11 @@ class _LoginScreenState extends State<LoginScreen> {
                 if (map[Const.CODE] == Const.SUCCESS) {
                   /*widget.model.phnNo = _loginId.text;
                   widget.model.passWord = passController.text ;*/
+                  FirebaseMessaging.instance.getToken().then((value) {
+                    String token = value;
+                    print("token dart locale>>>" + token);
+
+                  });
                   setState(() {
                     widget.model.phnNo = _loginId.text;
                     widget.model.passWord = passController.text;

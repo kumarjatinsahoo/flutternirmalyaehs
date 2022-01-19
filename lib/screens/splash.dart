@@ -70,11 +70,7 @@ class _SplashScreenState extends State<SplashScreen> {
     fetchLocalData();
     isFirstTimes();
     _initPackageInfo();
-    FirebaseMessaging.instance.getToken().then((value) {
-      String token = value;
-      print("token dart locale>>>" + token);
 
-    });
     // callResourceTimer();
     // ConnectionStatusSingleton connectionStatus =
     //     ConnectionStatusSingleton.getInstance();
