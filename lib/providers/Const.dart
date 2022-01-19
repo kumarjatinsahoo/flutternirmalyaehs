@@ -67,7 +67,6 @@ class Const {
   static const String NEXT_SERVER_LOAD = "next_server_load";
   static const String ALREADY_REG_STATUS = "registered";
   static const String APP_ID = "8036d1868bd71fb6b500cb18eeec3936";
-
   static String DOC_APNT = "DOC_APNT";
   static String HEALTH_SCREENING_APNT = "HEALTH_SCREENING_APNT";
   static String CONFIRMED = "CONFIRMED";
@@ -88,8 +87,8 @@ class Const {
   static const String INTERNET_CONNECTION = "PLEASE CHECK YOUR INTERNET";
   static const String EDIT_BENEFICIARY = "Edit Beneficiary";
   static const String POST = "Edit Beneficiary";
-  static const String ANDROID = "3";
-  static const String IOS = "3";
+  static const String ANDROID = "4";
+  static const String IOS = "4";
 
   static GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 

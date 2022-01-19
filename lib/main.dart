@@ -276,7 +276,11 @@ void main() async {
       'This channel is used for important notifications.', // description
       importance: Importance.high,
     );
+    FirebaseMessaging.instance.getToken().then((value) {
+      String token = value;
+      print("token dart locale>>>" + token);
 
+    });
     flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
     await flutterLocalNotificationsPlugin
         .resolvePlatformSpecificImplementation<
