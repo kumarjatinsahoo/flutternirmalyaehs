@@ -1283,7 +1283,8 @@ class UserSignUpFormState extends State<UserSignUpForm> {
     } else if (UserSignUpForm.cityModel == null ||
         UserSignUpForm.cityModel == "") {
       AppData.showInSnackBar(context, "Please select city");
-    } /*else if (selectDobEn==TypeDob.Age && (textEditingController[3].text =="" || textEditingController[3].text == null) ) {
+    }
+    /*else if (selectDobEn==TypeDob.Age && (textEditingController[3].text =="" || textEditingController[3].text == null) ) {
       AppData.showInSnackBar(context, "Please enter your Age");
       FocusScope.of(context).requestFocus(fnode4);
     } else if (selectDobEn==TypeDob.Age  && (int.tryParse(textEditingController[3].text)<18) ) {
@@ -1340,7 +1341,6 @@ class UserSignUpFormState extends State<UserSignUpForm> {
             String msg = map["message"].toString();
             if (map[Const.STATUS] == Const.SUCCESS) {
               setState(() {
-
                 useridd = map["body"]["key"];
                 password = map["body"]["name"];
                 log("Version>>>" + useridd + "<>>" + password);
