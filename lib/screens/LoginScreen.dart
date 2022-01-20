@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:math' as math;
+
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:user/localization/application.dart';
 import 'package:user/localization/localizations.dart';
@@ -16,6 +17,8 @@ import 'package:user/widgets/MyWidget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -28,7 +31,6 @@ class LoginScreen extends StatefulWidget {
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
-
 class _LoginScreenState extends State<LoginScreen> {
   TextEditingController beniTextController = new TextEditingController();
   TextEditingController aadharTextController = new TextEditingController();
@@ -80,6 +82,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   var pin;
   String token = "";
+  String deviceIdentifier = "unknown";
 
   master.MasterLoginResponse masterResponse;
 
@@ -103,18 +106,35 @@ class _LoginScreenState extends State<LoginScreen> {
 
       showVideo(context);
     });*/
+
+
     tokenCall();
+    //getDeviceIdentifier();
+    print("token dart locale>>>" + token);
+    //print("token dart locale>>>" + deviceIdentifier);
+
   }
+  /*Future<String> getDeviceIdentifier() async {
+
+    DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+    AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+    deviceIdentifier = androidInfo.androidId;
+
+    }*/
 
   tokenCall() {
     FirebaseMessaging.instance.onTokenRefresh.listen((event) {
       setState(() {
         token = event;
-        log(">>>>>>>>Token>>>>>>>" + token);
+        print("token dart locale>>>" + token);
+       // log(">>>>>>>>Token>>>>>>>" + token);
       });
     });
   }
-
+ /* Future<String> getDeviceId() async {
+    return (await ClientInformation.fetch()).deviceId;
+  }
+*/
   @override
   Widget build(BuildContext context) {
     code = rng.nextInt(9000) + 1000;
@@ -683,13 +703,14 @@ class _LoginScreenState extends State<LoginScreen> {
                 log("LOGIN RESPONSE>>>>" + jsonEncode(map));
                 //AppData.showInSnackBar(context, map[Const.MESSAGE]);
                 if (map[Const.CODE] == Const.SUCCESS) {
+                  print("token dart locale>>>" + token);
                   /*widget.model.phnNo = _loginId.text;
                   widget.model.passWord = passController.text ;*/
-                  FirebaseMessaging.instance.getToken().then((value) {
+                 /* FirebaseMessaging.instance.getToken().then((value) {
                     String token = value;
                     print("token dart locale>>>" + token);
 
-                  });
+                  });*/
                   setState(() {
                     widget.model.phnNo = _loginId.text;
                     widget.model.passWord = passController.text;
