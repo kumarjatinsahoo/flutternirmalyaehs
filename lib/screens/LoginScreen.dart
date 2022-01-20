@@ -19,6 +19,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 
+
+
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -82,7 +85,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   var pin;
   String token = "";
-  String deviceIdentifier = "unknown";
+  ///String deviceIdentifier = "unknown";
 
   master.MasterLoginResponse masterResponse;
 
@@ -109,6 +112,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
 
     tokenCall();
+    //getDeviceSerialNumber();
     //getDeviceIdentifier();
     print("token dart locale>>>" + token);
     //print("token dart locale>>>" + deviceIdentifier);
@@ -135,6 +139,47 @@ class _LoginScreenState extends State<LoginScreen> {
     return (await ClientInformation.fetch()).deviceId;
   }
 */
+ /* Future<String> getDeviceSerialNumber() async {
+    // Ask user permission
+    await AndroidMultipleIdentifier.requestPermission();
+    // Get device information async
+    Map idMap = await AndroidMultipleIdentifier.idMap;
+
+    String imei = idMap["imei"];
+    String serial = idMap["serial"];
+    String androidID = idMap["androidId"];
+    print("imeino>>>" + imei);
+    return imei;
+  }*/
+  /*deviceInfo() async{
+    DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+    AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+    return androidInfo.id;
+  }*/
+  /*Future<void> initPlatformState() async {
+    String platformImei;
+    String idunique;
+    // Platform messages may fail, so we use a try/catch PlatformException.
+    try {
+      platformImei =
+      await ImeiPlugin.getImei(shouldShowRequestPermissionRationale: false);
+      List<String> multiImei = await ImeiPlugin.getImeiMulti();
+      print(multiImei);
+      idunique = await ImeiPlugin.getId();
+    } on PlatformException {
+      platformImei = 'Failed to get platform version.';
+    }
+
+    // If the widget was removed from the tree while the asynchronous platform
+    // message was in flight, we want to discard the reply rather than calling
+    // setState to update our non-existent appearance.
+    if (!mounted) return;
+
+    setState(() {
+      _platformImei = platformImei;
+      uniqueId = idunique;
+    });
+  }*/
   @override
   Widget build(BuildContext context) {
     code = rng.nextInt(9000) + 1000;
