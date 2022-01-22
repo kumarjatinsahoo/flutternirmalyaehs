@@ -1123,8 +1123,7 @@ class SyndicateSignupformState extends State<SyndicateSignupform> {
     }else if (SyndicateSignupform.specialityModel == null ||
         SyndicateSignupform.specialityModel == "") {
       AppData.showInSnackBar(context, "Please Select Speciality Name");
-    }
-    else if (SyndicateSignupform.titleModel == null ||
+    } else if (SyndicateSignupform.titleModel == null ||
         SyndicateSignupform.titleModel == "") {
       AppData.showInSnackBar(context, "Please select title");
     } else if (SyndicateSignupform.genderModel == null ||
@@ -1202,6 +1201,7 @@ class SyndicateSignupformState extends State<SyndicateSignupform> {
       doctorModel.role = "22";
       log("DOCTOR MODEL SEND>>>>" + jsonEncode(doctorModel.toJson()));
       MyWidgets.showLoading(context);
+
       widget.model.POSTMETHOD(
           api: ApiFactory.DOCTOR_REGISTRATION,
           json: doctorModel.toJson(),
@@ -1221,7 +1221,6 @@ class SyndicateSignupformState extends State<SyndicateSignupform> {
             }
           });
     };
-
   }
 
   // popup(BuildContext context, String message) {
