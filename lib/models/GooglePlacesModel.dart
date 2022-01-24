@@ -37,6 +37,13 @@ class GooglePlaceModel {
     data['status'] = this.status;
     return data;
   }
+   addMore(Map<String, dynamic> json) {
+    if (json['results'] != null) {
+      json['results'].forEach((v) {
+        results.add(new Results.fromJson(v));
+      });
+    }
+  }
 }
 
 class Results {

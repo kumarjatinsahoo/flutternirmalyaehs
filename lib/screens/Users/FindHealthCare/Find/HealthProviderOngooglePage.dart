@@ -1,11 +1,10 @@
 import 'dart:developer';
-
-import 'package:date_format/date_format.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:user/models/ChemistsLocationwiseModel.dart';
+import 'package:user/localization/localizations.dart';
 import 'package:user/models/GooglePlacesModel.dart';
-
+import 'package:user/models/KeyvalueModel.dart';
 import 'package:user/providers/Const.dart';
+import 'package:user/providers/DropDown.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
@@ -17,6 +16,7 @@ import 'FindPage.dart';
 
 class ChemistsOngooglePage extends StatefulWidget {
   MainModel model;
+  static KeyvalueModel distancelistModel = null;
 
   ChemistsOngooglePage({Key key, this.model}) : super(key: key);
 
@@ -28,13 +28,15 @@ class _ChemistsOngooglePageState extends State<ChemistsOngooglePage> {
   var selectedMinValue;
   GooglePlaceModel googlePlaceModel;
   bool isDataNotAvail = false;
+  ScrollController _scrollController = ScrollController();
 
   //ScrollController _scrollController = ScrollController();
 
   static const platform = AppData.channel;
   session.LoginResponse1 loginResponse1;
   String longi, lati, city, addr, healthpro, type,speciality;
-
+  String nextpage;
+  int currentMax = 1;
   @override
   void initState() {
     super.initState();
@@ -46,8 +48,25 @@ class _ChemistsOngooglePageState extends State<ChemistsOngooglePage> {
     healthpro = widget.model.healthproname;
     type = widget.model.type;
     speciality = FindPage.specialistModel?.name??"";
-    callAPI();
+    callAPI(5, currentMax);
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels ==
+          _scrollController.position.maxScrollExtent) {
+        // if (googlePlaceModel.results.length % 20 == 0) 
+          log('PAGINATION ---');
+          callAPIPagination(nextpage);
+        // }
+        
+      }
+    });
   }
+
+  List<KeyvalueModel> selectDistance = [
+    KeyvalueModel(name: "5 KM", key: 5),
+    KeyvalueModel(name: "10 KM", key: 10),
+    KeyvalueModel(name: "20 KM", key: 20),
+     KeyvalueModel(name: "50 KM", key: 50),
+  ];
 
   /* callAPI() {
 Map<String, dynamic> postData = {
@@ -79,19 +98,51 @@ Map<String, dynamic> postData = {
       );
 
   }*/
-  callAPI() {
+  callAPI(int radius, int i) {
     log("API :Lati & Longi" + lati + "\n" + lati);
     log("API CALL>>>" +
-        ApiFactory.GOOGLE_QUERY_API(lati: lati, longi: longi, healthpro: healthpro) +
+        ApiFactory.GOOGLE_QUERY_API(lati: lati, radius: (radius * 1000).toString(), longi: longi, healthpro: healthpro) +
         "\n\n\n");
     widget.model.GETMETHODCAL(
         api: ApiFactory.GOOGLE_QUERY_API(
-            lati: lati, longi: longi, healthpro: (speciality!=null)?healthpro+" "+speciality:healthpro),
+            lati: lati, longi: longi, radius: (radius * 1000).toString(), healthpro: (speciality!=null)?healthpro+" "+speciality:healthpro),
+        fun: (Map<String, dynamic> map) {
+          setState(() {
+            // String msg = map[Const.MESSAGE];
+            if (map["status"] == "OK") {     
+          // if (i == 1) {         
+            googlePlaceModel = GooglePlaceModel.fromJson(map);
+            nextpage=googlePlaceModel.nextPageToken;
+            print('================ nextpage ' + googlePlaceModel.results.length.toString());
+              // } else {
+              //   googlePlaceModel.addMore(map);
+              // }
+             } else {
+            //   isDataNotAvail = true;
+              AppData.showInSnackBar(context, "Google api doesn't work");
+            }
+          });
+        });
+  }
+
+   callAPIPagination(nxtpagetoken) {
+    log("API :Lati & Longi" + lati + "\n" + lati);
+    log("API CALL>>Narmada>" + 
+        ApiFactory.GOOGLE_PAGINATION_API(pagetoken: nxtpagetoken + "\n\n\n"));
+    widget.model.GETMETHODCAL(
+        api: ApiFactory.GOOGLE_PAGINATION_API(pagetoken: nxtpagetoken),
         fun: (Map<String, dynamic> map) {
           setState(() {
             //String msg = map[Const.MESSAGE];
             //if (map["status"] == "ok") {
-            googlePlaceModel = GooglePlaceModel.fromJson(map);
+        //         if (i == 1) {
+        //  googlePlaceModel = GooglePlaceModel.fromJson(map);
+        //         }
+        //         else{
+                  googlePlaceModel.addMore(map);
+                   nextpage=map["next_page_token"]??null;
+                  // googlePlaceModel.nextPageToken=map["next_page_token"];
+                // }
             /* } else {
               isDataNotAvail = true;
               AppData.showInSnackBar(context, "Google api doesn't work");
@@ -99,27 +150,6 @@ Map<String, dynamic> postData = {
           });
         });
   }
-
-  //  callAPI() {
-  //   log("API :Lati & Longi" + lati + "\n" + lati);
-  //   log("API CALL>>Narmada>" + 
-  //       ApiFactory.GOOGLE_NEARBY_API(lati: lati, longi: longi, healthpro: healthpro, type: healthpro,keyword: "Odisha",radius: "200") +
-  //       "\n\n\n");
-  //   widget.model.GETMETHODCAL(
-  //       api: ApiFactory.GOOGLE_NEARBY_API(
-  //           lati: lati, longi: longi,type: healthpro,keyword: "Odisha",radius: "200", healthpro: (speciality!=null)?healthpro+" "+speciality:healthpro),
-  //       fun: (Map<String, dynamic> map) {
-  //         setState(() {
-  //           //String msg = map[Const.MESSAGE];
-  //           //if (map["status"] == "ok") {
-  //           googlePlaceModel = GooglePlaceModel.fromJson(map);
-  //           /* } else {
-  //             isDataNotAvail = true;
-  //             AppData.showInSnackBar(context, "Google api doesn't work");
-  //           }*/
-  //         });
-  //       });
-  // }
   @override
   Widget build(BuildContext context) {
     double tileSize = 100;
@@ -128,17 +158,36 @@ Map<String, dynamic> postData = {
 
     return Scaffold(
       body: Container(
-    child: SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.all(13.0),
-        child: Column(
-          children: [
-            (googlePlaceModel != null)
-                ? ListView.builder(
-                    physics: NeverScrollableScrollPhysics(),
-                    // controller: _scrollController,
-                    shrinkWrap: true,
+    child: Padding(
+      padding: const EdgeInsets.all(13.0),
+      child: Column(
+        children: [
+          Row(children: [
+            Expanded(child: Text('Select Distance', style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16),)),
+             Expanded(
+               child: DropDown.networkDrop(
+                                "5 KM",
+                                "5 KM",
+                                selectDistance, (KeyvalueModel data) {
+                              setState(() {
+                                ChemistsOngooglePage.distancelistModel = data;
+                                callAPI(data.key, currentMax);
+                              });
+                            }),
+             ),
+             
+          ],),
+          
+          (googlePlaceModel != null)
+              ? Expanded(
+                child: ListView.builder(
+                    controller: _scrollController,
                     itemBuilder: (context, i) {
+                     if (i == googlePlaceModel.results.length ) {        
+                    return (googlePlaceModel.results.length % 20 == 0 && googlePlaceModel.nextPageToken != null)
+                        ? CupertinoActivityIndicator()
+                        : Container();
+                  }
                       Results patient = googlePlaceModel.results[i];
                       return Container(
                           child: InkWell(
@@ -146,7 +195,7 @@ Map<String, dynamic> postData = {
                           //widget.model.model = patient.placeId;
                           widget.model.placeId = patient.placeId;
                           Navigator.pushNamed(context, "/googleSearch");
-
+              
                           // AppData.showInSnackBar(context,"hi");
                         },
                         child: Card(
@@ -243,11 +292,20 @@ Map<String, dynamic> postData = {
                         ),
                       ));
                     },
-                    itemCount: googlePlaceModel.results.length,
-                  )
-                : Container(),
-          ],
-        ),
+                    itemCount: googlePlaceModel.results.length + 1,
+                  ),
+              )
+            :  Expanded(
+              child: Container(
+                      child: Center(
+                        child: Text(
+                          'NO DATA FOUND!',
+                          style: TextStyle(color: Colors.black, fontSize: 18),
+                        ),
+                      ),
+                    ),
+            )
+        ],
       ),
     ),
       ),
