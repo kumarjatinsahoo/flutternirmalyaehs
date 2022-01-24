@@ -204,12 +204,13 @@ class _ChangePasswordState extends State<ChangePassword> {
         textAlignVertical: TextAlignVertical.bottom,
         obscureText: isPassShow,
 
-        validator: (value) {
+         validator: (value) {
           if (value.isEmpty) {
             return null;
-          } else if (value.length != 14) {
-            return null;
-          } else {
+          } else if(!AppData.validateStructure(value)){
+                return "";
+          }
+            else {
             return null;
           }
         },
@@ -260,9 +261,10 @@ class _ChangePasswordState extends State<ChangePassword> {
         validator: (value) {
           if (value.isEmpty) {
             return null;
-          } else if (value.length != 14) {
-            return null;
-          } else {
+          } else if(!AppData.validateStructure(value)){
+                return "sss";
+          }
+            else {
             return null;
           }
         },
@@ -309,16 +311,25 @@ class _ChangePasswordState extends State<ChangePassword> {
             )),
         textAlignVertical: TextAlignVertical.bottom,
         obscureText: isPassShow2,
-
-        validator: (value) {
+         validator: (value) {
           if (value.isEmpty) {
             return null;
-          } else if (value.length != 14) {
-            return null;
-          } else {
+          } else if(!AppData.validateStructure(value)){
+                return "sss";
+          }
+            else {
             return null;
           }
         },
+        // validator: (value) {
+        //   if (value.isEmpty) {
+        //     return null;
+        //   } else if (value.length != 14) {
+        //     return null;
+        //   } else {
+        //     return null;
+        //   }
+        // },
         /*onFieldSubmitted: (value) {
           AppData.fieldFocusChange(context, fnode3, null);
         },*/
@@ -370,11 +381,27 @@ class _ChangePasswordState extends State<ChangePassword> {
         fun: () {
           if(textEditingController[0].text == "" || textEditingController[0].text == null) {
             AppData.showInSnackBar(context, "Please enter  Current password");
-          }else if (textEditingController[1].text == "" || textEditingController[1].text == null) {
+          }
+           else if(!AppData.validateStructure(textEditingController[0].text)){
+                  AppData.showInSnackBar(context, "Current Password must have at least one number and one uppercase and lowercase letter, and at least 8 or more characters");
+          }
+          else if (textEditingController[1].text == "" || textEditingController[1].text == null) {
             AppData.showInSnackBar(context, "Please enter  New password");
-          }else if (textEditingController[2].text == "" || textEditingController[2].text == null) {
+          }
+           else if(!AppData.validateStructure(textEditingController[1].text)){
+                  AppData.showInSnackBar(context, "New Password must have at least one number and one uppercase and lowercase letter, and at least 8 or more characters");
+          }
+          //   else if(!AppData.validateStructure(textEditingController[0].text)){
+          //         AppData.showInSnackBar(context, "Password must have at least one number and one uppercase and lowercase letter, and at least 8 or more characters");
+          // }
+          else if (textEditingController[2].text == "" || textEditingController[2].text == null) {
             AppData.showInSnackBar(context, "Please enter confirm password");
-          }else if (textEditingController[2].text != textEditingController[1].text) {
+          }
+          //  else if(!AppData.validateStructure(textEditingController[2].text)){
+          //         AppData.showInSnackBar(context, "Password must have at least one number and one uppercase and lowercase letter, and at least 8 or more characters");
+          // }
+        
+          else if (textEditingController[2].text != textEditingController[1].text) {
             AppData.showInSnackBar(context, "New password doesn't match with confirm password");
           } else {
             var sendData ={
