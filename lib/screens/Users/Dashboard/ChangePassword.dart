@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:developer';
-
 import 'package:flutter/services.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:user/localization/localizations.dart';
@@ -9,21 +8,15 @@ import 'package:user/providers/Const.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
-import 'package:user/screens/ForgotPinView.dart';
-import 'package:user/screens/PinView.dart';
 import 'package:user/widgets/MyWidget.dart';
 import 'package:flutter/material.dart';
-
 class ChangePassword extends StatefulWidget {
   final MainModel model;
   final String userId;
-
   const ChangePassword({Key key, this.model, this.userId}) : super(key: key);
-
   @override
   _ChangePasswordState createState() => _ChangePasswordState();
 }
-
 class _ChangePasswordState extends State<ChangePassword> {
   LoginResponse1 loginResponse1;
   var selectedMinValue;
@@ -358,7 +351,11 @@ class _ChangePasswordState extends State<ChangePassword> {
               Navigator.pop(context);
               Navigator.pop(context);
               Navigator.pop(context);
-              //Navigator.pushNamedAndRemoveUntil(context, "/login", (route) => false);
+              Navigator.of(context).pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
+
+/*
+              Navigator.pushNamedAndRemoveUntil(context, "/login", (route) => false);
+*/
             },
             color: Color.fromRGBO(0, 179, 134, 1.0),
             radius: BorderRadius.circular(0.0),
