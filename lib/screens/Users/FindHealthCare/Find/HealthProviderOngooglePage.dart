@@ -99,6 +99,27 @@ Map<String, dynamic> postData = {
           });
         });
   }
+
+  //  callAPI() {
+  //   log("API :Lati & Longi" + lati + "\n" + lati);
+  //   log("API CALL>>Narmada>" + 
+  //       ApiFactory.GOOGLE_NEARBY_API(lati: lati, longi: longi, healthpro: healthpro, type: healthpro,keyword: "Odisha",radius: "200") +
+  //       "\n\n\n");
+  //   widget.model.GETMETHODCAL(
+  //       api: ApiFactory.GOOGLE_NEARBY_API(
+  //           lati: lati, longi: longi,type: healthpro,keyword: "Odisha",radius: "200", healthpro: (speciality!=null)?healthpro+" "+speciality:healthpro),
+  //       fun: (Map<String, dynamic> map) {
+  //         setState(() {
+  //           //String msg = map[Const.MESSAGE];
+  //           //if (map["status"] == "ok") {
+  //           googlePlaceModel = GooglePlaceModel.fromJson(map);
+  //           /* } else {
+  //             isDataNotAvail = true;
+  //             AppData.showInSnackBar(context, "Google api doesn't work");
+  //           }*/
+  //         });
+  //       });
+  // }
   @override
   Widget build(BuildContext context) {
     double tileSize = 100;
