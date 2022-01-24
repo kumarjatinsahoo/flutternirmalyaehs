@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 import 'package:user/models/LoginResponse1.dart';
@@ -17,6 +18,7 @@ import 'package:user/models/SetReminderModel.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/DropDown.dart';
 import 'package:user/providers/SharedPref.dart';
+import 'package:user/providers/api_factory.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
 
@@ -691,7 +693,7 @@ class SetReminderState extends State<SetReminder> {
       setReminderModel.medType=textEditingController[0].text;
       setReminderModel.medName=textEditingController[1].text;
       setReminderModel.medDosage=SetReminder.dosageModel.key;
-      setReminderModel.dosagePerDay=SetReminder.timeDayModel.key;
+      setReminderModel.dosagePerDay=SetReminder.timeDayModel.name;
       setReminderModel.startTime=stime.text;
       setReminderModel.endTime=endtime.text;
       setReminderModel.startDate=stdob.text;
@@ -700,9 +702,19 @@ class SetReminderState extends State<SetReminder> {
       setReminderModel.frequency=payMode1.toString().substring(9);
       setReminderModel.doseTime=doseTimeList;
       log("Post json>>>>" + jsonEncode(setReminderModel.toJson()));
-
-
-
+      MyWidgets.showLoading(context);
+      widget.model.POSTMETHOD1(
+          api: ApiFactory.POST_REMINDER,
+          token: widget.model.token,
+          json: setReminderModel.toJson(),
+          fun: (Map<String, dynamic> map) {
+            Navigator.pop(context);
+            if (map[Const.STATUS] == Const.SUCCESS) {
+              popup(context, map[Const.MESSAGE]);
+            } else {
+              AppData.showInSnackBar(context, map[Const.MESSAGE]);
+            }
+          });
       // _formKey.currentState.save();
       // Navigator.pop(context);
     /*  bool isAllAccept = true;
@@ -1011,7 +1023,6 @@ class SetReminderState extends State<SetReminder> {
       });
     }
   }
-
   String formatTimeOfDay(TimeOfDay tod) {
     print("Value is>>>>>>\n\n\n\n" + tod.toString());
     final now = new DateTime.now();
@@ -1019,4 +1030,32 @@ class SetReminderState extends State<SetReminder> {
     final format = DateFormat.jm(); //"6:00 AM"
     return format.format(dt);
   }
-}
+
+  popup(BuildContext context, String message) {
+    return Alert(
+        context: context,
+        title: message,
+        type: AlertType.success,
+        onWillPopActive: true,
+        closeIcon: Icon(
+          Icons.info,
+          color: Colors.transparent,
+        ),
+        //image: Image.asset("assets/success.png"),
+        closeFunction: () {},
+        buttons: [
+          DialogButton(
+            child: Text(
+              "OK",
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+            onPressed: () {
+              Navigator.pop(context);
+              Navigator.pop(context);
+              Navigator.pop(context);
+            },
+            color: Color.fromRGBO(0, 179, 134, 1.0),
+            radius: BorderRadius.circular(0.0),
+          ),
+        ]).show();
+  }}
