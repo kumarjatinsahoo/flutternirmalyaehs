@@ -97,22 +97,24 @@ class _FindPageState extends State<FindPage> {
   }
 
   callApi(lat, longi) {
-    print(">>>>>>>>>" + ApiFactory.GOOGLE_LOC(lat: lat, long: longi));
+    print("NARMADA>>>>>>>>>" + ApiFactory.GOOGLE_LOC(lat: lat, long: longi));
     MyWidgets.showLoading(context);
     widget.model.GETMETHODCALL(
         api: ApiFactory.GOOGLE_LOC(lat: lat, long: longi),
         fun: (Map<String, dynamic> map) {
           Navigator.pop(context);
           ResultsServer finder = ResultsServer.fromJson(map["results"][0]);
-          print("finder>>>>>>>>>" + finder.toJson().toString());
+          print("finder------Narmada>>>>>>>>> " + lat.toString() + "," + longi.toString());
           setState(() {
             address = "${finder.formattedAddress}";
             textEditingController[0].text = "${finder.formattedAddress}";
             cityName = finder.addressComponents[4].longName;
             print("finder>>>>>>>>>" + finder.addressComponents[4].longName);
-            longitudes = position.longitude.toString();
-            latitudes = position.altitude.toString();
-          });
+            // longitudes = position.longitude.toString();
+            // latitudes = position.altitude.toString();
+            longitudes = longi.toString();
+            latitudes =  lat.toString();    
+            });
         });
   }
 
@@ -665,6 +667,7 @@ class _FindPageState extends State<FindPage> {
         } else if (_loginId.text.length != 10) {
           AppData.showInSnackBar(context, "Please enter 10 digit mobile no");
         } else {*/
+        print('------------ longitudes Narmada ' + latitudes +","+ longitudes);
           Navigator.pushNamed(context, "/chemistspage");
           //Navigator.pushNamed(context, "/searchScreen");
         }

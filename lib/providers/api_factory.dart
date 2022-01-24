@@ -1,8 +1,8 @@
 class ApiFactory {
   //bool isRelease = bool.fromEnvironment("DEV");
   static String REG_DEVICE = "https://cca.medtel.in/Ziniai/manageDeviceId";
- // static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
-  static String MAIN_URL = "http://api-demo.ehealthsystem.com/nirmalyaRest/api/";
+  static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
+  //static String MAIN_URL = "http://api-demo.ehealthsystem.com/nirmalyaRest/api/";
   static String MAIN_URL1 = "https://1331.co.in/api";
   //static String REPORT_URL1 = "https://ehealthsystem.com/";
   static String REPORT_URL1 = "https://demo.ehealthsystem.com/";
@@ -10,8 +10,7 @@ class ApiFactory {
  // static String MAIN_URL = "http://192.168.137.1:8062/nirmalyaRest/api/";
     //static String MAIN_URL = "http://192.168.29.137.1:8062/nirmalyaRest/api/";
    //static String MAIN_URL = "http://192.168.137.1:8062/nirmalyaRest/api/";
-   //static String MAIN_URL = "http://192.168.43.248:8062/nirmalyaRest/api/";
-   static String MAIN_URL = "http://192.168.43.56:8062/nirmalyaRest/api/";
+  //  static String MAIN_URL = "http://192.168.169.246:8062/nirmalyaRest/api/";
   static String VITALS_REPORT = MAIN_URL + 'medtel-screening-test-report';
   static String COUNTRY_API = MAIN_URL + 'get-country-list';
   static String VIEW_PATIENT_HEALTH_API = REPORT_URL1 + 'user/mobile-view-patient-health-chart?id=';
@@ -177,6 +176,16 @@ class ApiFactory {
       {String longi, String lati, String healthpro, String type}) {
     return "https://maps.googleapis.com/maps/api/place/textsearch/json?query=$healthpro&location=$lati%2C$longi&radius=10000&key=AIzaSyD-o-8txzrqCvKZaf35i-zILm2ooG851uE";
   }
+
+ static String GOOGLE_NEARBY_API(
+      {String longi, String lati, String healthpro, String type, String radius, String keyword}) {
+    return "https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=$keyword&location=$lati,$longi&radius=$radius&type=$type&key=AIzaSyD-o-8txzrqCvKZaf35i-zILm2ooG851uE";
+  }
+
+  //  static String GOOGLE_QUERY_API(
+  //     {String longi, String lati, String healthpro, String type}) {
+  //   return "https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=Bhubaneswar&location=20.296603978027356,85.80870039761066&radius=600&type=doctor&key=AIzaSyD-o-8txzrqCvKZaf35i-zILm2ooG851uE";
+  // }
 
   static String googleMapUrl({String longi, String lati}) {
     return "https://www.google.com/maps/search/?api=1&query=$lati%2C$longi";
