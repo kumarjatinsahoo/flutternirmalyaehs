@@ -468,7 +468,7 @@ class _SplashScreenState extends State<SplashScreen> {
         //////////////////////////////////////////////////////////
       }
     }catch(e){
-      log("Error>>>>"+e.getMessage());
+     // log("Error>>>>"+e.getMessage());
       _exitApp();
     }
 
