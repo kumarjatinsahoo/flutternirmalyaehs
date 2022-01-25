@@ -79,7 +79,8 @@ class _CountDownPageState extends State<CountDownPage>
     _controller.forward(from: 0.0).whenComplete(() {
       _sendSMS("Hi this is "+loginResponse1.body.userName+", eHealthSystem Emergency Alert! I need help. My Location is "+ApiFactory.googleMapUrl(lati:widget.model.longi ,longi: widget.model.lati), userMobList);
       //callAPI();
-    });
+    }
+    );
   }
 
 

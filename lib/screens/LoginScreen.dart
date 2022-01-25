@@ -1,7 +1,11 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:math' as math;
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:intl/intl.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:unique_identifier/unique_identifier.dart';
 import 'package:user/localization/application.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/LoginResponse1.dart';
@@ -17,6 +21,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:async';
 
 class LoginScreen extends StatefulWidget {
   final MainModel model;
@@ -62,12 +67,20 @@ class _LoginScreenState extends State<LoginScreen> {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     preferences.setString("Lan", locale.toString());
     application.onLocaleChanged(locale.toString());
+
   }
+  String  identifier;
+  String  deviceid;
+  DateFormat dateFormat = DateFormat("yyyy-MM-dd HH:mm:ss");
+  dynamic currentTime = DateFormat.jm().format(DateTime.now());
 
   bool isLoginLoading = false;
 
   SharedPref sharedPref = SharedPref();
   bool isPassShow = true;
+ // String deviceid = await DeviceId.getID  ;
+ // String deviceid = await DeviceId.getID;
+ DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
 
   int minNumber = 1000;
   int maxNumber = 6000;
@@ -83,9 +96,13 @@ class _LoginScreenState extends State<LoginScreen> {
 
   master.MasterLoginResponse masterResponse;
 
+//  String imeiNo = await DeviceInformation.deviceIMEINumber;
+
+
   @override
   void initState() {
     super.initState();
+
     //FirebaseMessaging.instance.unsubscribeFromTopic("topic")
     /* WidgetsBinding.instance.addPostFrameCallback((_) async {
       _controller = VideoPlayerController.asset(
@@ -104,8 +121,25 @@ class _LoginScreenState extends State<LoginScreen> {
       showVideo(context);
     });*/
     tokenCall();
+    deviceInfoo();
+    deviceInfooo();
+//    print("ddddeevviceeeiidd"+deviceid);
+
   }
 
+   deviceInfoo () async {
+       identifier =await UniqueIdentifier.serial;
+     print("ideeennttiiiffieerr"+identifier);
+
+  }
+
+  deviceInfooo () async {
+    AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+    print('Running on ${androidInfo.model}');
+    deviceid=androidInfo.androidId;
+    // e.g. "Moto G (4)"
+
+  }
   tokenCall() {
     FirebaseMessaging.instance.onTokenRefresh.listen((event) {
       setState(() {
@@ -114,6 +148,7 @@ class _LoginScreenState extends State<LoginScreen> {
       });
     });
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -554,6 +589,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 widget.model.setLoginData1(loginResponse);
                                 sharedPref.save(Const.IS_LOGIN, "true");*/
                                 roleUpdateApi(data[i].user, data[i]);
+
                               },
                               trailing: Icon(Icons.arrow_right),
                             );
@@ -614,8 +650,7 @@ class _LoginScreenState extends State<LoginScreen> {
             widget.model.token = data.token;
             widget.model.masterResponse = masterResponse;
             widget.model.user = data.user;
-            log("Response after assign>>>>" +
-                jsonEncode(loginResponse.toJson()));
+            log("Response after assign>>>>" + jsonEncode(loginResponse.toJson()));
             sharedPref.save(Const.LOGIN_DATA, loginResponse);
             sharedPref.save(Const.MASTER_RESPONSE, masterResponse);
             widget.model.setLoginData1(loginResponse);
@@ -654,6 +689,7 @@ class _LoginScreenState extends State<LoginScreen> {
             } else {
               AppData.showInSnackBar(context, "No Role Assign");
             }
+
           }
         });
   }
@@ -688,7 +724,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   FirebaseMessaging.instance.getToken().then((value) {
                     String token = value;
                     print("token dart locale>>>" + token);
-
+                    widget.model.activitytoken=token;
+                    sendDeviceInfo();
                   });
                   setState(() {
                     widget.model.phnNo = _loginId.text;
@@ -767,7 +804,42 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget _otpButton() {
+  sendDeviceInfo() {
+    Map<String, dynamic> postmap = {
+      "userId" : widget.model.user,
+      "imeiNo" : identifier,
+      "version" :"2.1.2",
+      "deviceId" : deviceid,
+      "activityDate": "18-12-2021",
+      "activityTime" :  currentTime,
+      "type" :"LOGIN",
+      "status" :"SUCCESS",
+      "deviceToken" :widget.model.activitytoken
+
+    };
+
+    log("Print data>>>>"+jsonEncode(postmap));
+    MyWidgets.showLoading(context);
+    widget.model.POSTMETHOD1(
+      //api: ApiFactory.POST_APPOINTMENT,
+        api: ApiFactory.POST_ACTIVITYLOG,
+        token: widget.model.token,
+        json: postmap,
+        fun: (Map<String, dynamic> map) {
+          Navigator.pop(context);
+          log("Json Response activity log>>"+jsonEncode(map));
+          if (map["code"] == Const.SUCCESS) {
+            //pData.showInSnackDone(context, map[Const.MESSAGE]);
+            //AppData.showInSnackBar(context, "Chenai server hela");
+            // postmap["appointid"]=map["aptid"];
+            //sendLocalServer(postmap);
+          } else {
+            AppData.showInSnackBar(context, map[Const.MESSAGE]);
+          }
+        });
+
+  }
+    Widget _otpButton() {
     return MyWidgets.outlinedButton(
       text: MyLocalizations.of(context).text("LOGIN_WITH_OTP"),
       context: context,
@@ -1112,4 +1184,6 @@ class _LoginScreenState extends State<LoginScreen> {
         },
         context: context);*/
   }
+
+
 }
