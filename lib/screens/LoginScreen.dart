@@ -1,9 +1,14 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
+import 'dart:io';
 import 'dart:math' as math;
+import 'package:android_multiple_identifier/android_multiple_identifier.dart';
 import 'package:device_info_plus/device_info_plus.dart';
+import 'package:package_info/package_info.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:intl/intl.dart';
+import 'package:package_info/package_info.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:unique_identifier/unique_identifier.dart';
 import 'package:user/localization/application.dart';
@@ -21,6 +26,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 import 'dart:async';
 
 class LoginScreen extends StatefulWidget {
@@ -62,7 +68,12 @@ class _LoginScreenState extends State<LoginScreen> {
     languageCodesList[2]: languagesList[3],
     languageCodesList[3]: languagesList[3],
   };
-
+  PackageInfo _packageInfo = PackageInfo(
+    appName: 'Unknown',
+    packageName: 'Unknown',
+    version: 'Unknown',
+    buildNumber: 'Unknown',
+  );
   void _update(Locale locale) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     preferences.setString("Lan", locale.toString());
@@ -73,7 +84,10 @@ class _LoginScreenState extends State<LoginScreen> {
   String  deviceid;
   DateFormat dateFormat = DateFormat("yyyy-MM-dd HH:mm:ss");
   dynamic currentTime = DateFormat.jm().format(DateTime.now());
-
+  /* var now = new DateTime.now();
+  DateFormat formatter1 = new DateFormat('dd-MM-yyyy');
+  String formattedDate = formatter1.format(now);
+*/
   bool isLoginLoading = false;
 
   SharedPref sharedPref = SharedPref();
@@ -93,16 +107,21 @@ class _LoginScreenState extends State<LoginScreen> {
 
   var pin;
   String token = "";
+  String imei="";
+  String formattedDate;
 
   master.MasterLoginResponse masterResponse;
 
-//  String imeiNo = await DeviceInformation.deviceIMEINumber;
+// String imeiNo = await DeviceInformation.deviceIMEINumber;
 
 
   @override
   void initState() {
     super.initState();
-
+    var now = new DateTime.now();
+    var formatter = new DateFormat('dd-MM-yyyy');
+    formattedDate = formatter.format(now);
+    print(formattedDate);
     //FirebaseMessaging.instance.unsubscribeFromTopic("topic")
     /* WidgetsBinding.instance.addPostFrameCallback((_) async {
       _controller = VideoPlayerController.asset(
@@ -122,15 +141,37 @@ class _LoginScreenState extends State<LoginScreen> {
     });*/
     tokenCall();
     deviceInfoo();
+
     deviceInfooo();
+    getDeviceSerialNumber();
+    if(Platform.isAndroid){
+      _initPackageInfo();
+    }
 //    print("ddddeevviceeeiidd"+deviceid);
 
   }
-
+  Future<void> _initPackageInfo() async {
+    final PackageInfo info = await PackageInfo.fromPlatform();
+    setState(() {
+      _packageInfo = info;
+    });
+  }
    deviceInfoo () async {
        identifier =await UniqueIdentifier.serial;
      print("ideeennttiiiffieerr"+identifier);
 
+  }
+  Future<String> getDeviceSerialNumber() async {
+    // Ask user permission
+    await AndroidMultipleIdentifier.requestPermission();
+    // Get device information async
+    Map idMap = await AndroidMultipleIdentifier.idMap;
+
+    imei = idMap["imei"];
+    String serial = idMap["serial"];
+    String androidID = idMap["androidId"];
+
+    return imei;
   }
 
   deviceInfooo () async {
@@ -141,12 +182,19 @@ class _LoginScreenState extends State<LoginScreen> {
 
   }
   tokenCall() {
-    FirebaseMessaging.instance.onTokenRefresh.listen((event) {
+    FirebaseMessaging.instance.getToken().then((value) {
+      String token = value;
+      print("token dart locale>>>" + token);
+      widget.model.activitytoken=token;
+      //sendDeviceInfo();
+
+    });
+    /*FirebaseMessaging.instance.onTokenRefresh.listen((event) {
       setState(() {
         token = event;
         log(">>>>>>>>Token>>>>>>>" + token);
       });
-    });
+    });*/
   }
 
 
@@ -721,21 +769,76 @@ class _LoginScreenState extends State<LoginScreen> {
                 if (map[Const.CODE] == Const.SUCCESS) {
                   /*widget.model.phnNo = _loginId.text;
                   widget.model.passWord = passController.text ;*/
-                  FirebaseMessaging.instance.getToken().then((value) {
-                    String token = value;
-                    print("token dart locale>>>" + token);
-                    widget.model.activitytoken=token;
-                    sendDeviceInfo();
-                  });
+
                   setState(() {
                     widget.model.phnNo = _loginId.text;
                     widget.model.passWord = passController.text;
                     masterResponse = master.MasterLoginResponse.fromJson(map);
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) =>
-                          dialogUserView(context, masterResponse.body),
-                    );
+                    widget.model.user = masterResponse.body[0].user;
+
+                    /*FirebaseMessaging.instance.getToken().then((value) {
+                      String token = value;
+                      print("token dart locale>>>" + token);
+                      widget.model.activitytoken=token;
+
+
+                    });*/
+                    Map<String, dynamic> postmap = {
+                      "userId" : widget.model.user,
+                      "imeiNo" : imei,
+                      "version" :Platform.isAndroid?
+                      ( _packageInfo.version):("2.0.0"),
+                      "deviceId" : deviceid,
+                      "activityDate": /*"26-1-2021"*/formattedDate,
+                      "activityTime" :  currentTime,
+                      "type" :"LOGIN",
+                      "status" :"SUCCESS",
+                      "deviceToken" :widget.model.activitytoken
+
+                    };
+
+                    log("Print data>>>>"+jsonEncode(postmap));
+                    MyWidgets.showLoading(context);
+                    widget.model.POSTMETHOD(
+                      //api: ApiFactory.POST_APPOINTMENT,
+                        api: ApiFactory.POST_ACTIVITYLOG,
+                        //token: widget.model.token,
+                        json: postmap,
+                        fun: (Map<String, dynamic> map) {
+                          Navigator.pop(context);
+                          log("Json Response activity log>>"+jsonEncode(map));
+                          if (map["code"] == Const.SUCCESS) {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) =>
+                                  dialogUserView(context, masterResponse.body),
+                            );
+                           // Navigator.pop(context);
+                            //pData.showInSnackDone(context, map[Const.MESSAGE]);
+                            //AppData.showInSnackBar(context, "Chenai server hela");
+                            // postmap["appointid"]=map["aptid"];
+                            //sendLocalServer(postmap);
+                            // AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                          } else {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) =>
+                                  dialogUserView(context, masterResponse.body),
+                            );
+                            Navigator.pop(context);
+                            AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                          }
+                        });
+                    //sendDeviceInfo();
+
+                    /* FirebaseMessaging.instance.getToken().then((value) {
+                      String token = value;
+                      print("token dart locale>>>" + token);
+                      widget.model.activitytoken=token;
+                      sendDeviceInfo();
+
+                    });*/
+
                     /* sharedPref.save(Const.LOGIN_phoneno, _loginId.text);
                     sharedPref.save(Const.LOGIN_password, passController.text);
                     LoginResponse1 loginResponse = LoginResponse1.fromJson(map);
@@ -797,6 +900,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   });
                 } else {
                   AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                  String failed="FAILED";
+                  sendDeviceInfo(failed);
                 }
               });
         }
@@ -804,36 +909,39 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  sendDeviceInfo() {
+  sendDeviceInfo(String sTATUS) {
     Map<String, dynamic> postmap = {
       "userId" : widget.model.user,
-      "imeiNo" : identifier,
-      "version" :"2.1.2",
+      "imeiNo" : imei,
+      "version" : Platform.isAndroid?(_packageInfo.version):("2.0.0"),
       "deviceId" : deviceid,
-      "activityDate": "18-12-2021",
+      "activityDate": /*"26-1-2021"*/formattedDate,
       "activityTime" :  currentTime,
       "type" :"LOGIN",
-      "status" :"SUCCESS",
+      "status" :sTATUS,
       "deviceToken" :widget.model.activitytoken
 
     };
 
     log("Print data>>>>"+jsonEncode(postmap));
     MyWidgets.showLoading(context);
-    widget.model.POSTMETHOD1(
+    widget.model.POSTMETHOD(
       //api: ApiFactory.POST_APPOINTMENT,
         api: ApiFactory.POST_ACTIVITYLOG,
-        token: widget.model.token,
+        //token: widget.model.token,
         json: postmap,
         fun: (Map<String, dynamic> map) {
           Navigator.pop(context);
           log("Json Response activity log>>"+jsonEncode(map));
           if (map["code"] == Const.SUCCESS) {
+            Navigator.pop(context);
             //pData.showInSnackDone(context, map[Const.MESSAGE]);
             //AppData.showInSnackBar(context, "Chenai server hela");
             // postmap["appointid"]=map["aptid"];
             //sendLocalServer(postmap);
+           // AppData.showInSnackBar(context, map[Const.MESSAGE]);
           } else {
+            Navigator.pop(context);
             AppData.showInSnackBar(context, map[Const.MESSAGE]);
           }
         });

@@ -462,13 +462,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.6.5+3"
-  imei_plugin:
-    dependency: "direct main"
-    description:
-      name: imei_plugin
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.2.0"
   intl:
     dependency: "direct main"
     description:
