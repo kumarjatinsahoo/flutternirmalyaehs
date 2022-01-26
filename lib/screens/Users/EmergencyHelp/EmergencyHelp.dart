@@ -489,16 +489,15 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                             InkWell(
                                 onTap: () {
                                   // Navigator.pop(context);
-                                  AppData.launchURL("tel://" +
-                                      emergencyHelpModel.emergency[0].mobile);
+                                  //AppData.launchURL("tel://" + emergencyHelpModel.emergency[0].mobile);
                                 },
-                                child: Padding(
+                                /*child: Padding(
                                   padding: const EdgeInsets.only(right: 10.0),
                                   child: Icon(
                                     Icons.phone_in_talk,
                                     color: Color(0xFFCF3564),
                                   ),
-                                )),
+                                )*/),
                             Container(
                               width: 2,
                               child: Divider(
@@ -700,17 +699,16 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                                     onTap: () {
                                       // Navigator.pop(context);
 
-                                      AppData.launchURL("tel://" +
-                                          emergencyHelpModel.ambulance);
+                                      //AppData.launchURL("tel://" + emergencyHelpModel.ambulance);
                                     },
-                                    child: Padding(
+                                    /*child: Padding(
                                       padding:
                                           const EdgeInsets.only(right: 10.0),
                                       child: Icon(
                                         Icons.phone_in_talk,
                                         color:Color(0xFF2372B6),
                                       ),
-                                    )),
+                                    )*/),
                                 Container(
                                   width: 2,
                                   child: Divider(
@@ -832,17 +830,16 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                                 InkWell(
                                     onTap: () {
                                       // Navigator.pop(context);
-                                      AppData.launchURL(
-                                          "tel://" + emergencyHelpModel.police);
+                                      //AppData.launchURL("tel://" + emergencyHelpModel.police);
                                     },
-                                    child: Padding(
+                                    /*child: Padding(
                                       padding:
                                           const EdgeInsets.only(right: 10.0),
                                       child: Icon(
                                         Icons.phone_in_talk,
                                         color: Color(0xFFCF3564),
                                       ),
-                                    )),
+                                    )*/),
                                 Container(
                                   width: 2,
                                   child: Divider(
