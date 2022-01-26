@@ -151,7 +151,6 @@ class _LoginwithOTPState extends State<LoginwithOTP> {
                         padding: const EdgeInsets.symmetric(horizontal: 10),
                         child: fromFieldNumber(),
                       ),
-
                       Visibility(
                         visible: isotpVisible,
                         child: Container(
