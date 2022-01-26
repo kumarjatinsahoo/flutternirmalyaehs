@@ -161,7 +161,6 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                       return Column(
                         children: [
                           ListTile(
-
                               title: Text(
                                 list[i].name,
                                 style: TextStyle(color: Colors.black),
@@ -199,7 +198,6 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
         });
   }
 
-
   showUserList1(BuildContext context, List<Results> results) {
     return showDialog(
         context: context,
@@ -230,19 +228,14 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                       results[i].name,
                         style: TextStyle(color: Colors.black),
                       ),
-                      trailing: InkWell(
+                      /*trailing: InkWell(
                       onTap: () {
                         AppData.launchURL("tel://" + results[i].name);
 
                         //  AppData.launchURL("tel://" + list[i].mobile);
                       },
-                      child: InkWell(
-                        onTap: (){
-
-                        },
-                          child: Icon(Icons.call, color: Color(0xFF2372B6) )
-                      ),
-                      )
+                      child: Icon(Icons.call, color: Color(0xFF2372B6) ),
+                      )*/
                       ),
                         (i == results.length - 1)
                           ? Container()
@@ -471,8 +464,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                           InkWell(
                               onTap: () {
                                 // Navigator.pop(context);
-                                AppData.launchURL("tel://" +
-                                    emergencyHelpModel.emergency[0].mobile);
+                               // AppData.launchURL("tel://" + emergencyHelpModel.emergency[0].mobile);
                               },
                               child: Align(
                                 alignment: Alignment.center,
@@ -681,8 +673,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                               onTap: () {
                                 // Navigator.pop(context);
 
-                                AppData.launchURL(
-                                    "tel://" + emergencyHelpModel.ambulance);
+                                //AppData.launchURL("tel://" + emergencyHelpModel.ambulance);
                               },
                               child: Text(
                                 MyLocalizations.of(context).text("CALL_AMBULANCE"),
@@ -814,8 +805,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                           InkWell(
                               onTap: () {
                                 //Navigator.pop(context);
-                                AppData.launchURL(
-                                    "tel://" + emergencyHelpModel.police);
+                               // AppData.launchURL("tel://" + emergencyHelpModel.police);
                               },
                               child: Text(
                                 MyLocalizations.of(context).text("CALL_POLICE"),

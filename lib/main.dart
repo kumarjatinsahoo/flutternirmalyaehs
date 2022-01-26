@@ -57,6 +57,7 @@ import 'package:user/screens/Users/BookBloodBank/BookBloodBanklist.dart';
 import 'package:user/screens/Users/Dashboard/ChangePassword.dart';
 import 'package:user/screens/Users/Dashboard/QrcodePage.dart';
 import 'package:user/screens/Users/Dashboard/TermsandConditionPage.dart';
+import 'package:user/screens/Users/FindHealthCare/MedicalService/AyushDoctors/MedicalServiceOngooglePagenew.dart';
 import 'package:user/screens/Users/GovermentSchemes/GovermentSchemesDitelsPage.dart';
 import 'package:user/screens/Users/GovermentSchemes/GovernmentSchemesList.dart';
 import 'package:user/screens/Pharmacists/screens/OrdersTabPharmacy.dart';
@@ -829,7 +830,7 @@ class _MyAppState extends State<MyApp> {
                     model: _model,
                   ),
               '/medicalsServiceOngooglePage': (context) =>
-                  MedicalsServiceOngooglePage(
+                  MedicalServiceOngooglePagenew(
                     model: _model,
                   ),
               '/googleSearch': (context) => GoogleSearchDetails(

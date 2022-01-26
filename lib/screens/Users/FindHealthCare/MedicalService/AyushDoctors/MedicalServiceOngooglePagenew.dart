@@ -1,12 +1,9 @@
 import 'dart:developer';
-
 import 'package:flutter/cupertino.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:user/localization/localizations.dart';
-import 'package:user/models/ChemistsLocationwiseModel.dart';
 import 'package:user/models/GooglePlacesModel.dart';
 import 'package:user/models/KeyvalueModel.dart';
-
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/DropDown.dart';
 import 'package:user/providers/api_factory.dart';
@@ -17,27 +14,29 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart' as loca;
 import 'package:user/models/LoginResponse1.dart' as session;
 
-class MedicalsServiceOngooglePage extends StatefulWidget {
+
+class MedicalServiceOngooglePagenew extends StatefulWidget {
   MainModel model;
   static KeyvalueModel distancelistModel = null;
 
-
-  MedicalsServiceOngooglePage({Key key, this.model}) : super(key: key);
+  MedicalServiceOngooglePagenew({Key key, this.model}) : super(key: key);
 
   @override
-  _MedicalsServiceOngooglePageState createState() => _MedicalsServiceOngooglePageState();
+  _MedicalServiceOngooglePagenewState createState() => _MedicalServiceOngooglePagenewState();
 }
 
-class _MedicalsServiceOngooglePageState extends State<MedicalsServiceOngooglePage> {
+class _MedicalServiceOngooglePagenewState extends State<MedicalServiceOngooglePagenew> {
   var selectedMinValue;
   GooglePlaceModel googlePlaceModel;
   bool isDataNotAvail = false;
- ScrollController _scrollController = ScrollController();
+  ScrollController _scrollController = ScrollController();
+
   //ScrollController _scrollController = ScrollController();
-  int currentMax = 1;
-  String nextpage;
+
   static const platform = AppData.channel;
   session.LoginResponse1 loginResponse1;
+  String nextpage;
+  int currentMax = 1;
   Position position;
   String longi, lati, city, addr, healthpro, type,medicallserviceType;
   String medicallserviceTypelow;
@@ -51,20 +50,19 @@ class _MedicalsServiceOngooglePageState extends State<MedicalsServiceOngooglePag
     type = widget.model.type;
     // getLocationName();
     _getLocationName();
+
     callAPI(5, currentMax);
     _scrollController.addListener(() {
       if (_scrollController.position.pixels ==
           _scrollController.position.maxScrollExtent) {
-        // if (googlePlaceModel.results.length % 20 == 0)
-        log('PAGINATION ---');
-        callAPIPagination(nextpage);
+        // if (googlePlaceModel.results.length % 20 == 0) 
+          log('PAGINATION ---');
+          callAPIPagination(nextpage);
         // }
-
+        
       }
     });
-    //callAPI();
   }
-
   _getLocationName() async {
     Position position = await Geolocator()
         .getCurrentPosition(desiredAccuracy: loca.LocationAccuracy.high);
@@ -74,7 +72,7 @@ class _MedicalsServiceOngooglePageState extends State<MedicalsServiceOngooglePag
         'location>>>>>>>>>>>>>>>>>>: ${position.latitude},${position.longitude}');
     lati = position.latitude.toString();
     longi = position.longitude.toString();
-   // callApi(position.latitude.toString(), position.longitude.toString());
+    // callApi(position.latitude.toString(), position.longitude.toString());
     callAPI(5, currentMax);
     /*callAPI(5, currentMax);
     _scrollController.addListener(() {
@@ -116,7 +114,7 @@ class _MedicalsServiceOngooglePageState extends State<MedicalsServiceOngooglePag
     longi=position.longitude.toString();
     print(
         'location>>>>>>>>>>>>>>>>Latitude>>: + ${position.latitude} + ,${position.longitude}');
-   // callAPI(position.latitude.toString(), position.longitude.toString());
+    // callAPI(position.latitude.toString(), position.longitude.toString());
 
 
     /* try {
@@ -138,12 +136,44 @@ class _MedicalsServiceOngooglePageState extends State<MedicalsServiceOngooglePag
       print(e.toString());
     }*/
   }
+
   List<KeyvalueModel> selectDistance = [
     KeyvalueModel(name: "5 KM", key: 5),
     KeyvalueModel(name: "10 KM", key: 10),
     KeyvalueModel(name: "20 KM", key: 20),
-    KeyvalueModel(name: "50 KM", key: 50),
+     KeyvalueModel(name: "50 KM", key: 50),
   ];
+
+  /* callAPI() {
+Map<String, dynamic> postData = {
+        "longi": longi,
+        "lati": lati,
+        "addr": addr,
+        "city": city,
+        "healthpro": healthpro,
+        "type": type
+      };
+     // print("POST DATA>>>MEDTEL" + jsonEncode(postData).toString());
+      widget.model.GETMETHODCALL(
+        api: ApiFactory.GOOGLE_API(lati:lati,longi: longi,healthpro: healthpro,),
+        fun: (Map<String, dynamic> map) {
+          String msg = map[Const.MESSAGE];
+          //String msg = map[Const.MESSAGE];
+          if (map["status"] == "ok") {
+          setState(() {
+            //AppData.showInSnackBar(context, msg);
+            googlePlaceModel = GooglePlaceModel.fromJson(map);
+          });
+
+            //foundUser = appointModel.body;
+          } else {
+            //isDataNotAvail = true;
+            AppData.showInSnackBar(context, msg);
+          }
+        },
+      );
+
+  }*/
   callAPI(int radius, int i) {
     // log("API :Lati & Longi" + lati + "\n" + lati);
     log("API CALL>>>" + ApiFactory.GOOGLE_QUERY_API(lati: lati, radius: (radius * 1000).toString(), longi: longi, healthpro: healthpro) +
@@ -170,9 +200,9 @@ class _MedicalsServiceOngooglePageState extends State<MedicalsServiceOngooglePag
         });
   }
 
-  callAPIPagination(nxtpagetoken) {
+   callAPIPagination(nxtpagetoken) {
     log("API :Lati & Longi" + lati + "\n" + lati);
-    log("API CALL>>Narmada>" +
+    log("API CALL>>Narmada>" + 
         ApiFactory.GOOGLE_PAGINATION_API(pagetoken: nxtpagetoken + "\n\n\n"));
     widget.model.GETMETHODCAL(
         api: ApiFactory.GOOGLE_PAGINATION_API(pagetoken: nxtpagetoken),
@@ -180,14 +210,14 @@ class _MedicalsServiceOngooglePageState extends State<MedicalsServiceOngooglePag
           setState(() {
             //String msg = map[Const.MESSAGE];
             //if (map["status"] == "ok") {
-            //         if (i == 1) {
-            //  googlePlaceModel = GooglePlaceModel.fromJson(map);
-            //         }
-            //         else{
-            googlePlaceModel.addMore(map);
-            nextpage=map["next_page_token"]??null;
-            // googlePlaceModel.nextPageToken=map["next_page_token"];
-            // }
+        //         if (i == 1) {
+        //  googlePlaceModel = GooglePlaceModel.fromJson(map);
+        //         }
+        //         else{
+                  googlePlaceModel.addMore(map);
+                   nextpage=map["next_page_token"]??null;
+                  // googlePlaceModel.nextPageToken=map["next_page_token"];
+                // }
             /* } else {
               isDataNotAvail = true;
               AppData.showInSnackBar(context, "Google api doesn't work");
@@ -195,22 +225,6 @@ class _MedicalsServiceOngooglePageState extends State<MedicalsServiceOngooglePag
           });
         });
   }
- /* callAPI(lat, longi) {
-    widget.model.GETMETHODCAL(
-        api: ApiFactory.GOOGLE_QUERY_API(lati: lat, longi: longi, healthpro: medicallserviceTypelow),
-        fun: (Map<String, dynamic> map) {
-          setState(() {
-            //String msg = map[Const.MESSAGE];
-            //if (map["status"] == "ok") {
-            googlePlaceModel = GooglePlaceModel.fromJson(map);
-            *//* } else {
-              isDataNotAvail = true;
-              AppData.showInSnackBar(context, "Google api doesn't work");
-            }*//*
-          });
-        });
-  }
-*/
   @override
   Widget build(BuildContext context) {
     double tileSize = 100;
@@ -218,15 +232,15 @@ class _MedicalsServiceOngooglePageState extends State<MedicalsServiceOngooglePag
     double edgeInsets = 3;
 
     return Scaffold(
-    appBar: AppBar(
-      backgroundColor: AppData.kPrimaryColor,
-      title: Text(medicallserviceType),
-     /* leading: Icon(
+      appBar: AppBar(
+        backgroundColor: AppData.kPrimaryColor,
+        title: Text(medicallserviceType),
+        /* leading: Icon(
         Icons.menu,
       ),*/
-      centerTitle: true,
-      actions: <Widget>[
-        /*Padding(
+        centerTitle: true,
+        actions: <Widget>[
+          /*Padding(
             padding: EdgeInsets.only(right: 20.0),
             child: GestureDetector(
               onTap: () {},
@@ -236,7 +250,7 @@ class _MedicalsServiceOngooglePageState extends State<MedicalsServiceOngooglePag
               ),
             )
         ),*/
-        /*Padding(
+          /*Padding(
             padding: EdgeInsets.only(right: 20.0),
             child: GestureDetector(
               onTap: () {},
@@ -245,86 +259,49 @@ class _MedicalsServiceOngooglePageState extends State<MedicalsServiceOngooglePag
               ),
             )
         ),*/
-      ],
-    ),
-
-    body: Container(
-    child: SingleChildScrollView(
+        ],
+      ),
+      body: Container(
+    child: Padding(
+      padding: const EdgeInsets.all(13.0),
       child: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 13.0,right: 13,bottom: 10,top: 5),
-            child: Row(children: [
-              Expanded(child: Text('Select Distance', style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16),)),
-              Expanded(
-                child: DropDown.networkDrop(
-                    "5 KM",
-                    "5 KM",
-                    selectDistance, (KeyvalueModel data) {
-                  setState(() {
-                    MedicalsServiceOngooglePage.distancelistModel = data;
-                   callAPI(data.key, currentMax);
-                  });
-                }),
-              ),
-
-            ],),
-          ),
-
-         /* Container(
-            color: AppData.kPrimaryColor,
-            child: Padding(
-              padding: const EdgeInsets.only( left:15.0,right: 15.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  InkWell(
-                      onTap: (){
-                        Navigator.pop(context);
-                      },
-                      child: Icon(Icons.arrow_back,color: Colors.white, )),
-                  Text(*//*'AYUSH Doctors'*//*medicallserviceType,
-                    style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,color: Colors.white),),
-                  Icon(Icons.search,color: Colors.white ),
-                ],
-              ),
-            ),
-            height: MediaQuery.of(context).size.height * 0.1,
-            width: MediaQuery.of(context).size.width,
-          ),*/
-       /*Expanded(
-         child:*/(googlePlaceModel != null)
-              ? ListView.builder(
-
-              physics: NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                controller: _scrollController,
-                  itemBuilder: (context, i) {
-                    if (i == googlePlaceModel.results.length ) {
-                      return (googlePlaceModel.results.length % 20 == 0 && googlePlaceModel.nextPageToken != null)
-                          ? CupertinoActivityIndicator()
-                          : Container();
-                    }
-                    Results patient = googlePlaceModel.results[i];
-/*                    print(
-                        "VALUEeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee>>" +
-                            i.toString() +
-                            ((patient.photos != null &&
-                                    patient.photos.isNotEmpty)
-                                ? ApiFactory.GOOGLE_PIC(
-                                    ref: patient.photos[0].photoReference)
-                                : patient.icon));*/
-                    return Container(
-                        child: InkWell(
+          Row(children: [
+            Expanded(child: Text('Select Distance', style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16),)),
+             Expanded(
+               child: DropDown.networkDrop(
+                                "5 KM",
+                                "5 KM",
+                                selectDistance, (KeyvalueModel data) {
+                              setState(() {
+                                MedicalServiceOngooglePagenew.distancelistModel = data;
+                                callAPI(data.key, currentMax);
+                              });
+                            }),
+             ),
+             
+          ],),
+          
+          (googlePlaceModel != null)
+              ? Expanded(
+                child: ListView.builder(
+                    controller: _scrollController,
+                    itemBuilder: (context, i) {
+                     if (i == googlePlaceModel.results.length ) {        
+                    return (googlePlaceModel.results.length % 20 == 0 && googlePlaceModel.nextPageToken != null)
+                        ? CupertinoActivityIndicator()
+                        : Container();
+                  }
+                      Results patient = googlePlaceModel.results[i];
+                      return Container(
+                          child: InkWell(
                         onTap: () {
-                      //widget.model.model = patient.placeId;
-                      widget.model.placeId = patient.placeId;
-                      Navigator.pushNamed(context, "/googleSearch");
-
-                      // AppData.showInSnackBar(context,"hi");
-                    },
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 13.0,right: 13,),
+                          //widget.model.model = patient.placeId;
+                          widget.model.placeId = patient.placeId;
+                          Navigator.pushNamed(context, "/googleSearch");
+              
+                          // AppData.showInSnackBar(context,"hi");
+                        },
                         child: Card(
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(5.0),
@@ -355,20 +332,17 @@ class _MedicalsServiceOngooglePageState extends State<MedicalsServiceOngooglePag
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                      ((patient.photos !=
-                                          null &&
-                                          patient.photos
-                                              .isNotEmpty))
+                                      ((patient.photos != null &&
+                                              patient.photos.isNotEmpty))
                                           ? Material(
                                               elevation: 5.0,
                                               shape: CircleBorder(),
                                               child: CircleAvatar(
                                                 radius: 40.0,
                                                 backgroundImage: NetworkImage(
-                                                    ( ApiFactory.GOOGLE_PIC(
-                                                            ref: patient
-                                                                .photos[0]
-                                                                .photoReference))),
+                                                    (ApiFactory.GOOGLE_PIC(
+                                                        ref: patient.photos[0]
+                                                            .photoReference))),
                                               ),
                                             )
                                           : SizedBox(
@@ -385,30 +359,33 @@ class _MedicalsServiceOngooglePageState extends State<MedicalsServiceOngooglePag
                                         width: spaceTab,
                                       ),
                                       Expanded(
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Text(
-                                              patient.name ?? "N/A",
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 18),
-                                            ),
-                                            Column(
-                                              children: [
-                                                Text(
-                                                  /* "No 43,CF Block,Sector III,Bidhannagar\n"
-                                                    "Kolkata,West Bengal 700091,India",*/
-                                                  patient.formattedAddress,
-                                                  style:
-                                                      TextStyle(fontSize: 13),
-                                                )
-                                              ],
-                                            )
-                                          ],
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(10.0),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Text(
+                                                patient.name ?? "N/A",
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 18),
+                                              ),
+                                              Column(
+                                                children: [
+                                                  Text(
+                                                    /* "No 43,CF Block,Sector III,Bidhannagar\n"
+                                                      "Kolkata,West Bengal 700091,India",*/
+                                                    patient.formattedAddress,
+                                                    style:
+                                                        TextStyle(fontSize: 13),
+                                                  )
+                                                ],
+                                              )
+                                            ],
+                                          ),
                                         ),
                                       ),
                                       //Image.asset("assets/Forwordarrow.png",height: 25,)
@@ -417,23 +394,21 @@ class _MedicalsServiceOngooglePageState extends State<MedicalsServiceOngooglePag
                                 )),
                           ),
                         ),
+                      ));
+                    },
+                    itemCount: googlePlaceModel.results.length + 1,
+                  ),
+              )
+            :  Expanded(
+              child: Container(
+                      child: Center(
+                        child: Text(
+                          MyLocalizations.of(context).text("NO_DATA_FOUND"),
+                          style: TextStyle(color: Colors.black, fontSize: 15),
+                        ),
                       ),
-                        )
-                    );
-                  },
-                  //itemCount: googlePlaceModel.results.length + 1,
-                  itemCount: googlePlaceModel.results.length+1,
-                )
-              :  Expanded(
-            child: Container(
-              child: Center(
-                child: Text(
-                  MyLocalizations.of(context).text("NO_DATA_FOUND"),
-                  style: TextStyle(color: Colors.black, fontSize: 15),
-                ),
-              ),
-            ),
-          )
+                    ),
+            )
         ],
       ),
     ),

@@ -761,7 +761,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       "version" :Platform.isAndroid?
                       ( _packageInfo.version):("2.0.0"),
                       "deviceId" : deviceid,
-                      "activityDate": /*"26-1-2021"*/formattedDate,
+                      "activityDate": formattedDate,
                       "activityTime" :  currentTime,
                       "type" :"LOGIN",
                       "status" :"SUCCESS",
