@@ -8,13 +8,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.7"
-  android_multiple_identifier:
-    dependency: "direct main"
-    description:
-      name: android_multiple_identifier
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.3"
   another_flushbar:
     dependency: "direct main"
     description:

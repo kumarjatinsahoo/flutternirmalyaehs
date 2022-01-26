@@ -79,7 +79,8 @@ class _PinViewState extends State<PinView> with SingleTickerProviderStateMixin {
     // loginResponse.acceptValue(data[i]);
     //Body body = Body();
     print("OTP IS>>>>>>>>>>>>>>>>>>>>>>" +widget.masterLoginResponse.body[0].otp );
-    otpGenerateStr = widget.masterLoginResponse.body[0].otp ;
+    otpGenerateStr = widget.masterLoginResponse.body[0].otp;
+    masterResponse=widget.masterLoginResponse;
 
     //print("OTP IS>>>>>>>>>>>>>>>>>>>>>>" + otpGenerateStr.toString());
 
@@ -553,8 +554,6 @@ class _PinViewState extends State<PinView> with SingleTickerProviderStateMixin {
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
-                        //_buildAboutText(),
-                        //_buildLogoAttribution(),
 
                         ListView.separated(
                           separatorBuilder: (c, i) {
@@ -653,6 +652,7 @@ class _PinViewState extends State<PinView> with SingleTickerProviderStateMixin {
             sharedPref.save(Const.MASTER_RESPONSE, masterResponse);
             widget.model.setLoginData1(loginResponse);
             sharedPref.save(Const.IS_LOGIN, "true");
+
             if (map["body"]["roleid"] == "1".toLowerCase()) {
               Navigator.of(context).pushNamedAndRemoveUntil(
                   '/dashboard', (Route<dynamic> route) => false);
