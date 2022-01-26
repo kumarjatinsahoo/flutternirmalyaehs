@@ -929,7 +929,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         });
                   });
                 } else {
-                  AppData.showInSnackBar(context, map.containsKey([Const.MESSAGE])?map[Const.MESSAGE]:"Data Not Found");
+                  AppData.showInSnackBar(context, map.containsKey([Const.MESSAGE])?map[Const.MESSAGE]:"Mobile Number is Not Register");
                 }
               });
           // widget.model.phnNo = _loginId.text;
