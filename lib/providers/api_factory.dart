@@ -40,16 +40,13 @@ class ApiFactory {
   static String BIOMEDICAL_IMPLANTS = MAIN_URL + 'view-user-biomedical-implant-list-api?userid=';
   static String lab_list_by_searchvalue = MAIN_URL + 'get-lab-list-by-searchvalue?search=';
   static String GET_VERSION = MAIN_URL + 'get-version';
-
-  /*static String BIOMEDICAL_IMPLANTS =
-        MAIN_URL + 'view-user-biomedical-implant-list-api?userid=';*/
+  /*static String BIOMEDICAL_IMPLANTS =MAIN_URL + 'view-user-biomedical-implant-list-api?userid=';*/
   static String UPLOAD_DOCUMENT = MAIN_URL + 'get-medical-upload-details-api?userid=';
   static String DIESEINFO = MAIN_URL + 'get-disease-info-list';
   static String IMMUNIZATION_LIST = MAIN_URL + 'get-immunization-patient-details?userid=';
   static String INSURANCE_list = MAIN_URL + 'get-patient-insurance-list-api?userid=';
   static String UPDATE_DOCTER_PROFILE= MAIN_URL + 'update-doctor-profile';
-  static String INSURANCE_Details =
-      MAIN_URL + 'get-patient-insurance-details-api?key=';
+  static String INSURANCE_Details = MAIN_URL + 'get-patient-insurance-details-api?key=';
   static String MONTHLY_OVERVIEW =
       MAIN_URL + 'get-doctor-month-overviewlist?drid=';
   static String AMBULANCE_MONTH_OVERVIEW =
