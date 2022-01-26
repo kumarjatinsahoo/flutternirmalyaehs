@@ -1,9 +1,13 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:user/models/ChemistsLocationwiseModel.dart';
 import 'package:user/models/GooglePlacesModel.dart';
+import 'package:user/models/KeyvalueModel.dart';
 
 import 'package:user/providers/Const.dart';
+import 'package:user/providers/DropDown.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
@@ -14,6 +18,8 @@ import 'package:user/models/LoginResponse1.dart' as session;
 
 class MedicalsServiceOngooglePage extends StatefulWidget {
   MainModel model;
+  static KeyvalueModel distancelistModel = null;
+
 
   MedicalsServiceOngooglePage({Key key, this.model}) : super(key: key);
 
@@ -27,7 +33,8 @@ class _MedicalsServiceOngooglePageState extends State<MedicalsServiceOngooglePag
   bool isDataNotAvail = false;
   final ScrollController _scrollController = ScrollController();
   //ScrollController _scrollController = ScrollController();
-
+  int currentMax = 1;
+String nextpage;
   static const platform = AppData.channel;
   session.LoginResponse1 loginResponse1;
   Position position;
@@ -41,17 +48,76 @@ class _MedicalsServiceOngooglePageState extends State<MedicalsServiceOngooglePag
     medicallserviceType = widget.model.medicallserviceType;
     medicallserviceTypelow = widget.model.medicallserviceType.toLowerCase();
     type = widget.model.type;
-    getLocationName();
+    // getLocationName();
+    _getLocationName();
+    callAPI(5, currentMax);
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels ==
+          _scrollController.position.maxScrollExtent) {
+        // if (googlePlaceModel.results.length % 20 == 0)
+        log('PAGINATION ---');
+        callAPIPagination(nextpage);
+        // }
+
+      }
+    });
     //callAPI();
   }
-  getLocationName() async {
+
+  _getLocationName() async {
     Position position = await Geolocator()
         .getCurrentPosition(desiredAccuracy: loca.LocationAccuracy.high);
     this.position = position;
     debugPrint('location: ${position.latitude}');
     print(
         'location>>>>>>>>>>>>>>>>>>: ${position.latitude},${position.longitude}');
-    callAPI(position.latitude.toString(), position.longitude.toString());
+    lati = position.latitude.toString();
+    longi = position.longitude.toString();
+   // callApi(position.latitude.toString(), position.longitude.toString());
+    callAPI(5, currentMax);
+    /*callAPI(5, currentMax);
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels ==
+          _scrollController.position.maxScrollExtent) {
+        // if (googlePlaceModel.results.length % 20 == 0)
+        log('PAGINATION ---');
+        callAPIPagination(nextpage);
+        // }
+
+      }
+    });*/
+    /* try {
+      final coordinates =
+          new Coordinates(position.latitude, position.longitude);
+      var addresses =
+          await Geocoder.local.findAddressesFromCoordinates(coordinates);
+      //var address = await Geocoder.local.findAddressesFromCoordinates(coordinates);
+      var first = addresses.first;
+      print("${first.featureName} : ${first.addressLine}");
+      print("${first.locality}}");
+   //   setState(() {
+        address = "${first.addressLine}";
+        cityName = first.locality;
+        longitudes = position.longitude.toString();
+        latitudes = position.altitude.toString();
+      });
+    } catch (e) {
+      print(e.toString());
+    }*/
+  }
+
+  getLocationName() async {
+    Position position = await Geolocator()
+        .getCurrentPosition(desiredAccuracy: loca.LocationAccuracy.high);
+    this.position = position;
+    debugPrint('location: ${position.latitude}');
+    lati = position.latitude.toString();
+    longi=position.longitude.toString();
+    print(
+        'location>>>>>>>>>>>>>>>>Latitude>>: + ${position.latitude} + ,${position.longitude}');
+   // callAPI(position.latitude.toString(), position.longitude.toString());
+
+
     /* try {
       final coordinates =
           new Coordinates(position.latitude, position.longitude);
@@ -71,16 +137,56 @@ class _MedicalsServiceOngooglePageState extends State<MedicalsServiceOngooglePag
       print(e.toString());
     }*/
   }
-
-  callAPI(lat, longi) {
+  List<KeyvalueModel> selectDistance = [
+    KeyvalueModel(name: "5 KM", key: 5),
+    KeyvalueModel(name: "10 KM", key: 10),
+    KeyvalueModel(name: "20 KM", key: 20),
+    KeyvalueModel(name: "50 KM", key: 50),
+  ];
+  callAPI(int radius, int i) {
+    // log("API :Lati & Longi" + lati + "\n" + lati);
+    log("API CALL>>>" + ApiFactory.GOOGLE_QUERY_API(lati: lati, radius: (radius * 1000).toString(), longi: longi, healthpro: healthpro) +
+        "\n\n\n");
     widget.model.GETMETHODCAL(
         api: ApiFactory.GOOGLE_QUERY_API(
-            lati: lat, longi: longi, healthpro: medicallserviceTypelow),
+            lati: lati, longi: longi, radius: (radius * 1000).toString(), healthpro: (medicallserviceType!=null)?medicallserviceType+" "+medicallserviceType:medicallserviceType),
+        fun: (Map<String, dynamic> map) {
+          setState(() {
+            // String msg = map[Const.MESSAGE];
+            if (map["status"] == "OK") {
+              // if (i == 1) {
+              googlePlaceModel = GooglePlaceModel.fromJson(map);
+              nextpage=googlePlaceModel.nextPageToken;
+              print('================ nextpage ' + googlePlaceModel.results.length.toString());
+              // } else {
+              //   googlePlaceModel.addMore(map);
+              // }
+            } else {
+              //   isDataNotAvail = true;
+              AppData.showInSnackBar(context, "Google api doesn't work");
+            }
+          });
+        });
+  }
+
+  callAPIPagination(nxtpagetoken) {
+    log("API :Lati & Longi" + lati + "\n" + lati);
+    log("API CALL>>Narmada>" +
+        ApiFactory.GOOGLE_PAGINATION_API(pagetoken: nxtpagetoken + "\n\n\n"));
+    widget.model.GETMETHODCAL(
+        api: ApiFactory.GOOGLE_PAGINATION_API(pagetoken: nxtpagetoken),
         fun: (Map<String, dynamic> map) {
           setState(() {
             //String msg = map[Const.MESSAGE];
             //if (map["status"] == "ok") {
-            googlePlaceModel = GooglePlaceModel.fromJson(map);
+            //         if (i == 1) {
+            //  googlePlaceModel = GooglePlaceModel.fromJson(map);
+            //         }
+            //         else{
+            googlePlaceModel.addMore(map);
+            nextpage=map["next_page_token"]??null;
+            // googlePlaceModel.nextPageToken=map["next_page_token"];
+            // }
             /* } else {
               isDataNotAvail = true;
               AppData.showInSnackBar(context, "Google api doesn't work");
@@ -88,7 +194,22 @@ class _MedicalsServiceOngooglePageState extends State<MedicalsServiceOngooglePag
           });
         });
   }
-
+ /* callAPI(lat, longi) {
+    widget.model.GETMETHODCAL(
+        api: ApiFactory.GOOGLE_QUERY_API(lati: lat, longi: longi, healthpro: medicallserviceTypelow),
+        fun: (Map<String, dynamic> map) {
+          setState(() {
+            //String msg = map[Const.MESSAGE];
+            //if (map["status"] == "ok") {
+            googlePlaceModel = GooglePlaceModel.fromJson(map);
+            *//* } else {
+              isDataNotAvail = true;
+              AppData.showInSnackBar(context, "Google api doesn't work");
+            }*//*
+          });
+        });
+  }
+*/
   @override
   Widget build(BuildContext context) {
     double tileSize = 100;
@@ -130,6 +251,25 @@ class _MedicalsServiceOngooglePageState extends State<MedicalsServiceOngooglePag
     child: SingleChildScrollView(
       child: Column(
         children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 13.0,right: 13,bottom: 10,top: 5),
+            child: Row(children: [
+              Expanded(child: Text('Select Distance', style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16),)),
+              Expanded(
+                child: DropDown.networkDrop(
+                    "5 KM",
+                    "5 KM",
+                    selectDistance, (KeyvalueModel data) {
+                  setState(() {
+                    MedicalsServiceOngooglePage.distancelistModel = data;
+                   callAPI(data.key, currentMax);
+                  });
+                }),
+              ),
+
+            ],),
+          ),
+
          /* Container(
             color: AppData.kPrimaryColor,
             child: Padding(
@@ -160,14 +300,14 @@ class _MedicalsServiceOngooglePageState extends State<MedicalsServiceOngooglePag
                 controller: _scrollController,
                   itemBuilder: (context, i) {
                     Results patient = googlePlaceModel.results[i];
-                    print(
+/*                    print(
                         "VALUEeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee>>" +
                             i.toString() +
                             ((patient.photos != null &&
                                     patient.photos.isNotEmpty)
                                 ? ApiFactory.GOOGLE_PIC(
                                     ref: patient.photos[0].photoReference)
-                                : patient.icon));
+                                : patient.icon));*/
                     return Container(
                         child: InkWell(
                         onTap: () {

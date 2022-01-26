@@ -653,7 +653,6 @@ class _PinViewState extends State<PinView> with SingleTickerProviderStateMixin {
             sharedPref.save(Const.MASTER_RESPONSE, masterResponse);
             widget.model.setLoginData1(loginResponse);
             sharedPref.save(Const.IS_LOGIN, "true");
-
             if (map["body"]["roleid"] == "1".toLowerCase()) {
               Navigator.of(context).pushNamedAndRemoveUntil(
                   '/dashboard', (Route<dynamic> route) => false);
