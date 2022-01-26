@@ -100,8 +100,7 @@ Map<String, dynamic> postData = {
   }*/
   callAPI(int radius, int i) {
     log("API :Lati & Longi" + lati + "\n" + lati);
-    log("API CALL>>>" +
-        ApiFactory.GOOGLE_QUERY_API(lati: lati, radius: (radius * 1000).toString(), longi: longi, healthpro: healthpro) +
+    log("API CALL>>>" + ApiFactory.GOOGLE_QUERY_API(lati: lati, radius: (radius * 1000).toString(), longi: longi, healthpro: healthpro) +
         "\n\n\n");
     widget.model.GETMETHODCAL(
         api: ApiFactory.GOOGLE_QUERY_API(
