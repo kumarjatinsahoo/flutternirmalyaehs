@@ -1527,8 +1527,6 @@ class DonorApplicationState extends State<DonorApplication> {
               DonorApplication.bloodgroupModel == "") {
             AppData.showInSnackBar(context, "Please select blood group");
           } else {
-            // Navigator.pushNamed(context, "/addWitness");
-
             AddOrganDonModel addOrganDonModel = AddOrganDonModel();
             addOrganDonModel.patientId = widget.model.user;
             addOrganDonModel.donorName = textEditingController[0].text;
@@ -1549,9 +1547,7 @@ class DonorApplicationState extends State<DonorApplication> {
             addOrganDonModel.witnessList = witnessModle;
             addOrganDonModel.organList = selectedOrganList;
             addOrganDonModel.tissueList = selectedTissueList;
-
             log("Post json>>>>" + jsonEncode(addOrganDonModel.toJson()));
-
             //AppData.showInSnackBar(context, "add Successfully");
             MyWidgets.showLoading(context);
             widget.model.POSTMETHOD1(

@@ -57,7 +57,6 @@ dependencies:
   package_info: ^2.0.2
   flutter_webview_plugin: ^0.4.0
   #webview_flutter: ^2.0.12
-  unique_identifier: ^0.2.0
   lottie: ^1.1.0
   date_picker_timeline: ^1.2.3
   flutter_rating_bar: ^4.0.0
@@ -72,34 +71,32 @@ dependencies:
   #video_player: ^2.1.13
   #table_calendar: ^3.0.2
   multi_select_item: ^1.0.3
-  #crypto: ^3.0.1
+#  crypto: ^3.0.1
   firebase_messaging: ^10.0.1
+
   flutter_local_notifications: ^6.0.0
   firebase_core: ^1.2.1
-  android_multiple_identifier: ^1.0.3
-  #device_info: ^0.4.0+1
-  #imei_plugin: ^1.2.0
   flutter_typeahead: ^3.2.0
   share: ^2.0.4
   custom_rating_bar: ^1.0.2
   flutter_sms: ^2.3.2
   flutter_pdfview: ^1.2.1
   calendar_timeline: ^1.0.4
-  #add_2_calendar: ^2.1.2
+#  add_2_calendar: ^2.1.2
   unicorndial: ^1.1.5
-  #device_calendar: ^3.1.0
+#  device_calendar: ^3.1.0
   video_player: ^2.1.5
   chewie: ^1.2.2
   device_calendar: ^3.1.0
-  #device_info_plus: ^2.1.0
-
-  #agora_rtc_engine: ^3.4.6
+#  agora_rtc_engine: ^3
   agora_rtc_engine: ^4.0.7
   permission_handler: ^8.1.4
-
-  #  audioplayers: ^0.19.0
-  #  flutter_sound_lite: ^8.3.12
-  #  audioplayers: ^0.18.2
+  device_info_plus: ^3.0.1
+  android_multiple_identifier: ^1.0.3
+  unique_identifier: ^0.0.3
+#  audioplayers: ^0.19.0
+#  flutter_sound_lite: ^8.3.12
+#  audioplayers: ^0.18.2
 
 dev_dependencies:
   flutter_test:

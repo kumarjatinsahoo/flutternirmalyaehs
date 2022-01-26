@@ -48,7 +48,7 @@ class _SplashScreenState extends State<SplashScreen> {
   var phnNostr, passWordstr;
   String selectedLan = "";
   String androidVersion;
-  String iosVersion;
+  String iosVersion = "2.0.0";
 
   /*@override
   void initState() {
@@ -69,7 +69,10 @@ class _SplashScreenState extends State<SplashScreen> {
     //getVersion();
     fetchLocalData();
     isFirstTimes();
-    _initPackageInfo();
+    if(Platform.isAndroid){
+      _initPackageInfo();
+    }
+    
 
     // callResourceTimer();
     // ConnectionStatusSingleton connectionStatus =
@@ -293,7 +296,8 @@ class _SplashScreenState extends State<SplashScreen> {
               child: Align(
                 alignment: Alignment.bottomCenter,
                 child: Text(
-                  "Version :"+ _packageInfo.version,
+                  Platform.isAndroid?
+                  ("Version: "+ _packageInfo.version):("Version: "+ "2.0.0"),
                   style: TextStyle(
                       color: AppData.kPrimaryColor,
                       fontSize: 15.0,
@@ -400,6 +404,7 @@ class _SplashScreenState extends State<SplashScreen> {
               dialogVersionUpdate(context),
         );
       } else {
+        //  log("Out login>>>>Narmada>>> " + _packageInfo.version);
         log("In Login>>>>>>>");
         //////////////////////////////////////////////////////////
         var login = await sharedPref.getKey(Const.IS_LOGIN);
@@ -468,7 +473,7 @@ class _SplashScreenState extends State<SplashScreen> {
         //////////////////////////////////////////////////////////
       }
     }catch(e){
-      log("Error>>>>"+e.getMessage());
+     // log("Error>>>>"+e.getMessage());
       _exitApp();
     }
 

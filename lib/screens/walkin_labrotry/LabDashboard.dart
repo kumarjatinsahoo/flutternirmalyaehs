@@ -652,6 +652,27 @@ class _LabDashboardState extends State<LabDashboard> {
                   }),
 
               ListTile(
+                leading: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Container(
+                        width: 30,
+                        height: 30,
+                        child: Image.asset( "assets/images/changepassword.png",
+                            fit: BoxFit.cover)),
+                    // VerticalDivider(
+                    //   thickness: 1,
+                    //   color: Colors.grey,
+                    // ),
+                  ],
+                ),
+                title: Text("Change Password"),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.pushNamed(context, "/changePassword");
+                },
+              ),
+              ListTile(
                 leading: Image.asset(
                   "assets/images/logout.png",
                   height: 30,

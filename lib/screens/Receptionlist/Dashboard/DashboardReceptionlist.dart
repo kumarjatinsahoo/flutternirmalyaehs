@@ -801,6 +801,59 @@ class _DashboardReceptionlistState extends State<DashboardReceptionlist> {
             SizedBox(
               height: 8,
             ),
+
+            ListTile(
+                leading: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Container(
+                          width: 30,
+                          height: 30,
+                          child: Image.asset( "assets/images/support.png",
+                              fit: BoxFit.cover)),
+                      // VerticalDivider(
+                      //   thickness: 1,
+                      //   color: Colors.grey,
+                      // ),
+                    ],
+                  ),
+                ),
+                title: Text(MyLocalizations.of(context).text("SUPPORT")),
+                onTap: () {
+                  widget.model.contactscreen = "Support Screen";
+                  Navigator.pushNamed(context, "/contactus");
+                }),
+
+            SizedBox(
+              height: 8,
+            ),
+            ListTile(
+              leading: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Container(
+                        width: 30,
+                        height: 30,
+                        child: Image.asset( "assets/images/changepassword.png",
+                            fit: BoxFit.cover)),
+                    // VerticalDivider(
+                    //   thickness: 1,
+                    //   color: Colors.grey,
+                    // ),
+                  ],
+                ),
+              ),
+              title: Text("Change Password"),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, "/changePassword");
+              },
+            ),
+
             /*   ListTile(
               leading: Padding(
                 padding: const EdgeInsets.all(10.0),

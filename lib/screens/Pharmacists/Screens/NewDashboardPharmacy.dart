@@ -542,6 +542,27 @@ class _NewDashboardPharmacyState extends State<NewDashboardPharmacy> {
                     widget.model.contactscreen = "Support Screen";
                     Navigator.pushNamed(context, "/contactus");
                   }),
+              ListTile(
+                leading: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Container(
+                        width: 30,
+                        height: 30,
+                        child: Image.asset( "assets/images/changepassword.png",
+                            fit: BoxFit.cover)),
+                    // VerticalDivider(
+                    //   thickness: 1,
+                    //   color: Colors.grey,
+                    // ),
+                  ],
+                ),
+                title: Text("Change Password"),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.pushNamed(context, "/changePassword");
+                },
+              ),
 
               ListTile(
                 leading: Image.asset(
