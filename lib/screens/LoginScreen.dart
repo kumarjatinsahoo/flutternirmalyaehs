@@ -990,9 +990,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       "type" :"LOGIN",
                       "status" :"SUCCESS",
                       "deviceToken" :widget.model.activitytoken
-
                     };
-
                     log("Print data>>>>"+jsonEncode(postmap));
                     MyWidgets.showLoading(context);
                     widget.model.POSTMETHOD(
@@ -1015,7 +1013,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             // Navigator.pop(context);
                             //pData.showInSnackDone(context, map[Const.MESSAGE]);
                             //AppData.showInSnackBar(context, "Chenai server hela");
-                            // postmap["appointid"]=map["aptid"];
+                            //postmap["appointid"]=map["aptid"];
                             //sendLocalServer(postmap);
                             // AppData.showInSnackBar(context, map[Const.MESSAGE]);
                           } else {

@@ -188,6 +188,5 @@ class MedipediaData{
     new MedipediaDTO("Pulmonary Embolism"	,"https://www.youtube.com/watch?v=tMrCwtzcVbU"	,"https://www.youtube.com/watch?v=Kv2hqKE6URk"	,"https://www.youtube.com/watch?v=6Zy8nDtcStc"),
     new MedipediaDTO("Peripheral Neuropathy",	"https://www.youtube.com/watch?v=-mNdaKvUWZg"	,"https://www.youtube.com/watch?v=Thh29Etpo78"	,"https://www.youtube.com/watch?v=Vc_xioDS1DQ"),
     new MedipediaDTO("Lung Cancer"	,"https://www.youtube.com/watch?v=Out098oAdxs"	,"https://www.youtube.com/watch?v=03oOt_4uKGI"	,"https://www.youtube.com/watch?v=QjZq4IgXJ_s"),
-
   ];
 }
