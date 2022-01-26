@@ -170,18 +170,18 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                                 list[i].relation,
                                 style: TextStyle(color: Colors.black),
                               ),
-                              trailing: InkWell(
+                             /* trailing: InkWell(
                                 onTap: () {
                                   AppData.launchURL("tel://" + list[i].mobile);
                                 },
                                 child: Icon(Icons.call, color: Color(0xFF2372B6)),
-                              ),
+                              ),*/
                               onTap: () {
                                 // call setstate
                                 setState(() {
                                   // new line
                                   // change the bool variable based on the index
-                                  AppData.launchURL("tel://" + list[i].mobile);
+                                 // AppData.launchURL("tel://" + list[i].mobile);
                                 });
                               }),
                           (i == list.length - 1)

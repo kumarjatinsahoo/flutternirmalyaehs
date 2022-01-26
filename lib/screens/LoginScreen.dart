@@ -867,19 +867,69 @@ class _LoginScreenState extends State<LoginScreen> {
                 if (map[Const.CODE] == Const.SUCCESS) {
                   setState(() {
                     masterResponse = master.MasterLoginResponse.fromJson(map);
-                   // LoginResponse1 loginResponse = LoginResponse1.fromJson(map);
+                     // LoginResponse1 loginResponse = LoginResponse1.fromJson(map);
                     // widget.model.loginData=loginResponse;
-                    Navigator.push(
+                    /*Navigator.push(
                       context,
                       MaterialPageRoute(
                           builder: (BuildContext context) => PinView(
                             masterLoginResponse: masterResponse,
                                 model: widget.model,
                               )),
-                    );
+                    );*/
+                    Map<String, dynamic> postmap = {
+                      "userId" : widget.model.user,
+                      "imeiNo" : imei,
+                      "version" :Platform.isAndroid?
+                      ( _packageInfo.version):("2.0.0"),
+                      "deviceId" : deviceid,
+                      "activityDate": /*"26-1-2021"*/formattedDate,
+                      "activityTime" :  currentTime,
+                      "type" :"LOGIN",
+                      "status" :"SUCCESS",
+                      "deviceToken" :widget.model.activitytoken
+                    };
+                    log("Print data>>>>"+jsonEncode(postmap));
+                    MyWidgets.showLoading(context);
+                    widget.model.POSTMETHOD(
+                      //api: ApiFactory.POST_APPOINTMENT,
+                        api: ApiFactory.POST_ACTIVITYLOG,
+                        //token: widget.model.token,
+                        json: postmap,
+                        fun: (Map<String, dynamic> map) {
+                          Navigator.pop(context);
+                          log("Json Response activity log>>"+jsonEncode(map));
+                          if (map["code"] == Const.SUCCESS) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (BuildContext context) => PinView(
+                                    masterLoginResponse: masterResponse,
+                                    model: widget.model,
+                                  )),
+                            );
+                            // Navigator.pop(context);
+                            //pData.showInSnackDone(context, map[Const.MESSAGE]);
+                            //AppData.showInSnackBar(context, "Chenai server hela");
+                            //postmap["appointid"]=map["aptid"];
+                            //sendLocalServer(postmap);
+                            // AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                          } else {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (BuildContext context) => PinView(
+                                    masterLoginResponse: masterResponse,
+                                    model: widget.model,
+                                  )),
+                            );
+                            Navigator.pop(context);
+                            AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                          }
+                        });
                   });
                 } else {
-                  AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                  AppData.showInSnackBar(context, map.containsKey([Const.MESSAGE])?map[Const.MESSAGE]:"Data Not Found");
                 }
               });
           // widget.model.phnNo = _loginId.text;
