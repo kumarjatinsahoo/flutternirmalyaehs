@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:user/localization/localizations.dart';
 import 'package:user/models/ChemistsLocationwiseModel.dart';
 import 'package:user/models/GooglePlacesModel.dart';
 import 'package:user/models/KeyvalueModel.dart';
@@ -31,16 +32,16 @@ class _MedicalsServiceOngooglePageState extends State<MedicalsServiceOngooglePag
   var selectedMinValue;
   GooglePlaceModel googlePlaceModel;
   bool isDataNotAvail = false;
-  final ScrollController _scrollController = ScrollController();
+ ScrollController _scrollController = ScrollController();
   //ScrollController _scrollController = ScrollController();
   int currentMax = 1;
-String nextpage;
+  String nextpage;
   static const platform = AppData.channel;
   session.LoginResponse1 loginResponse1;
   Position position;
-  String longi, lati, city, addr, healthpro, type,medicallserviceType
-  ;
+  String longi, lati, city, addr, healthpro, type,medicallserviceType;
   String medicallserviceTypelow;
+
   @override
   void initState() {
     super.initState();
@@ -295,10 +296,15 @@ String nextpage;
          child:*/(googlePlaceModel != null)
               ? ListView.builder(
 
-              //physics: NeverScrollableScrollPhysics(),
+              physics: NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 controller: _scrollController,
                   itemBuilder: (context, i) {
+                    if (i == googlePlaceModel.results.length ) {
+                      return (googlePlaceModel.results.length % 20 == 0 && googlePlaceModel.nextPageToken != null)
+                          ? CupertinoActivityIndicator()
+                          : Container();
+                    }
                     Results patient = googlePlaceModel.results[i];
 /*                    print(
                         "VALUEeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee>>" +
@@ -415,9 +421,19 @@ String nextpage;
                         )
                     );
                   },
-                  itemCount: googlePlaceModel.results.length,
+                  //itemCount: googlePlaceModel.results.length + 1,
+                  itemCount: googlePlaceModel.results.length+1,
                 )
-              : Container(),
+              :  Expanded(
+            child: Container(
+              child: Center(
+                child: Text(
+                  MyLocalizations.of(context).text("NO_DATA_FOUND"),
+                  style: TextStyle(color: Colors.black, fontSize: 15),
+                ),
+              ),
+            ),
+          )
         ],
       ),
     ),

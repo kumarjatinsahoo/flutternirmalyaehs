@@ -7,6 +7,7 @@ import 'package:geolocator/geolocator.dart';
 
 import 'package:geolocator/geolocator.dart' as loca;
 import 'package:lottie/lottie.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/GooglePlaceSearchModell.dart';
 import 'package:user/models/GooglePlacesModel.dart';
@@ -61,6 +62,8 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
     loginResponse1 = widget.model.loginResponse1;
     callAPI();
     _getLocationName();
+    callHelpBtn();
+    
   }
 
   /*_getLocationName() async {
@@ -81,6 +84,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
     print('location>>>>>>>>>>>>>>>>>>: ${position.latitude}');
     latitude = position.latitude.toString();
     longitude = position.longitude.toString();
+    print('============== ' +ApiFactory.googleMapUrl(lati:latitude ,longi: longitude));
     try {
       final coordinates =
           new Coordinates(position.latitude, position.longitude);
@@ -137,6 +141,59 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
         });
   }
 
+   callHelpBtn() {    
+    Map<String, dynamic> postmap = {
+      "userid" : loginResponse1.body.user,
+      "mapurl" : ApiFactory.googleMapUrl(lati:latitude ,longi: longitude)
+    };     
+      widget.model.POSTMETHOD_TOKEN(
+        api: ApiFactory.EMERGENCY_HELP_NEW,   
+        token: widget.model.token,
+        json: postmap,
+        fun: (Map<String, dynamic> map) {
+          print("Value is>>>>" + JsonEncoder().convert(map));
+          setState(() {
+            String msg = map[Const.MESSAGE];
+            if (map[Const.STATUS1] == Const.SUCCESS) {
+              emergencyHelpModel = EmergencyHelpModel.fromJson(map);
+               popup(map[Const.MESSAGE],context);
+            } else {
+              isDataNotAvail = true;
+              // AppData.showInSnackBar(context, msg);
+            }
+          });
+        });
+   
+  }
+   popup(String msg, BuildContext context) {
+    return Alert(
+        context: context,
+        title: "Success",
+        desc: msg,
+        type: AlertType.success,
+        onWillPopActive: true,
+        closeIcon: Icon(
+          Icons.info,
+          color: Colors.transparent,
+        ),
+        //image: Image.asset("assets/success.png"),
+        closeFunction: () {},
+        buttons: [
+          DialogButton(
+            child: Text(
+              "OK",
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+            onPressed: () {
+              Navigator.pop(context, true);
+              Navigator.pop(context, true);
+            },
+            color: Color.fromRGBO(0, 179, 134, 1.0),
+            radius: BorderRadius.circular(0.0),
+          ),
+        ]).show();
+  }
+
   showUserList(BuildContext context, List<Emergency> list) {
     return showDialog(
         context: context,
@@ -161,7 +218,6 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                       return Column(
                         children: [
                           ListTile(
-
                               title: Text(
                                 list[i].name,
                                 style: TextStyle(color: Colors.black),
@@ -199,7 +255,6 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
         });
   }
 
-
   showUserList1(BuildContext context, List<Results> results) {
     return showDialog(
         context: context,
@@ -230,19 +285,14 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                       results[i].name,
                         style: TextStyle(color: Colors.black),
                       ),
-                      trailing: InkWell(
+                      /*trailing: InkWell(
                       onTap: () {
                         AppData.launchURL("tel://" + results[i].name);
 
                         //  AppData.launchURL("tel://" + list[i].mobile);
                       },
-                      child: InkWell(
-                        onTap: (){
-
-                        },
-                          child: Icon(Icons.call, color: Color(0xFF2372B6) )
-                      ),
-                      )
+                      child: Icon(Icons.call, color: Color(0xFF2372B6) ),
+                      )*/
                       ),
                         (i == results.length - 1)
                           ? Container()
@@ -365,10 +415,10 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                   ),*/
                   InkWell(
                     onTap: () {
-                      widget.model.longi = latitude;
-                      widget.model.lati = longitude;
-                      widget.model.city = cityName;
-                      Navigator.pushNamed(context, "/countDown");
+                      // widget.model.longi = latitude;
+                      // widget.model.lati = longitude;
+                      // widget.model.city = cityName;
+                      callHelpBtn();
                     },
                     child: Container(
                       width: size.width,
@@ -471,8 +521,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                           InkWell(
                               onTap: () {
                                 // Navigator.pop(context);
-                                AppData.launchURL("tel://" +
-                                    emergencyHelpModel.emergency[0].mobile);
+                               // AppData.launchURL("tel://" + emergencyHelpModel.emergency[0].mobile);
                               },
                               child: Align(
                                 alignment: Alignment.center,
@@ -486,7 +535,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                           new Spacer(),
                           Container(
                               child: Row(children: [
-                            InkWell(
+                           /* InkWell(
                                 onTap: () {
                                   // Navigator.pop(context);
                                   AppData.launchURL("tel://" +
@@ -498,7 +547,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                                     Icons.phone_in_talk,
                                     color: Color(0xFFCF3564),
                                   ),
-                                )),
+                                )),*/
                             Container(
                               width: 2,
                               child: Divider(
@@ -681,8 +730,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                               onTap: () {
                                 // Navigator.pop(context);
 
-                                AppData.launchURL(
-                                    "tel://" + emergencyHelpModel.ambulance);
+                                //AppData.launchURL("tel://" + emergencyHelpModel.ambulance);
                               },
                               child: Text(
                                 MyLocalizations.of(context).text("CALL_AMBULANCE"),
@@ -696,7 +744,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                           Row(
                               //mainAxisAlignment: MainAxisAlignment.spic,
                               children: [
-                                InkWell(
+                               /* InkWell(
                                     onTap: () {
                                       // Navigator.pop(context);
 
@@ -710,7 +758,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                                         Icons.phone_in_talk,
                                         color:Color(0xFF2372B6),
                                       ),
-                                    )),
+                                    )),*/
                                 Container(
                                   width: 2,
                                   child: Divider(
@@ -814,8 +862,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                           InkWell(
                               onTap: () {
                                 //Navigator.pop(context);
-                                AppData.launchURL(
-                                    "tel://" + emergencyHelpModel.police);
+                               // AppData.launchURL("tel://" + emergencyHelpModel.police);
                               },
                               child: Text(
                                 MyLocalizations.of(context).text("CALL_POLICE"),
@@ -829,11 +876,10 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                           Row(
                               //mainAxisAlignment: MainAxisAlignment.spic,
                               children: [
-                                InkWell(
+                               /* InkWell(
                                     onTap: () {
-                                      // Navigator.pop(context);
-                                      AppData.launchURL(
-                                          "tel://" + emergencyHelpModel.police);
+                                      //Navigator.pop(context);
+                                      AppData.launchURL("tel://" + emergencyHelpModel.police);
                                     },
                                     child: Padding(
                                       padding:
@@ -842,7 +888,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                                         Icons.phone_in_talk,
                                         color: Color(0xFFCF3564),
                                       ),
-                                    )),
+                                    )),*/
                                 Container(
                                   width: 2,
                                   child: Divider(

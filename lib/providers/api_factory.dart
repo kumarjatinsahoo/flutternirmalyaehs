@@ -133,6 +133,10 @@ class ApiFactory {
   static String VIEW_USER_MEDICINE_DETAILS =
       MAIN_URL + 'view-user-medicine-details-by-appno?appno=';
 
+static String EMERGENCY_HELP_NEW =
+     MAIN_URL + "sms-to-emergency-contact-users";
+  
+
   static String LOGIN_PASS(String mob, String pass) {
     return MAIN_URL + "login?mobileNo=$mob&password=$pass";
   }
