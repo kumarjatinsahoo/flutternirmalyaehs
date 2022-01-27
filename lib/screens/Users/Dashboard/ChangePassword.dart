@@ -1,10 +1,12 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/services.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/providers/Const.dart';
+import 'package:user/providers/SharedPref.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
@@ -20,6 +22,7 @@ class ChangePassword extends StatefulWidget {
 class _ChangePasswordState extends State<ChangePassword> {
   LoginResponse1 loginResponse1;
   var selectedMinValue;
+  SharedPref sharedPref = SharedPref();
   TextEditingController oldwpwd = new TextEditingController();
   TextEditingController newpwd = new TextEditingController();
   TextEditingController cnfpwd = new TextEditingController();
@@ -362,7 +365,19 @@ class _ChangePasswordState extends State<ChangePassword> {
               Navigator.pop(context);
               Navigator.pop(context);
               Navigator.pop(context);
-              Navigator.of(context).pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
+              FirebaseMessaging.instance
+                  .unsubscribeFromTopic(loginResponse1.body.user);
+              FirebaseMessaging.instance
+                  .unsubscribeFromTopic(loginResponse1.body.userMobile);
+              sharedPref.save(Const.IS_LOGIN, false.toString());
+              sharedPref.save(Const.IS_REGISTRATION, false.toString());
+              sharedPref.remove(Const.IS_REGISTRATION);
+              sharedPref.remove(Const.IS_LOGIN);
+              sharedPref.remove(Const.LOGIN_DATA);
+              sharedPref.remove(Const.IS_REG_SERVER);
+              sharedPref.remove(Const.MASTER_RESPONSE);
+              Navigator.of(context)
+                  .pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
 
 /*
               Navigator.pushNamedAndRemoveUntil(context, "/login", (route) => false);

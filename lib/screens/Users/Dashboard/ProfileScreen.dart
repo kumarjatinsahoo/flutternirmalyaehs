@@ -672,7 +672,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           //height: MediaQuery.of(context).size.height * 100,
                           //height: 300,
                         child:LimitedBox( // use this 
-                            maxHeight: 300,
+                            maxHeight: 298,
                         child: TabBarView(
                           children: [
                             (patientProfileModel != null)?rowValue():Container(),
@@ -3404,11 +3404,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
         initialDate: DateTime.now().subtract(Duration(days: 6570)),
         firstDate: DateTime(1901, 1),
         lastDate: DateTime.now()
-            .subtract(Duration(days: 6570))); //18 years is 6570 days
+          /*  .subtract(Duration(days: 6570))*/); //18 years is 6570 days
     if (picked != null && picked != selectedDate)
       setState(() {
         selectedDate = picked;
-
         textEditingController[0].value =
             TextEditingValue(text: df.format(picked));
         //updateProfileModel.dob = df.format(picked);

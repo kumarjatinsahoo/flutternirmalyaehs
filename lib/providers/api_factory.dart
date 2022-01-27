@@ -2,9 +2,13 @@ class ApiFactory {
   //bool isRelease = bool.fromEnvironment("DEV");
   static String REG_DEVICE = "https://cca.medtel.in/Ziniai/manageDeviceId";
   static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
+   //static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
   // static String MAIN_URL = "http://api-demo.ehealthsystem.com/nirmalyaRest/api/";
+  //static String MAIN_URL = "http://api-demo.ehealthsystem.com/nirmalyaRest/api/";
   // static String MAIN_URL = "http://192.168.0.190:8062/nirmalyaRest/api/";
-    static String MAIN_URL1 = "https://1331.co.in/api";
+  //static String MAIN_URL = "http://api-demo.ehealthsystem.com/nirmalyaRest/api/";
+   //static String MAIN_URL = "http://192.168.0.157:8062/nirmalyaRest/api/";
+  static String MAIN_URL1 = "https://1331.co.in/api";
   static String REPORT_URL1 = "https://demo.ehealthsystem.com/";
   static String VITALS_REPORT = MAIN_URL + 'medtel-screening-test-report';
   static String COUNTRY_API = MAIN_URL + 'get-country-list';
@@ -169,8 +173,7 @@ static String EMERGENCY_HELP_NEW =
 
   static String GOVET_SCHEMES_LIST(String contry, String state/*, String dist,
       String city*/) {
-    return MAIN_URL +
-        "view-government-scheme-list?country=$contry&state=$state";/*&dist=$dist&city=$city*/
+    return MAIN_URL + "view-government-scheme-list?country=$contry&state=$state";/*&dist=$dist&city=$city*/
   }
 
   static String GOOGLE_QUERY_API(
@@ -214,8 +217,7 @@ static String EMERGENCY_HELP_NEW =
 
   static String POST_SIGNUP = MAIN_URL + 'signup-by-pathologist';
   static String AMBULANCE_ALL = MAIN_URL + 'get-ambulance-actionlist?userid=';
-  static String GET_DOCTEROVERVIEWLIST =
-      MAIN_URL + 'get-doctor-overviewlist-bystatus?drid=';
+  static String GET_DOCTEROVERVIEWLIST = MAIN_URL + 'get-doctor-overviewlist-bystatus?drid=';
   static String GET_AMBULANCE_OVERVIEWLIST =
       MAIN_URL + 'get-ambulance-overviewlist-bystatus?ambid=';
   static String GET_BLDBANK_OVERVIEWLIST =

@@ -747,10 +747,8 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                 selected: _selectedDestination == 16,
                 onTap: () {
                   //FirebaseMessaging.instance.unsubscribeFromTopic(loginResponse1.body.user);
-                  FirebaseMessaging.instance
-                      .unsubscribeFromTopic(loginResponse1.body.user);
-                  FirebaseMessaging.instance
-                      .unsubscribeFromTopic(loginResponse1.body.userMobile);
+                  FirebaseMessaging.instance.unsubscribeFromTopic(loginResponse1.body.user);
+                  FirebaseMessaging.instance.unsubscribeFromTopic(loginResponse1.body.userMobile);
                   selectDestination(16);
                   _exitApp();
                 },
@@ -2667,7 +2665,7 @@ class MyPage2Widget extends StatelessWidget {
                             icon: "assets/blooddonationuser.png",
                             //icon: Icons.search,
                             //icon: FontAwesomeIcons.accusoft,
-                            title: " Order Blood ",
+                            title: "Order Blood ",
                             fun: () {
                               Navigator.pushNamed(
                                   context, "/bookBloodBanklist");
