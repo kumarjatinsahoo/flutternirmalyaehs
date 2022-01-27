@@ -1,10 +1,4 @@
 PODS:
-  - agora_rtc_engine (4.0.7):
-    - AgoraRtcEngine_iOS (= 3.5.0.3)
-    - Flutter
-  - AgoraRtcEngine_iOS (3.5.0.3)
-  - android_multiple_identifier (0.0.1):
-    - Flutter
   - BSGridCollectionViewLayout (1.2.5)
   - BSImagePicker (2.10.3):
     - BSGridCollectionViewLayout (= 1.2.5)
@@ -184,8 +178,6 @@ PODS:
     - Flutter
 
 DEPENDENCIES:
-  - agora_rtc_engine (from `.symlinks/plugins/agora_rtc_engine/ios`)
-  - android_multiple_identifier (from `.symlinks/plugins/android_multiple_identifier/ios`)
   - connectivity (from `.symlinks/plugins/connectivity/ios`)
   - device_calendar (from `.symlinks/plugins/device_calendar/ios`)
   - device_info_plus (from `.symlinks/plugins/device_info_plus/ios`)
@@ -222,7 +214,6 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
-    - AgoraRtcEngine_iOS
     - BSGridCollectionViewLayout
     - BSImagePicker
     - BSImageView
@@ -245,10 +236,6 @@ SPEC REPOS:
     - TOCropViewController
 
 EXTERNAL SOURCES:
-  agora_rtc_engine:
-    :path: ".symlinks/plugins/agora_rtc_engine/ios"
-  android_multiple_identifier:
-    :path: ".symlinks/plugins/android_multiple_identifier/ios"
   connectivity:
     :path: ".symlinks/plugins/connectivity/ios"
   device_calendar:
@@ -317,9 +304,6 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/webview_flutter/ios"
 
 SPEC CHECKSUMS:
-  agora_rtc_engine: 0820b82b3a71a8fcaf8b27c000622e671349f0ba
-  AgoraRtcEngine_iOS: ff8e085161ea98c917173783a899882f884dd9ef
-  android_multiple_identifier: 07e73fe54992409dd84c5843d3a7f8418e612fdd
   BSGridCollectionViewLayout: 333dcb457a5a3bdd9212607ab5756553dcfe06cb
   BSImagePicker: 07404254f2fcdaf5a2eb403c0f8c337267ce8738
   BSImageView: a149459433a2687157d034c78e059d30ac7f2544
