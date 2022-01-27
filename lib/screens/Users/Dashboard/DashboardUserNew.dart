@@ -108,15 +108,15 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
 
     callApi();
     callNewsApi();
-    deviceInfoo();
-    deviceInfooo();
+    // deviceInfoo();
+    // deviceInfooo();
     //sendDeviceInfo();
 
     /*if(loginResponse1.body.userPic==null){
       callProfApi();
     }
 */
-    FirebaseMessaging.instance
+    /*FirebaseMessaging.instance
         .getInitialMessage()
         .then((RemoteMessage message) {
       if (message != null) {
@@ -152,7 +152,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
       print('A new onMessageOpenedApp event was published!');
       Navigator.pushNamed(context, '/aboutus');
-    });
+    });*/
   }
 
   /*callProfApi() {
@@ -226,20 +226,18 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
     widget.model.GETMETHODCALL(
         api: ApiFactory.NEWSUPDATE_VIEW,
         fun: (Map<String, dynamic> map) {
-          setState(() {
-            log("Json Response>>>" + JsonEncoder().convert(map));
-            String msg = map[Const.MESSAGE];
+
+            // log("Json Response>>>" + JsonEncoder().convert(map));
+            // String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
               // pocReportModel = PocReportModel.fromJson(map);
-              newsupdatemodel = news.NewsupdateModel.fromJson(map);
-
-            } else {
               setState(() {
-                //isDataNoFound = true;
-                // AppData.showInSnackBar(context, msg);
+              newsupdatemodel = news.NewsupdateModel.fromJson(map);
               });
+            } else {
+
             }
-          });
+
         });
   }
 

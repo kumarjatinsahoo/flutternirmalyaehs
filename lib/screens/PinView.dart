@@ -1,13 +1,16 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:math';
+import 'dart:io' as plat;
 
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:intl/intl.dart';
+import 'package:package_info/package_info.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/providers/Const.dart';
@@ -28,6 +31,7 @@ class PinView extends StatefulWidget {
   // final String email;
   MainModel model;
   master.MasterLoginResponse masterLoginResponse;
+  String token;
 
   // final bool isGuestCheckOut;
 
@@ -35,6 +39,7 @@ class PinView extends StatefulWidget {
     Key key,
     this.model,
     this.masterLoginResponse,
+    this.token,
   }) : super(key: key);
 
   @override
@@ -68,11 +73,25 @@ class _PinViewState extends State<PinView> with SingleTickerProviderStateMixin {
   bool isLoading = false;
 
   SharedPref sharedPref = SharedPref();
+  PackageInfo _packageInfo = PackageInfo(
+    appName: 'Unknown',
+    packageName: 'Unknown',
+    version: 'Unknown',
+    buildNumber: 'Unknown',
+  );
 
   // CredentialModel credentialModel;
+String formattedDate;
+  dynamic currentTime = DateFormat.jm().format(DateTime.now());
+  String imei,deviceid;
 
   @override
   void initState() {
+    _initPackageInfo();
+    getDeviceSerialNumber();
+    var now = new DateTime.now();
+    var formatter = new DateFormat('dd-MM-yyyy');
+    formattedDate = formatter.format(now);
 
     totalTimeInSeconds = time;
    //LoginResponse1 loginResponse = LoginResponse1();
@@ -82,7 +101,6 @@ class _PinViewState extends State<PinView> with SingleTickerProviderStateMixin {
     otpGenerateStr = widget.masterLoginResponse.body[0].otp;
     masterResponse=widget.masterLoginResponse;
 
-    //print("OTP IS>>>>>>>>>>>>>>>>>>>>>>" + otpGenerateStr.toString());
 
     otpGenerate = int.parse(otpGenerateStr);
 
@@ -103,6 +121,53 @@ class _PinViewState extends State<PinView> with SingleTickerProviderStateMixin {
     _controller.reverse(
         from: _controller.value == 0.0 ? 1.0 : _controller.value);
     _startCountdown();
+  }
+
+  Future<void> _initPackageInfo() async {
+    if (plat.Platform.isAndroid) {
+      final PackageInfo info = await PackageInfo.fromPlatform();
+      setState(() {
+        _packageInfo = info;
+      });
+    }
+  }
+
+  Future<String> getDeviceSerialNumber() async {
+    // Ask user permission
+    /*await AndroidMultipleIdentifier.requestPermission();
+    // Get device information async
+    Map idMap = await AndroidMultipleIdentifier.idMap;
+    Map iosMap = await .idMap;
+
+    imei = idMap["imei"];
+    String serial = idMap["serial"];
+    String androidID = idMap["androidId"];
+
+    return imei;*/
+    final DeviceInfoPlugin deviceInfoPlugin = new DeviceInfoPlugin();
+    try {
+      if (plat.Platform.isAndroid) {
+        var build = await deviceInfoPlugin.androidInfo;
+        // deviceName = build.model;
+        // deviceVersion = build.version.toString();
+        // identifier = build.androidId;  //UUID for Android
+        setState(() {
+          // deviceid=build.model;
+          imei = build.androidId;
+        });
+      } else if (plat.Platform.isIOS) {
+        var data = await deviceInfoPlugin.iosInfo;
+        // deviceName = data.name;
+        // deviceVersion = data.systemVersion;
+        // identifier = data.identifierForVendor;  //UUID for iOS
+        setState(() {
+          // deviceid=data.name;
+          imei = data.identifierForVendor;
+        });
+      }
+    } on PlatformException {
+      print('Failed to get platform version');
+    }
   }
 
   // Future<CredentialModel> loadAsset() async {
@@ -360,7 +425,29 @@ class _PinViewState extends State<PinView> with SingleTickerProviderStateMixin {
     });
   }
 
-  _login(String mobile, String userId, BuildContext context) async {}
+  updateStatus(data){
+    Map<String, dynamic> postmap = {
+      "userId" : data.user,
+      "imeiNo" : imei??"",
+      "version" :(plat.Platform.isAndroid)? _packageInfo.version:Const.IOS_VERSION,
+      "deviceId" : deviceid??"",
+      "activityDate": formattedDate,
+      "activityTime" :  currentTime,
+      "type" :"LOGIN",
+      "status" :"SUCCESS",
+      "deviceToken" :widget.token
+    };
+    // AppData.showInSnackDone(context,"Print data>>>>"+jsonEncode(postmap));
+    // MyWidgets.showLoading(context);
+    widget.model.POSTMETHOD(
+      //api: ApiFactory.POST_APPOINTMENT,
+        api: ApiFactory.POST_ACTIVITYLOG,
+        //token: widget.model.token,
+        json: postmap,
+        fun: (Map<String, dynamic> map) {
+          // Navigator.pop(context);
+        });
+  }
 
   // Returns "Resend" button
   get _getVerifyButton {
@@ -590,6 +677,7 @@ class _PinViewState extends State<PinView> with SingleTickerProviderStateMixin {
                                 sharedPref.save(Const.LOGIN_DATA, loginResponse);
                                 widget.model.setLoginData1(loginResponse);
                                 sharedPref.save(Const.IS_LOGIN, "true");*/
+                                // updateStatus(data[i]);
                                 roleUpdateApi(data[i].user, data[i]);
                               },
                               trailing: Icon(Icons.arrow_right),
@@ -621,6 +709,7 @@ class _PinViewState extends State<PinView> with SingleTickerProviderStateMixin {
       ],*/
     );
   }
+
   roleUpdateApi(userId, data) {
     MyWidgets.showLoading(context);
     widget.model.GETMETHODCALL(
@@ -629,8 +718,6 @@ class _PinViewState extends State<PinView> with SingleTickerProviderStateMixin {
           Navigator.pop(context);
           print("Respomnse for role>>>>>" + jsonEncode(map));
           if (map["code"] == "success") {
-           // sharedPref.save(Const.LOGIN_phoneno, _loginId.text);
-            //sharedPref.save(Const.LOGIN_password, passController.text);
             LoginResponse1 loginResponse = LoginResponse1();
             // loginResponse.acceptValue(data[i]);
             Body body = Body();
@@ -652,6 +739,10 @@ class _PinViewState extends State<PinView> with SingleTickerProviderStateMixin {
             sharedPref.save(Const.MASTER_RESPONSE, masterResponse);
             widget.model.setLoginData1(loginResponse);
             sharedPref.save(Const.IS_LOGIN, "true");
+
+
+            updateStatus(data);
+
 
             if (map["body"]["roleid"] == "1".toLowerCase()) {
               Navigator.of(context).pushNamedAndRemoveUntil(
@@ -686,6 +777,9 @@ class _PinViewState extends State<PinView> with SingleTickerProviderStateMixin {
           }
         });
   }
+
+
+
   // Returns "Otp custom text field"
   Widget _otpTextField(int digit) {
     return Container(

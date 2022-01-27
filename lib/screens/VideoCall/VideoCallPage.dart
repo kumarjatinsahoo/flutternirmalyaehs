@@ -1,8 +1,8 @@
 import 'dart:developer';
 
-import 'package:agora_rtc_engine/rtc_engine.dart';
-import 'package:agora_rtc_engine/rtc_local_view.dart' as RtcLocalView;
-import 'package:agora_rtc_engine/rtc_remote_view.dart' as RtcRemoteView;
+// import 'package:agora_rtc_engine/rtc_engine.dart';
+// import 'package:agora_rtc_engine/rtc_local_view.dart' as RtcLocalView;
+// import 'package:agora_rtc_engine/rtc_remote_view.dart' as RtcRemoteView;
 // import 'package:agora_rtc_engine_example/config/agora.config.dart' as config;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -17,7 +17,7 @@ class VideoCallPage extends StatefulWidget {
 }
 
 class _State extends State<VideoCallPage> {
-   RtcEngine _engine;
+   // RtcEngine _engine;
   String channelId = AppData.channelId;
   bool isJoined = false, switchCamera = true, switchRender = true;
   List<int> remoteUid = [];
@@ -33,21 +33,21 @@ class _State extends State<VideoCallPage> {
   @override
   void dispose() {
     super.dispose();
-    _engine.destroy();
+    // _engine.destroy();
   }
 
   _initEngine() async {
-    _engine = await RtcEngine.createWithContext(RtcEngineContext(AppData.appId));
-    this._addListeners();
-
-    await _engine.enableVideo();
-    await _engine.startPreview();
-    await _engine.setChannelProfile(ChannelProfile.LiveBroadcasting);
-    await _engine.setClientRole(ClientRole.Broadcaster);
+    // _engine = await RtcEngine.createWithContext(RtcEngineContext(AppData.appId));
+    // this._addListeners();
+    //
+    // await _engine.enableVideo();
+    // await _engine.startPreview();
+    // await _engine.setChannelProfile(ChannelProfile.LiveBroadcasting);
+    // await _engine.setClientRole(ClientRole.Broadcaster);
   }
 
   _addListeners() {
-    _engine.setEventHandler(RtcEngineEventHandler(
+    /*_engine.setEventHandler(RtcEngineEventHandler(
       joinChannelSuccess: (channel, uid, elapsed) {
         log('joinChannelSuccess ${channel} ${uid} ${elapsed}');
         setState(() {
@@ -73,28 +73,28 @@ class _State extends State<VideoCallPage> {
           remoteUid.clear();
         });
       },
-    ));
+    ));*/
   }
 
   _joinChannel() async {
     if (defaultTargetPlatform == TargetPlatform.android) {
       await [Permission.microphone, Permission.camera].request();
     }
-    await _engine.joinChannel(AppData.token, channelId, null, AppData.uid);
+   // await _engine.joinChannel(AppData.token, channelId, null, AppData.uid);
   }
 
   _leaveChannel() async {
-    await _engine.leaveChannel();
+    // await _engine.leaveChannel();
   }
 
   _switchCamera() {
-    _engine.switchCamera().then((value) {
+    /*_engine.switchCamera().then((value) {
       setState(() {
         switchCamera = !switchCamera;
       });
     }).catchError((err) {
       log('switchCamera $err');
-    });
+    });*/
   }
 
   _switchRender() {
@@ -133,7 +133,7 @@ class _State extends State<VideoCallPage> {
                     )
                   ],
                 ),
-                _renderVideo(),
+                // _renderVideo(),
               ],
             ),
             Align(
@@ -154,7 +154,7 @@ class _State extends State<VideoCallPage> {
     );
   }
 
-  _renderVideo() {
+ /* _renderVideo() {
     return Expanded(
       child: Stack(
         children: [
@@ -182,5 +182,5 @@ class _State extends State<VideoCallPage> {
         ],
       ),
     );
-  }
+  }*/
 }

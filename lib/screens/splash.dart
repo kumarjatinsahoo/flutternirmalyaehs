@@ -48,7 +48,7 @@ class _SplashScreenState extends State<SplashScreen> {
   var phnNostr, passWordstr;
   String selectedLan = "";
   String androidVersion;
-  String iosVersion;
+  String iosVersion = "2.0.0";
 
   /*@override
   void initState() {
@@ -69,9 +69,9 @@ class _SplashScreenState extends State<SplashScreen> {
     //getVersion();
     fetchLocalData();
     isFirstTimes();
-    // if(Platform.isAndroid){
+    if(Platform.isAndroid){
       _initPackageInfo();
-    
+    }
     
 
     // callResourceTimer();
@@ -296,9 +296,8 @@ class _SplashScreenState extends State<SplashScreen> {
               child: Align(
                 alignment: Alignment.bottomCenter,
                 child: Text(
-                  // Platform.isAndroid?
-                  _packageInfo.version,
-                  // ("Version: "+ "2.1.2"):("Version: "+ "2.0.0"),
+                  Platform.isAndroid?
+                  ("Version: "+ _packageInfo.version):("Version: "+ "2.0.0"),
                   style: TextStyle(
                       color: AppData.kPrimaryColor,
                       fontSize: 15.0,
@@ -335,8 +334,8 @@ class _SplashScreenState extends State<SplashScreen> {
         _exitApp();
       }
 
-      String phnNostr1 = phnNostr.replaceAll("\"", "");
-      String passWordstr1 = passWordstr.replaceAll("\"", "");
+      // String phnNostr1 = phnNostr.replaceAll("\"", "");
+      // String passWordstr1 = passWordstr.replaceAll("\"", "");
 
       //passWordstr = await sharedPref. getValue() ;
       /*if (login != null && login.replaceAll("\"", "") == "true") {
@@ -371,7 +370,7 @@ class _SplashScreenState extends State<SplashScreen> {
       });
     }*/
     }catch(e){
-      // log("Error>>>>"+e.getMessage());
+      log("Error>>>>");
       _exitApp();
     }
   }
@@ -389,7 +388,7 @@ class _SplashScreenState extends State<SplashScreen> {
     sharedPref.remove(Const.LOGIN_DATA);
     sharedPref.remove(Const.IS_REG_SERVER);
     sharedPref.remove(Const.MASTER_RESPONSE);
-    Navigator.of(context)
+    Navigator.of(Const.navigatorKey.currentContext)
         .pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
   }
 
