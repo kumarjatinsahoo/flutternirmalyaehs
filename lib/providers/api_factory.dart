@@ -9,7 +9,7 @@ class ApiFactory {
   static String MAIN_URL1 = "https://1331.co.in/api";
   //static String REPORT_URL1 = "https://ehealthsystem.com/";
   static String REPORT_URL1 = "https://demo.ehealthsystem.com/";
-  // static String MAIN_URL = "http://192.168.0.157:8062/nirmalyaRest/api/";
+  // static String MAIN_URL = "http://192.168.0.190:8062/nirmalyaRest/api/";
  // static String MAIN_URL = "http://192.168.137.1:8062/nirmalyaRest/api/";
     //static String MAIN_URL = "http://192.168.29.137.1:8062/nirmalyaRest/api/";
    //static String MAIN_URL = "http://192.168.137.1:8062/nirmalyaRest/api/";
@@ -139,6 +139,10 @@ class ApiFactory {
   static String ALERGY_LIST = MAIN_URL + 'get-allergy-name-list';
   static String VIEW_USER_MEDICINE_DETAILS =
       MAIN_URL + 'view-user-medicine-details-by-appno?appno=';
+
+static String EMERGENCY_HELP_NEW =
+     MAIN_URL + "sms-to-emergency-contact-users";
+  
 
   static String LOGIN_PASS(String mob, String pass) {
     return MAIN_URL + "login?mobileNo=$mob&password=$pass";

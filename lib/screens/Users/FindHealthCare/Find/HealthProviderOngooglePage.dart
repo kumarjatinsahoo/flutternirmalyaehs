@@ -298,10 +298,9 @@ Map<String, dynamic> postData = {
             :  Expanded(
               child: Container(
                       child: Center(
-                        child: Text(
-                          'NO DATA FOUND!',
-                          style: TextStyle(color: Colors.black, fontSize: 18),
-                        ),
+                        child:  CircularProgressIndicator(
+                backgroundColor: AppData.matruColor,
+                        )
                       ),
                     ),
             )

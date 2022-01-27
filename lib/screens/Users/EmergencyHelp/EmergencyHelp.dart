@@ -7,6 +7,7 @@ import 'package:geolocator/geolocator.dart';
 
 import 'package:geolocator/geolocator.dart' as loca;
 import 'package:lottie/lottie.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/GooglePlaceSearchModell.dart';
 import 'package:user/models/GooglePlacesModel.dart';
@@ -61,6 +62,8 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
     loginResponse1 = widget.model.loginResponse1;
     callAPI();
     _getLocationName();
+    callHelpBtn();
+    
   }
 
   /*_getLocationName() async {
@@ -81,6 +84,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
     print('location>>>>>>>>>>>>>>>>>>: ${position.latitude}');
     latitude = position.latitude.toString();
     longitude = position.longitude.toString();
+    print('============== ' +ApiFactory.googleMapUrl(lati:latitude ,longi: longitude));
     try {
       final coordinates =
           new Coordinates(position.latitude, position.longitude);
@@ -135,6 +139,59 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
             }
           });
         });
+  }
+
+   callHelpBtn() {    
+    Map<String, dynamic> postmap = {
+      "userid" : loginResponse1.body.user,
+      "mapurl" : ApiFactory.googleMapUrl(lati:latitude ,longi: longitude)
+    };     
+      widget.model.POSTMETHOD_TOKEN(
+        api: ApiFactory.EMERGENCY_HELP_NEW,   
+        token: widget.model.token,
+        json: postmap,
+        fun: (Map<String, dynamic> map) {
+          print("Value is>>>>" + JsonEncoder().convert(map));
+          setState(() {
+            String msg = map[Const.MESSAGE];
+            if (map[Const.STATUS1] == Const.SUCCESS) {
+              emergencyHelpModel = EmergencyHelpModel.fromJson(map);
+               popup(map[Const.MESSAGE],context);
+            } else {
+              isDataNotAvail = true;
+              // AppData.showInSnackBar(context, msg);
+            }
+          });
+        });
+   
+  }
+   popup(String msg, BuildContext context) {
+    return Alert(
+        context: context,
+        title: "Success",
+        desc: msg,
+        type: AlertType.success,
+        onWillPopActive: true,
+        closeIcon: Icon(
+          Icons.info,
+          color: Colors.transparent,
+        ),
+        //image: Image.asset("assets/success.png"),
+        closeFunction: () {},
+        buttons: [
+          DialogButton(
+            child: Text(
+              "OK",
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+            onPressed: () {
+              Navigator.pop(context, true);
+              Navigator.pop(context, true);
+            },
+            color: Color.fromRGBO(0, 179, 134, 1.0),
+            radius: BorderRadius.circular(0.0),
+          ),
+        ]).show();
   }
 
   showUserList(BuildContext context, List<Emergency> list) {
@@ -365,10 +422,10 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                   ),*/
                   InkWell(
                     onTap: () {
-                      widget.model.longi = latitude;
-                      widget.model.lati = longitude;
-                      widget.model.city = cityName;
-                      Navigator.pushNamed(context, "/countDown");
+                      // widget.model.longi = latitude;
+                      // widget.model.lati = longitude;
+                      // widget.model.city = cityName;
+                      callHelpBtn();
                     },
                     child: Container(
                       width: size.width,

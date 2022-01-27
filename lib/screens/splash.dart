@@ -48,7 +48,7 @@ class _SplashScreenState extends State<SplashScreen> {
   var phnNostr, passWordstr;
   String selectedLan = "";
   String androidVersion;
-  String iosVersion = "2.0.0";
+  String iosVersion;
 
   /*@override
   void initState() {
@@ -69,9 +69,9 @@ class _SplashScreenState extends State<SplashScreen> {
     //getVersion();
     fetchLocalData();
     isFirstTimes();
-    if(Platform.isAndroid){
+    // if(Platform.isAndroid){
       _initPackageInfo();
-    }
+    
     
 
     // callResourceTimer();
@@ -296,8 +296,9 @@ class _SplashScreenState extends State<SplashScreen> {
               child: Align(
                 alignment: Alignment.bottomCenter,
                 child: Text(
-                  Platform.isAndroid?
-                  ("Version: "+ _packageInfo.version):("Version: "+ "2.0.0"),
+                  // Platform.isAndroid?
+                  _packageInfo.version,
+                  // ("Version: "+ "2.1.2"):("Version: "+ "2.0.0"),
                   style: TextStyle(
                       color: AppData.kPrimaryColor,
                       fontSize: 15.0,
@@ -370,7 +371,7 @@ class _SplashScreenState extends State<SplashScreen> {
       });
     }*/
     }catch(e){
-      log("Error>>>>"+e.getMessage());
+      // log("Error>>>>"+e.getMessage());
       _exitApp();
     }
   }
@@ -473,7 +474,7 @@ class _SplashScreenState extends State<SplashScreen> {
         //////////////////////////////////////////////////////////
       }
     }catch(e){
-      log("Error>>>>"+e.getMessage());
+      // log("Error>>>>"+e.getMessage());
       _exitApp();
     }
 
