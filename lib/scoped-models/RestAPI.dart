@@ -583,10 +583,8 @@ class RestAPI extends Model with PassData{
       // fun(failedMap);
       if(e.response.statusCode==401 && e.response.data.containsKey("error") && e.response.data["error"]=="Unauthorized"){
         // application.logoutCallBack;
-        FirebaseMessaging.instance
-            .unsubscribeFromTopic(loginResponse1.body.user);
-        FirebaseMessaging.instance
-            .unsubscribeFromTopic(loginResponse1.body.userMobile);
+        FirebaseMessaging.instance.unsubscribeFromTopic(loginResponse1.body.user);
+        FirebaseMessaging.instance.unsubscribeFromTopic(loginResponse1.body.userMobile);
         sharedPref.save(Const.IS_LOGIN, false.toString());
         sharedPref.save(Const.IS_REGISTRATION, false.toString());
         sharedPref.remove(Const.IS_REGISTRATION);
@@ -595,8 +593,7 @@ class RestAPI extends Model with PassData{
         sharedPref.remove(Const.IS_REG_SERVER);
         sharedPref.remove(Const.MASTER_RESPONSE);
         AppData.showInSnackDone(Const.navigatorKey.currentContext, "Session Logged out");
-        Navigator.of(Const.navigatorKey.currentContext)
-            .pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
+        Navigator.of(Const.navigatorKey.currentContext).pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
       }else {
         fun(failedMap);
       }

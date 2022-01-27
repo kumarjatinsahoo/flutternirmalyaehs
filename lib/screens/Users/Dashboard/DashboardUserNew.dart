@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -12,6 +13,7 @@ import 'package:intl/intl.dart';
 import 'package:pageview_indicator_plugins/pageview_indicator_plugins.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:unique_identifier/unique_identifier.dart';
 import 'package:user/localization/application.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/LoginResponse1.dart';
@@ -21,6 +23,7 @@ import 'package:user/providers/Const.dart';
 import 'package:user/providers/SharedPref.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/scoped-models/MainModel.dart';
+import 'package:user/widgets/MyWidget.dart';
 import '../../../main.dart';
 import '../../../providers/app_data.dart';
 
@@ -45,6 +48,12 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
   UserDashboardModel userDashboardModel;
   bool isDataNotAvail = false;
   news. NewsupdateModel newsupdatemodel;
+  String  identifier;
+  String  deviceid;
+  DateFormat dateFormat = DateFormat("yyyy-MM-dd HH:mm:ss");
+  dynamic currentTime = DateFormat.jm().format(DateTime.now());
+  DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+
 //List<String>imageSliders;
   static final List<String> languageCodesList =
       application.supportedLanguagesCodes;
@@ -99,12 +108,15 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
 
     callApi();
     callNewsApi();
+    // deviceInfoo();
+    // deviceInfooo();
+    //sendDeviceInfo();
 
     /*if(loginResponse1.body.userPic==null){
       callProfApi();
     }
 */
-    FirebaseMessaging.instance
+    /*FirebaseMessaging.instance
         .getInitialMessage()
         .then((RemoteMessage message) {
       if (message != null) {
@@ -140,7 +152,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
       print('A new onMessageOpenedApp event was published!');
       Navigator.pushNamed(context, '/aboutus');
-    });
+    });*/
   }
 
   /*callProfApi() {
@@ -214,20 +226,18 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
     widget.model.GETMETHODCALL(
         api: ApiFactory.NEWSUPDATE_VIEW,
         fun: (Map<String, dynamic> map) {
-          setState(() {
-            log("Json Response>>>" + JsonEncoder().convert(map));
-            String msg = map[Const.MESSAGE];
+
+            // log("Json Response>>>" + JsonEncoder().convert(map));
+            // String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
               // pocReportModel = PocReportModel.fromJson(map);
-              newsupdatemodel = news.NewsupdateModel.fromJson(map);
-
-            } else {
               setState(() {
-                //isDataNoFound = true;
-                // AppData.showInSnackBar(context, msg);
+              newsupdatemodel = news.NewsupdateModel.fromJson(map);
               });
+            } else {
+
             }
-          });
+
         });
   }
 
@@ -1328,6 +1338,57 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
       ),
     );
   }
+
+  sendDeviceInfo() {
+    Map<String, dynamic> postmap = {
+      "userId" : widget.model.user,
+      "imeiNo" : identifier,
+      "version" :"2.1.2",
+      "deviceId" : deviceid,
+      "activityDate": "18-12-2021",
+      "activityTime" :  currentTime,
+      "type" :"LOGIN",
+      "status" :"SUCCESS",
+      "deviceToken" :widget.model.activitytoken
+
+    };
+
+    log("Print data>>>>"+jsonEncode(postmap));
+    MyWidgets.showLoading(context);
+    widget.model.POSTMETHOD1(
+      //api: ApiFactory.POST_APPOINTMENT,
+        api: ApiFactory.POST_ACTIVITYLOG,
+        token: widget.model.token,
+        json: postmap,
+        fun: (Map<String, dynamic> map) {
+          Navigator.pop(context);
+          log("Json Response activity log>>"+jsonEncode(map));
+          if (map["code"] == Const.SUCCESS) {
+            AppData.showInSnackDone(context, map[Const.MESSAGE]);
+            //AppData.showInSnackBar(context, "Chenai server hela");
+            // postmap["appointid"]=map["aptid"];
+            //sendLocalServer(postmap);
+          } else {
+            AppData.showInSnackBar(context, map[Const.MESSAGE]);
+          }
+        });
+
+  }
+
+  deviceInfoo () async {
+    identifier =await UniqueIdentifier.serial;
+    print("ideeennttiiiffieerr"+identifier);
+
+  }
+
+  deviceInfooo () async {
+    AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+    print('Running on ${androidInfo.model}');
+    deviceid=androidInfo.androidId;
+    // e.g. "Moto G (4)"
+
+  }
+
 }
 
 class MyPage1Widget extends StatelessWidget {

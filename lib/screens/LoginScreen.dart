@@ -1,7 +1,13 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
+import 'dart:io';
 import 'dart:math' as math;
+import 'package:device_info_plus/device_info_plus.dart';
+import 'package:package_info/package_info.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:intl/intl.dart';
+import 'package:unique_identifier/unique_identifier.dart';
 import 'package:user/localization/application.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/LoginResponse1.dart';
@@ -17,6 +23,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'dart:async';
 
 class LoginScreen extends StatefulWidget {
   final MainModel model;
@@ -57,6 +65,12 @@ class _LoginScreenState extends State<LoginScreen> {
     languageCodesList[2]: languagesList[3],
     languageCodesList[3]: languagesList[3],
   };
+  PackageInfo _packageInfo = PackageInfo(
+    appName: 'Unknown',
+    packageName: 'Unknown',
+    version: 'Unknown',
+    buildNumber: 'Unknown',
+  );
 
   void _update(Locale locale) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
@@ -64,10 +78,23 @@ class _LoginScreenState extends State<LoginScreen> {
     application.onLocaleChanged(locale.toString());
   }
 
+  // String  identifier;
+  String deviceid;
+  DateFormat dateFormat = DateFormat("yyyy-MM-dd HH:mm:ss");
+  dynamic currentTime = DateFormat.jm().format(DateTime.now());
+
+  /* var now = new DateTime.now();
+  DateFormat formatter1 = new DateFormat('dd-MM-yyyy');
+  String formattedDate = formatter1.format(now);
+*/
   bool isLoginLoading = false;
 
   SharedPref sharedPref = SharedPref();
   bool isPassShow = true;
+
+  // String deviceid = await DeviceId.getID  ;
+  // String deviceid = await DeviceId.getID;
+  DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
 
   int minNumber = 1000;
   int maxNumber = 6000;
@@ -80,39 +107,83 @@ class _LoginScreenState extends State<LoginScreen> {
 
   var pin;
   String token = "";
+  String imei = "";
+  String formattedDate;
 
   master.MasterLoginResponse masterResponse;
+
+// String imeiNo = await DeviceInformation.deviceIMEINumber;
 
   @override
   void initState() {
     super.initState();
-    //FirebaseMessaging.instance.unsubscribeFromTopic("topic")
-    /* WidgetsBinding.instance.addPostFrameCallback((_) async {
-      _controller = VideoPlayerController.asset(
-        'raw/video_pop.mp4',
-      );
-
-      _controller.addListener(() {
-        setState(() {});
-      });
-      _controller.setLooping(false);
-      _controller.initialize().then((_) => setState(() {
-        _controller.play();
-      }));
-      _controller.play();
-
-      showVideo(context);
-    });*/
+    var now = new DateTime.now();
+    var formatter = new DateFormat('dd-MM-yyyy');
+    formattedDate = formatter.format(now);
+    // print(formattedDate);
     tokenCall();
+    getDeviceSerialNumber();
+    _initPackageInfo();
+  }
+
+  Future<void> _initPackageInfo() async {
+    if (Platform.isAndroid) {
+      final PackageInfo info = await PackageInfo.fromPlatform();
+      setState(() {
+        _packageInfo = info;
+      });
+    }
+  }
+
+  Future<String> getDeviceSerialNumber() async {
+    final DeviceInfoPlugin deviceInfoPlugin = new DeviceInfoPlugin();
+    try {
+      if (Platform.isAndroid) {
+        var build = await deviceInfoPlugin.androidInfo;
+        // deviceName = build.model;
+        // deviceVersion = build.version.toString();
+        // identifier = build.androidId;  //UUID for Android
+        setState(() {
+          // deviceid=build.model;
+          imei = build.androidId;
+        });
+      } else if (Platform.isIOS) {
+        var data = await deviceInfoPlugin.iosInfo;
+        // deviceName = data.name;
+        // deviceVersion = data.systemVersion;
+        // identifier = data.identifierForVendor;  //UUID for iOS
+        setState(() {
+          // deviceid=data.name;
+          imei = data.identifierForVendor;
+        });
+      }
+    } on PlatformException {
+      print('Failed to get platform version');
+    }
+  }
+
+  deviceInfooo() async {
+    if (Platform.isAndroid) {
+      AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+      print('Running on ${androidInfo.model}');
+      deviceid = androidInfo.androidId;
+    }
+    // e.g. "Moto G (4)"
   }
 
   tokenCall() {
-    FirebaseMessaging.instance.onTokenRefresh.listen((event) {
+    FirebaseMessaging.instance.getToken().then((value) {
+      String token = value;
+      print("token dart locale>>>" + token);
+      widget.model.activitytoken = token;
+      //sendDeviceInfo();
+    });
+    /*FirebaseMessaging.instance.onTokenRefresh.listen((event) {
       setState(() {
         token = event;
         log(">>>>>>>>Token>>>>>>>" + token);
       });
-    });
+    });*/
   }
 
   @override
@@ -321,52 +392,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     ]),
               ),
             ),
-            // Positioned(
-            //   top: 170,
-            //   //right: 30,
-            //   child: Container(
-            //     width: size.width,
-            //     height: 60,
-            //     padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-            //     margin: EdgeInsets.only(top: 30.0),
-            //     decoration: BoxDecoration(
-            //       // color: Colors.grey.withOpacity(0.5),
-            //       borderRadius: BorderRadius.circular(0),
-            //     ),
-            //     child: Row(
-            //       mainAxisAlignment: MainAxisAlignment.end,
-            //       children: <Widget>[
-            //         Container(
-            //           padding: EdgeInsets.symmetric(horizontal: 5, vertical: 2),
-            //           alignment: Alignment.center,
-            //           child: DropdownButtonHideUnderline(
-            //             child: DropdownButton<String>(
-            //               value: AppData.selectedLanguage,
-            //               isDense: true,
-            //               onChanged: (newValue) {
-            //                 setState(() {
-            //                   AppData.setSelectedLan(newValue);
-            //                   _update(Locale(languagesMap[newValue]));
-            //                 });
-            //                 print(AppData.selectedLanguage);
-            //               },
-            //               items: languagesList.map((String value) {
-            //                 return DropdownMenuItem<String>(
-            //                   value: value,
-            //                   child: Text(
-            //                     value,
-            //                     style: TextStyle(color: Colors.black),
-            //                     textAlign: TextAlign.center,
-            //                   ),
-            //                 );
-            //               }).toList(),
-            //             ),
-            //           ),
-            //         ),
-            //       ],
-            //     ),
-            //   ),
-            // ),
             isLoginLoading
                 ? Stack(
                     children: [
@@ -593,13 +618,9 @@ class _LoginScreenState extends State<LoginScreen> {
           Navigator.pop(context);
           log("Respomnse for role>>>>>" + jsonEncode(map));
           if (map["code"] == "success") {
-            sharedPref.save(Const.LOGIN_phoneno, _loginId.text);
-            sharedPref.save(Const.LOGIN_password, passController.text);
+            // sharedPref.save(Const.LOGIN_phoneno, _loginId.text);
+            // sharedPref.save(Const.LOGIN_password, passController.text);
             LoginResponse1 loginResponse = LoginResponse1();
-            /*FirebaseMessaging.instance.subscribeToTopic(loginResponse.body.user);
-            FirebaseMessaging.instance.subscribeToTopic(loginResponse.body.userMobile);*/
-            // FirebaseMessaging.instance.subscribeToTopic(loginResponse.body.userMobile);
-            // loginResponse.acceptValue(data[i]);
             Body body = Body();
             body.user = data.user;
             body.userName = data.userName;
@@ -621,8 +642,12 @@ class _LoginScreenState extends State<LoginScreen> {
             widget.model.setLoginData1(loginResponse);
             sharedPref.save(Const.IS_LOGIN, "true");
 
-        FirebaseMessaging.instance.subscribeToTopic(data.user);
-        FirebaseMessaging.instance.subscribeToTopic(data.userMobile);
+            FirebaseMessaging.instance.subscribeToTopic(data.user);
+            FirebaseMessaging.instance.subscribeToTopic(data.userMobile);
+
+
+            sendDeviceInfo("SUCCESS",userId);
+
 
             if (map["body"]["roleid"] == "1".toLowerCase()) {
               Navigator.of(context).pushNamedAndRemoveUntil(
@@ -683,88 +708,101 @@ class _LoginScreenState extends State<LoginScreen> {
                 log("LOGIN RESPONSE>>>>" + jsonEncode(map));
                 //AppData.showInSnackBar(context, map[Const.MESSAGE]);
                 if (map[Const.CODE] == Const.SUCCESS) {
-                  /*widget.model.phnNo = _loginId.text;
-                  widget.model.passWord = passController.text ;*/
-                  FirebaseMessaging.instance.getToken().then((value) {
-                    String token = value;
-                    print("token dart locale>>>" + token);
-
-                  });
                   setState(() {
                     widget.model.phnNo = _loginId.text;
                     widget.model.passWord = passController.text;
                     masterResponse = master.MasterLoginResponse.fromJson(map);
+                    widget.model.user = masterResponse.body[0].user;
+
+                    /*FirebaseMessaging.instance.getToken().then((value) {
+                      String token = value;
+                      print("token dart locale>>>" + token);
+                      widget.model.activitytoken=token;
+
+
+                    });*/
+
                     showDialog(
                       context: context,
                       builder: (BuildContext context) =>
                           dialogUserView(context, masterResponse.body),
                     );
-                    /* sharedPref.save(Const.LOGIN_phoneno, _loginId.text);
-                    sharedPref.save(Const.LOGIN_password, passController.text);
-                    LoginResponse1 loginResponse = LoginResponse1.fromJson(map);
-                    widget.model.token = loginResponse.body.token;
-                    widget.model.user = loginResponse.body.user;
-                    sharedPref.save(Const.LOGIN_DATA, loginResponse);
-                    widget.model.setLoginData1(loginResponse);
-                    sharedPref.save(Const.IS_LOGIN, "true");
 
-                    FirebaseMessaging.instance
-                        .subscribeToTopic(loginResponse.body.user);
-                    FirebaseMessaging.instance
-                        .subscribeToTopic(loginResponse.body.userMobile);
+                   /* Map<String, dynamic> postmap = {
+                      "userId": widget.model.user,
+                      "imeiNo": imei,
+                      "version": Platform.isAndroid
+                          ? _packageInfo.version
+                          : Const.IOS_VERSION,
+                      "deviceId": deviceid,
+                      "activityDate": *//*"26-1-2021"*//* formattedDate,
+                      "activityTime": currentTime,
+                      "type": "LOGIN",
+                      "status": "SUCCESS",
+                      "deviceToken": widget.model.activitytoken
+                    };
 
-                    /////By Sanjaya
-                    //Role 8- Lab Technician
-                    //Role 7- Pharmacy
-                    //Role 1- User
-                    //Role 12- Ambulance
-                    //Role 13- Blood bank
-                    //Role 15- NGO
-                    //Role 2- Doctor
-                    //Role 5- Reception
-                    //Role 22- syndicate partner
-
-                    if (loginResponse.body.roles[0] == "1".toLowerCase()) {
-                      Navigator.of(context).pushNamedAndRemoveUntil(
-                          '/dashboard', (Route<dynamic> route) => false);
-                    } else if (loginResponse.body.roles[0] ==
-                        "2".toLowerCase()) {
-                      Navigator.of(context).pushNamedAndRemoveUntil(
-                          '/dashDoctor', (Route<dynamic> route) => false);
-                    } else if (loginResponse.body.roles[0] ==
-                        "5".toLowerCase()) {
-                      Navigator.of(context).pushNamedAndRemoveUntil(
-                          '/dashboardreceptionlist',
-                          (Route<dynamic> route) => false);
-                    } else if (loginResponse.body.roles[0] ==
-                        "7".toLowerCase()) {
-                      Navigator.of(context).pushNamedAndRemoveUntil(
-                          '/dashboardpharmacy',
-                          (Route<dynamic> route) => false);
-                    } else if (loginResponse.body.roles[0] ==
-                        "8".toLowerCase()) {
-                      Navigator.of(context).pushNamedAndRemoveUntil(
-                          '/labDash', (Route<dynamic> route) => false);
-                    } else if (loginResponse.body.roles[0] ==
-                        "12".toLowerCase()) {
-                      Navigator.of(context).pushNamedAndRemoveUntil(
-                          '/ambulancedash', (Route<dynamic> route) => false);
-                    } else if (loginResponse.body.roles[0] ==
-                        "13".toLowerCase()) {
-                      Navigator.of(context).pushNamedAndRemoveUntil(
-                          '/bloodBankDashboard',
-                          (Route<dynamic> route) => false);
-                    } else {
-                      AppData.showInSnackBar(context, "No Role Assign");
-                    }*/
+                    log("Print data>>>>" + jsonEncode(postmap));
+                    MyWidgets.showLoading(context);
+                    widget.model.POSTMETHOD(
+                        //api: ApiFactory.POST_APPOINTMENT,
+                        api: ApiFactory.POST_ACTIVITYLOG,
+                        //token: widget.model.token,
+                        json: postmap,
+                        fun: (Map<String, dynamic> map) {
+                          Navigator.pop(context);
+                          log("Json Response activity log>>" + jsonEncode(map));
+                          if (map["code"] == Const.SUCCESS) {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) =>
+                                  dialogUserView(context, masterResponse.body),
+                            );
+                          } else {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) =>
+                                  dialogUserView(context, masterResponse.body),
+                            );
+                            Navigator.pop(context);
+                            AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                          }
+                        });*/
                   });
                 } else {
                   AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                  String failed = "FAILED";
+                  sendDeviceInfo(failed,_loginId.text);
                 }
               });
         }
       },
     );
+  }
+
+  sendDeviceInfo(String sTATUS,data) {
+    Map<String, dynamic> postmap = {
+      "userId": data,
+      "imeiNo": imei??"",
+      "version": Platform.isAndroid ? _packageInfo.version : Const.IOS_VERSION,
+      "deviceId": deviceid??"",
+      "activityDate": /*"26-1-2021"*/ formattedDate,
+      "activityTime": currentTime,
+      "type": "LOGIN",
+      "status": sTATUS,
+      "deviceToken": widget.model.activitytoken
+    };
+
+    // log("Print data>>>>" + jsonEncode(postmap));
+    // MyWidgets.showLoading(context);
+    widget.model.POSTMETHOD(
+        //api: ApiFactory.POST_APPOINTMENT,
+        api: ApiFactory.POST_ACTIVITYLOG,
+        //token: widget.model.token,
+        json: postmap,
+        fun: (Map<String, dynamic> map) {
+
+        });
   }
 
   Widget _otpButton() {
@@ -787,21 +825,43 @@ class _LoginScreenState extends State<LoginScreen> {
                 log("LOGIN RESPONSE>>>>" + jsonEncode(map));
                 //AppData.showInSnackBar(context, map[Const.MESSAGE]);
                 if (map[Const.CODE] == Const.SUCCESS) {
-                  setState(() {
-                    masterResponse = master.MasterLoginResponse.fromJson(map);
-                   // LoginResponse1 loginResponse = LoginResponse1.fromJson(map);
-                    // widget.model.loginData=loginResponse;
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (BuildContext context) => PinView(
-                            masterLoginResponse: masterResponse,
-                                model: widget.model,
-                              )),
-                    );
-                  });
+                  masterResponse = master.MasterLoginResponse.fromJson(map);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => PinView(
+                              masterLoginResponse: masterResponse,
+                              model: widget.model,
+                          token: widget.model.activitytoken,
+                            )),
+                  );
                 } else {
-                  AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                  // masterResponse = master.MasterLoginResponse.fromJson(map);
+                  Map<String, dynamic> postmap = {
+                    "userId": _loginId.text,
+                    "imeiNo": imei ?? "",
+                    "version": Platform.isAndroid
+                        ? _packageInfo.version
+                        : Const.IOS_VERSION,
+                    "deviceId": deviceid ?? "",
+                    "activityDate": /*"26-1-2021"*/ formattedDate,
+                    "activityTime": currentTime,
+                    "type": "LOGIN",
+                    "status": "FAILED",
+                    "deviceToken": widget.model.activitytoken
+                  };
+                  widget.model.POSTMETHOD(
+                      api: ApiFactory.POST_ACTIVITYLOG,
+                      json: postmap,
+                      fun: (Map<String, dynamic> map) {
+                        // Navigator.pop(context);
+                        log("Json Response activity log>>" + jsonEncode(map));
+                      });
+                  AppData.showInSnackBar(
+                      context,
+                      map.containsKey([Const.MESSAGE])
+                          ? map[Const.MESSAGE]
+                          : "Data Not Found");
                 }
               });
           // widget.model.phnNo = _loginId.text;
@@ -936,8 +996,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         Divider(),
                         ListTile(
-                          title: Center(child: Text(MyLocalizations.of(context)
-                                         .text("RECEPTIONIST"))),
+                          title: Center(
+                              child: Text(MyLocalizations.of(context)
+                                  .text("RECEPTIONIST"))),
                           // leading: Icon(
                           //   CupertinoIcons.calendar_today,
                           //   size: 40,
@@ -952,8 +1013,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         Divider(),
                         ListTile(
-                          title: Center(child: Text(MyLocalizations.of(context)
-                              .text("SYNDICATE_PARTNER"))),
+                          title: Center(
+                              child: Text(MyLocalizations.of(context)
+                                  .text("SYNDICATE_PARTNER"))),
                           // leading: Icon(
                           //   CupertinoIcons.calendar_today,
                           //   size: 40,
@@ -998,7 +1060,8 @@ class _LoginScreenState extends State<LoginScreen> {
       },
     );
     Widget noButton = TextButton(
-      child: Text(MyLocalizations.of(context).text("NO"), style: TextStyle(color: AppData.kPrimaryRedColor)),
+      child: Text(MyLocalizations.of(context).text("NO"),
+          style: TextStyle(color: AppData.kPrimaryRedColor)),
       onPressed: () {
         Navigator.pop(context);
         // Navigator.pop(context);
@@ -1007,7 +1070,8 @@ class _LoginScreenState extends State<LoginScreen> {
       },
     );
     Widget continueButton = TextButton(
-      child: Text(MyLocalizations.of(context).text("YES"), style: TextStyle(color: AppData.matruColor)),
+      child: Text(MyLocalizations.of(context).text("YES"),
+          style: TextStyle(color: AppData.matruColor)),
       onPressed: () {
         Navigator.pop(context);
         //Navigator.pop(context);

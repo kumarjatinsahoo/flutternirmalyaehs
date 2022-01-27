@@ -322,8 +322,8 @@ class _SplashScreenState extends State<SplashScreen> {
     try {
       login = await sharedPref.getKey(Const.IS_LOGIN);
       loginData = await sharedPref.getKey(Const.LOGIN_DATA);
-      phnNostr = await sharedPref.getKey(Const.LOGIN_phoneno);
-      passWordstr = await sharedPref.getKey(Const.LOGIN_password);
+      // phnNostr = await sharedPref.getKey(Const.LOGIN_phoneno);
+      // passWordstr = await sharedPref.getKey(Const.LOGIN_password);
       masterResponse = await sharedPref.getKey(Const.MASTER_RESPONSE);
       bool isMultiUser = (masterResponse != null) ? true : false;
 
@@ -334,8 +334,8 @@ class _SplashScreenState extends State<SplashScreen> {
         _exitApp();
       }
 
-      String phnNostr1 = phnNostr.replaceAll("\"", "");
-      String passWordstr1 = passWordstr.replaceAll("\"", "");
+      // String phnNostr1 = phnNostr.replaceAll("\"", "");
+      // String passWordstr1 = passWordstr.replaceAll("\"", "");
 
       //passWordstr = await sharedPref. getValue() ;
       /*if (login != null && login.replaceAll("\"", "") == "true") {
@@ -370,7 +370,7 @@ class _SplashScreenState extends State<SplashScreen> {
       });
     }*/
     }catch(e){
-     // log("Error>>>>"+e.getMessage());
+      log("Error>>>>");
       _exitApp();
     }
   }
@@ -388,7 +388,7 @@ class _SplashScreenState extends State<SplashScreen> {
     sharedPref.remove(Const.LOGIN_DATA);
     sharedPref.remove(Const.IS_REG_SERVER);
     sharedPref.remove(Const.MASTER_RESPONSE);
-    Navigator.of(context)
+    Navigator.of(Const.navigatorKey.currentContext)
         .pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
   }
 

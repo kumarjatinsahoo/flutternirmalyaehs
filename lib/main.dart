@@ -57,6 +57,7 @@ import 'package:user/screens/Users/BookBloodBank/BookBloodBanklist.dart';
 import 'package:user/screens/Users/Dashboard/ChangePassword.dart';
 import 'package:user/screens/Users/Dashboard/QrcodePage.dart';
 import 'package:user/screens/Users/Dashboard/TermsandConditionPage.dart';
+import 'package:user/screens/Users/FindHealthCare/MedicalService/AyushDoctors/MedicalServiceOngooglePagenew.dart';
 import 'package:user/screens/Users/GovermentSchemes/GovermentSchemesDitelsPage.dart';
 import 'package:user/screens/Users/GovermentSchemes/GovernmentSchemesList.dart';
 import 'package:user/screens/Pharmacists/screens/OrdersTabPharmacy.dart';
@@ -106,6 +107,7 @@ import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/DocumentList.d
 import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/UploadDocumentTab.dart';
 import 'package:user/screens/Users/Preventivehealthcare/PreventiveHealthCare.dart';
 import 'package:user/screens/Users/organ/OrganCardPage.dart';
+import 'notification/MedReminder.dart';
 import 'screens/Syndicate Partner/Dashboard/SyndicateDashboard.dart';
 import 'screens/Syndicate Partner/Registration/Syndicatepartner.dart';
 import 'screens/Users/MyMedicalRecord/HealthChat1/HealthChart.dart';
@@ -254,8 +256,9 @@ import 'screens/Users/Dashboard/DashboardUserNew.dart';
 String selectedLan;
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  await Firebase.initializeApp();
-  log('Handling a background message ${message.messageId}');
+  // await Firebase.initializeApp(options: );
+  log('Handling a background message ${message}');
+  print('Handling a background message ${message.messageId}');
   //print('Handling a background message ${message.messageId}');
   //LocalNotificationService.initialize(context);
 }
@@ -331,15 +334,17 @@ class _MyAppState extends State<MyApp> {
     // application.logoutCallBack = logouCallBack;
     ////tokem=FirebaseMessaging.instance.getToken(vapidKey: "");
 
-    /* FirebaseMessaging.instance
+     FirebaseMessaging.instance
         .getInitialMessage()
         .then((RemoteMessage message) {
       if (message != null) {
+        print('NARMADA1 ' + message.toString());
         Navigator.pushNamed(context, '/aboutus');
       }
     });
 
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      print('+++++++++++++++++++ ' + message.toString());
       RemoteNotification notification = message.notification;
       AndroidNotification android = message.notification?.android;
       if (notification != null && android != null && !kIsWeb) {
@@ -363,7 +368,7 @@ class _MyAppState extends State<MyApp> {
         //AppData.showInSnackBar(context, "Dataa");
       }
     });
-
+/*
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
       print('A new onMessageOpenedApp event was published!');
       Navigator.pushNamed(context, '/aboutus');
@@ -407,7 +412,6 @@ class _MyAppState extends State<MyApp> {
       selectedLan = locale;
     });
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -829,7 +833,7 @@ class _MyAppState extends State<MyApp> {
                     model: _model,
                   ),
               '/medicalsServiceOngooglePage': (context) =>
-                  MedicalsServiceOngooglePage(
+                  MedicalServiceOngooglePagenew(
                     model: _model,
                   ),
               '/googleSearch': (context) => GoogleSearchDetails(
@@ -1178,6 +1182,10 @@ class _MyAppState extends State<MyApp> {
               '/preventivehealthcare': (context) =>
                   PreventiveHealthCare(
                //     model: _model,
+                  ),
+              '/MedReminder': (context) =>
+                  MedReminder(
+                   model: _model,
                   ),
             },
             localizationsDelegates: [
