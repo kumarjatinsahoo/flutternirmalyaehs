@@ -4209,7 +4209,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           controller: textEditingController[index],
           textAlignVertical: TextAlignVertical.center,
           inputFormatters: [
-            WhitelistingTextInputFormatter(RegExp("[a-zA-Z.]")),
+            WhitelistingTextInputFormatter(RegExp("[a-z A-Z.]")),
           ],
         ),
       ),
@@ -4421,9 +4421,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
               inputFormatters: [
                 UpperCaseTextFormatter(),
-                WhitelistingTextInputFormatter(RegExp("[a-zA-Z0-9 ]")),
+                WhitelistingTextInputFormatter(RegExp("[a-zA-Z0-9 -]")),
               ],
-              maxLength: 10,
+              //maxLength: 10,
               // Validator.getKeyboardTyp(validateModel.fieldType.toLowerCase()),
               style: TextStyle(fontSize: 15),
 
