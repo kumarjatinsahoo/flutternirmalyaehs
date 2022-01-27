@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
+import 'package:showcaseview/showcaseview.dart';
 import 'package:user/localization/application.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/AddBioMedicalModel.dart';
@@ -116,6 +117,8 @@ class _ImmunizationState extends State<Immunization> {
     }
   }
 
+  GlobalKey _one = GlobalKey();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -132,9 +135,14 @@ class _ImmunizationState extends State<Immunization> {
                   displayTextInputDialog(context);
                    // application.logoutCallBack();
                 },
-                child: Icon(
-                  Icons.add_circle_outline_sharp,
-                  size: 26.0,
+                child: Showcase(
+                  key: _one,
+                  title: 'Add',
+                  description: 'Click here to see menu options',
+                  child: Icon(
+                    Icons.add_circle_outline_sharp,
+                    size: 26.0,
+                  ),
                 ),
               ),
             ),
