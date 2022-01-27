@@ -7,6 +7,7 @@ import 'package:flutter_sms/flutter_sms.dart';
 
 import 'package:geolocator/geolocator.dart' as loca;
 import 'package:geolocator/geolocator.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:user/models/EmergencyHelpModel.dart';
 import 'package:user/models/ResultsServer.dart';
 import 'package:user/providers/Const.dart';
@@ -27,7 +28,7 @@ class Countdown extends AnimatedWidget {
   @override
   build(BuildContext context) {
     return new Text(
-      (animation.value.toString() == "0") ? "SENT" : animation.value.toString(),
+      (animation.value.toString() == "0") ? "" : animation.value.toString(),
       style: new TextStyle(
           fontSize: (animation.value.toString() == "0") ? 100 : 150.0,
           color: AppData.kPrimaryRedColor,
@@ -78,37 +79,95 @@ class _CountDownPageState extends State<CountDownPage>
     );
    print('+++++++++++++++= ' + ApiFactory.googleMapUrl(lati:widget.model.longi ,longi: widget.model.lati));
     _controller.forward(from: 0.0).whenComplete(() {
-      _sendSMS("Hi this is "+loginResponse1.body.userName+", eHealthSystem Emergency Alert! I need help. My Location is "+ApiFactory.googleMapUrl(lati:widget.model.longi ,longi: widget.model.lati), userMobList);
+       callHelpBtn();
+      // _sendSMS("Hi this is "+loginResponse1.body.userName+", eHealthSystem Emergency Alert! I need help. My Location is "+ApiFactory.googleMapUrl(lati:widget.model.longi ,longi: widget.model.lati), userMobList);
       //callAPI();
+     
     }
     );
   }
 
-
-  callAPI() {
-    MyWidgets.showLoading(context);
-    widget.model.GETMETHODCALL_TOKEN(
-        api: ApiFactory.SMS_TO_EMERGENCY +
-            widget.model.user +
-            "&longi=" +
-            widget.model.longi +
-            "&lati=" +
-            widget.model.lati+"&mapurl=",
+  callHelpBtn() {    
+    Map<String, dynamic> postmap = {
+      "userid" : loginResponse1.body.user,
+      "mapurl" : ApiFactory.googleMapUrl(lati:widget.model.lati ,longi: widget.model.longi)
+    };     
+      widget.model.POSTMETHOD_TOKEN(
+        api: ApiFactory.EMERGENCY_HELP_NEW,   
         token: widget.model.token,
+        json: postmap,
         fun: (Map<String, dynamic> map) {
-           Navigator.pop(context);
-          // Navigator.pop(context);
-          String msg = map[Const.MESSAGE];
-          if (map["status"] == "success") {
-            setState(() {
-              AppData.showInSnackDone(context, msg);
-            });
-          } else {
-            // isDataNotAvail = true;
-            AppData.showInSnackBar(context, msg);
-          }
+          print("Value is>>>>" + JsonEncoder().convert(map));
+          setState(() {
+            String msg = map[Const.MESSAGE];
+            if (map[Const.STATUS1] == Const.SUCCESS) {
+              emergencyHelpModel = EmergencyHelpModel.fromJson(map);
+             popup(map[Const.MESSAGE],context);
+              // AppData.showInSnackDone(context, msg);
+            
+            } else {
+              popup(map[Const.MESSAGE],context);
+              // isDataNotAvail = true;
+               AppData.showInSnackBar(context, msg);
+            }
+          });
         });
+   
   }
+   popup(String msg, BuildContext context) {
+    return Alert(
+        context: context,
+        title: "",
+        desc: msg,
+        type: AlertType.success,
+        onWillPopActive: true,
+        closeIcon: Icon(
+          Icons.info,
+          color: Colors.transparent,
+        ),
+        //image: Image.asset("assets/success.png"),
+        closeFunction: () {},
+        buttons: [
+          DialogButton(
+            child: Text(
+              "OK",
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+            onPressed: () {
+              Navigator.pop(context, true);
+              Navigator.pop(context, true);
+               Navigator.pop(context, true);
+            },
+            color: Color.fromRGBO(0, 179, 134, 1.0),
+            radius: BorderRadius.circular(0.0),
+          ),
+        ]).show();
+  }
+
+  // callAPI() {
+  //   MyWidgets.showLoading(context);
+  //   widget.model.GETMETHODCALL_TOKEN(
+  //       api: ApiFactory.SMS_TO_EMERGENCY +
+  //           widget.model.user +
+  //           "&longi=" +
+  //           widget.model.longi +
+  //           "&lati=" +
+  //           widget.model.lati+"&mapurl=",
+  //       token: widget.model.token,
+  //       fun: (Map<String, dynamic> map) {
+  //          Navigator.pop(context);
+  //         // Navigator.pop(context);
+  //         String msg = map[Const.MESSAGE];
+  //         if (map["status"] == "success") {
+  //           setState(() {
+  //             AppData.showInSnackDone(context, msg);
+  //           });
+  //         } else {
+  //           // isDataNotAvail = true;
+  //           AppData.showInSnackBar(context, msg);
+  //         }
+  //       });
+  // }
 
   pushNotification() {
     var postData = {
