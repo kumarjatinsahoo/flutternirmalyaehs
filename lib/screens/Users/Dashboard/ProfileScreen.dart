@@ -1102,8 +1102,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           flex: 1,
                           child: Text(
                             (patientProfileModel?.body?.address ?? "N/A") +
-                                " " +
-                                (patientProfileModel?.body?.pAddress ?? "N/A"),
+                                " " + (patientProfileModel?.body?.pAddress ?? "N/A"),
                             style: TextStyle(fontSize: 14
                                 //fontWeight: FontWeight.w500,
                                 // color: AppData.kPrimaryColor,
@@ -2417,19 +2416,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
     //patientProfileModel.body.eName.toString() == null?"N/A":_eName.text =patientProfileModel.body.eName.toString();
     // patientProfileModel.body.docMobile.toString() == null?"N/A":_docMobile.text == patientProfileModel.body.docMobile;
     //textEditingController[5].text = (patientProfileModel != null)||(patientProfileModel.body.address == null)?patientProfileModel.body.address.toString(): "N/A";
-    textEditingController[1].text = patientProfileModel.body.address ?? ""+patientProfileModel.body.pAddress ?? "";
+    textEditingController[1].text = patientProfileModel.body.address ?? ""/*""+patientProfileModel.body.pAddress ?? ""*/;
     textEditingController[2].text = patientProfileModel.body.occupation ?? "";
-    textEditingController[3].text =
-        patientProfileModel.body.qualification ?? "";
-    textEditingController[4].text =
-        patientProfileModel.body.specialization ?? "";
+    textEditingController[3].text = patientProfileModel.body.qualification ?? "";
+    textEditingController[4].text = patientProfileModel.body.specialization ?? "";
     textEditingController[5].text = patientProfileModel.body.pancardno ?? "";
     textEditingController[6].text = patientProfileModel.body.passportno ?? "";
     textEditingController[7].text = patientProfileModel.body.adharno ?? "";
     textEditingController[8].text = patientProfileModel.body.votercardno ?? "";
     textEditingController[9].text = patientProfileModel.body.licenceno ?? "";
-    textEditingController[10].text =
-        patientProfileModel.body.licenceauthority ?? "";
+    textEditingController[10].text = patientProfileModel.body.licenceauthority ?? "";
     textEditingController[11].text = patientProfileModel.body.email ?? "";
     textEditingController[12].text = patientProfileModel.body.pincode ?? "";
     textEditingController[13].text = patientProfileModel.body.mobile ?? "";
@@ -2969,27 +2965,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       updateProfileModel.licenceauthority =
                           textEditingController[10].text;
                       updateProfileModel.email = textEditingController[11].text;
-                      updateProfileModel.pincode =
-                          textEditingController[12].text;
-                      updateProfileModel.mobile =
-                          textEditingController[13].text;
+                      updateProfileModel.pincode = textEditingController[12].text;
+                      updateProfileModel.mobile = textEditingController[13].text;
                       updateProfileModel.fName = textEditingController[14].text;
                       updateProfileModel.lName = textEditingController[15].text;
                       updateProfileModel.gender = ProfileScreen.gendermodel.key;
-                      updateProfileModel.countryid =
-                          ProfileScreen.countrymodel.key;
+                      updateProfileModel.countryid = ProfileScreen.countrymodel.key;
                       updateProfileModel.stateid = ProfileScreen.statemodel.key;
-                      updateProfileModel.distid =
-                          ProfileScreen.districtmodel.key;
+                      updateProfileModel.distid = ProfileScreen.districtmodel.key;
                       updateProfileModel.cityid = ProfileScreen.citymodel.key;
                       /*updateProfileModel.mobile = patientProfileModel.body.mobile;
                       updateProfileModel.fName = patientProfileModel.body.fName;
                       updateProfileModel.lName = patientProfileModel.body.lName;
                       updateProfileModel.gender = patientProfileModel.body.genderId;*/
 
-                      log("Post json>>>>" +
-                          jsonEncode(updateProfileModel.toJson()));
-
+                      log("Post json>>>>" + jsonEncode(updateProfileModel.toJson()));
                       widget.model.POSTMETHOD_TOKEN(
                           api: ApiFactory.USER_UPDATEPROFILE,
                           json: updateProfileModel.toJson(),
@@ -4219,7 +4209,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           controller: textEditingController[index],
           textAlignVertical: TextAlignVertical.center,
           inputFormatters: [
-            WhitelistingTextInputFormatter(RegExp("[a-zA-Z.]")),
+            WhitelistingTextInputFormatter(RegExp("[a-z A-Z.]")),
           ],
         ),
       ),
@@ -4431,9 +4421,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
               inputFormatters: [
                 UpperCaseTextFormatter(),
-                WhitelistingTextInputFormatter(RegExp("[a-zA-Z0-9 ]")),
+                WhitelistingTextInputFormatter(RegExp("[a-zA-Z0-9 -]")),
               ],
-              maxLength: 10,
+              //maxLength: 10,
               // Validator.getKeyboardTyp(validateModel.fieldType.toLowerCase()),
               style: TextStyle(fontSize: 15),
 
