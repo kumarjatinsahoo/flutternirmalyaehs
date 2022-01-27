@@ -145,12 +145,13 @@ class _MedicalsServiceOngooglePageState extends State<MedicalsServiceOngooglePag
     KeyvalueModel(name: "50 KM", key: 50),
   ];
   callAPI(int radius, int i) {
+    print('NARMADA ' + medicallserviceType);
     // log("API :Lati & Longi" + lati + "\n" + lati);
-    log("API CALL>>>" + ApiFactory.GOOGLE_QUERY_API(lati: lati, radius: (radius * 1000).toString(), longi: longi, healthpro: healthpro) +
+    log("API CALL>>>" + ApiFactory.GOOGLE_QUERY_API(lati: lati, longi: longi, radius: (radius * 1000).toString(), healthpro: medicallserviceType) +
         "\n\n\n");
     widget.model.GETMETHODCAL(
         api: ApiFactory.GOOGLE_QUERY_API(
-            lati: lati, longi: longi, radius: (radius * 1000).toString(), healthpro: (medicallserviceType!=null)?medicallserviceType+" "+medicallserviceType:medicallserviceType),
+            lati: lati, longi: longi, radius: (radius * 1000).toString(), healthpro: medicallserviceType),
         fun: (Map<String, dynamic> map) {
           setState(() {
             // String msg = map[Const.MESSAGE];

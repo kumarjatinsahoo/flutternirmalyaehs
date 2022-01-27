@@ -180,7 +180,7 @@ Map<String, dynamic> postData = {
         "\n\n\n");
     widget.model.GETMETHODCAL(
         api: ApiFactory.GOOGLE_QUERY_API(
-            lati: lati, longi: longi, radius: (radius * 1000).toString(), healthpro: (medicallserviceType!=null)?medicallserviceType+" "+medicallserviceType:medicallserviceType),
+            lati: lati, longi: longi, radius: (radius * 1000).toString(), healthpro: medicallserviceType),
         fun: (Map<String, dynamic> map) {
           setState(() {
             // String msg = map[Const.MESSAGE];
@@ -402,10 +402,9 @@ Map<String, dynamic> postData = {
             :  Expanded(
               child: Container(
                       child: Center(
-                        child: Text(
-                          MyLocalizations.of(context).text("NO_DATA_FOUND"),
-                          style: TextStyle(color: Colors.black, fontSize: 15),
-                        ),
+                        child:  CircularProgressIndicator(
+                backgroundColor: AppData.matruColor,
+                        )
                       ),
                     ),
             )
