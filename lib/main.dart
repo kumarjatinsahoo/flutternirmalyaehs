@@ -364,7 +364,7 @@ class _MyAppState extends State<MyApp> {
             ));
         //popup("View one",context);
 
-        Navigator.pushNamed(context, '/emergencydetails');
+        // Navigator.pushNamed(context, '/emergencydetails');
         //AppData.showInSnackBar(context, "Dataa");
       }
     });
