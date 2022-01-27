@@ -861,7 +861,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       context,
                       map.containsKey([Const.MESSAGE])
                           ? map[Const.MESSAGE]
-                          : "Data Not Found");
+                          : "Mobile number is not registered");
                 }
               });
           // widget.model.phnNo = _loginId.text;
