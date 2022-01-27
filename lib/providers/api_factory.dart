@@ -176,7 +176,7 @@ static String EMERGENCY_HELP_NEW =
 
   static String GOOGLE_QUERY_API(
       {String longi, String lati, String healthpro, String type, String rankby, String radius}) {
-    return "https://maps.googleapis.com/maps/api/place/textsearch/json?query=$healthpro&location=$lati%2C$longi&rankby=prominence&radius=$radius&key=AIzaSyD-o-8txzrqCvKZaf35i-zILm2ooG851uE";
+    return "https://maps.googleapis.com/maps/api/place/textsearch/json?query=$healthpro&location=$lati%2C$longi&radius=$radius&key=AIzaSyD-o-8txzrqCvKZaf35i-zILm2ooG851uE";
   }
   static String GOOGLE_PAGINATION_API(
       {String pagetoken}) {
