@@ -344,7 +344,7 @@ class SetReminderState extends State<SetReminder> {
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.text,
                 inputFormatters: [
-                  WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
+                  WhitelistingTextInputFormatter(RegExp("[a-zA-Z0-9- , ]")),
                 ],
               ),
             ),
