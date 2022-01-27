@@ -692,7 +692,7 @@ class SetReminderState extends State<SetReminder> {
       setReminderModel.userId=loginResponse.body.user;
       setReminderModel.medType=textEditingController[0].text;
       setReminderModel.medName=textEditingController[1].text;
-      setReminderModel.medDosage=SetReminder.dosageModel.key;
+      setReminderModel.medDosage=SetReminder.dosageModel.name;
       setReminderModel.dosagePerDay=SetReminder.timeDayModel.name;
       setReminderModel.startTime=stime.text;
       setReminderModel.endTime=endtime.text;
