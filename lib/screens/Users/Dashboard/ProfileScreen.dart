@@ -672,7 +672,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           //height: MediaQuery.of(context).size.height * 100,
                           //height: 300,
                         child:LimitedBox( // use this 
-                            maxHeight: 300,
+                            maxHeight: 298,
                         child: TabBarView(
                           children: [
                             (patientProfileModel != null)?rowValue():Container(),
