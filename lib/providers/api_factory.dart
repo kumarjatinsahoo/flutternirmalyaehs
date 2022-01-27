@@ -1,9 +1,8 @@
 class ApiFactory {
   //bool isRelease = bool.fromEnvironment("DEV");
   static String REG_DEVICE = "https://cca.medtel.in/Ziniai/manageDeviceId";
-  // static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
+  static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
   // static String MAIN_URL = "http://api-demo.ehealthsystem.com/nirmalyaRest/api/";
-  static String MAIN_URL = "http://api-demo.ehealthsystem.com/nirmalyaRest/api/";
   // static String MAIN_URL = "http://192.168.0.190:8062/nirmalyaRest/api/";
     static String MAIN_URL1 = "https://1331.co.in/api";
   static String REPORT_URL1 = "https://demo.ehealthsystem.com/";
@@ -35,7 +34,7 @@ class ApiFactory {
   static String GET_VERSION = MAIN_URL + 'get-version';
 
   /*static String BIOMEDICAL_IMPLANTS =
-        MAIN_URL + 'view-user-biomedical-implant-list-api?userid=';*/
+  MAIN_URL + 'view-user-biomedical-implant-list-api?userid=';*/
   static String UPLOAD_DOCUMENT = MAIN_URL + 'get-medical-upload-details-api?userid=';
   static String DIESEINFO = MAIN_URL + 'get-disease-info-list';
   static String IMMUNIZATION_LIST = MAIN_URL + 'get-immunization-patient-details?userid=';

@@ -219,6 +219,7 @@
 
   "HELP": "Help",
   "CALL_EMERGENCY": "Call Emergency",
+  "CALL_EMERGENCY1": "Emergency Details",
   "CALL_AMBULANCE": "Call Ambulance",
   "CALL_POLICE": "Call Police",
   "SETUP_CONTACT": "Setup Contacts",

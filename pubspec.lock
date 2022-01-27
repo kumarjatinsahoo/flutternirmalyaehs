@@ -314,6 +314,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0"
+  flutter_lints:
+    dependency: transitive
+    description:
+      name: flutter_lints
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.4"
   flutter_local_notifications:
     dependency: "direct main"
     description:
@@ -469,6 +476,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.6.3"
+  lints:
+    dependency: transitive
+    description:
+      name: lints
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.1"
   location_permissions:
     dependency: transitive
     description:
@@ -851,7 +865,7 @@ packages:
       name: unique_identifier
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.0.3"
+    version: "0.2.2"
   url_launcher:
     dependency: "direct main"
     description:
