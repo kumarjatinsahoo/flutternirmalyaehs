@@ -50,7 +50,6 @@ class _MedicalServiceOngooglePagenewState extends State<MedicalServiceOngooglePa
     type = widget.model.type;
     // getLocationName();
     _getLocationName();
-
     callAPI(5, currentMax);
     _scrollController.addListener(() {
       if (_scrollController.position.pixels ==

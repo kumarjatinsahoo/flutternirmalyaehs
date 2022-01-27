@@ -170,8 +170,7 @@ static String EMERGENCY_HELP_NEW =
 
   static String GOVET_SCHEMES_LIST(String contry, String state/*, String dist,
       String city*/) {
-    return MAIN_URL +
-        "view-government-scheme-list?country=$contry&state=$state";/*&dist=$dist&city=$city*/
+    return MAIN_URL + "view-government-scheme-list?country=$contry&state=$state";/*&dist=$dist&city=$city*/
   }
 
   static String GOOGLE_QUERY_API(
@@ -215,8 +214,7 @@ static String EMERGENCY_HELP_NEW =
 
   static String POST_SIGNUP = MAIN_URL + 'signup-by-pathologist';
   static String AMBULANCE_ALL = MAIN_URL + 'get-ambulance-actionlist?userid=';
-  static String GET_DOCTEROVERVIEWLIST =
-      MAIN_URL + 'get-doctor-overviewlist-bystatus?drid=';
+  static String GET_DOCTEROVERVIEWLIST = MAIN_URL + 'get-doctor-overviewlist-bystatus?drid=';
   static String GET_AMBULANCE_OVERVIEWLIST =
       MAIN_URL + 'get-ambulance-overviewlist-bystatus?ambid=';
   static String GET_BLDBANK_OVERVIEWLIST =
