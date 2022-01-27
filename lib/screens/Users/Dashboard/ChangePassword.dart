@@ -382,9 +382,9 @@ class _ChangePasswordState extends State<ChangePassword> {
           if(textEditingController[0].text == "" || textEditingController[0].text == null) {
             AppData.showInSnackBar(context, "Please enter  Current password");
           }
-           else if(!AppData.validateStructure(textEditingController[0].text)){
+          /* else if(!AppData.validateStructure(textEditingController[0].text)){
                   AppData.showInSnackBar(context, "Current Password must have at least one number and one uppercase and lowercase letter, and at least 8 or more characters");
-          }
+          }*/
           else if (textEditingController[1].text == "" || textEditingController[1].text == null) {
             AppData.showInSnackBar(context, "Please enter  New password");
           }

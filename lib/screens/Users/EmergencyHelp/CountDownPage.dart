@@ -77,7 +77,7 @@ class _CountDownPageState extends State<CountDownPage>
       vsync: this,
       duration: new Duration(seconds: kStartValue),
     );
-   print('+++++++++++++++= ' + ApiFactory.googleMapUrl(lati:widget.model.longi ,longi: widget.model.lati));
+   print('+++++++++++++++= '+ ApiFactory.googleMapUrl(lati:widget.model.longi ,longi: widget.model.lati));
     _controller.forward(from: 0.0).whenComplete(() {
        callHelpBtn();
       // _sendSMS("Hi this is "+loginResponse1.body.userName+", eHealthSystem Emergency Alert! I need help. My Location is "+ApiFactory.googleMapUrl(lati:widget.model.longi ,longi: widget.model.lati), userMobList);
@@ -106,9 +106,9 @@ class _CountDownPageState extends State<CountDownPage>
               // AppData.showInSnackDone(context, msg);
             
             } else {
-              popup(map[Const.MESSAGE],context);
+              popuplailed(map[Const.MESSAGE],context);
               // isDataNotAvail = true;
-               AppData.showInSnackBar(context, msg);
+              // AppData.showInSnackBar(context, msg);
             }
           });
         });
@@ -143,6 +143,68 @@ class _CountDownPageState extends State<CountDownPage>
           ),
         ]).show();
   }
+  popuplailed(String msg, BuildContext context) {
+    return Alert(
+        context: context,
+        //title: "Success",
+        title: "",
+        //type: AlertType.info,
+        onWillPopActive: true,
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              Icons.info,
+              size: 140,
+              color: Colors.red,
+            ),
+            SizedBox(
+              height: 5,
+            ),
+            Text(
+              msg,
+              style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 17,
+                  fontWeight: FontWeight.w400),
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(
+              height: 5,
+            ),
+            /*Text(
+              "Mobile No. :"+mobile,
+              style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 17,
+                  fontWeight: FontWeight.w400),
+              textAlign: TextAlign.center,
+            ),*/
+
+          ],
+        ),
+        closeIcon: Icon(
+          Icons.info,
+          color: Colors.transparent,
+        ),
+        closeFunction: () {},
+        buttons: [
+          DialogButton(
+            child: Text(
+              "OK",
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+            onPressed: () {
+              Navigator.pop(context);
+              Navigator.pop(context);
+              // Navigator.pop(context);
+            },
+            color: Color.fromRGBO(0, 179, 134, 1.0),
+            radius: BorderRadius.circular(0.0),
+          ),
+        ]).show();
+  }
+
 
   // callAPI() {
   //   MyWidgets.showLoading(context);
