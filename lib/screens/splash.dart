@@ -323,8 +323,8 @@ class _SplashScreenState extends State<SplashScreen> {
     try {
       login = await sharedPref.getKey(Const.IS_LOGIN);
       loginData = await sharedPref.getKey(Const.LOGIN_DATA);
-      phnNostr = await sharedPref.getKey(Const.LOGIN_phoneno);
-      passWordstr = await sharedPref.getKey(Const.LOGIN_password);
+      // phnNostr = await sharedPref.getKey(Const.LOGIN_phoneno);
+      // passWordstr = await sharedPref.getKey(Const.LOGIN_password);
       masterResponse = await sharedPref.getKey(Const.MASTER_RESPONSE);
       bool isMultiUser = (masterResponse != null) ? true : false;
 
@@ -474,7 +474,7 @@ class _SplashScreenState extends State<SplashScreen> {
         //////////////////////////////////////////////////////////
       }
     }catch(e){
-      // log("Error>>>>"+e.getMessage());
+     // log("Error>>>>"+e.getMessage());
       _exitApp();
     }
 

@@ -1,7 +1,13 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
+import 'dart:io';
 import 'dart:math' as math;
+import 'package:device_info_plus/device_info_plus.dart';
+import 'package:package_info/package_info.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:intl/intl.dart';
+import 'package:unique_identifier/unique_identifier.dart';
 import 'package:user/localization/application.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/LoginResponse1.dart';
@@ -17,6 +23,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'dart:async';
 
 class LoginScreen extends StatefulWidget {
   final MainModel model;
@@ -57,17 +65,33 @@ class _LoginScreenState extends State<LoginScreen> {
     languageCodesList[2]: languagesList[3],
     languageCodesList[3]: languagesList[3],
   };
-
+  PackageInfo _packageInfo = PackageInfo(
+    appName: 'Unknown',
+    packageName: 'Unknown',
+    version: 'Unknown',
+    buildNumber: 'Unknown',
+  );
   void _update(Locale locale) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     preferences.setString("Lan", locale.toString());
     application.onLocaleChanged(locale.toString());
-  }
 
+  }
+  String  identifier;
+  String  deviceid;
+  DateFormat dateFormat = DateFormat("yyyy-MM-dd HH:mm:ss");
+  dynamic currentTime = DateFormat.jm().format(DateTime.now());
+  /* var now = new DateTime.now();
+  DateFormat formatter1 = new DateFormat('dd-MM-yyyy');
+  String formattedDate = formatter1.format(now);
+*/
   bool isLoginLoading = false;
 
   SharedPref sharedPref = SharedPref();
   bool isPassShow = true;
+ // String deviceid = await DeviceId.getID  ;
+ // String deviceid = await DeviceId.getID;
+ DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
 
   int minNumber = 1000;
   int maxNumber = 6000;
@@ -80,12 +104,21 @@ class _LoginScreenState extends State<LoginScreen> {
 
   var pin;
   String token = "";
+  String imei="";
+  String formattedDate;
 
   master.MasterLoginResponse masterResponse;
+
+// String imeiNo = await DeviceInformation.deviceIMEINumber;
+
 
   @override
   void initState() {
     super.initState();
+    var now = new DateTime.now();
+    var formatter = new DateFormat('dd-MM-yyyy');
+    formattedDate = formatter.format(now);
+    print(formattedDate);
     //FirebaseMessaging.instance.unsubscribeFromTopic("topic")
     /* WidgetsBinding.instance.addPostFrameCallback((_) async {
       _controller = VideoPlayerController.asset(
@@ -104,16 +137,91 @@ class _LoginScreenState extends State<LoginScreen> {
       showVideo(context);
     });*/
     tokenCall();
+    deviceInfoo();
+
+    // deviceInfooo();
+    getDeviceSerialNumber();
+    if(Platform.isAndroid){
+      _initPackageInfo();
+    }
+//    print("ddddeevviceeeiidd"+deviceid);
+
+  }
+  Future<void> _initPackageInfo() async {
+    final PackageInfo info = await PackageInfo.fromPlatform();
+    setState(() {
+      _packageInfo = info;
+    });
+  }
+   deviceInfoo () async {
+       identifier =await UniqueIdentifier.serial;
+     print("ideeennttiiiffieerr"+identifier);
+
+  }
+  Future<String> getDeviceSerialNumber() async {
+    // Ask user permission
+    /*await AndroidMultipleIdentifier.requestPermission();
+    // Get device information async
+    Map idMap = await AndroidMultipleIdentifier.idMap;
+    Map iosMap = await .idMap;
+
+    imei = idMap["imei"];
+    String serial = idMap["serial"];
+    String androidID = idMap["androidId"];
+
+    return imei;*/
+    final DeviceInfoPlugin deviceInfoPlugin = new DeviceInfoPlugin();
+    try {
+      if (Platform.isAndroid) {
+        var build = await deviceInfoPlugin.androidInfo;
+        // deviceName = build.model;
+        // deviceVersion = build.version.toString();
+        // identifier = build.androidId;  //UUID for Android
+       setState(() {
+         // deviceid=build.model;
+         imei= build.androidId;
+       });
+      } else if (Platform.isIOS) {
+        var data = await deviceInfoPlugin.iosInfo;
+        // deviceName = data.name;
+        // deviceVersion = data.systemVersion;
+        // identifier = data.identifierForVendor;  //UUID for iOS
+        setState(() {
+          // deviceid=data.name;
+          imei=data.identifierForVendor;
+        });
+
+      }
+    } on PlatformException {
+      print('Failed to get platform version');
+    }
   }
 
+  deviceInfooo () async {
+    if(Platform.isAndroid) {
+      AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+      print('Running on ${androidInfo.model}');
+      deviceid = androidInfo.androidId;
+    }
+    // e.g. "Moto G (4)"
+
+  }
   tokenCall() {
-    FirebaseMessaging.instance.onTokenRefresh.listen((event) {
+    FirebaseMessaging.instance.getToken().then((value) {
+      String token = value;
+      print("token dart locale>>>" + token);
+      widget.model.activitytoken=token;
+      //sendDeviceInfo();
+
+    });
+    /*FirebaseMessaging.instance.onTokenRefresh.listen((event) {
       setState(() {
         token = event;
         log(">>>>>>>>Token>>>>>>>" + token);
       });
-    });
+    });*/
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -321,52 +429,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     ]),
               ),
             ),
-            // Positioned(
-            //   top: 170,
-            //   //right: 30,
-            //   child: Container(
-            //     width: size.width,
-            //     height: 60,
-            //     padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-            //     margin: EdgeInsets.only(top: 30.0),
-            //     decoration: BoxDecoration(
-            //       // color: Colors.grey.withOpacity(0.5),
-            //       borderRadius: BorderRadius.circular(0),
-            //     ),
-            //     child: Row(
-            //       mainAxisAlignment: MainAxisAlignment.end,
-            //       children: <Widget>[
-            //         Container(
-            //           padding: EdgeInsets.symmetric(horizontal: 5, vertical: 2),
-            //           alignment: Alignment.center,
-            //           child: DropdownButtonHideUnderline(
-            //             child: DropdownButton<String>(
-            //               value: AppData.selectedLanguage,
-            //               isDense: true,
-            //               onChanged: (newValue) {
-            //                 setState(() {
-            //                   AppData.setSelectedLan(newValue);
-            //                   _update(Locale(languagesMap[newValue]));
-            //                 });
-            //                 print(AppData.selectedLanguage);
-            //               },
-            //               items: languagesList.map((String value) {
-            //                 return DropdownMenuItem<String>(
-            //                   value: value,
-            //                   child: Text(
-            //                     value,
-            //                     style: TextStyle(color: Colors.black),
-            //                     textAlign: TextAlign.center,
-            //                   ),
-            //                 );
-            //               }).toList(),
-            //             ),
-            //           ),
-            //         ),
-            //       ],
-            //     ),
-            //   ),
-            // ),
             isLoginLoading
                 ? Stack(
                     children: [
@@ -554,6 +616,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 widget.model.setLoginData1(loginResponse);
                                 sharedPref.save(Const.IS_LOGIN, "true");*/
                                 roleUpdateApi(data[i].user, data[i]);
+
                               },
                               trailing: Icon(Icons.arrow_right),
                             );
@@ -593,13 +656,9 @@ class _LoginScreenState extends State<LoginScreen> {
           Navigator.pop(context);
           log("Respomnse for role>>>>>" + jsonEncode(map));
           if (map["code"] == "success") {
-            sharedPref.save(Const.LOGIN_phoneno, _loginId.text);
-            sharedPref.save(Const.LOGIN_password, passController.text);
+            // sharedPref.save(Const.LOGIN_phoneno, _loginId.text);
+            // sharedPref.save(Const.LOGIN_password, passController.text);
             LoginResponse1 loginResponse = LoginResponse1();
-            /*FirebaseMessaging.instance.subscribeToTopic(loginResponse.body.user);
-            FirebaseMessaging.instance.subscribeToTopic(loginResponse.body.userMobile);*/
-            // FirebaseMessaging.instance.subscribeToTopic(loginResponse.body.userMobile);
-            // loginResponse.acceptValue(data[i]);
             Body body = Body();
             body.user = data.user;
             body.userName = data.userName;
@@ -614,8 +673,7 @@ class _LoginScreenState extends State<LoginScreen> {
             widget.model.token = data.token;
             widget.model.masterResponse = masterResponse;
             widget.model.user = data.user;
-            log("Response after assign>>>>" +
-                jsonEncode(loginResponse.toJson()));
+            log("Response after assign>>>>" + jsonEncode(loginResponse.toJson()));
             sharedPref.save(Const.LOGIN_DATA, loginResponse);
             sharedPref.save(Const.MASTER_RESPONSE, masterResponse);
             widget.model.setLoginData1(loginResponse);
@@ -654,6 +712,7 @@ class _LoginScreenState extends State<LoginScreen> {
             } else {
               AppData.showInSnackBar(context, "No Role Assign");
             }
+
           }
         });
   }
@@ -683,83 +742,64 @@ class _LoginScreenState extends State<LoginScreen> {
                 log("LOGIN RESPONSE>>>>" + jsonEncode(map));
                 //AppData.showInSnackBar(context, map[Const.MESSAGE]);
                 if (map[Const.CODE] == Const.SUCCESS) {
-                  /*widget.model.phnNo = _loginId.text;
-                  widget.model.passWord = passController.text ;*/
-                  FirebaseMessaging.instance.getToken().then((value) {
-                    String token = value;
-                    print("token dart locale>>>" + token);
-
-                  });
                   setState(() {
                     widget.model.phnNo = _loginId.text;
                     widget.model.passWord = passController.text;
                     masterResponse = master.MasterLoginResponse.fromJson(map);
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) =>
-                          dialogUserView(context, masterResponse.body),
-                    );
-                    /* sharedPref.save(Const.LOGIN_phoneno, _loginId.text);
-                    sharedPref.save(Const.LOGIN_password, passController.text);
-                    LoginResponse1 loginResponse = LoginResponse1.fromJson(map);
-                    widget.model.token = loginResponse.body.token;
-                    widget.model.user = loginResponse.body.user;
-                    sharedPref.save(Const.LOGIN_DATA, loginResponse);
-                    widget.model.setLoginData1(loginResponse);
-                    sharedPref.save(Const.IS_LOGIN, "true");
+                    widget.model.user = masterResponse.body[0].user;
 
-                    FirebaseMessaging.instance
-                        .subscribeToTopic(loginResponse.body.user);
-                    FirebaseMessaging.instance
-                        .subscribeToTopic(loginResponse.body.userMobile);
+                    /*FirebaseMessaging.instance.getToken().then((value) {
+                      String token = value;
+                      print("token dart locale>>>" + token);
+                      widget.model.activitytoken=token;
 
-                    /////By Sanjaya
-                    //Role 8- Lab Technician
-                    //Role 7- Pharmacy
-                    //Role 1- User
-                    //Role 12- Ambulance
-                    //Role 13- Blood bank
-                    //Role 15- NGO
-                    //Role 2- Doctor
-                    //Role 5- Reception
-                    //Role 22- syndicate partner
 
-                    if (loginResponse.body.roles[0] == "1".toLowerCase()) {
-                      Navigator.of(context).pushNamedAndRemoveUntil(
-                          '/dashboard', (Route<dynamic> route) => false);
-                    } else if (loginResponse.body.roles[0] ==
-                        "2".toLowerCase()) {
-                      Navigator.of(context).pushNamedAndRemoveUntil(
-                          '/dashDoctor', (Route<dynamic> route) => false);
-                    } else if (loginResponse.body.roles[0] ==
-                        "5".toLowerCase()) {
-                      Navigator.of(context).pushNamedAndRemoveUntil(
-                          '/dashboardreceptionlist',
-                          (Route<dynamic> route) => false);
-                    } else if (loginResponse.body.roles[0] ==
-                        "7".toLowerCase()) {
-                      Navigator.of(context).pushNamedAndRemoveUntil(
-                          '/dashboardpharmacy',
-                          (Route<dynamic> route) => false);
-                    } else if (loginResponse.body.roles[0] ==
-                        "8".toLowerCase()) {
-                      Navigator.of(context).pushNamedAndRemoveUntil(
-                          '/labDash', (Route<dynamic> route) => false);
-                    } else if (loginResponse.body.roles[0] ==
-                        "12".toLowerCase()) {
-                      Navigator.of(context).pushNamedAndRemoveUntil(
-                          '/ambulancedash', (Route<dynamic> route) => false);
-                    } else if (loginResponse.body.roles[0] ==
-                        "13".toLowerCase()) {
-                      Navigator.of(context).pushNamedAndRemoveUntil(
-                          '/bloodBankDashboard',
-                          (Route<dynamic> route) => false);
-                    } else {
-                      AppData.showInSnackBar(context, "No Role Assign");
-                    }*/
+                    });*/
+                    Map<String, dynamic> postmap = {
+                      "userId" : widget.model.user,
+                      "imeiNo" : imei,
+                      "version" :Platform.isAndroid?
+                      ( _packageInfo.version):("2.0.0"),
+                      "deviceId" : deviceid,
+                      "activityDate": formattedDate,
+                      "activityTime" :  currentTime,
+                      "type" :"LOGIN",
+                      "status" :"SUCCESS",
+                      "deviceToken" :widget.model.activitytoken
+
+                    };
+
+                    log("Print data>>>>"+jsonEncode(postmap));
+                    MyWidgets.showLoading(context);
+                    widget.model.POSTMETHOD(
+                      //api: ApiFactory.POST_APPOINTMENT,
+                        api: ApiFactory.POST_ACTIVITYLOG,
+                        //token: widget.model.token,
+                        json: postmap,
+                        fun: (Map<String, dynamic> map) {
+                          Navigator.pop(context);
+                          log("Json Response activity log>>"+jsonEncode(map));
+                          if (map["code"] == Const.SUCCESS) {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) =>
+                                  dialogUserView(context, masterResponse.body),
+                            );
+                          } else {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) =>
+                                  dialogUserView(context, masterResponse.body),
+                            );
+                            Navigator.pop(context);
+                            AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                          }
+                        });
                   });
                 } else {
                   AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                  String failed="FAILED";
+                  sendDeviceInfo(failed);
                 }
               });
         }
@@ -767,7 +807,45 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget _otpButton() {
+  sendDeviceInfo(String sTATUS) {
+    Map<String, dynamic> postmap = {
+      "userId" : widget.model.user,
+      "imeiNo" : imei,
+      "version" : Platform.isAndroid?(_packageInfo.version):("2.0.0"),
+      "deviceId" : deviceid,
+      "activityDate": /*"26-1-2021"*/formattedDate,
+      "activityTime" :  currentTime,
+      "type" :"LOGIN",
+      "status" :sTATUS,
+      "deviceToken" :widget.model.activitytoken
+
+    };
+
+    log("Print data>>>>"+jsonEncode(postmap));
+    MyWidgets.showLoading(context);
+    widget.model.POSTMETHOD(
+      //api: ApiFactory.POST_APPOINTMENT,
+        api: ApiFactory.POST_ACTIVITYLOG,
+        //token: widget.model.token,
+        json: postmap,
+        fun: (Map<String, dynamic> map) {
+          Navigator.pop(context);
+          log("Json Response activity log>>"+jsonEncode(map));
+          if (map["code"] == Const.SUCCESS) {
+            Navigator.pop(context);
+            //pData.showInSnackDone(context, map[Const.MESSAGE]);
+            //AppData.showInSnackBar(context, "Chenai server hela");
+            // postmap["appointid"]=map["aptid"];
+            //sendLocalServer(postmap);
+           // AppData.showInSnackBar(context, map[Const.MESSAGE]);
+          } else {
+            Navigator.pop(context);
+            AppData.showInSnackBar(context, map[Const.MESSAGE]);
+          }
+        });
+
+  }
+    Widget _otpButton() {
     return MyWidgets.outlinedButton(
       text: MyLocalizations.of(context).text("LOGIN_WITH_OTP"),
       context: context,
@@ -789,19 +867,69 @@ class _LoginScreenState extends State<LoginScreen> {
                 if (map[Const.CODE] == Const.SUCCESS) {
                   setState(() {
                     masterResponse = master.MasterLoginResponse.fromJson(map);
-                   // LoginResponse1 loginResponse = LoginResponse1.fromJson(map);
+                     // LoginResponse1 loginResponse = LoginResponse1.fromJson(map);
                     // widget.model.loginData=loginResponse;
-                    Navigator.push(
+                    /*Navigator.push(
                       context,
                       MaterialPageRoute(
                           builder: (BuildContext context) => PinView(
                             masterLoginResponse: masterResponse,
                                 model: widget.model,
                               )),
-                    );
+                    );*/
+                    Map<String, dynamic> postmap = {
+                      "userId" : widget.model.user,
+                      "imeiNo" : imei,
+                      "version" :Platform.isAndroid?
+                      ( _packageInfo.version):("2.0.0"),
+                      "deviceId" : deviceid,
+                      "activityDate": /*"26-1-2021"*/formattedDate,
+                      "activityTime" :  currentTime,
+                      "type" :"LOGIN",
+                      "status" :"SUCCESS",
+                      "deviceToken" :widget.model.activitytoken
+                    };
+                    log("Print data>>>>"+jsonEncode(postmap));
+                    MyWidgets.showLoading(context);
+                    widget.model.POSTMETHOD(
+                      //api: ApiFactory.POST_APPOINTMENT,
+                        api: ApiFactory.POST_ACTIVITYLOG,
+                        //token: widget.model.token,
+                        json: postmap,
+                        fun: (Map<String, dynamic> map) {
+                          Navigator.pop(context);
+                          log("Json Response activity log>>"+jsonEncode(map));
+                          if (map["code"] == Const.SUCCESS) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (BuildContext context) => PinView(
+                                    masterLoginResponse: masterResponse,
+                                    model: widget.model,
+                                  )),
+                            );
+                            // Navigator.pop(context);
+                            //pData.showInSnackDone(context, map[Const.MESSAGE]);
+                            //AppData.showInSnackBar(context, "Chenai server hela");
+                            //postmap["appointid"]=map["aptid"];
+                            //sendLocalServer(postmap);
+                            // AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                          } else {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (BuildContext context) => PinView(
+                                    masterLoginResponse: masterResponse,
+                                    model: widget.model,
+                                  )),
+                            );
+                            Navigator.pop(context);
+                            AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                          }
+                        });
                   });
                 } else {
-                  AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                  AppData.showInSnackBar(context, map.containsKey([Const.MESSAGE])?map[Const.MESSAGE]:"Mobile Number is Not Register");
                 }
               });
           // widget.model.phnNo = _loginId.text;
@@ -1112,4 +1240,6 @@ class _LoginScreenState extends State<LoginScreen> {
         },
         context: context);*/
   }
+
+
 }

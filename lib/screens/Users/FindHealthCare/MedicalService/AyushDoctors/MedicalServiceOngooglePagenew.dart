@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'package:flutter/cupertino.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/GooglePlacesModel.dart';
 import 'package:user/models/KeyvalueModel.dart';
@@ -10,21 +11,21 @@ import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart' as loca;
 import 'package:user/models/LoginResponse1.dart' as session;
 
-import 'FindPage.dart';
 
-class ChemistsOngooglePage extends StatefulWidget {
+class MedicalServiceOngooglePagenew extends StatefulWidget {
   MainModel model;
   static KeyvalueModel distancelistModel = null;
 
-  ChemistsOngooglePage({Key key, this.model}) : super(key: key);
+  MedicalServiceOngooglePagenew({Key key, this.model}) : super(key: key);
 
   @override
-  _ChemistsOngooglePageState createState() => _ChemistsOngooglePageState();
+  _MedicalServiceOngooglePagenewState createState() => _MedicalServiceOngooglePagenewState();
 }
 
-class _ChemistsOngooglePageState extends State<ChemistsOngooglePage> {
+class _MedicalServiceOngooglePagenewState extends State<MedicalServiceOngooglePagenew> {
   var selectedMinValue;
   GooglePlaceModel googlePlaceModel;
   bool isDataNotAvail = false;
@@ -34,20 +35,22 @@ class _ChemistsOngooglePageState extends State<ChemistsOngooglePage> {
 
   static const platform = AppData.channel;
   session.LoginResponse1 loginResponse1;
-  String longi, lati, city, addr, healthpro, type,speciality;
   String nextpage;
   int currentMax = 1;
+  Position position;
+  String longi, lati, city, addr, healthpro, type,medicallserviceType;
+  String medicallserviceTypelow;
+
   @override
   void initState() {
     super.initState();
     loginResponse1 = widget.model.loginResponse1;
-    longi = widget.model.longi;
-    lati = widget.model.lati;
-    city = widget.model.city;
-    addr = widget.model.addr;
-    healthpro = widget.model.healthproname;
+    medicallserviceType = widget.model.medicallserviceType;
+    medicallserviceTypelow = widget.model.medicallserviceType.toLowerCase();
     type = widget.model.type;
-    speciality = FindPage.specialistModel?.name??"";
+    // getLocationName();
+    _getLocationName();
+
     callAPI(5, currentMax);
     _scrollController.addListener(() {
       if (_scrollController.position.pixels ==
@@ -59,6 +62,79 @@ class _ChemistsOngooglePageState extends State<ChemistsOngooglePage> {
         
       }
     });
+  }
+  _getLocationName() async {
+    Position position = await Geolocator()
+        .getCurrentPosition(desiredAccuracy: loca.LocationAccuracy.high);
+    this.position = position;
+    debugPrint('location: ${position.latitude}');
+    print(
+        'location>>>>>>>>>>>>>>>>>>: ${position.latitude},${position.longitude}');
+    lati = position.latitude.toString();
+    longi = position.longitude.toString();
+    // callApi(position.latitude.toString(), position.longitude.toString());
+    callAPI(5, currentMax);
+    /*callAPI(5, currentMax);
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels ==
+          _scrollController.position.maxScrollExtent) {
+        // if (googlePlaceModel.results.length % 20 == 0)
+        log('PAGINATION ---');
+        callAPIPagination(nextpage);
+        // }
+
+      }
+    });*/
+    /* try {
+      final coordinates =
+          new Coordinates(position.latitude, position.longitude);
+      var addresses =
+          await Geocoder.local.findAddressesFromCoordinates(coordinates);
+      //var address = await Geocoder.local.findAddressesFromCoordinates(coordinates);
+      var first = addresses.first;
+      print("${first.featureName} : ${first.addressLine}");
+      print("${first.locality}}");
+   //   setState(() {
+        address = "${first.addressLine}";
+        cityName = first.locality;
+        longitudes = position.longitude.toString();
+        latitudes = position.altitude.toString();
+      });
+    } catch (e) {
+      print(e.toString());
+    }*/
+  }
+
+  getLocationName() async {
+    Position position = await Geolocator()
+        .getCurrentPosition(desiredAccuracy: loca.LocationAccuracy.high);
+    this.position = position;
+    debugPrint('location: ${position.latitude}');
+    lati = position.latitude.toString();
+    longi=position.longitude.toString();
+    print(
+        'location>>>>>>>>>>>>>>>>Latitude>>: + ${position.latitude} + ,${position.longitude}');
+    // callAPI(position.latitude.toString(), position.longitude.toString());
+
+
+    /* try {
+      final coordinates =
+          new Coordinates(position.latitude, position.longitude);
+      var addresses =
+          await Geocoder.local.findAddressesFromCoordinates(coordinates);
+      //var address = await Geocoder.local.findAddressesFromCoordinates(coordinates);
+      var first = addresses.first;
+      print("${first.featureName} : ${first.addressLine}");
+      print("${first.locality}}");
+      setState(() {
+        address = "${first.addressLine}";
+        cityName = first.locality;
+        longitudes = position.longitude.toString();
+        latitudes = position.altitude.toString();
+      });
+    } catch (e) {
+      print(e.toString());
+    }*/
   }
 
   List<KeyvalueModel> selectDistance = [
@@ -99,25 +175,25 @@ Map<String, dynamic> postData = {
 
   }*/
   callAPI(int radius, int i) {
-    log("API :Lati & Longi" + lati + "\n" + lati);
+    // log("API :Lati & Longi" + lati + "\n" + lati);
     log("API CALL>>>" + ApiFactory.GOOGLE_QUERY_API(lati: lati, radius: (radius * 1000).toString(), longi: longi, healthpro: healthpro) +
         "\n\n\n");
     widget.model.GETMETHODCAL(
         api: ApiFactory.GOOGLE_QUERY_API(
-            lati: lati, longi: longi, radius: (radius * 1000).toString(), healthpro: (speciality!=null)?healthpro+" "+speciality:healthpro),
+            lati: lati, longi: longi, radius: (radius * 1000).toString(), healthpro: (medicallserviceType!=null)?medicallserviceType+" "+medicallserviceType:medicallserviceType),
         fun: (Map<String, dynamic> map) {
           setState(() {
             // String msg = map[Const.MESSAGE];
-            if (map["status"] == "OK") {     
-          // if (i == 1) {         
-            googlePlaceModel = GooglePlaceModel.fromJson(map);
-            nextpage=googlePlaceModel.nextPageToken;
-            print('================ nextpage ' + googlePlaceModel.results.length.toString());
+            if (map["status"] == "OK") {
+              // if (i == 1) {
+              googlePlaceModel = GooglePlaceModel.fromJson(map);
+              nextpage=googlePlaceModel.nextPageToken;
+              print('================ nextpage ' + googlePlaceModel.results.length.toString());
               // } else {
               //   googlePlaceModel.addMore(map);
               // }
-             } else {
-            //   isDataNotAvail = true;
+            } else {
+              //   isDataNotAvail = true;
               AppData.showInSnackBar(context, "Google api doesn't work");
             }
           });
@@ -156,6 +232,35 @@ Map<String, dynamic> postData = {
     double edgeInsets = 3;
 
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: AppData.kPrimaryColor,
+        title: Text(medicallserviceType),
+        /* leading: Icon(
+        Icons.menu,
+      ),*/
+        centerTitle: true,
+        actions: <Widget>[
+          /*Padding(
+            padding: EdgeInsets.only(right: 20.0),
+            child: GestureDetector(
+              onTap: () {},
+              child: Icon(
+                Icons.search,
+                size: 26.0,
+              ),
+            )
+        ),*/
+          /*Padding(
+            padding: EdgeInsets.only(right: 20.0),
+            child: GestureDetector(
+              onTap: () {},
+              child: Icon(
+                  Icons.more_vert
+              ),
+            )
+        ),*/
+        ],
+      ),
       body: Container(
     child: Padding(
       padding: const EdgeInsets.all(13.0),
@@ -169,7 +274,7 @@ Map<String, dynamic> postData = {
                                 "5 KM",
                                 selectDistance, (KeyvalueModel data) {
                               setState(() {
-                                ChemistsOngooglePage.distancelistModel = data;
+                                MedicalServiceOngooglePagenew.distancelistModel = data;
                                 callAPI(data.key, currentMax);
                               });
                             }),
@@ -297,9 +402,10 @@ Map<String, dynamic> postData = {
             :  Expanded(
               child: Container(
                       child: Center(
-                        child:  CircularProgressIndicator(
-                backgroundColor: AppData.matruColor,
-                        )
+                        child: Text(
+                          MyLocalizations.of(context).text("NO_DATA_FOUND"),
+                          style: TextStyle(color: Colors.black, fontSize: 15),
+                        ),
                       ),
                     ),
             )
