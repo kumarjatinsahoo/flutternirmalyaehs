@@ -70,6 +70,8 @@ class _ImmunizationState extends State<Immunization> {
   GlobalKey _one = GlobalKey();
   BuildContext myContext;
 
+  bool isShown = true;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -77,7 +79,6 @@ class _ImmunizationState extends State<Immunization> {
       ShowCaseWidget.of(myContext).startShowCase([_one]);
     });
     super.initState();
-
 
     loginResponse1 = widget.model.loginResponse1;
     isdata = true;
@@ -129,239 +130,297 @@ class _ImmunizationState extends State<Immunization> {
   void dispose() {
     // TODO: implement dispose
     super.dispose();
-
   }
 
   @override
   Widget build(BuildContext context) {
-    return ShowCaseWidget(
-      builder: Builder(builder: (context)
-    {
-      myContext=context;
-      return Scaffold(
-        appBar: AppBar(
-            centerTitle: true,
-            backgroundColor: AppData.kPrimaryColor,
-            title: Text(MyLocalizations.of(context).text("IMMUNIZATION")),
-            actions: <Widget>[
-              InkWell(
-                onTap: () {
-                  _date.text = "";
-                  displayTextInputDialog(context);
-                  // application.logoutCallBack();
-                },
-                child: Icon(
-                  Icons.add_circle_outline_sharp,
-                  size: 26.0,
+    return Stack(
+      // fit: StackFit.expand,
+      children: [
+        Scaffold(
+          appBar: AppBar(
+              centerTitle: true,
+              backgroundColor: AppData.kPrimaryColor,
+              title: Text(MyLocalizations.of(context).text("IMMUNIZATION")),
+              actions: <Widget>[
+                InkWell(
+                  onTap: () {
+                    _date.text = "";
+                    displayTextInputDialog(context);
+                    // application.logoutCallBack();
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 15.0),
+                    child: Icon(
+                      Icons.add_circle_outline_sharp,
+                      size: 26.0,
+                    ),
+                  ),
                 ),
-              ),
-            ]),
-        body: isdata == true
-            ? Center(
-          child: CircularProgressIndicator(
-            backgroundColor: AppData.matruColor,
-          ),
-        )
-            : immunizationListModel == null || immunizationListModel == null
-            ? Container(
-          child: Center(
-            child: Text(
-              MyLocalizations.of(context).text("NO_DATA_FOUND"),
-              style: TextStyle(color: Colors.black, fontSize: 15),
+              ]),
+          body: isdata == true
+              ? Center(
+            child: CircularProgressIndicator(
+              backgroundColor: AppData.matruColor,
             ),
-          ),
-        )
-            : Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10.0),
-          child: Container(
-            child: SingleChildScrollView(
-              child: (immunizationListModel != null) //builder
-                  ? ListView.separated(
-                itemCount: immunizationListModel.body.length,
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                separatorBuilder:
-                    (BuildContext context, int index) =>
-                const Divider(color: Colors.grey),
-                itemBuilder: (context, i) {
-                  immunization.Body body =
-                  immunizationListModel.body[i];
-                  return Padding(
-                    padding: const EdgeInsets.only(
-                        left: 5, right: 5, top: 0),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(8.0),
-                      child: InkWell(
-                        onTap: () {
-                          String slno = body.slno;
-                          String status = body.status;
-                          displayStatushangeDialog(
-                              context, slno, status);
-                        },
-                        child: Container(
-                          /*decoration: (i % 2 == 0)
-                                          ?  BoxDecoration(
-                                        color: Colors.white,
-                                        border: Border(
-                                          left: BorderSide(
-                                              color:
-                                              AppData.kPrimaryRedColor,
-                                              width: 5)),
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: Colors.grey,
-                                            offset: Offset(0.0, 1.0), //(x,y)
-                                            blurRadius: 6.0,
-                                          ),
-                                        ],
-
-                                      ): BoxDecoration(
-                                        color: Colors.white,
-                                        border: Border(
-                                            left: BorderSide(
-                                                color:
-                                                AppData.kPrimaryColor,
-                                                width: 5)),
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: Colors.grey,
-                                            offset: Offset(0.0, 1.0), //(x,y)
-                                            blurRadius: 6.0,
-                                          ),
-                                        ],
-
-                                      ),*/
-
-                          width: double.maxFinite,
-                          /*height: 80,*/
-                          child: ListTile(
-                            leading: InkWell(
-                                onTap: () {
-                                  // Navigator.pop(context);
-                                },
-                                child: (body.status == "No")
-                                    ? Padding(
-                                    padding:
-                                    const EdgeInsets.only(
-                                        left: 0.0,
-                                        right: 0.0),
-                                    child: Image.asset(
-                                      "assets/redinjection40.png",
-                                      color: AppData
-                                          .kPrimaryRedColor,
-                                      height: 35,
-                                    ))
-                                    : Padding(
-                                    padding:
-                                    const EdgeInsets.only(
-                                        left: 0.0,
-                                        right: 0.0),
-                                    child: Image.asset(
-                                      "assets/redinjection40.png",
-                                      color: Colors.green,
-                                      height: 35,
-                                    ))),
-                            subtitle: Padding(
-                              padding: const EdgeInsets.only(
-                                  top: 10.0),
-                              child: Column(
-                                crossAxisAlignment:
-                                CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Prescribed by: ' +
-                                        body.doctorName,
-                                    style: TextStyle(
-                                        fontWeight:
-                                        FontWeight.bold,
-                                        color: Colors.black,
-                                        fontSize: 14),
-                                  ),
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-
-                                  /* Text(
-                                                'Prescribed by: '+
-                                                    body.doctorName,
-                                                style: TextStyle(
-                                                    fontWeight:
-                                                    FontWeight.bold,
-                                                    fontSize: 14),
+          )
+              : immunizationListModel == null ||
+              immunizationListModel == null
+              ? Container(
+            child: Center(
+              child: Text(
+                MyLocalizations.of(context).text("NO_DATA_FOUND"),
+                style:
+                TextStyle(color: Colors.black, fontSize: 15),
+              ),
+            ),
+          )
+              : Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+            child: Container(
+              child: SingleChildScrollView(
+                child: (immunizationListModel != null) //builder
+                    ? ListView.separated(
+                  itemCount:
+                  immunizationListModel.body.length,
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  separatorBuilder:
+                      (BuildContext context, int index) =>
+                  const Divider(color: Colors.grey),
+                  itemBuilder: (context, i) {
+                    immunization.Body body =
+                    immunizationListModel.body[i];
+                    return Padding(
+                      padding: const EdgeInsets.only(
+                          left: 5, right: 5, top: 0),
+                      child: ClipRRect(
+                        borderRadius:
+                        BorderRadius.circular(8.0),
+                        child: InkWell(
+                          onTap: () {
+                            String slno = body.slno;
+                            String status = body.status;
+                            displayStatushangeDialog(
+                                context, slno, status);
+                          },
+                          child: Container(
+                            /*decoration: (i % 2 == 0)
+                                              ?  BoxDecoration(
+                                            color: Colors.white,
+                                            border: Border(
+                                              left: BorderSide(
+                                                  color:
+                                                  AppData.kPrimaryRedColor,
+                                                  width: 5)),
+                                            boxShadow: [
+                                              BoxShadow(
+                                                color: Colors.grey,
+                                                offset: Offset(0.0, 1.0), //(x,y)
+                                                blurRadius: 6.0,
                                               ),
-                                              SizedBox(
-                                                height: 5,
-                                              ),*/
-                                  Text(
-                                    /*body.immunizationDate,*/
-                                    toDate(body
-                                        .immunizationDate) ??
-                                        "N/A",
-                                    style: TextStyle(
-                                        fontWeight:
-                                        FontWeight.bold,
-                                        fontSize: 14),
-                                  ),
-                                  (body.status == "No")
-                                      ? Text(
-                                    body.immunizationId,
-                                    overflow:
-                                    TextOverflow.clip,
-                                    style: TextStyle(
-                                        fontWeight:
-                                        FontWeight.bold,
+                                            ],
+
+                                          ): BoxDecoration(
+                                            color: Colors.white,
+                                            border: Border(
+                                                left: BorderSide(
+                                                    color:
+                                                    AppData.kPrimaryColor,
+                                                    width: 5)),
+                                            boxShadow: [
+                                              BoxShadow(
+                                                color: Colors.grey,
+                                                offset: Offset(0.0, 1.0), //(x,y)
+                                                blurRadius: 6.0,
+                                              ),
+                                            ],
+
+                                          ),*/
+
+                            width: double.maxFinite,
+                            /*height: 80,*/
+                            child: ListTile(
+                              leading: InkWell(
+                                  onTap: () {
+                                    // Navigator.pop(context);
+                                  },
+                                  child: (body.status ==
+                                      "No")
+                                      ? Padding(
+                                      padding:
+                                      const EdgeInsets
+                                          .only(
+                                          left: 0.0,
+                                          right:
+                                          0.0),
+                                      child:
+                                      Image.asset(
+                                        "assets/redinjection40.png",
                                         color: AppData
                                             .kPrimaryRedColor,
-                                        fontSize: 14),
-                                  )
-                                      : Text(
-                                    body.immunizationId,
-                                    overflow:
-                                    TextOverflow.clip,
-                                    style: TextStyle(
-                                        fontWeight:
-                                        FontWeight.bold,
-                                        color: Colors.green,
-                                        fontSize: 14),
-                                  ),
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-                                ],
+                                        height: 35,
+                                      ))
+                                      : Padding(
+                                      padding:
+                                      const EdgeInsets
+                                          .only(
+                                          left: 0.0,
+                                          right:
+                                          0.0),
+                                      child:
+                                      Image.asset(
+                                        "assets/redinjection40.png",
+                                        color: Colors
+                                            .green,
+                                        height: 35,
+                                      ))),
+                              subtitle: Padding(
+                                padding:
+                                const EdgeInsets.only(
+                                    top: 10.0),
+                                child: Column(
+                                  crossAxisAlignment:
+                                  CrossAxisAlignment
+                                      .start,
+                                  children: [
+                                    Text(
+                                      'Prescribed by: ' +
+                                          body.doctorName,
+                                      style: TextStyle(
+                                          fontWeight:
+                                          FontWeight
+                                              .bold,
+                                          color:
+                                          Colors.black,
+                                          fontSize: 14),
+                                    ),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+
+                                    /* Text(
+                                                    'Prescribed by: '+
+                                                        body.doctorName,
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                        FontWeight.bold,
+                                                        fontSize: 14),
+                                                  ),
+                                                  SizedBox(
+                                                    height: 5,
+                                                  ),*/
+                                    Text(
+                                      /*body.immunizationDate,*/
+                                      toDate(body
+                                          .immunizationDate) ??
+                                          "N/A",
+                                      style: TextStyle(
+                                          fontWeight:
+                                          FontWeight
+                                              .bold,
+                                          fontSize: 14),
+                                    ),
+                                    (body.status == "No")
+                                        ? Text(
+                                      body.immunizationId,
+                                      overflow:
+                                      TextOverflow
+                                          .clip,
+                                      style: TextStyle(
+                                          fontWeight:
+                                          FontWeight
+                                              .bold,
+                                          color: AppData
+                                              .kPrimaryRedColor,
+                                          fontSize:
+                                          14),
+                                    )
+                                        : Text(
+                                      body.immunizationId,
+                                      overflow:
+                                      TextOverflow
+                                          .clip,
+                                      style: TextStyle(
+                                          fontWeight:
+                                          FontWeight
+                                              .bold,
+                                          color: Colors
+                                              .green,
+                                          fontSize:
+                                          14),
+                                    ),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                            trailing: (body.status == "No")
-                                ? Icon(
-                              Icons.cancel_rounded,
-                              color:
-                              AppData.kPrimaryRedColor,
-                              size: 26.0,
-                            )
-                                : Icon(
-                              Icons.check_circle_rounded,
-                              color: Colors.green,
-                              size: 26.0,
+                              trailing: (body.status ==
+                                  "No")
+                                  ? Icon(
+                                Icons.cancel_rounded,
+                                color: AppData
+                                    .kPrimaryRedColor,
+                                size: 26.0,
+                              )
+                                  : Icon(
+                                Icons
+                                    .check_circle_rounded,
+                                color: Colors.green,
+                                size: 26.0,
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                  );
-                },
-              )
-                  : Container(),
-            ),
-            /* ): Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
-            alignment: Alignment.center,
-            child: (isDataNoFound) ? Text("Data Not Found"):callApi(),
+                    );
+                  },
+                )
+                    : Container(),
+              ),
+              /* ): Container(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height,
+                alignment: Alignment.center,
+                child: (isDataNoFound) ? Text("Data Not Found"):callApi(),
 */
+            ),
           ),
         ),
-      );
-
-      }),
+        (isShown)?Container(
+          width: double.maxFinite,
+          height: double.maxFinite,
+          color: Colors.black54,
+          child: MaterialButton(
+            onPressed: () {
+              setState(() {
+                isShown = false;
+              });
+            },
+          ),
+        ):Container(),
+        Positioned(
+            right: 25,
+            top: 18,
+            child: Visibility(
+              visible: isShown,
+              child: MaterialButton(
+                  onPressed: () {
+                    setState(() {
+                      isShown = false;
+                    });
+                  },
+                  enableFeedback: false,
+                  hoverColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  child: Visibility(
+                      visible: isShown,
+                      child: SafeArea(
+                          child:
+                          Image.asset("assets/images/indication.png")))),
+            ))
+      ],
     );
   }
 

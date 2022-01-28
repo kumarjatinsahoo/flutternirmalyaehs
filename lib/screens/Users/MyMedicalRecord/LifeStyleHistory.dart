@@ -75,6 +75,8 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
     new TextEditingController(),
     new TextEditingController(),
   ];
+
+  bool isShown = true;
   List<KeyvalueModel> genderList = [
     KeyvalueModel(key: "1", name: "Veg"),
     KeyvalueModel(key: "2", name: "Non Veg"),
@@ -139,221 +141,257 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-          title: Text(
-            MyLocalizations.of(context).text("LIFESTYLE_HISTORY"),
-            style: TextStyle(color: AppData.white),
-          ),
-          centerTitle: true,
-          backgroundColor: AppData.kPrimaryColor,
-          iconTheme: IconThemeData(color: AppData.white),
-          actions: <Widget>[
-            InkWell(
-              child: Padding(
-                padding: const EdgeInsets.all(20.00),
-                child: Icon(
-                  Icons.add_circle,
-                  color: Colors.white,
-                  size: 25,
-                ),
+    return Stack(
+      children: [
+        Scaffold(
+          appBar: AppBar(
+              title: Text(
+                MyLocalizations.of(context).text("LIFESTYLE_HISTORY"),
+                style: TextStyle(color: AppData.white),
               ),
-              onTap: () async {
-                showDialog(
-                  context: context,
-                  builder: (BuildContext context) =>
-                      dialogaddnomination(context),
-                );
-                //dialogaddnomination(context);
-              },
-            ),
-          ]),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            SingleChildScrollView(
-              child: Container(
-                width: double.infinity,
-                //height: double.maxFinite,
-                //mainAxisSize:MainAxisSize.max,
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 10.0, right: 5, left: 5),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+              centerTitle: true,
+              backgroundColor: AppData.kPrimaryColor,
+              iconTheme: IconThemeData(color: AppData.white),
+              actions: <Widget>[
+                InkWell(
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.00),
+                    child: Icon(
+                      Icons.add_circle,
+                      color: Colors.white,
+                      size: 25,
+                    ),
+                  ),
+                  onTap: () async {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) =>
+                          dialogaddnomination(context),
+                    );
+                    //dialogaddnomination(context);
+                  },
+                ),
+              ]),
+          body: SingleChildScrollView(
+            child: Column(
+              children: [
+                SingleChildScrollView(
+                  child: Container(
+                    width: double.infinity,
+                    //height: double.maxFinite,
+                    //mainAxisSize:MainAxisSize.max,
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 10.0, right: 5, left: 5),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.max,
                         children: [
-                          Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                _buildTile1(
-                                  icon: "assets/smoking.png",
-                                  title: (lifeStyleHistryModel?.body == null ||
-                                          lifeStyleHistryModel.body.smokingName
-                                                  .toString() == "")? "N/A"
-                                      : lifeStyleHistryModel.body.smokingName
-                                          .toString(),
-                                  subtitle: MyLocalizations.of(context)
-                                      .text("SMOKING"),
-                                  fun: () {
-                                    /*Navigator.pushNamed(
-                                    context, "/patientRegistration");*/
-                                    // Navigator.pushNamed(context, "/walkRegList");
-                                  },
-                                  color: Color(0xFFCF3564),
-                                  bordercolor: AppData.grey100,
-                                  // ,
-                                ),
-                              ]),
-                          Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                _buildTile1(
-                                  icon: "assets/alcohol.png",
-                                  title: (lifeStyleHistryModel?.body == null ||
-                                          lifeStyleHistryModel.body.alcoholName
-                                                  .toString() == "0") ? "N/A"
-                                      : lifeStyleHistryModel.body.alcoholName
-                                          .toString(),
-                                  subtitle: MyLocalizations.of(context)
-                                      .text("ALCOHOL"),
-                                  fun: () {
-                                    // chooseAppointment(context);
-                                    // Navigator.pushNamed(context, "/medicalrecordpage");
-                                  },
-                                  color: Color(0xFF2372B6),
-                                  bordercolor: AppData.BG1RED,
-                                  // ,
-                                ),
-                              ]),
-                        ],
-                      ),
-                      SizedBox(height: 7),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                _buildTile1(
-                                  //icon: Icons.document_scanner,
-                                  icon: "assets/diet.png",
-                                  title: (lifeStyleHistryModel?.body == null ||
-                                          lifeStyleHistryModel.body.diet
-                                                  .toString() == "0") ? "N/A"
-                                      : lifeStyleHistryModel.body.diet.toString(),
-                                  subtitle:
-                                      MyLocalizations.of(context).text("DIET"),
-                                  fun: () {
-                                    /*Navigator.pushNamed(
-                                        context, "/pocreportlist");*/
-                                  },
-                                  color: Color(0xFF2372B6),
-                                  bordercolor: AppData.BG1RED,
-                                  // ,
-                                ),
-                              ]),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              _buildTile1(
-                                icon: "assets/exercise.png",
-                                title: (lifeStyleHistryModel?.body == null ||
-                                        lifeStyleHistryModel?.body.exercise
-                                                .toString() ==
-                                            "0")
-                                    ? "N/A"
-                                    : lifeStyleHistryModel.body.exercise
-                                            .toString() +
-                                        " times",
-                                subtitle: MyLocalizations.of(context)
-                                    .text("EXERCISE"),
-                                fun: () {
-                                  //chooseAppointment1(context);
-                                  /* Navigator.pushNamed(
-                                      context, "/testappointmentpage");*/
-                                },
-                                color: Color(0xFFCF3564),
+                              Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    _buildTile1(
+                                      icon: "assets/smoking.png",
+                                      title: (lifeStyleHistryModel?.body == null ||
+                                              lifeStyleHistryModel.body.smokingName
+                                                      .toString() == "")? "N/A"
+                                          : lifeStyleHistryModel.body.smokingName
+                                              .toString(),
+                                      subtitle: MyLocalizations.of(context)
+                                          .text("SMOKING"),
+                                      fun: () {
+                                        /*Navigator.pushNamed(
+                                        context, "/patientRegistration");*/
+                                        // Navigator.pushNamed(context, "/walkRegList");
+                                      },
+                                      color: Color(0xFFCF3564),
+                                      bordercolor: AppData.grey100,
+                                      // ,
+                                    ),
+                                  ]),
+                              Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    _buildTile1(
+                                      icon: "assets/alcohol.png",
+                                      title: (lifeStyleHistryModel?.body == null ||
+                                              lifeStyleHistryModel.body.alcoholName
+                                                      .toString() == "0") ? "N/A"
+                                          : lifeStyleHistryModel.body.alcoholName
+                                              .toString(),
+                                      subtitle: MyLocalizations.of(context)
+                                          .text("ALCOHOL"),
+                                      fun: () {
+                                        // chooseAppointment(context);
+                                        // Navigator.pushNamed(context, "/medicalrecordpage");
+                                      },
+                                      color: Color(0xFF2372B6),
+                                      bordercolor: AppData.BG1RED,
+                                      // ,
+                                    ),
+                                  ]),
+                            ],
+                          ),
+                          SizedBox(height: 7),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    _buildTile1(
+                                      //icon: Icons.document_scanner,
+                                      icon: "assets/diet.png",
+                                      title: (lifeStyleHistryModel?.body == null ||
+                                              lifeStyleHistryModel.body.diet
+                                                      .toString() == "0") ? "N/A"
+                                          : lifeStyleHistryModel.body.diet.toString(),
+                                      subtitle:
+                                          MyLocalizations.of(context).text("DIET"),
+                                      fun: () {
+                                        /*Navigator.pushNamed(
+                                            context, "/pocreportlist");*/
+                                      },
+                                      color: Color(0xFF2372B6),
+                                      bordercolor: AppData.BG1RED,
+                                      // ,
+                                    ),
+                                  ]),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  _buildTile1(
+                                    icon: "assets/exercise.png",
+                                    title: (lifeStyleHistryModel?.body == null ||
+                                            lifeStyleHistryModel?.body.exercise
+                                                    .toString() ==
+                                                "0")
+                                        ? "N/A"
+                                        : lifeStyleHistryModel.body.exercise
+                                                .toString() +
+                                            " times",
+                                    subtitle: MyLocalizations.of(context)
+                                        .text("EXERCISE"),
+                                    fun: () {
+                                      //chooseAppointment1(context);
+                                      /* Navigator.pushNamed(
+                                          context, "/testappointmentpage");*/
+                                    },
+                                    color: Color(0xFFCF3564),
 
-                                bordercolor: AppData.BG2BLUE,
-                                // ,
+                                    bordercolor: AppData.BG2BLUE,
+                                    // ,
+                                  ),
+                                ],
                               ),
                             ],
                           ),
-                        ],
-                      ),
-                      SizedBox(height: 7),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                _buildTile1(
-                                  //icon: Icons.document_scanner,
-                                  icon: "assets/occupation.png",
-                                  title: (lifeStyleHistryModel?.body == null ||
-                                          lifeStyleHistryModel.body.occupation
-                                                  .toString() ==
-                                              "0")
-                                      ? "N/A"
-                                      : lifeStyleHistryModel.body.occupation
-                                          .toString(),
-                                  subtitle: MyLocalizations.of(context)
-                                      .text("OCCUPATION"),
-                                  fun: () {
-                                    /*Navigator.pushNamed(
-                                        context, "/pocreportlist");*/
-                                  },
-                                  color: Color(0xFFCF3564),
-                                  // color: Color(0xFF2372B6),
-                                  bordercolor: AppData.BG1RED,
-                                  // ,
-                                ),
-                              ]),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
+                          SizedBox(height: 7),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              _buildTile1(
-                                icon: "assets/pet.png",
-                                title: (lifeStyleHistryModel?.body == null ||
-                                        lifeStyleHistryModel?.body.pets
-                                                .toString() ==
-                                            "0")
-                                    ? "N/A"
-                                    : lifeStyleHistryModel.body.pets.toString(),
-                                subtitle:
-                                    MyLocalizations.of(context).text("PETS"),
-                                fun: () {
-                                  //chooseAppointment1(context);
-                                  /* Navigator.pushNamed(
-                                      context, "/testappointmentpage");*/
-                                },
-                                //color: Color(0xFFCF3564),
-                                color: Color(0xFF2372B6),
-                                bordercolor: AppData.BG2BLUE,
-                                // ,
+                              Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    _buildTile1(
+                                      //icon: Icons.document_scanner,
+                                      icon: "assets/occupation.png",
+                                      title: (lifeStyleHistryModel?.body == null ||
+                                              lifeStyleHistryModel.body.occupation
+                                                      .toString() ==
+                                                  "0")
+                                          ? "N/A"
+                                          : lifeStyleHistryModel.body.occupation
+                                              .toString(),
+                                      subtitle: MyLocalizations.of(context)
+                                          .text("OCCUPATION"),
+                                      fun: () {
+                                        /*Navigator.pushNamed(
+                                            context, "/pocreportlist");*/
+                                      },
+                                      color: Color(0xFFCF3564),
+                                      // color: Color(0xFF2372B6),
+                                      bordercolor: AppData.BG1RED,
+                                      // ,
+                                    ),
+                                  ]),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  _buildTile1(
+                                    icon: "assets/pet.png",
+                                    title: (lifeStyleHistryModel?.body == null ||
+                                            lifeStyleHistryModel?.body.pets
+                                                    .toString() ==
+                                                "0")
+                                        ? "N/A"
+                                        : lifeStyleHistryModel.body.pets.toString(),
+                                    subtitle:
+                                        MyLocalizations.of(context).text("PETS"),
+                                    fun: () {
+                                      //chooseAppointment1(context);
+                                      /* Navigator.pushNamed(
+                                          context, "/testappointmentpage");*/
+                                    },
+                                    //color: Color(0xFFCF3564),
+                                    color: Color(0xFF2372B6),
+                                    bordercolor: AppData.BG2BLUE,
+                                    // ,
+                                  ),
+                                ],
                               ),
                             ],
                           ),
                         ],
                       ),
-                    ],
+                    ),
                   ),
                 ),
-              ),
+              ],
             ),
-          ],
+          ),
         ),
-      ),
+        (isShown)?Container(
+          width: double.maxFinite,
+          height: double.maxFinite,
+          color: Colors.black54,
+          child: MaterialButton(
+            onPressed: () {
+              setState(() {
+                isShown = false;
+              });
+            },
+          ),
+        ):Container(),
+        Positioned(
+            right: 22,
+            top: 12,
+            child: Visibility(
+              visible: isShown,
+              child: MaterialButton(
+                  onPressed: () {
+                    setState(() {
+                      isShown = false;
+                    });
+                  },
+                  enableFeedback: false,
+                  hoverColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  child: Visibility(
+                      visible: isShown,
+                      child: SafeArea(
+                          child:
+                          Image.asset("assets/images/indicationupdate.png")))),
+            ))
+      ],
     );
   }
 
