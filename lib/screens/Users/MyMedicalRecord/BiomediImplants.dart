@@ -60,6 +60,8 @@ class _BiomediImplantsState extends State<BiomediImplants> {
   FocusNode fnode5 = new FocusNode();
   AddBioMedicalModel addBioMedicalModel = AddBioMedicalModel();
 
+  bool isShown = true;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -99,250 +101,247 @@ class _BiomediImplantsState extends State<BiomediImplants> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      /*appBar: AppBar(
-        centerTitle: true,
-        backgroundColor: AppData.kPrimaryColor,
-        title: Text(MyLocalizations.of(context).text("BIOMEDICAL")),
-        */
-      /* leading: Icon(
-          Icons.menu,
-        ),*/
-      /*
-        actions: <Widget>[
-          Padding(
-              padding: EdgeInsets.only(right: 20.0),
-              child: GestureDetector(
-                onTap: () {
-                  showDialog(
-                    context: context,
-                    builder: (BuildContext context) =>
-                        displayTextInputDialog(context),
-                  );
-                  // callAPI();
-                },
-                child: Icon(
-                  Icons.add_circle_outline_sharp,
-                  size: 26.0,
-                ),
-              )),
-          */
-      /*Padding(
-              padding: EdgeInsets.only(right: 20.0),
-              child: GestureDetector(
-                onTap: () {},
-                child: Icon(
-                    Icons.more_vert
-                ),
-              )
-          ),*/
-      /*
-        ],
-      ),*/
-      appBar: AppBar(
-          centerTitle: true,
-          backgroundColor: AppData.kPrimaryColor,
-          title: Text(MyLocalizations.of(context).text("BIOMEDICAL")),
-          actions: <Widget>[
-            Padding(
-              padding: EdgeInsets.only(right: 20.0),
-              child: InkWell(
-                onTap: () {
-                  displayTextInputDialog(context);
-                },
-                child: Icon(
-                  Icons.add_circle_outline_sharp,
-                  size: 26.0,
-                ),
-              ),
-            ),
-          ]),
-      body: isdata == true
-          ? CircularProgressIndicator(
-              backgroundColor: AppData.matruColor,
-            )
-          : biomedicalModel == null || biomedicalModel == null
-              ? Container(
-                  child: Center(
-                    child: Text(MyLocalizations.of(context).text("NO_DATA_FOUND"),
-                      style: TextStyle(color: Colors.black, fontSize: 15),
+    return Stack(
+      children: [
+        Scaffold(
+          appBar: AppBar(
+              centerTitle: true,
+              backgroundColor: AppData.kPrimaryColor,
+              title: Text(MyLocalizations.of(context).text("BIOMEDICAL")),
+              actions: <Widget>[
+                Padding(
+                  padding: EdgeInsets.only(right: 20.0),
+                  child: InkWell(
+                    onTap: () {
+                      displayTextInputDialog(context);
+                    },
+                    child: Icon(
+                      Icons.add_circle_outline_sharp,
+                      size: 26.0,
                     ),
                   ),
-                )
-              : Container(
-                  child: SingleChildScrollView(
-                    child: (biomedicalModel != null)
-                        ? ListView.builder(
-                            physics: NeverScrollableScrollPhysics(),
-                            itemCount: biomedicalModel.body.length,
-                            shrinkWrap: true,
-                            itemBuilder: (context, i) {
-                              bio.Body body = biomedicalModel.body[i];
-                              return Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 10, right: 10, top: 5),
-                                child: Card(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(5.0),
-                                  ),
-                                  shadowColor: Colors.grey,
-                                  elevation: 10,
-                                  child: ClipPath(
-                                    clipper: ShapeBorderClipper(
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(5))),
-                                    child: Container(
-                                      decoration: (i % 2 == 0)
-                                          ? BoxDecoration(
-                                              border: Border(
-                                                  left: BorderSide(
-                                                      color: AppData
-                                                          .kPrimaryRedColor,
-                                                      width: 5)))
-                                          : BoxDecoration(
-                                              border: Border(
-                                                  left: BorderSide(
-                                                      color:
-                                                          AppData.kPrimaryColor,
-                                                      width: 5))),
-                                      //width: double.maxFinite,
-                                      child: Stack(
-                                          children: [
-                                        Column(
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 10.0, right: 10.0,top: 8,),
-                                              child: Row(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Expanded(
-                                                    flex: 1,
-                                                    child: Text(MyLocalizations.of(context).text("NAME"),
-                                                      style: TextStyle(
-                                                          fontSize: 15,
-                                                          fontWeight:
-                                                              FontWeight.bold),
-                                                    ),
-                                                  ),
-                                                  Expanded(
-                                                    flex: 1,
-                                                    child: Padding(
-                                                      padding: const EdgeInsets.only(right:6.0),
-                                                      child: Text(
-                                                        body?.bioMName ?? "N/A",
-                                                        style: TextStyle(
-                                                            fontSize: 15),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 10.0,
-                                                  top: 10,
-                                                  right: 10.0),
-                                              child: Row(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Expanded(
-                                                    flex: 1,
-                                                    child: Text(MyLocalizations.of(context).text("DATE"),
-                                                      style: TextStyle(
-                                                          fontSize: 15,
-                                                          fontWeight:
-                                                              FontWeight.bold),
-                                                    ),
-                                                  ),
-                                                  Expanded(
-                                                    flex: 1,
-                                                    child: Text(
-                                                      body?.bioMDate ?? "N/A",
-                                                      style: TextStyle(
-                                                          fontSize: 15),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            // SizedBox(height: 5),
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 10.0,
-                                                  top: 10,
-                                                  right: 10.0),
-                                              child: Row(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Expanded(
-                                                    flex: 1,
-                                                    child: Text(MyLocalizations.of(context).text("REASON"),
-                                                      style: TextStyle(
-                                                          fontSize: 15,
-                                                          fontWeight:
-                                                              FontWeight.bold),
-                                                    ),
-                                                  ),
-                                                  Expanded(
-                                                    flex: 1,
-                                                    child: Text(
-                                                      body?.bioMReason ?? "N/A",
-                                                      style: TextStyle(
-                                                          fontSize: 15),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            SizedBox(height: 10),
-                                          ],
-                                        ),
-                                            Padding(
-                                              padding: const EdgeInsets.all(8.0),
-                                              child: Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                // crossAxisAlignment: CrossAxisAlignment.end,
-                                                mainAxisAlignment: MainAxisAlignment.end,
-                                                children: [
-                                                  InkWell(
-                                                    onTap: () {
-                                                      setState(() {
-                                                        BiomedicaldisplayDialog(
-                                                            context,
-                                                            biomedicalModel,
-                                                            i);
-                                                      });
-                                                    },
-                                                    child: Icon(
-                                                      Icons.edit,
-                                                      size: 20,
-                                                    ),
-                                                  )
-                                                ],
-                                              ),
-                                            ),
-                                      ]),
-                                    ),
-                                  ),
-                                ),
-                              );
-                            },
-                          )
-                        : Container(),
-                  ),
-                  /* ): Container(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
-          alignment: Alignment.center,
-          child: (isDataNoFound) ? Text("Data Not Found"):callApi(),
-*/
                 ),
+              ]),
+          body: isdata == true
+              ? CircularProgressIndicator(
+                  backgroundColor: AppData.matruColor,
+                )
+              : biomedicalModel == null || biomedicalModel == null
+                  ? Container(
+                      child: Center(
+                        child: Text(MyLocalizations.of(context).text("NO_DATA_FOUND"),
+                          style: TextStyle(color: Colors.black, fontSize: 15),
+                        ),
+                      ),
+                    )
+                  : Container(
+                      child: SingleChildScrollView(
+                        child: (biomedicalModel != null)
+                            ? ListView.builder(
+                                physics: NeverScrollableScrollPhysics(),
+                                itemCount: biomedicalModel.body.length,
+                                shrinkWrap: true,
+                                itemBuilder: (context, i) {
+                                  bio.Body body = biomedicalModel.body[i];
+                                  return Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 10, right: 10, top: 5),
+                                    child: Card(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(5.0),
+                                      ),
+                                      shadowColor: Colors.grey,
+                                      elevation: 10,
+                                      child: ClipPath(
+                                        clipper: ShapeBorderClipper(
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(5))),
+                                        child: Container(
+                                          decoration: (i % 2 == 0)
+                                              ? BoxDecoration(
+                                                  border: Border(
+                                                      left: BorderSide(
+                                                          color: AppData
+                                                              .kPrimaryRedColor,
+                                                          width: 5)))
+                                              : BoxDecoration(
+                                                  border: Border(
+                                                      left: BorderSide(
+                                                          color:
+                                                              AppData.kPrimaryColor,
+                                                          width: 5))),
+                                          //width: double.maxFinite,
+                                          child: Stack(
+                                              children: [
+                                            Column(
+                                              children: [
+                                                Padding(
+                                                  padding: const EdgeInsets.only(
+                                                      left: 10.0, right: 10.0,top: 8,),
+                                                  child: Row(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment.start,
+                                                    children: [
+                                                      Expanded(
+                                                        flex: 1,
+                                                        child: Text(MyLocalizations.of(context).text("NAME"),
+                                                          style: TextStyle(
+                                                              fontSize: 15,
+                                                              fontWeight:
+                                                                  FontWeight.bold),
+                                                        ),
+                                                      ),
+                                                      Expanded(
+                                                        flex: 1,
+                                                        child: Padding(
+                                                          padding: const EdgeInsets.only(right:6.0),
+                                                          child: Text(
+                                                            body?.bioMName ?? "N/A",
+                                                            style: TextStyle(
+                                                                fontSize: 15),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding: const EdgeInsets.only(
+                                                      left: 10.0,
+                                                      top: 10,
+                                                      right: 10.0),
+                                                  child: Row(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment.start,
+                                                    children: [
+                                                      Expanded(
+                                                        flex: 1,
+                                                        child: Text(MyLocalizations.of(context).text("DATE"),
+                                                          style: TextStyle(
+                                                              fontSize: 15,
+                                                              fontWeight:
+                                                                  FontWeight.bold),
+                                                        ),
+                                                      ),
+                                                      Expanded(
+                                                        flex: 1,
+                                                        child: Text(
+                                                          body?.bioMDate ?? "N/A",
+                                                          style: TextStyle(
+                                                              fontSize: 15),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                                // SizedBox(height: 5),
+                                                Padding(
+                                                  padding: const EdgeInsets.only(
+                                                      left: 10.0,
+                                                      top: 10,
+                                                      right: 10.0),
+                                                  child: Row(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment.start,
+                                                    children: [
+                                                      Expanded(
+                                                        flex: 1,
+                                                        child: Text(MyLocalizations.of(context).text("REASON"),
+                                                          style: TextStyle(
+                                                              fontSize: 15,
+                                                              fontWeight:
+                                                                  FontWeight.bold),
+                                                        ),
+                                                      ),
+                                                      Expanded(
+                                                        flex: 1,
+                                                        child: Text(
+                                                          body?.bioMReason ?? "N/A",
+                                                          style: TextStyle(
+                                                              fontSize: 15),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                                SizedBox(height: 10),
+                                              ],
+                                            ),
+                                                Padding(
+                                                  padding: const EdgeInsets.all(8.0),
+                                                  child: Row(
+                                                    mainAxisSize: MainAxisSize.max,
+                                                    // crossAxisAlignment: CrossAxisAlignment.end,
+                                                    mainAxisAlignment: MainAxisAlignment.end,
+                                                    children: [
+                                                      InkWell(
+                                                        onTap: () {
+                                                          setState(() {
+                                                            BiomedicaldisplayDialog(
+                                                                context,
+                                                                biomedicalModel,
+                                                                i);
+                                                          });
+                                                        },
+                                                        child: Icon(
+                                                          Icons.edit,
+                                                          size: 20,
+                                                        ),
+                                                      )
+                                                    ],
+                                                  ),
+                                                ),
+                                          ]),
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                },
+                              )
+                            : Container(),
+                      ),
+                      /* ): Container(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
+              alignment: Alignment.center,
+              child: (isDataNoFound) ? Text("Data Not Found"):callApi(),
+*/
+                    ),
+        ),
+        (isShown)?Container(
+          width: double.maxFinite,
+          height: double.maxFinite,
+          color: Colors.black54,
+          child: MaterialButton(
+            onPressed: () {
+              setState(() {
+                isShown = false;
+              });
+            },
+          ),
+        ):Container(),
+        Positioned(
+            right: 25,
+            top: 22,
+            child: Visibility(
+              visible: isShown,
+              child: MaterialButton(
+                  onPressed: () {
+                    setState(() {
+                      isShown = false;
+                    });
+                  },
+                  enableFeedback: false,
+                  hoverColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  child: Visibility(
+                      visible: isShown,
+                      child: SafeArea(
+                          child:
+                          Image.asset("assets/images/indication.png")))),
+            ))
+      ],
     );
   }
 

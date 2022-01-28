@@ -485,7 +485,7 @@ class SetReminderState extends State<SetReminder> {
             viewMode(),
             SizedBox(height: 5),
             Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 18),
+                padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Row(
                   children: const <Widget>[
                     SizedBox(width: 8),
