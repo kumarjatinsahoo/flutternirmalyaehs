@@ -183,12 +183,15 @@ class _MedicineReminderState extends State<MedicineReminder> {
         centerTitle: true,
         title: Text(MyLocalizations.of(context).text("MEDICINE_REMINDER")),
       ),
-      floatingActionButton: UnicornDialer(
-          backgroundColor: Colors.transparent,
-          // parentButtonBackground: Colors.redAccent,
-          orientation: UnicornOrientation.VERTICAL,
-          parentButton: Icon(Icons.add),
-          childButtons: childButtons),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: UnicornDialer(
+            backgroundColor: Colors.transparent,
+            // parentButtonBackground: Colors.redAccent,
+            orientation: UnicornOrientation.VERTICAL,
+            parentButton: Icon(Icons.add),
+            childButtons: childButtons),
+      ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
       body: Column(
         children: [
