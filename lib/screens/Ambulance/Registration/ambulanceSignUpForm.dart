@@ -313,7 +313,7 @@ class AmbulanceSignUpFormState extends State<AmbulanceSignUpForm> {
                                   SizedBox(
                                     height: 8.0,
                                   ),
-                                  formField(
+                                   formField(
                                       11,
                                       MyLocalizations.of(context)
                                           .text("ADDRESS"),
@@ -502,31 +502,31 @@ class AmbulanceSignUpFormState extends State<AmbulanceSignUpForm> {
         // Navigator.pushNamed(context, "/patientRegistration2");
         if (AmbulanceSignUpForm.ambulanceModel == null ||
             AmbulanceSignUpForm.ambulanceModel == "") {
-          AppData.showInSnackBar(context, "Please select Organization Name");
+          AppData.showInSnackBar(context, "Please select organization name");
         } else if (AmbulanceSignUpForm.titlemodel == null ||
             AmbulanceSignUpForm.titlemodel == "") {
-          AppData.showInSnackBar(context, "Please select Title");
+          AppData.showInSnackBar(context, "Please select title");
         } else if (textEditingController[9].text == "" ||
             textEditingController[9].text == null) {
-          AppData.showInSnackBar(context, "Please enter Professional's Name");
+          AppData.showInSnackBar(context, "Please enter professional's name");
           FocusScope.of(context).requestFocus(fnode6);
         }  else if (textEditingController[9].text.length<3) {
-          AppData.showInSnackBar(context, "Please enter valid Professional's Name");
+          AppData.showInSnackBar(context, "Please enter valid professional's name");
           FocusScope.of(context).requestFocus(fnode6);
         } else if (textEditingController[10].text == "" ||
             textEditingController[10].text == null) {
-          AppData.showInSnackBar(context, "Please enter Experience");
+          AppData.showInSnackBar(context, "Please enter experience");
           FocusScope.of(context).requestFocus(fnode6);
         } else if (textEditingController[11].text == "" ||
             textEditingController[11].text == null) {
-          AppData.showInSnackBar(context, "Please enter Address");
+          AppData.showInSnackBar(context, "Please enter address");
           FocusScope.of(context).requestFocus(fnode6);
         }  else if (textEditingController[11].text.length<3) {
           AppData.showInSnackBar(context, "Please enter valid address");
           FocusScope.of(context).requestFocus(fnode6);
       } else if (AmbulanceSignUpForm.genderModel == null ||
             AmbulanceSignUpForm.genderModel == "") {
-          AppData.showInSnackBar(context, "Please select Gender");
+          AppData.showInSnackBar(context, "Please select gender");
         } else {
           widget.model.ambulanceorganisation =
               AmbulanceSignUpForm.ambulanceModel.key;
@@ -937,7 +937,7 @@ class AmbulanceSignUpFormState extends State<AmbulanceSignUpForm> {
               //counterText: "",
               /* prefixIcon:
               Icon(Icons.person_rounded),*/
-              hintStyle: TextStyle(color: AppData.hintColor, fontSize: 17),
+              hintStyle: TextStyle(color: AppData.hintColor, fontSize: 15),
             ),
             textInputAction: TextInputAction.next,
             focusNode: currentfn,
@@ -981,7 +981,7 @@ class AmbulanceSignUpFormState extends State<AmbulanceSignUpForm> {
               //counterText: "",
               /* prefixIcon:
               Icon(Icons.person_rounded),*/
-              hintStyle: TextStyle(color: AppData.hintColor, fontSize: 17),
+              hintStyle: TextStyle(color: AppData.hintColor, fontSize: 15),
             ),
             textInputAction: TextInputAction.next,
             focusNode: currentfn,

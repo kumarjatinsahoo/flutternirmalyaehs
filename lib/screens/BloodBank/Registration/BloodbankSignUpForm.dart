@@ -564,24 +564,24 @@ class BloodBankSignUpFormState extends State<BloodBankSignUpForm> {
       fun: () {
         if (BloodBankSignUpForm.bloodbankModel == null ||
             BloodBankSignUpForm.bloodbankModel == "") {
-          AppData.showInSnackBar(context, "Please select Organization Name");
+          AppData.showInSnackBar(context, "Please select organization name");
         } else if (BloodBankSignUpForm.titlemodel == null ||
             BloodBankSignUpForm.titlemodel == "") {
-          AppData.showInSnackBar(context, "Please select Title");
+          AppData.showInSnackBar(context, "Please select title");
         } else if (textEditingController[9].text == "" ||
             textEditingController[9].text == null) {
-          AppData.showInSnackBar(context, "Please Enter Professional's Name");
+          AppData.showInSnackBar(context, "Please enter professional's name");
         }  else if (textEditingController[9].text.length<3) {
-          AppData.showInSnackBar(context, "Please enter valid Professional's Name");
+          AppData.showInSnackBar(context, "Please enter valid professional's name");
         } else if (textEditingController[10].text == "" ||
             textEditingController[10].text == null) {
-          AppData.showInSnackBar(context, "Please Enter Experience");
+          AppData.showInSnackBar(context, "Please enter experience");
         } else if (textEditingController[11].text == "" ||
             textEditingController[11].text == null) {
-          AppData.showInSnackBar(context, "Please enter Address");
+          AppData.showInSnackBar(context, "Please enter address");
         } else if (BloodBankSignUpForm.genderModel == null ||
             BloodBankSignUpForm.genderModel == "") {
-          AppData.showInSnackBar(context, "Please select Gender");
+          AppData.showInSnackBar(context, "Please select gender");
         } else {
           widget.model.bloodbankorganisation =
               BloodBankSignUpForm.bloodbankModel.key;
@@ -1047,7 +1047,7 @@ class BloodBankSignUpFormState extends State<BloodBankSignUpForm> {
               hintText: hint,
               /* prefixIcon:
               Icon(Icons.person_rounded),*/
-              hintStyle: TextStyle(color: AppData.hintColor, fontSize: 17),
+              hintStyle: TextStyle(color: AppData.hintColor, fontSize: 15),
             ),
             textInputAction: TextInputAction.next,
             focusNode: currentfn,
@@ -1087,7 +1087,7 @@ class BloodBankSignUpFormState extends State<BloodBankSignUpForm> {
               hintText: hint,
               /* prefixIcon:
               Icon(Icons.person_rounded),*/
-              hintStyle: TextStyle(color: AppData.hintColor, fontSize: 17),
+              hintStyle: TextStyle(color: AppData.hintColor, fontSize: 15),
             ),
             textInputAction: TextInputAction.next,
             focusNode: currentfn,

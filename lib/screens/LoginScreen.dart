@@ -693,7 +693,7 @@ class _LoginScreenState extends State<LoginScreen> {
         //Navigator.pushNamed(context, "/navigation");
         if (_loginId.text == "" || _loginId.text == null) {
           AppData.showInSnackBar(
-              context, "Please enter mobile no/Email id/User id");
+              context, "Please enter mobile no/Email id/User id/User name");
         } else if (passController.text == "" || passController.text == null) {
           AppData.showInSnackBar(context, "Please enter password");
         } else {
