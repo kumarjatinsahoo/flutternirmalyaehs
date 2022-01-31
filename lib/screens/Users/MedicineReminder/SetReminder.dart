@@ -147,6 +147,7 @@ class SetReminderState extends State<SetReminder> {
   DeviceCalendarPlugin _deviceCalendarPlugin = new DeviceCalendarPlugin();
 
   List<KeyvalueModel> days = [];
+  var frequncyText='Days';
 
   @override
   void initState() {
@@ -484,7 +485,7 @@ class SetReminderState extends State<SetReminder> {
             viewMode(),
             SizedBox(height: 5),
             Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 18),
+                padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Row(
                   children: const <Widget>[
                     SizedBox(width: 8),
@@ -524,7 +525,7 @@ class SetReminderState extends State<SetReminder> {
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  'Days',
+                  frequncyText,
                   style: TextStyle(
                       fontWeight: FontWeight.w600,
                       color: Colors.black,
@@ -536,12 +537,13 @@ class SetReminderState extends State<SetReminder> {
               padding: const EdgeInsets.symmetric(horizontal: 18),
               child: TextFormField(
                 decoration: InputDecoration(
-                    hintText: "Days", hintStyle: TextStyle(color: Colors.grey)),
+                    hintText: frequncyText, hintStyle: TextStyle(color: Colors.grey)),
                 controller: textEditingController[2],
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.number,
                 inputFormatters: [
-                  WhitelistingTextInputFormatter(RegExp("[1-9]")),
+                  WhitelistingTextInputFormatter(RegExp("[0-9]")),
+                  FilteringTextInputFormatter.deny(RegExp(r'^0+')),
                 ],
               ),
             ),
@@ -587,6 +589,7 @@ class SetReminderState extends State<SetReminder> {
           onChanged: (PayMode1 value) {
             setState(() {
               payMode1 = value;
+              frequncyText='Days';
             });
           },
         ),
@@ -601,6 +604,7 @@ class SetReminderState extends State<SetReminder> {
           onChanged: (PayMode1 value) {
             setState(() {
               payMode1 = value;
+              frequncyText='Week';
             });
           },
         ),
@@ -615,6 +619,7 @@ class SetReminderState extends State<SetReminder> {
           onChanged: (PayMode1 value) {
             setState(() {
               payMode1 = value;
+              frequncyText='Month';
             });
           },
         ),
@@ -682,10 +687,14 @@ class SetReminderState extends State<SetReminder> {
       AppData.showInSnackBar(context, "Please enter end time");
     } else if (stdob.text == "" || stdob.text == null) {
       AppData.showInSnackBar(context, "Please enter Start Date");
-    } else if (textEditingController[2].text == "" ||
+    }    
+    else if (textEditingController[2].text == "" ||
         textEditingController[2].text == null) {
-      AppData.showInSnackBar(context, "Please enter Types");
+      AppData.showInSnackBar(context, "Please enter Days");
     }
+     else if (int.parse(textEditingController[2].text) < 1) {
+      AppData.showInSnackBar(context, "Days should not be less than 1");
+    }  
 
     else {
       SetReminderModel setReminderModel = SetReminderModel();

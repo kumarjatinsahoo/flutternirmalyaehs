@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'package:flutter/cupertino.dart';
+import 'package:geocoder/geocoder.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/GooglePlacesModel.dart';
@@ -28,7 +29,7 @@ class MedicalServiceOngooglePagenew extends StatefulWidget {
 class _MedicalServiceOngooglePagenewState extends State<MedicalServiceOngooglePagenew> {
   var selectedMinValue;
   GooglePlaceModel googlePlaceModel;
-  bool isDataNotAvail = false;
+  bool isDataNotAvail = true;
   ScrollController _scrollController = ScrollController();
 
   //ScrollController _scrollController = ScrollController();
@@ -50,7 +51,7 @@ class _MedicalServiceOngooglePagenewState extends State<MedicalServiceOngooglePa
     type = widget.model.type;
     // getLocationName();
     _getLocationName();
-    callAPI(5, currentMax);
+    // callAPI(5, currentMax);
     _scrollController.addListener(() {
       if (_scrollController.position.pixels ==
           _scrollController.position.maxScrollExtent) {
@@ -71,8 +72,26 @@ class _MedicalServiceOngooglePagenewState extends State<MedicalServiceOngooglePa
         'location>>>>>>>>>>>>>>>>>>: ${position.latitude},${position.longitude}');
     lati = position.latitude.toString();
     longi = position.longitude.toString();
-    // callApi(position.latitude.toString(), position.longitude.toString());
-    callAPI(5, currentMax);
+    // callApi(position.latitude.toString(), position.longitude.toString());   
+      try {
+      final coordinates =
+          new Coordinates(position.latitude, position.longitude);
+      var addresses =
+          await Geocoder.local.findAddressesFromCoordinates(coordinates);
+      //var address = await Geocoder.local.findAddressesFromCoordinates(coordinates);
+      var first = addresses.first;
+      print("${first.featureName} : ${first.addressLine}");
+      print("================Chuti + ${first.locality}}");
+      // setState(() {
+        // address = "${first.addressLine}";
+       city = first.locality;
+        // longitudes = position.longitude.toString();
+        // latitudes = position.altitude.toString();
+      // });
+    } catch (e) {
+      print(e.toString());
+    }
+     callAPI(5, currentMax);
     /*callAPI(5, currentMax);
     _scrollController.addListener(() {
       if (_scrollController.position.pixels ==
@@ -175,11 +194,12 @@ Map<String, dynamic> postData = {
   }*/
   callAPI(int radius, int i) {
     // log("API :Lati & Longi" + lati + "\n" + lati);
-    log("API CALL>>>" + ApiFactory.GOOGLE_QUERY_API(lati: lati, radius: (radius * 1000).toString(), longi: longi, healthpro: healthpro) +
+    log("API CALL>>>" + ApiFactory.GOOGLE_QUERY_API(lati: lati, radius: (radius * 1000).toString(), longi: longi, healthpro: medicallserviceType) +
         "\n\n\n");
+        
     widget.model.GETMETHODCAL(
         api: ApiFactory.GOOGLE_QUERY_API(
-            lati: lati, longi: longi, radius: (radius * 1000).toString(), healthpro: medicallserviceType),
+            lati: lati, longi: longi, radius: (radius * 1000).toString(), healthpro:(city!=null)?medicallserviceType+" in "+city:medicallserviceType),
         fun: (Map<String, dynamic> map) {
           setState(() {
             // String msg = map[Const.MESSAGE];
@@ -187,13 +207,16 @@ Map<String, dynamic> postData = {
               // if (i == 1) {
               googlePlaceModel = GooglePlaceModel.fromJson(map);
               nextpage=googlePlaceModel.nextPageToken;
+              isDataNotAvail=false;
               print('================ nextpage ' + googlePlaceModel.results.length.toString());
               // } else {
               //   googlePlaceModel.addMore(map);
               // }
             } else {
-              //   isDataNotAvail = true;
-              AppData.showInSnackBar(context, "Google api doesn't work");
+               setState(() {
+                  isDataNotAvail = false;
+               });
+              // AppData.showInSnackBar(context, "No Data Found!");
             }
           });
         });
@@ -280,14 +303,16 @@ Map<String, dynamic> postData = {
              ),
              
           ],),
-          
-          (googlePlaceModel != null)
-              ? Expanded(
+           isDataNotAvail==true?  Expanded(child: Center(child: CircularProgressIndicator(backgroundColor: AppData.matruColor,))):
+      (googlePlaceModel ==null)?Expanded(
+            child: Center(child: Text('NO DATA FOUND!', style: TextStyle(color: Colors.black, fontSize: 18),),),
+          ):
+         Expanded(
                 child: ListView.builder(
                     controller: _scrollController,
                     itemBuilder: (context, i) {
                      if (i == googlePlaceModel.results.length ) {        
-                    return (googlePlaceModel.results.length % 20 == 0 && googlePlaceModel.nextPageToken != null)
+                    return (googlePlaceModel.results.length % 20 == 0 && (googlePlaceModel.nextPageToken != null || googlePlaceModel.nextPageToken != ""))
                         ? CupertinoActivityIndicator()
                         : Container();
                   }
@@ -398,15 +423,7 @@ Map<String, dynamic> postData = {
                     itemCount: googlePlaceModel.results.length + 1,
                   ),
               )
-            :  Expanded(
-              child: Container(
-                      child: Center(
-                        child:  CircularProgressIndicator(
-                backgroundColor: AppData.matruColor,
-                        )
-                      ),
-                    ),
-            )
+            
         ],
       ),
     ),

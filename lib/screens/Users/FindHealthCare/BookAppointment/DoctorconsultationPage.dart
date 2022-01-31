@@ -257,93 +257,107 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                         //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Expanded(
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: Colors.green,
-                                border: Border.all(
+                            child: InkWell(
+                              onTap: (){
+                                setState(() {
+                                   radioGroup1 =  RadioGroup1.payon_shop;
+                                });                                
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
                                   color: Colors.green,
+                                  border: Border.all(
+                                    color: Colors.green,
+                                  ),
+                                  borderRadius: BorderRadius.circular(4.0),
                                 ),
-                                borderRadius: BorderRadius.circular(4.0),
-                              ),
-                              child: Row(
-                                children: [
-                                  Radio(
-                                    activeColor: Colors.white,
-                                    value: RadioGroup1.payon_shop,
-                                    groupValue: radioGroup1,
-                                    onChanged: (RadioGroup1 value) {
-                                      setState(() {
-                                        radioGroup1 = value;
-                                      });
-                                    },
-                                    materialTapTargetSize:
-                                        MaterialTapTargetSize.shrinkWrap,
-                                  ),
-                                  Text(MyLocalizations.of(context).text("HOSPITAL_VISIT"),
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  SizedBox(
-                                    width: 10,
-                                  ),
-                                  Icon(Icons.local_hospital_rounded,
-                                      color: Colors.white),
-
-/*                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Container(
-                                      width: 25,
-                                      height: 25,
-                                      child: Image.asset( "assets/images/hospitalbuilding.png",
-                                          fit: BoxFit.cover)),
-                                ),*/
-                                ],
+                                child: Row(
+                                  children: [
+                                    Radio(
+                                      activeColor: Colors.white,
+                                      value: RadioGroup1.payon_shop,
+                                      groupValue: radioGroup1,
+                                      onChanged: (RadioGroup1 value) {
+                                        setState(() {
+                                          radioGroup1 = value;
+                                        });
+                                      },
+                                      materialTapTargetSize:
+                                          MaterialTapTargetSize.shrinkWrap,
+                                    ),
+                                    Text(MyLocalizations.of(context).text("HOSPITAL_VISIT"),
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Icon(Icons.local_hospital_rounded,
+                                        color: Colors.white),
+                            
+                            /*                                Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Container(
+                                        width: 25,
+                                        height: 25,
+                                        child: Image.asset( "assets/images/hospitalbuilding.png",
+                                            fit: BoxFit.cover)),
+                                  ),*/
+                                  ],
+                                ),
                               ),
                             ),
                           ),
                           SizedBox(width: 5),
                           Expanded(
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: Colors.grey,
-                                border: Border.all(
+                            child: InkWell(
+                               onTap: (){
+                                setState(() {
+                                   radioGroup1 =  RadioGroup1.online;
+                                });                                
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
                                   color: Colors.grey,
+                                  border: Border.all(
+                                    color: Colors.grey,
+                                  ),
+                                  borderRadius: BorderRadius.circular(4.0),
                                 ),
-                                borderRadius: BorderRadius.circular(4.0),
-                              ),
-                              child: Row(
-                                children: [
-                                  // SizedBox(width: 5,),
-                                  //Icon(Icons.video_call,color: Colors.white,),
-                                  Radio(
-                                    activeColor: Colors.white,
-                                    value: RadioGroup1.online,
-                                    groupValue: radioGroup1,
-                                    onChanged: (RadioGroup1 value) {
-                                      setState(() {
-                                        radioGroup1 = value;
-                                        //roleid = "5";
-                                        //bookPostModel.paymentway = "1";
-                                      });
-                                    },
-                                    materialTapTargetSize:
-                                        MaterialTapTargetSize.shrinkWrap,
-                                  ),
-                                  Text(MyLocalizations.of(context).text("VIDEO_CONSULT"),
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  SizedBox(
-                                    width: 10,
-                                  ),
-
-                                  Icon(Icons.video_call_rounded,
-                                      color: Colors.white),
-                                ],
+                                child: Row(
+                                  children: [
+                                    // SizedBox(width: 5,),
+                                    //Icon(Icons.video_call,color: Colors.white,),
+                                    Radio(
+                                      activeColor: Colors.white,
+                                      value: RadioGroup1.online,
+                                      groupValue: radioGroup1,
+                                      onChanged: (RadioGroup1 value) {
+                                        setState(() {
+                                          radioGroup1 = value;
+                                          //roleid = "5";
+                                          //bookPostModel.paymentway = "1";
+                                        });
+                                      },
+                                      materialTapTargetSize:
+                                          MaterialTapTargetSize.shrinkWrap,
+                                    ),
+                                    Text(MyLocalizations.of(context).text("VIDEO_CONSULT"),
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                            
+                                    Icon(Icons.video_call_rounded,
+                                        color: Colors.white),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
