@@ -440,6 +440,7 @@ class BloodBankSignUpForm2State extends State<BloodBankSignUpForm2> {
                                                     child: Icon(Icons.clear)),
                                                 onTap: () {
                                                   setState(() {
+                                                    pharmaSignupModel.documentExt = null;
                                                     idproof = null;
                                                     // registrationModel.profilePhotoBase64 =
                                                     null;
@@ -667,39 +668,39 @@ class BloodBankSignUpForm2State extends State<BloodBankSignUpForm2> {
       fun: () {
         if (BloodBankSignUpForm2.countryModel == null ||
             BloodBankSignUpForm2.countryModel == "") {
-          AppData.showInSnackBar(context, "Please select Country");
+          AppData.showInSnackBar(context, "Please select country");
         } else if (BloodBankSignUpForm2.stateModel == null ||
             BloodBankSignUpForm2.stateModel == "") {
-          AppData.showInSnackBar(context, "Please select State");
+          AppData.showInSnackBar(context, "Please select state");
         } else if (BloodBankSignUpForm2.districtModel == null ||
             BloodBankSignUpForm2.districtModel == "") {
-          AppData.showInSnackBar(context, "Please select District");
+          AppData.showInSnackBar(context, "Please select district");
         } else if (BloodBankSignUpForm2.citymodel == null ||
             BloodBankSignUpForm2.citymodel == "") {
-          AppData.showInSnackBar(context, "Please select City");
+          AppData.showInSnackBar(context, "Please select city");
         } else if (textEditingController[5].text == "" ||
             textEditingController[5].text == null) {
-          AppData.showInSnackBar(context, "Please enter Zip/Pin Code");
+          AppData.showInSnackBar(context, "Please enter zip/pin code");
         }else if (textEditingController[5].text != "" &&
             textEditingController[5].text.length != 6) {
-          AppData.showInSnackBar(context, "Please enter a valid Zip/Pin Code ");
+          AppData.showInSnackBar(context, "Please enter a valid zip/pin code ");
         } else if (textEditingController[10].text == "" ||
             textEditingController[10].text == null) {
-          AppData.showInSnackBar(context, "Please enter Mobile Number");
+          AppData.showInSnackBar(context, "Please enter mobile number");
         } else if (textEditingController[10].text != "" &&
             textEditingController[10].text.length != 10) {
-          AppData.showInSnackBar(context, "Please enter a valid Mobile Number");
+          AppData.showInSnackBar(context, "Please enter a valid mobile number");
         } else if (textEditingController[11].text == "" ||
             textEditingController[11].text == null) {
-          AppData.showInSnackBar(context, "Please enter Email Id");
+          AppData.showInSnackBar(context, "Please enter email id");
         } else if (textEditingController[11].text != "" &&
             !AppData.isValidEmail(textEditingController[11].text)) {
-          AppData.showInSnackBar(context, "Please enter a valid e-Mail");
+          AppData.showInSnackBar(context, "Please enter a valid e-mail");
         }else if (pharmaSignupModel.documentExt == null) {
-          AppData.showInSnackBar(context, "Please Upload Document");
+          AppData.showInSnackBar(context, "Please upload document");
         }
         else if (_checkbox == false) {
-          AppData.showInSnackBar(context, "Please check terms and Condition");
+          AppData.showInSnackBar(context, "Please check terms and conditions");
         } else {
           MyWidgets.showLoading(context);
           pharmaSignupModel.organizationid = bloodbankorganisation;

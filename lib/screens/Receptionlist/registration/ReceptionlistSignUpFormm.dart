@@ -159,6 +159,7 @@ class ReceptionlistSignUpFormmState extends State<ReceptionlistSignUpFormm> {
     ReceptionlistSignUpFormm.stateModel = null;
     ReceptionlistSignUpFormm.districtModel = null;
     ReceptionlistSignUpFormm.cityModel = null;
+    ReceptionlistSignUpFormm.organizationModel = null;
   }
 
   void connectionChanged(dynamic hasConnection) {
@@ -249,6 +250,9 @@ class ReceptionlistSignUpFormmState extends State<ReceptionlistSignUpFormm> {
                         SizedBox(
                           height: 10,
                         ),
+                        Text(MyLocalizations.of(context).text("FILL_IN_PERSONAL_INFORMATION"),
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: 18, color: Colors.black),),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 0),
                           child: SizedBox(
@@ -527,9 +531,6 @@ class ReceptionlistSignUpFormmState extends State<ReceptionlistSignUpFormm> {
                                 ),
                               ),
                               SizedBox(
-                                height: 2,
-                              ),
-                              SizedBox(
                                 height: 10,
                               ),
                               Padding(
@@ -712,6 +713,7 @@ class ReceptionlistSignUpFormmState extends State<ReceptionlistSignUpFormm> {
                                           child: Icon(Icons.clear)),
                                       onTap: () {
                                         setState(() {
+                                          doctorModel.documentExt = null;
                                           idproof = null;
                                           // registrationModel.profilePhotoBase64 =
                                           null;
@@ -1103,7 +1105,7 @@ class ReceptionlistSignUpFormmState extends State<ReceptionlistSignUpFormm> {
   validate() async {
     if (ReceptionlistSignUpFormm.organizationModel == null ||
         ReceptionlistSignUpFormm.organizationModel == "") {
-      AppData.showInSnackBar(context, "Please Select organization name");
+      AppData.showInSnackBar(context, "Please select organization name");
     } else if (ReceptionlistSignUpFormm.titleModel == null ||
         ReceptionlistSignUpFormm.titleModel == "") {
       AppData.showInSnackBar(context, "Please select title");
@@ -1126,18 +1128,18 @@ class ReceptionlistSignUpFormmState extends State<ReceptionlistSignUpFormm> {
       FocusScope.of(context).requestFocus(fnode3);
     } else if (textEditingController[0].text == "" ||
         textEditingController[0].text == null) {
-      AppData.showInSnackBar(context, "Please enter Zip/Pin code");
+      AppData.showInSnackBar(context, "Please enter zip/pin code");
     } else if (textEditingController[0].text == null ||
         textEditingController[0].text.length != 6) {
-      AppData.showInSnackBar(context, "Please enter a valid Zip/Pin code");
+      AppData.showInSnackBar(context, "Please enter a valid zip/pin code");
       FocusScope.of(context).requestFocus(fnode1);
     } else if (textEditingController[1].text == "" ||
         textEditingController[1].text == null) {
-      AppData.showInSnackBar(context, "Please enter e-mail Id");
+      AppData.showInSnackBar(context, "Please enter e-mail id");
       FocusScope.of(context).requestFocus(fnode2);
     } else if (textEditingController[1].text != "" &&
         !AppData.isValidEmail(textEditingController[1].text)) {
-      AppData.showInSnackBar(context, "Please enter a valid e-mail Id");
+      AppData.showInSnackBar(context, "Please enter a valid e-mail id");
       FocusScope.of(context).requestFocus(fnode2);
     } else if (textEditingController[5].text == "" ||
         textEditingController[5].text == null) {

@@ -292,7 +292,7 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
                                     ),
                                   ),
                                   SizedBox(
-                                    height: 10,
+                                    height: 2,
                                   ),
 
                                   //  formFieldaddress(8, "Address"),
@@ -727,10 +727,10 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
           AppData.showInSnackBar(context, "Please select city");
         } else if (textEditingController[5].text == "" ||
             textEditingController[5].text == null) {
-          AppData.showInSnackBar(context, "Please enter Zip/Pin code");
+          AppData.showInSnackBar(context, "Please enter zip/pin code");
         } else if (textEditingController[5].text == "" ||
             textEditingController[5].text.length != 6) {
-          AppData.showInSnackBar(context, "Please enter valid Zip/Pin code");
+          AppData.showInSnackBar(context, "Please enter valid zip/pin code");
         } else if (textEditingController[10].text == "" ||
             textEditingController[10].text == null) {
           AppData.showInSnackBar(context, "Please enter mobile number");
@@ -739,14 +739,14 @@ class PharmaSignUpForm3State extends State<PharmaSignUpForm3> {
           AppData.showInSnackBar(context, "Please enter a valid mobile no");
         } else if (textEditingController[11].text == "" ||
             textEditingController[11].text == null) {
-          AppData.showInSnackBar(context, "Please enter email Id");
+          AppData.showInSnackBar(context, "Please enter email id");
         } else if (textEditingController[11].text != "" &&
             !AppData.isValidEmail(textEditingController[11].text)) {
           AppData.showInSnackBar(context, "Please enter a valid e-mail");
         }else if (pharmaSignupModel.documentExt == null) {
           AppData.showInSnackBar(context, "Please upload document");
         } else if (_checkbox == false){
-          AppData.showInSnackBar(context, "Please check Terms and Conditions");
+          AppData.showInSnackBar(context, "Please check terms and conditions");
         } else {
           MyWidgets.showLoading(context);
           pharmaSignupModel.organizationid = pharmaorganisation;

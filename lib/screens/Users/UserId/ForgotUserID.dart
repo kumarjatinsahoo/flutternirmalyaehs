@@ -123,7 +123,7 @@ class _ForgotUserIDState extends State<ForgotUserID> {
       fun: () {
         if (_mobileno.text == "" && _emailid.text == "") {
           AppData.showInSnackBar(
-              context, "Please enter email id no or mobile no");
+              context, "Please enter email id or mobile no");
         } else {
           var sendData;
           if (_emailid.text != "") {

@@ -263,7 +263,7 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
                                   style: TextStyle(
                                       fontSize: 18, color: Colors.black),
                                 ),
-                                SizedBox(width: 25),
+                                SizedBox(width: 10),
                                 Column(
                                   children: [
                                     Text(
@@ -299,7 +299,7 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
                             ),
                           ),
                           SizedBox(
-                            height: 8,
+                            height: 2,
                           ),
                           /*dob(),
                           Padding(
@@ -519,7 +519,7 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
           FocusScope.of(context).requestFocus(fnode1);
         } else*/ if (DoctorSignUpForm3.specialistModel == null ||
             DoctorSignUpForm3.specialistModel == "") {
-          AppData.showInSnackBar(context, "Please select Speciality");
+          AppData.showInSnackBar(context, "Please select speciality");
        /* } else if (textEditingController[2].text == null ||
             textEditingController[2].text == "") {
           AppData.showInSnackBar(context, "Please enter Date  of Birth");
@@ -528,7 +528,7 @@ class DoctorSignUpForm3State extends State<DoctorSignUpForm3> {
           AppData.showInSnackBar(context, "Please select Blood Group");*/
         } else if (DoctorSignUpForm3.genderModel == null ||
             DoctorSignUpForm3.genderModel == "") {
-          AppData.showInSnackBar(context, "Please select Gender");
+          AppData.showInSnackBar(context, "Please select gender");
         } else {
           //widget.model.education = textEditingController[8].text;
           widget.model.speciality = DoctorSignUpForm3.specialistModel.key;

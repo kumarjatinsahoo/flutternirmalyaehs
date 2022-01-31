@@ -38,7 +38,7 @@ class _BookAmbulancelistState extends State<BookAmbulancelist> {
   ];
   FocusNode fnode1 = new FocusNode();
   FocusNode fnode2 = new FocusNode();
-
+  bool isShown = true;
 
   List<KeyvalueModel> severitylist = [
     KeyvalueModel(name: "High", key: "High"),
@@ -84,337 +84,373 @@ class _BookAmbulancelistState extends State<BookAmbulancelist> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        backgroundColor: AppData.kPrimaryColor,
-        title: Text(MyLocalizations.of(context).text("AMBULANCE")),
-        /* leading: Icon(
-          Icons.menu,
-        ),*/
-        actions: <Widget>[
-          Padding(
-              padding: EdgeInsets.only(right: 20.0),
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.pushNamed(context, "/bookAmbulancePage");
-                 /* showDialog(
-                    context: context,
-                    builder: (BuildContext context) =>
-                        dialogaddnomination(context),
-                  );*/
-                  // callAPI();
-                },
-                child: Icon(
-                  Icons.add_circle_outline_sharp,
-                  size: 26.0,
-                ),
-              )),
-          /*Padding(
-              padding: EdgeInsets.only(right: 20.0),
-              child: GestureDetector(
-                onTap: () {},
-                child: Icon(
-                    Icons.more_vert
-                ),
-              )
-          ),*/
-        ],
-      ),
+    return Stack(
+      children: [
+        Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            backgroundColor: AppData.kPrimaryColor,
+            title: Text(MyLocalizations.of(context).text("AMBULANCE")),
+            /* leading: Icon(
+              Icons.menu,
+            ),*/
+            actions: <Widget>[
+              Padding(
+                  padding: EdgeInsets.only(right: 20.0),
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, "/bookAmbulancePage");
+                     /* showDialog(
+                        context: context,
+                        builder: (BuildContext context) =>
+                            dialogaddnomination(context),
+                      );*/
+                      // callAPI();
+                    },
+                    child: Icon(
+                      Icons.add_circle_outline_sharp,
+                      size: 26.0,
+                    ),
+                  )),
+              /*Padding(
+                  padding: EdgeInsets.only(right: 20.0),
+                  child: GestureDetector(
+                    onTap: () {},
+                    child: Icon(
+                        Icons.more_vert
+                    ),
+                  )
+              ),*/
+            ],
+          ),
 body: isdata == true
-    ? Center(
-      child: CircularProgressIndicator(
+        ? Center(
+          child: CircularProgressIndicator(
   //backgroundColor: AppData.matruColor,
 ),
-    )
-    : ambulancelistModel == null || ambulancelistModel == null
-    ? Container(
+        )
+        : ambulancelistModel == null || ambulancelistModel == null
+        ? Container(
   child: Center(
-    child: Text(
-      MyLocalizations.of(context).text("NO_DATA_FOUND"),
-      style:
-      TextStyle(color: Colors.black, fontSize: 15),
-    ),
+        child: Text(
+          MyLocalizations.of(context).text("NO_DATA_FOUND"),
+          style:
+          TextStyle(color: Colors.black, fontSize: 15),
+        ),
   ),
 
 ):
 SingleChildScrollView(
 
   child:(ambulancelistModel != null)? ListView.builder(
-    physics: NeverScrollableScrollPhysics(),
-    // controller: _scrollController,
-    shrinkWrap: true,
-    itemBuilder: (context, i) {
-      if (i == ambulancelistModel.body.length) {
-        return (ambulancelistModel.body.length % 10 == 0)
-            ? CupertinoActivityIndicator()
-            : Container();
-      }
-      ambulance.Body body = ambulancelistModel.body[i];
-      return Padding(
-        padding: const EdgeInsets.only(left: 10,right: 10,top: 5),
-        child: Card(
-          child: Container(
-            //height: height * 0.30,
-            // color: Colors.grey[200],
-            child: Column(
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                      gradient: LinearGradient(colors: [
-                        Colors.blueGrey[50],
-                        Colors.blue[50]
-                      ])),
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                        left: 10.0, right: 10.0, top: 10, bottom: 5),
-                    child: InkWell(
-                      onTap: () {
-                        },
-                      child: Column(
-                        crossAxisAlignment:
-                        CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            // mainAxisAlignment: MainAxisAlignment.center,
+        physics: NeverScrollableScrollPhysics(),
+        // controller: _scrollController,
+        shrinkWrap: true,
+        itemBuilder: (context, i) {
+          if (i == ambulancelistModel.body.length) {
+            return (ambulancelistModel.body.length % 10 == 0)
+                ? CupertinoActivityIndicator()
+                : Container();
+          }
+          ambulance.Body body = ambulancelistModel.body[i];
+          return Padding(
+            padding: const EdgeInsets.only(left: 10,right: 10,top: 5),
+            child: Card(
+              child: Container(
+                //height: height * 0.30,
+                // color: Colors.grey[200],
+                child: Column(
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                          gradient: LinearGradient(colors: [
+                            Colors.blueGrey[50],
+                            Colors.blue[50]
+                          ])),
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                            left: 10.0, right: 10.0, top: 10, bottom: 5),
+                        child: InkWell(
+                          onTap: () {
+                            },
+                          child: Column(
                             crossAxisAlignment:
-                            CrossAxisAlignment
-                                .end,
+                            CrossAxisAlignment.start,
                             children: [
-                              Container(
-                               //width: 120,
-                                child: Text(
-                                  MyLocalizations.of(context).text("AMBULANCE_NAME"),
-                                  /*'Confirmed'*/
-                                  style: TextStyle(
-                                    fontWeight:
-                                    FontWeight
-                                        .w600,
-                                    fontSize: 15,
-                                  ),
-                                ),
-                              ),
-                              Text(" : "),
-                              Text(
-                                /*'23-Nov-2020-11:30AM'*/
-                                body.ambulanceName,
-                                overflow:
-                                TextOverflow
-                                    .clip,
-                                style: TextStyle(
-                                    color: Colors
-                                        .black),
-                              ),
-                            ],
-                          ),
-
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Row(
-                            // mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-
-                            children: [
-                              Container(
-                                width: 120,
-                                child: Text(
-                                  MyLocalizations.of(context).text("FROM_LOCATION"),
-                                  /*'Confirmed'*/
-                                  style: TextStyle(
-                                    fontWeight:
-                                    FontWeight
-                                        .w600,
-                                    fontSize: 15,
-                                  ),
-                                ),
-                              ),
-                              Text(" : "),
-                              Expanded(
-                                child:Text(
-                                /*'23-Nov-2020-11:30AM'*/
-                                body.fromLocation,
-                                overflow:
-                                TextOverflow
-                                    .clip,
-                                style: TextStyle(
-                                    color: Colors
-                                        .black),
-                              ),)
-                              /*Text(
-                                *//*'23-Nov-2020-11:30AM'*//*
-                                body.fromLocation,
-                                overflow:
-                                TextOverflow
-                                    .clip,
-                                style: TextStyle(
-                                    color: Colors
-                                        .black),
-                              ),*/
-                            ],
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Row(
-                            // mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                width: 120,
-                                child: Text(
-                                  MyLocalizations.of(context).text("DESTINATION"),
-                                  /*'Confirmed'*/
-                                  style: TextStyle(
-                                    fontWeight:
-                                    FontWeight
-                                        .w600,
-                                    fontSize: 15,
-                                  ),
-                                ),
-                              ),
-                              Text(" : "),
-                              Expanded(
-                                child:Text(
-                                  /*'23-Nov-2020-11:30AM'*/
-                                  body.toDestination,
-                                  overflow:
-                                  TextOverflow
-                                      .clip,
-                                  style: TextStyle(
-                                      color: Colors
-                                          .black),
-                                ),)
-
-                            ],
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Row(
-                            // mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment:
-                            CrossAxisAlignment
-                                .end,
-                            children: [
-                              Container(
-                                width: 120,
-                                child: Text(
-                                  MyLocalizations.of(context).text("PATIENT_NOTES"),
-                                  /*'Confirmed'*/
-
-                                  style: TextStyle(
-                                    fontWeight:
-                                    FontWeight
-                                        .w600,
-                                    fontSize: 15,
-                                  ),
-                                ),
-                              ),
-                              Text(" : "),
-                              Text(
-                                /*'23-Nov-2020-11:30AM'*/
-                                body.patientNote,
-                                overflow:
-                                TextOverflow
-                                    .clip,
-                                style: TextStyle(
-                                    color: Colors
-                                        .black),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Row(
-                            // mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment:
-                            CrossAxisAlignment
-                                .end,
-                            children: [
-                              Container(
-                                width: 120,
-                                child: Text(
-                                  MyLocalizations.of(context).text("DATE"),
-                                  /*'Confirmed'*/
-                                  style: TextStyle(
-                                    fontWeight:
-                                    FontWeight
-                                        .w600,
-                                    fontSize: 15,
-                                  ),
-                                ),
-                              ),
-                              Text(" : "),
-                              Text(
-                                /*'23-Nov-2020-11:30AM'*/
-                                body.bookedDate,
-                                overflow:
-                                TextOverflow
-                                    .clip,
-                                style: TextStyle(
-                                    color: Colors
-                                        .black),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          Row(
-                            children: [
-                              Text(
-                                ' ',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w600),
-                              ),
-                              Spacer(),
-                              InkWell(
-                                /*onTap: () {
-                                  showDialog(
-                                    context: context,
-                                    builder: (BuildContext
-                                    context) =>
-                                        changeStatus(context,body.orderId),
-                                  );
-                                  // widget.model.userappointment = appointmentlist;
-
-
-                                  //  Navigator.pushNamed(context, "/usermedicinelist");
-                                },*/
-                                child: MaterialButton(
-                                  child: Text(
-                                    /*'Confirmed'*/
-                                    body.status,
-                                    style: TextStyle(
+                              Row(
+                                // mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment:
+                                CrossAxisAlignment
+                                    .end,
+                                children: [
+                                  Container(
+                                   //width: 120,
+                                    child: Text(
+                                      MyLocalizations.of(context).text("AMBULANCE_NAME"),
+                                      /*'Confirmed'*/
+                                      style: TextStyle(
                                         fontWeight:
                                         FontWeight
-                                            .bold,
-                                        fontSize:
-                                        15,
-                                        color:AppData.kPrimaryBlueColor),
+                                            .w600,
+                                        fontSize: 15,
+                                      ),
+                                    ),
                                   ),
-                                ),
+                                  Text(" : "),
+                                  Text(
+                                    /*'23-Nov-2020-11:30AM'*/
+                                    body.ambulanceName,
+                                    overflow:
+                                    TextOverflow
+                                        .clip,
+                                    style: TextStyle(
+                                        color: Colors
+                                            .black),
+                                  ),
+                                ],
+                              ),
+
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Row(
+                                // mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+
+                                children: [
+                                  Container(
+                                    width: 120,
+                                    child: Text(
+                                      MyLocalizations.of(context).text("FROM_LOCATION"),
+                                      /*'Confirmed'*/
+                                      style: TextStyle(
+                                        fontWeight:
+                                        FontWeight
+                                            .w600,
+                                        fontSize: 15,
+                                      ),
+                                    ),
+                                  ),
+                                  Text(" : "),
+                                  Expanded(
+                                    child:Text(
+                                    /*'23-Nov-2020-11:30AM'*/
+                                    body.fromLocation,
+                                    overflow:
+                                    TextOverflow
+                                        .clip,
+                                    style: TextStyle(
+                                        color: Colors
+                                            .black),
+                                  ),)
+                                  /*Text(
+                                    *//*'23-Nov-2020-11:30AM'*//*
+                                    body.fromLocation,
+                                    overflow:
+                                    TextOverflow
+                                        .clip,
+                                    style: TextStyle(
+                                        color: Colors
+                                            .black),
+                                  ),*/
+                                ],
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Row(
+                                // mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    width: 120,
+                                    child: Text(
+                                      MyLocalizations.of(context).text("DESTINATION"),
+                                      /*'Confirmed'*/
+                                      style: TextStyle(
+                                        fontWeight:
+                                        FontWeight
+                                            .w600,
+                                        fontSize: 15,
+                                      ),
+                                    ),
+                                  ),
+                                  Text(" : "),
+                                  Expanded(
+                                    child:Text(
+                                      /*'23-Nov-2020-11:30AM'*/
+                                      body.toDestination,
+                                      overflow:
+                                      TextOverflow
+                                          .clip,
+                                      style: TextStyle(
+                                          color: Colors
+                                              .black),
+                                    ),)
+
+                                ],
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Row(
+                                // mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment:
+                                CrossAxisAlignment
+                                    .end,
+                                children: [
+                                  Container(
+                                    width: 120,
+                                    child: Text(
+                                      MyLocalizations.of(context).text("PATIENT_NOTES"),
+                                      /*'Confirmed'*/
+
+                                      style: TextStyle(
+                                        fontWeight:
+                                        FontWeight
+                                            .w600,
+                                        fontSize: 15,
+                                      ),
+                                    ),
+                                  ),
+                                  Text(" : "),
+                                  Text(
+                                    /*'23-Nov-2020-11:30AM'*/
+                                    body.patientNote,
+                                    overflow:
+                                    TextOverflow
+                                        .clip,
+                                    style: TextStyle(
+                                        color: Colors
+                                            .black),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Row(
+                                // mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment:
+                                CrossAxisAlignment
+                                    .end,
+                                children: [
+                                  Container(
+                                    width: 120,
+                                    child: Text(
+                                      MyLocalizations.of(context).text("DATE"),
+                                      /*'Confirmed'*/
+                                      style: TextStyle(
+                                        fontWeight:
+                                        FontWeight
+                                            .w600,
+                                        fontSize: 15,
+                                      ),
+                                    ),
+                                  ),
+                                  Text(" : "),
+                                  Text(
+                                    /*'23-Nov-2020-11:30AM'*/
+                                    body.bookedDate,
+                                    overflow:
+                                    TextOverflow
+                                        .clip,
+                                    style: TextStyle(
+                                        color: Colors
+                                            .black),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              Row(
+                                children: [
+                                  Text(
+                                    ' ',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                  Spacer(),
+                                  InkWell(
+                                    /*onTap: () {
+                                      showDialog(
+                                        context: context,
+                                        builder: (BuildContext
+                                        context) =>
+                                            changeStatus(context,body.orderId),
+                                      );
+                                      // widget.model.userappointment = appointmentlist;
+
+
+                                      //  Navigator.pushNamed(context, "/usermedicinelist");
+                                    },*/
+                                    child: MaterialButton(
+                                      child: Text(
+                                        /*'Confirmed'*/
+                                        body.status,
+                                        style: TextStyle(
+                                            fontWeight:
+                                            FontWeight
+                                                .bold,
+                                            fontSize:
+                                            15,
+                                            color:AppData.kPrimaryBlueColor),
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ],
                           ),
-                        ],
+                        ),
                       ),
                     ),
-                  ),
+                  ],
                 ),
-              ],
+              ),
             ),
-          ),
-        ),
-      );
-    },
-    //itemCount:5,
-    itemCount: ambulancelistModel.body.length,
+          );
+        },
+        //itemCount:5,
+        itemCount: ambulancelistModel.body.length,
   ): Container(),
 )
 
+        ),
+        (isShown)?Container(
+          width: double.maxFinite,
+          height: double.maxFinite,
+          color: Colors.black54,
+          child: MaterialButton(
+            onPressed: () {
+              setState(() {
+                isShown = false;
+              });
+            },
+          ),
+        ):Container(),
+        Positioned(
+            right: 22,
+            top: 22,
+            child: Visibility(
+              visible: isShown,
+              child: MaterialButton(
+                  onPressed: () {
+                    setState(() {
+                      isShown = false;
+                    });
+                  },
+                  enableFeedback: false,
+                  hoverColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  child: Visibility(
+                      visible: isShown,
+                      child: SafeArea(
+                          child:
+                          Image.asset("assets/images/Indicationbook.png")))),
+            ))
+      ],
     );
   }
 

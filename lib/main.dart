@@ -109,6 +109,8 @@ import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/UploadDocument
 import 'package:user/screens/Users/Preventivehealthcare/PreventiveHealthCare.dart';
 import 'package:user/screens/Users/organ/OrganCardPage.dart';
 import 'notification/MedReminder.dart';
+import 'screens/CreateUserIDScreen.dart';
+import 'screens/PinViewUserID.dart';
 import 'screens/Syndicate Partner/Dashboard/SyndicateDashboard.dart';
 import 'screens/Syndicate Partner/Registration/Syndicatepartner.dart';
 import 'screens/Users/MyMedicalRecord/HealthChat1/HealthChart.dart';
@@ -263,6 +265,7 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   print('Handling a background message ${message.messageId}');
   //print('Handling a background message ${message.messageId}');
   //LocalNotificationService.initialize(context);
+  await Firebase.initializeApp();
 }
 
 AndroidNotificationChannel channel;
@@ -413,7 +416,7 @@ class _MyAppState extends State<MyApp> {
                 channel.description,
                 importance: Importance.max,
                 priority: Priority.high,
-                icon: 'launch_background',
+                icon: '@mipmap/ic_launcher',
                 playSound: true,
                 // sound:
               ),
@@ -1241,6 +1244,12 @@ class _MyAppState extends State<MyApp> {
                   //     model: _model,
                   ),
               '/MedReminder': (context) => MedReminder(
+                    model: _model,
+                  ),
+              '/createUserIDScreen': (context) => CreateUserIDScreen(
+                    model: _model,
+                  ),
+              '/pinViewUserID': (context) => PinViewUserID(
                     model: _model,
                   ),
             },

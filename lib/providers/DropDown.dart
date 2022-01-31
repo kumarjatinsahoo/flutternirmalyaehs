@@ -2443,6 +2443,8 @@ class DropDown {
           iconData,
           size: iconSize,
         ),
+        //labelStyle: TextStyle(fontSize: 5),
+        hintStyle: TextStyle(fontSize: 15.5),
         isDense: true,
         disabledBorder: InputBorder.none,
         // border: InputBorder.none,

@@ -163,6 +163,8 @@ class SyndicateSignupformState extends State<SyndicateSignupform> {
     SyndicateSignupform.stateModel = null;
     SyndicateSignupform.districtModel = null;
     SyndicateSignupform.cityModel = null;
+    SyndicateSignupform.organizationModel = null;
+    SyndicateSignupform.specialityModel = null;
   }
 
   void connectionChanged(dynamic hasConnection) {
@@ -250,6 +252,9 @@ class SyndicateSignupformState extends State<SyndicateSignupform> {
                             ),
                           ),
                         ),
+                        Text(MyLocalizations.of(context).text("FILL_IN_PERSONAL_INFORMATION"),
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: 18, color: Colors.black),),
                         SizedBox(
                           height: 10,
                         ),
@@ -728,6 +733,7 @@ class SyndicateSignupformState extends State<SyndicateSignupform> {
                                           child: Icon(Icons.clear)),
                                       onTap: () {
                                         setState(() {
+                                          doctorModel.documentExt = null;
                                           idproof = null;
                                           // registrationModel.profilePhotoBase64 =
                                           null;
@@ -1119,21 +1125,21 @@ class SyndicateSignupformState extends State<SyndicateSignupform> {
   validate() async {
     if (SyndicateSignupform.organizationModel == null ||
         SyndicateSignupform.organizationModel == "") {
-      AppData.showInSnackBar(context, "Please Select Organization Name");
-    }else if (SyndicateSignupform.specialityModel == null ||
-        SyndicateSignupform.specialityModel == "") {
-      AppData.showInSnackBar(context, "Please Select Speciality Name");
+      AppData.showInSnackBar(context, "Please select organization name");
     } else if (SyndicateSignupform.titleModel == null ||
         SyndicateSignupform.titleModel == "") {
       AppData.showInSnackBar(context, "Please select title");
     } else if (SyndicateSignupform.genderModel == null ||
         SyndicateSignupform.genderModel == "") {
       AppData.showInSnackBar(context, "Please select gender");
+    }else if (SyndicateSignupform.specialityModel == null ||
+        SyndicateSignupform.specialityModel == "") {
+      AppData.showInSnackBar(context, "Please select speciality ");
     } else if (textEditingController[2].text == null ||
         textEditingController[2].text == "") {
-      AppData.showInSnackBar(context, "Please enter professional's Name");
+      AppData.showInSnackBar(context, "Please enter professional's name");
     }  else if (textEditingController[2].text.length<3) {
-      AppData.showInSnackBar(context, "Please enter valid professional's Name");
+      AppData.showInSnackBar(context, "Please enter valid professional's name");
     } else if (textEditingController[3].text == null ||
         textEditingController[3].text == "") {
       AppData.showInSnackBar(context, "Please enter address");
@@ -1145,18 +1151,18 @@ class SyndicateSignupformState extends State<SyndicateSignupform> {
       FocusScope.of(context).requestFocus(fnode3);
     } else if (textEditingController[0].text == "" ||
         textEditingController[0].text == null) {
-      AppData.showInSnackBar(context, "Please enter Zip/Pin code");
+      AppData.showInSnackBar(context, "Please enter zip/pin code");
     } else if (textEditingController[0].text == null ||
         textEditingController[0].text.length != 6) {
-      AppData.showInSnackBar(context, "Please enter a valid Zip/Pin code");
+      AppData.showInSnackBar(context, "Please enter a valid zip/pin code");
       FocusScope.of(context).requestFocus(fnode1);
     } else if (textEditingController[1].text == "" ||
         textEditingController[1].text == null) {
-      AppData.showInSnackBar(context, "Please enter e-mail Id");
+      AppData.showInSnackBar(context, "Please enter e-mail id");
       FocusScope.of(context).requestFocus(fnode2);
     } else if (textEditingController[1].text != "" &&
         !AppData.isValidEmail(textEditingController[1].text)) {
-      AppData.showInSnackBar(context, "Please enter a valid e-mail Id");
+      AppData.showInSnackBar(context, "Please enter a valid e-mail id");
       FocusScope.of(context).requestFocus(fnode2);
     } else if (textEditingController[5].text == "" ||
         textEditingController[5].text == null) {

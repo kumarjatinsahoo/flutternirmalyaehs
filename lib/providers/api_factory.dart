@@ -7,7 +7,7 @@ class ApiFactory {
   //static String MAIN_URL = "http://api-demo.ehealthsystem.com/nirmalyaRest/api/";
   // static String MAIN_URL = "http://192.168.0.190:8062/nirmalyaRest/api/";
   //static String MAIN_URL = "http://api-demo.ehealthsystem.com/nirmalyaRest/api/";
-  //static String MAIN_URL = "http://192.168.0.157:8062/nirmalyaRest/api/";
+  //static String MAIN_URL = "http://192.168.0.153:8062/nirmalyaRest/api/";
   static String MAIN_URL1 = "https://1331.co.in/api";
   static String REPORT_URL1 = "https://demo.ehealthsystem.com/";
   static String VITALS_REPORT = MAIN_URL + 'medtel-screening-test-report';
@@ -154,6 +154,11 @@ static String EMERGENCY_HELP_NEW =
   static String LOGIN_Otp(String mob) {
     return MAIN_URL + "login-multiple-user-with-otp?mobileNo=$mob";
   }
+  static String GET_OTP_USERID(String uhid, String username) {
+    return MAIN_URL + "get-otp-for-username?uhid=$uhid&username=$username";
+  }
+ static String POST_USERID = MAIN_URL + 'post-update-username';
+
   static String INTREST_SIGNUP = MAIN_URL + 'get-catagory-subcategory-list';
   static String ADD_BIOMEDICAL_IMPLANTS = MAIN_URL + 'post-biomedical-implants-api';
   static String POST_SHARE_APPOINTMENT =

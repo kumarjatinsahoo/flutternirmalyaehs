@@ -5,6 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:user/models/LabSignupModel.dart';
@@ -38,6 +39,7 @@ class LabSignUpForm extends StatefulWidget {
     @required this.updateTab,
     this.isConfirmPage = false,
     this.isFromDash = false,
+
     this.model,
   }) : super(key: key);
 
@@ -53,6 +55,7 @@ class LabSignUpFormState extends State<LabSignUpForm> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   bool _autovalidate = false;
   DateTime selectedDate = DateTime.now();
+
   List<TextEditingController> textEditingController = [
     new TextEditingController(),
     new TextEditingController(),
@@ -107,6 +110,7 @@ class LabSignUpFormState extends State<LabSignUpForm> {
   final df = new DateFormat('dd/MM/yyyy');
   bool ispartnercode = false;
   bool _checkbox = false;
+  bool _inProcess = false;
 
   Future<Null> _selectDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
@@ -305,7 +309,7 @@ class LabSignUpFormState extends State<LabSignUpForm> {
                           ),
                           formField1(1, MyLocalizations.of(context).text("PROFESSIONAL_NAME")),
                           SizedBox(
-                            height: 10,
+                            height: 2,
                           ),
                           Padding(
                             padding: const EdgeInsets.symmetric(
@@ -358,7 +362,7 @@ class LabSignUpFormState extends State<LabSignUpForm> {
                               //
                             ],
                           ),
-                          SizedBox(height: 5),
+                          SizedBox(height: 15),
 
                           Padding(
                             padding: const EdgeInsets.symmetric(
@@ -654,20 +658,20 @@ class LabSignUpFormState extends State<LabSignUpForm> {
         //Navigator.pushNamed(context, "/patientRegistration2");
          if (LabSignUpForm.organizationModel == null ||
         LabSignUpForm.organizationModel == "") {
-          AppData.showInSnackBar(context, "Please select Organization Name");
+          AppData.showInSnackBar(context, "Please select organization name");
         }else if (LabSignUpForm.titlemodel == null ||
              LabSignUpForm.titlemodel == "") {
-           AppData.showInSnackBar(context, "Please select Title");
+           AppData.showInSnackBar(context, "Please select title");
          } else if(textEditingController[1].text == "" ||
             textEditingController[1].text == null) {
-          AppData.showInSnackBar(context, "Please enter Professional's Name");
+          AppData.showInSnackBar(context, "Please enter professional's name");
           FocusScope.of(context).requestFocus(fnode1);
         } else if (textEditingController[1].text.length <= 3) {
-          AppData.showInSnackBar(context, "Please enter valid Professional's Name ");
+          AppData.showInSnackBar(context, "Please enter valid professional's name ");
           FocusScope.of(context).requestFocus(fnode1);
         } else if (LabSignUpForm.genderModel == null ||
              LabSignUpForm.genderModel == "") {
-           AppData.showInSnackBar(context, "Please select Gender");
+           AppData.showInSnackBar(context, "Please select gender");
          }
          else {
           widget.model.organization = LabSignUpForm.organizationModel.key;
@@ -1050,7 +1054,7 @@ class LabSignUpFormState extends State<LabSignUpForm> {
               Icon(Icons.person_rounded),*/
               hintStyle: TextStyle(
                   color: AppData.hintColor,
-                  fontSize: 17),
+                  fontSize: 15),
             ),
             textInputAction: TextInputAction.next,
             keyboardType: TextInputType.text,
@@ -1089,6 +1093,7 @@ class LabSignUpFormState extends State<LabSignUpForm> {
                     onTap: () => {
                           Navigator.pop(context),
                           getCameraImage(),
+                      //getImage(ImageSource.camera),
                         }),
                 new ListTile(
                   leading: new Icon(Icons.folder),
@@ -1096,6 +1101,7 @@ class LabSignUpFormState extends State<LabSignUpForm> {
                   onTap: () => {
                     Navigator.pop(context),
                     getGalleryImage(),
+                    //getImage(ImageSource.gallery),
                   },
                 ),
               ],
@@ -1151,6 +1157,69 @@ class LabSignUpFormState extends State<LabSignUpForm> {
       });
     }
   }
+
+  // getImage(ImageSource source) async {
+  //   this.setState((){
+  //     _inProcess = true;
+  //   });
+  //   File image = await ImagePicker.pickImage(source: source);
+  //   if(image != null){
+  //     File cropped = await ImageCropper.cropImage(
+  //         sourcePath: image.path,
+  //         aspectRatio: CropAspectRatio(
+  //             ratioX: 1, ratioY: 1),
+  //         compressQuality: 100,
+  //         maxWidth: 700,
+  //         maxHeight: 700,
+  //         compressFormat: ImageCompressFormat.jpg,
+  //         androidUiSettings: AndroidUiSettings(
+  //           // textAlign: TextAlign.center,
+  //           toolbarColor: AppData.kPrimaryColor,
+  //           toolbarTitle: "Image Cropper",
+  //           toolbarWidgetColor: Colors.white,
+  //           //centerTitle: true,
+  //           //toolbar.setTitleTextColor(Color.RED);
+  //           ///statusBarColor: Colors.deepOrange.shade900,
+  //           backgroundColor: Colors.white,
+  //         )
+  //     );
+  //     if (cropped != null) {
+  //       var enc = await cropped.readAsBytes();
+  //       String _path = image.path;
+  //       setState(() => pathUsr = cropped);
+  //
+  //       String _fileName = _path != null ? _path.split('/').last : '...';
+  //       var pos = _fileName.lastIndexOf('.');
+  //       String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+  //       print(extName);
+  //       print("size>>>" + AppData.formatBytes(enc.length, 0).toString());
+  //       setState(() {
+  //         pathUsr = cropped;
+  //         _inProcess = false;
+  //
+  //         labSignupModel.profileImage = base64Encode(enc);
+  //         labSignupModel.profileImageType = extName;
+  //         // callApii();
+  //         // widget.model.patientimg =base64Encode(enc);
+  //         //widget.model.patientimgtype =extName;
+  //         //updateProfileModel.profileImage = base64Encode(enc) as List<Null>;
+  //         //updateProfileModel.profileImageType = extName;
+  //         //updateProfile(base64Encode(enc), extName);
+  //       });
+  //     }
+  //     /*this.setState((){
+  //       pathUsr = cropped;
+  //       //updateProfile(base64Encode(cropped), extName);
+  //       _inProcess = false;
+  //     });*/
+  //   } else {
+  //     this.setState((){
+  //       _inProcess = false;
+  //     });
+  //   }
+  // }
+  //
+
 // Widget formFieldPass(int index, String hint, int obqueTxt) {
 //   return TextFieldContainer(
 //     child: TextFormField(
