@@ -281,7 +281,7 @@ void main() async {
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   if (!kIsWeb) {
     channel = const AndroidNotificationChannel(
-        'high_importance_channel', // id
+        'eHealthSystem', // id
         'High Importance Notifications', // title
         'This channel is used for important notifications.', // description
         importance: Importance.high,
@@ -422,7 +422,7 @@ class _MyAppState extends State<MyApp> {
 
         // Navigator.pushNamed(context, '/emergencydetails');
         //AppData.showInSnackBar(context, "Dataa");
-      } else if (Platform.isIOS) {
+      } /*else if (Platform.isIOS) {
         flutterLocalNotificationsPlugin.show(
             notification.hashCode,
             notification.title,
@@ -435,7 +435,7 @@ class _MyAppState extends State<MyApp> {
                   sound: "default",
                   // badgeNumber: 1
             )));
-      }
+      }*/
     });
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
       print('A new onMessageOpenedApp event was published!');
