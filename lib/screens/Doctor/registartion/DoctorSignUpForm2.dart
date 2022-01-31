@@ -280,7 +280,8 @@ class DoctorSignUpForm2State extends State<DoctorSignUpForm2> {
                                   DropDown.networkDropdownGetpartUser(
                                       MyLocalizations.of(context)
                                           .text("ORGANIZATION_NAME") ,
-                                       ApiFactory.ORGANISATION_API, "organisation", Icons.location_on_rounded,
+                                       ApiFactory.ORGANISATION_API, "organisation",
+                                      Icons.location_on_rounded,
                                       23.0,
                                           (KeyvalueModel data) {
                                         setState(() {
@@ -379,7 +380,7 @@ class DoctorSignUpForm2State extends State<DoctorSignUpForm2> {
                               //     _showImage(),
                               //   ],
                               // ),
-                              SizedBox(height: 35),
+                              SizedBox(height: 8),
 
                               Padding(padding: const EdgeInsets.symmetric(horizontal: 10),
                                 child: nextButton1(),
@@ -490,14 +491,14 @@ class DoctorSignUpForm2State extends State<DoctorSignUpForm2> {
       fun: () {
         //Navigator.pushNamed(context, "/patientRegistration2");
          if (DoctorSignUpForm2.organizationModel == null || DoctorSignUpForm2.organizationModel == "") {
-          AppData.showInSnackBar(context, "Please select Organization Name");
+          AppData.showInSnackBar(context, "Please select organization name");
         }else if (DoctorSignUpForm2.titleModel == null || DoctorSignUpForm2.titleModel == "") {
-          AppData.showInSnackBar(context, "Please select Title");
+          AppData.showInSnackBar(context, "Please select title");
         }else if (textEditingController[1].text== "" || textEditingController[1].text== null) {
-          AppData.showInSnackBar(context, "Please enter Professional's Name");
+          AppData.showInSnackBar(context, "Please enter professional's name");
           FocusScope.of(context).requestFocus(fnode1);
         }else if (textEditingController[1].text.length <= 3) {
-          AppData.showInSnackBar(context, "Please enter valid Professional's Name ");
+          AppData.showInSnackBar(context, "Please enter valid professional's name ");
           FocusScope.of(context).requestFocus(fnode1);
         }
         // else if (textEditingController[10].text== "" || textEditingController[10].text== null) {
@@ -920,7 +921,7 @@ class DoctorSignUpForm2State extends State<DoctorSignUpForm2> {
               Icon(Icons.person_rounded),*/
               hintStyle: TextStyle(
                   color: AppData.hintColor,
-                  fontSize: 17),
+                  fontSize: 16),
             ),
             textInputAction: TextInputAction.next,
             keyboardType: TextInputType.text,

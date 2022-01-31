@@ -258,7 +258,7 @@ class OrganisationSignUpFormState extends State<OrganisationSignUpForm> {
                                     child: Column(
                                       children: [
                                         Text(MyLocalizations.of(context).text("FILL_IN_PERSONAL_INFORMATION"),
-                                          style: TextStyle(fontSize: 18, color: Colors.black),),
+                                          style: TextStyle(fontSize: 18, color: Colors.black),textAlign: TextAlign.center,),
                                       ],
                                     ),
                                   ),
@@ -1498,58 +1498,58 @@ class OrganisationSignUpFormState extends State<OrganisationSignUpForm> {
       fun: () {
         if (textEditingController[0].text == "" ||
             textEditingController[0].text == null) {
-          AppData.showInSnackBar(context, "Please enter Organization Name");
+          AppData.showInSnackBar(context, "Please enter organization name");
         }else if (textEditingController[1].text == "" ||
             textEditingController[1].text == null) {
-          AppData.showInSnackBar(context, "Please Enter Licenece No");
+          AppData.showInSnackBar(context, "Please enter licence no");
         }else if (OrganisationSignUpForm.countryModel == null ||
             OrganisationSignUpForm.countryModel == "") {
-          AppData.showInSnackBar(context, "Please Select Country");
+          AppData.showInSnackBar(context, "Please select country");
         }else if (OrganisationSignUpForm.stateModel == null ||
             OrganisationSignUpForm.stateModel == "") {
-          AppData.showInSnackBar(context, "Please Select State");
+          AppData.showInSnackBar(context, "Please select state");
         }else if (OrganisationSignUpForm.districtModel == null ||
             OrganisationSignUpForm.districtModel == "") {
-          AppData.showInSnackBar(context, "Please Select District");
+          AppData.showInSnackBar(context, "Please select district");
         }else if (OrganisationSignUpForm.citymodel == null ||
             OrganisationSignUpForm.citymodel == "") {
-          AppData.showInSnackBar(context, "Please Select City");
+          AppData.showInSnackBar(context, "Please select city");
         }else if (textEditingController[2].text == "" ||
             textEditingController[2].text == null) {
-          AppData.showInSnackBar(context, "Please Enter Address");
+          AppData.showInSnackBar(context, "Please enter address");
 
         }else if (textEditingController[2].text.length<3) {
-          AppData.showInSnackBar(context, "Please Enter Valid  Address");
+          AppData.showInSnackBar(context, "Please enter valid  address");
 
         }
         else if (textEditingController[3].text == "" ||
             textEditingController[3].text == null) {
-          AppData.showInSnackBar(context, "Please Enter Zip/Pin Code");
+          AppData.showInSnackBar(context, "Please enter zip/pin code");
         }
         else if (textEditingController[4].text == "" ||
             textEditingController[4].text == null) {
-          AppData.showInSnackBar(context, "Please Enter GST/VAT");
+          AppData.showInSnackBar(context, "Please enter GST/VAT");
         }
         else if (OrganisationSignUpForm.healthcareProviderModel == null ||
             OrganisationSignUpForm.healthcareProviderModel == "") {
-          AppData.showInSnackBar(context, "Please Select Type");
+          AppData.showInSnackBar(context, "Please select type");
         }
         else if (textEditingController[5].text == "" ||
             textEditingController[5].text == null) {
-          AppData.showInSnackBar(context, "Please Enter Document name");
+          AppData.showInSnackBar(context, "Please enter document name");
         }else if (textEditingController[5].text != "" &&
             idproof == null) {
-          AppData.showInSnackBar(context, "Please Upload Document 1");
+          AppData.showInSnackBar(context, "Please upload document 1");
         }else if (textEditingController[6].text != "" &&
             idproof1 == null) {
-          AppData.showInSnackBar(context, "Please Upload Document 2");
+          AppData.showInSnackBar(context, "Please upload document 2");
         }else if (textEditingController[7].text != "" &&
             idproof2 == null) {
-          AppData.showInSnackBar(context, "Please Upload Document 3");
+          AppData.showInSnackBar(context, "Please upload document 3");
 
         }else if (textEditingController[8].text != "" &&
             idproof3 == null) {
-          AppData.showInSnackBar(context, "Please Upload Document 4");
+          AppData.showInSnackBar(context, "Please upload document 4");
 
         } else {
           postMultiPart();
@@ -1727,7 +1727,7 @@ class OrganisationSignUpFormState extends State<OrganisationSignUpForm> {
   popup(BuildContext context) {
     return Alert(
         context: context,
-        title: "Successfully Upload",
+        title: "Successfully Uploaded",
         type: AlertType.success,
         onWillPopActive: true,
         closeIcon: Icon(
