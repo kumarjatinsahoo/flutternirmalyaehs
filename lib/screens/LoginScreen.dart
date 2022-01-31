@@ -315,8 +315,26 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       _loginButton(),
                       SizedBox(
-                        height: size.height * 0.04,
+                        height: size.height * 0.02,
                       ),
+                       Padding(
+                         padding: const EdgeInsets.only(right: 12.0),
+                         child: Row(
+                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                           children: [
+                             Container(),
+                             InkWell(
+                              onTap: () {
+                                Navigator.pushNamed(context, "/createUserIDScreen");
+                              },
+                              child: Text(
+                                'Create User ID',
+                                style: TextStyle(color: Colors.black54),
+                              ),
+                      ),
+                           ],
+                         ),
+                       ),
                       InkWell(
                         onTap: () {
                           //Navigator.pushNamed(context, "/docDash");
