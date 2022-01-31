@@ -315,8 +315,26 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       _loginButton(),
                       SizedBox(
-                        height: size.height * 0.04,
+                        height: size.height * 0.02,
                       ),
+                       Padding(
+                         padding: const EdgeInsets.only(right: 12.0),
+                         child: Row(
+                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                           children: [
+                             Container(),
+                             InkWell(
+                              onTap: () {
+                                Navigator.pushNamed(context, "/createUserIDScreen");
+                              },
+                              child: Text(
+                                'Create User ID',
+                                style: TextStyle(color: Colors.black54),
+                              ),
+                      ),
+                           ],
+                         ),
+                       ),
                       InkWell(
                         onTap: () {
                           //Navigator.pushNamed(context, "/docDash");
@@ -693,9 +711,9 @@ class _LoginScreenState extends State<LoginScreen> {
         //Navigator.pushNamed(context, "/navigation");
         if (_loginId.text == "" || _loginId.text == null) {
           AppData.showInSnackBar(
-              context, "Please enter Mobile No/Email Id/User Id");
+              context, "Please enter mobile no/Email id/User id/User name");
         } else if (passController.text == "" || passController.text == null) {
-          AppData.showInSnackBar(context, "Please enter Password");
+          AppData.showInSnackBar(context, "Please enter password");
         } else {
           widget.model.phnNo = _loginId.text;
           widget.model.passWord = passController.text;
@@ -812,9 +830,9 @@ class _LoginScreenState extends State<LoginScreen> {
       fun: () {
         //Navigator.pushNamed(context, "/navigation");
         if (_loginId.text == "" || _loginId.text == null) {
-          AppData.showInSnackBar(context, "Please enter Mobile No");
+          AppData.showInSnackBar(context, "Please enter mobile no");
         } else if (_loginId.text.length != 10) {
-          AppData.showInSnackBar(context, "Please enter 10 digit Mobile No");
+          AppData.showInSnackBar(context, "Please enter 10 digit mobile no");
         } else {
           widget.model.phnNo = _loginId.text;
           MyWidgets.showLoading(context);

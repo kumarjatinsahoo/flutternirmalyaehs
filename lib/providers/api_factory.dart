@@ -1,7 +1,7 @@
 class ApiFactory {
   //bool isRelease = bool.fromEnvironment("DEV");
   static String REG_DEVICE = "https://cca.medtel.in/Ziniai/manageDeviceId";
-   static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
+  static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
    //static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
   // static String MAIN_URL = "http://api-demo.ehealthsystem.com/nirmalyaRest/api/";
   //static String MAIN_URL = "http://api-demo.ehealthsystem.com/nirmalyaRest/api/";
@@ -154,6 +154,11 @@ static String EMERGENCY_HELP_NEW =
   static String LOGIN_Otp(String mob) {
     return MAIN_URL + "login-multiple-user-with-otp?mobileNo=$mob";
   }
+  static String GET_OTP_USERID(String uhid, String username) {
+    return MAIN_URL + "get-otp-for-username?uhid=$uhid&username=$username";
+  }
+ static String POST_USERID = MAIN_URL + 'post-update-username';
+
   static String INTREST_SIGNUP = MAIN_URL + 'get-catagory-subcategory-list';
   static String ADD_BIOMEDICAL_IMPLANTS = MAIN_URL + 'post-biomedical-implants-api';
   static String POST_SHARE_APPOINTMENT =

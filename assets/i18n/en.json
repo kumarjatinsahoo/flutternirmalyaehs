@@ -1,6 +1,6 @@
 {
   "WELCOMENACK": "Welcome Back",
-  "USER_NAME": "Mobile No/Email Id/User Id",
+  "USER_NAME": "Mobile No/ Email id/ User id/ User name",
   "PASSWORD": "Password",
   "LOGIN": "LOGIN",
   "LOGIN_WITH_OTP": "LOGIN WITH OTP",
@@ -276,7 +276,7 @@
   "CONFIRMED": "Confirmed",
   "CANCELLED": "Cancelled",
   "TREATED": "Treated",
-  "UHID_NO": "Uhid No",
+  "UHID_NO": "UHID No",
   "SHOW_EMR": "Show EMR",
   "PATHOLOGY_LAB": "Pathology Lab",
   "CHANGE_PASSWORD": "Change Password",

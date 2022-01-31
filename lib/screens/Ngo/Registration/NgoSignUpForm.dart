@@ -576,32 +576,32 @@ class NgoSignUpFormState extends State<NgoSignUpForm> {
         // Navigator.pushNamed(context, "/patientRegistration2");
         if (NgoSignUpForm.ngoModel == null ||
             NgoSignUpForm.ngoModel == "") {
-          AppData.showInSnackBar(context, "Please select Organization Name");
+          AppData.showInSnackBar(context, "Please select organization name");
         }
         else if (NgoSignUpForm.titlemodel == null ||
             NgoSignUpForm.titlemodel == "") {
-          AppData.showInSnackBar(context, "Please select Title");
+          AppData.showInSnackBar(context, "Please select title");
         }
         else if (textEditingController[9].text == "" ||
             textEditingController[9].text == null) {
-          AppData.showInSnackBar(context, "Please enter Professional's Name");
+          AppData.showInSnackBar(context, "Please enter professional's name");
           FocusScope.of(context).requestFocus(fnode6);
         }  else if (textEditingController[9].text.length<3) {
-          AppData.showInSnackBar(context, "Please enter valid Professional's Name");
+          AppData.showInSnackBar(context, "Please enter valid professional's name");
         } else if (textEditingController[10].text == "" ||
             textEditingController[10].text == null) {
-          AppData.showInSnackBar(context, "Please enter Experience");
+          AppData.showInSnackBar(context, "Please enter experience");
           FocusScope.of(context).requestFocus(fnode6);
         } else if (textEditingController[11].text == "" ||
             textEditingController[11].text == null) {
-          AppData.showInSnackBar(context, "Please enter Address");
+          AppData.showInSnackBar(context, "Please enter address");
           FocusScope.of(context).requestFocus(fnode6);
         }  else if (textEditingController[11].text.length<3) {
-          AppData.showInSnackBar(context, "Please enter valid Address");
+          AppData.showInSnackBar(context, "Please enter valid address");
         }
         else if (NgoSignUpForm.genderModel == null ||
             NgoSignUpForm.genderModel == "") {
-          AppData.showInSnackBar(context, "Please select Gender");
+          AppData.showInSnackBar(context, "Please select gender");
         }
         else {
           widget.model.ngoorganisation = NgoSignUpForm.ngoModel.key;
@@ -1127,7 +1127,7 @@ class NgoSignUpFormState extends State<NgoSignUpForm> {
               Icon(Icons.person_rounded),*/
               hintStyle: TextStyle(
                   color: AppData.hintColor,
-                  fontSize: 17),
+                  fontSize: 15),
             ),
             textInputAction: TextInputAction.next,
             focusNode: currentfn,
@@ -1176,7 +1176,7 @@ class NgoSignUpFormState extends State<NgoSignUpForm> {
               Icon(Icons.person_rounded),*/
               hintStyle: TextStyle(
                   color: AppData.hintColor,
-                  fontSize: 17),
+                  fontSize: 15),
             ),
             textInputAction: TextInputAction.next,
             focusNode: currentfn,
