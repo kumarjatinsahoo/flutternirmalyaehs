@@ -79,7 +79,7 @@ class _TermsandConditionPageState extends State<TermsandConditionPage> {
           children: [
             Center(
               child: Text(
-                'Terms and Condition',
+                'Terms and Conditions',
                 style: TextStyle(color: Colors.white),
               ),
             ),

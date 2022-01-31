@@ -126,11 +126,11 @@ class _ForgotPasswordState extends State<ForgotPassword> {
       context: context,
       fun: () {
         if (_mobileno.text == "" && _userid.text == "") {
-          AppData.showInSnackBar(context, "Please enter UHID No or Mobile no");
+          AppData.showInSnackBar(context, "Please enter UHID no or mobile no");
         } else {
           var sendData;
           if (_userid.text != "") {
-            sendData = {"key": _userid.text, "name": "UHID No"};
+            sendData = {"key": _userid.text, "name": "UHID no"};
           } else {
             sendData = {"key": _mobileno.text, "name": "Mobile number"};
           }

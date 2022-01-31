@@ -265,6 +265,7 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   print('Handling a background message ${message.messageId}');
   //print('Handling a background message ${message.messageId}');
   //LocalNotificationService.initialize(context);
+  await Firebase.initializeApp();
 }
 
 AndroidNotificationChannel channel;
@@ -415,7 +416,7 @@ class _MyAppState extends State<MyApp> {
                 channel.description,
                 importance: Importance.max,
                 priority: Priority.high,
-                icon: 'launch_background',
+                icon: '@mipmap/ic_launcher',
                 playSound: true,
                 // sound:
               ),

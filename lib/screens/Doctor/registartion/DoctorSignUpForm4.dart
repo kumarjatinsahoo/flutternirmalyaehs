@@ -456,6 +456,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
                                             child: Icon(Icons.clear)),
                                         onTap: () {
                                           setState(() {
+                                            doctorModel.documentExt = null;
                                             idproof = null;
                                             // registrationModel.profilePhotoBase64 =
                                             null;
@@ -695,59 +696,67 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
       onTap: () {
         if (textEditingController[8].text == "" ||
             textEditingController[8].text == null) {
-          AppData.showInSnackBar(context, "Please enter Address");
+          AppData.showInSnackBar(context, "Please enter address");
           FocusScope.of(context).requestFocus(fnode1);
         } else if (DoctorSignUpForm4.countryModel == null ||
             DoctorSignUpForm4.countryModel == "") {
-          AppData.showInSnackBar(context, "Please select Country");
+          AppData.showInSnackBar(context, "Please select country");
         } else if (DoctorSignUpForm4.stateModel == null ||
             DoctorSignUpForm4.stateModel == "") {
-          AppData.showInSnackBar(context, "Please select State");
+          AppData.showInSnackBar(context, "Please select state");
         } else if (DoctorSignUpForm4.districtModel == null ||
             DoctorSignUpForm4.districtModel == "") {
-          AppData.showInSnackBar(context, "Please select District");
+          AppData.showInSnackBar(context, "Please select district");
         } else if (DoctorSignUpForm4.cityModel == null ||
             DoctorSignUpForm4.cityModel == "") {
-          AppData.showInSnackBar(context, "Please select City");
+          AppData.showInSnackBar(context, "Please select city");
+        } else if (textEditingController[5].text == "" ||
+            textEditingController[5].text == null) {
+          AppData.showInSnackBar(context, "Please enter zip/pin code");
+          FocusScope.of(context).requestFocus(fnode2);
+
         } else if (textEditingController[5].text == "" ||
             textEditingController[5].text.length != 6) {
-          AppData.showInSnackBar(context, "Please enter a valid Zip/Pin Code");
+          AppData.showInSnackBar(context, "Please enter a valid zip/pin code");
           FocusScope.of(context).requestFocus(fnode2);
+
         } else if (textEditingController[4].text != "" &&
             textEditingController[4].text.length != 10) {
-          AppData.showInSnackBar(context, "Please enter a valid Home Phone");
+          AppData.showInSnackBar(context, "Please enter a valid home phone");
           FocusScope.of(context).requestFocus(fnode3);
         } else if (textEditingController[9].text != "" &&
             textEditingController[9].text.length != 10) {
-          AppData.showInSnackBar(context, "Please enter a valid Office Phone");
+          AppData.showInSnackBar(context, "Please enter a valid office phone");
           FocusScope.of(context).requestFocus(fnode4);
         } else if (textEditingController[10].text == "" ||
             textEditingController[10].text == null) {
-          AppData.showInSnackBar(context, "Please enter Mobile Number");
+          AppData.showInSnackBar(context, "Please enter mobile number");
           FocusScope.of(context).requestFocus(fnode5);
         } else if (textEditingController[10].text != "" &&
             textEditingController[10].text.length != 10) {
-          AppData.showInSnackBar(context, "Please enter a valid Mobile Number");
+          AppData.showInSnackBar(context, "Please enter a valid mobile number");
           FocusScope.of(context).requestFocus(fnode5);
         } else if (textEditingController[11].text == "" ||
             textEditingController[11].text == null) {
-          AppData.showInSnackBar(context, "Please enter E-mail Id");
+          AppData.showInSnackBar(context, "Please enter e-mail id");
           FocusScope.of(context).requestFocus(fnode6);
         } else if (textEditingController[11].text != "" &&
             !AppData.isValidEmail(textEditingController[11].text)) {
-          AppData.showInSnackBar(context, "Please enter a valid E-mail Id");
+          AppData.showInSnackBar(context, "Please enter a valid e-mail id");
           FocusScope.of(context).requestFocus(fnode6);
         } else if (textEditingController[12].text != "" &&
             !AppData.isValidEmail(textEditingController[12].text)) {
           AppData.showInSnackBar(
-              context, "Please enter a valid alternate E-mail Id");
+              context, "Please enter a valid alternate e-mail id");
           FocusScope.of(context).requestFocus(fnode7);
         } else if (textEditingController[13].text == "" ||
             textEditingController[13].text == null) {
-          AppData.showInSnackBar(context, "Please enter Experience");
+          AppData.showInSnackBar(context, "Please enter experience");
           FocusScope.of(context).requestFocus(fnode8);
+        }else if (doctorModel.documentExt == null) {
+          AppData.showInSnackBar(context, "Please upload document");
         } else if (_checkbox == false) {
-          AppData.showInSnackBar(context, "Please Check Terms And Condition");
+          AppData.showInSnackBar(context, "Please check terms and conditions");
         } else {
           doctorModel.address = textEditingController[8].text;
           doctorModel.countryid = DoctorSignUpForm4.countryModel.key;
@@ -1176,7 +1185,7 @@ class DoctorSignUpForm4State extends State<DoctorSignUpForm4> {
               hintText: hint,
               /* prefixIcon:
               Icon(Icons.person_rounded),*/
-              hintStyle: TextStyle(color: AppData.hintColor, fontSize: 15),
+              hintStyle: TextStyle(color: AppData.hintColor, fontSize: 16),
             ),
             textInputAction: TextInputAction.next,
             keyboardType: TextInputType.text,

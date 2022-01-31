@@ -94,6 +94,8 @@ class _InsuranceListState extends State<InsuranceList> {
   FocusNode fnode13 = new FocusNode();
   FocusNode fnode14 = new FocusNode();
 
+  bool isShown = true;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -126,132 +128,168 @@ class _InsuranceListState extends State<InsuranceList> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-          backgroundColor: AppData.kPrimaryColor,
-          title: Text(MyLocalizations.of(context).text("INSURANCE")),
-          centerTitle: true,
-          iconTheme: IconThemeData(color: AppData.white),
-          actions: <Widget>[
-            InkWell(
-              child: Padding(
-                padding: const EdgeInsets.all(20.00),
-                child: Icon(
-                  Icons.add_circle,
-                  color: Colors.white,
-                  size: 25,
-                ),
-              ),
-              onTap: (){
-                Navigator.pushNamed(context,"/addinsuranceForm");
-              }/* async {
-                showDialog(
-                  context: context,
-                  builder: (BuildContext context) =>
-                      dialogaddnomination(context),
-                );
-              },*/
-            ),
-          ]),
-      body: (insuranceModel != null)
-          ? Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: SingleChildScrollView(
-                child: ListView.builder(
-                  physics: NeverScrollableScrollPhysics(),
-                  itemCount: insuranceModel.body.length,
-                  // itemCount: 4,
-                  shrinkWrap: true,
-                  itemBuilder: (context, i) {
-                    insurance.Body body = insuranceModel.body[i];
-                    String insuranceid = body.key;
-                    widget.model.insuranceid = insuranceid;
-                    return InkWell(
-                      onTap: () {
-                        widget.model.insuranceid = body.key;
-                        Navigator.pushNamed(context, "/insuranceDetalis");
-                      },
-                      child: Card(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5.0),
-                        ),
-                        shadowColor: Colors.grey,
-                        elevation: 10,
-                        child: ClipPath(
-                          clipper: ShapeBorderClipper(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(5))),
-                          child: Container(
-                              decoration: (i % 2 == 0)
-                                  ? BoxDecoration(
-                                      border: Border(
-                                          left: BorderSide(
-                                              color: AppData.kPrimaryRedColor,
-                                              width: 5)))
-                                  : BoxDecoration(
-                                      border: Border(
-                                          left: BorderSide(
-                                              color: AppData.kPrimaryColor,
-                                              width: 5))),
-                              width: double.maxFinite,
-                              /*  margin: const EdgeInsets.only(top: 6.0),*/
-                              child: Padding(
-                                padding: const EdgeInsets.all(10.0),
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Expanded(
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            body.name,
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 18),
-                                          ),
-                                          SizedBox(
-                                            height: 5,
-                                          ),
-                                          Text(
-                                            body.code,
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 18),
-                                          ),
-                                          SizedBox(
-                                            height: 5,
-                                          ),
-                                          Text(MyLocalizations.of(context).text("PREMIUM_AMOUNT"),
-                                            overflow: TextOverflow.clip,
-                                            style:
-                                                TextStyle(color: Colors.grey),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    //Icon(Icons.arrow_forward_ios, size: 30,color: Colors.black),
-                                    Image.asset(
-                                      "assets/forwardarrow.png",
-                                      fit: BoxFit.fitWidth,
-                                      /*width: 50,*/
-                                      height: 30,
-                                    ),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                  ],
-                                ),
-                              )),
-                        ),
-                      ),
+    return Stack(
+      children: [
+        Scaffold(
+          appBar: AppBar(
+              backgroundColor: AppData.kPrimaryColor,
+              title: Text(MyLocalizations.of(context).text("INSURANCE")),
+              centerTitle: true,
+              iconTheme: IconThemeData(color: AppData.white),
+              actions: <Widget>[
+                InkWell(
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.00),
+                    child: Icon(
+                      Icons.add_circle,
+                      color: Colors.white,
+                      size: 25,
+                    ),
+                  ),
+                  onTap: (){
+                    Navigator.pushNamed(context,"/addinsuranceForm");
+                  }/* async {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) =>
+                          dialogaddnomination(context),
                     );
-                  },
+                  },*/
                 ),
-              ),
-            )
-          : Container(),
+              ]),
+          body: (insuranceModel != null)
+              ? Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: SingleChildScrollView(
+                    child: ListView.builder(
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: insuranceModel.body.length,
+                      // itemCount: 4,
+                      shrinkWrap: true,
+                      itemBuilder: (context, i) {
+                        insurance.Body body = insuranceModel.body[i];
+                        String insuranceid = body.key;
+                        widget.model.insuranceid = insuranceid;
+                        return InkWell(
+                          onTap: () {
+                            widget.model.insuranceid = body.key;
+                            Navigator.pushNamed(context, "/insuranceDetalis");
+                          },
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5.0),
+                            ),
+                            shadowColor: Colors.grey,
+                            elevation: 10,
+                            child: ClipPath(
+                              clipper: ShapeBorderClipper(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(5))),
+                              child: Container(
+                                  decoration: (i % 2 == 0)
+                                      ? BoxDecoration(
+                                          border: Border(
+                                              left: BorderSide(
+                                                  color: AppData.kPrimaryRedColor,
+                                                  width: 5)))
+                                      : BoxDecoration(
+                                          border: Border(
+                                              left: BorderSide(
+                                                  color: AppData.kPrimaryColor,
+                                                  width: 5))),
+                                  width: double.maxFinite,
+                                  /*  margin: const EdgeInsets.only(top: 6.0),*/
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(10.0),
+                                    child: Row(
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: [
+                                        Expanded(
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                body.name,
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 18),
+                                              ),
+                                              SizedBox(
+                                                height: 5,
+                                              ),
+                                              Text(
+                                                body.code,
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 18),
+                                              ),
+                                              SizedBox(
+                                                height: 5,
+                                              ),
+                                              Text(MyLocalizations.of(context).text("PREMIUM_AMOUNT"),
+                                                overflow: TextOverflow.clip,
+                                                style:
+                                                    TextStyle(color: Colors.grey),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        //Icon(Icons.arrow_forward_ios, size: 30,color: Colors.black),
+                                        Image.asset(
+                                          "assets/forwardarrow.png",
+                                          fit: BoxFit.fitWidth,
+                                          /*width: 50,*/
+                                          height: 30,
+                                        ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                      ],
+                                    ),
+                                  )),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                )
+              : Container(),
+        ),
+        (isShown)?Container(
+          width: double.maxFinite,
+          height: double.maxFinite,
+          color: Colors.black54,
+          child: MaterialButton(
+            onPressed: () {
+              setState(() {
+                isShown = false;
+              });
+            },
+          ),
+        ):Container(),
+        Positioned(
+            right: 22,
+            top: 22,
+            child: Visibility(
+              visible: isShown,
+              child: MaterialButton(
+                  onPressed: () {
+                    setState(() {
+                      isShown = false;
+                    });
+                  },
+                  enableFeedback: false,
+                  hoverColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  child: Visibility(
+                      visible: isShown,
+                      child: SafeArea(
+                          child:
+                          Image.asset("assets/images/indication.png")))),
+            ))
+      ],
     );
   }
 
