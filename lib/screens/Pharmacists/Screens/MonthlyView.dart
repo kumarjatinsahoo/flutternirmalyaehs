@@ -2,7 +2,7 @@ import 'package:user/localization/localizations.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:flutter/material.dart';
-import 'package:syncfusion_flutter_calendar/calendar.dart';
+// import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 class MonthlyView extends StatefulWidget {
   final MainModel model;
@@ -62,7 +62,7 @@ class _MonthlyViewState extends State<MonthlyView> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Padding(
+            /*Padding(
               padding: const EdgeInsets.all(8.0),
               child: Container(
                   child: SfCalendar(
@@ -71,7 +71,7 @@ class _MonthlyViewState extends State<MonthlyView> {
                     appointmentDisplayMode:
                         MonthAppointmentDisplayMode.appointment),
               )),
-            ),
+            ),*/
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(

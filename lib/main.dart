@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:io';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
@@ -258,6 +259,7 @@ String selectedLan;
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   // await Firebase.initializeApp(options: );
   log('Handling a background message ${message}');
+  // await Firebase.initializeApp(options: DefaultFirebaseConfig.platformOptions);
   print('Handling a background message ${message.messageId}');
   //print('Handling a background message ${message.messageId}');
   //LocalNotificationService.initialize(context);
@@ -269,31 +271,81 @@ FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+/*
+  final BehaviorSubject<ReceivedNotification> didReceiveLocalNotificationSubject =
+  BehaviorSubject<ReceivedNotification>();
+*/
+
   ////////////////////Notification//////////////////
   await Firebase.initializeApp();
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   if (!kIsWeb) {
     channel = const AndroidNotificationChannel(
-      'high_importance_channel', // id
-      'High Importance Notifications', // title
-      'This channel is used for important notifications.', // description
-      importance: Importance.high,
-    );
-    FirebaseMessaging.instance.getToken().then((value) {
+        'high_importance_channel', // id
+        'High Importance Notifications', // title
+        'This channel is used for important notifications.', // description
+        importance: Importance.high,
+        playSound: true,
+        enableVibration: true,
+        enableLights: true,
+        showBadge: true);
+    /* FirebaseMessaging.instance.getToken().then((value) {
       String token = value;
       print("token dart locale>>>" + token);
 
-    });
+    });*/
     flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
     await flutterLocalNotificationsPlugin
         .resolvePlatformSpecificImplementation<
             AndroidFlutterLocalNotificationsPlugin>()
         ?.createNotificationChannel(channel);
 
+   /* flutterLocalNotificationsPlugin.initialize(InitializationSettings(
+      iOS: IOS
+    ));*/
+
     await FirebaseMessaging.instance
         .setForegroundNotificationPresentationOptions(
       alert: true,
       badge: true,
+      sound: true,
+    );
+
+    if (Platform.isIOS) {
+      final IOSInitializationSettings initializationSettingsIOS =
+          IOSInitializationSettings(
+              requestAlertPermission: false,
+              requestBadgePermission: false,
+              requestSoundPermission: false,
+              defaultPresentSound: true,
+              defaultPresentAlert: true,
+              defaultPresentBadge: true,
+              onDidReceiveLocalNotification: (
+                int id,
+                String title,
+                String body,
+                String payload,
+              ) async {
+                /* didReceiveLocalNotificationSubject.add(
+              ReceivedNotification(
+                id: id,
+                title: title,
+                body: body,
+                payload: payload,
+              ),
+            );*/
+              });
+      flutterLocalNotificationsPlugin.initialize(InitializationSettings(iOS: initializationSettingsIOS));
+    }
+
+    // NotificationSettings settings =
+    await FirebaseMessaging.instance.requestPermission(
+      alert: true,
+      announcement: false,
+      badge: true,
+      carPlay: false,
+      criticalAlert: false,
+      provisional: false,
       sound: true,
     );
   }
@@ -323,7 +375,7 @@ class _MyAppState extends State<MyApp> {
   final MainModel _model = MainModel();
   MyLocalizationsDelegate myLocalizationsDelegate;
   String _token;
-  SharedPref sharedPref=SharedPref();
+  SharedPref sharedPref = SharedPref();
 
   @override
   void initState() {
@@ -334,19 +386,21 @@ class _MyAppState extends State<MyApp> {
     // application.logoutCallBack = logouCallBack;
     ////tokem=FirebaseMessaging.instance.getToken(vapidKey: "");
 
-     FirebaseMessaging.instance
+    FirebaseMessaging.instance
         .getInitialMessage()
         .then((RemoteMessage message) {
       if (message != null) {
-        print('NARMADA1 ' + message.toString());
         Navigator.pushNamed(context, '/aboutus');
       }
     });
+
+    // FirebaseMessaging.instance.se
 
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       print('+++++++++++++++++++ ' + message.toString());
       RemoteNotification notification = message.notification;
       AndroidNotification android = message.notification?.android;
+      // IOSNot android = message.notification?.android;
       if (notification != null && android != null && !kIsWeb) {
         flutterLocalNotificationsPlugin.show(
             notification.hashCode,
@@ -357,22 +411,36 @@ class _MyAppState extends State<MyApp> {
                 channel.id,
                 channel.name,
                 channel.description,
-                // TODO add a proper drawable resource to android, for now using
-                //      one that already exists in example app.
+                importance: Importance.max,
+                priority: Priority.high,
                 icon: 'launch_background',
+                playSound: true,
+                // sound:
               ),
             ));
         //popup("View one",context);
 
         // Navigator.pushNamed(context, '/emergencydetails');
         //AppData.showInSnackBar(context, "Dataa");
+      } else if (Platform.isIOS) {
+        flutterLocalNotificationsPlugin.show(
+            notification.hashCode,
+            notification.title,
+            notification.body,
+            NotificationDetails(
+                iOS: IOSNotificationDetails(
+              // subtitle: notification.title,
+              presentAlert: true,
+              presentSound: true,
+                  sound: "default",
+                  // badgeNumber: 1
+            )));
       }
     });
-/*
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
       print('A new onMessageOpenedApp event was published!');
       Navigator.pushNamed(context, '/aboutus');
-    });*/
+    });
   }
 
   popup(String msg, BuildContext context) {
@@ -595,7 +663,7 @@ class _MyAppState extends State<MyApp> {
               '/userSignUpForm': (context) => UserSignUpForm(
                     model: _model,
                   ),
-             /* '/intrestsignup': (context) => IntrestSignUpForm(
+              /* '/intrestsignup': (context) => IntrestSignUpForm(
                     model: _model,
                   ),*/
               '/biomedicalimplants': (context) => BiomediImplants(
@@ -957,7 +1025,7 @@ class _MyAppState extends State<MyApp> {
               '/qrViewExample1': (context) => QRViewExample1(
                     model: _model,
                   ),
-             /* '/labDash': (context) => DashboardLabortory(
+              /* '/labDash': (context) => DashboardLabortory(
                     model: _model,
                   ),*/
               '/labDash': (context) => LabDashboard(
@@ -1041,9 +1109,10 @@ class _MyAppState extends State<MyApp> {
               '/documentpdf': (context) => PdfViewPage(
                     model: _model,
                   ),
-              '/govermentSchemesDitelsPage': (context) => GovermentSchemesDitelsPage(
-                model: _model,
-              ),
+              '/govermentSchemesDitelsPage': (context) =>
+                  GovermentSchemesDitelsPage(
+                    model: _model,
+                  ),
 
               '/documentimage': (context) => DocumentImage(
                     model: _model,
@@ -1073,8 +1142,8 @@ class _MyAppState extends State<MyApp> {
                     model: _model,
                   ),
               '/disitaTestPage': (context) => DisitaTestPage(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
 
               '/monthlyoverview': (context) => MonthlyOverview(
                     model: _model,
@@ -1086,21 +1155,18 @@ class _MyAppState extends State<MyApp> {
                     model: _model,
                   ),
               '/healthChaatlist': (context) => HealthChaatlist(
-                model: _model,
-              ),
+                    model: _model,
+                  ),
 
 ////////////////////////////////////////////////////////////////////////////////
-             // syndicate partner
-              '/admin': (context) =>
-                  AdminUser(
+              // syndicate partner
+              '/admin': (context) => AdminUser(
                     model: _model,
                   ),
-              '/syndicatesignUpformm': (context) =>
-                  SyndicateSignupform(
+              '/syndicatesignUpformm': (context) => SyndicateSignupform(
                     model: _model,
                   ),
-              '/syndicateDashboard': (context) =>
-                  SyndicateDashboard(
+              '/syndicateDashboard': (context) => SyndicateDashboard(
                     model: _model,
                   ),
               // RECEPTIONLIST
@@ -1146,46 +1212,36 @@ class _MyAppState extends State<MyApp> {
                   MonthlyOverviewPharmaklist(
                     model: _model,
                   ),
-              '/organlist': (context) =>
-                  Organlist(
+              '/organlist': (context) => Organlist(
                     model: _model,
                   ),
-              '/changePassword': (context) =>
-                  ChangePassword(
+              '/changePassword': (context) => ChangePassword(
                     model: _model,
                   ),
-              '/labMyProfile': (context) =>
-                  DocMyProfile(
+              '/labMyProfile': (context) => DocMyProfile(
                     model: _model,
                   ),
-              '/organisationSignUpForm': (context) =>
-                  OrganisationSignUpForm(
+              '/organisationSignUpForm': (context) => OrganisationSignUpForm(
                     model: _model,
                   ),
-              '/organPriviewPage': (context) =>
-                  OrganPriviewPage(
+              '/organPriviewPage': (context) => OrganPriviewPage(
                     model: _model,
                   ),
-              '/addinsuranceForm': (context) =>
-                  AddinsuranceForm(
+              '/addinsuranceForm': (context) => AddinsuranceForm(
                     model: _model,
                   ),
-              '/organcardPage': (context) =>
-                  OrgancardPage(
+              '/organcardPage': (context) => OrgancardPage(
                     model: _model,
                   ),
 
-              '/vdo': (context) =>
-                  VideoCallPage(
-               //     model: _model,
+              '/vdo': (context) => VideoCallPage(
+                  //     model: _model,
                   ),
-              '/preventivehealthcare': (context) =>
-                  PreventiveHealthCare(
-               //     model: _model,
+              '/preventivehealthcare': (context) => PreventiveHealthCare(
+                  //     model: _model,
                   ),
-              '/MedReminder': (context) =>
-                  MedReminder(
-                   model: _model,
+              '/MedReminder': (context) => MedReminder(
+                    model: _model,
                   ),
             },
             localizationsDelegates: [

@@ -12,7 +12,7 @@ import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:syncfusion_flutter_calendar/calendar.dart';
+// import 'package:syncfusion_flutter_calendar/calendar.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/models/SetReminderModel.dart';
 import 'package:user/providers/Const.dart';

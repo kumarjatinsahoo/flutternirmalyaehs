@@ -20,6 +20,8 @@
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>FirebaseAppDelegateProxyEnabled</key>
+    <string>NO</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -52,6 +54,11 @@
 	<string>MIC required for video consulting</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>You need to provide photo album access to upload profile image</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>remote-notification</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

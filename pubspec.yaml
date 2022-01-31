@@ -49,7 +49,7 @@ dependencies:
   date_format: ^2.0.2
   convex_bottom_bar: ^2.7.1
   percent_indicator: "^2.1.7+2"
-  syncfusion_flutter_calendar: ^19.1.67
+#  syncfusion_flutter_calendar: ^19.1.67
   otp_text_field: ^1.1.1
   flutter_toggle_tab: ^1.1.4
   url_launcher: ^6.0.6
@@ -75,6 +75,7 @@ dependencies:
   firebase_messaging: ^10.0.1
 
   flutter_local_notifications: ^6.0.0
+#  flutter_local_notifications: ^9.2.0
   firebase_core: ^1.2.1
   flutter_typeahead: ^3.2.0
   share: ^2.0.4
