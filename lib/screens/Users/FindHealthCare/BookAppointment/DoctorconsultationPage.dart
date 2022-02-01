@@ -698,31 +698,31 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
     _formKey.currentState.validate();
     if (DoctorconsultationPage.countryModel == null ||
         DoctorconsultationPage.countryModel == "") {
-      AppData.showInSnackBar(context, "Please select Country");
+      AppData.showInSnackBar(context, "Please select country");
     } else if (DoctorconsultationPage.stateModel == null ||
         DoctorconsultationPage.stateModel == "") {
-      AppData.showInSnackBar(context, "Please select State");
+      AppData.showInSnackBar(context, "Please select state");
     } else if (DoctorconsultationPage.distrModel == null ||
         DoctorconsultationPage.distrModel == "") {
-      AppData.showInSnackBar(context, "Please select District");
+      AppData.showInSnackBar(context, "Please select district");
     } else if (DoctorconsultationPage.cityModel == null ||
         DoctorconsultationPage.cityModel == "") {
-      AppData.showInSnackBar(context, "Please select City");
+      AppData.showInSnackBar(context, "Please select city");
     } else if (DoctorconsultationPage.specialistModel == null ||
         DoctorconsultationPage.specialistModel == "") {
-      AppData.showInSnackBar(context, "Please select Speciality");
+      AppData.showInSnackBar(context, "Please select speciality");
     } else if (DoctorconsultationPage.doctorModel == null ||
         DoctorconsultationPage.doctorModel == "") {
-      AppData.showInSnackBar(context, "Please select Doctor");
+      AppData.showInSnackBar(context, "Please select doctor");
     } else if (DoctorconsultationPage.hospitalModel == null ||
         DoctorconsultationPage.hospitalModel == "") {
-      AppData.showInSnackBar(context, "Please select Hospital");
+      AppData.showInSnackBar(context, "Please select hospital");
     } else if (appointmentdate.text == "" || appointmentdate.text == null) {
-      AppData.showInSnackBar(context, "Please select your Appointment Date");
+      AppData.showInSnackBar(context, "Please select your appointment date");
     } else if (DoctorconsultationPage.timeModel == null) {
-      AppData.showInSnackBar(context, "Please select Time");
+      AppData.showInSnackBar(context, "Please select time");
     } else if (!isValidtime) {
-      AppData.showInSnackBar(context, "Please select valid Time");
+      AppData.showInSnackBar(context, "Please select valid time");
     } else {
       saveDb();
       // PatientSignupModel patientSignupModel = PatientSignupModel();

@@ -438,14 +438,14 @@ class _BiomediImplantsState extends State<BiomediImplants> {
                 onPressed: () {
                   if (BiomediImplants.admequipmentmodel == null ||
                       BiomediImplants.admequipmentmodel == "") {
-                    AppData.showInSnackBar(context, "Please select Name ");
+                    AppData.showInSnackBar(context, "Please select name ");
                   } else if (_date.text == "" || _date.text == null) {
-                    AppData.showInSnackBar(context, "Please enter Date");
+                    AppData.showInSnackBar(context, "Please enter date");
                   } else if (_reason.text == "" || _reason.text == null) {
-                    AppData.showInSnackBar(context, "Please enter Reason");
+                    AppData.showInSnackBar(context, "Please enter reason");
                   } else if (_reason.text != "" && _reason.text.length <= 2) {
                     AppData.showInSnackBar(
-                        context, "Please enter valid Reason");
+                        context, "Please enter valid reason");
                   } else {
                     MyWidgets.showLoading(context);
                     AddBioMedicalModel biomedicalModel = AddBioMedicalModel();

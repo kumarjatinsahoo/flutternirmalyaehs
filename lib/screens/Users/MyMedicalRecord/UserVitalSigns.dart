@@ -834,7 +834,7 @@ class _VitalSignsState extends State<VitalSigns> {
               }else if (double.tryParse(textEditingController[0].text)>250) {
                 //AppData.showInSnackBar(context, "Please select Smoking");
                 AppData.showInSnackBar(
-                    context, "Invalid height enter");
+                    context, "Invalid height");
 
               }else if (textEditingController[1].text.trim()=="") {
                 //AppData.showInSnackBar(context, "Please select Smoking");
@@ -844,7 +844,7 @@ class _VitalSignsState extends State<VitalSigns> {
               }else if (double.tryParse(textEditingController[1].text)>636) {
                 //AppData.showInSnackBar(context, "Please select Smoking");
                 AppData.showInSnackBar(
-                    context, "Invalid weight enter");
+                    context, "Invalid weight");
 
               }else if (textEditingController[3].text.trim()=="") {
                 //AppData.showInSnackBar(context, "Please select Smoking");
@@ -854,7 +854,7 @@ class _VitalSignsState extends State<VitalSigns> {
               }else if (double.tryParse(textEditingController[3].text)>200) {
                 //AppData.showInSnackBar(context, "Please select Smoking");
                 AppData.showInSnackBar(
-                    context, "Invalid temperature C enter");
+                    context, "Invalid temperature C");
 
               }else if (textEditingController[9].text.trim()=="") {
                 //AppData.showInSnackBar(context, "Please select Smoking");
@@ -864,7 +864,7 @@ class _VitalSignsState extends State<VitalSigns> {
               }else if (double.tryParse(textEditingController[9].text)>500) {
                 //AppData.showInSnackBar(context, "Please select Smoking");
                 AppData.showInSnackBar(
-                    context, "Invalid temperature F enter");
+                    context, "Invalid temperature F");
 
               } else if (textEditingController[4].text.trim()=="") {
                 //AppData.showInSnackBar(context, "Please select Smoking");
@@ -874,7 +874,7 @@ class _VitalSignsState extends State<VitalSigns> {
               }else if (double.tryParse(textEditingController[4].text)>200) {
                 //AppData.showInSnackBar(context, "Please select Smoking");
                 AppData.showInSnackBar(
-                    context, "Invalid systolic BP enter");
+                    context, "Invalid systolic BP ");
 
               }else if (textEditingController[5].text.trim()=="") {
                 //AppData.showInSnackBar(context, "Please select Smoking");
@@ -884,7 +884,7 @@ class _VitalSignsState extends State<VitalSigns> {
               }else if (double.tryParse(textEditingController[5].text)>200) {
                 //AppData.showInSnackBar(context, "Please select Smoking");
                 AppData.showInSnackBar(
-                    context, "Invalid diastolic BP enter");
+                    context, "Invalid diastolic BP ");
 
               }else if (textEditingController[6].text.trim()=="") {
                 //AppData.showInSnackBar(context, "Please select Smoking");
@@ -894,7 +894,7 @@ class _VitalSignsState extends State<VitalSigns> {
               }else if (double.tryParse(textEditingController[6].text)>200) {
                 //AppData.showInSnackBar(context, "Please select Smoking");
                 AppData.showInSnackBar(
-                    context, "Invalid pulse enter");
+                    context, "Invalid pulse ");
 
               }else if (textEditingController[7].text.trim()=="") {
                 //AppData.showInSnackBar(context, "Please select Smoking");
@@ -904,7 +904,7 @@ class _VitalSignsState extends State<VitalSigns> {
               }else if (double.tryParse(textEditingController[7].text)>200) {
                 //AppData.showInSnackBar(context, "Please select Smoking");
                 AppData.showInSnackBar(
-                    context, "Invalid respiration enter");
+                    context, "Invalid respiration ");
 
               }else if (textEditingController[8].text.trim()=="") {
                 //AppData.showInSnackBar(context, "Please select Smoking");
@@ -914,7 +914,7 @@ class _VitalSignsState extends State<VitalSigns> {
               }else if (double.tryParse(textEditingController[8].text)>200) {
                 //AppData.showInSnackBar(context, "Please select Smoking");
                 AppData.showInSnackBar(
-                    context, "Invalid oxygen saturation enter");
+                    context, "Invalid oxygen saturation ");
 
 
               } else {

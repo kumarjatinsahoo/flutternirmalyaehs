@@ -678,18 +678,18 @@ class _ImmunizationState extends State<Immunization> {
                   if (Immunization.immunizationmodel == null ||
                       Immunization.immunizationmodel == "") {
                     AppData.showInSnackBar(
-                        context, "Please Select Immunization Type ");
+                        context, "Please select immunization type ");
                   } else if (_date.text == "" || _date.text == null) {
                     AppData.showInSnackBar(
-                        context, "Please Enter Immunization Date");
+                        context, "Please enter immunization date");
                   } else if (textEditingController[1].text == "" ||
                       textEditingController[1].text == null) {
                     AppData.showInSnackBar(
-                        context, "Please Enter Prescribed By");
+                        context, "Please enter prescribed by");
                   } else if (textEditingController[2].text == "" ||
                       textEditingController[2].text == null) {
                     AppData.showInSnackBar(
-                        context, "Please Enter Immunization Details ");
+                        context, "Please enter immunization details ");
                   } else {
                     MyWidgets.showLoading(context);
                     ImmunizationPostModel immunizationmodel =

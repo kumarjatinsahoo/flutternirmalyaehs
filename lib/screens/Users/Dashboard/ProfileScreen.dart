@@ -2851,14 +2851,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     }*/
                     if (textEditingController[0].text == null ||
                         textEditingController[0].text == "") {
-                      AppData.showInSnackBar(context, "Please Enter  Dob");
+                      AppData.showInSnackBar(context, "Please enter  DOB");
                     // } else if (ProfileScreen.bloodgroupmodel == null ||
                     //     ProfileScreen.bloodgroupmodel == "") {
                     //   AppData.showInSnackBar(
                     //       context, "Please select Bloodgroup");
                     } else if (textEditingController[1].text == "" ||
                         textEditingController[1].text == null) {
-                      AppData.showInSnackBar(context, "Please enter Address");
+                      AppData.showInSnackBar(context, "Please enter address");
                     // } else if (ProfileScreen.materialmodel == null ||
                     //     ProfileScreen.materialmodel == "") {
                     //   AppData.showInSnackBar(
@@ -2912,28 +2912,28 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     //   AppData.showInSnackBar(context, "Please enter PinCode");
                     } else if (textEditingController[13].text == "" ||
                         textEditingController[13].text == null) {
-                      AppData.showInSnackBar(context, "Please enter Mobile no");
+                      AppData.showInSnackBar(context, "Please enter mobile no");
                     } else if (textEditingController[14].text == "" ||
                         textEditingController[14].text == null) {
-                      AppData.showInSnackBar(context, "Please enter Fname");
+                      AppData.showInSnackBar(context, "Please enter first name");
                     } else if (textEditingController[15].text == "" ||
                         textEditingController[15].text == null) {
-                      AppData.showInSnackBar(context, "Please enter Lname");
+                      AppData.showInSnackBar(context, "Please enter last name");
                     } else if (textEditingController[16].text == "" ||
                         textEditingController[16].text == null) {
                       AppData.showInSnackBar(context, "Please enter gender");
                     } else if (ProfileScreen.countrymodel == null ||
                         ProfileScreen.countrymodel == "") {
-                      AppData.showInSnackBar(context, "Please select Country");
+                      AppData.showInSnackBar(context, "Please select country");
                     } else if (ProfileScreen.statemodel == null ||
                         ProfileScreen.statemodel == "") {
-                      AppData.showInSnackBar(context, "Please select State");
+                      AppData.showInSnackBar(context, "Please select state");
                     } else if (ProfileScreen.districtmodel == null ||
                         ProfileScreen.districtmodel == "") {
-                      AppData.showInSnackBar(context, "Please select District");
+                      AppData.showInSnackBar(context, "Please select district");
                     } else if (ProfileScreen.citymodel == null ||
                         ProfileScreen.citymodel == "") {
-                      AppData.showInSnackBar(context, "Please select City");
+                      AppData.showInSnackBar(context, "Please select city");
                     } else {
                       updateProfileModel.eCardNo =
                           patientProfileModel.body.eCardNo;
@@ -3676,7 +3676,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           height: 15,
                         ),
                         formField1(13, "Name"),
-                        SizedBox(height: 8),
+                        SizedBox(height: 1),
                         DropDown.networkDropdownGetpartUser1(
                             "Relation",
                             ApiFactory.RELATION_API,
@@ -3719,23 +3719,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   setState(() {
                     if (textEditingController[13].text == null ||
                         textEditingController[13].text == "") {
-                      AppData.showInSnackBar(context, "Please enter Name");
+                      AppData.showInSnackBar(context, "Please enter name");
                     } else if (textEditingController[13].text != "" &&
                         textEditingController[13].text.length <= 2) {
                       AppData.showInSnackBar(
-                          context, "Please enter a valid First Name");
+                          context, "Please enter a valid first name");
                     } else if (ProfileScreen.relationmodel == "" ||
                         ProfileScreen.relationmodel == null) {
                       AppData.showInSnackBar(
-                          context, "Please Select Relation ");
+                          context, "Please select relation ");
                     } else if (textEditingController[14].text == "" ||
                         textEditingController[14].text == null) {
                       AppData.showInSnackBar(
-                          context, "Please enter  Mobile No.");
+                          context, "Please enter  mobile no.");
                     } else if (textEditingController[14] != "" &&
                         textEditingController[14].text.length != 10) {
                       AppData.showInSnackBar(
-                          context, "Please enter valid  Mobile No.");
+                          context, "Please enter valid  mobile no.");
                     } else {
                       UpdateEmergencyModel updateEmergencyModel =
                           UpdateEmergencyModel();
@@ -3963,7 +3963,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           height: 15,
                         ),
                         formField1(15, MyLocalizations.of(context).text("NAME")),
-                        SizedBox(height: 8),
+                        SizedBox(height: 1),
                         DropDown.networkDropdownGetpartUser1(
                             MyLocalizations.of(context).text("SPECIALITY"),
                             ApiFactory.SPECIALITY_API,
@@ -4006,23 +4006,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   setState(() {
                     if (textEditingController[15].text == null ||
                         textEditingController[15].text == "") {
-                      AppData.showInSnackBar(context, "Please enter Name");
+                      AppData.showInSnackBar(context, "Please enter name");
                     } else if (textEditingController[15].text != "" &&
                         textEditingController[15].text.length <= 2) {
                       AppData.showInSnackBar(
-                          context, "Please enter a valid  Name");
+                          context, "Please enter a valid  name");
                     } else if (ProfileScreen.specialitymodel == "" ||
                         ProfileScreen.specialitymodel == null) {
                       AppData.showInSnackBar(
-                          context, "Please Select Speciallity ");
+                          context, "Please select speciallity ");
                     } else if (textEditingController[16].text == "" ||
                         textEditingController[16].text == null) {
                       AppData.showInSnackBar(
-                          context, "Please enter  Mobile No.");
+                          context, "Please enter  mobile no.");
                     } else if (textEditingController[16] != "" &&
                         textEditingController[16].text.length != 10) {
                       AppData.showInSnackBar(
-                          context, "Please enter valid Mobile No.");
+                          context, "Please enter valid mobile no.");
                     } else {
                       FamilyDoctorModel familydoctormodel = FamilyDoctorModel();
                       familydoctormodel.name = textEditingController[15].text;

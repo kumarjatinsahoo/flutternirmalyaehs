@@ -230,7 +230,7 @@ class _MedicineReminderState extends State<MedicineReminder> {
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 20.0),
                           child: Text(
-                            "Set Reminder for Medicines,Water Intake or any other Medical Needs",
+                            "Set reminder for medicines, water intake or any other medical needs",
                             style: TextStyle(color: Colors.black, fontSize: 18),
                             textAlign: TextAlign.center,
                           ),
