@@ -21,6 +21,7 @@ class LifeStyleHistory extends StatefulWidget {
   static KeyvalueModel smokingmodel = null;
   static KeyvalueModel alcoholmodel = null;
   static KeyvalueModel ditemodel = null;
+  static KeyvalueModel petsmodel = null;
   static KeyvalueModel genderModel = null;
 
   const LifeStyleHistory({Key key, this.model}) : super(key: key);
@@ -129,6 +130,13 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                     name: lifeStyleHistryModel.body.diet);
               } else {
                 LifeStyleHistory.ditemodel = null;
+              }
+              if (lifeStyleHistryModel?.body?.petName != null) {
+                LifeStyleHistory.petsmodel = KeyvalueModel(
+                    key: lifeStyleHistryModel.body.pets,
+                    name: lifeStyleHistryModel.body.petName);
+              } else {
+                LifeStyleHistory.petsmodel = null;
               }
               //appointModel = lab.LabBookModel.fromJson(map);
             } else {
@@ -329,11 +337,11 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                                   _buildTile1(
                                     icon: "assets/pet.png",
                                     title: (lifeStyleHistryModel?.body == null ||
-                                            lifeStyleHistryModel?.body.pets
+                                            lifeStyleHistryModel?.body.petName
                                                     .toString() ==
                                                 "0")
                                         ? "N/A"
-                                        : lifeStyleHistryModel.body.pets.toString(),
+                                        : lifeStyleHistryModel.body.petName.toString(),
                                     subtitle:
                                         MyLocalizations.of(context).text("PETS"),
                                     fun: () {
@@ -584,9 +592,9 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
         ? textEditingController[1].text =
             lifeStyleHistryModel.body.occupation.toString() ?? "N/A"
         : textEditingController[1].text = "N/A";
-    lifeStyleHistryModel != null
+    /*lifeStyleHistryModel != null
         ? textEditingController[2].text = lifeStyleHistryModel.body.pets.toString() ?? "N/A"
-        : textEditingController[2].text = "N/A";
+        : textEditingController[2].text = "N/A";*/
 
 
     /* textEditingController[1].text=lifeStyleHistryModel.body.occupation.toString() ?? "N/A";
@@ -668,6 +676,8 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                     padding: const EdgeInsets.only(left: 8.0),
                     child: Text(MyLocalizations.of(context).text("DIET")),
                   ),
+
+
                   gender(),
                   /* Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 0),
@@ -690,7 +700,27 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                   // SizedBox(
                   //   height: 8,
                   // ),
-                  formField(2, MyLocalizations.of(context).text("PETS")),
+                  //formField(2, MyLocalizations.of(context).text("PETS")),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8.0),
+                    child: Text( MyLocalizations.of(context).text("PETS")),
+                  ),
+                  Padding(
+                    //padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.only(
+                        top: 0.0, left: 8.0, right: 8.0, bottom: 0.0),
+                    child: DropDown.networkDropdownlabler1(
+                        MyLocalizations.of(context).text("PETS"),
+                        ApiFactory.PETLIST_API,
+                        "pets", (KeyvalueModel model) {
+                      setState(() {
+                        LifeStyleHistory.petsmodel = model;
+                        lifeStyleHistryModel.body.pets = model.key;
+                        lifeStyleHistryModel.body.petName = model.name;
+                        // updateProfileModel.eRelation = model.key;
+                      });
+                    }),
+                  ),
                   SizedBox(
                     height: 5,
                   ),
@@ -725,33 +755,38 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
             setState(() {
               if (LifeStyleHistory.smokingmodel.name == "N/A" || LifeStyleHistory.smokingmodel == null ||
                   LifeStyleHistory.smokingmodel == "") {
-                AppData.showInSnackBar(context, "Please select Smoking");
+                AppData.showInSnackBar(context, "Please select smoking");
               } else if (LifeStyleHistory.alcoholmodel == null ||
                   LifeStyleHistory.alcoholmodel == "" || LifeStyleHistory.alcoholmodel.name == "N/A") {
-                AppData.showInSnackBar(context, "Please select Alcohol");
+                AppData.showInSnackBar(context, "Please select alcohol");
               } else if (LifeStyleHistory.ditemodel == null ||
                   LifeStyleHistory.ditemodel == "" || LifeStyleHistory.ditemodel.name == "N/A") {
                 AppData.showInSnackBar(context, "Please select Diet");
               } else if (textEditingController[0].text == "N/A" ||
                   textEditingController[0].text == null ||
                   textEditingController[0].text == "") {
-                AppData.showInSnackBar(context, "Please enter  Exercise");
+                AppData.showInSnackBar(context, "Please enter exercise");
+              }else if (LifeStyleHistory.petsmodel.name == "N/A" || LifeStyleHistory.petsmodel == null ||
+              LifeStyleHistory.petsmodel == "") {
+              AppData.showInSnackBar(context, "Please select pets");
+               }
               // } else if (textEditingController[1].text == "N/A" ||
               //     textEditingController[1].text == null ||
               //     textEditingController[1].text == "") {
               //   AppData.showInSnackBar(context, "Please enter  Occupation");
-              } else if (textEditingController[2].text == "N/A" ||
+              /*} else if (textEditingController[2].text == "N/A" ||
                   textEditingController[2].text == null ||
                   textEditingController[2].text == "") {
                 AppData.showInSnackBar(context, "Please enter  Pets");
-              } else {
+              }*/ else {
                 var sendData = {
                   "smokingId": LifeStyleHistory.smokingmodel.key,
                   "alcoholId": LifeStyleHistory.alcoholmodel.key,
+                  "pets": LifeStyleHistory.petsmodel.key,
                   "diet": LifeStyleHistory.ditemodel.name,
                   "exercise": textEditingController[0].text,
-                  "occupation": textEditingController[1].text,
-                  "pets": textEditingController[2].text,
+                  //"occupation": textEditingController[1].text,
+                  //"pets": textEditingController[2].text,
                   "patientId": widget.model.user,
                 };
 
@@ -785,9 +820,9 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                           //Navigator.pop(context);
                           callAPI();
                           //AppData.showInSnackDone(context, map[Const.MESSAGE]);
-                          AppData.showInSnackBargreen(context, map[Const.MESSAGE]);
+                          AppData.showInSnackBargreen(context,"chs");
                         } else {
-                          AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                          AppData.showInSnackBar(context,/* map[Const.MESSAGE]*/"gkhyjjd");
                         }
                       });
                     },
