@@ -49,7 +49,7 @@ class _BookBloodBanklistState extends State<BookBloodBanklist> {
   bool isDataNoFound = false;
   ambulance.BloodbanklistModel bloodbanklistModel;
   bool isdata = true;
-
+  bool isShown = true;
   @override
   void initState() {
     super.initState();
@@ -83,297 +83,333 @@ class _BookBloodBanklistState extends State<BookBloodBanklist> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          backgroundColor: AppData.kPrimaryColor,
-          title: Text(MyLocalizations.of(context).text("BLOOD_BANK")),
-          /* leading: Icon(
-          Icons.menu,
-        ),*/
-          actions: <Widget>[
-            Padding(
-                padding: EdgeInsets.only(right: 20.0),
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.pushNamed(context, "/bookBloodBankPage");
-                    /* showDialog(
-                    context: context,
-                    builder: (BuildContext context) =>
-                        dialogaddnomination(context),
-                  );*/
-                    // callAPI();
-                  },
-                  child: Icon(
-                    Icons.add_circle_outline_sharp,
-                    size: 26.0,
-                  ),
-                )),
-            /*Padding(
-              padding: EdgeInsets.only(right: 20.0),
-              child: GestureDetector(
-                onTap: () {},
-                child: Icon(
-                    Icons.more_vert
-                ),
-              )
-          ),*/
-          ],
-        ),
-        body: isdata == true
-            ? Center(
-                child: CircularProgressIndicator(
-                    //backgroundColor: AppData.matruColor,
-                    ),
-              )
-            : bloodbanklistModel == null || bloodbanklistModel == null
-                ? Container(
-                    child: Center(
-                      child: Text(MyLocalizations.of(context).text("NO_DATA_FOUND"),
-                        style: TextStyle(color: Colors.black, fontSize: 15),
+    return Stack(
+      children: [
+        Scaffold(
+            appBar: AppBar(
+              centerTitle: true,
+              backgroundColor: AppData.kPrimaryColor,
+              title: Text(MyLocalizations.of(context).text("BLOOD_BANK")),
+              /* leading: Icon(
+              Icons.menu,
+            ),*/
+              actions: <Widget>[
+                Padding(
+                    padding: EdgeInsets.only(right: 20.0),
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, "/bookBloodBankPage");
+                        /* showDialog(
+                        context: context,
+                        builder: (BuildContext context) =>
+                            dialogaddnomination(context),
+                      );*/
+                        // callAPI();
+                      },
+                      child: Icon(
+                        Icons.add_circle_outline_sharp,
+                        size: 26.0,
                       ),
+                    )),
+                /*Padding(
+                  padding: EdgeInsets.only(right: 20.0),
+                  child: GestureDetector(
+                    onTap: () {},
+                    child: Icon(
+                        Icons.more_vert
                     ),
                   )
-                : SingleChildScrollView(
-                    child: (bloodbanklistModel != null)
-                        ? ListView.builder(
-                            physics: NeverScrollableScrollPhysics(),
-                            // controller: _scrollController,
-                            shrinkWrap: true,
-                            itemBuilder: (context, i) {
-                              if (i == bloodbanklistModel.body.length) {
-                                return (bloodbanklistModel.body.length % 10 ==
-                                        0)
-                                    ? CupertinoActivityIndicator()
-                                    : Container();
-                              }
-                              ambulance.Body body = bloodbanklistModel.body[i];
-                              return Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 10, right: 10, top: 5),
-                                child: Card(
-                                  child: Container(
-                                    //height: height * 0.30,
-                                    // color: Colors.grey[200],
-                                    child: Column(
-                                      children: [
-                                        Container(
-                                          decoration: BoxDecoration(
-                                              gradient: LinearGradient(colors: [
-                                            Colors.blueGrey[50],
-                                            Colors.blue[50]
-                                          ])),
-                                          child: Padding(
-                                            padding: const EdgeInsets.only(
-                                                left: 10.0,
-                                                right: 10.0,
-                                                top: 10,
-                                                bottom: 5),
-                                            child: InkWell(
-                                              onTap: () {},
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Row(
-                                                    // mainAxisAlignment: MainAxisAlignment.center,
+              ),*/
+              ],
+            ),
+            body: isdata == true
+                ? Center(
+                    child: CircularProgressIndicator(
+                        //backgroundColor: AppData.matruColor,
+                        ),
+                  )
+                : bloodbanklistModel == null || bloodbanklistModel == null
+                    ? Container(
+                        child: Center(
+                          child: Text(MyLocalizations.of(context).text("NO_DATA_FOUND"),
+                            style: TextStyle(color: Colors.black, fontSize: 15),
+                          ),
+                        ),
+                      )
+                    : SingleChildScrollView(
+                        child: (bloodbanklistModel != null)
+                            ? ListView.builder(
+                                physics: NeverScrollableScrollPhysics(),
+                                // controller: _scrollController,
+                                shrinkWrap: true,
+                                itemBuilder: (context, i) {
+                                  if (i == bloodbanklistModel.body.length) {
+                                    return (bloodbanklistModel.body.length % 10 ==
+                                            0)
+                                        ? CupertinoActivityIndicator()
+                                        : Container();
+                                  }
+                                  ambulance.Body body = bloodbanklistModel.body[i];
+                                  return Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 10, right: 10, top: 5),
+                                    child: Card(
+                                      child: Container(
+                                        //height: height * 0.30,
+                                        // color: Colors.grey[200],
+                                        child: Column(
+                                          children: [
+                                            Container(
+                                              decoration: BoxDecoration(
+                                                  gradient: LinearGradient(colors: [
+                                                Colors.blueGrey[50],
+                                                Colors.blue[50]
+                                              ])),
+                                              child: Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 10.0,
+                                                    right: 10.0,
+                                                    top: 10,
+                                                    bottom: 5),
+                                                child: InkWell(
+                                                  onTap: () {},
+                                                  child: Column(
                                                     crossAxisAlignment:
-                                                        CrossAxisAlignment.end,
+                                                        CrossAxisAlignment.start,
                                                     children: [
-                                                      Container(
-                                                        width: 120,
-                                                        child: Text(
-                                                          MyLocalizations.of(context).text("BLOOD_BANK_NAME"),
-                                                          /*'Confirmed'*/
-                                                          style: TextStyle(
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                            fontSize: 15,
+                                                      Row(
+                                                        // mainAxisAlignment: MainAxisAlignment.center,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment.end,
+                                                        children: [
+                                                          Container(
+                                                            width: 120,
+                                                            child: Text(
+                                                              MyLocalizations.of(context).text("BLOOD_BANK_NAME"),
+                                                              /*'Confirmed'*/
+                                                              style: TextStyle(
+                                                                fontWeight:
+                                                                    FontWeight.w600,
+                                                                fontSize: 15,
+                                                              ),
+                                                            ),
                                                           ),
-                                                        ),
-                                                      ),
-                                                      Text(" : "),
-                                                      Text(
-                                                        /*'23-Nov-2020-11:30AM'*/
-                                                        body.bloodBankName,
-                                                        overflow:
-                                                            TextOverflow.clip,
-                                                        style: TextStyle(
-                                                            color:
-                                                                Colors.black),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  SizedBox(
-                                                    height: 10,
-                                                  ),
-                                                  Row(
-                                                    // mainAxisAlignment: MainAxisAlignment.center,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment.end,
-                                                    children: [
-                                                      Container(
-                                                        width: 120,
-                                                        child: Text(
-                                                          MyLocalizations.of(context).text("BLOODGROUP"),
-                                                          /*'Confirmed'*/
-                                                          style: TextStyle(
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                            fontSize: 15,
+                                                          Text(" : "),
+                                                          Text(
+                                                            /*'23-Nov-2020-11:30AM'*/
+                                                            body.bloodBankName,
+                                                            overflow:
+                                                                TextOverflow.clip,
+                                                            style: TextStyle(
+                                                                color:
+                                                                    Colors.black),
                                                           ),
-                                                        ),
+                                                        ],
                                                       ),
-                                                      Text(" : "),
-                                                      Text(
-                                                        /*'23-Nov-2020-11:30AM'*/
-                                                        body.bloodGrName,
-                                                        overflow:
-                                                            TextOverflow.clip,
-                                                        style: TextStyle(
-                                                            color:
-                                                                Colors.black),
+                                                      SizedBox(
+                                                        height: 10,
                                                       ),
-                                                    ],
-                                                  ),
-                                                  SizedBox(
-                                                    height: 10,
-                                                  ),
-                                                  Row(
-                                                    // mainAxisAlignment: MainAxisAlignment.center,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment.end,
-                                                    children: [
-                                                      Container(
-                                                        width: 120,
-                                                        child: Text(
-                                                          MyLocalizations.of(context).text("DATE"),
-                                                          /*'Confirmed'*/
-                                                          style: TextStyle(
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                            fontSize: 15,
+                                                      Row(
+                                                        // mainAxisAlignment: MainAxisAlignment.center,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment.end,
+                                                        children: [
+                                                          Container(
+                                                            width: 120,
+                                                            child: Text(
+                                                              MyLocalizations.of(context).text("BLOODGROUP"),
+                                                              /*'Confirmed'*/
+                                                              style: TextStyle(
+                                                                fontWeight:
+                                                                    FontWeight.w600,
+                                                                fontSize: 15,
+                                                              ),
+                                                            ),
                                                           ),
-                                                        ),
-                                                      ),
-                                                      Text(" : "),
-                                                      Text(
-                                                        /*'23-Nov-2020-11:30AM'*/
-                                                        body.bookedDate,
-                                                        overflow:
-                                                            TextOverflow.clip,
-                                                        style: TextStyle(
-                                                            color:
-                                                                Colors.black),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  SizedBox(
-                                                    height: 10,
-                                                  ),
-                                                  Row(
-                                                    // mainAxisAlignment: MainAxisAlignment.center,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment.end,
-                                                    children: [
-                                                      Container(
-                                                        width: 120,
-                                                        child: Text(
-                                                          MyLocalizations.of(context).text("PATIENT_NOTES"),
-                                                          /*'Confirmed'*/
-                                                          style: TextStyle(
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                            fontSize: 15,
+                                                          Text(" : "),
+                                                          Text(
+                                                            /*'23-Nov-2020-11:30AM'*/
+                                                            body.bloodGrName,
+                                                            overflow:
+                                                                TextOverflow.clip,
+                                                            style: TextStyle(
+                                                                color:
+                                                                    Colors.black),
                                                           ),
-                                                        ),
+                                                        ],
                                                       ),
-                                                      Text(" : "),
-                                                      Text(
-                                                        /*'23-Nov-2020-11:30AM'*/
-                                                        body.patientNote,
-                                                        overflow:
-                                                            TextOverflow.clip,
-                                                        style: TextStyle(
-                                                            color:
-                                                                Colors.black),
+                                                      SizedBox(
+                                                        height: 10,
                                                       ),
-                                                    ],
-                                                  ),
-                                                  SizedBox(
-                                                    height: 10,
-                                                  ),
-                                                  Row(
-                                                    children: [
-                                                      Text(
-                                                        ' ',
-                                                        style: TextStyle(
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .w600),
+                                                      Row(
+                                                        // mainAxisAlignment: MainAxisAlignment.center,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment.end,
+                                                        children: [
+                                                          Container(
+                                                            width: 120,
+                                                            child: Text(
+                                                              MyLocalizations.of(context).text("DATE"),
+                                                              /*'Confirmed'*/
+                                                              style: TextStyle(
+                                                                fontWeight:
+                                                                    FontWeight.w600,
+                                                                fontSize: 15,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          Text(" : "),
+                                                          Text(
+                                                            /*'23-Nov-2020-11:30AM'*/
+                                                            body.bookedDate,
+                                                            overflow:
+                                                                TextOverflow.clip,
+                                                            style: TextStyle(
+                                                                color:
+                                                                    Colors.black),
+                                                          ),
+                                                        ],
                                                       ),
-                                                      Spacer(),
-                                                      InkWell(
-                                                        /*onTap: () {
-                                  showDialog(
-                                    context: context,
-                                    builder: (BuildContext
-                                    context) =>
-                                        changeStatus(context,body.orderId),
-                                  );
-                                  // widget.model.userappointment = appointmentlist;
-
-
-                                  //  Navigator.pushNamed(context, "/usermedicinelist");
-                                },*/
-                                                        child: MaterialButton(
-                                                          child: Text(
-                                                            /*'Confirmed'*/
-                                                            body.status,
+                                                      SizedBox(
+                                                        height: 10,
+                                                      ),
+                                                      Row(
+                                                        // mainAxisAlignment: MainAxisAlignment.center,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment.end,
+                                                        children: [
+                                                          Container(
+                                                            width: 120,
+                                                            child: Text(
+                                                              MyLocalizations.of(context).text("PATIENT_NOTES"),
+                                                              /*'Confirmed'*/
+                                                              style: TextStyle(
+                                                                fontWeight:
+                                                                    FontWeight.w600,
+                                                                fontSize: 15,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          Text(" : "),
+                                                          Text(
+                                                            /*'23-Nov-2020-11:30AM'*/
+                                                            body.patientNote,
+                                                            overflow:
+                                                                TextOverflow.clip,
+                                                            style: TextStyle(
+                                                                color:
+                                                                    Colors.black),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      SizedBox(
+                                                        height: 10,
+                                                      ),
+                                                      Row(
+                                                        children: [
+                                                          Text(
+                                                            ' ',
                                                             style: TextStyle(
                                                                 fontWeight:
                                                                     FontWeight
-                                                                        .bold,
-                                                                fontSize: 15,
-                                                                color: AppData
-                                                                    .kPrimaryBlueColor),
+                                                                        .w600),
                                                           ),
-                                                        ),
+                                                          Spacer(),
+                                                          InkWell(
+                                                            /*onTap: () {
+                                      showDialog(
+                                        context: context,
+                                        builder: (BuildContext
+                                        context) =>
+                                            changeStatus(context,body.orderId),
+                                      );
+                                      // widget.model.userappointment = appointmentlist;
+
+
+                                      //  Navigator.pushNamed(context, "/usermedicinelist");
+                                    },*/
+                                                            child: MaterialButton(
+                                                              child: Text(
+                                                                /*'Confirmed'*/
+                                                                body.status,
+                                                                style: TextStyle(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
+                                                                    fontSize: 15,
+                                                                    color: AppData
+                                                                        .kPrimaryBlueColor),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ],
                                                       ),
                                                     ],
                                                   ),
-                                                ],
+                                                ),
                                               ),
                                             ),
-                                          ),
+                                          ],
                                         ),
-                                      ],
+                                      ),
                                     ),
-                                  ),
-                                ),
-                              );
-                            },
-                            //itemCount:5,
-                            itemCount: bloodbanklistModel.body.length,
-                          )
-                        : Container(),
-                  ) /* :Container(
+                                  );
+                                },
+                                //itemCount:5,
+                                itemCount: bloodbanklistModel.body.length,
+                              )
+                            : Container(),
+                      ) /* :Container(
   child: Center(
-    child: Column(
-      children: [
-        SizedBox(height: 300,),
-        (isdata)? Text(
-          'No Data Found',
-          style:
-          TextStyle(color: Colors.black, fontSize: 15),
-        ):CircularProgressIndicator(),
-      ],
-    ),
+        child: Column(
+          children: [
+            SizedBox(height: 300,),
+            (isdata)? Text(
+              'No Data Found',
+              style:
+              TextStyle(color: Colors.black, fontSize: 15),
+            ):CircularProgressIndicator(),
+          ],
+        ),
   ),
 
 ),*/
 
-        );
+            ),
+        (isShown)?Container(
+          width: double.maxFinite,
+          height: double.maxFinite,
+          color: Colors.black54,
+          child: MaterialButton(
+            onPressed: () {
+              setState(() {
+                isShown = false;
+              });
+            },
+          ),
+        ):Container(),
+        Positioned(
+            right: 22,
+            top: 8,
+            child: Visibility(
+              visible: isShown,
+              child: MaterialButton(
+                  onPressed: () {
+                    setState(() {
+                      isShown = false;
+                    });
+                  },
+                  enableFeedback: false,
+                  hoverColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  child: Visibility(
+                      visible: isShown,
+                      child: SafeArea(
+                          child:
+                          Image.asset("assets/images/Indicationbook.png")))),
+            ))
+      ],
+    );
   }
 
   Widget _submitButton() {
