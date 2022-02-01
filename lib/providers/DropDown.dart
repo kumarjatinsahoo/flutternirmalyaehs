@@ -623,7 +623,10 @@ class DropDown {
           case "gen":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
-          case "gender":
+          case "pets":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+            case "gender":
             List<KeyvalueModel> listS = [];
             listS.add(KeyvalueModel(name: "Male", key: "1"));
             listS.add(KeyvalueModel(name: "Female", key: "2"));
@@ -2243,7 +2246,11 @@ class DropDown {
         case "SEVERITY":
         return AllergicListList.severitylistModel;
         break;
-      //city1,district1,state1,country1
+      case "pets":
+        return LifeStyleHistory.petsmodel;
+        break;
+
+
 
     }
   }
