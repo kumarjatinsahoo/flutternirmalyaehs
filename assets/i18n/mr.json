@@ -254,6 +254,7 @@
   "INSURANCE_COMPANY": "विमा कंपनी",
   "HEALTH_INSURANCE_TYPE": "आरोग्य विमा प्रकार",
   "POLICY_NO": "पॉलिसी क्र :",
+  "POLICY_NO1": "पॉलिसी क्र",
   "POLICY_START_DATE": "पॉलिसी सुरू होण्याची तारीख",
   "TOTAL_INSURANCE_AMOUNT": "एकूण विम्याची रक्कम",
   "PREMIUM_DUE_DATE": "प्रीमियम देय तारीख",

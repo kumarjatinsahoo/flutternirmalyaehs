@@ -587,19 +587,19 @@ RadioGroup1 radioGroup1 = RadioGroup1.RegisterDoctor;
    // _formKey.currentState.validate();
    if (BookAppointmentPage.specialistModel == null ||
         BookAppointmentPage.specialistModel == "") {
-      AppData.showInSnackBar(context, "Please select Specialist");
+      AppData.showInSnackBar(context, "Please select specialist");
     } else if (BookAppointmentPage.doctorModel == null ||
         BookAppointmentPage.doctorModel == "") {
-      AppData.showInSnackBar(context, "Please select Doctor");
+      AppData.showInSnackBar(context, "Please select doctor");
     /*} else if (BookAppointmentPage.hospitalModel == null ||
         BookAppointmentPage.hospitalModel == "") {
       AppData.showInSnackBar(context, "Please select hospital");*/
     } else if (appointmentdate.text == "" || appointmentdate.text == null) {
-      AppData.showInSnackBar(context, "Please select your Appointment Date");
+      AppData.showInSnackBar(context, "Please select your appointment date");
     } else if (BookAppointmentPage.timeModel == null) {
-      AppData.showInSnackBar(context, "Please select Time");
+      AppData.showInSnackBar(context, "Please select time");
     } else if (!isValidtime) {
-      AppData.showInSnackBar(context, "Please select valid Time");
+      AppData.showInSnackBar(context, "Please select valid time");
     } else {
       sendServer();
       // PatientSignupModel patientSignupModel = PatientSignupModel();

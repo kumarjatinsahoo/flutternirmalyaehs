@@ -663,13 +663,13 @@ class BookAmbulancePageState extends State<BookAmbulancePage> {
     _formKey.currentState.validate();
     if (BookAmbulancePage.ambulancenameModel == null ||
         BookAmbulancePage.ambulancenameModel == "") {
-      AppData.showInSnackBar(context, "Please select Ambulance Nme");
+      AppData.showInSnackBar(context, "Please select ambulance name");
     } else if (fromPlace.text == "" || appointmentdate.text == null) {
-      AppData.showInSnackBar(context, "Please select your From Place");
+      AppData.showInSnackBar(context, "Please select your from place");
     } else if (toPlace.text == "" || toPlace.text == null) {
-      AppData.showInSnackBar(context, "Please select your To Place");
+      AppData.showInSnackBar(context, "Please select your to place");
     } else if (appointmentdate.text == "" || appointmentdate.text == null) {
-      AppData.showInSnackBar(context, "Please select Date");
+      AppData.showInSnackBar(context, "Please select date");
 
     } else {
       saveDb();

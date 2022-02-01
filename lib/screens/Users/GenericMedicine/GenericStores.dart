@@ -88,7 +88,7 @@ class _GenericStoresState extends State<GenericStores> {
                       height: 5,
                     ),
                     Text(
-                      'Request your doctor to prescribe Generic Medicine.',
+                      'Request your doctor to prescribe generic medicine.',
                       style:
                           TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
                     ),
@@ -278,16 +278,16 @@ class _GenericStoresState extends State<GenericStores> {
       fun: () {
         if (GenericStores.countryModel == null ||
             GenericStores.countryModel == "") {
-          AppData.showInSnackBar(context, "Please select Country");
+          AppData.showInSnackBar(context, "Please select country");
         } else if (GenericStores.stateModel == null ||
             GenericStores.stateModel == "") {
-          AppData.showInSnackBar(context, "Please select State");
+          AppData.showInSnackBar(context, "Please select state");
         } else if (GenericStores.districtModel == null ||
             GenericStores.districtModel == "") {
-          AppData.showInSnackBar(context, "Please select District");
+          AppData.showInSnackBar(context, "Please select district");
         } else if (GenericStores.cityModel == null ||
             GenericStores.cityModel == "") {
-          AppData.showInSnackBar(context, "Please select City");
+          AppData.showInSnackBar(context, "Please select city");
         } else {
           //country = "99";
           country = GenericStores.countryModel.name;

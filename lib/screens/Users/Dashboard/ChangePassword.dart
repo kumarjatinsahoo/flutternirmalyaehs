@@ -404,7 +404,7 @@ class _ChangePasswordState extends State<ChangePassword> {
             AppData.showInSnackBar(context, "Please enter new password");
           }
            else if(!AppData.validateStructure(textEditingController[1].text)){
-                  AppData.showInSnackBar(context, "New Password must have at least one number and one uppercase and lowercase letter, and at least 8 or more characters");
+                  AppData.showInSnackBar(context, "New password must have at least one number and one uppercase and lowercase letter, and at least 8 or more characters");
           }
           //   else if(!AppData.validateStructure(textEditingController[0].text)){
           //         AppData.showInSnackBar(context, "Password must have at least one number and one uppercase and lowercase letter, and at least 8 or more characters");

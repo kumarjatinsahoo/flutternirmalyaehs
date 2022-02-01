@@ -254,6 +254,7 @@
   "INSURANCE_COMPANY": "बीमा कंपनी",
   "HEALTH_INSURANCE_TYPE": "स्वास्थ्य बीमा प्रकार",
   "POLICY_NO": "पॉलिसी संख्या :",
+  "POLICY_NO1": "पॉलिसी संख्या",
   "POLICY_START_DATE": "नीति प्रारंभ तिथि",
   "TOTAL_INSURANCE_AMOUNT": "कुल बीमा राशि",
   "PREMIUM_DUE_DATE": "प्रीमियम देय तिथि",
