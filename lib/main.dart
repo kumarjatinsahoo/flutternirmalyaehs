@@ -109,6 +109,8 @@ import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/UploadDocument
 import 'package:user/screens/Users/Preventivehealthcare/PreventiveHealthCare.dart';
 import 'package:user/screens/Users/organ/OrganCardPage.dart';
 import 'notification/MedReminder.dart';
+import 'screens/CreateUserIDScreen.dart';
+import 'screens/PinViewUserID.dart';
 import 'screens/Syndicate Partner/Dashboard/SyndicateDashboard.dart';
 import 'screens/Syndicate Partner/Registration/Syndicatepartner.dart';
 import 'screens/Users/MyMedicalRecord/HealthChat1/HealthChart.dart';
@@ -282,7 +284,7 @@ void main() async {
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   if (!kIsWeb) {
     channel = const AndroidNotificationChannel(
-        'high_importance_channel', // id
+        'eHealthSystem', // id
         'High Importance Notifications', // title
         'This channel is used for important notifications.', // description
         importance: Importance.high,
@@ -423,7 +425,7 @@ class _MyAppState extends State<MyApp> {
 
         // Navigator.pushNamed(context, '/emergencydetails');
         //AppData.showInSnackBar(context, "Dataa");
-      } else if (Platform.isIOS) {
+      } /*else if (Platform.isIOS) {
         flutterLocalNotificationsPlugin.show(
             notification.hashCode,
             notification.title,
@@ -436,7 +438,7 @@ class _MyAppState extends State<MyApp> {
                   sound: "default",
                   // badgeNumber: 1
             )));
-      }
+      }*/
     });
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
       print('A new onMessageOpenedApp event was published!');
@@ -1242,6 +1244,12 @@ class _MyAppState extends State<MyApp> {
                   //     model: _model,
                   ),
               '/MedReminder': (context) => MedReminder(
+                    model: _model,
+                  ),
+              '/createUserIDScreen': (context) => CreateUserIDScreen(
+                    model: _model,
+                  ),
+              '/pinViewUserID': (context) => PinViewUserID(
                     model: _model,
                   ),
             },

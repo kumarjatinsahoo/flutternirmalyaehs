@@ -699,8 +699,7 @@ class _MedicineList extends State<UserMedicineList> {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['userid'] = loginResponse1.body.user;
     data['pharmacistid'] = (UserMedicineList.pharmacyModel != null)
-        ? UserMedicineList.pharmacyModel.key
-        : selectPharma;
+        ? UserMedicineList.pharmacyModel.key : selectPharma;
     data['patientnote'] = textEditingController[0].text;
     data['meddetails'] = this.selectedMedicine.map((v) => v.toJson1()).toList();
     return data;

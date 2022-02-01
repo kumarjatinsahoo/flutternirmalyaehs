@@ -185,6 +185,8 @@ String userproimage;
 String userextesion;
 
 String activitytoken;
+String uhid;
+String otpText;
 
 
 }

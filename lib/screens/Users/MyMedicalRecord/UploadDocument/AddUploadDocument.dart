@@ -139,13 +139,13 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
         title: Text(MyLocalizations.of(context).text("UPLOAD_DOCUMENT")),
       ),
 
-      floatingActionButton: UnicornDialer(
+      /*floatingActionButton: UnicornDialer(
           childPadding: 4.00,
           backgroundColor: Colors.transparent,
           // parentButtonBackground: Colors.redAccent,
           orientation: UnicornOrientation.VERTICAL,
           parentButton: Icon(Icons.add),
-          childButtons: childButtons),
+          childButtons: childButtons),*/
       // floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
       body: Container(
         child: SingleChildScrollView(
@@ -183,11 +183,98 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
                       "",
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          fontSize: 15,
+                          fontSize: 13,
                           color: Colors.white),
                     ),
                   ),
                   //dob(),
+                  //SizedBox(height: 8),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+
+                        Column(
+                          children: [
+                            UnicornButton(
+                                hasLabel: true,
+                                labelText: "Image",
+                                currentButton: FloatingActionButton(
+                                  heroTag: "Image",
+                                  backgroundColor: Colors.amber,
+                                  mini: true,
+                                  child: Icon(Icons.photo),
+                                  onPressed: () {
+                                    selectedDocument = "img";
+                                    getCerificateImage();
+                                  },
+                                )),
+                            Text(
+                              /*'Confirmed'*/
+                              "Image",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 13,
+                                  color: Colors.black),
+                            ),
+                          ],
+                        ),
+                        Spacer(),
+                        Column(
+                          children: [
+                            UnicornButton(
+                                hasLabel: true,
+                                labelText: "Document",
+                                currentButton: FloatingActionButton(
+                                  heroTag: "/Document",
+                                  backgroundColor: AppData.kPrimaryColor,
+                                  mini: true,
+                                  child: Icon(Icons.file_copy),
+                                  onPressed: () {
+                                    selectedDocument = "doc";
+                                    getPdfAndUpload();
+                                  },
+                                )),
+                            Text(
+                              /*'Confirmed'*/
+                              "Document",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 13,
+                                  color: Colors.black),
+                            ),
+                          ],
+                        ),
+                        Spacer(),
+                        Column(
+                          children: [
+                            UnicornButton(
+                                hasLabel: true,
+                                labelText: "Video",
+                                currentButton: FloatingActionButton(
+                                  heroTag: "Video",
+                                  backgroundColor: AppData.kPrimaryRedColor,
+                                  mini: true,
+                                  child: Icon(Icons.airplay),
+                                  onPressed: () {
+                                    selectedDocument = "vdo";
+                                    getVideoUpload();
+                                  },
+                                )),
+                            Text(
+                              /*'Confirmed'*/
+                              "Video",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 13,
+                                  color: Colors.black),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
                   SizedBox(height: 8),
                   (idproof != null)
                       ? Padding(
