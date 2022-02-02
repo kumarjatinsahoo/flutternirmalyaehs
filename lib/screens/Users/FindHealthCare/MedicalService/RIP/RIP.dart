@@ -57,7 +57,6 @@ class _RIPScreenState extends State<RIPScreen> {
                                   MyLocalizations.of(context).text("BOOK_HEARSE_VAN");
                               Navigator.pushNamed(
                                   context, "/medicalsServiceOngooglePage");
-
                               // AppData.showInSnackBar(context,"hi");
                             },
                             /* onTap: () =>   Navigator.pushNamed(context, "/bookanAppointmentlist"),*/

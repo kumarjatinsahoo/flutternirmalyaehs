@@ -599,7 +599,7 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
                   height: 20,
                 ),
                 ListTile(
-                  title: Text("BOOKED"),
+                  title: Text("Booked"),
                   leading: Icon(Icons.book),
                   onTap: () {
                     updateApi(userName.id.toString(), "0", i);

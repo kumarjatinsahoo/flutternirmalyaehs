@@ -949,7 +949,6 @@ class _DocMyProfileState extends State<DocMyProfile> {
                           fnode10,
                           fnode11),
                       SizedBox(height: 10),
-
                           formFieldZipno(
                           11,
                               MyLocalizations.of(context).text("PIN_CODE"),
@@ -1136,7 +1135,6 @@ class _DocMyProfileState extends State<DocMyProfile> {
               FlatButton(
                 textColor: Theme.of(context).primaryColor,
                 child: Text(MyLocalizations.of(context).text("UPDATE")),
-
                 onPressed: () {
                   //AppData.showInSnackBar(context, "click");
                   setState(() {

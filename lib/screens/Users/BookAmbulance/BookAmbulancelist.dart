@@ -287,7 +287,6 @@ SingleChildScrollView(
                                           color: Colors
                                               .black),
                                     ),)
-
                                 ],
                               ),
                               SizedBox(
@@ -304,7 +303,6 @@ SingleChildScrollView(
                                     child: Text(
                                       MyLocalizations.of(context).text("PATIENT_NOTES"),
                                       /*'Confirmed'*/
-
                                       style: TextStyle(
                                         fontWeight:
                                         FontWeight
@@ -393,7 +391,7 @@ SingleChildScrollView(
                                             fontWeight:
                                             FontWeight
                                                 .bold,
-                                            fontSize:
+                                             fontSize:
                                             15,
                                             color:AppData.kPrimaryBlueColor),
                                       ),
