@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/providers/Const.dart';
@@ -104,8 +105,11 @@ class _EmergencyAccess extends State<EmergencyAccess> {
                                 controller: myController,
                                 maxLength: 16,
                                 keyboardType: TextInputType.number,
+                                inputFormatters: [
+                                  WhitelistingTextInputFormatter(
+                                      RegExp("[0-9]")),
+                                ],
                                 decoration: InputDecoration(
-
                                   border: InputBorder.none, hintText: ' ', counterText: "",
                                 ),
                               ),
@@ -200,10 +204,10 @@ class _EmergencyAccess extends State<EmergencyAccess> {
                       if (myController.text == "" ||
                           myController.text == null) {
                         AppData.showInSnackBar(context,
-                            "Please enter  UHID No");
+                            "Please enter  UHID no");
                       } else if (myController.text.length != 16 ||
                           myController.text == null) {
-                        AppData.showInSnackBar(context, "Please enter Valid UHID Number");
+                        AppData.showInSnackBar(context, "Please enter valid UHID number");
                       }
 
                       else {

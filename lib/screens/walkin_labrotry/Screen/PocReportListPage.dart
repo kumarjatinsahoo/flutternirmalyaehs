@@ -214,7 +214,7 @@ class _PocReportListPageState extends State<PocReportListPage> {
                             AppData.launchURL(patient.reportUrl);
                           } else {
                             AppData.showInSnackBar(
-                                context, "Data Not Available");
+                                context, "Data not available");
                           }
                         },
                         child: Column(
@@ -293,7 +293,7 @@ class _PocReportListPageState extends State<PocReportListPage> {
                     ),
                     (isdata)
                         ? Text(
-                            'No Data Found',
+                            'No data found',
                             style: TextStyle(color: Colors.black, fontSize: 15),
                           )
                         : Center(child: CircularProgressIndicator()),
@@ -304,7 +304,7 @@ class _PocReportListPageState extends State<PocReportListPage> {
           ? Container(
         height: size.height - 80,
         child: Center(
-          child: Text("Data Not Found"),
+          child: Text("Data not found"),
         ),
       )
           : MyWidgets.loading(context),

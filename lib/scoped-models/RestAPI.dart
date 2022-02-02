@@ -123,7 +123,7 @@ class RestAPI extends Model with PassData{
       if (e.type == DioErrorType.RESPONSE) {
         fun(failedMap);
       }*/
-      // log("Token EXpire>>>"+jsonEncode(e.response.data)+"Status code>>>"+e.response.statusCode.toString());
+      log("Token EXpire>>>"+jsonEncode(e.response.data)+"Status code>>>"+e.response.statusCode.toString());
       if(e.response.statusCode==401 && e.response.data.containsKey("error") && e.response.data["error"]=="Unauthorized"){
         log("Token EXpire Inner>>>"+jsonEncode(e.response.data)+"Status code>>>"+e.response.statusCode.toString());
         // application.logoutCallBack();

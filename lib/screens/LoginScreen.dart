@@ -634,7 +634,7 @@ class _LoginScreenState extends State<LoginScreen> {
         api: ApiFactory.GET_ROLE + userId,
         fun: (Map<String, dynamic> map) {
           Navigator.pop(context);
-          log("Respomnse for role>>>>>" + jsonEncode(map));
+          log("Response for role>>>>>" + jsonEncode(map));
           if (map["code"] == "success") {
             // sharedPref.save(Const.LOGIN_phoneno, _loginId.text);
             // sharedPref.save(Const.LOGIN_password, passController.text);

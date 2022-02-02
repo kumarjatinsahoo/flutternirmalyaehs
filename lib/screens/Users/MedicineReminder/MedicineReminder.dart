@@ -6,6 +6,9 @@ import 'package:intl/intl.dart';
 import 'package:unicorndial/unicorndial.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/LoginResponse1.dart';
+import 'package:user/models/MedicineReminderDTO1.dart';
+import 'package:user/providers/Const.dart';
+import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/screens/Users/MedicineReminder/SetReminder.dart';
@@ -24,6 +27,7 @@ class MedicineReminder extends StatefulWidget {
 class _MedicineReminderState extends State<MedicineReminder> {
   var selectedMinValue;
   TextEditingController dob = TextEditingController();
+MedicineReminderDTO1 medicineReminderDTO1;
 
   List<TextEditingController> textEditingController = [
     new TextEditingController(),
@@ -35,7 +39,9 @@ class _MedicineReminderState extends State<MedicineReminder> {
   ];
 
   final df = new DateFormat('dd/MM/yyyy');
+  final df1 = new DateFormat('dd-MM-yyyy');
   DateTime _selectedDate;
+  String dateData;
   var childButtons = List<UnicornButton>();
   DeviceCalendarPlugin _deviceCalendarPlugin = new DeviceCalendarPlugin();
   List<Calendar> _calendars;
@@ -46,9 +52,16 @@ class _MedicineReminderState extends State<MedicineReminder> {
   @override
   void initState() {
     // TODO: implement initState
+    dateData=df1.format(new DateTime.now());
     super.initState();
+
     // _retrieveCalendars();
     loginResponse = widget.model.loginResponse1;
+
+    // setState(() {
+
+      callApi(dateData);
+    // });
     // _retrieveCalendarEvents();
     childButtons.add(UnicornButton(
         hasLabel: true,
@@ -100,6 +113,23 @@ class _MedicineReminderState extends State<MedicineReminder> {
     )
     );*/
     _resetSelectedDate();
+  }
+
+  callApi(String date){
+    widget.model.GETMETHODCALL_TOKEN(api: ApiFactory.REMINDER_LIST(loginResponse.body.user, date),
+        token: widget.model.token,
+        fun: (Map<String, dynamic> map){
+      setState(() {
+
+        if (map[Const.CODE] == Const.SUCCESS) {
+          medicineReminderDTO1 = MedicineReminderDTO1.fromJson(map);
+        }/*else{
+          String msg = map[Const.MESSAGE];
+          AppData.showInSnackBar(context, msg);
+        }*/
+      });
+        }
+    );
   }
 
   void _resetSelectedDate() {
@@ -204,6 +234,7 @@ class _MedicineReminderState extends State<MedicineReminder> {
               setState(() {
                 _selectedDate = date;
                 _retrieveCalendarEvents();
+                dateData=df1.format(date);
               });
             },
             leftMargin: 20,
@@ -217,7 +248,7 @@ class _MedicineReminderState extends State<MedicineReminder> {
             locale: 'en',
           ),
           //SizedBox(height: 100),
-          (_calendarEvents == null || _calendarEvents.isEmpty)
+          (medicineReminderDTO1 == null || medicineReminderDTO1.body.isEmpty)
               ? Expanded(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -243,11 +274,11 @@ class _MedicineReminderState extends State<MedicineReminder> {
                   child: ListView.builder(
                     itemBuilder: (c, i) {
                       return ListTile(
-                        title: Text(_calendarEvents[i].title),
-                        subtitle: Text(_calendarEvents[i].description ?? ""),
+                        title: Text(medicineReminderDTO1.body[i].medName),
+                        subtitle: Text(medicineReminderDTO1.body[i].medDosage),
                         onTap: () {
                           // widget.model.title = _calendars[i].id;
-                          Navigator.pushNamed(context, '/setreminder');
+                         // Navigator.pushNamed(context, '/setreminder');
                         },
                         trailing: SizedBox(
                           height: 30,
@@ -266,7 +297,7 @@ class _MedicineReminderState extends State<MedicineReminder> {
                                   Navigator.pushNamed(context, '/editReminder');
                                   break;
                                 case 2:
-                                  _deleteEvent(_calendarEvents[i].eventId);
+                                  //_deleteEvent(_calendarEvents[i].eventId);
                                   break;
                                 default:
                                   AppData.showInSnackBar(context, "Hey1");
@@ -274,11 +305,11 @@ class _MedicineReminderState extends State<MedicineReminder> {
                             },
                             //elevation: 50,
                             itemBuilder: (context) => [
-                              PopupMenuItem(
+                            /*  PopupMenuItem(
                                 child: Text("EDIT"),
                                 value: 1,
                                 height: 30,
-                              ),
+                              ),*/
                               PopupMenuItem(
                                 child: Text("DELETE"),
                                 value: 2,
@@ -289,7 +320,7 @@ class _MedicineReminderState extends State<MedicineReminder> {
                         ),
                       );
                     },
-                    itemCount: _calendarEvents.length,
+                    itemCount: medicineReminderDTO1.body.length,
                     shrinkWrap: true,
                   ),
                 )

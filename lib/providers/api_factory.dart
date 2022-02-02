@@ -7,7 +7,7 @@ class ApiFactory {
   //static String MAIN_URL = "http://api-demo.ehealthsystem.com/nirmalyaRest/api/";
   // static String MAIN_URL = "http://192.168.0.190:8062/nirmalyaRest/api/";
   //static String MAIN_URL = "http://api-demo.ehealthsystem.com/nirmalyaRest/api/";
-  //static String MAIN_URL = "http://192.168.0.157:8062/nirmalyaRest/api/";
+  static String MAIN_URL = "http://192.168.0.157:8062/nirmalyaRest/api/";
   static String MAIN_URL1 = "https://1331.co.in/api";
   static String REPORT_URL1 = "https://demo.ehealthsystem.com/";
   static String VITALS_REPORT = MAIN_URL + 'medtel-screening-test-report';
@@ -145,6 +145,9 @@ static String EMERGENCY_HELP_NEW =
     return MAIN_URL + "login?mobileNo=$mob&password=$pass";
   }
 
+  static String REMINDER_LIST(String uid, String date) {
+    return MAIN_URL + "view-medicine-details-byid?userid=$uid&date=$date";
+  }
   static String LOGIN_PASS_MULTIPLE(String mob, String pass) {
     return MAIN_URL + "login-multiple-user?mobileNo=$mob&password=$pass";
   }

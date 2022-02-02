@@ -545,7 +545,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                                   width: 100,
                                   height: 35,
                                   child: Text(
-                                    "Refered Patients",
+                                    "Reffered Patient",
                                     textAlign: TextAlign.center,
                                     //overflow: TextOverflow.ellipsis,
                                   ),

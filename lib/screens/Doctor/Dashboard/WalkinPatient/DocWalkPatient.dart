@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/providers/Const.dart';
@@ -101,6 +102,10 @@ String uhid;
                                 controller: myController,
                                 maxLength: 16,
                                 keyboardType: TextInputType.number,
+                                inputFormatters: [
+                                  WhitelistingTextInputFormatter(
+                                      RegExp("[0-9]")),
+                                ],
                                 decoration: InputDecoration(
                                     border: InputBorder.none, hintText: ' ', counterText: "",
                                 ),
@@ -193,14 +198,14 @@ String uhid;
                       if (myController.text == "" ||
                           myController.text == null) {
                         AppData.showInSnackBar(context,
-                            "Please enter  UHID No");
+                            "Please enter  UHID no");
                       } else if (myController.text.length != 16 ||
                           myController.text == null) {
-                        AppData.showInSnackBar(context, "Please enter Valid UHID Number");
+                        AppData.showInSnackBar(context, "Please enter valid UHID number");
                       }
                       else {
                         var sendData;
-                          sendData = {"key": myController.text, "name": "Mobile number"};
+                          sendData = {"key": myController.text, "name": "mobile number"};
                         widget.model.patientseHealthCard = myController.text;
                         MyWidgets.showLoading(context);
                         widget.model.POSTMETHOD(

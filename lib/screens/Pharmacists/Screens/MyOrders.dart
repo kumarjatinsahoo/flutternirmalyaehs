@@ -264,7 +264,7 @@ class _MyOrdersState extends State<MyOrders> {
                                           color: Colors.red[900]),
                                       child: RaisedButton(
                                         onPressed: null,
-                                        child: Text(MyLocalizations.of(context).text("Reject"),
+                                        child: Text(MyLocalizations.of(context).text("REJECT"),
                                           style: TextStyle(
                                               color: Colors.white,
                                               fontSize: 16,

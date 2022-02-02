@@ -7,7 +7,7 @@ import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/AllergicModel.dart' as allergic;
 import 'package:user/models/AllergicPostModel.dart';
-import 'package:user/models/AmbulancelistModel.dart'as ambulance;
+import 'package:user/models/AmbulancelistModel.dart' as ambulance;
 import 'package:user/models/KeyvalueModel.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/providers/Const.dart';
@@ -69,13 +69,12 @@ class _BookAmbulancelistState extends State<BookAmbulancelist> {
             if (map[Const.CODE] == Const.SUCCESS) {
               isdata = false;
               // pocReportModel = PocReportModel.fromJson(map);
-              ambulancelistModel = ambulance.AmbulancelistModel .fromJson(map);
+              ambulancelistModel = ambulance.AmbulancelistModel.fromJson(map);
             } else {
               setState(() {
                 isdata = false;
                 //isDataNoFound = true;
-               // AppData.showInSnackBar(context, msg);
-
+                // AppData.showInSnackBar(context, msg);
               });
             }
           });
@@ -87,32 +86,32 @@ class _BookAmbulancelistState extends State<BookAmbulancelist> {
     return Stack(
       children: [
         Scaffold(
-          appBar: AppBar(
-            centerTitle: true,
-            backgroundColor: AppData.kPrimaryColor,
-            title: Text(MyLocalizations.of(context).text("AMBULANCE")),
-            /* leading: Icon(
+            appBar: AppBar(
+              centerTitle: true,
+              backgroundColor: AppData.kPrimaryColor,
+              title: Text(MyLocalizations.of(context).text("AMBULANCE")),
+              /* leading: Icon(
               Icons.menu,
             ),*/
-            actions: <Widget>[
-              Padding(
-                  padding: EdgeInsets.only(right: 20.0),
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(context, "/bookAmbulancePage");
-                     /* showDialog(
+              actions: <Widget>[
+                Padding(
+                    padding: EdgeInsets.only(right: 20.0),
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, "/bookAmbulancePage");
+                        /* showDialog(
                         context: context,
                         builder: (BuildContext context) =>
                             dialogaddnomination(context),
                       );*/
-                      // callAPI();
-                    },
-                    child: Icon(
-                      Icons.add_circle_outline_sharp,
-                      size: 26.0,
-                    ),
-                  )),
-              /*Padding(
+                        // callAPI();
+                      },
+                      child: Icon(
+                        Icons.add_circle_outline_sharp,
+                        size: 26.0,
+                      ),
+                    )),
+                /*Padding(
                   padding: EdgeInsets.only(right: 20.0),
                   child: GestureDetector(
                     onTap: () {},
@@ -121,130 +120,144 @@ class _BookAmbulancelistState extends State<BookAmbulancelist> {
                     ),
                   )
               ),*/
-            ],
-          ),
-body: isdata == true
-        ? Center(
-          child: CircularProgressIndicator(
-  //backgroundColor: AppData.matruColor,
-),
-        )
-        : ambulancelistModel == null || ambulancelistModel == null
-        ? Container(
-  child: Center(
-        child: Text(
-          MyLocalizations.of(context).text("NO_DATA_FOUND"),
-          style:
-          TextStyle(color: Colors.black, fontSize: 15),
-        ),
-  ),
+              ],
+            ),
+            body: isdata == true
+                ? Center(
+                    child: CircularProgressIndicator(
+                        //backgroundColor: AppData.matruColor,
+                        ),
+                  )
+                : ambulancelistModel == null || ambulancelistModel == null
+                    ? Container(
+                        child: Center(
+                          child: Text(
+                            MyLocalizations.of(context).text("NO_DATA_FOUND"),
+                            style: TextStyle(color: Colors.black, fontSize: 15),
+                          ),
+                        ),
+                      )
+                    : SingleChildScrollView(
+                        child: (ambulancelistModel != null)
+                            ? ListView.builder(
+                                physics: NeverScrollableScrollPhysics(),
+                                // controller: _scrollController,
+                                shrinkWrap: true,
+                                itemBuilder: (context, i) {
+                                  if (i == ambulancelistModel.body.length) {
+                                    return (ambulancelistModel.body.length %
+                                                10 ==
+                                            0)
+                                        ? CupertinoActivityIndicator()
+                                        : Container();
+                                  }
+                                  ambulance.Body body =
+                                      ambulancelistModel.body[i];
+                                  return Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 10, right: 10, top: 5),
+                                    child: Card(
+                                      child: Container(
+                                        //height: height * 0.30,
+                                        // color: Colors.grey[200],
+                                        child: Column(
+                                          children: [
+                                            Container(
+                                              decoration: BoxDecoration(
+                                                  gradient: LinearGradient(
+                                                      colors: [
+                                                    Colors.blueGrey[50],
+                                                    Colors.blue[50]
+                                                  ])),
+                                              child: Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 10.0,
+                                                    right: 10.0,
+                                                    top: 10,
+                                                    bottom: 5),
+                                                child: InkWell(
+                                                  onTap: () {},
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Row(
+                                                        // mainAxisAlignment: MainAxisAlignment.center,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .end,
+                                                        children: [
+                                                          Container(
+                                                            //width: 120,
+                                                            child: Text(
+                                                              MyLocalizations.of(
+                                                                      context)
+                                                                  .text(
+                                                                      "AMBULANCE_NAME"),
+                                                              /*'Confirmed'*/
+                                                              style: TextStyle(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                                fontSize: 15,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          Text(" : "),
+                                                          Text(
+                                                            /*'23-Nov-2020-11:30AM'*/
+                                                            body.ambulanceName,
+                                                            overflow:
+                                                                TextOverflow
+                                                                    .clip,
+                                                            style: TextStyle(
+                                                                color: Colors
+                                                                    .black),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      SizedBox(
+                                                        height: 10,
+                                                      ),
+                                                      Row(
+                                                        // mainAxisAlignment: MainAxisAlignment.center,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
 
-):
-SingleChildScrollView(
-
-  child:(ambulancelistModel != null)? ListView.builder(
-        physics: NeverScrollableScrollPhysics(),
-        // controller: _scrollController,
-        shrinkWrap: true,
-        itemBuilder: (context, i) {
-          if (i == ambulancelistModel.body.length) {
-            return (ambulancelistModel.body.length % 10 == 0)
-                ? CupertinoActivityIndicator()
-                : Container();
-          }
-          ambulance.Body body = ambulancelistModel.body[i];
-          return Padding(
-            padding: const EdgeInsets.only(left: 10,right: 10,top: 5),
-            child: Card(
-              child: Container(
-                //height: height * 0.30,
-                // color: Colors.grey[200],
-                child: Column(
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                          gradient: LinearGradient(colors: [
-                            Colors.blueGrey[50],
-                            Colors.blue[50]
-                          ])),
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                            left: 10.0, right: 10.0, top: 10, bottom: 5),
-                        child: InkWell(
-                          onTap: () {
-                            },
-                          child: Column(
-                            crossAxisAlignment:
-                            CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                // mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment:
-                                CrossAxisAlignment
-                                    .end,
-                                children: [
-                                  Container(
-                                   //width: 120,
-                                    child: Text(
-                                      MyLocalizations.of(context).text("AMBULANCE_NAME"),
-                                      /*'Confirmed'*/
-                                      style: TextStyle(
-                                        fontWeight:
-                                        FontWeight
-                                            .w600,
-                                        fontSize: 15,
-                                      ),
-                                    ),
-                                  ),
-                                  Text(" : "),
-                                  Text(
-                                    /*'23-Nov-2020-11:30AM'*/
-                                    body.ambulanceName,
-                                    overflow:
-                                    TextOverflow
-                                        .clip,
-                                    style: TextStyle(
-                                        color: Colors
-                                            .black),
-                                  ),
-                                ],
-                              ),
-
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Row(
-                                // mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-
-                                children: [
-                                  Container(
-                                    width: 120,
-                                    child: Text(
-                                      MyLocalizations.of(context).text("FROM_LOCATION"),
-                                      /*'Confirmed'*/
-                                      style: TextStyle(
-                                        fontWeight:
-                                        FontWeight
-                                            .w600,
-                                        fontSize: 15,
-                                      ),
-                                    ),
-                                  ),
-                                  Text(" : "),
-                                  Expanded(
-                                    child:Text(
-                                    /*'23-Nov-2020-11:30AM'*/
-                                    body.fromLocation,
-                                    overflow:
-                                    TextOverflow
-                                        .clip,
-                                    style: TextStyle(
-                                        color: Colors
-                                            .black),
-                                  ),)
-                                  /*Text(
-                                    *//*'23-Nov-2020-11:30AM'*//*
+                                                        children: [
+                                                          Container(
+                                                            width: 120,
+                                                            child: Text(
+                                                              MyLocalizations.of(
+                                                                      context)
+                                                                  .text(
+                                                                      "FROM_LOCATION"),
+                                                              /*'Confirmed'*/
+                                                              style: TextStyle(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                                fontSize: 15,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          Text(" : "),
+                                                          Expanded(
+                                                            child: Text(
+                                                              /*'23-Nov-2020-11:30AM'*/
+                                                              body.fromLocation,
+                                                              overflow:
+                                                                  TextOverflow
+                                                                      .clip,
+                                                              style: TextStyle(
+                                                                  color: Colors
+                                                                      .black),
+                                                            ),
+                                                          )
+                                                          /*Text(
+                                    */ /*'23-Nov-2020-11:30AM'*/ /*
                                     body.fromLocation,
                                     overflow:
                                     TextOverflow
@@ -253,127 +266,138 @@ SingleChildScrollView(
                                         color: Colors
                                             .black),
                                   ),*/
-                                ],
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Row(
-                                // mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    width: 120,
-                                    child: Text(
-                                      MyLocalizations.of(context).text("DESTINATION"),
-                                      /*'Confirmed'*/
-                                      style: TextStyle(
-                                        fontWeight:
-                                        FontWeight
-                                            .w600,
-                                        fontSize: 15,
-                                      ),
-                                    ),
-                                  ),
-                                  Text(" : "),
-                                  Expanded(
-                                    child:Text(
-                                      /*'23-Nov-2020-11:30AM'*/
-                                      body.toDestination,
-                                      overflow:
-                                      TextOverflow
-                                          .clip,
-                                      style: TextStyle(
-                                          color: Colors
-                                              .black),
-                                    ),)
-
-                                ],
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Row(
-                                // mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment:
-                                CrossAxisAlignment
-                                    .end,
-                                children: [
-                                  Container(
-                                    width: 120,
-                                    child: Text(
-                                      MyLocalizations.of(context).text("PATIENT_NOTES"),
-                                      /*'Confirmed'*/
-
-                                      style: TextStyle(
-                                        fontWeight:
-                                        FontWeight
-                                            .w600,
-                                        fontSize: 15,
-                                      ),
-                                    ),
-                                  ),
-                                  Text(" : "),
-                                  Text(
-                                    /*'23-Nov-2020-11:30AM'*/
-                                    body.patientNote,
-                                    overflow:
-                                    TextOverflow
-                                        .clip,
-                                    style: TextStyle(
-                                        color: Colors
-                                            .black),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Row(
-                                // mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment:
-                                CrossAxisAlignment
-                                    .end,
-                                children: [
-                                  Container(
-                                    width: 120,
-                                    child: Text(
-                                      MyLocalizations.of(context).text("DATE"),
-                                      /*'Confirmed'*/
-                                      style: TextStyle(
-                                        fontWeight:
-                                        FontWeight
-                                            .w600,
-                                        fontSize: 15,
-                                      ),
-                                    ),
-                                  ),
-                                  Text(" : "),
-                                  Text(
-                                    /*'23-Nov-2020-11:30AM'*/
-                                    body.bookedDate,
-                                    overflow:
-                                    TextOverflow
-                                        .clip,
-                                    style: TextStyle(
-                                        color: Colors
-                                            .black),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              Row(
-                                children: [
-                                  Text(
-                                    ' ',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w600),
-                                  ),
-                                  Spacer(),
-                                  InkWell(
-                                    /*onTap: () {
+                                                        ],
+                                                      ),
+                                                      SizedBox(
+                                                        height: 10,
+                                                      ),
+                                                      Row(
+                                                        // mainAxisAlignment: MainAxisAlignment.center,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Container(
+                                                            width: 120,
+                                                            child: Text(
+                                                              MyLocalizations.of(
+                                                                      context)
+                                                                  .text(
+                                                                      "DESTINATION"),
+                                                              /*'Confirmed'*/
+                                                              style: TextStyle(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                                fontSize: 15,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          Text(" : "),
+                                                          Expanded(
+                                                            child: Text(
+                                                              /*'23-Nov-2020-11:30AM'*/
+                                                              body.toDestination,
+                                                              overflow:
+                                                                  TextOverflow
+                                                                      .clip,
+                                                              style: TextStyle(
+                                                                  color: Colors
+                                                                      .black),
+                                                            ),
+                                                          )
+                                                        ],
+                                                      ),
+                                                      SizedBox(
+                                                        height: 10,
+                                                      ),
+                                                      Row(
+                                                        // mainAxisAlignment: MainAxisAlignment.center,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .end,
+                                                        children: [
+                                                          Container(
+                                                            width: 120,
+                                                            child: Text(
+                                                              MyLocalizations.of(
+                                                                      context)
+                                                                  .text(
+                                                                      "PATIENT_NOTES"),
+                                                              /*'Confirmed'*/
+                                                              style: TextStyle(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                                fontSize: 15,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          Text(" : "),
+                                                          Text(
+                                                            /*'23-Nov-2020-11:30AM'*/
+                                                            body.patientNote,
+                                                            overflow:
+                                                                TextOverflow
+                                                                    .clip,
+                                                            style: TextStyle(
+                                                                color: Colors
+                                                                    .black),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      SizedBox(
+                                                        height: 10,
+                                                      ),
+                                                      Row(
+                                                        // mainAxisAlignment: MainAxisAlignment.center,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .end,
+                                                        children: [
+                                                          Container(
+                                                            width: 120,
+                                                            child: Text(
+                                                              MyLocalizations.of(
+                                                                      context)
+                                                                  .text("DATE"),
+                                                              /*'Confirmed'*/
+                                                              style: TextStyle(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                                fontSize: 15,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          Text(" : "),
+                                                          Text(
+                                                            /*'23-Nov-2020-11:30AM'*/
+                                                            body.bookedDate,
+                                                            overflow:
+                                                                TextOverflow
+                                                                    .clip,
+                                                            style: TextStyle(
+                                                                color: Colors
+                                                                    .black),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      SizedBox(
+                                                        height: 5,
+                                                      ),
+                                                      Row(
+                                                        children: [
+                                                          Text(
+                                                            ' ',
+                                                            style: TextStyle(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600),
+                                                          ),
+                                                          Spacer(),
+                                                          InkWell(
+                                                            /*onTap: () {
                                       showDialog(
                                         context: context,
                                         builder: (BuildContext
@@ -385,51 +409,54 @@ SingleChildScrollView(
 
                                       //  Navigator.pushNamed(context, "/usermedicinelist");
                                     },*/
-                                    child: MaterialButton(
-                                      child: Text(
-                                        /*'Confirmed'*/
-                                        body.status,
-                                        style: TextStyle(
-                                            fontWeight:
-                                            FontWeight
-                                                .bold,
-                                            fontSize:
-                                            15,
-                                            color:AppData.kPrimaryBlueColor),
+                                                            child:
+                                                                MaterialButton(
+                                                              child: Text(
+                                                                /*'Confirmed'*/
+                                                                body.status,
+                                                                style: TextStyle(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
+                                                                    fontSize:
+                                                                        15,
+                                                                    color: AppData
+                                                                        .kPrimaryBlueColor),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
+                                  );
+                                },
+                                //itemCount:5,
+                                itemCount: ambulancelistModel.body.length,
+                              )
+                            : Container(),
+                      )),
+        (isShown)
+            ? Container(
+                width: double.maxFinite,
+                height: double.maxFinite,
+                color: Colors.black54,
+                child: MaterialButton(
+                  onPressed: () {
+                    setState(() {
+                      isShown = false;
+                    });
+                  },
                 ),
-              ),
-            ),
-          );
-        },
-        //itemCount:5,
-        itemCount: ambulancelistModel.body.length,
-  ): Container(),
-)
-
-        ),
-        (isShown)?Container(
-          width: double.maxFinite,
-          height: double.maxFinite,
-          color: Colors.black54,
-          child: MaterialButton(
-            onPressed: () {
-              setState(() {
-                isShown = false;
-              });
-            },
-          ),
-        ):Container(),
+              )
+            : Container(),
         Positioned(
             right: 22,
             top: 22,
@@ -447,8 +474,8 @@ SingleChildScrollView(
                   child: Visibility(
                       visible: isShown,
                       child: SafeArea(
-                          child:
-                          Image.asset("assets/images/Indicationbook.png")))),
+                          child: Image.asset(
+                              "assets/images/Indicationbook.png")))),
             ))
       ],
     );
@@ -501,7 +528,8 @@ SingleChildScrollView(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Center(
-                          child: Text(MyLocalizations.of(context).text("ADD_ALLERGIC"),
+                          child: Text(
+                            MyLocalizations.of(context).text("ADD_ALLERGIC"),
                             style: TextStyle(
                               fontSize: 20,
                               color: Colors.black,
@@ -513,7 +541,7 @@ SingleChildScrollView(
                           height: 15,
                         ),
                         DropDown.networkDropdownGetpartUser1(
-                            "Name" ,
+                            "Name",
                             ApiFactory.TYPE_API,
                             "typelist",
                             Icons.location_on_rounded,
@@ -527,8 +555,7 @@ SingleChildScrollView(
                           height: 5,
                         ),*/
                         DropDown.networkDropdownGetpartUser1(
-                            MyLocalizations.of(context)
-                                .text("ALLERGEN") ,
+                            MyLocalizations.of(context).text("ALLERGEN"),
                             ApiFactory.NAME_API,
                             "namelist",
                             Icons.location_on_rounded,
@@ -538,14 +565,13 @@ SingleChildScrollView(
                             BookAmbulancelist.nameModel = data;
                           });
                         }),
-                       /* SizedBox(
+                        /* SizedBox(
                           height: 5,
                         ),*/
                         DropDown.networkDrop(
-                            MyLocalizations.of(context)
-                                .text("SEVERTY") ,
-                            "SEVERITY", severitylist,
-                            (KeyvalueModel data) {
+                            MyLocalizations.of(context).text("SEVERTY"),
+                            "SEVERITY",
+                            severitylist, (KeyvalueModel data) {
                           setState(() {
                             BookAmbulancelist.severitylistModel = data;
                           });
@@ -553,11 +579,11 @@ SingleChildScrollView(
                         SizedBox(
                           height: 8,
                         ),
-                        formField(1,"   Reaction"),
+                        formField(1, "   Reaction"),
                         SizedBox(
                           height: 8,
                         ),
-                        formField(2,"   Updated By"),
+                        formField(2, "   Updated By"),
                       ],
                     ),
                   ),
@@ -583,16 +609,16 @@ SingleChildScrollView(
             // textEditingController[0].text = "";
           },
           textColor: Theme.of(context).primaryColor,
-          child:Text(MyLocalizations.of(context).text("CANCEL")),
+          child: Text(MyLocalizations.of(context).text("CANCEL")),
         ),
         new FlatButton(
           onPressed: () {
             if (BookAmbulancelist.nameModel == null ||
                 BookAmbulancelist.nameModel == "") {
-              AppData.showInSnackBar(context, "Please select Name ");
+              AppData.showInSnackBar(context, "Please select name ");
             } else if (BookAmbulancelist.typeModel == null ||
                 BookAmbulancelist.typeModel == "") {
-              AppData.showInSnackBar(context, "Please select Type ");
+              AppData.showInSnackBar(context, "Please select type ");
             } else if (BookAmbulancelist.severitylistModel == null ||
                 BookAmbulancelist.severitylistModel == "") {
               AppData.showInSnackBar(context, "Please select Severity ");
@@ -600,12 +626,10 @@ SingleChildScrollView(
                 textEditingController[1].text == null) {
               AppData.showInSnackBar(context, "Please enter Reaction");
               FocusScope.of(context).requestFocus(fnode1);
-
             } else if (textEditingController[2].text == "" ||
                 textEditingController[2].text == null) {
               AppData.showInSnackBar(context, "Please enter Updated by");
               FocusScope.of(context).requestFocus(fnode2);
-
             } else {
               MyWidgets.showLoading(context);
               AllergicPostModel allergicmodel = AllergicPostModel();

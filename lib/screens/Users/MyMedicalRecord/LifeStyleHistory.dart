@@ -677,7 +677,6 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                     child: Text(MyLocalizations.of(context).text("DIET")),
                   ),
 
-
                   gender(),
                   /* Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 0),
@@ -761,7 +760,7 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                 AppData.showInSnackBar(context, "Please select alcohol");
               } else if (LifeStyleHistory.ditemodel == null ||
                   LifeStyleHistory.ditemodel == "" || LifeStyleHistory.ditemodel.name == "N/A") {
-                AppData.showInSnackBar(context, "Please select Diet");
+                AppData.showInSnackBar(context, "Please select diet");
               } else if (textEditingController[0].text == "N/A" ||
                   textEditingController[0].text == null ||
                   textEditingController[0].text == "") {

@@ -403,38 +403,38 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
       fun: () {
         if (textEditingController[0].text == "" ||
             textEditingController[0].text == null) {
-          AppData.showInSnackBar(context, "Please enter Height(CM)");
+          AppData.showInSnackBar(context, "Please enter height(cm)");
 
         }else if (double.tryParse(textEditingController[0].text)>250) {
           AppData.showInSnackBar(
-              context, "Invalid height enter");
+              context, "Invalid height");
 
         } else if (textEditingController[1].text == "" ||
             textEditingController[1].text == null) {
-          AppData.showInSnackBar(context, "Please enter Weight(kg)");
+          AppData.showInSnackBar(context, "Please enter weight(kg)");
 
         }else if (double.tryParse(textEditingController[1].text)>636) {
           AppData.showInSnackBar(
-              context, "Invalid weight enter");
+              context, "Invalid weight");
 
         } else if (textEditingController[2].text != ""  &&
             !AppData.isValidEmail(textEditingController[2].text)) {
-          AppData.showInSnackBar(context, "Please enter a valid E-mail");
+          AppData.showInSnackBar(context, "Please enter a valid e-mail");
         } else if (textEditingController[3].text != '' &&
             textEditingController[3].text.length != 12) {
-          AppData.showInSnackBar(context, "Please enter a valid Aadhaar no.");
+          AppData.showInSnackBar(context, "Please enter a valid aadhaar no.");
         } else if (PatientRegistration3.countryModel == null ||
             PatientRegistration3.countryModel == "") {
-          AppData.showInSnackBar(context, "Please select Country");
+          AppData.showInSnackBar(context, "Please select country");
         } else if (PatientRegistration3.stateModel == null ||
             PatientRegistration3.stateModel == "") {
-          AppData.showInSnackBar(context, "Please select State");
+          AppData.showInSnackBar(context, "Please select state");
         } else if (PatientRegistration3.districtModel == null ||
             PatientRegistration3.districtModel == "") {
-          AppData.showInSnackBar(context, "Please select District");
+          AppData.showInSnackBar(context, "Please select district");
         } else if (PatientRegistration3.cityModel == null ||
             PatientRegistration3.cityModel == "") {
-          AppData.showInSnackBar(context, "Please select City");
+          AppData.showInSnackBar(context, "Please select city");
           /* } else if (textEditingController[2].text != '' &&
             !AppData.isValidEmail(textEditingController[2].text)) {
           AppData.showInSnackBar(context, "Please enter a valid E-mail");*/
