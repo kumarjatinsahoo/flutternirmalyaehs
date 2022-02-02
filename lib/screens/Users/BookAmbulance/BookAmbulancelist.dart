@@ -615,10 +615,10 @@ class _BookAmbulancelistState extends State<BookAmbulancelist> {
           onPressed: () {
             if (BookAmbulancelist.nameModel == null ||
                 BookAmbulancelist.nameModel == "") {
-              AppData.showInSnackBar(context, "Please select Name ");
+              AppData.showInSnackBar(context, "Please select name ");
             } else if (BookAmbulancelist.typeModel == null ||
                 BookAmbulancelist.typeModel == "") {
-              AppData.showInSnackBar(context, "Please select Type ");
+              AppData.showInSnackBar(context, "Please select type ");
             } else if (BookAmbulancelist.severitylistModel == null ||
                 BookAmbulancelist.severitylistModel == "") {
               AppData.showInSnackBar(context, "Please select Severity ");
