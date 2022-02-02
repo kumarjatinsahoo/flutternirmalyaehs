@@ -42,7 +42,7 @@ class _DocumentImageState extends State<DocumentImage> {
           style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
-       // titleSpacing: 5,
+         //titleSpacing: 5,
         iconTheme: IconThemeData(color: Colors.white),
         backgroundColor: AppData.matruColor,
         elevation: 0,

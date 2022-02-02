@@ -224,8 +224,8 @@ class _LifeStylehistory extends State<LifeStylehistory> {
                             style: TextStyle(color: Colors.black, fontSize: 15),
                           ),
                           Text(
-                              (lifeStyleHistryModel?.body == null || lifeStyleHistryModel?.body.pets.toString()=="0")
-                                  ?"N/A": lifeStyleHistryModel.body.pets.toString(),
+                              (lifeStyleHistryModel?.body == null || lifeStyleHistryModel?.body.petName.toString()=="0")
+                                  ?"N/A": lifeStyleHistryModel.body.petName.toString(),
                             style: TextStyle(color: Colors.black, fontSize: 15),
                           ),
                         ],
