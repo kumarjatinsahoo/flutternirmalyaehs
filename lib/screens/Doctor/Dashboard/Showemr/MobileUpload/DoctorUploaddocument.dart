@@ -195,17 +195,25 @@ class _DoctorUploadDocumentState extends State<DoctorUploadDocument> {
               padding: EdgeInsets.only(right: 20.0),
               child: InkWell(
                 onTap: () {
-                  Navigator.pushNamed(
+                  Navigator.pushNamed(Const.navigatorKey.currentContext, "/doctorAddUploadDocument");
+                  /*Navigator.push(context, new MaterialPageRoute(
+                      builder: (context) => new DoctorAddUploadDocument(model:widget.model,
+                      ))
+                  ) .then((value) {
+                  *//*Navigator.pushNamed(
+                      context,"/doctorAddUploadDocument")*//*
+                  *//*Navigator.pushNamed(
                       context,"/doctorAddUploadDocument"
-                     /* MaterialPageRoute(
+                      MaterialPageRoute(
                           builder: (context) =>
-                              DoctorAddUploadDocument(model: widget.model))*/)
-                      .then((value) {
-                    setState(() {
+                              DoctorAddUploadDocument(model: widget.model)))*//*
+
+                    *//*setState(() {
                       currentMax = 1;
-                    });
+                    });*//*
                     callAPI(currentMax);
-                  });
+                  });*/
+
                   // displayTextInputDialog(context);
                 },
                 child: Icon(

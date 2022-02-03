@@ -91,7 +91,7 @@ class _GovtSchemesState extends State<GovtSchemes> {
                             context,
                             MyLocalizations.of(context).text("COUNTRY"),
                             ApiFactory.COUNTRY_API,
-                            "country",
+                            "countrygov",
                             Icons.location_on_rounded,
                             23.0, (KeyvalueModel data) {
                           setState(() {
@@ -104,6 +104,7 @@ class _GovtSchemesState extends State<GovtSchemes> {
                         }),
                       ),
                     ),
+
                     Padding(
                       padding:
                           const EdgeInsets.only(left: 0, right: 0, bottom: 0),
@@ -114,7 +115,7 @@ class _GovtSchemesState extends State<GovtSchemes> {
                             MyLocalizations.of(context).text("STATE"),
                             ApiFactory.STATE_API +
                                 (GovtSchemes?.countryModel?.key ?? ""),
-                            "state",
+                            "stategov",
                             Icons.location_on_rounded,
                             23.0, (KeyvalueModel data) {
                           setState(() {

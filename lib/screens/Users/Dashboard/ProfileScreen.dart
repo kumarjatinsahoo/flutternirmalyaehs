@@ -2635,8 +2635,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 SizedBox(height: 20),
                                 formFieldemail(14, MyLocalizations.of(context).text("FNAME"), fnode15, fnode16),
                                 SizedBox(height: 20),
-                                formFieldemail(15, MyLocalizations.of(context).text("LNAME"), fnode16, fnode17),
-                                SizedBox(height: 20),
+                                /*formFieldemail(15, MyLocalizations.of(context).text("LNAME"), fnode16, fnode17),
+                                SizedBox(height: 20),*/
                                 Padding(
                                   padding: const EdgeInsets.only(
                                       left: 0, right: 5, bottom: 0),
@@ -2907,18 +2907,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     // } else if (textEditingController[11].text == "" ||
                     //     textEditingController[11].text == null) {
                     //   AppData.showInSnackBar(context, "Please enter Email");
-                    // } else if (textEditingController[12].text == "" ||
-                    //     textEditingController[12].text == null) {
-                    //   AppData.showInSnackBar(context, "Please enter PinCode");
+                     } else if (textEditingController[12].text == "" ||
+                        textEditingController[12].text == null) {
+                     AppData.showInSnackBar(context, "Please enter pin code");
+                    } else if (textEditingController[12].text != "" &&
+                        textEditingController[12].text.length <=5) {
+                      AppData.showInSnackBar(context, "Please enter 6 digit pin code");
                     } else if (textEditingController[13].text == "" ||
                         textEditingController[13].text == null) {
                       AppData.showInSnackBar(context, "Please enter mobile no");
-                    } else if (textEditingController[14].text == "" ||
+                    } else if (textEditingController[13].text != "" ||
+                        textEditingController[13].text.length <=9) {
+                      AppData.showInSnackBar(context, "Please enter 10 digit mobile no");
+                   /* } else if (textEditingController[14].text == "" ||
                         textEditingController[14].text == null) {
                       AppData.showInSnackBar(context, "Please enter first name");
                     } else if (textEditingController[15].text == "" ||
                         textEditingController[15].text == null) {
-                      AppData.showInSnackBar(context, "Please enter last name");
+                      AppData.showInSnackBar(context, "Please enter last name");*/
                     } else if (textEditingController[16].text == "" ||
                         textEditingController[16].text == null) {
                       AppData.showInSnackBar(context, "Please enter gender");
@@ -2967,8 +2973,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       updateProfileModel.email = textEditingController[11].text;
                       updateProfileModel.pincode = textEditingController[12].text;
                       updateProfileModel.mobile = textEditingController[13].text;
-                      updateProfileModel.fName = textEditingController[14].text;
-                      updateProfileModel.lName = textEditingController[15].text;
+                     /* updateProfileModel.fName = textEditingController[14].text;
+                      updateProfileModel.lName = textEditingController[15].text;*/
                       updateProfileModel.gender = ProfileScreen.gendermodel.key;
                       updateProfileModel.countryid = ProfileScreen.countrymodel.key;
                       updateProfileModel.stateid = ProfileScreen.statemodel.key;

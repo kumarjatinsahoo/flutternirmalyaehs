@@ -450,10 +450,13 @@ class _MedicationlistState extends State<Medicationlist> {
                         onChanged: (bool value) {
                           setState(() {
                             this._checkbox = value;
-                            if (value = true) {
+                            /*if (value = true) {
+
                               _checkboxstr = "1";
                               //AppData.showInSnackBar(context,_checkboxstr );
-                            }
+                            }else{
+                              _checkboxstr = "0";
+                            }*/
                           });
                         },
                       ),
@@ -492,9 +495,11 @@ class _MedicationlistState extends State<Medicationlist> {
                         onChanged: (bool value) {
                           setState(() {
                             this._checkbox1 = value;
-                            if (value = true) {
+                            /*if (value = true) {
                               _checkboxstr1 = "1";
-                            }
+                            }else{
+                              _checkboxstr1 = "0";
+                            }*/
                           });
                         },
                       ),
@@ -519,9 +524,11 @@ class _MedicationlistState extends State<Medicationlist> {
                         onChanged: (bool value) {
                           setState(() {
                             this._checkbox2 = value;
-                            if (value = true) {
+                            /*if (value = true) {
                               _checkboxstr2 = "1";
-                            }
+                            }else{
+                              _checkboxstr2 = "0";
+                            }*/
                           });
                         },
                       ),
@@ -571,9 +578,10 @@ class _MedicationlistState extends State<Medicationlist> {
               item.duration = textEditingController[1].text;
               item.remarks = textEditingController[2].text;
               item.doctor = widget.model.user;
-              item.morning = _checkboxstr.toString();
-              item.afternoon = _checkboxstr1.toString();
-              item.evening = _checkboxstr2.toString();
+              //item.morning = _checkboxstr.toString();
+              item.morning = (_checkbox==true)?"1":"0";
+              item.afternoon = /*_checkboxstr1.toString();*/(_checkbox1==true)?"1":"0";
+              item.evening = /*_checkboxstr2.toString()*/(_checkbox2==true)?"1":"0";
               print("API NAME>>>>" + ApiFactory.POST_MEDICATION);
               print("TO POST>>>>" + jsonEncode(item.toJson()));
               MyWidgets.showLoading(context);
