@@ -326,8 +326,8 @@ class _LoginScreenState extends State<LoginScreen> {
                              Container(),
                              InkWell(
                               onTap: () async {
-                                // Navigator.pushNamed(context, "/createUserIDScreen");
-                                FlutterPhoneDirectCaller.callNumber("7008553233");
+                                 Navigator.pushNamed(context, "/createUserIDScreen");
+                                //FlutterPhoneDirectCaller.callNumber("7008553233");
                               },
                               child: Text(
                                 'Create User ID',

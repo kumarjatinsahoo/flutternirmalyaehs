@@ -456,6 +456,8 @@ class _PatientRegistration4State extends State<PatientRegistration4> {
               Navigator.pop(context);*/
               Navigator.pop(context);
               Navigator.pop(context);
+              Navigator.pop(context);
+              Navigator.pop(context);
              /* widget.model.patientphnNo = null;
               widget.model.patientemail = null;
               widget.model.patientaadhar = null;
@@ -476,7 +478,7 @@ class _PatientRegistration4State extends State<PatientRegistration4> {
               Navigator.pop(context);
               Navigator.pop(context);
 */
-              Navigator.of(context).pushNamedAndRemoveUntil("/walkRegList", (Route<dynamic> route) => false);
+              //Navigator.of(context).pushNamedAndRemoveUntil("/walkRegList", (Route<dynamic> route) => false);
             },
             color: Color.fromRGBO(0, 179, 134, 1.0),
             radius: BorderRadius.circular(0.0),
