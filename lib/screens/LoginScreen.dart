@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'dart:io';
 import 'dart:math' as math;
 import 'package:device_info_plus/device_info_plus.dart';
+import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:package_info/package_info.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:intl/intl.dart';
@@ -324,8 +325,9 @@ class _LoginScreenState extends State<LoginScreen> {
                            children: [
                              Container(),
                              InkWell(
-                              onTap: () {
-                                Navigator.pushNamed(context, "/createUserIDScreen");
+                              onTap: () async {
+                                 Navigator.pushNamed(context, "/createUserIDScreen");
+                                //FlutterPhoneDirectCaller.callNumber("7008553233");
                               },
                               child: Text(
                                 'Create User ID',
@@ -811,7 +813,7 @@ class _LoginScreenState extends State<LoginScreen> {
       "deviceToken": widget.model.activitytoken
     };
 
-    // log("Print data>>>>" + jsonEncode(postmap));
+    log("DEVICE DATA>>>>" + jsonEncode(postmap));
     // MyWidgets.showLoading(context);
     widget.model.POSTMETHOD(
         //api: ApiFactory.POST_APPOINTMENT,

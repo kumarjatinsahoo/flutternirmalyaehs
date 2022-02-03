@@ -286,14 +286,16 @@ void main() async {
   ////////////////////Notification//////////////////
   await Firebase.initializeApp();
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  // AndroidNotificationSound androidNotificationSound=AndroidNotificationSound();
   if (!kIsWeb) {
-    channel = const AndroidNotificationChannel(
+    channel = AndroidNotificationChannel(
         'eHealthSystem', // id
         'High Importance Notifications', // title
         'This channel is used for important notifications.', // description
-        importance: Importance.high,
+        importance: Importance.max,
         playSound: true,
         enableVibration: true,
+        // sound: RawResourceAndroidNotificationSound("default"),
         enableLights: true,
         showBadge: true);
     /* FirebaseMessaging.instance.getToken().then((value) {
@@ -302,12 +304,14 @@ void main() async {
 
     });*/
     flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+
     await flutterLocalNotificationsPlugin
         .resolvePlatformSpecificImplementation<
             AndroidFlutterLocalNotificationsPlugin>()
         ?.createNotificationChannel(channel);
+    // await flutterLocalNotificationsPlugin.initialize(initializationSettings)
 
-   /* flutterLocalNotificationsPlugin.initialize(InitializationSettings(
+    /* flutterLocalNotificationsPlugin.initialize(InitializationSettings(
       iOS: IOS
     ));*/
 
@@ -342,7 +346,16 @@ void main() async {
               ),
             );*/
               });
-      flutterLocalNotificationsPlugin.initialize(InitializationSettings(iOS: initializationSettingsIOS));
+      flutterLocalNotificationsPlugin.initialize(InitializationSettings(
+        iOS: initializationSettingsIOS,
+      ));
+    } else if (Platform.isAndroid) {
+      var initializationSettingsAndroid = new AndroidInitializationSettings(
+        '@mipmap/ic_launcher',
+      );
+      flutterLocalNotificationsPlugin.initialize(InitializationSettings(
+        android: initializationSettingsAndroid,
+      ));
     }
 
     // NotificationSettings settings =
@@ -355,6 +368,11 @@ void main() async {
       provisional: false,
       sound: true,
     );
+
+    // FirebaseMessaging.instance.
+
+    // NotificationSettings data=await FirebaseMessaging.instance.getNotificationSettings();
+    // log(">>>>Notification>>>"+data.)
   }
   /////////////////////////////////////////////////
 
@@ -397,14 +415,14 @@ class _MyAppState extends State<MyApp> {
         .getInitialMessage()
         .then((RemoteMessage message) {
       if (message != null) {
-        Navigator.pushNamed(context, '/aboutus');
+        Navigator.pushNamed(Const.navigatorKey.currentContext, '/aboutus');
       }
     });
 
     // FirebaseMessaging.instance.se
 
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      print('+++++++++++++++++++ ' + message.toString());
+      print('++++++++Main.Dart+++++++++++ ' + message.toString());
       RemoteNotification notification = message.notification;
       AndroidNotification android = message.notification?.android;
       // IOSNot android = message.notification?.android;
@@ -429,7 +447,10 @@ class _MyAppState extends State<MyApp> {
 
         // Navigator.pushNamed(context, '/emergencydetails');
         //AppData.showInSnackBar(context, "Dataa");
-      } /*else if (Platform.isIOS) {
+      }
+
+      Navigator.pushNamed(context, '/aboutus');
+      /*else if (Platform.isIOS) {
         flutterLocalNotificationsPlugin.show(
             notification.hashCode,
             notification.title,
@@ -445,7 +466,7 @@ class _MyAppState extends State<MyApp> {
       }*/
     });
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-      print('A new onMessageOpenedApp event was published!');
+      log('A new onMessageOpenedApp event was published!');
       Navigator.pushNamed(context, '/aboutus');
     });
   }
