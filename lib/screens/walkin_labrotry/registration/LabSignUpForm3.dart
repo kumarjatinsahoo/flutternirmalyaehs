@@ -755,30 +755,37 @@ class LabSignUpForm3State extends State<LabSignUpForm3> {
         } else if (LabSignUpForm3.citymodel == null ||
             LabSignUpForm3.citymodel == "") {
           AppData.showInSnackBar(context, "Please select city");
+
         } else if (textEditingController[5].text == "" ||
             textEditingController[5].text == null) {
           AppData.showInSnackBar(context, "Please enter zip/pin code");
           FocusScope.of(context).requestFocus(fnode2);
-        } else if (textEditingController[5].text != "" ||
+
+        } else if (textEditingController[5].text != "" &&
             textEditingController[5].text.length != 6) {
           AppData.showInSnackBar(context, "Please enter valid zip/pin code");
           FocusScope.of(context).requestFocus(fnode2);
+
         } else if (textEditingController[4].text != "" &&
             textEditingController[4].text.length != 10) {
           AppData.showInSnackBar(context, "Please enter a valid home phone");
           FocusScope.of(context).requestFocus(fnode3);
+
         } else if (textEditingController[6].text != "" &&
             textEditingController[6].text.length != 10) {
           AppData.showInSnackBar(context, "Please enter a valid office phone");
           FocusScope.of(context).requestFocus(fnode4);
+
         } else if (textEditingController[10].text == "" ||
             textEditingController[10].text == null) {
           AppData.showInSnackBar(context, "Please enter mobile number");
           FocusScope.of(context).requestFocus(fnode5);
+
         } else if (textEditingController[10].text != "" &&
             textEditingController[10].text.length != 10) {
           AppData.showInSnackBar(context, "Please enter a valid mobile number");
           FocusScope.of(context).requestFocus(fnode5);
+
         } else if (textEditingController[11].text == "" ||
             textEditingController[11].text == null) {
           AppData.showInSnackBar(context, "Please enter email id");

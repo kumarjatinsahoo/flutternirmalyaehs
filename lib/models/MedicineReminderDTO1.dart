@@ -31,7 +31,7 @@ class MedicineReminderDTO1 {
 }
 
 class Body {
-  Null id;
+  String id;
   String userId;
   Null medType;
   String medName;
