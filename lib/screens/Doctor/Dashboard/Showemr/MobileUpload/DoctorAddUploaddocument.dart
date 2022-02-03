@@ -18,6 +18,7 @@ import 'package:user/providers/DropDown.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
+import 'package:user/screens/Doctor/Dashboard/Showemr/MobileUpload/DoctorUploaddocument.dart';
 import 'package:user/widgets/MyWidget.dart';
 import 'package:file_picker/file_picker.dart';
 import 'dart:io';
@@ -76,7 +77,7 @@ class _DoctorAddUploadDocumentState extends State<DoctorAddUploadDocument> {
   var childButtons = List<UnicornButton>();
 
   String selectedDocument;
-
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   void initState() {
     // TODO: implement initState
@@ -133,19 +134,20 @@ class _DoctorAddUploadDocumentState extends State<DoctorAddUploadDocument> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: AppData.kPrimaryColor,
         title: Text("Upload Documemnt"),
       ),
 
-      floatingActionButton: UnicornDialer(
+      /*floatingActionButton: UnicornDialer(
           childPadding: 4.00,
           backgroundColor: Colors.transparent,
           // parentButtonBackground: Colors.redAccent,
           orientation: UnicornOrientation.VERTICAL,
           parentButton: Icon(Icons.add),
-          childButtons: childButtons),
+          childButtons: childButtons),*/
       // floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
       body: Container(
         child: SingleChildScrollView(
@@ -188,6 +190,92 @@ class _DoctorAddUploadDocumentState extends State<DoctorAddUploadDocument> {
                     ),
                   ),
                   //dob(),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+
+                        Column(
+                          children: [
+                            UnicornButton(
+                                hasLabel: true,
+                                labelText: "Image",
+                                currentButton: FloatingActionButton(
+                                  heroTag: "Image",
+                                  backgroundColor: Colors.amber,
+                                  mini: true,
+                                  child: Icon(Icons.photo),
+                                  onPressed: () {
+                                    selectedDocument = "img";
+                                    getCerificateImage();
+                                  },
+                                )),
+                            Text(
+                              /*'Confirmed'*/
+                              "Image",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 13,
+                                  color: Colors.black),
+                            ),
+                          ],
+                        ),
+                        Spacer(),
+                        Column(
+                          children: [
+                            UnicornButton(
+                                hasLabel: true,
+                                labelText: "Document",
+                                currentButton: FloatingActionButton(
+                                  heroTag: "/Document",
+                                  backgroundColor: AppData.kPrimaryColor,
+                                  mini: true,
+                                  child: Icon(Icons.file_copy),
+                                  onPressed: () {
+                                    selectedDocument = "doc";
+                                    getPdfAndUpload();
+                                  },
+                                )),
+                            Text(
+                              /*'Confirmed'*/
+                              "Document",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 13,
+                                  color: Colors.black),
+                            ),
+                          ],
+                        ),
+                        Spacer(),
+                        Column(
+                          children: [
+                            UnicornButton(
+                                hasLabel: true,
+                                labelText: "Video",
+                                currentButton: FloatingActionButton(
+                                  heroTag: "Video",
+                                  backgroundColor: AppData.kPrimaryRedColor,
+                                  mini: true,
+                                  child: Icon(Icons.airplay),
+                                  onPressed: () {
+                                    selectedDocument = "vdo";
+                                    getVideoUpload();
+                                  },
+                                )),
+                            Text(
+                              /*'Confirmed'*/
+                              "Video",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 13,
+                                  color: Colors.black),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
                   SizedBox(height: 8),
                   (idproof != null)
                       ? Padding(
@@ -221,6 +309,9 @@ class _DoctorAddUploadDocumentState extends State<DoctorAddUploadDocument> {
                     ),
                   )
                       : Container(),
+                  SizedBox(
+                    height: 20,
+                  ),
                   SizedBox(
                     height: 20,
                   ),
@@ -337,8 +428,7 @@ class _DoctorAddUploadDocumentState extends State<DoctorAddUploadDocument> {
         if (response.data["code"] == "success") {
           //Navigator.pushNamed(context, "/uploaddocument");
 
-          popup(context,
-          );
+          popup(context);
         } else {
           AppData.showInSnackBar(context, "Something went wrong");
         }
@@ -501,7 +591,7 @@ class _DoctorAddUploadDocumentState extends State<DoctorAddUploadDocument> {
     }
   }
 
-  popup(BuildContext context) {
+ /* popup(BuildContext context) {
     return Alert(
         context: context,
         title: "Successfully Uploaded",
@@ -527,8 +617,93 @@ class _DoctorAddUploadDocumentState extends State<DoctorAddUploadDocument> {
             radius: BorderRadius.circular(0.0),
           ),
         ]).show();
-  }
+  }*/
+  Widget _buildPopupDialog(BuildContext context) {
+    return new AlertDialog(
+      title: const Text("Successfully Uploaded"),
+      content: new Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          //Text("Hello"),
+         Image.asset("assets/success.png"),
+          DialogButton(
+            child: Text(
+              "OK",
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+            onPressed: () {
+              Navigator.pop(context);
+              Navigator.pop(context);
+            },
+            color: Color.fromRGBO(0, 179, 134, 1.0),
+            radius: BorderRadius.circular(0.0),
+          ),
 
+        ],
+      ),
+
+      /*actions: <Widget>[
+        new FlatButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          textColor: Theme.of(context).primaryColor,
+          child: const Text('Close'),
+        ),
+      ],*/
+    );
+  }
+  popup(BuildContext context) {
+    var currentScaffold = _scaffoldKey.currentState;
+    return Alert(
+
+        context:context ,
+        title: "Successfully Uploaded",
+        type: AlertType.success,
+        onWillPopActive: true,
+        closeIcon: Icon(
+          Icons.info,
+          color: Colors.transparent,
+        ),
+        //image: Image.asset("assets/success.png"),
+        //closeFunction: () {},
+        buttons: [
+          DialogButton(
+            child: Text(
+              "OK",
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+            onPressed: () {
+             /* Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) =>
+                      DoctorUploadDocument(model: widget.model)));*/
+              Navigator.pop(context, true);
+              Navigator.pop(context, true);
+             /* setState(() {
+                Navigator.pop(context, true);
+                Navigator.pop(context, true);
+              });*/
+              //Navigator.pushNamed(context, "/doctorUploadDocument");
+              //currentScaffold.deactivate();
+              /*Navigator.pop(context);
+              Navigator.pop(context);
+              Navigator.pop(context);*/
+              /*Navigator.of(context,).pop();
+              Navigator.of(_scaffoldKey.currentContext).pop();*/
+             // Navigator.of(context).pop();
+              //Navigator.of(context).pushReplacementNamed('');
+              /*Navigator.of(context).pop();
+              Navigator.of(context).pop();
+              Navigator.of(context).pop();*/
+              /*Navigator.pop(context, true);
+              Navigator.pop(context, true);*/
+            },
+            color: Color.fromRGBO(0, 179, 134, 1.0),
+            radius: BorderRadius.circular(0.0),
+          ),
+        ]).show();
+  }
   Widget dob() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8),

@@ -19,20 +19,20 @@ import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/DocumentImageV
 import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/VideoDetailsPage.dart';
 import 'package:user/widgets/PdfViewPage.dart';
 
-class RecentDocument extends StatefulWidget {
+class DoctorRecentDocument extends StatefulWidget {
   final MainModel model;
   static KeyvalueModel admequipmentmodel = null;
 
-  const RecentDocument({
+  const DoctorRecentDocument({
     Key key,
     this.model,
   }) : super(key: key);
 
   @override
-  _RecentDocumentState createState() => _RecentDocumentState();
+  _DoctorRecentDocumentState createState() => _DoctorRecentDocumentState();
 }
 
-class _RecentDocumentState extends State<RecentDocument> {
+class _DoctorRecentDocumentState extends State<DoctorRecentDocument> {
   LoginResponse1 loginResponse1;
   bio.BiomedicalModel biomedicalModel;
   document.DocumentListModel documentListModel;
@@ -93,7 +93,7 @@ class _RecentDocumentState extends State<RecentDocument> {
 
   callAPI() {
     widget.model.GETMETHODCALL_TOKEN_FORM(
-        api: ApiFactory.RECENT_DOCUMENT_LIST + loginResponse1.body.user,
+        api: ApiFactory.RECENT_DOCUMENT_LIST + eHealthCardno,
        /* userId: loginResponse1.body.user,*/
         token: widget.model.token,
         fun: (Map<String, dynamic> map) {

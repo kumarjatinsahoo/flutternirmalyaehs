@@ -36,6 +36,8 @@ import 'package:user/screens/Doctor/Dashboard/MyPatientlist.dart';
 import 'package:user/screens/Doctor/Dashboard/NewDashboardDoctor.dart';
 import 'package:user/screens/Doctor/Dashboard/ShareAppointment/ShareAppointment.dart';
 import 'package:user/screens/Doctor/Dashboard/Showemr/AddImmunization.dart';
+import 'package:user/screens/Doctor/Dashboard/Showemr/MobileUpload/DoctorAddUploaddocument.dart';
+import 'package:user/screens/Doctor/Dashboard/Showemr/MobileUpload/DoctorUploaddocument.dart';
 import 'package:user/screens/Doctor/Dashboard/WalkinPatient/QRViewExample1.dart';
 import 'package:user/screens/FindPage1.dart';
 import 'package:user/screens/Ngo/Registration/NgoSignUpForm.dart';
@@ -1273,6 +1275,13 @@ class _MyAppState extends State<MyApp> {
               '/pinViewUserID': (context) => PinViewUserID(
                     model: _model,
                   ),
+              '/doctorUploadDocument': (context) => DoctorUploadDocument(
+                model: _model,
+              ),
+              '/doctorAddUploadDocument': (context) => DoctorAddUploadDocument(
+                model: _model,
+              ),
+
             },
             localizationsDelegates: [
               MyLocalizationsDelegate(widget.localizedValues),

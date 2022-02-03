@@ -529,13 +529,21 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
         ),*/
         new FlatButton(
           onPressed: () {
-            if (height.text == "" || height.text == null) {
+            if (height.text == "" || height.text == null ) {
               AppData.showInSnackBar(context, "Please enter height");
-            } else if (weight.text == "" || weight.text == null) {
+
+            } else if (double.tryParse(height.text)>250) {
+              AppData.showInSnackBar(context, "Please enter valid height");
+
+            }else if (weight.text == "" || weight.text == null) {
               AppData.showInSnackBar(context, "Please enter weight");
+
+            } else if (double.tryParse(weight.text)>636) {
+              AppData.showInSnackBar(context, "Please enter valid weight");
+
             } else if (TestAppointmentPage.relationmodel == null ||
                 TestAppointmentPage.relationmodel == "") {
-              AppData.showInSnackBar(context, "Please select PHC/Center ");
+              AppData.showInSnackBar(context, "Please select PHC/center ");
             }else {
               String mob = (body.mob == null || body.mob == "" || body.mob == "null")
                       ? "" : body.mob;
@@ -712,7 +720,7 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
         /*inputFormatters: [
           //UpperCaseTextFormatter(),
         ],*/
-        maxLength: 5,
+        maxLength: 6,
         keyboardType: TextInputType.number,
         inputFormatters: [
           WhitelistingTextInputFormatter(
@@ -722,6 +730,7 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
           floatingLabelBehavior: FloatingLabelBehavior.always,
           hintText: hint,
           labelText: hint,
+          counterText: "",
           alignLabelWithHint: false,
           contentPadding: EdgeInsets.only(left: 10, top: 4, right: 4),
         ),

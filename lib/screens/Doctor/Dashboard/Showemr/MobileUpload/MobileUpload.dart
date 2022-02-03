@@ -114,22 +114,22 @@ class _MobileUploadState extends State<MobileUpload> {
           child: (documentListModel != null)
               ? Column(
             children: [
-              SizedBox(
+             /* SizedBox(
                 height: 20,
-              ),
+              ),*/
               Container(
                 child: Center(
                   child: Column(
                     children: [
-                      Text(
+                     /* Text(
                         "Categories",
                         style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
                         ),
-                      ),
-                      Padding(
+                      ),*/
+                      /*Padding(
                         padding: const EdgeInsets.only(
                           left: 145,
                           right: 145,
@@ -138,7 +138,7 @@ class _MobileUploadState extends State<MobileUpload> {
                           color: AppData.kPrimaryRedColor,
                           thickness: 2,
                         ),
-                      ),
+                      ),*/
                     ],
                   ),
                 ),
@@ -178,9 +178,9 @@ class _MobileUploadState extends State<MobileUpload> {
                                 widget.model.documentcategories=body.key;
                                // Navigator.pushNamed(context, "/upload");,
                                //  widget.model.patientseHealthCard=widget.model.loginResponse1.body.user;
-                                Navigator.push(context,MaterialPageRoute(builder:
+                                Navigator.pushNamed(context,"doctorUploadDocument");/*,MaterialPageRoute(builder:
                                     (context)=>DoctorUploadDocument(model:widget.model,
-                                    )));
+                                    ))*/
                               },
                               child: Row(
                                 crossAxisAlignment:

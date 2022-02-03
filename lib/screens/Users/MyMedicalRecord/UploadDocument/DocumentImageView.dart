@@ -42,15 +42,23 @@ class _DocumentImageState extends State<DocumentImage> {
           style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
-       // titleSpacing: 5,
+         //titleSpacing: 5,
         iconTheme: IconThemeData(color: Colors.white),
         backgroundColor: AppData.matruColor,
         elevation: 0,
       ),
-      body: Image.network(
-        pdfurl,
-        //color: AppData.kPrimaryColor,
-       // height: 50,
+      body: Container(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        child: Image.network(
+          pdfurl,
+          fit: BoxFit.cover,
+          errorBuilder: (context,i,j){
+            return Image.asset('assets/images/nodata_found.png');
+          },
+          //color: AppData.kPrimaryColor,
+         // height: 50,
+        ),
       ),
       //  url: ApiFactory.REPORT_URL+loginResponse.ashadtls[0].reg_no,
       //url:widget.model.pdfurl,
@@ -67,6 +75,7 @@ class _DocumentImageState extends State<DocumentImage> {
       child: Container(
         padding: const EdgeInsets.all(0.0),
         height: MediaQuery.of(context).size.height * 0.23,
+        width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10.0),
           color: AppData.matruColor,

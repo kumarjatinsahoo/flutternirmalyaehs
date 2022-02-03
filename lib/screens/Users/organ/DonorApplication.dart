@@ -119,24 +119,24 @@ class DonorApplicationState extends State<DonorApplication> {
   KeyvalueModel selectedUser;
   KeyvalueModel selectedUser1;
   List<KeyvalueModel> UserType = [
-    KeyvalueModel(key: "S", name: "S/o"),
-    KeyvalueModel(key: "D", name: "D/o"),
-    KeyvalueModel(key: "W", name: "W/o"),
+    KeyvalueModel(key: "S", name: "S/O"),
+    KeyvalueModel(key: "D", name: "D/O"),
+    KeyvalueModel(key: "W", name: "W/O"),
   ];
   List<KeyvalueModel> UserType1 = [
-    KeyvalueModel(key: "S", name: "S/o"),
-    KeyvalueModel(key: "D", name: "D/o"),
-    KeyvalueModel(key: "W", name: "W/o"),
+    KeyvalueModel(key: "S", name: "S/O"),
+    KeyvalueModel(key: "D", name: "D/O"),
+    KeyvalueModel(key: "W", name: "W/O"),
   ];
   List<KeyvalueModel> _dropdownItems = [
-    KeyvalueModel(key: "S", name: "S/o"),
-    KeyvalueModel(key: "D", name: "D/o"),
-    KeyvalueModel(key: "W", name: "W/o"),
+    KeyvalueModel(key: "S", name: "S/O"),
+    KeyvalueModel(key: "D", name: "D/O"),
+    KeyvalueModel(key: "W", name: "W/O"),
   ];
   List<KeyvalueModel> _dropdownItems1 = [
-    KeyvalueModel(key: "S", name: "S/o"),
-    KeyvalueModel(key: "D", name: "D/o"),
-    KeyvalueModel(key: "W", name: "W/o"),
+    KeyvalueModel(key: "S", name: "S/O"),
+    KeyvalueModel(key: "D", name: "D/O"),
+    KeyvalueModel(key: "W", name: "W/O"),
   ];
   static String toDate(String date) {
     if (date != null && date != "") {
@@ -1232,38 +1232,38 @@ class DonorApplicationState extends State<DonorApplication> {
             setState(() {
               if (textEditingController[7].text == "" ||
                   textEditingController[7].text == null) {
-                AppData.showInSnackBar(context, "Please enter Person Name");
+                AppData.showInSnackBar(context, "Please enter person name");
               } else if (textEditingController[7].text != "" &&
                   textEditingController[7].text.length <= 2) {
                 AppData.showInSnackBar(
-                    context, "Please enter a valid Person Name");
+                    context, "Please enter a valid person name");
               } else if (textEditingController[8].text == "" ||
                   textEditingController[8].text == null) {
-                AppData.showInSnackBar(context, "Please enter S/o,D/o,W/o");
+                AppData.showInSnackBar(context, "Please enter S/O,D/O,W/O");
               } else if (textEditingController[9].text == "" ||
                   textEditingController[9].text == null) {
-                AppData.showInSnackBar(context, "Please enter Age");
+                AppData.showInSnackBar(context, "Please enter age");
               } else if (textEditingController[9].text != null &&
                   (int.tryParse(textEditingController[9].text) < 18)) {
                 AppData.showInSnackBar(context, "Age should be 18 above");
               } else if (DonorApplication.relationmodel == null ||
                   DonorApplication.relationmodel == "") {
-                AppData.showInSnackBar(context, "Please select Relation");
+                AppData.showInSnackBar(context, "Please select relation");
               } else if (textEditingController[10].text == "" ||
                   textEditingController[10].text == null) {
-                AppData.showInSnackBar(context, "Please enter Mobile Number");
+                AppData.showInSnackBar(context, "Please enter mobile number");
               } else if (textEditingController[10].text != "" &&
                   textEditingController[10].text.length != 10) {
-                AppData.showInSnackBar(context, "Please enter a valid Mobile No");
+                AppData.showInSnackBar(context, "Please enter a valid mobile no");
               } else if (textEditingController[11].text == "" ||
                   textEditingController[11].text == null) {
-                AppData.showInSnackBar(context, "Please enter Email Id");
+                AppData.showInSnackBar(context, "Please enter email id");
               } else if (textEditingController[11].text != "" &&
                   !AppData.isValidEmail(textEditingController[11].text)) {
-                AppData.showInSnackBar(context, "Please enter a valid E-mail");
+                AppData.showInSnackBar(context, "Please enter a valid e-mail");
               } else if (textEditingController[12].text == "" ||
                   textEditingController[12].text == null) {
-                AppData.showInSnackBar(context, "Please enter Address");
+                AppData.showInSnackBar(context, "Please enter address");
               } else {
                 WitnessModel witness = WitnessModel();
                 witness.donorName = textEditingController[7].text;
@@ -1486,32 +1486,32 @@ class DonorApplicationState extends State<DonorApplication> {
           //Navigator.pushNamed(context, "/addWitness");
           if (textEditingController[0].text == "" ||
               textEditingController[0].text == null) {
-            AppData.showInSnackBar(context, "Please enter Name");
+            AppData.showInSnackBar(context, "Please enter name");
           } else if (textEditingController[0].text != "" &&
               textEditingController[0].text.length <= 2) {
-            AppData.showInSnackBar(context, "Please enter a valid  Name");
+            AppData.showInSnackBar(context, "Please enter a valid  name");
           } else if (textEditingController[1].text == "" ||
               textEditingController[1].text == null) {
-            AppData.showInSnackBar(context, "Please enter S/o,D/o,W/o");
+            AppData.showInSnackBar(context, "Please enter S/O,D/O,W/O");
           } else if (textEditingController[1].text != "" &&
               textEditingController[1].text.length <= 2) {
             AppData.showInSnackBar(
-                context, "Please enter a valid  S/o,D/o,W/o");
+                context, "Please enter a valid  S/O,D/O,W/O");
           } else if (textEditingController[2].text == "" ||
               textEditingController[2].text == null) {
             AppData.showInSnackBar(context, "Please enter DOB");
           } else if (textEditingController[3].text == "" ||
               textEditingController[3].text == null) {
-            AppData.showInSnackBar(context, "Please enter Age");
+            AppData.showInSnackBar(context, "Please enter age");
           /*} else if (textEditingController[3].text != null &&
               (int.tryParse(year) < 18)) {
             AppData.showInSnackBar(context, "Age should be 18 above");
           } */}else if (textEditingController[4].text == "" ||
               textEditingController[4].text == null) {
-            AppData.showInSnackBar(context, "Please enter Mobile Number");
+            AppData.showInSnackBar(context, "Please enter mobile number");
           } else if (textEditingController[4].text != "" &&
               textEditingController[4].text.length != 10) {
-            AppData.showInSnackBar(context, "Please enter valid Mobile Number");
+            AppData.showInSnackBar(context, "Please enter valid mobile number");
           // } else if (textEditingController[5].text == '') {
           //   AppData.showInSnackBar(context, "Please enter E-mail");
           // } else if (textEditingController[5].text != '' &&

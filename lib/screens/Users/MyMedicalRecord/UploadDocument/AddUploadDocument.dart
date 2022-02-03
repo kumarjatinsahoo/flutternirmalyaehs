@@ -136,7 +136,7 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: AppData.kPrimaryColor,
-        title: Text(MyLocalizations.of(context).text("UPLOAD_DOCUMENT")),
+        title: Text(/*MyLocalizations.of(context).text("UPLOAD_DOCUMENT")*/"UPLOAD_DOCUMENT"),
       ),
 
       /*floatingActionButton: UnicornDialer(
@@ -316,13 +316,13 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
                       if (textEditingController[1].text == "" ||
                           textEditingController[1].text == null) {
                         AppData.showInSnackBar(
-                            context, "Please Enter Document Name");
+                            context, "Please enter document name");
                       } else if (_date.text == "" || _date.text == null) {
                         AppData.showInSnackBar(
-                            context, "Please Enter Document Date");
+                            context, "Please enter document date");
                       } else if (idproof == "" || idproof == null) {
                         AppData.showInSnackBar(context,
-                            "Please Select  at least One Image,Video,Document");
+                            "Please select  at least one image,video,document");
                       } else {
                         postMultiPart();
                       }
@@ -424,8 +424,7 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
         if (response.data["code"] == "success") {
           //Navigator.pushNamed(context, "/uploaddocument");
 
-          popup(context,
-          );
+          popup(context,);
         } else {
           AppData.showInSnackBar(context, "Something went wrong");
         }
@@ -455,7 +454,7 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: Container(
         height: 50,
-        padding: EdgeInsets.symmetric(horizontal: 15),
+        padding: EdgeInsets.symmetric(horizontal: 11),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(5),

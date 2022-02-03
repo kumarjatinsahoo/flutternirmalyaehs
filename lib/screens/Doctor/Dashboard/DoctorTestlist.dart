@@ -276,12 +276,12 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
                                       Body medicationlis =
                                           userListModel.body[index];
 
-                                      return Dismissible(
+                                      return /*Dismissible(*/
                                         //key: Key(item1),
-                                        key: Key(
+                                       /* key: Key(
                                             userListModel.body[index].toString()),
-                                        direction: DismissDirection.startToEnd,
-                                        child: Column(
+                                        direction: DismissDirection.startToEnd,*/
+                                         Column(
                                           children: [
                                             Padding(
                                               padding: const EdgeInsets.only(
@@ -444,13 +444,13 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
                                               ),
                                             ),
                                           ],
-                                        ),
-                                        onDismissed: (direction) {
+                                        );
+                                       /* onDismissed: (direction) {
                                           setState(() {
                                             userListModel.body.removeAt(index);
                                           });
-                                        },
-                                      );
+                                        },*/
+                                    /*  );*/
                                     },
                                     // itemCount:medicinmodel.length,
                                   )

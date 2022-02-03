@@ -12,10 +12,11 @@ import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/screens/Doctor/Dashboard/Showemr/MobileUpload/DoctorAddUploaddocument.dart';
-import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/AddUploadDocument.dart';
 import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/DocumentImageView.dart';
 import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/VideoDetailsPage.dart';
 import 'package:user/widgets/PdfViewPage.dart';
+
+
 
 class DoctorUploadDocument extends StatefulWidget {
   final MainModel model;
@@ -194,11 +195,11 @@ class _DoctorUploadDocumentState extends State<DoctorUploadDocument> {
               padding: EdgeInsets.only(right: 20.0),
               child: InkWell(
                 onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
+                  Navigator.pushNamed(
+                      context,"/doctorAddUploadDocument"
+                     /* MaterialPageRoute(
                           builder: (context) =>
-                              DoctorAddUploadDocument(model: widget.model)))
+                              DoctorAddUploadDocument(model: widget.model))*/)
                       .then((value) {
                     setState(() {
                       currentMax = 1;

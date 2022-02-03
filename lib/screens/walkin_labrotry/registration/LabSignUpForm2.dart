@@ -559,7 +559,7 @@ class LabSignUpForm2State extends State<LabSignUpForm2> {
           AppData.showInSnackBar(context, "Please select Blood Group");
         } else*/ if (LabSignUpForm2.genderModel == null ||
             LabSignUpForm2.genderModel == "") {
-          AppData.showInSnackBar(context, "Please select Gender");
+          AppData.showInSnackBar(context, "Please select gender");
         } else {
          // widget.model.labeducation = textEditingController[8].text;
          // widget.model.labdob = textEditingController[2].text;

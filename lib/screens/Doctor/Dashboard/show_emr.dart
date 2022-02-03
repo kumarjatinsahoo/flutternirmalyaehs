@@ -4,6 +4,7 @@ import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:user/providers/Const.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/screens/Doctor/Dashboard/Showemr/FamilyDetails.dart';
@@ -14,6 +15,9 @@ import 'package:user/screens/Doctor/Dashboard/Showemr/MobileUpload/MobileUpload.
 import 'package:user/screens/Doctor/Dashboard/Showemr/PatientDetail.dart';
 import 'package:user/screens/Doctor/Dashboard/Showemr/PatientHistory.dart';
 import 'package:user/screens/Doctor/Dashboard/Showemr/TestReport.dart';
+import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/UploadDocumentTab.dart';
+
+import 'Showemr/MobileUpload/DoctorUploadDocumentTab.dart';
 
 class ShowEmr extends StatefulWidget {
   MainModel model;
@@ -216,9 +220,13 @@ class _ShowEmr extends State<ShowEmr> {
               Immunization(
                 model: widget.model,
               ),
-              MobileUpload(
+              DocterUploadDocumentTab(
                 model: widget.model,
               ),
+
+            /*  MobileUpload(
+                model: widget.model,
+              ),*/
             ],
           ),
         ),

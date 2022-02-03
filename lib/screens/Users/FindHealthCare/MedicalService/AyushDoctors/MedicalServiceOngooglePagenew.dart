@@ -199,7 +199,8 @@ Map<String, dynamic> postData = {
         
     widget.model.GETMETHODCAL(
         api: ApiFactory.GOOGLE_QUERY_API(
-            lati: lati, longi: longi, radius: (radius * 1000).toString(), healthpro:(city!=null)?medicallserviceType+" in "+city:medicallserviceType),
+            lati: lati, longi: longi, radius: (radius * 1000).toString(),
+            healthpro:(city!=null)?medicallserviceType+" in "+city:medicallserviceType),
         fun: (Map<String, dynamic> map) {
           setState(() {
             // String msg = map[Const.MESSAGE];

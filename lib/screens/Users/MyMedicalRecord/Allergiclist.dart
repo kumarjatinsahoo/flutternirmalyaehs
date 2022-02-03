@@ -603,26 +603,26 @@ class _AllergicListListState extends State<AllergicListList> {
                   setState(() {
                     if (AllergicListList.typeModel == null ||
                         AllergicListList.typeModel == "") {
-                      AppData.showInSnackBar(context, "Please select Name ");
+                      AppData.showInSnackBar(context, "Please select name ");
                     } else if (AllergicListList.nameModel == null ||
                         AllergicListList.nameModel == "") {
-                      AppData.showInSnackBar(context, "Please select Allergen ");
+                      AppData.showInSnackBar(context, "Please select allergen ");
                     } else if (AllergicListList.severitylistModel == null ||
                         AllergicListList.severitylistModel == "") {
                       AppData.showInSnackBar(
-                          context, "Please select Severity ");
+                          context, "Please select severity ");
                     } else if (textEditingController[0].text == "" ||
                         textEditingController[0].text == null) {
                       FocusScope.of(context).requestFocus(fnode1);
-                      AppData.showInSnackBar(context, "Please enter Reaction");
+                      AppData.showInSnackBar(context, "Please enter reaction");
                     } else if (textEditingController[0].text != "" &&  textEditingController[0].text.length <= 2) {
                       FocusScope.of(context).requestFocus(fnode1);
-                      AppData.showInSnackBar(context, "Please enter valid Reaction");
+                      AppData.showInSnackBar(context, "Please enter valid reaction");
                     } else if (textEditingController[1].text == "" ||
                         textEditingController[1].text == null) {
                       FocusScope.of(context).requestFocus(fnode2);
                       AppData.showInSnackBar(
-                          context, "Please enter Updated by");
+                          context, "Please enter updated by");
                     } else if ( textEditingController[1].text != "" &&  textEditingController[1].text.length <= 2) {
                       FocusScope.of(context).requestFocus(fnode2);
                       AppData.showInSnackBar(context, "Please enter valid name");

@@ -36,6 +36,7 @@ class Body {
   String exercise;
   String occupation;
   String pets;
+  String petName;
 
   Body(
       {
@@ -48,7 +49,8 @@ class Body {
         this.diet,
         this.exercise,
         this.occupation,
-        this.pets});
+        this.pets,
+        this.petName});
 
   Body.fromJson(Map<String, dynamic> json) {
     patientId = json['patientId'].toString();
@@ -61,6 +63,7 @@ class Body {
     exercise = json['exercise'].toString();
     occupation = json['occupation'].toString();
     pets = json['pets'].toString();
+    petName = json['petName'].toString();
   }
 
   Map<String, dynamic> toJson() {
@@ -75,6 +78,7 @@ class Body {
     data['exercise'] = this.exercise;
     data['occupation'] = this.occupation;
     data['pets'] = this.pets;
+    data['petName'] = this.petName;
     return data;
   }
 }

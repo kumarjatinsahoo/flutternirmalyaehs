@@ -949,7 +949,6 @@ class _DocMyProfileState extends State<DocMyProfile> {
                           fnode10,
                           fnode11),
                       SizedBox(height: 10),
-
                           formFieldZipno(
                           11,
                               MyLocalizations.of(context).text("PIN_CODE"),
@@ -1136,7 +1135,6 @@ class _DocMyProfileState extends State<DocMyProfile> {
               FlatButton(
                 textColor: Theme.of(context).primaryColor,
                 child: Text(MyLocalizations.of(context).text("UPDATE")),
-
                 onPressed: () {
                   //AppData.showInSnackBar(context, "click");
                   setState(() {
@@ -1173,21 +1171,21 @@ class _DocMyProfileState extends State<DocMyProfile> {
                     } else if (textEditingController[2].text == "N/A" || textEditingController[2].text == null ||
                         textEditingController[2].text == "" || double.tryParse(textEditingController[2].text)>99) {
                       AppData.showInSnackBar(
-                          context, "Are you sure this is your experience ?");
+                          context, "Please enter your experience ");
 
                     // } else if (textEditingController[3].text == "" ||
                     //     textEditingController[3].text == null ||
                     //     textEditingController[3].text == "") {
                     //   AppData.showInSnackBar(
                     //       context, "Please enter IMA No.");
-                    } else if (textEditingController[4].text == "N/A" ||
-                        textEditingController[4].text == null ||
-                        textEditingController[4].text == "") {
-                      AppData.showInSnackBar(
-                          context, "Please enter Aadhaar No.");
-                 }else if (textEditingController[4].text != "" &&
-                     textEditingController[4].text.length != 12) {
-                   AppData.showInSnackBar(context, "Please enter a valid adhaar no ");
+                    // } else if (textEditingController[4].text == "N/A" ||
+                    //     textEditingController[4].text == null ||
+                    //     textEditingController[4].text == "") {
+                    //   AppData.showInSnackBar(
+                    //       context, "Please enter Aadhaar No.");
+                 // }else if (textEditingController[4].text != "" &&
+                 //     textEditingController[4].text.length != 12) {
+                 //   AppData.showInSnackBar(context, "Please enter a valid adhaar no ");
                     // } else if (textEditingController[5].text == "N/A" ||
                     //     textEditingController[5].text == null ||
                     //     textEditingController[5].text == "") {
@@ -1211,21 +1209,21 @@ class _DocMyProfileState extends State<DocMyProfile> {
                  } else if (textEditingController[10].text == "N/A" ||
                      textEditingController[10].text == null ||
                      textEditingController[10].text == "") {
-                   AppData.showInSnackBar(context, "Please enter email");
+                   AppData.showInSnackBar(context, "Please enter email id");
                  } else if (textEditingController[10].text != "" &&
                      !AppData.isValidEmail(textEditingController[10].text)) {
-                   AppData.showInSnackBar(context, "Please enter a valid e-mail Id");
+                   AppData.showInSnackBar(context, "Please enter a valid e-mail id");
                  } else if (textEditingController[11].text == "N/A" ||
                      textEditingController[11].text == null ||
                      textEditingController[11].text == "") {
                    AppData.showInSnackBar(context, "Please enter pin code");
                  }else if (textEditingController[11].text != "" &&
                      textEditingController[11].text.length != 6) {
-                   AppData.showInSnackBar(context, "Please enter a valid Pin Code ");
+                   AppData.showInSnackBar(context, "Please enter a valid pin code ");
                  } else if (textEditingController[12].text == "N/A" ||
                      textEditingController[12].text == null ||
                      textEditingController[12].text == "") {
-                   AppData.showInSnackBar(context, "Please enter mobile No");
+                   AppData.showInSnackBar(context, "Please enter mobile no");
                  }else if (textEditingController[12].text != "" &&
                      textEditingController[12].text.length != 10) {
                    AppData.showInSnackBar(context, "Please enter a valid mobile no ");
