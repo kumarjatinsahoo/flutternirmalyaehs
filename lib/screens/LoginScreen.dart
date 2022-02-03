@@ -811,7 +811,7 @@ class _LoginScreenState extends State<LoginScreen> {
       "deviceToken": widget.model.activitytoken
     };
 
-    // log("Print data>>>>" + jsonEncode(postmap));
+    log("DEVICE DATA>>>>" + jsonEncode(postmap));
     // MyWidgets.showLoading(context);
     widget.model.POSTMETHOD(
         //api: ApiFactory.POST_APPOINTMENT,
