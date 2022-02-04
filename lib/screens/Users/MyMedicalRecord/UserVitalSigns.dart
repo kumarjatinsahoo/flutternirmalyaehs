@@ -724,6 +724,7 @@ class _VitalSignsState extends State<VitalSigns> {
       content: StatefulBuilder(
         builder: (BuildContext context, StateSetter setState) {
           return Container(
+            height: 450,
             width: MediaQuery.of(context).size.width * 0.86,
             child: SingleChildScrollView(
               child: Column(

@@ -275,7 +275,13 @@ MedicineReminderDTO1 medicineReminderDTO1;
                     itemBuilder: (c, i) {
                       return ListTile(
                         title: Text(medicineReminderDTO1.body[i].medName),
-                        subtitle: Text(medicineReminderDTO1.body[i].medDosage),
+                        subtitle: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(medicineReminderDTO1.body[i].medDosage),
+                            Text(medicineReminderDTO1.body[i].medDosage),
+                          ],
+                        ),
                         onTap: () {
                           // widget.model.title = _calendars[i].id;
                          // Navigator.pushNamed(context, '/setreminder');
