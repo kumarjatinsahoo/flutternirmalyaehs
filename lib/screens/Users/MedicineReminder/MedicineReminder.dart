@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:calendar_timeline/calendar_timeline.dart';
 import 'package:date_format/date_format.dart';
 import 'package:device_calendar/device_calendar.dart';
@@ -116,9 +118,11 @@ MedicineReminderDTO1 medicineReminderDTO1;
   }
 
   callApi(String date){
+    medicineReminderDTO1=null;
     widget.model.GETMETHODCALL_TOKEN(api: ApiFactory.REMINDER_LIST(loginResponse.body.user, date),
         token: widget.model.token,
         fun: (Map<String, dynamic> map){
+          print("Value is>>>>" + JsonEncoder().convert(map));
       setState(() {
 
         if (map[Const.CODE] == Const.SUCCESS) {
@@ -235,6 +239,7 @@ MedicineReminderDTO1 medicineReminderDTO1;
                 _selectedDate = date;
                 _retrieveCalendarEvents();
                 dateData=df1.format(date);
+                callApi(dateData);
               });
             },
             leftMargin: 20,
@@ -274,12 +279,36 @@ MedicineReminderDTO1 medicineReminderDTO1;
                   child: ListView.builder(
                     itemBuilder: (c, i) {
                       return ListTile(
-                        title: Text(medicineReminderDTO1.body[i].medName),
-                        subtitle: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                          contentPadding:EdgeInsets.only(bottom: 8,left: 12),
+                        title: Column(
                           children: [
-                            Text(medicineReminderDTO1.body[i].medDosage),
-                            Text(medicineReminderDTO1.body[i].medDosage),
+                            Row(
+                              children: [
+                                Expanded(
+                                    child: Text("Medicine Name ")),
+                                SizedBox(width: 15),
+                                Expanded(
+                                    child: Text(medicineReminderDTO1.body[i].medName)),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Expanded(
+                                    child: Text("Dosage")),
+                                SizedBox(width: 15),
+                                Expanded(
+                                    child: Text(medicineReminderDTO1.body[i].medDosage)),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Expanded(
+                                    child: Text("Dosage Time ")),
+                                SizedBox(width: 15),
+                                Expanded(
+                                    child: Text(medicineReminderDTO1.body[i].dosageTime??"")),
+                              ],
+                            ),
                           ],
                         ),
                         onTap: () {

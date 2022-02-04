@@ -2631,7 +2631,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 formFieldPinno(
                                     12,MyLocalizations.of(context).text("PIN_CODE"), fnode13, fnode14),
                                 SizedBox(height: 20),
-                                formFieldemail(13, MyLocalizations.of(context).text("MOBILE_NO"), fnode14, fnode15),
+                                formFieldMobile(13, MyLocalizations.of(context).text("MOBILE_NO"), fnode14, fnode15),
                                 SizedBox(height: 20),
                                 formFieldemail(14, MyLocalizations.of(context).text("FNAME"), fnode15, fnode16),
                                 SizedBox(height: 20),
@@ -2916,7 +2916,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     } else if (textEditingController[13].text == "" ||
                         textEditingController[13].text == null) {
                       AppData.showInSnackBar(context, "Please enter mobile no");
-                    } else if (textEditingController[13].text != "" ||
+                    } else if (textEditingController[13].text != "" &&
                         textEditingController[13].text.length <=9) {
                       AppData.showInSnackBar(context, "Please enter 10 digit mobile no");
                    /* } else if (textEditingController[14].text == "" ||
@@ -3248,6 +3248,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ],
     );
   }
+
+
 
   Widget dob(String hint) {
     return Padding(
@@ -4388,6 +4390,57 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   counterText: '',
                   contentPadding:
                       EdgeInsets.symmetric(vertical: 2, horizontal: 0)),
+              onChanged: (newValue) {},
+              onFieldSubmitted: (value) {
+                AppData.fieldFocusChange(context, currentfn, nextFn);
+              },
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget formFieldMobile(
+      int controller, String hint, FocusNode currentfn, FocusNode nextFn) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 0, right: 5),
+          child: Text(
+            hint,
+            style: TextStyle(
+                color: Colors.black,
+                fontSize: 13,
+                fontFamily: "",
+                fontWeight: FontWeight.w400),
+          ),
+        ),
+        TextFieldContainer(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: TextFormField(
+              controller: textEditingController[controller],
+              textInputAction: TextInputAction.done,
+              keyboardType: TextInputType.number,
+              focusNode: currentfn,
+              inputFormatters: [
+                WhitelistingTextInputFormatter(
+                  RegExp("[0-9]"),
+                ),
+              ],
+              maxLength: 10,
+              // Validator.getKeyboardTyp(validateModel.fieldType.toLowerCase()),
+              style: TextStyle(fontSize: 15),
+
+              decoration: InputDecoration(
+                //hintText: hint,
+                  hintStyle: TextStyle(color: Colors.grey, fontSize: 13),
+                  border: InputBorder.none,
+                  counterText: '',
+                  contentPadding:
+                  EdgeInsets.symmetric(vertical: 2, horizontal: 0)),
               onChanged: (newValue) {},
               onFieldSubmitted: (value) {
                 AppData.fieldFocusChange(context, currentfn, nextFn);

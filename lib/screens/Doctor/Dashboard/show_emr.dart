@@ -69,7 +69,11 @@ class _ShowEmr extends State<ShowEmr> {
               padding: const EdgeInsets.only(left: 60),
               child: Text("Show EMR"),
             ),
-            leading: InkWell(onTap: (){Navigator.pop(context);},child: Icon(Icons.arrow_back)),
+            leading: InkWell(
+                onTap: (){
+                  Navigator.pushNamed(context, "/Newdashboard");
+                  },
+                child: Icon(Icons.arrow_back)),
             /*  title: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [

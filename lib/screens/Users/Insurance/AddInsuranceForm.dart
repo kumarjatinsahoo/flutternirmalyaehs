@@ -281,7 +281,7 @@ class AddinsuranceFormState extends State<AddinsuranceForm> {
                                   SizedBox(
                                     height: 8,
                                   ),
-                                  formField1(
+                                  formFieldzip(
                                       5,
                                       MyLocalizations.of(context)
                                           .text("TOTAL_INSURANCE_AMOUNT")),
@@ -1450,7 +1450,7 @@ class AddinsuranceFormState extends State<AddinsuranceForm> {
                   //focusNode: fnode7,
                   cursorColor: AppData.kPrimaryColor,
                   textInputAction: TextInputAction.next,
-                  maxLength: 6,
+                  //maxLength: 6,
                   keyboardType: TextInputType.number,
                   inputFormatters: [
                     WhitelistingTextInputFormatter(RegExp("[0-9 ]")),
