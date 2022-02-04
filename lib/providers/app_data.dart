@@ -100,7 +100,7 @@ static String defultImgUrll="https://pixabay.com/photos/tree-sunset-clouds-sky-s
       case "en":
         selectedLanguage = "English";
         break;
-      case "en-GB":
+      case "bn":
         selectedLanguage = "ଓଡିଆ";
         break;
       case "mr":

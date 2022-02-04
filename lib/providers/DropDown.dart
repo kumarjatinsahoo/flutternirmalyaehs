@@ -3046,7 +3046,33 @@ class DropDown {
         var response = await Dio().get(
           API,
         );
-        return KeyvalueModel.fromJsonList(response.data["body"]);
+        var list;
+        switch (callFrom) {
+          case "stategov":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "countrygov":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "bloodgroup":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "country":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "state":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "district1":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "city":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+        }
+        return list;
+       // return KeyvalueModel.fromJsonList(response.data["body"]);
+        //stategov,countrygov
       },
       onChanged: (KeyvalueModel data) {
         fun(data);

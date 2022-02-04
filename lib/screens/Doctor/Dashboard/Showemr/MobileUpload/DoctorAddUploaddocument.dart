@@ -675,11 +675,14 @@ class _DoctorAddUploadDocumentState extends State<DoctorAddUploadDocument> {
               style: TextStyle(color: Colors.white, fontSize: 20),
             ),
             onPressed: () {
-             /* Navigator.of(context).push(MaterialPageRoute(
+              Navigator.pop(context, true);
+              Navigator.pop(context, true);
+              /*Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) =>
                       DoctorUploadDocument(model: widget.model)));*/
-              Navigator.pop(context, true);
-              Navigator.pop(context, true);
+             /* Navigator.pop(context, true);
+              Navigator.pop(context, true);*/
+              //Navigator.restorablePushNamedAndRemoveUntil(context, "/doctorUploadDocument", (route) => false);
              /* setState(() {
                 Navigator.pop(context, true);
                 Navigator.pop(context, true);
