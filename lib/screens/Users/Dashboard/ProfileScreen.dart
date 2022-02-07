@@ -325,6 +325,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             log("Value>>>" + jsonEncode(map));
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
+              AppData.showInSnackDone(context, msg);
             } else {
               isDataNotAvail = true;
               AppData.showInSnackBar(context, msg);
@@ -4746,13 +4747,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             child: Padding(
                               padding: const EdgeInsets.only(top:12.00,left: 8,right: 8,bottom: 10),
                               child: Text(
-                                patientProfileModel
-                                    .body.familyDetailsList[index].age,style: TextStyle(color:Colors.white),
+                                patientProfileModel?.body?.familyDetailsList[index]?.age??"",style: TextStyle(color:Colors.white),
                               ),
                             ),
                           ),
                         ),
-                        SizedBox(height: 8),
+                        SizedBox(height: 1),
                         DropDown.networkDropdownGetpartUser1(
                             "Relation",
                             ApiFactory.RELATION_API,
@@ -4807,6 +4807,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     log("Value json>>" +
                         Addfamilydetailsmodel.toJson().toString());
                     MyWidgets.showLoading(context);
+
                     widget.model.POSTMETHOD_TOKEN(
                         api: ApiFactory.UPDATE_FAMILY_CONTACT,
                         json: Addfamilydetailsmodel.toJson(),
@@ -4816,11 +4817,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
                           if (map[Const.STATUS1] == Const.SUCCESS) {
                             Navigator.pop(context);
+                            String msg = map[Const.MESSAGE];
                             // popup(context, map[Const.MESSAGE]);
                             callApi();
                             AppData.showInSnackDone(
                                 context, map[Const.MESSAGE]);
-                            Navigator.pop(context);
+                            //Navigator.pop(context);
                           } else {
                             // AppData.showInSnackBar(context, map[Const.MESSAGE]);
                           }
@@ -4861,7 +4863,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             children: [
                               Center(
                                 child: Text(
-                                  "Add Family Detail's Name",
+                                  "Add Family Details",
                                   style: TextStyle(
                                       color: Colors.black, fontSize: 20),
                                 ),
@@ -4891,7 +4893,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             ),
                           ),
                         ),
-                        SizedBox(height: 8),
+                        //SizedBox(height: 8),
                         DropDown.networkDropdownGetpartUser1(
                             "Relation",
                             ApiFactory.RELATION_API,
@@ -4954,7 +4956,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     if (ProfileScreen.relationmodel == "" ||
                         ProfileScreen.relationmodel == null) {
                       AppData.showInSnackBar(
-                          context, "Please Select Relation ");
+                          context, "Please select relation ");
                     } else {
                       AddUserFamilyDetailsModel Addfamilydetailsmodel =
                           AddUserFamilyDetailsModel();
@@ -5111,7 +5113,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
         });
   }
 
-  void emergencydetailsdisplayDialog(BuildContext context, ProfileModel patientProfileModel, int index) {
+  void emergencydetailsdisplayDialog(BuildContext context, ProfileModel patientProfileModel,
+      int index) {
     Widget cancelButton = TextButton(
       child: Text("No",style: TextStyle(color: AppData.kPrimaryRedColor)),
 

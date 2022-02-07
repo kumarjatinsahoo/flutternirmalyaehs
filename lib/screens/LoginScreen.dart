@@ -575,7 +575,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 CupertinoIcons.person_alt_circle,
                                 size: 44,
                               ),
-                              title: Text(data[i].userName),
+                              title: Text(data[i]?.userName??""),
                               subtitle: Text(data[i].user),
                               onTap: () {
                                 /*  sharedPref.save(Const.LOGIN_phoneno, _loginId.text);

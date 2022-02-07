@@ -621,14 +621,14 @@ class _BookAmbulancelistState extends State<BookAmbulancelist> {
               AppData.showInSnackBar(context, "Please select type ");
             } else if (BookAmbulancelist.severitylistModel == null ||
                 BookAmbulancelist.severitylistModel == "") {
-              AppData.showInSnackBar(context, "Please select Severity ");
+              AppData.showInSnackBar(context, "Please select severity ");
             } else if (textEditingController[1].text == "" ||
                 textEditingController[1].text == null) {
-              AppData.showInSnackBar(context, "Please enter Reaction");
+              AppData.showInSnackBar(context, "Please enter reaction");
               FocusScope.of(context).requestFocus(fnode1);
             } else if (textEditingController[2].text == "" ||
                 textEditingController[2].text == null) {
-              AppData.showInSnackBar(context, "Please enter Updated by");
+              AppData.showInSnackBar(context, "Please enter updated by");
               FocusScope.of(context).requestFocus(fnode2);
             } else {
               MyWidgets.showLoading(context);

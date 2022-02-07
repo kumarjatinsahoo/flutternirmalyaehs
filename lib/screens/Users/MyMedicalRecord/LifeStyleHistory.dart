@@ -812,11 +812,11 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                           AppData.showInSnackBar(context, map[Const.MESSAGE]);
                         }
                       });*/
-
                     /*});*/
                       setState(() {
                         if (map[Const.CODE] == Const.SUCCESS) {
                           //Navigator.pop(context);
+                          //AppData.showInSnackDone(context, map["message"]);
                           callAPI();
                           //AppData.showInSnackDone(context, map[Const.MESSAGE]);
                           AppData.showInSnackBargreen(context,"chs");

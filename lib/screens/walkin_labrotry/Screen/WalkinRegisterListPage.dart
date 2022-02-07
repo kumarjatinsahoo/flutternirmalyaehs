@@ -165,11 +165,6 @@ class _WalkinRegisterListPageState extends State<WalkinRegisterListPage> {
                           style: TextStyle(color: Colors.grey),
                           textAlign: TextAlign.end,
                         ),
-                        // Text(
-                        //   patient.enteredBy??"N/A",
-                        //   style: TextStyle(color: Colors.grey),
-                        //   textAlign: TextAlign.end,
-                        // ),
                       ],
                     ),
                     trailing: Icon(Icons.arrow_right_outlined),
