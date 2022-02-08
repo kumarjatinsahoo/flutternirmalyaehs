@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:flutter/services.dart';
+import 'package:flutter_contacts/flutter_contacts.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/EmergencyHelpModel.dart';
 import 'package:user/models/EmergencyMessageModel.dart';
@@ -704,8 +705,7 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                           updateEmergencyModel.relation = model.key;
 
                           emergencyHelpModel.emergency[index].relId = model.key;
-                          emergencyHelpModel.emergency[index].type =
-                              model.name;
+                          emergencyHelpModel.emergency[index].type = model.name;
                         });
                       }),
                       Divider(height: 2, color: Colors.black),
@@ -756,9 +756,11 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                       updateEmergencyModel = UpdateEmergencyModel();
                       updateEmergencyModel.name = _fname.text;
                       updateEmergencyModel.mobile = _mobile.text;
-                      updateEmergencyModel.id = emergencyHelpModel.emergency[index].id;
+                      updateEmergencyModel.id =
+                          emergencyHelpModel.emergency[index].id;
                       updateEmergencyModel.userid = widget.model.user;
-                      updateEmergencyModel.relation = SetupContactsPage.relationmodel.key;
+                      updateEmergencyModel.relation =
+                          SetupContactsPage.relationmodel.key;
                       //updateEmergencyModel.relation =SetupContactsPage.relationmodel.key;
                       log("Value json>>" +
                           updateEmergencyModel.toJson().toString());
@@ -766,9 +768,8 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                           api: ApiFactory.UPDATE_EMERGENCY_CONTACT,
                           json: updateEmergencyModel.toJson(),
                           token: widget.model.token,
-
                           fun: (Map<String, dynamic> map) {
-                           // Navigator.pop(context);
+                            // Navigator.pop(context);
 
                             if (map[Const.STATUS1] == Const.SUCCESS) {
                               Navigator.pop(context);
@@ -782,20 +783,14 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                           });
                     }
                   });
-
                 },
-
-
               ),
             ],
           );
         });
   }
 
-  _displayTextInputDialog(
-    BuildContext context,
-    emergencyHelpModel,
-  ) async {
+  _displayTextInputDialog(BuildContext context, emergencyHelpModel) async {
     _fname.text = "";
     _mobile.text = "";
     // updateEmergencyModel=null;
@@ -814,9 +809,7 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       SizedBox(height: 10),
-                      Text(
-                        MyLocalizations.of(context)
-                            .text("ADD_EMERGENCY_CONTACT"),
+                      Text(MyLocalizations.of(context).text("ADD_EMERGENCY_CONTACT"),
                         style: TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.bold,
@@ -838,7 +831,14 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                           WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
                         ],
                         decoration: InputDecoration(
-                            hintText: MyLocalizations.of(context).text("NAME")),
+                            hintText: MyLocalizations.of(context).text("NAME"),
+                            suffixIcon: InkWell(
+                              onTap: () {
+                                Navigator.pop(context);
+                                getContactDetails();
+                              },
+                              child: Icon(Icons.contacts),
+                            )),
                       ),
                       TextField(
                         onChanged: (value) {
@@ -920,7 +920,8 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                       updateEmergencyModel.name = _fname.text;
                       updateEmergencyModel.mobile = _mobile.text;
                       updateEmergencyModel.userid = widget.model.user;
-                      updateEmergencyModel.relation = SetupContactsPage.relationmodel.key;
+                      updateEmergencyModel.relation =
+                          SetupContactsPage.relationmodel.key;
                       print("Value json>>" +
                           updateEmergencyModel.toJson1().toString());
                       widget.model.POSTMETHOD_TOKEN(
@@ -928,7 +929,7 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                           json: updateEmergencyModel.toJson1(),
                           token: widget.model.token,
                           fun: (Map<String, dynamic> map) {
-                           // Navigator.pop(context);
+                            // Navigator.pop(context);
                             if (map[Const.STATUS1] == Const.SUCCESS) {
                               Navigator.pop(context);
                               // popup(context, map[Const.MESSAGE]);
@@ -952,9 +953,7 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
         });
   }
 
-  Future<void> _displayTextInputDialog2(
-    BuildContext context,
-  ) async {
+  Future<void> _displayContact(BuildContext context, List<Contact> list) async {
     return showDialog(
         context: context,
         builder: (context) {
@@ -964,26 +963,21 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
             //contentPadding: EdgeInsets.symmetric(horizontal: 10),
             content: StatefulBuilder(
               builder: (BuildContext context, StateSetter setState) {
-                return SingleChildScrollView(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      SizedBox(height: 10),
-                      TextField(
-                        onChanged: (value) {
-                          setState(() {
-                            valueText = value;
-                            emergencyMessageModel.msg = value;
-                          });
+                return Container(
+                  height: 400,
+                  width: double.maxFinite-50,
+                  child: ListView.builder(
+                    itemBuilder: (c, i) {
+                      return ListTile(
+                        title: Text(list[i].displayName),
+                        subtitle: Text((list[i]?.phones[0]?.number??"")),
+                        onTap: (){
+                          log("Selected Response>>>"+list[i].toString());
+                          Navigator.pop(context);
                         },
-                        controller: _message,
-                        inputFormatters: [
-                          WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
-                        ],
-                        decoration: InputDecoration(hintText: " Enter Message"),
-                      ),
-                      Divider(height: 2, color: Colors.black),
-                    ],
+                      );
+                    },
+                    itemCount: list.length,
                   ),
                 );
               },
@@ -1057,5 +1051,13 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
         //}
       },
     );
+  }
+
+  void getContactDetails() async {
+    if (await FlutterContacts.requestPermission()) {
+      // Get all contacts (lightly fetched)
+      List<Contact> contacts = await FlutterContacts.getContacts(withProperties: true, withPhoto: true);
+      _displayContact(context, contacts);
+    }
   }
 }

@@ -88,7 +88,7 @@ dependencies:
 #  device_calendar: ^3.1.0
   video_player: ^2.1.5
   chewie: ^1.2.2
-  device_calendar: ^3.1.0
+#  device_calendar: ^3.1.0
 #  agora_rtc_engine: ^3
 #  agora_rtc_engine: ^4.0.7
   permission_handler: ^8.1.4
@@ -100,6 +100,7 @@ dependencies:
 #  audioplayers: ^0.18.2
   showcaseview: ^1.1.4
   flutter_phone_direct_caller: ^2.1.0
+  flutter_contacts: ^1.1.2
 
 dev_dependencies:
   flutter_test:

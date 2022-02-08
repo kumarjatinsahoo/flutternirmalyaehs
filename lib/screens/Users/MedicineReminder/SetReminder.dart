@@ -4,8 +4,8 @@ import 'dart:developer';
 import 'dart:io';
 
 // import 'package:add_2_calendar/add_2_calendar.dart';
-import 'package:device_calendar/device_calendar.dart' as cal;
-import 'package:device_calendar/device_calendar.dart';
+// import 'package:device_calendar/device_calendar.dart' as cal;
+// import 'package:device_calendar/device_calendar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
@@ -144,7 +144,7 @@ class SetReminderState extends State<SetReminder> {
     KeyvalueModel(name: "6", key: "1"),
   ];
 
-  DeviceCalendarPlugin _deviceCalendarPlugin = new DeviceCalendarPlugin();
+  // DeviceCalendarPlugin _deviceCalendarPlugin = new DeviceCalendarPlugin();
 
   List<KeyvalueModel> days = [];
   var frequncyText='Days';
@@ -198,7 +198,7 @@ class SetReminderState extends State<SetReminder> {
     Add2Calendar.addEvent2Cal(event);*/
   }
 
-  setReminder1(descrption) async {
+  /*setReminder1(descrption) async {
     String calenderId;
     if (loginResponse.body.calenderId == null) {
       Result<String> result = await _deviceCalendarPlugin.createCalendar(
@@ -262,7 +262,7 @@ class SetReminderState extends State<SetReminder> {
       Navigator.pop(context);
       AppData.showInSnackDone(context, "Added successfully");
     }
-  }
+  }*/
 
   /* Future _retrieveCalendarEvents() async {
     final startDate = DateTime.now().add(Duration(days: -30));

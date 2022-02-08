@@ -1,4 +1,4 @@
-import 'package:device_calendar/device_calendar.dart';
+// import 'package:device_calendar/device_calendar.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:user/models/ForgetUseridModel.dart' as forgotuser;
 import 'package:user/models/MasterLoginResponse.dart';
@@ -163,7 +163,7 @@ class PassData extends Model {
   String receptionhospitalid;
   String receptionpatientid;
 
-  Event selectEvent;
+  // Event selectEvent;
 
   String contactscreen;
   MasterLoginResponse masterResponse;

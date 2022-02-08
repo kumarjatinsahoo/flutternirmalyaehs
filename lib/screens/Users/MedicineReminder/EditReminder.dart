@@ -3,8 +3,8 @@ import 'dart:developer';
 import 'dart:io';
 
 // import 'package:add_2_calendar/add_2_calendar.dart';
-import 'package:device_calendar/device_calendar.dart' as cal;
-import 'package:device_calendar/device_calendar.dart';
+// import 'package:device_calendar/device_calendar.dart' as cal;
+// import 'package:device_calendar/device_calendar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
@@ -140,7 +140,7 @@ class EditReminderState extends State<EditReminder> {
     KeyvalueModel(name: "6", key: "1"),
   ];
 
-  DeviceCalendarPlugin _deviceCalendarPlugin = new DeviceCalendarPlugin();
+  // DeviceCalendarPlugin _deviceCalendarPlugin = new DeviceCalendarPlugin();
 
   List<KeyvalueModel> days=[];
 
@@ -153,16 +153,16 @@ class EditReminderState extends State<EditReminder> {
     EditReminder.dosageModel = null;
     textEditingController[0].text = widget.type;
     getList();
-    getStaticValue();
+    //getStaticValue();
   }
 
-  getStaticValue(){
+ /* getStaticValue(){
     Event event=widget.model.selectEvent;
     textEditingController[0].text=event.title;
     textEditingController[1].text=event.description.split(", ")[0];
     EditReminder.dosageModel=KeyvalueModel(key: event.description.split(", ")[0].replaceAll(" dosage", ''),name: event.description.split(", ")[1].replaceAll(" dosage", ''));
   }
-
+*/
   getList(){
     for(int i=1;i<=31;i++){
       days.add(KeyvalueModel(key: i,name: i.toString()));
@@ -200,7 +200,7 @@ class EditReminderState extends State<EditReminder> {
     Add2Calendar.addEvent2Cal(event);*/
   }
 
-  setReminder1(descrption) async {
+  /*setReminder1(descrption) async {
     String calenderId;
     if (loginResponse.body.calenderId == null) {
       Result<String> result = await _deviceCalendarPlugin.createCalendar(
@@ -258,7 +258,7 @@ class EditReminderState extends State<EditReminder> {
         AppData.showInSnackBar(context, "Something went wrong");
       }
     }
-  }
+  }*/
 
   /* Future _retrieveCalendarEvents() async {
     final startDate = DateTime.now().add(Duration(days: -30));
@@ -695,9 +695,9 @@ class EditReminderState extends State<EditReminder> {
         }
       }
       if (isAllAccept) {
-        setReminder1(
+       /* setReminder1(
           textEditingController[1].text,
-        );
+        );*/
       } else {
         AppData.showInSnackBar(context, "Please input timings");
       }

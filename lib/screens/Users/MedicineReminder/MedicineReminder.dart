@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:calendar_timeline/calendar_timeline.dart';
 import 'package:date_format/date_format.dart';
-import 'package:device_calendar/device_calendar.dart';
+// import 'package:device_calendar/device_calendar.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:unicorndial/unicorndial.dart';
@@ -45,9 +45,9 @@ MedicineReminderDTO1 medicineReminderDTO1;
   DateTime _selectedDate;
   String dateData;
   var childButtons = List<UnicornButton>();
-  DeviceCalendarPlugin _deviceCalendarPlugin = new DeviceCalendarPlugin();
-  List<Calendar> _calendars;
-  List<Event> _calendarEvents;
+  // DeviceCalendarPlugin _deviceCalendarPlugin = new DeviceCalendarPlugin();
+  // List<Calendar> _calendars;
+  // List<Event> _calendarEvents;
 
   LoginResponse1 loginResponse;
 
@@ -139,10 +139,10 @@ MedicineReminderDTO1 medicineReminderDTO1;
   void _resetSelectedDate() {
     // _selectedDate = DateTime.now().add(Duration(days: 5));
     _selectedDate = DateTime.now();
-    _retrieveCalendarEvents();
+    // _retrieveCalendarEvents();
   }
 
-  void _retrieveCalendars() async {
+  /*void _retrieveCalendars() async {
     //Retrieve user's calendars from mobile device
     //Request permissions first if they haven't been granted
     try {
@@ -161,9 +161,9 @@ MedicineReminderDTO1 medicineReminderDTO1;
     } catch (e) {
       print(e);
     }
-  }
+  }*/
 
-  Future _retrieveCalendarEvents() async {
+ /* Future _retrieveCalendarEvents() async {
     try {
       var permissionsGranted = await _deviceCalendarPlugin.hasPermissions();
       if (permissionsGranted.isSuccess && !permissionsGranted.data) {
@@ -190,9 +190,9 @@ MedicineReminderDTO1 medicineReminderDTO1;
       print(e);
       AppData.showInSnackDone(context, "Please accept permission");
     }
-  }
+  }*/
 
-  Future _deleteEvent(String eventId) async {
+  /*Future _deleteEvent(String eventId) async {
     try {
       var calendarEventsResult = await _deviceCalendarPlugin.deleteEvent(
           loginResponse.body.calenderId, eventId);
@@ -206,7 +206,7 @@ MedicineReminderDTO1 medicineReminderDTO1;
       print(e);
       AppData.showInSnackDone(context, "Something went wrong");
     }
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -237,7 +237,7 @@ MedicineReminderDTO1 medicineReminderDTO1;
             onDateSelected: (date) {
               setState(() {
                 _selectedDate = date;
-                _retrieveCalendarEvents();
+                // _retrieveCalendarEvents();
                 dateData=df1.format(date);
                 callApi(dateData);
               });
@@ -328,7 +328,7 @@ MedicineReminderDTO1 medicineReminderDTO1;
                             onSelected: (value) {
                               switch (value) {
                                 case 1:
-                                  widget.model.selectEvent = _calendarEvents[i];
+                                  // widget.model.selectEvent = _calendarEvents[i];
                                   Navigator.pushNamed(context, '/editReminder');
                                   break;
                                 case 2:

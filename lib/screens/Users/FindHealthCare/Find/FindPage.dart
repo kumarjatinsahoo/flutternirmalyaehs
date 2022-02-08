@@ -62,6 +62,8 @@ class _FindPageState extends State<FindPage> {
     super.initState();
     /* loginResponse1 = widget.model.loginResponse1;
     callAPI();*/
+    FindPage.specialistModel=null;
+    FindPage.healthcareProvider=null;
     _getLocationName();
   }
 

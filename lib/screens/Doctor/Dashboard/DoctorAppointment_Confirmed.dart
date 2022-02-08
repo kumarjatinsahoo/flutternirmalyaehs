@@ -479,7 +479,8 @@ class _DoctorAppointmentConfirmedState
                                                                         //height: 40.0,
                                                                         child: Text(
                                                                           /*'Confirmed'*/
-                                                                          "Show EMR",
+                                                                          "My medical Record",
+                                                                          textAlign: TextAlign.center,
                                                                           style: TextStyle(
                                                                               fontWeight:
                                                                               FontWeight
@@ -520,6 +521,7 @@ class _DoctorAppointmentConfirmedState
                                                                           child: Text(
                                                                             /*'Confirmed'*/
                                                                             "Give Prescription",
+                                                                            textAlign: TextAlign.center,
                                                                             style: TextStyle(
                                                                                 fontWeight:
                                                                                 FontWeight

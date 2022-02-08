@@ -42,8 +42,6 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
-	<key>NSCalendarsUsageDescription</key>
-	<string>You need to provide calender access to add event in calender</string>
 	<key>NSCameraUsageDescription</key>
 	<string>You need to provide camera access to upload profile image</string>
 	<key>NSLocationUsageDescription</key>
@@ -54,6 +52,8 @@
 	<string>MIC required for video consulting</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>You need to provide photo album access to upload profile image</string>
+	<key>NSContactsUsageDescription</key>
+    <string>Reason we need access to the contact list</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>

@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_contacts/contact.dart';
 import 'package:user/models/DoctoreModel.dart';
 import 'package:user/models/ShareApntModel.dart';
 import 'package:user/models/TimeScheduleModel.dart';
@@ -626,7 +627,7 @@ class DropDown {
           case "pets":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
-            case "gender":
+          case "gender":
             List<KeyvalueModel> listS = [];
             listS.add(KeyvalueModel(name: "Male", key: "1"));
             listS.add(KeyvalueModel(name: "Female", key: "2"));
@@ -977,10 +978,72 @@ class DropDown {
     ));
   }
 
+  static staticContactDropdown(
+      String label, String callFrom, List<Contact> list, fun) {
+    return inputFieldContainer(DropdownSearch<Contact>(
+      mode: Mode.BOTTOM_SHEET,
+      searchBoxDecoration: InputDecoration(
+        hintText: "Search here",
+        hintStyle: TextStyle(color: Colors.grey),
+        contentPadding: EdgeInsets.only(left: 15),
+        border: OutlineInputBorder(
+          borderSide: const BorderSide(color: Colors.green, width: 3.0),
+          borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(3.0),
+              bottomRight: Radius.circular(3.0),
+              topRight: Radius.circular(3.0),
+              topLeft: Radius.circular(3.0)),
+        ),
+      ),
+      dropdownSearchDecoration: InputDecoration(
+        // filled: true,
+        isDense: true,
+        disabledBorder: InputBorder.none,
+        // border: InputBorder.none,
+        enabledBorder: const OutlineInputBorder(
+          borderSide: const BorderSide(color: Colors.transparent, width: 0.0),
+        ),
+        border: OutlineInputBorder(
+            borderSide: const BorderSide(color: Colors.transparent, width: 0.0),
+            borderRadius: BorderRadius.circular(29)),
+        floatingLabelBehavior: FloatingLabelBehavior.never,
+        contentPadding: EdgeInsets.all(0),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(29)),
+          borderSide: BorderSide(width: 0, color: AppData.kPrimaryLightColor),
+        ),
+      ),
+      errorBuilder: (cg, value, v) {
+        return Material(
+            child: Container(
+                alignment: Alignment.center,
+                child: Text(
+                  "No Data Found",
+                  style: TextStyle(color: Colors.black),
+                )));
+      },
+      emptyBuilder: (context, searchEntry) {
+        return Material(
+          child: Center(
+            child: Text(
+              "No Data Found",
+              style: TextStyle(color: Colors.black),
+            ),
+          ),
+        );
+      },
+      label: label,
+      showSearchBox: true,
+      items: list,
+      onChanged: (Contact data) {
+        fun(data);
+      },
+    ));
+  }
+
   static employeeInfo() {
     return inputFieldContainer(Padding(
-        padding:
-            const EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
+        padding: EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
@@ -2237,21 +2300,18 @@ class DropDown {
       case "biotype":
         return BiomediImplants.admequipmentmodel;
         break;
-        case "namelist":
+      case "namelist":
         return AllergicListList.typeModel;
         break;
-        case "allergen":
+      case "allergen":
         return AllergicListList.nameModel;
         break;
-        case "SEVERITY":
+      case "SEVERITY":
         return AllergicListList.severitylistModel;
         break;
       case "pets":
         return LifeStyleHistory.petsmodel;
         break;
-
-
-
     }
   }
 
@@ -2272,10 +2332,10 @@ class DropDown {
       case "stateR":
         return ReceptionlistSignUpFormm.stateModel;
         break;
-        case "districtR":
+      case "districtR":
         return ReceptionlistSignUpFormm.districtModel;
         break;
-        case "cityR":
+      case "cityR":
         return ReceptionlistSignUpFormm.cityModel;
         break;
       case "city":
@@ -2326,19 +2386,19 @@ class DropDown {
       case "stateph":
         return PharmaSignUpForm3.stateModel;
         break;
-        case "stateph":
+      case "stateph":
         return OrganisationSignUpForm.stateModel;
         break;
       case "districtph":
         return PharmaSignUpForm3.districtModel;
         break;
-        case "districtph":
+      case "districtph":
         return OrganisationSignUpForm.districtModel;
         break;
       case "cityph":
         return PharmaSignUpForm3.citymodel;
         break;
-        case "cityph":
+      case "cityph":
         return OrganisationSignUpForm.citymodel;
         break;
       case "state_Ngo":
@@ -2571,7 +2631,7 @@ class DropDown {
           case "healthcareProvider":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
-            case "syndicate":
+          case "syndicate":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
         }
@@ -2951,18 +3011,17 @@ class DropDown {
           case "city_Ngo":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
-            case "stateOgan":
+          case "stateOgan":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
-            case "districtOgan":
+          case "districtOgan":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
-            case "cityOgan":
+          case "cityOgan":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
           default:
             list = KeyvalueModel.fromJsonList(response.data["body"]);
-
         }
 
         return list;
@@ -3071,7 +3130,7 @@ class DropDown {
             break;
         }
         return list;
-       // return KeyvalueModel.fromJsonList(response.data["body"]);
+        // return KeyvalueModel.fromJsonList(response.data["body"]);
         //stategov,countrygov
       },
       onChanged: (KeyvalueModel data) {
@@ -3846,10 +3905,10 @@ class DropDown {
           case "biotype":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
-            case "namelistt":
+          case "namelistt":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
-            case "allergen":
+          case "allergen":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
         }
@@ -4043,14 +4102,13 @@ class DropDown {
     ));
   }
 
- static networkDrop1(
+  static networkDrop1(
     String label,
     String callFrom,
-     IconData iconData,
-     double iconSize,
+    IconData iconData,
+    double iconSize,
     List<KeyvalueModel> list,
     Function fun,
-
   ) {
     return newContainer(DropdownSearch<KeyvalueModel>(
       mode: Mode.BOTTOM_SHEET,
@@ -4090,7 +4148,7 @@ class DropDown {
       hint: label,
       dropdownSearchDecoration: InputDecoration(
         // filled: true,
-           icon: Icon(
+        icon: Icon(
           iconData,
           size: iconSize,
         ),

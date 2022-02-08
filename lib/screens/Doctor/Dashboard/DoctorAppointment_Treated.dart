@@ -519,7 +519,8 @@ class _DoctorAppointmentTreatedState extends State<DoctorAppointmentTreated> {
                                                                           child:
                                                                               Text(
                                                                             /*'Confirmed'*/
-                                                                            "Show EMR",
+                                                                                "My medical Record",
+                                                                                textAlign: TextAlign.center,
                                                                             style: TextStyle(
                                                                                 fontWeight: FontWeight.bold,
                                                                                 fontSize: 15,
@@ -561,6 +562,7 @@ class _DoctorAppointmentTreatedState extends State<DoctorAppointmentTreated> {
                                                                               Text(
                                                                             /*'Confirmed'*/
                                                                             "Give Prescription",
+                                                                                textAlign: TextAlign.center,
                                                                             style: TextStyle(
                                                                                 fontWeight: FontWeight.bold,
                                                                                 fontSize: 15,
