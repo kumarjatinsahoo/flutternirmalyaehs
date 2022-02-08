@@ -326,8 +326,8 @@ class _LoginScreenState extends State<LoginScreen> {
                              Container(),
                              InkWell(
                               onTap: () async {
-                                // Navigator.pushNamed(context, "/createUserIDScreen");
-                                FlutterPhoneDirectCaller.callNumber("7008553233");
+                                 Navigator.pushNamed(context, "/createUserIDScreen");
+                                //FlutterPhoneDirectCaller.callNumber("7008553233");
                               },
                               child: Text(
                                 'Create User ID',
@@ -575,7 +575,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 CupertinoIcons.person_alt_circle,
                                 size: 44,
                               ),
-                              title: Text(data[i].userName),
+                              title: Text(data[i]?.userName??""),
                               subtitle: Text(data[i].user),
                               onTap: () {
                                 /*  sharedPref.save(Const.LOGIN_phoneno, _loginId.text);

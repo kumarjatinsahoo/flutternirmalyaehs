@@ -37,7 +37,7 @@ import 'package:user/screens/Doctor/Dashboard/NewDashboardDoctor.dart';
 import 'package:user/screens/Doctor/Dashboard/ShareAppointment/ShareAppointment.dart';
 import 'package:user/screens/Doctor/Dashboard/Showemr/AddImmunization.dart';
 import 'package:user/screens/Doctor/Dashboard/Showemr/MobileUpload/DoctorAddUploaddocument.dart';
-import 'package:user/screens/Doctor/Dashboard/Showemr/MobileUpload/DoctorUploaddocument.dart';
+
 import 'package:user/screens/Doctor/Dashboard/WalkinPatient/QRViewExample1.dart';
 import 'package:user/screens/FindPage1.dart';
 import 'package:user/screens/Ngo/Registration/NgoSignUpForm.dart';
@@ -112,6 +112,7 @@ import 'package:user/screens/Users/Preventivehealthcare/PreventiveHealthCare.dar
 import 'package:user/screens/Users/organ/OrganCardPage.dart';
 import 'notification/MedReminder.dart';
 import 'screens/CreateUserIDScreen.dart';
+import 'screens/Doctor/Dashboard/Showemr/MobileUpload/DoctorUploaddocument.dart';
 import 'screens/PinViewUserID.dart';
 import 'screens/Syndicate Partner/Dashboard/SyndicateDashboard.dart';
 import 'screens/Syndicate Partner/Registration/Syndicatepartner.dart';
@@ -257,6 +258,7 @@ import 'localization/application.dart';
 import 'localization/initialize_i18n.dart';
 import 'localization/localizations.dart';
 import 'screens/Users/Dashboard/DashboardUserNew.dart';
+
 
 String selectedLan;
 

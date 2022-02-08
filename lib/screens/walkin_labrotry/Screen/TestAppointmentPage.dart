@@ -8,6 +8,7 @@ import 'package:intl/intl.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/KeyvalueModel.dart';
 import 'package:user/models/LabBookModel.dart';
+import 'package:user/models/LoginResponse1.dart' as login;
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/DropDown.dart';
 import 'package:user/providers/api_factory.dart';
@@ -64,11 +65,12 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
 
   static const platform = AppData.channel;
   List<Body> foundUser;
+  login.LoginResponse1 loginResponse1;
 
   @override
   void initState() {
     super.initState();
-    //loginResponse = widget.model.loginResponse1;
+    loginResponse1 = widget.model.loginResponse1;
     WidgetsBinding.instance.addObserver(this);
 
     /* ConnectionStatusSingleton connectionStatus =
@@ -97,7 +99,7 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
 
   callAPI(String today) {
     widget.model.GETMETHODCALL_TOKEN(
-        api: ApiFactory.HEALTH_SCREENING_LIST + today,
+        api: ApiFactory.HEALTH_SCREENING_LIST + today + "&labid="+loginResponse1.body.user,
         token: widget.model.token,
         fun: (Map<String, dynamic> map) {
           setState(() {
@@ -496,17 +498,17 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
                     TextInputType.number, "name", height),
                 fromFieldNew("Weight(In KG)", TextInputAction.next,
                     TextInputType.number, "name", weight),
-                Padding(
-                  padding: const EdgeInsets.only(left: 13,right: 13),
-                  child: DropDown.networkDropdownGetpartUserundreline(
-                      "PHC/Center",
-                      ApiFactory.RELATION_API,
-                      "relation3", (KeyvalueModel model) {
-                    setState(() {
-                      TestAppointmentPage.relationmodel = model;
-                    });
-                  }),
-                ),
+                // Padding(
+                //   padding: const EdgeInsets.only(left: 13,right: 13),
+                //   child: DropDown.networkDropdownGetpartUserundreline(
+                //       "PHC/Center",
+                //       ApiFactory.RELATION_API,
+                //       "relation3", (KeyvalueModel model) {
+                //     setState(() {
+                //       TestAppointmentPage.relationmodel = model;
+                //     });
+                //   }),
+                // ),
               ],
             ),
           );
@@ -541,9 +543,9 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
             } else if (double.tryParse(weight.text)>636) {
               AppData.showInSnackBar(context, "Please enter valid weight");
 
-            } else if (TestAppointmentPage.relationmodel == null ||
-                TestAppointmentPage.relationmodel == "") {
-              AppData.showInSnackBar(context, "Please select PHC/center ");
+            // } else if (TestAppointmentPage.relationmodel == null ||
+            //     TestAppointmentPage.relationmodel == "") {
+            //   AppData.showInSnackBar(context, "Please select PHC/center ");
             }else {
               String mob = (body.mob == null || body.mob == "" || body.mob == "null")
                       ? "" : body.mob;

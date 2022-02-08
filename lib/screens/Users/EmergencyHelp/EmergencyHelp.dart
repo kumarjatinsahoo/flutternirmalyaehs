@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:geocoder/geocoder.dart';
 import 'package:geocoder/model.dart';
 import 'package:geolocator/geolocator.dart';
-
+import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:geolocator/geolocator.dart' as loca;
 import 'package:lottie/lottie.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
@@ -31,7 +31,7 @@ class EmergencyHelp extends StatefulWidget {
 
 class _EmergencyHelpState extends State<EmergencyHelp> {
   GooglePlaceModel googlePlaceModel;
-
+  GooglePlacesSearchModel googlePlacesSearch;
   getGender(String gender) {
     switch (gender) {
       case "0":
@@ -270,9 +270,11 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
               if(googlePlacesSearch
                   ?.result?.formattedPhoneNumber !=
                   null)
-                AppData.launchURL("tel://" +
+                /*AppData.launchURL("tel://" +
                     googlePlacesSearch.result
-                        .formattedPhoneNumber);
+                        .formattedPhoneNumber);*/
+                FlutterPhoneDirectCaller.callNumber(googlePlacesSearch.result
+                    .formattedPhoneNumber);
               else
                 AppData.showInSnackBar(context, "Mobile no is not available");
               //log(">>>>>>>GGGGG<<<<<<<" + jsonEncode(map));
@@ -470,6 +472,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                               new Spacer(),
                               InkWell(
                                   onTap: () {
+                                    //FlutterPhoneDirectCaller.callNumber("7008553233");
                                     // Navigator.pop(context);
                                    // AppData.launchURL("tel://" + emergencyHelpModel.emergency[0].mobile);
                                   },
@@ -679,8 +682,56 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                 //               InkWell(
                 //                   onTap: () {
                 //                     // Navigator.pop(context);
-                //
+                //                     // FlutterPhoneDirectCaller.callNumber(googlePlacesSearch.result[0].);
                 //                     //AppData.launchURL("tel://" + emergencyHelpModel.ambulance);
+                //
+                //
+                //                     if(googlePlaceModel==null) {
+                //                       MyWidgets.showLoading(context);
+                //                       widget.model.GETMETHODCAL(
+                //                           api: ApiFactory
+                //                               .GOOGLE_QUERY_API(
+                //                               lati: latitude,
+                //                               longi: longitude,
+                //                               healthpro: "Ambulance"),
+                //                           fun: (
+                //                               Map<String, dynamic> map) {
+                //                             setState(() {
+                //                               //String msg = map[Const.MESSAGE];
+                //                               //if (map["status"] == "ok") {
+                //                               googlePlaceModel =
+                //                                   GooglePlaceModel
+                //                                       .fromJson(
+                //                                       map);
+                //                               Navigator.pop(context);
+                //                               if (googlePlaceModel !=
+                //                                   null &&
+                //                                   googlePlaceModel
+                //                                       .results.isNotEmpty) {
+                //                                /* showUserList1(context,
+                //                                     googlePlaceModel
+                //                                         .results);*/
+                //                                 getMobNo(googlePlaceModel.results[0].placeId);
+                //
+                //                               }
+                //                               else
+                //                                 AppData.showInSnackBar(
+                //                                     context,
+                //                                     "Data not found");
+                //                               /* } else {
+                //   isDataNotAvail = true;
+                //   AppData.showInSnackBar(context, "Google api doesn't work");
+                // }*/
+                //                             });
+                //                           });
+                //                     }else{
+                //                       if (googlePlaceModel !=
+                //                           null &&
+                //                           googlePlaceModel
+                //                               .results.isNotEmpty) {
+                //                         getMobNo(googlePlaceModel.results[0].placeId);
+                //                       }
+                //                     }
                 //                   },
                 //                   child: Text(
                 //                     MyLocalizations.of(context).text("CALL_AMBULANCE"),
@@ -712,42 +763,57 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                 //                     Container(
                 //                       width: 2,
                 //                       child: Divider(
-                //                         thickness: 21,
+                //                          thickness: 21,
                 //                         color: Color(0xFF2372B6),
                 //                       ),
                 //                     ),
                 //                     /* SizedBox(width: 100,),*/
-                //
                 //                     InkWell(
                 //                         onTap: () {
-                //                           MyWidgets.showLoading(context);
-                //                           widget.model.GETMETHODCAL(
-                //                               api: ApiFactory.GOOGLE_QUERY_API(
-                //                                   lati: latitude,
-                //                                   longi: longitude,
-                //                                   healthpro: "Ambulance"),
-                //                               fun: (Map<String, dynamic> map) {
-                //                                 setState(() {
-                //                                   //String msg = map[Const.MESSAGE];
-                //                                   //if (map["status"] == "ok") {
-                //                                   googlePlaceModel =
-                //                                       GooglePlaceModel.fromJson(
-                //                                           map);
-                //                                   Navigator.pop(context);
-                //                                   if (googlePlaceModel != null &&
-                //                                       googlePlaceModel
-                //                                           .results.isNotEmpty)
-                //                                     showUserList1(context,
-                //                                         googlePlaceModel.results);
-                //                                   else
-                //                                     AppData.showInSnackBar(
-                //                                         context, "Data not found");
-                //                                   /* } else {
+                //                           if(googlePlaceModel==null) {
+                //                             MyWidgets.showLoading(context);
+                //                             widget.model.GETMETHODCAL(
+                //                                 api: ApiFactory
+                //                                     .GOOGLE_QUERY_API(
+                //                                     lati: latitude,
+                //                                     longi: longitude,
+                //                                     healthpro: "Ambulance"),
+                //                                 fun: (
+                //                                     Map<String, dynamic> map) {
+                //                                   setState(() {
+                //                                     //String msg = map[Const.MESSAGE];
+                //                                     //if (map["status"] == "ok") {
+                //                                     googlePlaceModel =
+                //                                         GooglePlaceModel
+                //                                             .fromJson(
+                //                                             map);
+                //                                     Navigator.pop(context);
+                //                                     if (googlePlaceModel !=
+                //                                         null &&
+                //                                         googlePlaceModel
+                //                                             .results.isNotEmpty)
+                //                                       showUserList1(context,
+                //                                           googlePlaceModel
+                //                                               .results);
+                //                                     else
+                //                                       AppData.showInSnackBar(
+                //                                           context,
+                //                                           "Data not found");
+                //                                     /* } else {
                 //   isDataNotAvail = true;
                 //   AppData.showInSnackBar(context, "Google api doesn't work");
                 // }*/
+                //                                   });
                 //                                 });
-                //                               });
+                //                           }else{
+                //                             if (googlePlaceModel !=
+                //                                 null &&
+                //                                 googlePlaceModel
+                //                                     .results.isNotEmpty)
+                //                               showUserList1(context,
+                //                                   googlePlaceModel
+                //                                       .results);
+                //                           }
                 //                         },
                 //                         // Navigator.pop(context);
                 //
@@ -813,6 +879,55 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                 //                   onTap: () {
                 //                     //Navigator.pop(context);
                 //                    // AppData.launchURL("tel://" + emergencyHelpModel.police);
+                //                     //FlutterPhoneDirectCaller.callNumber("7008553233");
+                //
+                //                     if(googlePlaceModel==null) {
+                //                       MyWidgets.showLoading(context);
+                //                       widget.model.GETMETHODCAL(
+                //                           api: ApiFactory
+                //                               .GOOGLE_QUERY_API(
+                //                               lati: latitude,
+                //                               longi: longitude,
+                //                               healthpro: "Ambulance"),
+                //                           fun: (
+                //                               Map<String, dynamic> map) {
+                //                             setState(() {
+                //                               //String msg = map[Const.MESSAGE];
+                //                               //if (map["status"] == "ok") {
+                //                               googlePlaceModel =
+                //                                   GooglePlaceModel
+                //                                       .fromJson(
+                //                                       map);
+                //                               Navigator.pop(context);
+                //                               if (googlePlaceModel !=
+                //                                   null &&
+                //                                   googlePlaceModel
+                //                                       .results.isNotEmpty) {
+                //                                 /* showUserList1(context,
+                //                                     googlePlaceModel
+                //                                         .results);*/
+                //                                 getMobNo(googlePlaceModel.results[0].placeId);
+                //
+                //                               }
+                //                               else
+                //                                 AppData.showInSnackBar(
+                //                                     context,
+                //                                     "Data not found");
+                //                               /* } else {
+                //   isDataNotAvail = true;
+                //   AppData.showInSnackBar(context, "Google api doesn't work");
+                // }*/
+                //                             });
+                //                           });
+                //                     }else{
+                //                       if (googlePlaceModel !=
+                //                           null &&
+                //                           googlePlaceModel
+                //                               .results.isNotEmpty) {
+                //                         getMobNo(googlePlaceModel.results[0].placeId);
+                //                       }
+                //                     }
+                //
                 //                   },
                 //                   child: Text(
                 //                     MyLocalizations.of(context).text("CALL_POLICE"),

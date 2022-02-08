@@ -160,6 +160,7 @@ class _GenericStoresState extends State<GenericStores> {
                         }),
                       ),
                     ),
+
                     Padding(
                       padding:
                           const EdgeInsets.only(left: 0, right: 0, bottom: 0),

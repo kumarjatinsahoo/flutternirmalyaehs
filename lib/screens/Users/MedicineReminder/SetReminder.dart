@@ -687,12 +687,10 @@ class SetReminderState extends State<SetReminder> {
       AppData.showInSnackBar(context, "Please enter end time");
     } else if (stdob.text == "" || stdob.text == null) {
       AppData.showInSnackBar(context, "Please enter start date");
-    }    
-    else if (textEditingController[2].text == "" ||
+    } else if (textEditingController[2].text == "" ||
         textEditingController[2].text == null) {
       AppData.showInSnackBar(context, "Please enter days");
-    }
-     else if (int.parse(textEditingController[2].text) < 1) {
+    } else if (int.parse(textEditingController[2].text) < 1) {
       AppData.showInSnackBar(context, "Days should not be less than 1");
     }  
 

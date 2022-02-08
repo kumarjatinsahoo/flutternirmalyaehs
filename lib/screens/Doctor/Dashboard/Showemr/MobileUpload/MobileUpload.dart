@@ -176,11 +176,19 @@ class _MobileUploadState extends State<MobileUpload> {
                             child: InkWell(
                               onTap: (){
                                 widget.model.documentcategories=body.key;
-                               // Navigator.pushNamed(context, "/upload");,
+                                //Navigator.of(context).pushReplacementNamed('/doctorUploadDocument');
+                                //Navigator.of(context).pushNamed('/doctorUploadDocument');
+                                Navigator.pushNamed(Const.navigatorKey.currentContext, "/doctorUploadDocument");
+                                // Navigator.pushNamed(context, "/upload");,
+
                                //  widget.model.patientseHealthCard=widget.model.loginResponse1.body.user;
-                                Navigator.pushNamed(context,"doctorUploadDocument");/*,MaterialPageRoute(builder:
+                                /*Navigator.push(context,MaterialPageRoute(builder:
                                     (context)=>DoctorUploadDocument(model:widget.model,
-                                    ))*/
+                                    ));*/
+                              /*  Navigator.push(context, new MaterialPageRoute(
+                                    builder: (context) => new DoctorUploadDocument(model:widget.model,
+                                    )));*/
+
                               },
                               child: Row(
                                 crossAxisAlignment:

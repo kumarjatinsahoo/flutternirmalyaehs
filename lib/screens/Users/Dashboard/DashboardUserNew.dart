@@ -447,7 +447,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                           ),
                           Expanded(
                             child: Text(
-                              "Hi " + loginResponse1.body.userName ?? "N/A",
+                              "Hi " + loginResponse1?.body?.userName ?? "N/A",
                               style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 18,

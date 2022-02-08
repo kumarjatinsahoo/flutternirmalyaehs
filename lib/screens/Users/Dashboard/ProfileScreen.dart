@@ -325,6 +325,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             log("Value>>>" + jsonEncode(map));
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
+              AppData.showInSnackDone(context, msg);
             } else {
               isDataNotAvail = true;
               AppData.showInSnackBar(context, msg);
@@ -2631,12 +2632,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 formFieldPinno(
                                     12,MyLocalizations.of(context).text("PIN_CODE"), fnode13, fnode14),
                                 SizedBox(height: 20),
-                                formFieldemail(13, MyLocalizations.of(context).text("MOBILE_NO"), fnode14, fnode15),
+                                formFieldMobile(13, MyLocalizations.of(context).text("MOBILE_NO"), fnode14, fnode15),
                                 SizedBox(height: 20),
                                 formFieldemail(14, MyLocalizations.of(context).text("FNAME"), fnode15, fnode16),
                                 SizedBox(height: 20),
-                                formFieldemail(15, MyLocalizations.of(context).text("LNAME"), fnode16, fnode17),
-                                SizedBox(height: 20),
+                                /*formFieldemail(15, MyLocalizations.of(context).text("LNAME"), fnode16, fnode17),
+                                SizedBox(height: 20),*/
                                 Padding(
                                   padding: const EdgeInsets.only(
                                       left: 0, right: 5, bottom: 0),
@@ -2907,18 +2908,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     // } else if (textEditingController[11].text == "" ||
                     //     textEditingController[11].text == null) {
                     //   AppData.showInSnackBar(context, "Please enter Email");
-                    // } else if (textEditingController[12].text == "" ||
-                    //     textEditingController[12].text == null) {
-                    //   AppData.showInSnackBar(context, "Please enter PinCode");
+                     } else if (textEditingController[12].text == "" ||
+                        textEditingController[12].text == null) {
+                     AppData.showInSnackBar(context, "Please enter pin code");
+                    } else if (textEditingController[12].text != "" &&
+                        textEditingController[12].text.length <=5) {
+                      AppData.showInSnackBar(context, "Please enter 6 digit pin code");
                     } else if (textEditingController[13].text == "" ||
                         textEditingController[13].text == null) {
                       AppData.showInSnackBar(context, "Please enter mobile no");
-                    } else if (textEditingController[14].text == "" ||
+                    } else if (textEditingController[13].text != "" &&
+                        textEditingController[13].text.length <=9) {
+                      AppData.showInSnackBar(context, "Please enter 10 digit mobile no");
+                   /* } else if (textEditingController[14].text == "" ||
                         textEditingController[14].text == null) {
                       AppData.showInSnackBar(context, "Please enter first name");
                     } else if (textEditingController[15].text == "" ||
                         textEditingController[15].text == null) {
-                      AppData.showInSnackBar(context, "Please enter last name");
+                      AppData.showInSnackBar(context, "Please enter last name");*/
                     } else if (textEditingController[16].text == "" ||
                         textEditingController[16].text == null) {
                       AppData.showInSnackBar(context, "Please enter gender");
@@ -2967,8 +2974,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       updateProfileModel.email = textEditingController[11].text;
                       updateProfileModel.pincode = textEditingController[12].text;
                       updateProfileModel.mobile = textEditingController[13].text;
-                      updateProfileModel.fName = textEditingController[14].text;
-                      updateProfileModel.lName = textEditingController[15].text;
+                     /* updateProfileModel.fName = textEditingController[14].text;
+                      updateProfileModel.lName = textEditingController[15].text;*/
                       updateProfileModel.gender = ProfileScreen.gendermodel.key;
                       updateProfileModel.countryid = ProfileScreen.countrymodel.key;
                       updateProfileModel.stateid = ProfileScreen.statemodel.key;
@@ -3242,6 +3249,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ],
     );
   }
+
+
 
   Widget dob(String hint) {
     return Padding(
@@ -4393,6 +4402,57 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
+  Widget formFieldMobile(
+      int controller, String hint, FocusNode currentfn, FocusNode nextFn) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 0, right: 5),
+          child: Text(
+            hint,
+            style: TextStyle(
+                color: Colors.black,
+                fontSize: 13,
+                fontFamily: "",
+                fontWeight: FontWeight.w400),
+          ),
+        ),
+        TextFieldContainer(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: TextFormField(
+              controller: textEditingController[controller],
+              textInputAction: TextInputAction.done,
+              keyboardType: TextInputType.number,
+              focusNode: currentfn,
+              inputFormatters: [
+                WhitelistingTextInputFormatter(
+                  RegExp("[0-9]"),
+                ),
+              ],
+              maxLength: 10,
+              // Validator.getKeyboardTyp(validateModel.fieldType.toLowerCase()),
+              style: TextStyle(fontSize: 15),
+
+              decoration: InputDecoration(
+                //hintText: hint,
+                  hintStyle: TextStyle(color: Colors.grey, fontSize: 13),
+                  border: InputBorder.none,
+                  counterText: '',
+                  contentPadding:
+                  EdgeInsets.symmetric(vertical: 2, horizontal: 0)),
+              onChanged: (newValue) {},
+              onFieldSubmitted: (value) {
+                AppData.fieldFocusChange(context, currentfn, nextFn);
+              },
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
   Widget formFieldPassPortno(
       int controller, String hint, FocusNode currentfn, FocusNode nextFn) {
     return Column(
@@ -4687,13 +4747,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             child: Padding(
                               padding: const EdgeInsets.only(top:12.00,left: 8,right: 8,bottom: 10),
                               child: Text(
-                                patientProfileModel
-                                    .body.familyDetailsList[index].age,style: TextStyle(color:Colors.white),
+                                patientProfileModel?.body?.familyDetailsList[index]?.age??"",style: TextStyle(color:Colors.white),
                               ),
                             ),
                           ),
                         ),
-                        SizedBox(height: 8),
+                        SizedBox(height: 1),
                         DropDown.networkDropdownGetpartUser1(
                             "Relation",
                             ApiFactory.RELATION_API,
@@ -4748,6 +4807,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     log("Value json>>" +
                         Addfamilydetailsmodel.toJson().toString());
                     MyWidgets.showLoading(context);
+
                     widget.model.POSTMETHOD_TOKEN(
                         api: ApiFactory.UPDATE_FAMILY_CONTACT,
                         json: Addfamilydetailsmodel.toJson(),
@@ -4757,11 +4817,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
                           if (map[Const.STATUS1] == Const.SUCCESS) {
                             Navigator.pop(context);
+                            String msg = map[Const.MESSAGE];
                             // popup(context, map[Const.MESSAGE]);
                             callApi();
                             AppData.showInSnackDone(
                                 context, map[Const.MESSAGE]);
-                            Navigator.pop(context);
+                            //Navigator.pop(context);
                           } else {
                             // AppData.showInSnackBar(context, map[Const.MESSAGE]);
                           }
@@ -4802,7 +4863,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             children: [
                               Center(
                                 child: Text(
-                                  "Add Family Detail's Name",
+                                  "Add Family Details",
                                   style: TextStyle(
                                       color: Colors.black, fontSize: 20),
                                 ),
@@ -4832,7 +4893,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             ),
                           ),
                         ),
-                        SizedBox(height: 8),
+                        //SizedBox(height: 8),
                         DropDown.networkDropdownGetpartUser1(
                             "Relation",
                             ApiFactory.RELATION_API,
@@ -4895,7 +4956,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     if (ProfileScreen.relationmodel == "" ||
                         ProfileScreen.relationmodel == null) {
                       AppData.showInSnackBar(
-                          context, "Please Select Relation ");
+                          context, "Please select relation ");
                     } else {
                       AddUserFamilyDetailsModel Addfamilydetailsmodel =
                           AddUserFamilyDetailsModel();
@@ -5052,7 +5113,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
         });
   }
 
-  void emergencydetailsdisplayDialog(BuildContext context, ProfileModel patientProfileModel, int index) {
+  void emergencydetailsdisplayDialog(BuildContext context, ProfileModel patientProfileModel,
+      int index) {
     Widget cancelButton = TextButton(
       child: Text("No",style: TextStyle(color: AppData.kPrimaryRedColor)),
 
