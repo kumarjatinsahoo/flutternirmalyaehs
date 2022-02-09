@@ -351,7 +351,7 @@ void main() async {
       ));
     } else if (Platform.isAndroid) {
       var initializationSettingsAndroid = new AndroidInitializationSettings(
-        '@mipmap/ic_launcher',
+        '@drawable/logo1',
       );
       flutterLocalNotificationsPlugin.initialize(InitializationSettings(
         android: initializationSettingsAndroid,
@@ -438,36 +438,17 @@ class _MyAppState extends State<MyApp> {
                 channel.description,
                 importance: Importance.max,
                 priority: Priority.high,
-                icon: '@mipmap/ic_launcher',
+                icon: '@drawable/logo1',
                 playSound: true,
                 // sound:
               ),
             ));
-        //popup("View one",context);
-
-        // Navigator.pushNamed(context, '/emergencydetails');
-        //AppData.showInSnackBar(context, "Dataa");
       }
 
-      Navigator.pushNamed(context, '/aboutus');
-      /*else if (Platform.isIOS) {
-        flutterLocalNotificationsPlugin.show(
-            notification.hashCode,
-            notification.title,
-            notification.body,
-            NotificationDetails(
-                iOS: IOSNotificationDetails(
-              // subtitle: notification.title,
-              presentAlert: true,
-              presentSound: true,
-                  sound: "default",
-                  // badgeNumber: 1
-            )));
-      }*/
     });
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
       log('A new onMessageOpenedApp event was published!');
-      Navigator.pushNamed(context, '/aboutus');
+      Navigator.pushNamed(Const.navigatorKey.currentContext, '/aboutus');
     });
   }
 

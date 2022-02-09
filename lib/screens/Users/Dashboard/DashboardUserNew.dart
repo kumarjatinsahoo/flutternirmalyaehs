@@ -102,21 +102,11 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
     // TODO: implement initState
     super.initState();
     loginResponse1 = widget.model.loginResponse1;
-    /*setState(() {
-      dateLeft = getDateTimeFormat("2021-01-15");
-    });*/
 
     callApi();
     callNewsApi();
-    // deviceInfoo();
-    // deviceInfooo();
-    //sendDeviceInfo();
 
-    /*if(loginResponse1.body.userPic==null){
-      callProfApi();
-    }
-*/
-    /*FirebaseMessaging.instance
+    FirebaseMessaging.instance
         .getInitialMessage()
         .then((RemoteMessage message) {
       if (message != null) {
@@ -125,34 +115,12 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
     });
 
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      RemoteNotification notification = message.notification;
-      AndroidNotification android = message.notification?.android;
-      if (notification != null && android != null && !kIsWeb) {
-        flutterLocalNotificationsPlugin.show(
-            notification.hashCode,
-            notification.title,
-            notification.body,
-            NotificationDetails(
-              android: AndroidNotificationDetails(
-                channel.id,
-                channel.name,
-                channel.description,
-                // TODO add a proper drawable resource to android, for now using
-                //      one that already exists in example app.
-                icon: 'logo1',
-              ),
-            ));
-        //popup("View one",context);
-
-        Navigator.pushNamed(context, '/emergencydetails');
-        //AppData.showInSnackBar(context, "Dataa");
-      }
     });
 
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
       print('A new onMessageOpenedApp event was published!');
       Navigator.pushNamed(context, '/aboutus');
-    });*/
+    });
   }
 
   /*callProfApi() {
