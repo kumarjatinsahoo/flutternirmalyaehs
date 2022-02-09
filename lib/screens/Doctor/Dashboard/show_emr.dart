@@ -66,8 +66,8 @@ class _ShowEmr extends State<ShowEmr> {
             child: AppBar(
               backgroundColor: AppData.kPrimaryColor,
             title: Padding(
-              padding: const EdgeInsets.only(left: 60),
-              child: Text("Show EMR"),
+              padding: const EdgeInsets.only(left: 30),
+              child: Text("My Medical Record"),
             ),
             leading: InkWell(
                 onTap: (){

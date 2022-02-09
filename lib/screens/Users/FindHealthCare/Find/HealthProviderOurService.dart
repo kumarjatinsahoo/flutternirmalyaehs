@@ -128,7 +128,6 @@ class _ChemistsPageState extends State<ChemistsPage> {
       child: SingleChildScrollView(
           child: Column(
             children: [
-
               (chemistsLocationWise != null)
                   ? ListView.builder(
                 physics: NeverScrollableScrollPhysics(),
@@ -178,13 +177,14 @@ class _ChemistsPageState extends State<ChemistsPage> {
                                       child: CircleAvatar(
                                         radius: 40.0,
                                         backgroundImage: NetworkImage(
-                                            (/*"https://www.kindpng.com/picc/m/495-4952535_create-digital-profile-icon-blue-user-profile-icon.png"*/patient.image)),
+                                            (/*"https://www.kindpng.com/picc/m/495-4952535_create-digital-profile-icon-blue-user-profile-icon.png"*/
+                                                patient.image)),
                                       ),
                                     )
                                         : SizedBox(
                                       height: 85,
                                       child: Image.asset(
-                                        "assets/images/sanja.png",
+                                        "assets/images/dash.png",
                                       ),
                                     ),
                                    /* Image.asset(

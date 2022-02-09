@@ -394,6 +394,34 @@ class _MyAppointmentConfirmedState extends State<MyAppointmentConfirmed> {
                                                             SizedBox(
                                                               height: 4,
                                                             ),
+
+                                                            Text(MyLocalizations.of(context).text("TIME"),
+                                                              style: TextStyle(
+                                                                  color: Colors.blue,
+                                                                  fontWeight:
+                                                                  FontWeight.w600),
+                                                            ),
+                                                            SizedBox(
+                                                              width: 5,
+                                                            ),
+                                                            Text(
+                                                              /*'23-Nov-2020-11:30AM'*/
+                                                              appointmentlist
+                                                                  .apptime ??"N/A" +
+                                                                  appointmentlist
+                                                                      .apptime ??"N/A",
+                                                              overflow:
+                                                              TextOverflow
+                                                                  .clip,
+                                                              style: TextStyle(
+                                                                  fontWeight:
+                                                                  FontWeight.bold,
+                                                                  fontSize: 15),
+                                                            ),
+                                                            SizedBox(
+                                                              height: 4,
+                                                            ),
+
                                                             Text(MyLocalizations.of(context).text("CONSULT_TYPE"),
                                                               style: TextStyle(
                                                                   color: Colors.blue,

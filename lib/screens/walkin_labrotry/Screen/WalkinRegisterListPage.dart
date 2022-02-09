@@ -115,7 +115,6 @@ class _WalkinRegisterListPageState extends State<WalkinRegisterListPage> {
             TextStyle(color: Colors.black, fontSize: 15),
           ),
         ),
-
       ) :
 
       (regDataModel != null)
