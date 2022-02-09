@@ -22,6 +22,7 @@ import 'package:user/models/ProfileModel.dart';
 import 'package:user/models/UpdateEmergencyModel.dart';
 import 'package:user/models/UpdateProfileModel.dart';
 import 'package:user/models/UserFamilyDetailModel.dart';
+import 'package:user/providers/Aadhar.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/DropDown.dart';
 import 'package:user/providers/SharedPref.dart';
@@ -2889,9 +2890,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     //   AppData.showInSnackBar(
                     //       context, "Please enter a Passport No");
                     //   FocusScope.of(context).requestFocus(fnode5);
-                    // } else if (textEditingController[7].text == "" ||
-                    //     textEditingController[7].text == null) {
-                    //   AppData.showInSnackBar(context, "Please enter Aadhar No");
+                    } else if (textEditingController[7].text != "" && !Aadhar.validateVerhoeff(
+                        textEditingController[7].text.replaceAll("-", "").toString())) {
+                     AppData.showInSnackBar(context, "Please enter valid Aadhar No");
+
                     //   FocusScope.of(context).requestFocus(fnode6);
                     // } else if (textEditingController[8].text == "" ||
                     //     textEditingController[8].text == null) {

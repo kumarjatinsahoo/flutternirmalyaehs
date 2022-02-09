@@ -3,8 +3,8 @@ class ApiFactory {
   static String REG_DEVICE = "https://cca.medtel.in/Ziniai/manageDeviceId";
   //static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
   //static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
-  static String MAIN_URL = "http://api-demo.ehealthsystem.com/nirmalyaRest/api/";
   //static String MAIN_URL = "http://api-demo.ehealthsystem.com/nirmalyaRest/api/";
+  static String MAIN_URL = "http://api-demo.ehealthsystem.com/nirmalyaRest/api/";
   // static String MAIN_URL = "http://192.168.0.190:8062/nirmalyaRest/api/";
   //static String MAIN_URL = "http://api-demo.ehealthsystem.com/nirmalyaRest/api/";
   //static String MAIN_URL = "http://192.168.0.115:8062/nirmalyaRest/api/";
