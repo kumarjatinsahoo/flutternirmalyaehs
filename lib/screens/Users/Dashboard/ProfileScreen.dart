@@ -3876,23 +3876,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   setState(() {
                     if (textEditingController[13].text == null ||
                         textEditingController[13].text == "") {
-                      AppData.showInSnackBar(context, "Please enter Name");
+                      AppData.showInSnackBar(context, "Please enter name");
                     } else if (textEditingController[13].text != "" &&
                         textEditingController[13].text.length <= 2) {
                       AppData.showInSnackBar(
-                          context, "Please enter a valid  Name");
+                          context, "Please enter a valid  name");
                     } else if (ProfileScreen.relationmodel == "" ||
                         ProfileScreen.relationmodel == null) {
                       AppData.showInSnackBar(
-                          context, "Please Select Relation ");
+                          context, "Please select relation ");
                     } else if (textEditingController[14].text == "" ||
                         textEditingController[14].text == null) {
                       AppData.showInSnackBar(
-                          context, "Please enter Emergency Mobile No.");
+                          context, "Please enter emergency mobile no.");
                     } else if (textEditingController[14] != "" &&
                         textEditingController[14].text.length != 10) {
                       AppData.showInSnackBar(
-                          context, "Please enter valid Emergency Mobile No.");
+                          context, "Please enter valid emergency mobile no.");
                     } else {
                       UpdateEmergencyModel updateEmergencyModel =
                           UpdateEmergencyModel();

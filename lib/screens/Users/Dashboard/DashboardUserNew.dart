@@ -772,7 +772,8 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
             ),
             CarouselSlider(
               options: CarouselOptions(
-                  height: size.height * 0.3,
+                 // height: size.height * 0.3,
+                  height: 200,
                   autoPlay: true,
                   pageSnapping: true,
                   viewportFraction: 1,
@@ -1550,9 +1551,98 @@ class MyPage1Widget extends StatelessWidget {
                       ),
                     ),
                   ]),
+
               SizedBox(
                 width: 5,
               ),
+              Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _buildTilered(
+                      icon: "assets/insuranceF.png",
+                      //icon: Icons.drive_folder_upload,
+                      //icon: FontAwesomeIcons.accusoft,
+                      title: "Upload Medical Data",
+                      fun: () {
+                        //AppData.showInSnackDone(context, "Coming Soon");
+                        Navigator.pushNamed(context, "/insuranceList");
+
+                        /*  AppData.showSnack(
+                                    context, "Coming soon", Colors.green);*/
+                      },
+                      color: AppData.BG1RED,
+                      bordercolor: AppData.BG1RED,
+                      //size: (size.width - 130) / 3,
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      width: 100,
+                      height: 35,
+                      /* child: Expanded(*/
+                      child: Text(
+                        MyLocalizations.of(context).text("INSURANCE"),
+                        textAlign: TextAlign.center,
+                        //overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ]),
+
+              SizedBox(
+                width: 5,
+              ),
+              /* Expanded(*/
+              Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _buildTile1(
+                      //icon: "assets/meditate.png",
+                      icon: Icons.local_offer,
+                      //icon: FontAwesomeIcons.accusoft,
+                      title: "HELP",
+                      fun: () {
+                        //AppData.showInSnackBar(context, "Coming soon");
+                        // AppData.showSnack(
+                        //   context, "Coming soon", Colors.green);
+                        Navigator.pushNamed(context, "/emergencyHelp");
+                      },
+                      color: AppData.kPrimaryColor,
+                      bordercolor: AppData.kPrimaryColor,
+                      //size: (size.width - 130) / 3,
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      width: 100,
+                      height: 35,
+                      /* child: Expanded(*/
+                      child: Text(
+                        MyLocalizations.of(context).text("EMERGENCY_HELP"),
+                        textAlign: TextAlign.center,
+                        //overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    /*Align(
+                                        alignment: Alignment.center,
+                                        child: Expanded(
+                                          child: Text(
+                                            " Emergency Help",
+                                            style: TextStyle(color: Colors.black),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        )),*/
+                  ]),
+            ],
+          ),
+          SizedBox(height: size.height * 0.01),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+
               Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -1587,116 +1677,22 @@ class MyPage1Widget extends StatelessWidget {
               SizedBox(
                 width: 5,
               ),
-              /* Expanded(*/
-              Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    _buildTileblue(
-                      icon: "assets/AppmntF.png",
-                      fun: () {
-                        //chooseAppointment(context, model);
-                        //Navigator.pushNamed(context, "/userAppoint");
-                        Navigator.pushNamed(context, "/myAppointment");
-                        /*Navigator.pushNamed(
-                                      context, "/medipedia");*/
-                        // AppData.showSnack(
-                        //     context, "Coming soon", Colors.green);
-                      },
-                      color: AppData.BG2BLUE,
-                      bordercolor: AppData.BG2BLUE,
-                      size: (size.width - 130) / 3,
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Container(
-                      width: 100,
-                      height: 35,
-                      /* child: Expanded(*/
-                      child: Text(
-                        MyLocalizations.of(context).text("APPOINTMENT"),
-                        textAlign: TextAlign.center,
-                        //overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                    /*Align(
-                                        alignment: Alignment.center,
-                                        child: Expanded(
-                                          child: Text(
-                                            "Govternment Schemes",
-                                            style: TextStyle(color: Colors.black),
-                                            textAlign: TextAlign.center,
-                                          ),
-                                        )),*/
-                  ]),
-            ],
-          ),
-          SizedBox(height: size.height * 0.01),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    _buildTile1(
-                      //icon: "assets/meditate.png",
-                      icon: Icons.local_offer,
-                      //icon: FontAwesomeIcons.accusoft,
-                      title: "HELP",
-                      fun: () {
-                        //AppData.showInSnackBar(context, "Coming soon");
-                        // AppData.showSnack(
-                        //   context, "Coming soon", Colors.green);
-                        Navigator.pushNamed(context, "/emergencyHelp");
-                      },
-                      color: AppData.kPrimaryRedColor,
-                      bordercolor: AppData.kPrimaryRedColor,
-                      //size: (size.width - 130) / 3,
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Container(
-                      width: 100,
-                      height: 35,
-                      /* child: Expanded(*/
-                      child: Text(
-                        MyLocalizations.of(context).text("EMERGENCY_HELP"),
-                        textAlign: TextAlign.center,
-                        //overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                    /*Align(
-                                        alignment: Alignment.center,
-                                        child: Expanded(
-                                          child: Text(
-                                            " Emergency Help",
-                                            style: TextStyle(color: Colors.black),
-                                            textAlign: TextAlign.center,
-                                          ),
-                                        )),*/
-                  ]),
-              SizedBox(
-                width: 5,
-              ),
               /*Expanded(
-                              child:*/
+                      child:*/
               Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     _buildTileblue(
-                      icon: "assets/clock.png",
-                      //icon: Icons.alarm,
+                      icon: "assets/generic_medicine.png",
+                      //icon: Icons.animation,
                       //icon: FontAwesomeIcons.accusoft,
-                      title: "Medicine Reminder",
+                      title: "Generic Medical Stores",
                       fun: () {
                         //AppData.showInSnackDone(context, "Coming Soon");
-                        Navigator.pushNamed(context, "/medicinereminder");
+                        Navigator.pushNamed(context, "/geneicstores");
                         // AppData.showSnack(
-                        //     context, "Coming soon", Colors.green);
+                        //   context, "Coming soon", Colors.green);
                       },
                       color: AppData.BG2BLUE,
                       bordercolor: AppData.BG2BLUE,
@@ -1710,22 +1706,14 @@ class MyPage1Widget extends StatelessWidget {
                       height: 35,
                       /* child: Expanded(*/
                       child: Text(
-                        MyLocalizations.of(context).text("MEDICINE_REMINDER"),
+                        MyLocalizations.of(context)
+                            .text("GENERIC_MEDICAL_STORE"),
                         textAlign: TextAlign.center,
                         //overflow: TextOverflow.ellipsis,
                       ),
                     ),
-                    /*Align(
-                                        alignment: Alignment.center,
-                                        child: Expanded(
-                                          child: Text(
-                                            "Medicine Reminder",
-                                            style: TextStyle(color: Colors.black),
-                                            textAlign: TextAlign.center,
-                                          ),
-                                        )),*/
                   ]),
-              /*),*/
+
               SizedBox(
                 width: 5,
               ),
@@ -1734,14 +1722,14 @@ class MyPage1Widget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     _buildTilered(
-                      icon: "assets/blooddonationuser.png",
+                      icon: "assets/ambulance.png",
                       //icon: Icons.search,
                       //icon: FontAwesomeIcons.accusoft,
-                      title: " Order Blood ",
+                      title: "Book Ambulance",
                       fun: () {
+                        //AppData.showInSnackDone(context, "Coming Soon");
                         Navigator.pushNamed(
-                            context, "/bookBloodBanklist");
-                        // Navigator.pushNamed(context, "/healthCheckup");
+                            context, "/bookAmbulancelist");
                       },
                       color: AppData.BG1RED,
                       bordercolor: AppData.BG1RED,
@@ -1753,13 +1741,15 @@ class MyPage1Widget extends StatelessWidget {
                     Container(
                       width: 100,
                       height: 35,
-                      child: Text(MyLocalizations.of(context)
-                          .text("ORDER_BLOOD"),
+                      child: Text(
+                        MyLocalizations.of(context)
+                            .text("BOOK_AMBULANCE"),
                         textAlign: TextAlign.center,
                         //overflow: TextOverflow.ellipsis,
                       ),
                     ),
                   ]),
+
 
               /*Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -1791,8 +1781,6 @@ class MyPage1Widget extends StatelessWidget {
                     ),
 
                   ]),*/
-
-
             ],
           ),
           SizedBox(height: size.height * 0.01),
@@ -1801,6 +1789,90 @@ class MyPage1Widget extends StatelessWidget {
             children: [
               /*Expanded(
                                 child:*/
+              Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _buildTileblue(
+                      icon: "assets/govtscheme.png",
+                      //icon: Icons.home_outlined,
+                      //icon: FontAwesomeIcons.accusoft,
+                      title: "Govt Schemes",
+                      fun: () {
+                        //AppData.showInSnackDone(context, "Coming Soon");
+                        Navigator.pushNamed(context, "/govtschemes");
+                        //Navigator.pushNamed(context, "/govetschemeslist");
+                        // AppData.showSnack(
+                        //     context, "Coming soon", Colors.green);
+                      },
+                      color: AppData.BG2BLUE,
+                      bordercolor: AppData.BG2BLUE,
+                      //size: (size.width - 130) / 3,
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      width: 100,
+                      height: 35,
+                      /* child: Expanded(*/
+                      child: Text(
+                        MyLocalizations.of(context).text("GOVT_SCHEMES"),
+                        textAlign: TextAlign.center,
+                        //overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ]),
+              SizedBox(
+                width: 5,
+              ),
+              /*Expanded(*/
+
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  _buildTilered(
+                    icon: "assets/medipedia.png",
+                    fun: () {
+                      // AppData.showInSnackDone(context, "Coming Soon");
+                      Navigator.pushNamed(context, "/medipedia");
+                      // AppData.showSnack(
+                      //     context, "Coming soon", Colors.green);
+                    },
+                    color: AppData.BG1RED,
+                    bordercolor: AppData.BG1RED,
+                    size: (size.width - 130) / 3,
+                  ),
+                  SizedBox(
+                    height:5,
+                  ),
+                  Container(
+                    width: 100,
+                    height: 35,
+                    /* child: Expanded(*/
+                    child: Text(
+                      MyLocalizations.of(context).text("MEDIPEDIA"),
+                      textAlign: TextAlign.center,
+                      //overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                  /*Align(
+                                          alignment: Alignment.center,
+                                          child: Expanded(
+                                            child: Text(
+                                              "Govternment Schemes",
+                                              style: TextStyle(color: Colors.black),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          )),*/
+                ],
+              ),
+              SizedBox(
+                width: 5,
+              ),
+              /* Expanded(
+                                child: */
               Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -1842,104 +1914,27 @@ class MyPage1Widget extends StatelessWidget {
                                             ),
                                           )),*/
                   ]),
-              SizedBox(
-                width: 5,
-              ),
-              /*Expanded(*/
-              Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    _buildTilered(
-                      icon: "assets/generic_medicine.png",
-                      //icon: Icons.animation,
-                      //icon: FontAwesomeIcons.accusoft,
-                      title: "Generic Medical Stores",
-                      fun: () {
-                        //AppData.showInSnackDone(context, "Coming Soon");
-                        Navigator.pushNamed(context, "/geneicstores");
-                        // AppData.showSnack(
-                        //   context, "Coming soon", Colors.green);
-                      },
-                      color: AppData.BG1RED,
-                      bordercolor: AppData.BG1RED,
-                      //size: (size.width - 130) / 3,
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Container(
-                      width: 100,
-                      height: 35,
-                      /* child: Expanded(*/
-                      child: Text(
-                        MyLocalizations.of(context)
-                            .text("GENERIC_MEDICAL_STORE"),
-                        textAlign: TextAlign.center,
-                        //overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                  ]),
-              SizedBox(
-                width: 5,
-              ),
-              /* Expanded(
-                                child: */
-              Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    _buildTileblue(
-                      icon: "assets/govtscheme.png",
-                      //icon: Icons.home_outlined,
-                      //icon: FontAwesomeIcons.accusoft,
-                      title: "Govt Schemes",
-                      fun: () {
-                        //AppData.showInSnackDone(context, "Coming Soon");
-                        Navigator.pushNamed(context, "/govtschemes");
-                        //Navigator.pushNamed(context, "/govetschemeslist");
-                        // AppData.showSnack(
-                        //     context, "Coming soon", Colors.green);
-                      },
-                      color: AppData.BG2BLUE,
-                      bordercolor: AppData.BG2BLUE,
-                      //size: (size.width - 130) / 3,
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Container(
-                      width: 100,
-                      height: 35,
-                      /* child: Expanded(*/
-                      child: Text(
-                        MyLocalizations.of(context).text("GOVT_SCHEMES"),
-                        textAlign: TextAlign.center,
-                        //overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                  ]),
             ],
           ),
           SizedBox(height: size.height * 0.01),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
+
               Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     _buildTilered(
-                      icon: "assets/insuranceF.png",
-                      //icon: Icons.drive_folder_upload,
+                      icon: "assets/clock.png",
+                      //icon: Icons.alarm,
                       //icon: FontAwesomeIcons.accusoft,
-                      title: "Upload Medical Data",
+                      title: "Medicine Reminder",
                       fun: () {
                         //AppData.showInSnackDone(context, "Coming Soon");
-                        Navigator.pushNamed(context, "/insuranceList");
-
-                        /*  AppData.showSnack(
-                                    context, "Coming soon", Colors.green);*/
+                        Navigator.pushNamed(context, "/medicinereminder");
+                        // AppData.showSnack(
+                        //     context, "Coming soon", Colors.green);
                       },
                       color: AppData.BG1RED,
                       bordercolor: AppData.BG1RED,
@@ -1953,12 +1948,22 @@ class MyPage1Widget extends StatelessWidget {
                       height: 35,
                       /* child: Expanded(*/
                       child: Text(
-                        MyLocalizations.of(context).text("INSURANCE"),
+                        MyLocalizations.of(context).text("MEDICINE_REMINDER"),
                         textAlign: TextAlign.center,
                         //overflow: TextOverflow.ellipsis,
                       ),
                     ),
+                    /*Align(
+                                        alignment: Alignment.center,
+                                        child: Expanded(
+                                          child: Text(
+                                            "Medicine Reminder",
+                                            style: TextStyle(color: Colors.black),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        )),*/
                   ]),
+
               SizedBox(
                 width: 5,
               ),
@@ -1995,20 +2000,22 @@ class MyPage1Widget extends StatelessWidget {
                       ),
                     )
                   ]),*/
+
               Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     _buildTileblue(
-                      icon: "assets/ambulance.png",
+                      icon: "assets/blooddonationuser.png",
                       //icon: Icons.search,
                       //icon: FontAwesomeIcons.accusoft,
-                      title: "Book Ambulance",
+                      title: " Order Blood ",
                       fun: () {
-                        //AppData.showInSnackDone(context, "Coming Soon");
                         Navigator.pushNamed(
-                            context, "/bookAmbulancelist");
+                            context, "/bookBloodBanklist");
+                        // Navigator.pushNamed(context, "/healthCheckup");
                       },
+                      iconColor: AppData.kPrimaryBlueColor,
                       color: AppData.BG2BLUE,
                       bordercolor: AppData.BG2BLUE,
                       //size: (size.width - 130) / 3,
@@ -2019,9 +2026,8 @@ class MyPage1Widget extends StatelessWidget {
                     Container(
                       width: 100,
                       height: 35,
-                      child: Text(
-                        MyLocalizations.of(context)
-                            .text("BOOK_AMBULANCE"),
+                      child: Text(MyLocalizations.of(context)
+                          .text("ORDER_BLOOD"),
                         textAlign: TextAlign.center,
                         //overflow: TextOverflow.ellipsis,
                       ),
@@ -2067,45 +2073,47 @@ class MyPage1Widget extends StatelessWidget {
               /* Expanded(
                                 child: */
               Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  _buildTilered(
-                    icon: "assets/medipedia.png",
-                    fun: () {
-                      // AppData.showInSnackDone(context, "Coming Soon");
-                      Navigator.pushNamed(context, "/medipedia");
-                      // AppData.showSnack(
-                      //     context, "Coming soon", Colors.green);
-                    },
-                    color: AppData.BG1RED,
-                    bordercolor: AppData.BG1RED,
-                    size: (size.width - 130) / 3,
-                  ),
-                  SizedBox(
-                    height:5,
-                  ),
-                  Container(
-                    width: 100,
-                    height: 35,
-                    /* child: Expanded(*/
-                    child: Text(
-                      MyLocalizations.of(context).text("MEDIPEDIA"),
-                      textAlign: TextAlign.center,
-                      //overflow: TextOverflow.ellipsis,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _buildTilered(
+                      icon: "assets/AppmntF.png" ,
+                      fun: () {
+                        //chooseAppointment(context, model);
+                        //Navigator.pushNamed(context, "/userAppoint");
+                        Navigator.pushNamed(context, "/myAppointment");
+                        /*Navigator.pushNamed(
+                                      context, "/medipedia");*/
+                        // AppData.showSnack(
+                        //     context, "Coming soon", Colors.green);
+                      },
+                      color: AppData.BG1RED,
+                      bordercolor: AppData.BG1RED,
+                      size: (size.width - 130) / 3,
                     ),
-                  ),
-                  /*Align(
-                                          alignment: Alignment.center,
-                                          child: Expanded(
-                                            child: Text(
-                                              "Govternment Schemes",
-                                              style: TextStyle(color: Colors.black),
-                                              textAlign: TextAlign.center,
-                                            ),
-                                          )),*/
-                ],
-              ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      width: 100,
+                      height: 35,
+                      /* child: Expanded(*/
+                      child: Text(
+                        MyLocalizations.of(context).text("APPOINTMENT"),
+                        textAlign: TextAlign.center,
+                        //overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    /*Align(
+                                        alignment: Alignment.center,
+                                        child: Expanded(
+                                          child: Text(
+                                            "Govternment Schemes",
+                                            style: TextStyle(color: Colors.black),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        )),*/
+                  ]),
             ],
           ),
         ],
@@ -2137,6 +2145,7 @@ class MyPage1Widget extends StatelessWidget {
       String title,
       double size,
       Color bordercolor,
+      Color iconColor,
       Color color,
       Function fun}) {
     return InkWell(
@@ -2157,7 +2166,7 @@ class MyPage1Widget extends StatelessWidget {
             ),
             color: color,
             border: Border.all(
-              color: AppData.kPrimaryColor,
+              color: AppData.kPrimaryBlueColor,
               width: 1.0,
             )
             /* boxShadow: [
@@ -2180,6 +2189,7 @@ class MyPage1Widget extends StatelessWidget {
                     child: Image.asset(
                       /* "assets/logo1.png"*/
                       icon,
+                      color: iconColor??null,
                       fit: BoxFit.fitWidth,
                       width: 50,
                       height: 70.0,
@@ -2418,6 +2428,7 @@ class MyPage1Widget extends StatelessWidget {
                     /*"assets/logo1.png"*/
                     icon,
                     fit: BoxFit.fitWidth,
+                    color: AppData.kPrimaryRedColor,
                     width: 50,
                     height: 70.0,
                   ),
