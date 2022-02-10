@@ -22,6 +22,7 @@ import 'package:user/models/ProfileModel.dart';
 import 'package:user/models/UpdateEmergencyModel.dart';
 import 'package:user/models/UpdateProfileModel.dart';
 import 'package:user/models/UserFamilyDetailModel.dart';
+import 'package:user/providers/Aadhar.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/DropDown.dart';
 import 'package:user/providers/SharedPref.dart';
@@ -2889,9 +2890,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     //   AppData.showInSnackBar(
                     //       context, "Please enter a Passport No");
                     //   FocusScope.of(context).requestFocus(fnode5);
-                    // } else if (textEditingController[7].text == "" ||
-                    //     textEditingController[7].text == null) {
-                    //   AppData.showInSnackBar(context, "Please enter Aadhar No");
+                    } else if (textEditingController[7].text != ""  && (!Aadhar.validateVerhoeff(
+                        textEditingController[7].text.replaceAll("-", "").toString())|| textEditingController[7].text.length!=12)) {
+                     AppData.showInSnackBar(context, "Please enter valid aadhar no");
+
                     //   FocusScope.of(context).requestFocus(fnode6);
                     // } else if (textEditingController[8].text == "" ||
                     //     textEditingController[8].text == null) {
@@ -3986,7 +3988,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           });
                         }),
                         SizedBox(height: 8),
-                        mobileformField1(16,   MyLocalizations.of(context).text("MOBILE_NO")),
+                        mobileformField1(16,  MyLocalizations.of(context).text("MOBILE_NO")),
                       ],
                     ),
                   ),
@@ -4037,8 +4039,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       familydoctormodel.name = textEditingController[15].text;
                       familydoctormodel.mobile = textEditingController[16].text;
                       familydoctormodel.userid = widget.model.user;
-                      familydoctormodel.type =
-                          ProfileScreen.specialitymodel.key;
+                      familydoctormodel.type = ProfileScreen.specialitymodel.key;
                       log("Value json>>" +
                           familydoctormodel.toJson().toString());
                       widget.model.POSTMETHOD_TOKEN(

@@ -903,21 +903,21 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
 
                   setState(() {
                     if (_fname.text == null || _fname.text == "") {
-                      AppData.showInSnackBar(context, "Please enter Name");
+                      AppData.showInSnackBar(context, "Please enter name");
                     } else if (_fname.text != "" && _fname.text.length <= 2) {
                       AppData.showInSnackBar(
-                          context, "Please enter a valid First Name");
+                          context, "Please enter a valid name");
                     } else if (_mobile.text == "" || _mobile.text == null) {
                       AppData.showInSnackBar(
-                          context, "Please enter Emergency Contact No.");
+                          context, "Please enter emergency contact no.");
                     } else if (_mobile.text != "" &&
                         _mobile.text.length != 10) {
                       AppData.showInSnackBar(
-                          context, "Please enter valid Emergency Contact No.");
+                          context, "Please enter valid emergency contact no.");
                     } else if (SetupContactsPage.relationmodel == "" ||
                         SetupContactsPage.relationmodel == null) {
                       AppData.showInSnackBar(
-                          context, "Please Select Relation ");
+                          context, "Please select relation ");
                     } else {
                       updateEmergencyModel = UpdateEmergencyModel();
                       updateEmergencyModel.name = _fname.text;

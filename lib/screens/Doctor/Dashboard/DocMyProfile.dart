@@ -19,6 +19,7 @@ import 'package:user/models/KeyvalueModel.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/models/ProfileModel1.dart';
 import 'package:user/models/UpdateDocProfileModel.dart';
+import 'package:user/providers/Aadhar.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/DropDown.dart';
 import 'package:user/providers/api_factory.dart';
@@ -1178,14 +1179,9 @@ class _DocMyProfileState extends State<DocMyProfile> {
                     //     textEditingController[3].text == "") {
                     //   AppData.showInSnackBar(
                     //       context, "Please enter IMA No.");
-                    // } else if (textEditingController[4].text == "N/A" ||
-                    //     textEditingController[4].text == null ||
-                    //     textEditingController[4].text == "") {
-                    //   AppData.showInSnackBar(
-                    //       context, "Please enter Aadhaar No.");
-                 // }else if (textEditingController[4].text != "" &&
-                 //     textEditingController[4].text.length != 12) {
-                 //   AppData.showInSnackBar(context, "Please enter a valid adhaar no ");
+                 } else if (textEditingController[7].text != ""  && (!Aadhar.validateVerhoeff(
+                     textEditingController[7].text.replaceAll("-", "").toString())|| textEditingController[7].text.length!=12)) {
+                   AppData.showInSnackBar(context, "Please enter valid aadhar no");
                     // } else if (textEditingController[5].text == "N/A" ||
                     //     textEditingController[5].text == null ||
                     //     textEditingController[5].text == "") {
