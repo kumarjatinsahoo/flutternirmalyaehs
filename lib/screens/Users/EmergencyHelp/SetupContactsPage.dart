@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 import 'package:flutter/services.dart';
 import 'package:flutter_contacts/flutter_contacts.dart';
+import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/EmergencyHelpModel.dart';
 import 'package:user/models/EmergencyMessageModel.dart';
@@ -57,6 +58,8 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
   String value3;
   String value4;
   String value5;
+
+  List<Contact> contacts;
 
   UpdateEmergencyModel updateEmergencyModel = UpdateEmergencyModel();
   EmergencyMessageModel emergencyMessageModel = EmergencyMessageModel();
@@ -834,7 +837,7 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                             hintText: MyLocalizations.of(context).text("NAME"),
                             suffixIcon: InkWell(
                               onTap: () {
-                                Navigator.pop(context);
+                               // Navigator.pop(context);
                                 getContactDetails();
                               },
                               child: Icon(Icons.contacts),
@@ -900,21 +903,21 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
 
                   setState(() {
                     if (_fname.text == null || _fname.text == "") {
-                      AppData.showInSnackBar(context, "Please enter Name");
+                      AppData.showInSnackBar(context, "Please enter name");
                     } else if (_fname.text != "" && _fname.text.length <= 2) {
                       AppData.showInSnackBar(
-                          context, "Please enter a valid First Name");
+                          context, "Please enter a valid name");
                     } else if (_mobile.text == "" || _mobile.text == null) {
                       AppData.showInSnackBar(
-                          context, "Please enter Emergency Contact No.");
+                          context, "Please enter emergency contact no.");
                     } else if (_mobile.text != "" &&
                         _mobile.text.length != 10) {
                       AppData.showInSnackBar(
-                          context, "Please enter valid Emergency Contact No.");
+                          context, "Please enter valid emergency contact no.");
                     } else if (SetupContactsPage.relationmodel == "" ||
                         SetupContactsPage.relationmodel == null) {
                       AppData.showInSnackBar(
-                          context, "Please Select Relation ");
+                          context, "Please select relation ");
                     } else {
                       updateEmergencyModel = UpdateEmergencyModel();
                       updateEmergencyModel.name = _fname.text;
@@ -954,6 +957,11 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
   }
 
   Future<void> _displayContact(BuildContext context, List<Contact> list) async {
+    List<Contact> foundUser=[];
+    foundUser=list;
+    // List<Contact> myList;
+
+
     return showDialog(
         context: context,
         builder: (context) {
@@ -963,22 +971,63 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
             //contentPadding: EdgeInsets.symmetric(horizontal: 10),
             content: StatefulBuilder(
               builder: (BuildContext context, StateSetter setState) {
+
+                void _runFilter(String enteredKeyword) {
+                  List<Contact> results = [];
+                  if (enteredKeyword.isEmpty) {
+                    results = list;
+                  } else {
+                    results = list
+                        .where((user) => user.displayName.toLowerCase()
+                        .contains(enteredKeyword.toLowerCase()))
+                        .toList();
+                  }
+                  setState(() {
+                    foundUser = results;
+                  });
+                }
                 return Container(
                   height: 400,
                   width: double.maxFinite-50,
-                  child: ListView.builder(
-                    itemBuilder: (c, i) {
-                      return ListTile(
-                        title: Text(list[i].displayName),
-                        subtitle: Text((list[i]?.phones[0]?.number??"")),
-                        onTap: (){
-                          log("Selected Response>>>"+list[i].toString());
-                          Navigator.pop(context);
+                  child:(list!=null && list.isNotEmpty)?Column(
+
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                        child: Container(
+                          child: TextField(
+                            onChanged: (value) => _runFilter(value),
+                            decoration: InputDecoration(
+                                suffixIcon: Icon(Icons.search),
+                                hintText: "Search"),
+                          ),
+                        ),
+                      ),
+                Expanded(
+                    child:ListView.builder(
+                      shrinkWrap: true,
+                        itemBuilder: (c, i) {
+                          return ListTile(
+                            title: Text(foundUser[i].displayName),
+                            subtitle: Text((foundUser[i]?.phones[0]?.number??"")),
+                            onTap: (){
+
+                              log("Selected Response>>>"+list[i].toString());
+                              log("Selected Response>>>"+list[i]?.phones[0]?.number??"");
+                              widget.model.contMobileno=list[i]?.phones[0]?.number??"";
+                              _fname.text=foundUser[i].displayName.toString();
+                              //_mobile.text=list[i]?.phones[0]?.number.replaceAll("- ", "")??"".toString();
+                              _mobile.text=foundUser[i]?.phones[0]?.number.replaceAll(" ", "").replaceAll("-", "").replaceAll("+91", "")??"".replaceAll("+", "")??"".toString();
+                             //_mobile.text=list[i]?.phones[0]?.number.replaceAll(" ":"", "").replaceAll("-", "")??"".toString();
+                              Navigator.pop(context);
+                            },
+                          );
                         },
-                      );
-                    },
-                    itemCount: list.length,
-                  ),
+                        itemCount: foundUser.length,
+                      ),
+                ),
+                    ],
+                  ):Container(),
                 );
               },
             ),
@@ -1056,8 +1105,22 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
   void getContactDetails() async {
     if (await FlutterContacts.requestPermission()) {
       // Get all contacts (lightly fetched)
-      List<Contact> contacts = await FlutterContacts.getContacts(withProperties: true, withPhoto: true);
+      MyWidgets.showLoading(context);
+      List<Contact> contacts = await FlutterContacts.getContacts(
+          withProperties: true, withPhoto: true);
+      Navigator.pop(context);
+
       _displayContact(context, contacts);
+     /* if(contacts!=null && contacts.isNotEmpty) {
+
+          contacts = await FlutterContacts.getContacts(
+              withProperties: true, withPhoto: true);
+          setState(() {});
+          _displayContact(context, contacts);
+      }else{
+        _displayContact(context, contacts);
+      }*/
+
     }
   }
 }

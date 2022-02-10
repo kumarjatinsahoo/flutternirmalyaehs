@@ -1179,9 +1179,9 @@ class _DocMyProfileState extends State<DocMyProfile> {
                     //     textEditingController[3].text == "") {
                     //   AppData.showInSnackBar(
                     //       context, "Please enter IMA No.");
-                 } else if (textEditingController[4].text != "" && !Aadhar.validateVerhoeff(
-                     textEditingController[4].text.replaceAll("-", "").toString())) {
-                   AppData.showInSnackBar(context, "Please enter valid Aadhar No");
+                 } else if (textEditingController[7].text != ""  && (!Aadhar.validateVerhoeff(
+                     textEditingController[7].text.replaceAll("-", "").toString())|| textEditingController[7].text.length!=12)) {
+                   AppData.showInSnackBar(context, "Please enter valid aadhar no");
                     // } else if (textEditingController[5].text == "N/A" ||
                     //     textEditingController[5].text == null ||
                     //     textEditingController[5].text == "") {
