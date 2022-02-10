@@ -343,13 +343,22 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
-        title: Text(
-          MyLocalizations.of(context).text("DASHBOARD"),
-          style: TextStyle(color: Colors.white),
+        title: Row(
+          children: [
+            Text(
+              MyLocalizations.of(context).text("DASHBOARD"),
+              style: TextStyle(color: Colors.white),
+            ),
+            Spacer(),
+            Padding(
+              padding: const EdgeInsets.only(right: 15.0),
+              child: Image.asset("assets/icon/DashboardLogo.png",height: 25,width: 25,),
+            )
+          ],
         ),
-        centerTitle: true,
+       // centerTitle: true,
         titleSpacing: 5,
-        iconTheme: IconThemeData(color: Colors.white),
+        //iconTheme: IconThemeData(color: Colors.white),
         backgroundColor: AppData.kPrimaryColor,
         elevation: 0,
       ),

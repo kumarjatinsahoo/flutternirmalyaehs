@@ -116,7 +116,11 @@ flutter:
     - assets/images/
     - assets/intro/
     - assets/audio/
-    - assets/health_tips/
+    - assets/health_tips/    - assets/icon/ipsita/    - assets/icon/mobile_icon/    - assets/New folder/    - assets/icon/
+
+
+
+
 
   fonts:
 
