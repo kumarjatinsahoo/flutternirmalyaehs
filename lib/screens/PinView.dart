@@ -218,9 +218,10 @@ String formattedDate;
           children: <Widget>[
             _getVerificationCodeLabel,
             _getEmailLabel,
-            _getInputField,
+            // _getInputField,
+             _getOtpKeyboard,
             _hideResendButton ? _getTimerText : _getResendButton1(context),
-            _getOtpKeyboard
+           
           ],
         ),
         /*),*/
