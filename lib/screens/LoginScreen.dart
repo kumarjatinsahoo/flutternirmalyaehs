@@ -18,6 +18,7 @@ import 'package:user/providers/SharedPref.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
+import 'package:user/screens/OTPTextfield.dart';
 import 'package:user/screens/PinView.dart';
 import 'package:user/widgets/MyWidget.dart';
 import 'package:flutter/cupertino.dart';
@@ -849,7 +850,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (BuildContext context) => PinView(
+                        builder: (BuildContext context) => OTPTextfield(
                               masterLoginResponse: masterResponse,
                               model: widget.model,
                           token: widget.model.activitytoken,

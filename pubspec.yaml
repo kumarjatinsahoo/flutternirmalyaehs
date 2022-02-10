@@ -101,6 +101,7 @@ dependencies:
   showcaseview: ^1.1.4
   flutter_phone_direct_caller: ^2.1.0
   flutter_contacts: ^1.1.2
+  sms_autofill: ^2.2.0
 
 dev_dependencies:
   flutter_test:
