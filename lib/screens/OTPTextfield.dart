@@ -10,7 +10,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
+import 'package:otp_text_field/otp_text_field.dart';
+import 'package:otp_text_field/style.dart';
 import 'package:package_info/package_info.dart';
+import 'package:sms_autofill/sms_autofill.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/providers/Const.dart';
@@ -27,7 +30,7 @@ import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
-class PinView extends StatefulWidget {
+class OTPTextfield extends StatefulWidget {
   // final String email;
   MainModel model;
   master.MasterLoginResponse masterLoginResponse;
@@ -35,7 +38,7 @@ class PinView extends StatefulWidget {
 
   // final bool isGuestCheckOut;
 
-  PinView({
+  OTPTextfield({
     Key key,
     this.model,
     this.masterLoginResponse,
@@ -43,10 +46,10 @@ class PinView extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _PinViewState createState() => new _PinViewState();
+  _OTPTextfieldState createState() => new _OTPTextfieldState();
 }
 
-class _PinViewState extends State<PinView> with SingleTickerProviderStateMixin {
+class _OTPTextfieldState extends State<OTPTextfield> with SingleTickerProviderStateMixin {
   // Constants
   final int time = 120;
   AnimationController _controller;
@@ -54,10 +57,9 @@ class _PinViewState extends State<PinView> with SingleTickerProviderStateMixin {
   // Variables
   Size _screenSize;
   int _currentDigit;
-  int _firstDigit;
-  int _secondDigit;
-  int _thirdDigit;
   int _fourthDigit;
+
+  TextEditingController otpController  =TextEditingController();
 
   Timer timer;
   int totalTimeInSeconds;
@@ -97,8 +99,8 @@ String formattedDate;
    //LoginResponse1 loginResponse = LoginResponse1();
     // loginResponse.acceptValue(data[i]);
     //Body body = Body();
-    print("OTP IS>>>>>>>>>>>>>>>>>>>>>>" +widget.masterLoginResponse.body[0].otp );
     otpGenerateStr = widget.masterLoginResponse.body[0].otp;
+    print("OTP IS>>>>>>>>>>>>>>>>>>>>>>" +otpGenerateStr );
     masterResponse=widget.masterLoginResponse;
 
 
@@ -208,20 +210,80 @@ String formattedDate;
           Container(
             width: _screenSize.width,
             //height:_screenSize.height,
-            color: AppData.kPrimaryColor,
+            color: AppData.matruColor,
             //
             //padding: new EdgeInsets.only(bottom: 16.0),
            /* child: SingleChildScrollView(*/
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        child: ListView(
+          // mainAxisSize: MainAxisSize.max,
+          // mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
+            SizedBox(height: _screenSize.height * 0.1 ),
             _getVerificationCodeLabel,
+            SizedBox(height: _screenSize.height * 0.1 ),
             _getEmailLabel,
-            // _getInputField,
-             _getOtpKeyboard,
+            // SizedBox(height: _screenSize.height * 0.1 ),
+            // _getInputFieldNew,
+           SizedBox(height: _screenSize.height * 0.1 ),
             _hideResendButton ? _getTimerText : _getResendButton1(context),
-           
+            // Container(),
+            // _getOtpKeyboard
+            // TextFieldPinAutoFill(
+            //     currentCode: otpGenerateStr,
+            //     codeLength: 4,
+            //   ),
+              PinFieldAutoFill(
+                codeLength: 4,
+                decoration: UnderlineDecoration(
+                  textStyle: TextStyle(fontSize: 20, color: Colors.white),
+                  colorBuilder: FixedColorBuilder(Colors.white),
+                ),
+                currentCode: otpGenerateStr,
+                onCodeSubmitted: (code) {},
+                onCodeChanged: (code) {
+                  if (code.length == 4) {
+                    FocusScope.of(context).requestFocus(FocusNode());
+                  }
+                },
+              ),
+        SizedBox(height: _screenSize.height * 0.1 ),
+          _hideResendButton?  Visibility(
+                      maintainSize: true,
+                      maintainAnimation: true,
+                      maintainState: true,
+                      visible: _fourthDigit != null,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left:30.0, right: 30.0 ),
+                        child: Container(
+                          width: double.infinity,
+                          height: 42,
+                          child: RaisedButton(
+                            textColor: AppData.matruColor, 
+                            // elevation: 0,
+                            color: Colors.white,
+                            child: Text("Submit"),
+                            onPressed: () {
+                              print('otpGenerate ' + otpGenerate.toString());
+                              print('otpController.text ' + otpController.text);
+                              if (otpGenerateStr == otpController.text) {
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) =>
+                                      dialogUserView(context,widget.masterLoginResponse.body),
+                                );
+                          
+                              }else{
+                                AppData.showInSnackBar(context, "Please enter valid OTP");
+                              }
+                          
+                            },
+                            shape: new RoundedRectangleBorder(
+                              borderRadius: new BorderRadius.circular(30.0),
+                            ),
+                          ),
+                        ),
+                      )
+                  ):Container(),
           ],
         ),
         /*),*/
@@ -290,12 +352,21 @@ String formattedDate;
   // Return "OTP" input field
   get _getInputField {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        _otpTextField(_firstDigit),
-        _otpTextField(_secondDigit),
-        _otpTextField(_thirdDigit),
         _otpTextField(_fourthDigit),
+      ],
+    );
+  }
+
+   get _getInputFieldNew {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        _otpTextFieldNew(_fourthDigit),
+        // _otpTextFieldNew(_secondDigit),
+        // _otpTextFieldNew(_thirdDigit),
+        // _otpTextFieldNew(_fourthDigit),
       ],
     );
   }
@@ -352,42 +423,7 @@ String formattedDate;
   }
 
   // Returns "Resend" button
-  Widget _getResendButton(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: 10),
-      width: size.width * 0.85,
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(29),
-        child: FlatButton(
-          padding: EdgeInsets.symmetric(vertical: 20, horizontal: 40),
-          color: AppData.kPrimaryColor,
-          onPressed: () {
-            // Resend you OTP via API or anything
-            clearOtp();
-            _startCountdown();
-            //setState(()  {
-            /*if (!widget.fromLogin) {
-              setState(() {
-                otpGenerate = Math.generate();
-                postDataOtp(otpGenerate);
-              });
-            } else {
-              _login(
-                  widget.loginData.phone, widget.loginData.aadharno, context);
-            }*/
-            //
-            // });
-          },
-          child: Text(
-            MyLocalizations.of(context).text("OTP_RSND"),
-            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
-          ),
-        ),
-      ),
-    );
-  }
-
+ 
   Widget _getResendButton1(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return MyWidgets.nextButton(
@@ -411,7 +447,7 @@ String formattedDate;
                   context,
                   MaterialPageRoute(
                       builder: (BuildContext context) =>
-                          PinView(
+                          OTPTextfield(
                             loginData: loginResponse,
                             model: widget.model,
                           )),
@@ -451,159 +487,9 @@ String formattedDate;
   }
 
   // Returns "Resend" button
-  get _getVerifyButton {
-    return Container(
-      height: 50,
-      width: 200,
-      child: MaterialButton(
-          splashColor: Colors.red.withOpacity(0.5),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(50.0),
-          ),
-          color: Colors.blueAccent,
-          onPressed: () {
-
-            // You can dall OTP verification API.
-          },
-          child: Text(
-            "Verify OTP",
-            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
-          )),
-    );
-  }
+  
 
   // Returns "Otp" keyboard
-  get _getOtpKeyboard {
-    return Container(
-        height: _screenSize.width - 80,
-        child: Column(
-          children: <Widget>[
-            Expanded(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  _otpKeyboardInputButton(
-                      label: "1",
-                      onPressed: () {
-                        _setCurrentDigit(1);
-                      }),
-                  _otpKeyboardInputButton(
-                      label: "2",
-                      onPressed: () {
-                        _setCurrentDigit(2);
-                      }),
-                  _otpKeyboardInputButton(
-                      label: "3",
-                      onPressed: () {
-                        _setCurrentDigit(3);
-                      }),
-                ],
-              ),
-            ),
-            Expanded(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  _otpKeyboardInputButton(
-                      label: "4",
-                      onPressed: () {
-                        _setCurrentDigit(4);
-                      }),
-                  _otpKeyboardInputButton(
-                      label: "5",
-                      onPressed: () {
-                        _setCurrentDigit(5);
-                      }),
-                  _otpKeyboardInputButton(
-                      label: "6",
-                      onPressed: () {
-                        _setCurrentDigit(6);
-                      }),
-                ],
-              ),
-            ),
-            Expanded(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  _otpKeyboardInputButton(
-                      label: "7",
-                      onPressed: () {
-                        _setCurrentDigit(7);
-                      }),
-                  _otpKeyboardInputButton(
-                      label: "8",
-                      onPressed: () {
-                        _setCurrentDigit(8);
-                      }),
-                  _otpKeyboardInputButton(
-                      label: "9",
-                      onPressed: () {
-                        _setCurrentDigit(9);
-                      }),
-                ],
-              ),
-            ),
-            Expanded(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  Visibility(
-                      maintainSize: true,
-                      maintainAnimation: true,
-                      maintainState: true,
-                      visible: _fourthDigit != null,
-                      child: RaisedButton(
-                        textColor: AppData.matruColor,
-                        color: Colors.white,
-                        child: Text("Submit"),
-                        onPressed: () {
-                          if (otpType == otpGenerate) {
-                            showDialog(
-                              context: context,
-                              builder: (BuildContext context) =>
-                                  dialogUserView(context,widget.masterLoginResponse.body),
-                            );
-
-                          }else{
-                            AppData.showInSnackBar(context, "Please enter valid OTP");
-                          }
-
-                        },
-                        shape: new RoundedRectangleBorder(
-                          borderRadius: new BorderRadius.circular(30.0),
-                        ),
-                      )
-                  ),
-                  _otpKeyboardInputButton(
-                      label: "0",
-                      onPressed: () {
-                        _setCurrentDigit(0);
-                      }),
-                  _otpKeyboardActionButton(
-                      label: Icon(
-                        Icons.backspace,
-                        color: Colors.white,
-                      ),
-                      onPressed: () {
-                        setState(() {
-                          if (_fourthDigit != null) {
-                            _fourthDigit = null;
-                          } else if (_thirdDigit != null) {
-                            _thirdDigit = null;
-                          } else if (_secondDigit != null) {
-                            _secondDigit = null;
-                          } else if (_firstDigit != null) {
-                            _firstDigit = null;
-                          }
-                        });
-                      }),
-                ],
-              ),
-            ),
-          ],
-        ));
-  }
   Widget dialogUserView(BuildContext context, List<master.Body> data) {
     return AlertDialog(
       contentPadding: EdgeInsets.zero,
@@ -778,8 +664,28 @@ String formattedDate;
           }
         });
   }
-
-
+Widget _otpTextFieldNew(int digit) {
+return OTPTextField(
+            // controller: otpController,
+            length: 4,
+            width: MediaQuery.of(context).size.width,
+            textFieldAlignment: MainAxisAlignment.center,
+            fieldWidth: 50,
+            fieldStyle: FieldStyle.underline,
+            outlineBorderRadius: 0,
+            otpFieldStyle: OtpFieldStyle(disabledBorderColor: Colors.white,  enabledBorderColor: Colors.white),
+            style: TextStyle(fontSize: 17, color: Colors.white),
+            onChanged: (pin) {
+              print("Changed: " + pin);
+            },
+            onCompleted: (pin) {
+              print("Completed: " + pin);
+              otpController.text = pin;
+              print( otpController.text);
+              _fourthDigit = int.parse(pin);
+            });
+      
+}
 
   // Returns "Otp custom text field"
   Widget _otpTextField(int digit) {
@@ -789,8 +695,8 @@ String formattedDate;
       alignment: Alignment.center,
       decoration: BoxDecoration(
           color: Colors.white,
-          border: Border.all(color: Colors.white, width: 1),
-          borderRadius: const BorderRadius.all(Radius.circular(8))),
+          border: Border(bottom: BorderSide(width: 1.5, color: Colors.grey[300])),
+          ),
       child: Center(
           child: Text(
         digit != null ? digit.toString() : "",
@@ -851,19 +757,10 @@ String formattedDate;
   void _setCurrentDigit(int i) {
     setState(() {
       _currentDigit = i;
-      if (_firstDigit == null) {
-        _firstDigit = _currentDigit;
-      } else if (_secondDigit == null) {
-        _secondDigit = _currentDigit;
-      } else if (_thirdDigit == null) {
-        _thirdDigit = _currentDigit;
-      } else if (_fourthDigit == null) {
+        if (_fourthDigit == null) {
         _fourthDigit = _currentDigit;
 
-        var otp = _firstDigit.toString() +
-            _secondDigit.toString() +
-            _thirdDigit.toString() +
-            _fourthDigit.toString();
+        var otp =  _fourthDigit.toString();
         otpType = int.parse(otp.toString());
         otpTypeStr = otp.toString();
 
@@ -876,6 +773,7 @@ String formattedDate;
     setState(() {
       _hideResendButton = true;
       totalTimeInSeconds = time;
+      clearOtp();
     });
     _controller.reverse(
         from: _controller.value == 0.0 ? 1.0 : _controller.value);
@@ -883,10 +781,9 @@ String formattedDate;
 
   void clearOtp() {
     _fourthDigit = null;
-    _thirdDigit = null;
-    _secondDigit = null;
-    _firstDigit = null;
-    setState(() {});
+    setState(() {
+      otpController.text="";
+    });
   }
 
   // void checkValue() async {
