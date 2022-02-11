@@ -207,8 +207,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
         useShouldOverrideUrlLoading: true,
         javaScriptCanOpenWindowsAutomatically: true,
         mediaPlaybackRequiresUserGesture: false,
-        disableHorizontalScroll: true,
-        disableVerticalScroll: true,
+        disableHorizontalScroll: false,
+        disableVerticalScroll: false,
       ),
       /*crossPlatform: InAppWebViewOptions(
        //useShouldOverrideUrlLoading: true,
@@ -2499,42 +2499,42 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget rowValue4() {
 
     return (patientProfileModel != null)?Container(
-      width: MediaQuery.of(context).size.width,
-      child: SizedBox(
-        // width: MediaQuery.of(context).size.height,
-        child: InAppWebView(
-          initialUrlRequest: URLRequest(
-              url: Uri.parse('https://ehealthsystem.com/download-ehealthcard?userid='+id)),
-          initialOptions: _options,
-          shouldOverrideUrlLoading: (controller, action) {
-            print("override");
-            return Future.value(NavigationActionPolicy.ALLOW);
-          },
-          onWebViewCreated: (webViewController) {
-            _controller1.complete(webViewController);
-          },
-          onDownloadStart: (controller, uri) {
-            print("download");
-          },
-        ),
+    width: MediaQuery.of(context).size.width,
+    child: SizedBox(
+      // width: MediaQuery.of(context).size.height,
+      child: InAppWebView(
+    initialUrlRequest: URLRequest(
+        url: Uri.parse('https://ehealthsystem.com/download-ehealthcard?userid='+id)),
+    initialOptions: _options,
+    shouldOverrideUrlLoading: (controller, action) {
+      print("override");
+      return Future.value(NavigationActionPolicy.ALLOW);
+    },
+    onWebViewCreated: (webViewController) {
+      _controller1.complete(webViewController);
+    },
+    onDownloadStart: (controller, uri) {
+      print("download");
+    },
       ),
+    ),
     ): Center(
-        child: Column(
-            children: [
-              //width: MediaQuery.of(context).size.width * 0.9,
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.15,
-              ),
+      child: Column(
+      children: [
+        //width: MediaQuery.of(context).size.width * 0.9,
+        SizedBox(
+          height: MediaQuery.of(context).size.height * 0.15,
+        ),
 
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                child: Text(
-                  "No data found",
-                  style: TextStyle(color: Colors.black, fontSize: 18),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ])
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          child: Text(
+            "No data found",
+            style: TextStyle(color: Colors.black, fontSize: 18),
+            textAlign: TextAlign.center,
+          ),
+        ),
+      ])
     );
   }
 
