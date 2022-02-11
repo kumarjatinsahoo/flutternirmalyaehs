@@ -6,6 +6,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_contacts/flutter_contacts.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
@@ -13,6 +14,7 @@ import 'package:intl/intl.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/AddUserFamilyDetailsModel.dart';
+import 'package:user/models/EmergencyMessageModel.dart';
 import 'package:user/models/FamilyDoctorModel.dart';
 import 'package:user/models/KeyvalueModel.dart';
 import 'package:user/models/LoginResponse1.dart';
@@ -78,7 +80,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   bool familydetailsadd = true;
   bool isdata = false;
   bool _inProcess = false;
-
+  EmergencyMessageModel emergencyMessageModel = EmergencyMessageModel();
   final df = new DateFormat('dd/MM/yyyy');
   DateTime selectedDate = DateTime.now();
 
@@ -138,7 +140,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     new TextEditingController(),
     new TextEditingController(),
   ];
-
+  TextEditingController _message = TextEditingController();
   List<bool> error = [false, false, false, false, false, false];
 
   FocusNode fnode1 = new FocusNode();
@@ -401,7 +403,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
               ),
             ),
-            Align(
+            /*Align(
               alignment: Alignment.topRight,
               child: InkWell(
                 onTap: () {
@@ -415,7 +417,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                 ),
               ),
-            ),
+            ),*/
             Align(
               alignment: Alignment.topLeft,
               child: InkWell(
@@ -3832,6 +3834,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           height: 15,
                         ),
                         formField1(13, "Name"),
+                        SizedBox(height: 8),
+                        mobileformField1(14, "Mobile No"),
                         SizedBox(height: 1),
                         DropDown.networkDropdownGetpartUser1(
                             "Relation",
@@ -3845,8 +3849,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             ProfileScreen.relationmodel = data.key;
                           });
                         }),
-                        SizedBox(height: 8),
-                        mobileformField1(14, "Mobile No"),
+
                       ],
                     ),
                   ),
@@ -4356,6 +4359,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
             /* prefixIcon:
             Icon(Icons.person_rounded),*/
             hintStyle: TextStyle(color: AppData.hintColor),
+              suffixIcon: InkWell(
+                onTap: () {
+                  // Navigator.pop(context);
+                  getContactDetails();
+                },
+                child: Icon(Icons.contacts),
+              )
           ),
           textInputAction: TextInputAction.next,
           keyboardType: TextInputType.text,
@@ -4368,6 +4378,154 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
       ),
     );
+  }
+  void getContactDetails() async {
+    if (await FlutterContacts.requestPermission()) {
+      // Get all contacts (lightly fetched)
+      MyWidgets.showLoading(context);
+      List<Contact> contacts = await FlutterContacts.getContacts(
+          withProperties: true, withPhoto: true);
+      Navigator.pop(context);
+
+      _displayContact(context, contacts);
+      /* if(contacts!=null && contacts.isNotEmpty) {
+
+          contacts = await FlutterContacts.getContacts(
+              withProperties: true, withPhoto: true);
+          setState(() {});
+          _displayContact(context, contacts);
+      }else{
+        _displayContact(context, contacts);
+      }*/
+
+    }
+  }
+  Future<void> _displayContact(BuildContext context, List<Contact> list) async {
+    List<Contact> foundUser=[];
+    foundUser=list;
+    // List<Contact> myList;
+
+
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            // title: Text('TextField in Dialog'),
+            insetPadding: EdgeInsets.symmetric(horizontal: 3),
+            //contentPadding: EdgeInsets.symmetric(horizontal: 10),
+            content: StatefulBuilder(
+              builder: (BuildContext context, StateSetter setState) {
+
+                void _runFilter(String enteredKeyword) {
+                  List<Contact> results = [];
+                  if (enteredKeyword.isEmpty) {
+                    results = list;
+                  } else {
+                    results = list
+                        .where((user) => user.displayName.toLowerCase()
+                        .contains(enteredKeyword.toLowerCase()))
+                        .toList();
+                  }
+                  setState(() {
+                    foundUser = results;
+                  });
+                }
+                return Container(
+                  height: 400,
+                  width: double.maxFinite-50,
+                  child:(list!=null && list.isNotEmpty)?Column(
+
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                        child: Container(
+                          child: TextField(
+                            onChanged: (value) => _runFilter(value),
+                            decoration: InputDecoration(
+                                suffixIcon: Icon(Icons.search),
+                                hintText: "Search"),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child:ListView.builder(
+                          shrinkWrap: true,
+                          itemBuilder: (c, i) {
+                            return ListTile(
+                              title: Text(foundUser[i].displayName),
+                              subtitle: Text((foundUser[i]?.phones[0]?.number??"")),
+                              onTap: (){
+
+                                log("Selected Response>>>"+list[i].toString());
+                                log("Selected Response>>>"+list[i]?.phones[0]?.number??"");
+                                widget.model.contMobileno=list[i]?.phones[0]?.number??"";
+                                textEditingController[13].text=foundUser[i].displayName.toString();
+                                //_mobile.text=list[i]?.phones[0]?.number.replaceAll("- ", "")??"".toString();
+                                textEditingController[14].text=foundUser[i]?.phones[0]?.number.replaceAll(" ", "").replaceAll("-", "").replaceAll("+91", "")??"".replaceAll("+", "")??"".toString();
+                                //_mobile.text=list[i]?.phones[0]?.number.replaceAll(" ":"", "").replaceAll("-", "")??"".toString();
+                                Navigator.pop(context);
+                              },
+                            );
+                          },
+                          itemCount: foundUser.length,
+                        ),
+                      ),
+                    ],
+                  ):Container(),
+                );
+              },
+            ),
+            actions: <Widget>[
+              FlatButton(
+                textColor: Colors.grey,
+                child: Text('CANCEL',
+                    style: TextStyle(color: AppData.kPrimaryRedColor)),
+                onPressed: () {
+                  setState(() {
+                    Navigator.pop(context);
+                  });
+                },
+              ),
+              FlatButton(
+                //textColor: Colors.grey,
+                child: Text(
+                  'SUBMIT',
+                  //style: TextStyle(color: Colors.grey),
+                  style: TextStyle(color: AppData.matruColor),
+                ),
+                onPressed: () {
+                  //AppData.showInSnackBar(context, "click");
+                  setState(() {
+                    emergencyMessageModel = EmergencyMessageModel();
+                    emergencyMessageModel.msg = _message.text;
+                    emergencyMessageModel.userid = widget.model.user;
+
+                    print("Value json>>" +
+                        emergencyMessageModel.toJson().toString());
+                    widget.model.POSTMETHOD_TOKEN(
+                        api: ApiFactory.POST_EMERGENCY_MESSAGE,
+                        json: emergencyMessageModel.toJson(),
+                        token: widget.model.token,
+                        fun: (Map<String, dynamic> map) {
+                          //Navigator.pop(context);
+                          if (map[Const.STATUS1] == Const.SUCCESS) {
+                            // popup(context, map[Const.MESSAGE]);
+                            Navigator.pop(context);
+                            callApi();
+                            AppData.showInSnackDone(
+                                context, map[Const.MESSAGE]);
+                          } else {
+                            // AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                          }
+                        });
+                    /*codeDialog = valueText;
+                    Navigator.pop(context);*/
+                  });
+                },
+              ),
+            ],
+          );
+        });
   }
   Widget nextButton() {
     return GestureDetector(

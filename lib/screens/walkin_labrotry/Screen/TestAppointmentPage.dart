@@ -72,7 +72,6 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
     super.initState();
     loginResponse1 = widget.model.loginResponse1;
     WidgetsBinding.instance.addObserver(this);
-
     /* ConnectionStatusSingleton connectionStatus =
     ConnectionStatusSingleton.getInstance();
     _connectionChangeStream =
@@ -89,7 +88,6 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
   }
 
   bool isDataNotAvail = false;
-
   Future<void> _callLabApp(String data) async {
     try {
       print("<<>>>>>iLab>>>>>>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" + data);

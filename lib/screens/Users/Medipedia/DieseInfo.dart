@@ -226,7 +226,6 @@ class _DieseInfoState extends State<DieseInfo> {
                   SizedBox(
                     height: 8,
                   ),
-
                   (dieseinfoModel != null &&
                       dieseinfoModel.body != null &&
                       dieseinfoModel.body.length > 0)
