@@ -344,20 +344,89 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
-        title: Row(
+        /* title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
+            *//*Text(
               MyLocalizations.of(context).text("DASHBOARD"),
               style: TextStyle(color: Colors.white),
+            ),*//*
+            //assets/images/User5.png
+            //assets/images/user.png
+            Image.asset("assets/images/User5.png",height: 50,width: 40,),
+            InkWell(
+              onTap: (){
+                Navigator.pushNamed(context, "/profile");
+              },
+              child: Text(
+                "Hi, " + loginResponse1?.body?.userName ?? "N/A",
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w500),
+              ),
             ),
-            Spacer(),
-            Padding(
-              padding: const EdgeInsets.only(right: 15.0),
-              child: Image.asset("assets/icon/DashboardLogo.png",height: 25,width: 25,),
+            //SizedBox(width: 40),
+            Row(
+              children: [
+                *//*Text(
+                  "Hi, " + loginResponse1?.body?.userName ?? "N/A",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500),
+                ),
+                SizedBox(width: 20),*//*
+                //Spacer(),
+                InkWell(onTap: (){
+                  Navigator.pushNamed(context, "/medicinereminder");
+                },
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 15.0),
+                    child: Image.asset("assets/clock.png",height: 30,width: 30,color: Colors.white,),
+                  ),
+                ),
+              ],
+            )
+          ],
+        ),*/
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ClipRRect(borderRadius: BorderRadius.all(Radius.circular(20)),
+                child: Image.asset("assets/images/Dashboardimg5.png",
+                  width: 30,height: 30,)),
+            SizedBox(width: 10,),
+            Expanded(
+              child: InkWell(
+                onTap: (){
+                  Navigator.pushNamed(context,"/profile" );
+                },
+                child: Text(
+                  "Hi, " + loginResponse1?.body?.userName ?? "N/A",
+                  // "Hi, Suvam",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
             )
           ],
         ),
-       // centerTitle: true,
+       actions: [
+         InkWell(onTap: (){
+           Navigator.pushNamed(context, "/medicinereminder");
+         },
+           child: Padding(
+             padding: const EdgeInsets.only(right: 15.0),
+             child: Image.asset("assets/clock.png",height: 30,width: 30,color: Colors.white,),
+           ),
+         ),
+       ],
+       centerTitle: true,
         titleSpacing: 5,
         //iconTheme: IconThemeData(color: Colors.white),
         backgroundColor: AppData.kPrimaryColor,
@@ -372,7 +441,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
               Stack(
                 children: [
                   Container(
-                    // height: 120,
+                    height: 150,
                     color: AppData.kPrimaryColor,
                     width: double.infinity,
                     child: Padding(
@@ -399,7 +468,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                 )),
                           ),*/
                           CircleAvatar(
-                            radius: 35,
+                            radius: 25,
                             foregroundColor: Colors.white,
                             backgroundColor: Colors.white,
                             child:
@@ -407,25 +476,26 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                     loginResponse1?.body?.userPic != "")
                                 ? */
                                 Image.asset(
-                              'assets/images/user.png',
-                              height: size.height * 0.07,
-                              width: size.width * 0.13,
+                                  "assets/images/user.png",
+                             // 'assets/images/Dashboardprofile.png',
+                              height: size.height * 0.05,
+                              width: size.width * 0.10,
                               //fit: BoxFit.cover,
-                            )
+                            ),
                             /*: Image.network(
                                     loginResponse1.body.userPic,
                                     height: size.height * 0.07,
                                     width: size.width * 0.13,
                                     //fit: BoxFit.cover,
                                   )*/
-                            ,
+
                           ),
                           SizedBox(
                             width: 20,
                           ),
                           Expanded(
                             child: Text(
-                              "Hi " + loginResponse1?.body?.userName ?? "N/A",
+                              "Hi, " + loginResponse1?.body?.userName ?? "N/A",
                               style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 18,
@@ -438,6 +508,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                   ),
                   Positioned(
                     right: 0,
+                    top: 10,
                     child: Container(
                       width: size.width,
                       height: 60,
@@ -1803,218 +1874,6 @@ class MyPage1Widget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     _buildTileblue(
-                      icon: "assets/govtscheme.png",
-                      //icon: Icons.home_outlined,
-                      //icon: FontAwesomeIcons.accusoft,
-                      title: "Govt Schemes",
-                      fun: () {
-                        //AppData.showInSnackDone(context, "Coming Soon");
-                        Navigator.pushNamed(context, "/govtschemes");
-                        //Navigator.pushNamed(context, "/govetschemeslist");
-                        // AppData.showSnack(
-                        //     context, "Coming soon", Colors.green);
-                      },
-                      color: AppData.BG2BLUE,
-                      bordercolor: AppData.BG2BLUE,
-                      //size: (size.width - 130) / 3,
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Container(
-                      width: 100,
-                      height: 35,
-                      /* child: Expanded(*/
-                      child: Text(
-                        MyLocalizations.of(context).text("GOVT_SCHEMES"),
-                        textAlign: TextAlign.center,
-                        //overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                  ]),
-              SizedBox(
-                width: 5,
-              ),
-              /*Expanded(*/
-
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  _buildTilered(
-                    icon: "assets/medipedia.png",
-                    fun: () {
-                      // AppData.showInSnackDone(context, "Coming Soon");
-                      Navigator.pushNamed(context, "/medipedia");
-                      // AppData.showSnack(
-                      //     context, "Coming soon", Colors.green);
-                    },
-                    color: AppData.BG1RED,
-                    bordercolor: AppData.BG1RED,
-                    size: (size.width - 130) / 3,
-                  ),
-                  SizedBox(
-                    height:5,
-                  ),
-                  Container(
-                    width: 100,
-                    height: 35,
-                    /* child: Expanded(*/
-                    child: Text(
-                      MyLocalizations.of(context).text("MEDIPEDIA"),
-                      textAlign: TextAlign.center,
-                      //overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
-                  /*Align(
-                                          alignment: Alignment.center,
-                                          child: Expanded(
-                                            child: Text(
-                                              "Govternment Schemes",
-                                              style: TextStyle(color: Colors.black),
-                                              textAlign: TextAlign.center,
-                                            ),
-                                          )),*/
-                ],
-              ),
-              SizedBox(
-                width: 5,
-              ),
-              /* Expanded(
-                                child: */
-              Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    _buildTileblue(
-                      icon: "assets/organ_donner.png",
-                      //icon: Icons.wc_rounded,
-                      //icon: FontAwesomeIcons.accusoft,
-                      title: "Organ  Donation",
-                      fun: () {
-                        Navigator.pushNamed(context, "/organdonation");
-                        // AppData.showSnack(
-                        //     context, "Coming soon", Colors.green);
-                      },
-                      color: AppData.BG2BLUE,
-                      bordercolor: AppData.BG2BLUE,
-                      size: (size.width - 130) / 3,
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Container(
-                      width: 100,
-                      height: 35,
-                      /* child: Expanded(*/
-                      child: Text(
-                        MyLocalizations.of(context).text("ORGAN_DONATION"),
-                        textAlign: TextAlign.center,
-                        //overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                    /* Align(
-                                          alignment: Alignment.center,
-                                          child: Expanded(
-                                            child: Text(
-                                              "Organ     Donation",
-                                              style: TextStyle(color: Colors.black),
-                                              textAlign: TextAlign.center,
-                                            ),
-                                          )),*/
-                  ]),
-            ],
-          ),
-          SizedBox(height: size.height * 0.01),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-
-              Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    _buildTilered(
-                      icon: "assets/clock.png",
-                      //icon: Icons.alarm,
-                      //icon: FontAwesomeIcons.accusoft,
-                      title: "Medicine Reminder",
-                      fun: () {
-                        //AppData.showInSnackDone(context, "Coming Soon");
-                        Navigator.pushNamed(context, "/medicinereminder");
-                        // AppData.showSnack(
-                        //     context, "Coming soon", Colors.green);
-                      },
-                      color: AppData.BG1RED,
-                      bordercolor: AppData.BG1RED,
-                      //size: (size.width - 130) / 3,
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Container(
-                      width: 100,
-                      height: 35,
-                      /* child: Expanded(*/
-                      child: Text(
-                        MyLocalizations.of(context).text("MEDICINE_REMINDER"),
-                        textAlign: TextAlign.center,
-                        //overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                    /*Align(
-                                        alignment: Alignment.center,
-                                        child: Expanded(
-                                          child: Text(
-                                            "Medicine Reminder",
-                                            style: TextStyle(color: Colors.black),
-                                            textAlign: TextAlign.center,
-                                          ),
-                                        )),*/
-                  ]),
-
-              SizedBox(
-                width: 5,
-              ),
-
-             /* Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    _buildTileblue(
-                      icon: "assets/health-careF.png",
-                      fun: () {
-                        //AppData.showInSnackDone(context, "Coming Soon");
-                        Navigator.pushNamed(context, "/preventivehealthcare");
-                        // AppData.showSnack(
-                        //   context, "Coming soon", Colors.green);
-                      },
-                      color: AppData.BG2BLUE,
-                      bordercolor: AppData.BG2BLUE,
-                      //size: (size.width - 130) / 3,
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Container(
-                      width: 100,
-                      height: 35,
-                      child: Expanded(
-                        child: Text(
-                          MyLocalizations.of(context)
-                              .text("PREVENTIVE_HEALTHCARE"),
-                          textAlign: TextAlign.center,
-                          //overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                    )
-                  ]),*/
-
-              Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    _buildTileblue(
                       icon: "assets/blooddonationuser.png",
                       //icon: Icons.search,
                       //icon: FontAwesomeIcons.accusoft,
@@ -2042,45 +1901,11 @@ class MyPage1Widget extends StatelessWidget {
                       ),
                     ),
                   ]),
- /*
-              Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    _buildTileblue(
-                      icon: "assets/health-careF.png",
-                      fun: () {
-                        //AppData.showInSnackDone(context, "Coming Soon");
-                        Navigator.pushNamed(context, "/vdo");
-                        // AppData.showSnack(
-                        //   context, "Coming soon", Colors.green);
-                      },
-                      color: AppData.BG2BLUE,
-                      bordercolor: AppData.BG2BLUE,
-                      //size: (size.width - 130) / 3,
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Container(
-                      width: 100,
-                      height: 35,
-                       child: Expanded(
-                      child: Text(
-                        MyLocalizations.of(context)
-                            .text("PREVENTIVE_HEALTHCARE"),
-                        textAlign: TextAlign.center,
-                        //overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                    )
-                  ]),
-*/
               SizedBox(
                 width: 5,
               ),
-              /* Expanded(
-                                child: */
+              /*Expanded(*/
+
               Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -2123,6 +1948,257 @@ class MyPage1Widget extends StatelessWidget {
                                           ),
                                         )),*/
                   ]),
+              SizedBox(
+                width: 5,
+              ),
+              /* Expanded(
+                                child: */
+              Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _buildTileblue(
+                      icon: "assets/clock.png",
+                      //icon: Icons.alarm,
+                      //icon: FontAwesomeIcons.accusoft,
+                      title: "Medicine Reminder",
+                      fun: () {
+                        //AppData.showInSnackDone(context, "Coming Soon");
+                        Navigator.pushNamed(context, "/medicinereminder");
+                        // AppData.showSnack(
+                        //     context, "Coming soon", Colors.green);
+                      },
+                      color: AppData.BG2BLUE,
+                      bordercolor: AppData.BG2BLUE,
+                      //size: (size.width - 130) / 3,
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      width: 100,
+                      height: 35,
+                      /* child: Expanded(*/
+                      child: Text(
+                        MyLocalizations.of(context).text("MEDICINE_REMINDER"),
+                        textAlign: TextAlign.center,
+                        //overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    /*Align(
+                                        alignment: Alignment.center,
+                                        child: Expanded(
+                                          child: Text(
+                                            "Medicine Reminder",
+                                            style: TextStyle(color: Colors.black),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        )),*/
+                  ]),
+            ],
+          ),
+          SizedBox(height: size.height * 0.01),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+
+              Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _buildTilered(
+                      icon: "assets/organ_donner.png",
+                      //icon: Icons.wc_rounded,
+                      //icon: FontAwesomeIcons.accusoft,
+                      title: "Organ  Donation",
+                      fun: () {
+                        Navigator.pushNamed(context, "/organdonation");
+                        // AppData.showSnack(
+                        //     context, "Coming soon", Colors.green);
+                      },
+                      color: AppData.BG1RED,
+                      bordercolor: AppData.BG1RED,
+                      size: (size.width - 130) / 3,
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      width: 100,
+                      height: 35,
+                      /* child: Expanded(*/
+                      child: Text(
+                        MyLocalizations.of(context).text("ORGAN_DONATION"),
+                        textAlign: TextAlign.center,
+                        //overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    /* Align(
+                                          alignment: Alignment.center,
+                                          child: Expanded(
+                                            child: Text(
+                                              "Organ     Donation",
+                                              style: TextStyle(color: Colors.black),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          )),*/
+                  ]),
+
+              SizedBox(
+                width: 5,
+              ),
+
+             /* Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _buildTileblue(
+                      icon: "assets/health-careF.png",
+                      fun: () {
+                        //AppData.showInSnackDone(context, "Coming Soon");
+                        Navigator.pushNamed(context, "/preventivehealthcare");
+                        // AppData.showSnack(
+                        //   context, "Coming soon", Colors.green);
+                      },
+                      color: AppData.BG2BLUE,
+                      bordercolor: AppData.BG2BLUE,
+                      //size: (size.width - 130) / 3,
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      width: 100,
+                      height: 35,
+                      child: Expanded(
+                        child: Text(
+                          MyLocalizations.of(context)
+                              .text("PREVENTIVE_HEALTHCARE"),
+                          textAlign: TextAlign.center,
+                          //overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    )
+                  ]),*/
+
+
+              Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _buildTileblue(
+                      icon: "assets/govtscheme.png",
+                      //icon: Icons.home_outlined,
+                      //icon: FontAwesomeIcons.accusoft,
+                      title: "Govt Schemes",
+                      fun: () {
+                        //AppData.showInSnackDone(context, "Coming Soon");
+                        Navigator.pushNamed(context, "/govtschemes");
+                        //Navigator.pushNamed(context, "/govetschemeslist");
+                        // AppData.showSnack(
+                        //     context, "Coming soon", Colors.green);
+                      },
+                      color: AppData.BG2BLUE,
+                      bordercolor: AppData.BG2BLUE,
+                      //size: (size.width - 130) / 3,
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      width: 100,
+                      height: 35,
+                      /* child: Expanded(*/
+                      child: Text(
+                        MyLocalizations.of(context).text("GOVT_SCHEMES"),
+                        textAlign: TextAlign.center,
+                        //overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ]),
+
+
+ /*
+              Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _buildTileblue(
+                      icon: "assets/health-careF.png",
+                      fun: () {
+                        //AppData.showInSnackDone(context, "Coming Soon");
+                        Navigator.pushNamed(context, "/vdo");
+                        // AppData.showSnack(
+                        //   context, "Coming soon", Colors.green);
+                      },
+                      color: AppData.BG2BLUE,
+                      bordercolor: AppData.BG2BLUE,
+                      //size: (size.width - 130) / 3,
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      width: 100,
+                      height: 35,
+                       child: Expanded(
+                      child: Text(
+                        MyLocalizations.of(context)
+                            .text("PREVENTIVE_HEALTHCARE"),
+                        textAlign: TextAlign.center,
+                        //overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    )
+                  ]),
+*/
+              SizedBox(
+                width: 5,
+              ),
+              /* Expanded(
+                                child: */
+
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  _buildTilered(
+                    icon: "assets/medipedia.png",
+                    fun: () {
+                      // AppData.showInSnackDone(context, "Coming Soon");
+                      Navigator.pushNamed(context, "/medipedia");
+                      // AppData.showSnack(
+                      //     context, "Coming soon", Colors.green);
+                    },
+                    color: AppData.BG1RED,
+                    bordercolor: AppData.BG1RED,
+                    size: (size.width - 130) / 3,
+                  ),
+                  SizedBox(
+                    height:5,
+                  ),
+                  Container(
+                    width: 100,
+                    height: 35,
+                    /* child: Expanded(*/
+                    child: Text(
+                      MyLocalizations.of(context).text("MEDIPEDIA"),
+                      textAlign: TextAlign.center,
+                      //overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                  /*Align(
+                                          alignment: Alignment.center,
+                                          child: Expanded(
+                                            child: Text(
+                                              "Govternment Schemes",
+                                              style: TextStyle(color: Colors.black),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          )),*/
+                ],
+              ),
+
             ],
           ),
         ],
@@ -2299,8 +2375,8 @@ Widget _buildTilePremium(
             ),
             color: color,
             border: Border.all(
-              color: AppData.kPrimaryBlueColor,
-              width: 1.0,
+              color: Colors.amber,
+              width: 2.5,
             )
             /* boxShadow: [
             BoxShadow(
@@ -2435,8 +2511,9 @@ Widget _buildTilePremium(
             ),
             color: color,
             border: Border.all(
-              color: AppData.kPrimaryRedColor,
-              width: 1.0,
+              //color: AppData.kPrimaryRedColor,
+              color: Colors.amber,
+              width: 2.5,
             )
           /* boxShadow: [
             BoxShadow(

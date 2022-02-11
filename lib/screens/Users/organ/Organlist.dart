@@ -86,7 +86,7 @@ class _OrganlistState extends State<Organlist> {
               Align(
                 alignment: Alignment.topRight,
                 child: Padding(
-                  padding: const EdgeInsets.only(right: 50.0),
+                  padding: const EdgeInsets.only(right: 20.0),
                   child: InkWell(
                     onTap: () {
                       Navigator.pushNamed(context, "/organPriviewPage");
@@ -95,7 +95,7 @@ class _OrganlistState extends State<Organlist> {
                   ),
                 ),
               ),
-              Align(
+              /*Align(
                 alignment: Alignment.topRight,
                 child: Padding(
                   padding: const EdgeInsets.only(right: 5.0),
@@ -106,7 +106,7 @@ class _OrganlistState extends State<Organlist> {
                     child: Text("Card",style: TextStyle(fontSize: 15.0)),
                   ),
                 ),
-              ),
+              ),*/
               /*Align(
                 alignment: Alignment.topRight,
                 child: InkWell(

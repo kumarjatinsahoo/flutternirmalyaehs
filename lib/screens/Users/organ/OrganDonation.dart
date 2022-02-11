@@ -36,7 +36,7 @@ class _OrganDonationState extends State<OrganDonation> {
           style: TextStyle(
               fontSize: 20, color: Colors.white),
         ),
-          actions: <Widget>[
+          /*actions: <Widget>[
             Padding(
               padding: EdgeInsets.only(right: 20.0),
               child: InkWell(
@@ -54,7 +54,7 @@ class _OrganDonationState extends State<OrganDonation> {
                   style:TextStyle(fontSize:20,color: Colors.white,fontWeight: FontWeight.bold),)),
               ),
             ),
-          ]
+          ]*/
       ),
       body: Container(
         height: double.maxFinite,
@@ -62,7 +62,7 @@ class _OrganDonationState extends State<OrganDonation> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              SizedBox(height: 40,),
+              SizedBox(height: 25),
               Row(
                 children: [
                   Expanded(
@@ -74,8 +74,8 @@ class _OrganDonationState extends State<OrganDonation> {
                         children: [
                           Image.asset(
                             'assets/intro/organ1.jpeg',
-                            width: 102,
-                            height: 102,
+                            width: 90,
+                            height: 80,
                           ),
                           SizedBox(
                             height: 15,
@@ -85,7 +85,7 @@ class _OrganDonationState extends State<OrganDonation> {
                            // 'What is Organ\nDonation?',
                             // 'What is Organ Donation?',
                             style: TextStyle(
-                              fontSize: 14,
+                              fontSize: 12,
                               fontWeight: FontWeight.w600,
                             ),
                             overflow: TextOverflow.clip,
@@ -105,8 +105,8 @@ class _OrganDonationState extends State<OrganDonation> {
                         children: [
                           Image.asset(
                             'assets/intro/organ2.jpeg',
-                            width: 102,
-                            height: 102,
+                            width: 90,
+                            height: 80,
                           ),
                           SizedBox(
                             height: 15,
@@ -114,7 +114,7 @@ class _OrganDonationState extends State<OrganDonation> {
                           Text(
                             MyLocalizations.of(context).text("WHO_DONATE"),
                             style: TextStyle(
-                              fontSize: 14,
+                              fontSize: 12,
                               fontWeight: FontWeight.w600,
                             ),
                             overflow: TextOverflow.clip,
@@ -127,7 +127,7 @@ class _OrganDonationState extends State<OrganDonation> {
                 ],
               ),
               SizedBox(
-                height: 30,
+                height: 20,
               ),
               Row(
                 children: [
@@ -140,8 +140,8 @@ class _OrganDonationState extends State<OrganDonation> {
                         children: [
                           Image.asset(
                             'assets/intro/organ3.jpeg',
-                            width: 102,
-                            height: 102,
+                            width: 90,
+                            height: 80,
                           ),
                           SizedBox(
                             height: 15,
@@ -149,7 +149,7 @@ class _OrganDonationState extends State<OrganDonation> {
                           Text(
                             MyLocalizations.of(context).text("WHICH_ORGAN"),
                             style: TextStyle(
-                              fontSize: 14,
+                              fontSize: 12,
                               fontWeight: FontWeight.w600,
                             ),
                             overflow: TextOverflow.clip,
@@ -168,8 +168,8 @@ class _OrganDonationState extends State<OrganDonation> {
                         children: [
                           Image.asset(
                             'assets/intro/oragan4.jpeg',
-                            width: 102,
-                            height: 102,
+                            width: 90,
+                            height: 80,
                           ),
                           SizedBox(
                             height: 10,
@@ -177,7 +177,7 @@ class _OrganDonationState extends State<OrganDonation> {
                           Text(
                             MyLocalizations.of(context).text("HOW_DONATE"),
                             style: TextStyle(
-                              fontSize: 14,
+                              fontSize: 12,
                               fontWeight: FontWeight.w600,
                             ),
                             overflow: TextOverflow.clip,
@@ -191,11 +191,20 @@ class _OrganDonationState extends State<OrganDonation> {
               ),
               Padding(
                 padding:
-                    const EdgeInsets.only(left: 20,right: 20, top: 40),
+                    const EdgeInsets.only(left: 30,right: 30, top: 30),
                 child: _applicationButton(),
+              ),Padding(
+                padding:
+                    const EdgeInsets.only(left: 30,right: 30, top: 20),
+                child: idCard(),
+              ),Padding(
+                padding:
+                    const EdgeInsets.only(left: 30,right: 30, top: 20),
+                child: myDonation(),
               ),
+              SizedBox(height: 30,),
               Container(
-                height: 300,
+                height: 210,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
@@ -316,7 +325,7 @@ class _OrganDonationState extends State<OrganDonation> {
 
   Widget _applicationButton() {
     return MyWidgets.nextButton(
-      text: MyLocalizations.of(context).text("APPLICATION"),
+      text: "Donate",
       context: context,
       fun: () {
         //Navigator.pushNamed(context, "/navigation");
@@ -327,6 +336,41 @@ class _OrganDonationState extends State<OrganDonation> {
         } else {*/
 
         Navigator.pushNamed(context, "/donorApplication");
+
+        //}
+      },
+    );
+  }Widget idCard() {
+    return MyWidgets.nextButton(
+      text: "ID Card",
+      context: context,
+      fun: () {
+        //Navigator.pushNamed(context, "/navigation");
+        /*if (_loginId.text == "" || _loginId.text == null) {
+          AppData.showInSnackBar(context, "Please enter mobile no");
+        } else if (_loginId.text.length != 10) {
+          AppData.showInSnackBar(context, "Please enter 10 digit mobile no");
+        } else {*/
+
+        Navigator.pushNamed(context, "/organcardPage");
+
+        //}
+      },
+    );
+  }
+  Widget myDonation() {
+    return MyWidgets.nextButton(
+      text: "My Donation",
+      context: context,
+      fun: () {
+        //Navigator.pushNamed(context, "/navigation");
+        /*if (_loginId.text == "" || _loginId.text == null) {
+          AppData.showInSnackBar(context, "Please enter mobile no");
+        } else if (_loginId.text.length != 10) {
+          AppData.showInSnackBar(context, "Please enter 10 digit mobile no");
+        } else {*/
+
+        Navigator.pushNamed(context, "/organlist");
 
         //}
       },
