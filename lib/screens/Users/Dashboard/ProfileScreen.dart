@@ -599,99 +599,95 @@ class _ProfileScreenState extends State<ProfileScreen> {
               new Divider(
                 color: AppData.lightgreyBorder,
               ),
-              DefaultTabController(
-                  length: 4,
-                  initialIndex: 0,
-                  //backgroundColor: Colors.white,
-                  child: Column(
-                    children: [
-                      TabBar(
-                        isScrollable: true,
-                        automaticIndicatorColorAdjustment: true,
-                        indicatorColor: AppData.kPrimaryRedColor,
-                        unselectedLabelColor: Colors.black,
-                        labelColor: Color(0xffF15C22),
-                        /*indicator: UnderlineTabIndicator(
-                          borderSide: BorderSide(color: Color(0xDD613896), width: 8.0),
-                          insets: EdgeInsets.fromLTRB(50.0, 0.0, 50.0, 40.0),
-                        ),*/
-                        indicatorSize: TabBarIndicatorSize.tab,
-                        tabs: [
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 12),
-                            child: Text(
-                                MyLocalizations.of(context)
-                                    .text("DETAILS")
-                                    .toUpperCase(),
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.w900,
-                                    fontSize: 13)),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 12),
-                            child: Text(
-                                MyLocalizations.of(context)
-                                    .text("EMERGENCY_CONTACT")
-                                    .toUpperCase(),
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w900,
-                                    color: Colors.black,
-                                    fontSize: 13)),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 12),
-                            child: Text(
-                                MyLocalizations.of(context)
-                                    .text("FAMILY_DOCTORS")
-                                    .toUpperCase(),
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w900,
-                                    color: Colors.black,
-                                    fontSize: 13)),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 12),
-                            child: Text(
-                                MyLocalizations.of(context)
-                                    .text("FAMILY_DETAILS")
-                                    .toUpperCase(),
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w900,
-                                    color: Colors.black,
-                                    fontSize: 13)),
-                          ),
-                        ],
-                      ),
-                      /* new Divider(
-                        color: AppData.lightgreyBorder,
-                      ),*/
-                      /*SizedBox(
-                        height: size.height * 0.02,
-                      ),*/
-                      //TabBar(tabs: [Tab(text: 'DETAILS',), Tab(text: 'CONTACTS'),Tab(text: 'FAMILY DOCTORS')]),
-                      Container(
-                          //height: MediaQuery.of(context).size.height * 100,
-                          //height: 300,
-                        child:LimitedBox( // use this 
-                            maxHeight: 298,
-                        child: TabBarView(
-                          children: [
-                            (patientProfileModel != null)?rowValue():Container(),
-                            (patientProfileModel != null)? backUp():Container(),
-                            (patientProfileModel != null)?rowValue2():Container(),
-                            (patientProfileModel != null)? rowValue3():Container(),
-                            /* rowValue1(),
-                            rowValue1(),
-                            rowValue1(),
-                            rowValue1(),
-                            rowValue1(),*/
+              Expanded(
+                child: DefaultTabController(
+                    length: 4,
+                    initialIndex: 0,
+                    //backgroundColor: Colors.white,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        TabBar(
+                          isScrollable: true,
+                          automaticIndicatorColorAdjustment: true,
+                          indicatorColor: AppData.kPrimaryRedColor,
+                          unselectedLabelColor: Colors.black,
+                          labelColor: Color(0xffF15C22),
+                          /*indicator: UnderlineTabIndicator(
+                            borderSide: BorderSide(color: Color(0xDD613896), width: 8.0),
+                            insets: EdgeInsets.fromLTRB(50.0, 0.0, 50.0, 40.0),
+                          ),*/
+                          indicatorSize: TabBarIndicatorSize.tab,
+                          tabs: [
+                            Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 12),
+                              child: Text(
+                                  MyLocalizations.of(context)
+                                      .text("DETAILS")
+                                      .toUpperCase(),
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w900,
+                                      fontSize: 13)),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 12),
+                              child: Text(
+                                  MyLocalizations.of(context)
+                                      .text("EMERGENCY_CONTACT")
+                                      .toUpperCase(),
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w900,
+                                      color: Colors.black,
+                                      fontSize: 13)),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 12),
+                              child: Text(
+                                  MyLocalizations.of(context)
+                                      .text("FAMILY_DOCTORS")
+                                      .toUpperCase(),
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w900,
+                                      color: Colors.black,
+                                      fontSize: 13)),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 12),
+                              child: Text(
+                                  MyLocalizations.of(context)
+                                      .text("FAMILY_DETAILS")
+                                      .toUpperCase(),
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w900,
+                                      color: Colors.black,
+                                      fontSize: 13)),
+                            ),
                           ],
-                        )
-                      ),
-                      ),
-                    ],
-                  ))
+                        ),
+                        Container(
+                            //height: MediaQuery.of(context).size.height * 100,
+                            //height: 300,
+                          child:Expanded( // use this
+                              // maxHeight: 298,
+                          child: TabBarView(
+                            children: [
+                              (patientProfileModel != null)?rowValue():Container(),
+                              (patientProfileModel != null)? backUp():Container(),
+                              (patientProfileModel != null)?rowValue2():Container(),
+                              (patientProfileModel != null)? rowValue3():Container(),
+                              /* rowValue1(),
+                              rowValue1(),
+                              rowValue1(),
+                              rowValue1(),
+                              rowValue1(),*/
+                            ],
+                          )
+                        ),
+                        ),
+                      ],
+                    )),
+              )
             ],
           ),
         ),

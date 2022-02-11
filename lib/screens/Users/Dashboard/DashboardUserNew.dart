@@ -9,6 +9,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_share/flutter_share.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:pageview_indicator_plugins/pageview_indicator_plugins.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
@@ -1536,7 +1537,7 @@ class MyPage1Widget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    _buildTileblue(
+                    _buildTilePremium(
                       icon: "assets/folder.png",
                       fun: () {
                         //AppData.showInSnackBar(context, "Coming soon");
@@ -1546,6 +1547,7 @@ class MyPage1Widget extends StatelessWidget {
                       bordercolor: AppData.BG2BLUE,
                       // ,
                     ),
+
                     SizedBox(
                       height: 5,
                     ),
@@ -1568,7 +1570,7 @@ class MyPage1Widget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    _buildTilered(
+                    _buildTilePremium1(
                       icon: "assets/insuranceF.png",
                       //icon: Icons.drive_folder_upload,
                       //icon: FontAwesomeIcons.accusoft,
@@ -1758,8 +1760,6 @@ class MyPage1Widget extends StatelessWidget {
                       ),
                     ),
                   ]),
-
-
               /*Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -1797,7 +1797,7 @@ class MyPage1Widget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               /*Expanded(
-                                child:*/
+                          child:*/
               Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -2042,7 +2042,7 @@ class MyPage1Widget extends StatelessWidget {
                       ),
                     ),
                   ]),
-/*
+ /*
               Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -2165,7 +2165,6 @@ class MyPage1Widget extends StatelessWidget {
         height: _height,
         width: _width,
         decoration: BoxDecoration(
-
             /// borderRadius: BorderRadius.circular(7.0),
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(10.0),
@@ -2240,6 +2239,278 @@ class MyPage1Widget extends StatelessWidget {
                     ),*/
               ],
             ),
+
+            /* Positioned(
+          top: -3,
+          right: -3,
+          child: Container(
+            height: 40,
+            width: 40,
+             decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(40.0),
+          color: Colors.white24,),
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Icon(icon, color: Colors.white,)
+            )
+          )
+        ),*/
+            //   Positioned(
+            // top: 20,
+            // left: 15,
+            // child:Text('Heart Rate', style: TextStyle(color: Colors.white),)),
+            //  Positioned(
+            // bottom: 20,
+            // right: 15,
+            // child:Column(
+            //   children: [
+            //     Text('Daily Goal', style: TextStyle(color: Colors.white),),
+            //      Text('900 kcal', style: TextStyle(color: Colors.white),),
+            //   ],
+            // ))
+          ],
+        ),
+      ),
+    );
+  }
+Widget _buildTilePremium(
+      {String icon,
+      /*IconData icon,*/
+      String title,
+      double size,
+      Color bordercolor,
+      Color iconColor,
+      Color color,
+      Function fun}) {
+    return InkWell(
+      onTap: fun,
+      child: Container(
+        padding: const EdgeInsets.all(0.0),
+        /* height: MediaQuery.of(context).size.height * 0.23,*/
+        height: _height,
+        width: _width,
+        decoration: BoxDecoration(
+            /// borderRadius: BorderRadius.circular(7.0),
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(10.0),
+              topRight: Radius.zero,
+              bottomLeft: Radius.zero,
+              bottomRight: Radius.circular(10.0),
+            ),
+            color: color,
+            border: Border.all(
+              color: AppData.kPrimaryBlueColor,
+              width: 1.0,
+            )
+            /* boxShadow: [
+            BoxShadow(
+              color: bordercolor,
+              blurRadius: 5.0,
+              spreadRadius: 2.0,
+              offset: Offset(2.0, 2.0), // shadow direction: bottom right
+            )
+          ],*/
+            ),
+        child: Stack(
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Align(
+                    alignment: Alignment.center,
+                    child: Image.asset(
+                      /* "assets/logo1.png"*/
+                      icon,
+                      color: iconColor??null,
+                      fit: BoxFit.fitWidth,
+                      width: 50,
+                      height: 70.0,
+                    )),
+                //child: Icon(icon, color: AppData.kPrimaryColor,size: 40.0)),
+
+                /*Text(
+                  '12',
+                  style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: "Monte",
+                            fontSize: 22.0,
+                  ),
+
+                ),*/
+                /*Padding(
+                      padding: const EdgeInsets.only( top: 10,left: 3,right: 3
+                      ),
+                     child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            child: Text(
+                  title,
+                  style: TextStyle(
+                            color: Colors.white,
+                            // fontWeight: FontWeight.w600,
+                            fontFamily: "Monte",
+                            fontSize: 18.0,
+                  ),
+                  textAlign: TextAlign.center,
+                  maxLines: 2,
+                  overflow: TextOverflow.clip,
+                ),
+                          ),
+                        ],
+                      ),
+                    ),*/
+              ],
+            ),
+            Positioned(
+              right: 9,
+                top: 3,
+                child: Icon(
+                  /* "assets/logo1.png"*/
+                  FontAwesomeIcons.crown,
+                  color: Colors.amberAccent,
+                  size: 15,
+                )),
+
+            /* Positioned(
+          top: -3,
+          right: -3,
+          child: Container(
+            height: 40,
+            width: 40,
+             decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(40.0),
+          color: Colors.white24,),
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Icon(icon, color: Colors.white,)
+            )
+          )
+        ),*/
+            //   Positioned(
+            // top: 20,
+            // left: 15,
+            // child:Text('Heart Rate', style: TextStyle(color: Colors.white),)),
+            //  Positioned(
+            // bottom: 20,
+            // right: 15,
+            // child:Column(
+            //   children: [
+            //     Text('Daily Goal', style: TextStyle(color: Colors.white),),
+            //      Text('900 kcal', style: TextStyle(color: Colors.white),),
+            //   ],
+            // ))
+          ],
+        ),
+      ),
+    );
+  }
+
+
+  Widget _buildTilePremium1(
+      {String icon,
+        /*IconData icon,*/
+        String title,
+        double size,
+        Color bordercolor,
+        Color iconColor,
+        Color color,
+        Function fun}) {
+    return InkWell(
+      onTap: fun,
+      child: Container(
+        padding: const EdgeInsets.all(0.0),
+        /* height: MediaQuery.of(context).size.height * 0.23,*/
+        height: _height,
+        width: _width,
+        decoration: BoxDecoration(
+          /// borderRadius: BorderRadius.circular(7.0),
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(10.0),
+              topRight: Radius.zero,
+              bottomLeft: Radius.zero,
+              bottomRight: Radius.circular(10.0),
+            ),
+            color: color,
+            border: Border.all(
+              color: AppData.kPrimaryRedColor,
+              width: 1.0,
+            )
+          /* boxShadow: [
+            BoxShadow(
+              color: bordercolor,
+              blurRadius: 5.0,
+              spreadRadius: 2.0,
+              offset: Offset(2.0, 2.0), // shadow direction: bottom right
+            )
+          ],*/
+        ),
+        child: Stack(
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Align(
+                    alignment: Alignment.center,
+                    child: Image.asset(
+                      /* "assets/logo1.png"*/
+                      icon,
+                      color: iconColor??null,
+                      fit: BoxFit.fitWidth,
+                      width: 50,
+                      height: 70.0,
+                    )),
+                //child: Icon(icon, color: AppData.kPrimaryColor,size: 40.0)),
+
+                /*Text(
+                  '12',
+                  style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: "Monte",
+                            fontSize: 22.0,
+                  ),
+
+                ),*/
+                /*Padding(
+                      padding: const EdgeInsets.only( top: 10,left: 3,right: 3
+                      ),
+                     child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            child: Text(
+                  title,
+                  style: TextStyle(
+                            color: Colors.white,
+                            // fontWeight: FontWeight.w600,
+                            fontFamily: "Monte",
+                            fontSize: 18.0,
+                  ),
+                  textAlign: TextAlign.center,
+                  maxLines: 2,
+                  overflow: TextOverflow.clip,
+                ),
+                          ),
+                        ],
+                      ),
+                    ),*/
+              ],
+            ),
+            Positioned(
+                right: 9,
+                top: 3,
+                child: Icon(
+                  /* "assets/logo1.png"*/
+                  FontAwesomeIcons.crown,
+                  color: Colors.amberAccent,
+                  size: 15,
+                )),
+
+
             /* Positioned(
           top: -3,
           right: -3,
