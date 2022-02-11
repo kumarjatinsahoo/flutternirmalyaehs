@@ -516,7 +516,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                           backgroundImage: FileImage(pathUsr),
                                         ),
                                       )
-                                    : Material(
+                                    : (patientProfileModel?.body
+                                    ?.profileImage !=
+                                    null)
+                                    ?Material(
                                         elevation: 5.0,
                                         shape: CircleBorder(),
                                         child: CircleAvatar(
@@ -529,6 +532,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                       ?.body?.profileImage
                                                   : AppData.defaultImgUrl),
                                         ),
+                                      ):Image.asset(
+                                        "assets/images/User5.png",
                                       ),
                                 Align(
                                   alignment: Alignment.bottomRight,

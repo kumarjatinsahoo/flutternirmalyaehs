@@ -605,13 +605,14 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                                 )),
                           ),*/
                           CircleAvatar(
-                            radius: 35,
+                            radius: 25,
                             foregroundColor: Colors.white,
                             backgroundColor: Colors.white,
                             child: Image.asset(
-                              'assets/images/user.png',
-                              height: size.height * 0.07,
-                              width: size.width * 0.13,
+                              "assets/images/user.png",
+                              // 'assets/images/Dashboardprofile.png',
+                              height: size.height * 0.05,
+                              width: size.width * 0.10,
                               //fit: BoxFit.cover,
                             ),
                           ),

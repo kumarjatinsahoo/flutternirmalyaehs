@@ -355,7 +355,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(
-                            left: 10.0, right: 10.0, bottom: 25.0),
+                            left: 10.0, right: 10.0, bottom: 5.0),
                         child: InkWell(
                           onTap: () {
                             dashOption(context);
@@ -367,12 +367,13 @@ class _LoginScreenState extends State<LoginScreen> {
                               children: [
                                 TextSpan(
                                     text: MyLocalizations.of(context)
-                                        .text("DIDHAVEACC"),
+                                        .text("DIDHAVEACC")+"\n",
                                     style: TextStyle(
                                         color: Colors.black, fontSize: 17)),
                                 TextSpan(
                                     text: "   ",
                                     style: TextStyle(color: Colors.black)),
+
                                 TextSpan(
                                     text: MyLocalizations.of(context)
                                         .text("CREATE_ACCOUNT"),
@@ -386,9 +387,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                       ),
-                      SizedBox(
-                        height: size.height * 0.01,
-                      ),
+
                       InkWell(
                           onTap: () {
                             Navigator.pushNamed(context, "/forgotpassword");
