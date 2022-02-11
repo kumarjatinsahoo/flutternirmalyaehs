@@ -4,11 +4,10 @@ import 'dart:developer';
 import 'dart:io';
 import 'dart:math' as math;
 import 'package:device_info_plus/device_info_plus.dart';
-import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:package_info/package_info.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:intl/intl.dart';
-import 'package:unique_identifier/unique_identifier.dart';
+import 'package:sms_autofill/sms_autofill.dart';
 import 'package:user/localization/application.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/LoginResponse1.dart';
@@ -841,12 +840,14 @@ class _LoginScreenState extends State<LoginScreen> {
           MyWidgets.showLoading(context);
           widget.model.GETMETHODCALL(
               api: ApiFactory.LOGIN_Otp(_loginId.text),
-              fun: (Map<String, dynamic> map) {
+              fun: (Map<String, dynamic> map) async {
                 Navigator.pop(context);
                 log("LOGIN RESPONSE>>>>" + jsonEncode(map));
                 //AppData.showInSnackBar(context, map[Const.MESSAGE]);
                 if (map[Const.CODE] == Const.SUCCESS) {
                   masterResponse = master.MasterLoginResponse.fromJson(map);
+                  final signature = await SmsAutoFill().getAppSignature;
+                  print('signature ' + signature);
                   Navigator.push(
                     context,
                     MaterialPageRoute(

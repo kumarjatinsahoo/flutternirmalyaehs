@@ -46,10 +46,10 @@ class OTPTextfield extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _OTPTextfieldState createState() => new _OTPTextfieldState();
+  OTPTextfieldState createState() => new OTPTextfieldState();
 }
 
-class _OTPTextfieldState extends State<OTPTextfield> with SingleTickerProviderStateMixin {
+class OTPTextfieldState extends State<OTPTextfield> with SingleTickerProviderStateMixin,CodeAutoFill  {
   // Constants
   final int time = 120;
   AnimationController _controller;
@@ -91,6 +91,7 @@ String formattedDate;
   void initState() {
     _initPackageInfo();
     getDeviceSerialNumber();
+    listenForCode();
     var now = new DateTime.now();
     var formatter = new DateFormat('dd-MM-yyyy');
     formattedDate = formatter.format(now);
@@ -100,15 +101,11 @@ String formattedDate;
     // loginResponse.acceptValue(data[i]);
     //Body body = Body();
     otpGenerateStr = widget.masterLoginResponse.body[0].otp;
-    print("OTP IS>>>>>>>>>>>>>>>>>>>>>>" +otpGenerateStr );
+    print("OTP IS>>>>>>>>>>>>>>>>>>>>>>" +otpGenerateStr);
     masterResponse=widget.masterLoginResponse;
 
-
-    otpGenerate = int.parse(otpGenerateStr);
-
-    print("OTP IS>>>>>>>>>>>>>>>>>>>>>>" + otpGenerate.toString());
-
     super.initState();
+    // _listOPT();
    // AppData.showInSnackBar(context, otpGenerateStr);
     // loadAsset();
     _controller =
@@ -196,7 +193,16 @@ String formattedDate;
   @override
   void dispose() {
     _controller.dispose();
+    cancel();
     super.dispose();
+  }
+
+  _listOPT()
+  async {
+    await SmsAutoFill().listenForCode;
+    //  otpGenerate = int.parse(otpGenerateStr);
+
+    print("Auto fill OTP >>>>>>>>>>>>>>>>>>>>>>");
   }
 
   @override
@@ -238,10 +244,12 @@ String formattedDate;
                   textStyle: TextStyle(fontSize: 20, color: Colors.white),
                   colorBuilder: FixedColorBuilder(Colors.white),
                 ),
-                currentCode: otpGenerateStr,
+                currentCode: otpController.text,
                 onCodeSubmitted: (code) {},
                 onCodeChanged: (code) {
                   if (code.length == 4) {
+                    print('code Changed ' + code);
+                    otpController.text= code;
                     FocusScope.of(context).requestFocus(FocusNode());
                   }
                 },
@@ -443,6 +451,7 @@ String formattedDate;
                // widget.loginData=loginResponse;
                 otpGenerateStr = masterResponse.body[0].otp;
                 otpGenerate = int.parse(otpGenerateStr);
+                otpController.text=otpGenerateStr;
               /*  Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -783,6 +792,15 @@ return OTPTextField(
     _fourthDigit = null;
     setState(() {
       otpController.text="";
+    });
+  }
+
+  @override
+  void codeUpdated() {
+    // TODO: implement codeUpdated
+setState(() {
+      otpController.text = code;
+      print('otpController.text ' + otpController.text);
     });
   }
 
