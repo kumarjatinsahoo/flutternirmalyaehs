@@ -136,7 +136,7 @@ class _LoginScreenState extends State<LoginScreen> {
     var password = await sharedPref.getKey(Const.REMEMBER_PASSWORD);
     if (userId != null && password!=null) {
       _loginId.text = json.decode(userId);
-      password.text = json.decode(password);
+      passController.text = json.decode(password);
     }
   }
 
