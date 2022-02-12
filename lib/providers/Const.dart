@@ -31,6 +31,8 @@ class Const {
 
   static String REGISTRATION = "registrationForm";
   static String LOGIN_DATA = "loginResponse";
+  static String REMEMBER_USERID = "RememberUserId";
+  static String REMEMBER_PASSWORD = "RememberPassword";
   static String MASTER_RESPONSE = "masterData";
   static String LOGIN_phoneno = 'phoneno';
   static String LOGIN_password = 'password';
