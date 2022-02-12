@@ -306,7 +306,9 @@ Map<String, dynamic> postData = {
           ],),
            isDataNotAvail==true?  Expanded(child: Center(child: CircularProgressIndicator(backgroundColor: AppData.matruColor,))):
       (googlePlaceModel ==null)?Expanded(
-            child: Center(child: Text('No data found', style: TextStyle(color: Colors.black, fontSize: 14),),),
+            child: Center(child: Image.asset("assets/NoRecordFound.png",
+                                              // height: 25,
+                                            ),),
           ):
          Expanded(
                 child: ListView.builder(

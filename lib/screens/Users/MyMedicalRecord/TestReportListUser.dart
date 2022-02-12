@@ -274,10 +274,9 @@ class _TestReportListUser1State extends State<TestReportListUser1> {
             child: Column(
               children: [
                 SizedBox(height: 300,),
-                (isdata)? Text(MyLocalizations.of(context).text("NO_DATA_FOUND"),
-                  style:
-                  TextStyle(color: Colors.black, fontSize: 15),
-                ):CircularProgressIndicator(),
+                (isdata)? Image.asset("assets/NoRecordFound.png",
+                                              // height: 25,
+                                            ):CircularProgressIndicator(),
               ],
             ),
           ),

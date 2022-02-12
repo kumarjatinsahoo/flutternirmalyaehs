@@ -463,11 +463,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 MediaQuery.of(context).size.height * 0.35,
               ),
               //CircularProgressIndicator()
-              Text(
-                MyLocalizations.of(context).text("NO_DATA_FOUND"),
-                style: TextStyle(
-                    color: Colors.black, fontSize: 15),
-              ),
+             Image.asset("assets/NoRecordFound.png",
+                                                     // height: 25,
+                                                   )
             ],
           ),
         ),
@@ -1709,6 +1707,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 InkWell(
                   onTap: () {
                     setState(() {
+                      widget.model.apntUserType =
+                          Const.HEALTH_SCREENING_USER_APNT;
                       displayDialog(context);
                     });
                   },
@@ -1960,6 +1960,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 InkWell(
                   onTap: () {
                     setState(() {
+                      widget.model.apntUserType =
+                          Const.HEALTH_SCREENING_APNT;
                       displayDialog2(context);
                     });
                   },
@@ -2542,11 +2544,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
-          child: Text(
-            "No data found",
-            style: TextStyle(color: Colors.black, fontSize: 18),
-            textAlign: TextAlign.center,
-          ),
+          child:Image.asset("assets/NoRecordFound.png",
+                                              // height: 25,
+                                            )
         ),
       ])
     );
@@ -4134,6 +4134,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           height: 15,
                         ),
                         formField1(15, MyLocalizations.of(context).text("NAME")),
+                        SizedBox(height: 8),
+                        mobileformField1(16, MyLocalizations.of(context).text("MOBILE_NO")),
                         SizedBox(height: 1),
                         DropDown.networkDropdownGetpartUser1(
                             MyLocalizations.of(context).text("SPECIALITY"),
@@ -4147,8 +4149,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             patientProfileModel.body.speciality = model.name;
                           });
                         }),
-                        SizedBox(height: 8),
-                        mobileformField1(16,  MyLocalizations.of(context).text("MOBILE_NO")),
+
                       ],
                     ),
                   ),
@@ -4471,9 +4472,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 log("Selected Response>>>"+list[i].toString());
                                 log("Selected Response>>>"+list[i]?.phones[0]?.number??"");
                                 widget.model.contMobileno=list[i]?.phones[0]?.number??"";
-                                textEditingController[13].text=foundUser[i].displayName.toString();
+                                (widget.model.apntUserType == Const.HEALTH_SCREENING_USER_APNT) ?
+                                textEditingController[13].text=foundUser[i].displayName.toString():textEditingController[15].text=foundUser[i].displayName.toString();
                                 //_mobile.text=list[i]?.phones[0]?.number.replaceAll("- ", "")??"".toString();
-                                textEditingController[14].text=foundUser[i]?.phones[0]?.number.replaceAll(" ", "").replaceAll("-", "").replaceAll("+91", "")??"".replaceAll("+", "")??"".toString();
+                                  (widget.model.apntUserType == Const.HEALTH_SCREENING_USER_APNT) ?
+                                textEditingController[14].text=foundUser[i]?.phones[0]?.number.replaceAll(" ", "").replaceAll("-", "").replaceAll("+91", "")??"".replaceAll("+", "")??"".toString():textEditingController[16].text=foundUser[i]?.phones[0]?.number.replaceAll(" ", "").replaceAll("-", "").replaceAll("+91", "")??"".replaceAll("+", "")??"".toString();
                                 //_mobile.text=list[i]?.phones[0]?.number.replaceAll(" ":"", "").replaceAll("-", "")??"".toString();
                                 Navigator.pop(context);
                               },
@@ -4941,6 +4944,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                         formField1(15, MyLocalizations.of(context).text("NAME")),
                         SizedBox(height: 8),
+                        mobileformField1(16, MyLocalizations.of(context).text("MOBILE_NO")),
+                        SizedBox(height: 8),
                         DropDown.networkDropdownGetpartUser1(
                         MyLocalizations.of(context).text("SPECIALITY"),
                             ApiFactory.SPECIALITY_API,
@@ -4953,8 +4958,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             patientProfileModel.body.speciality = model.name;
                           });
                         }),
-                        SizedBox(height: 8),
-                        mobileformField1(16, MyLocalizations.of(context).text("MOBILE_NO")),
+
                       ],
                     ),
                   ),

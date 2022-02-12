@@ -208,10 +208,9 @@ class _MedicineList extends State<UserMedicineList> {
           : medicineListModel == null || medicineListModel == null
               ? Container(
                   child: Center(
-                    child: Text(
-                      'No Data Found',
-                      style: TextStyle(color: Colors.black, fontSize: 15),
-                    ),
+                    child: Image.asset("assets/NoRecordFound.png",
+                                              // height: 25,
+                                            )
                   ),
                 )
               : (medicineListModel != null)
@@ -520,7 +519,9 @@ class _MedicineList extends State<UserMedicineList> {
                       height: MediaQuery.of(context).size.height,
                       alignment: Alignment.center,
                       child: (isDataNoFound)
-                          ? Text("Data Not Found")
+                          ? Image.asset("assets/NoRecordFound.png",
+                                              // height: 25,
+                                            )
                           : CircularProgressIndicator(),
                     ),
     ));

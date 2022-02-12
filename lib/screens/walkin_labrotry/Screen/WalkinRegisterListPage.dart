@@ -109,11 +109,9 @@ class _WalkinRegisterListPageState extends State<WalkinRegisterListPage> {
           : regDataModel == null || regDataModel == null
           ? Container(
         child: Center(
-          child: Text(
-            'No Data Found',
-            style:
-            TextStyle(color: Colors.black, fontSize: 15),
-          ),
+          child: Image.asset("assets/NoRecordFound.png",
+                                              // height: 25,
+                                            )
         ),
       ) :
 
@@ -176,7 +174,9 @@ class _WalkinRegisterListPageState extends State<WalkinRegisterListPage> {
               ? Container(
                   height: size.height - 100,
                   child: Center(
-                    child: Text("Data Not Found"),
+                    child: Image.asset("assets/NoRecordFound.png",
+                                              // height: 25,
+                                            )
                   ),
                 )
               : MyWidgets.loading(context),
