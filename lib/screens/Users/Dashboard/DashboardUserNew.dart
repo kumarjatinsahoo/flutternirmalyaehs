@@ -57,6 +57,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
   dynamic currentTime = DateFormat.jm().format(DateTime.now());
   DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
 
+
 //List<String>imageSliders;
   static final List<String> languageCodesList =
       application.supportedLanguagesCodes;
@@ -855,6 +856,9 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
         .pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
   }
 
+
+
+
   Widget _dashboardnew(context) {
     Size size = MediaQuery.of(context).size;
     return Container(
@@ -1620,6 +1624,71 @@ class MyPage1Widget extends StatelessWidget {
     );
   }
 
+  _displayTextInputDialog(BuildContext context) async {
+    bool _rememberMe=false;
+    return showDialog(
+        context: context,
+        builder: (context) {
+
+          return AlertDialog(
+            insetPadding: EdgeInsets.zero,
+            content: StatefulBuilder(
+              builder: (BuildContext context, StateSetter setState) {
+
+                return Container(
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  height: MediaQuery.of(context).size.height * 0.5,
+                  child: SingleChildScrollView(
+                    child: Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          SizedBox(height: 10),
+                          Text("Get your health insurance & check up done now ",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(color: Colors.black, fontSize: 20),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Row(
+                            children: [
+                              Checkbox(
+                                value: _rememberMe,
+                                onChanged: (value) {
+                                  setState(() {
+                                    _rememberMe = !_rememberMe;
+                                  });
+                                },
+                              ),
+                              Text("I accept terms & condition")
+                            ],
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+
+
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
+            actions: <Widget>[
+              FlatButton(
+                textColor: Colors.grey,
+                child: Text(MyLocalizations.of(context).text("CANCEL"),
+                    style: TextStyle(color: AppData.kPrimaryRedColor)),
+
+              ),
+            ],
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -1678,7 +1747,8 @@ class MyPage1Widget extends StatelessWidget {
                       title: "Upload Medical Data",
                       fun: () {
                         //AppData.showInSnackDone(context, "Coming Soon");
-                        Navigator.pushNamed(context, "/insuranceList");
+                        //Navigator.pushNamed(context, "/insuranceList");
+                        _displayTextInputDialog(context);
 
                         /*  AppData.showSnack(
                                     context, "Coming soon", Colors.green);*/
@@ -3542,4 +3612,7 @@ class MyPage2Widget extends StatelessWidget {
       ),
     );
   }
+
+
+
 }
