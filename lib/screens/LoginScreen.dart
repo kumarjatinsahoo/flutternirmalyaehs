@@ -103,6 +103,7 @@ class _LoginScreenState extends State<LoginScreen> {
   bool isotpVisible = false;
   bool ispassVisible = true;
   bool isloginButton = true;
+  bool _checkbox = false;
   var rng = new math.Random();
   var code;
 
@@ -312,8 +313,22 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: fromFieldPass(),
                       ),
                       SizedBox(
-                        height: size.height * 0.06,
+                        height: size.height * 0.02,
                       ),
+                      Row(
+                        children: [
+                          Checkbox(
+                            value: _checkbox,
+                            onChanged: (value) {
+                              setState(() {
+                                _checkbox = !_checkbox;
+                              });
+                            },
+                          ),
+                          Text("Remember me",style: TextStyle(fontSize: 15),),
+                        ],
+                      ),
+                      SizedBox(height: 10),
                       _loginButton(),
                       SizedBox(
                         height: size.height * 0.02,
