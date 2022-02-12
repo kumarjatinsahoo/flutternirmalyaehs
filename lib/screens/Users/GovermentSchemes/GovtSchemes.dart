@@ -3,6 +3,8 @@ import 'dart:developer';
 
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/KeyvalueModel.dart';
+import 'package:user/models/LoginResponse1.dart';
+import 'package:user/providers/Const.dart';
 import 'package:user/providers/DropDown.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
@@ -24,10 +26,16 @@ class GovtSchemes extends StatefulWidget {
 
   @override
   _GovtSchemesState createState() => _GovtSchemesState();
+
+
 }
+
 
 class _GovtSchemesState extends State<GovtSchemes> {
   var selectedMinValue;
+  LoginResponse1 loginResponse1;
+
+  String countryId,countryName,stateId,stateName;
   List<KeyvalueModel> countryList = [
     KeyvalueModel(name: "India", key: "1"),
     // KeyvalueModel(name: "Bhubaneswar", key: "2"),
@@ -43,6 +51,59 @@ class _GovtSchemesState extends State<GovtSchemes> {
     KeyvalueModel(name: "Scheme2", key: "2"),
     KeyvalueModel(name: "Scheme3", key: "3"),
   ];
+  @override
+  void initState() {
+    super.initState();
+    setState(() {
+      loginResponse1 = widget.model.loginResponse1;
+      callApi();
+    });
+
+  }
+
+  callApi() {
+    //MyWidgets.showLoading(context);
+    widget.model.GETMETHODCALL_TOKEN(
+        api: ApiFactory.USER_SOME_DETAILS+loginResponse1.body.user,
+        token: widget.model.token,
+        fun: (Map<String, dynamic> map) {
+          //Navigator.pop(context);
+          setState(() {
+            log("Value>>>" + jsonEncode(map));
+            String msg = map[Const.MESSAGE];
+            if (map[Const.CODE] == Const.SUCCESS) {
+              setState(() {
+
+                countryId = map["body"]["countryId"];
+                countryName = map["body"]["countryName"];
+                stateId = map["body"]["stateId"];
+                stateName = map["body"]["stateName"];
+                log("Version>>>" + countryId + "<>>" + countryName+"<<>>>"+stateId+"<<>>"+stateName);
+                if (countryId != null) {
+                  GovtSchemes.countryModel = KeyvalueModel(
+                      key: countryId,
+                      name: countryName);
+                } else {
+                  GovtSchemes.countryModel = null;
+                }
+                if (stateId != null) {
+                  GovtSchemes.stateModel = KeyvalueModel(
+                      key: stateId,
+                      name: stateName);
+                } else {
+                  GovtSchemes.countryModel = null;
+                }
+              });
+            } else {
+              setState(() {
+                AppData.showInSnackBar(context, msg);
+               // isdata = true;
+              });
+              //
+            }
+          });
+        });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -97,9 +158,10 @@ class _GovtSchemesState extends State<GovtSchemes> {
                           setState(() {
                             print(ApiFactory.COUNTRY_API);
                             GovtSchemes.countryModel = data;
+                            countryId= data.key;
+                            countryName= data.name;
                             GovtSchemes.stateModel = null;
-                            GovtSchemes.districtModel = null;
-                            GovtSchemes.cityModel = null;
+
                           });
                         }),
                       ),
@@ -121,8 +183,9 @@ class _GovtSchemesState extends State<GovtSchemes> {
                           setState(() {
                             log("Value>>>" + jsonEncode(data));
                             GovtSchemes.stateModel = data;
-                            GovtSchemes.districtModel = null;
-                            GovtSchemes.cityModel = null;
+                            stateId = data.key;
+                            stateName = data.name;
+
                           });
                         }),
                       ),

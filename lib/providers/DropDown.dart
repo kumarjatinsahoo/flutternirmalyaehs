@@ -20,6 +20,7 @@ import 'package:user/screens/Users/Dashboard/ProfileScreen.dart';
 import 'package:user/screens/Users/EmergencyHelp/SetupContactsPage.dart';
 import 'package:user/screens/Users/FindHealthCare/BookAppointment/DoctorconsultationPage.dart';
 import 'package:user/screens/Users/GenericMedicine/GenericStores.dart';
+import 'package:user/screens/Users/GovermentSchemes/GovtSchemes.dart';
 import 'package:user/screens/Users/MedicineReminder/EditReminder.dart';
 import 'package:user/screens/Users/MyMedicalRecord/Allergiclist.dart';
 import 'package:user/screens/Users/MyMedicalRecord/BiomediImplants.dart';
@@ -2312,6 +2313,13 @@ class DropDown {
       case "pets":
         return LifeStyleHistory.petsmodel;
         break;
+      case "countrygov":
+        return GovtSchemes.countryModel;
+        break;
+      case "stategov":
+        return GovtSchemes.stateModel;
+        break;
+
     }
   }
 

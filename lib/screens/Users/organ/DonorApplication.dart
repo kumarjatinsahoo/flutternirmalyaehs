@@ -7,10 +7,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_contacts/flutter_contacts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:user/models/AddOrganDonModel.dart';
+import 'package:user/models/EmergencyMessageModel.dart';
 import 'package:user/models/ProfileModel.dart';
 import 'package:user/models/TissueModel.dart' as tissue;
 import 'package:user/models/OrganModel.dart' as organ;
@@ -65,7 +67,7 @@ class DonorApplicationState extends State<DonorApplication> {
   DateTime selectedDate = DateTime.now();
   PayMode1 payMode1 = PayMode1.cash;
   ProfileModel patientProfileModel;
-
+  EmergencyMessageModel emergencyMessageModel = EmergencyMessageModel();
   TextEditingController name = TextEditingController();
 
   List<TextEditingController> textEditingController = [
@@ -86,7 +88,7 @@ class DonorApplicationState extends State<DonorApplication> {
     new TextEditingController(),
     new TextEditingController(),
   ];
-
+  TextEditingController _message = TextEditingController();
   List<bool> error = [false, false, false, false, false, false];
   bool _isSignUpLoading = false;
 
@@ -380,7 +382,156 @@ class DonorApplicationState extends State<DonorApplication> {
       },
     );
   }
+  void getContactDetails() async {
+    if (await FlutterContacts.requestPermission()) {
+      // Get all contacts (lightly fetched)
+      MyWidgets.showLoading(context);
+      List<Contact> contacts = await FlutterContacts.getContacts(
+          withProperties: true, withPhoto: true);
+      Navigator.pop(context);
 
+      _displayContact(context, contacts);
+      /* if(contacts!=null && contacts.isNotEmpty) {
+
+          contacts = await FlutterContacts.getContacts(
+              withProperties: true, withPhoto: true);
+          setState(() {});
+          _displayContact(context, contacts);
+      }else{
+        _displayContact(context, contacts);
+      }*/
+
+    }
+  }
+  Future<void> _displayContact(BuildContext context, List<Contact> list) async {
+    List<Contact> foundUser=[];
+    foundUser=list;
+    // List<Contact> myList;
+
+
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            // title: Text('TextField in Dialog'),
+            insetPadding: EdgeInsets.symmetric(horizontal: 3),
+            //contentPadding: EdgeInsets.symmetric(horizontal: 10),
+            content: StatefulBuilder(
+              builder: (BuildContext context, StateSetter setState) {
+
+                void _runFilter(String enteredKeyword) {
+                  List<Contact> results = [];
+                  if (enteredKeyword.isEmpty) {
+                    results = list;
+                  } else {
+                    results = list
+                        .where((user) => user.displayName.toLowerCase()
+                        .contains(enteredKeyword.toLowerCase()))
+                        .toList();
+                  }
+                  setState(() {
+                    foundUser = results;
+                  });
+                }
+                return Container(
+                  height: 400,
+                  width: double.maxFinite-50,
+                  child:(list!=null && list.isNotEmpty)?Column(
+
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                        child: Container(
+                          child: TextField(
+                            onChanged: (value) => _runFilter(value),
+                            decoration: InputDecoration(
+                                suffixIcon: Icon(Icons.search),
+                                hintText: "Search"),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child:ListView.builder(
+                          shrinkWrap: true,
+                          itemBuilder: (c, i) {
+                            return ListTile(
+                              title: Text(foundUser[i].displayName),
+                              subtitle: Text((foundUser[i]?.phones[0]?.number??"")),
+                              onTap: (){
+
+                                log("Selected Response>>>"+list[i].toString());
+                                log("Selected Response>>>"+list[i]?.phones[0]?.number??"");
+                                widget.model.contMobileno=list[i]?.phones[0]?.number??"";
+
+                                textEditingController[7].text=foundUser[i].displayName.toString();
+                                //_mobile.text=list[i]?.phones[0]?.number.replaceAll("- ", "")??"".toString();
+
+                                textEditingController[10].text=foundUser[i]?.phones[0]?.number.replaceAll(" ", "").replaceAll("-", "").replaceAll("+91", "")??"".replaceAll("+", "")??"".toString();
+                                //_mobile.text=list[i]?.phones[0]?.number.replaceAll(" ":"", "").replaceAll("-", "")??"".toString();
+                                Navigator.pop(context);
+                              },
+                            );
+                          },
+                          itemCount: foundUser.length,
+                        ),
+                      ),
+                    ],
+                  ):Container(),
+                );
+              },
+            ),
+            actions: <Widget>[
+              FlatButton(
+                textColor: Colors.grey,
+                child: Text('CANCEL',
+                    style: TextStyle(color: AppData.kPrimaryRedColor)),
+                onPressed: () {
+                  setState(() {
+                    Navigator.pop(context);
+                  });
+                },
+              ),
+              FlatButton(
+                //textColor: Colors.grey,
+                child: Text(
+                  'SUBMIT',
+                  //style: TextStyle(color: Colors.grey),
+                  style: TextStyle(color: AppData.matruColor),
+                ),
+                onPressed: () {
+                  //AppData.showInSnackBar(context, "click");
+                  setState(() {
+                    emergencyMessageModel = EmergencyMessageModel();
+                    emergencyMessageModel.msg = _message.text;
+                    emergencyMessageModel.userid = widget.model.user;
+
+                    print("Value json>>" +
+                        emergencyMessageModel.toJson().toString());
+                    widget.model.POSTMETHOD_TOKEN(
+                        api: ApiFactory.POST_EMERGENCY_MESSAGE,
+                        json: emergencyMessageModel.toJson(),
+                        token: widget.model.token,
+                        fun: (Map<String, dynamic> map) {
+                          //Navigator.pop(context);
+                          if (map[Const.STATUS1] == Const.SUCCESS) {
+                            // popup(context, map[Const.MESSAGE]);
+                            Navigator.pop(context);
+                            //callApi();
+                            AppData.showInSnackDone(
+                                context, map[Const.MESSAGE]);
+                          } else {
+                            // AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                          }
+                        });
+                    /*codeDialog = valueText;
+                    Navigator.pop(context);*/
+                  });
+                },
+              ),
+            ],
+          );
+        });
+  }
   tissuecallAPI() {
     widget.model.GETMETHODCALL_TOKEN(
       api: ApiFactory.TISSUE_API,
@@ -1024,7 +1175,15 @@ class DonorApplicationState extends State<DonorApplication> {
                     controller: textEditingController[7],
                     decoration: InputDecoration(
                         hintText: MyLocalizations.of(context).text("NAME"),
-                        hintStyle: TextStyle(color: Colors.grey)),
+                        hintStyle: TextStyle(color: Colors.grey),
+                        suffixIcon: InkWell(
+                          onTap: () {
+                            // Navigator.pop(context);
+                            getContactDetails();
+                          },
+                          child: Icon(Icons.contacts),
+                        )
+                    ),
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.text,
                     inputFormatters: [

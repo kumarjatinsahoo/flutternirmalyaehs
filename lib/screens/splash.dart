@@ -2,13 +2,9 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
-import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:intro_slider/intro_slider.dart';
-import 'package:intro_slider/slide_object.dart';
 import 'package:package_info/package_info.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/models/MasterLoginResponse.dart';
-import 'package:user/providers/ConnectionStatusSingleton.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/SharedPref.dart';
 import 'package:user/providers/api_factory.dart';
@@ -16,9 +12,6 @@ import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:user/widgets/MyWidget.dart';
-
-import 'LoginScreen.dart';
 
 class SplashScreen extends StatefulWidget {
   final MainModel model;
