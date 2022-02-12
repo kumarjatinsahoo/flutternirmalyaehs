@@ -105,7 +105,6 @@ String formattedDate;
     masterResponse=widget.masterLoginResponse;
 
     super.initState();
-    // _listOPT();
    // AppData.showInSnackBar(context, otpGenerateStr);
     // loadAsset();
     _controller =
@@ -196,15 +195,7 @@ String formattedDate;
     cancel();
     super.dispose();
   }
-
-  _listOPT()
-  async {
-    await SmsAutoFill().listenForCode;
-    //  otpGenerate = int.parse(otpGenerateStr);
-
-    print("Auto fill OTP >>>>>>>>>>>>>>>>>>>>>>");
-  }
-
+ 
   @override
   Widget build(BuildContext context) {
     _screenSize = MediaQuery.of(context).size;
@@ -224,13 +215,13 @@ String formattedDate;
           // mainAxisSize: MainAxisSize.max,
           // mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
-            SizedBox(height: _screenSize.height * 0.1 ),
+            SizedBox(height: _screenSize.height * 0.1),
             _getVerificationCodeLabel,
-            SizedBox(height: _screenSize.height * 0.1 ),
+            // SizedBox(height: _screenSize.height * 0.01 ),
             _getEmailLabel,
             // SizedBox(height: _screenSize.height * 0.1 ),
             // _getInputFieldNew,
-           SizedBox(height: _screenSize.height * 0.1 ),
+           SizedBox(height: _screenSize.height * 0.06 ),
             _hideResendButton ? _getTimerText : _getResendButton1(context),
             // Container(),
             // _getOtpKeyboard
@@ -238,28 +229,41 @@ String formattedDate;
             //     currentCode: otpGenerateStr,
             //     codeLength: 4,
             //   ),
-              PinFieldAutoFill(
-                codeLength: 4,
-                decoration: UnderlineDecoration(
-                  textStyle: TextStyle(fontSize: 20, color: Colors.white),
-                  colorBuilder: FixedColorBuilder(Colors.white),
+            //  SizedBox(height: _screenSize.height * 0.0),
+              Padding(
+                padding: const EdgeInsets.only(left:50.0, right: 50.0),
+                child: PinFieldAutoFill(
+                  codeLength: 4,
+                  decoration: UnderlineDecoration(
+                    lineHeight: 1.0,
+                    textStyle: TextStyle(fontSize: 20, color: Colors.white),
+                    colorBuilder: FixedColorBuilder(Colors.white),
+                  ),
+                  currentCode: otpController.text,
+                  autoFocus:  true,
+                  onCodeSubmitted: (code) {
+                    setState(() {
+                      _fourthDigit =4;
+                    });
+                  },
+                  onCodeChanged: (code) {
+                    if (code.length == 4) {
+                      print('code Changed ' + code);
+                      otpController.text= code;         
+                      setState(() {
+                        _fourthDigit =4; 
+                      });            
+                      FocusScope.of(context).requestFocus(FocusNode());
+                    }
+                  },
                 ),
-                currentCode: otpController.text,
-                onCodeSubmitted: (code) {},
-                onCodeChanged: (code) {
-                  if (code.length == 4) {
-                    print('code Changed ' + code);
-                    otpController.text= code;
-                    FocusScope.of(context).requestFocus(FocusNode());
-                  }
-                },
               ),
-        SizedBox(height: _screenSize.height * 0.1 ),
+        SizedBox(height: _screenSize.height * 0.08 ),
           _hideResendButton?  Visibility(
                       maintainSize: true,
                       maintainAnimation: true,
                       maintainState: true,
-                      visible: _fourthDigit != null,
+                      visible: (_fourthDigit == 4)?true:false,
                       child: Padding(
                         padding: const EdgeInsets.only(left:30.0, right: 30.0 ),
                         child: Container(
@@ -278,12 +282,11 @@ String formattedDate;
                                   context: context,
                                   builder: (BuildContext context) =>
                                       dialogUserView(context,widget.masterLoginResponse.body),
-                                );
-                          
-                              }else{
-                                AppData.showInSnackBar(context, "Please enter valid OTP");
+                                );                          
                               }
-                          
+                              else{
+                                AppData.showInSnackBar(context, "Please enter valid OTP");
+                              }                                                       
                             },
                             shape: new RoundedRectangleBorder(
                               borderRadius: new BorderRadius.circular(30.0),
@@ -358,14 +361,6 @@ String formattedDate;
   }
 
   // Return "OTP" input field
-  get _getInputField {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        _otpTextField(_fourthDigit),
-      ],
-    );
-  }
 
    get _getInputFieldNew {
     return Row(
@@ -452,6 +447,7 @@ String formattedDate;
                 otpGenerateStr = masterResponse.body[0].otp;
                 otpGenerate = int.parse(otpGenerateStr);
                 otpController.text=otpGenerateStr;
+                // _hideResendButton =true;
               /*  Navigator.push(
                   context,
                   MaterialPageRoute(
