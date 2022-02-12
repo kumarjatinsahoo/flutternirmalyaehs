@@ -320,7 +320,9 @@ class _MedicineList extends State<UserTestList1> {
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         alignment: Alignment.center,
-        child: (isDataNoFound) ? Text(MyLocalizations.of(context).text("NO_DATA_FOUND")):
+        child: (isDataNoFound) ? Image.asset("assets/NoRecordFound.png",
+                                              // height: 25,
+                                            ):
         callAPI(),
 
       ),

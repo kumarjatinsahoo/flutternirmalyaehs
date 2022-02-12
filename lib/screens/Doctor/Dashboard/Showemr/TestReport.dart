@@ -86,11 +86,9 @@ class _TestReport extends State<TestReport> {
                 height:
                 MediaQuery.of(context).size.height * 0.35,
               ),
-              Text(
-                "No Data Found",
-                style: TextStyle(
-                    color: Colors.black, fontSize: 15),
-              ),
+             Image.asset("assets/NoRecordFound.png",
+                                              // height: 25,
+                                            )
             ],
           ),
         ),

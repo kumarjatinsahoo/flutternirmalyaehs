@@ -455,11 +455,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 MediaQuery.of(context).size.height * 0.35,
               ),
               //CircularProgressIndicator()
-              Text(
-                MyLocalizations.of(context).text("NO_DATA_FOUND"),
-                style: TextStyle(
-                    color: Colors.black, fontSize: 15),
-              ),
+             Image.asset("assets/NoRecordFound.png",
+                                                     // height: 25,
+                                                   )
             ],
           ),
         ),
@@ -2534,11 +2532,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
-          child: Text(
-            "No data found",
-            style: TextStyle(color: Colors.black, fontSize: 18),
-            textAlign: TextAlign.center,
-          ),
+          child:Image.asset("assets/NoRecordFound.png",
+                                              // height: 25,
+                                            )
         ),
       ])
     );

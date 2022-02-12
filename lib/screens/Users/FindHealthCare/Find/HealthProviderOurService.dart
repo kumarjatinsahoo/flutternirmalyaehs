@@ -244,7 +244,9 @@ class _ChemistsPageState extends State<ChemistsPage> {
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         alignment: Alignment.center,
-        child: (isDataNoFound) ? Text("Data Not Found"):callAPI(),
+        child: (isDataNoFound) ? Image.asset("assets/NoRecordFound.png",
+                                              // height: 25,
+                                            ):callAPI(),
 
 
       ),

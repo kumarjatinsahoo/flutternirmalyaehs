@@ -177,11 +177,9 @@ class _MyAppointmentRequestedState extends State<MyAppointmentRequested> {
                         height:
                         MediaQuery.of(context).size.height * 0.35,
                       ),
-                      Text(
-                        MyLocalizations.of(context).text("NO_DATA_FOUND"),
-                        style:
-                        TextStyle(color: Colors.black, fontSize: 15),
-                      ),
+                     Image.asset("assets/NoRecordFound.png",
+                                              // height: 25,
+                                            )
                     ],
                   ),
                 ),

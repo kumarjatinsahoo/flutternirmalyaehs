@@ -292,10 +292,9 @@ class _PocReportListPageState extends State<PocReportListPage> {
                       height: 300,
                     ),
                     (isdata)
-                        ? Text(
-                            'No data found',
-                            style: TextStyle(color: Colors.black, fontSize: 15),
-                          )
+                        ? Image.asset("assets/NoRecordFound.png",
+                                              // height: 25,
+                                            )
                         : Center(child: CircularProgressIndicator()),
                   ],
                 ),
@@ -304,7 +303,9 @@ class _PocReportListPageState extends State<PocReportListPage> {
           ? Container(
         height: size.height - 80,
         child: Center(
-          child: Text("Data not found"),
+          child: Image.asset("assets/NoRecordFound.png",
+                                              // height: 25,
+                                            )
         ),
       )
           : MyWidgets.loading(context),

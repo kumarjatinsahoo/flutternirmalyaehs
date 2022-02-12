@@ -428,10 +428,9 @@ class _MedicalsServiceOngooglePageState extends State<MedicalsServiceOngooglePag
               :  Expanded(
             child: Container(
               child: Center(
-                child: Text(
-                  MyLocalizations.of(context).text("NO_DATA_FOUND"),
-                  style: TextStyle(color: Colors.black, fontSize: 15),
-                ),
+                child:Image.asset("assets/NoRecordFound.png",
+                                              // height: 25,
+                                            )
               ),
             ),
           )

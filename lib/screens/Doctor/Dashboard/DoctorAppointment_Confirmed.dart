@@ -182,11 +182,10 @@ class _DoctorAppointmentConfirmedState
                                   height:
                                       MediaQuery.of(context).size.height * 0.35,
                                 ),
-                                Text(
-                                  MyLocalizations.of(context).text("NO_DATA_FOUND"),
-                                  style: TextStyle(
-                                      color: Colors.black, fontSize: 15),
-                                ),
+                               Center(
+      child: Image.asset("assets/NoRecordFound.png",
+                                              // height: 25,
+                                            ),)
                               ],
                             ),
                           ),

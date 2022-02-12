@@ -131,10 +131,9 @@ class _BookBloodBanklistState extends State<BookBloodBanklist> {
                 : bloodbanklistModel == null || bloodbanklistModel == null
                     ? Container(
                         child: Center(
-                          child: Text(MyLocalizations.of(context).text("NO_DATA_FOUND"),
-                            style: TextStyle(color: Colors.black, fontSize: 15),
-                          ),
-                        ),
+      child: Image.asset("assets/NoRecordFound.png",
+                                              // height: 25,
+                                            ),)
                       )
                     : SingleChildScrollView(
                         child: (bloodbanklistModel != null)

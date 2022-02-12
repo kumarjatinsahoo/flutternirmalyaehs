@@ -91,11 +91,9 @@ class _RequestBloodBankState extends State<RequestBloodBank> {
             : bloodbanklistModel == null || bloodbanklistModel == null
             ? Container(
           child: Center(
-            child: Text(
-              'No Data Found',
-              style:
-              TextStyle(color: Colors.black, fontSize: 15),
-            ),
+            child: Image.asset("assets/NoRecordFound.png",
+                                              // height: 25,
+                                            )
           ),
 
         ):

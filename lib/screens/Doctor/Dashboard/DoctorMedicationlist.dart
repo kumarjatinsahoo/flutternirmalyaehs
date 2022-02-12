@@ -187,11 +187,9 @@ class _MedicationlistState extends State<Medicationlist> {
                 child: Column(
                   children: [
                     SizedBox(height:  MediaQuery.of(context).size.height* 0.35,),
-                    Text(
-                      'No Data Found',
-                      style:
-                      TextStyle(color: Colors.black, fontSize: 15),
-                    ),
+                    Image.asset("assets/NoRecordFound.png",
+                                              // height: 25,
+                                            )
                   ],
                 ),
               ),
@@ -374,9 +372,10 @@ class _MedicationlistState extends State<Medicationlist> {
                       },
                       // itemCount:medicinmodel.length,
                     )
-                  :Center(child:  Text('No Data Found',
-                style:TextStyle(color: Colors.black, fontSize: 15),
-              )),
+                  :Center(child: Image.asset("assets/NoRecordFound.png",
+                                              // height: 25,
+                                            )
+              ),
           ),
             ],
           ),

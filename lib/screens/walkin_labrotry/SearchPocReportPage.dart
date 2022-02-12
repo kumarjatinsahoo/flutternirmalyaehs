@@ -230,10 +230,9 @@ class _SearchPocReportPageState extends State<SearchPocReportPage> {
                           height: 300,
                         ),
                         (isdata)
-                            ? Text(
-                          'No Data Found',
-                          style: TextStyle(color: Colors.black, fontSize: 15),
-                        )
+                            ? Image.asset("assets/NoRecordFound.png",
+                                              // height: 25,
+                                            )
                             : Center(child: CircularProgressIndicator()),
                       ],
                     ),

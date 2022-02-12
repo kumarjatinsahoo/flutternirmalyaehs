@@ -443,7 +443,9 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
                       ? Container(
                           height: size.height - 100,
                           child: Center(
-                            child: Text("Data Not Found"),
+                            child: Image.asset("assets/NoRecordFound.png",
+                                              // height: 25,
+                                            )
                           ),
                         )
                       : MyWidgets.loading(context),
