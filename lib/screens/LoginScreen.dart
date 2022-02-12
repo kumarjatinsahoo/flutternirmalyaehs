@@ -103,7 +103,7 @@ class _LoginScreenState extends State<LoginScreen> {
   bool isotpVisible = false;
   bool ispassVisible = true;
   bool isloginButton = true;
-  bool _checkbox = false;
+  bool _rememberMe = false;
   var rng = new math.Random();
   var code;
 
@@ -118,14 +118,26 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   void initState() {
+    rememberMe();
     super.initState();
     var now = new DateTime.now();
     var formatter = new DateFormat('dd-MM-yyyy');
     formattedDate = formatter.format(now);
     // print(formattedDate);
+
     tokenCall();
     getDeviceSerialNumber();
     _initPackageInfo();
+
+  }
+
+  rememberMe() async {
+    var userId = await sharedPref.getKey(Const.REMEMBER_USERID);
+    var password = await sharedPref.getKey(Const.REMEMBER_PASSWORD);
+    if (userId != null && password!=null) {
+      _loginId.text = json.decode(userId);
+      password.text = json.decode(password);
+    }
   }
 
   Future<void> _initPackageInfo() async {
@@ -191,7 +203,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     code = rng.nextInt(9000) + 1000;
-    log(token ?? "jj");
+    // log(token ?? "jj");
     return Scaffold(
       key: _scaffoldKey,
       resizeToAvoidBottomInset: true,
@@ -318,14 +330,17 @@ class _LoginScreenState extends State<LoginScreen> {
                       Row(
                         children: [
                           Checkbox(
-                            value: _checkbox,
+                            value: _rememberMe,
                             onChanged: (value) {
                               setState(() {
-                                _checkbox = !_checkbox;
+                                _rememberMe = !_rememberMe;
                               });
                             },
                           ),
-                          Text("Remember me",style: TextStyle(fontSize: 15),),
+                          Text(
+                            "Remember me",
+                            style: TextStyle(fontSize: 15),
+                          ),
                         ],
                       ),
                       SizedBox(height: 10),
@@ -333,25 +348,26 @@ class _LoginScreenState extends State<LoginScreen> {
                       SizedBox(
                         height: size.height * 0.02,
                       ),
-                       Padding(
-                         padding: const EdgeInsets.only(right: 12.0),
-                         child: Row(
-                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                           children: [
-                             Container(),
-                             InkWell(
+                      Padding(
+                        padding: const EdgeInsets.only(right: 12.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(),
+                            InkWell(
                               onTap: () async {
-                                 Navigator.pushNamed(context, "/createUserIDScreen");
+                                Navigator.pushNamed(
+                                    context, "/createUserIDScreen");
                                 //FlutterPhoneDirectCaller.callNumber("7008553233");
                               },
                               child: Text(
                                 'Create User ID',
                                 style: TextStyle(color: Colors.black54),
                               ),
+                            ),
+                          ],
+                        ),
                       ),
-                           ],
-                         ),
-                       ),
                       InkWell(
                         onTap: () {
                           //Navigator.pushNamed(context, "/docDash");
@@ -382,13 +398,13 @@ class _LoginScreenState extends State<LoginScreen> {
                               children: [
                                 TextSpan(
                                     text: MyLocalizations.of(context)
-                                        .text("DIDHAVEACC")+"\n",
+                                            .text("DIDHAVEACC") +
+                                        "\n",
                                     style: TextStyle(
                                         color: Colors.black, fontSize: 17)),
                                 TextSpan(
                                     text: "   ",
                                     style: TextStyle(color: Colors.black)),
-
                                 TextSpan(
                                     text: MyLocalizations.of(context)
                                         .text("CREATE_ACCOUNT"),
@@ -589,7 +605,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 CupertinoIcons.person_alt_circle,
                                 size: 44,
                               ),
-                              title: Text(data[i]?.userName??""),
+                              title: Text(data[i]?.userName ?? ""),
                               subtitle: Text(data[i].user),
                               onTap: () {
                                 /*  sharedPref.save(Const.LOGIN_phoneno, _loginId.text);
@@ -673,15 +689,20 @@ class _LoginScreenState extends State<LoginScreen> {
                 jsonEncode(loginResponse.toJson()));
             sharedPref.save(Const.LOGIN_DATA, loginResponse);
             sharedPref.save(Const.MASTER_RESPONSE, masterResponse);
+            if (_rememberMe) {
+              sharedPref.save(Const.REMEMBER_USERID, _loginId.text);
+              sharedPref.save(Const.REMEMBER_PASSWORD, passController.text);
+            } else {
+              sharedPref.remove(Const.REMEMBER_USERID);
+              sharedPref.remove(Const.REMEMBER_PASSWORD);
+            }
             widget.model.setLoginData1(loginResponse);
             sharedPref.save(Const.IS_LOGIN, "true");
 
             FirebaseMessaging.instance.subscribeToTopic(data.user);
             FirebaseMessaging.instance.subscribeToTopic(data.userMobile);
 
-
-            sendDeviceInfo("SUCCESS",userId);
-
+            sendDeviceInfo("SUCCESS", userId);
 
             if (map["body"]["roleid"] == "1".toLowerCase()) {
               Navigator.of(context).pushNamedAndRemoveUntil(
@@ -762,14 +783,14 @@ class _LoginScreenState extends State<LoginScreen> {
                           dialogUserView(context, masterResponse.body),
                     );
 
-                   /* Map<String, dynamic> postmap = {
+                    /* Map<String, dynamic> postmap = {
                       "userId": widget.model.user,
                       "imeiNo": imei,
                       "version": Platform.isAndroid
                           ? _packageInfo.version
                           : Const.IOS_VERSION,
                       "deviceId": deviceid,
-                      "activityDate": *//*"26-1-2021"*//* formattedDate,
+                      "activityDate": */ /*"26-1-2021"*/ /* formattedDate,
                       "activityTime": currentTime,
                       "type": "LOGIN",
                       "status": "SUCCESS",
@@ -806,7 +827,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 } else {
                   AppData.showInSnackBar(context, map[Const.MESSAGE]);
                   String failed = "FAILED";
-                  sendDeviceInfo(failed,_loginId.text);
+                  sendDeviceInfo(failed, _loginId.text);
                 }
               });
         }
@@ -814,12 +835,12 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  sendDeviceInfo(String sTATUS,data) {
+  sendDeviceInfo(String sTATUS, data) {
     Map<String, dynamic> postmap = {
       "userId": data,
-      "imeiNo": imei??"",
+      "imeiNo": imei ?? "",
       "version": Platform.isAndroid ? _packageInfo.version : Const.IOS_VERSION,
-      "deviceId": deviceid??"",
+      "deviceId": deviceid ?? "",
       "activityDate": /*"26-1-2021"*/ formattedDate,
       "activityTime": currentTime,
       "type": "LOGIN",
@@ -834,9 +855,7 @@ class _LoginScreenState extends State<LoginScreen> {
         api: ApiFactory.POST_ACTIVITYLOG,
         //token: widget.model.token,
         json: postmap,
-        fun: (Map<String, dynamic> map) {
-
-        });
+        fun: (Map<String, dynamic> map) {});
   }
 
   Widget _otpButton() {
@@ -868,7 +887,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         builder: (BuildContext context) => OTPTextfield(
                               masterLoginResponse: masterResponse,
                               model: widget.model,
-                          token: widget.model.activitytoken,
+                              token: widget.model.activitytoken,
                             )),
                   );
                 } else {
