@@ -99,7 +99,7 @@ Map<String, dynamic> postData = {
 
   }*/
   callAPI(int radius, int i) {
-    log("API :Lati & Longi" + lati + "\n" + lati);
+    log("API :Lati & Longi" + lati + "\n" + longi);
     log("API CALL>>>" + ApiFactory.GOOGLE_QUERY_API(lati: lati, radius: (radius * 1000).toString(), longi: longi, healthpro: healthpro) +
         "\n\n\n");
     widget.model.GETMETHODCAL(
@@ -112,7 +112,27 @@ Map<String, dynamic> postData = {
           // if (i == 1) {         
             googlePlaceModel = GooglePlaceModel.fromJson(map);
             nextpage=googlePlaceModel.nextPageToken;
-            print('================ nextpage ' + googlePlaceModel.results.length.toString());
+            print('================ Narmada ' + googlePlaceModel.results[0].geometry.location.lat.toString() + ',' + googlePlaceModel.results[0].geometry.location.lng.toString());
+           var str1 = googlePlaceModel.results[0].geometry.location.lat.toString();
+           var str2 = googlePlaceModel.results[0].geometry.location.lng.toString();
+          var latiStr= lati.split(".").first;
+          var longiStr= longi.split(".").first;
+          var gglLatLongi = latiStr + ',' + longiStr;
+          print('Narmada1 ' + gglLatLongi);
+
+           var lat = str1.split(".").first;
+           var lng = str2.split(".").first; 
+           var latLng = lat + ',' + lng;
+            print('Narmada2 ' +latLng);
+            if(gglLatLongi == latLng){
+              isDataNotAvail = true; 
+              print('true ');            
+            }
+            else{
+              isDataNotAvail = false;
+               googlePlaceModel = null;
+               print('false ');
+            }
               // } else {
               //   googlePlaceModel.addMore(map);
               // }
@@ -176,9 +196,12 @@ Map<String, dynamic> postData = {
              ),
              
           ],),
-          
-          (googlePlaceModel != null)
-              ? Expanded(
+         isDataNotAvail == false
+            ? Center(
+                child:
+Image.asset("assets/NoRecordFound.png" )):
+          // (googlePlaceModel != null)?
+               Expanded(
                 child: ListView.builder(
                     controller: _scrollController,
                     itemBuilder: (context, i) {
@@ -294,15 +317,15 @@ Map<String, dynamic> postData = {
                     itemCount: googlePlaceModel.results.length + 1,
                   ),
               )
-            :  Expanded(
-              child: Container(
-                      child: Center(
-                        child:  CircularProgressIndicator(
-                backgroundColor: AppData.matruColor,
-                        )
-                      ),
-                    ),
-            )
+            // :  Expanded(
+            //   child: Container(
+            //           child: Center(
+            //             child:  CircularProgressIndicator(
+            //     backgroundColor: AppData.matruColor,
+            //             )
+            //           ),
+            //         ),
+            // )
         ],
       ),
     ),

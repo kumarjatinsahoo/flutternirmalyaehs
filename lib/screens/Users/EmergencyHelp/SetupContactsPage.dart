@@ -108,7 +108,7 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
             });
           } else {
             isDataNotAvail = true;
-            AppData.showInSnackBar(context, msg);
+            // AppData.showInSnackBar(context, msg);
           }
 
           // });
