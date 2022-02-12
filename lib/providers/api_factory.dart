@@ -1,13 +1,13 @@
 class ApiFactory {
   //bool isRelease = bool.fromEnvironment("DEV");
   static String REG_DEVICE = "https://cca.medtel.in/Ziniai/manageDeviceId";
-  static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
   //static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
+  static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
   // static String MAIN_URL = "http://api-demo.ehealthsystem.com/nirmalyaRest/api/";
   //static String MAIN_URL = "http://api-demo.ehealthsystem.com/nirmalyaRest/api/";
   // static String MAIN_URL = "http://192.168.0.190:8062/nirmalyaRest/api/";
   //static String MAIN_URL = "http://api-demo.ehealthsystem.com/nirmalyaRest/api/";
-  //static String MAIN_URL = "http://192.168.0.115:8062/nirmalyaRest/api/";
+  //static String MAIN_URL = "http://192.168.0.102:8062/nirmalyaRest/api/";
   static String MAIN_URL1 = "https://1331.co.in/api";
   static String REPORT_URL1 = "https://demo.ehealthsystem.com/";
   static String VITALS_REPORT = MAIN_URL + 'medtel-screening-test-report';
@@ -173,6 +173,8 @@ static String EMERGENCY_HELP_NEW =
       MAIN_URL + 'post-patient-immunization-details';
   static String SMS_TO_EMERGENCY =
       MAIN_URL + 'sms-to-emergency-contact-users?userid=';
+  static String USER_SOME_DETAILS  =
+      MAIN_URL + 'get-user-some-details-api?userid=';
 
   static String FIND_HEALTH_PROVIDER(String longi, String lati, String addr,
       String city, String healthpro, String type) {
