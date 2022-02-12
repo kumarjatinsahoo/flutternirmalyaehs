@@ -211,6 +211,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
         mediaPlaybackRequiresUserGesture: false,
         disableHorizontalScroll: false,
         disableVerticalScroll: false,
+        verticalScrollBarEnabled: true,
+        preferredContentMode: UserPreferredContentMode.MOBILE,
+        supportZoom: true
+
       ),
       /*crossPlatform: InAppWebViewOptions(
        //useShouldOverrideUrlLoading: true,
@@ -226,6 +230,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
     ),*/
       android: AndroidInAppWebViewOptions(
         useHybridComposition: true,
+          // overScrollMode:AndroidOverScrollMode.OVER_SCROLL_NEVER,
+          // loadWithOverviewMode:false,
+        initialScale: 5
+        // textZoom: 20
       ),
       ios: IOSInAppWebViewOptions(
         allowsInlineMediaPlayback: true,
@@ -394,7 +402,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             Align(
               alignment: Alignment.topRight,
               child: Padding(
-                padding: const EdgeInsets.only(right: 80.0),
+                padding: const EdgeInsets.only(right: 30.0),
                 child: InkWell(
                   onTap: () {
                     Navigator.pushNamed(context, "/qrcode");
@@ -644,6 +652,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 child: DefaultTabController(
                     length: 5,
                     initialIndex: 0,
+
                     //backgroundColor: Colors.white,
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
@@ -654,6 +663,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           indicatorColor: AppData.kPrimaryRedColor,
                           unselectedLabelColor: Colors.black,
                           labelColor: Color(0xffF15C22),
+                          // physics: NeverScrollableScrollPhysics(),
+                          // dragStartBehavior:Drag
                           /*indicator: UnderlineTabIndicator(
                             borderSide: BorderSide(color: Color(0xDD613896), width: 8.0),
                             insets: EdgeInsets.fromLTRB(50.0, 0.0, 50.0, 40.0),
@@ -722,6 +733,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           child:Expanded( // use this
                               // maxHeight: 298,
                           child: TabBarView(
+                            physics: NeverScrollableScrollPhysics(),
                             children: [
                               (patientProfileModel != null)?rowValue():Container(),
                               (patientProfileModel != null)? backUp():Container(),
