@@ -99,9 +99,9 @@ class _DocumentListState extends State<DocumentList> {
           : documentListModel == null || documentListModel == null
               ? Container(
                   child: Center(
-                    child: Text(MyLocalizations.of(context).text("NO_DATA_FOUND"),
-                      style: TextStyle(color: Colors.black, fontSize: 15),
-                    ),
+                    child: Image.asset("assets/NoRecordFound.png",
+                                              // height: 25,
+                                            )
                   ),
                 )
               : Container(

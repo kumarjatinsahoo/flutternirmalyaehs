@@ -142,13 +142,11 @@ class _MonthlyOverviewPharmaklistState extends State<MonthlyOverviewPharmaklist>
             )
             : monthlyOverviewlistModel == null || monthlyOverviewlistModel == null
             ? Container(
-          child: Center(
-            child: Text(
-              MyLocalizations.of(context).text("NO_DATA_FOUND"),
-              style:
-              TextStyle(color: Colors.black, fontSize: 15),
-            ),
-          ),
+          child: 
+          Center(
+      child: Image.asset("assets/NoRecordFound.png",
+                                              // height: 25,
+                                            ),)
         ):
              SingleChildScrollView(
                 child: (monthlyOverviewlistModel != null)

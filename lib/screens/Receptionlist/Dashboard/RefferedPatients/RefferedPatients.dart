@@ -103,11 +103,9 @@ class _RefferedPatientsState extends State<RefferedPatients> {
             : refferedpatientsModel == null || refferedpatientsModel == ""
             ? Container(
           child: Center(
-            child: Text(
-              'No Data Found',
-              style:
-              TextStyle(color: Colors.black, fontSize: 15),
-            ),
+            child: Image.asset("assets/NoRecordFound.png",
+                                              // height: 25,
+                                            )
           ),
 
         ) :

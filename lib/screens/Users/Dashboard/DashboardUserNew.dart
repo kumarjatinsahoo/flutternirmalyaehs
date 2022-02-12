@@ -17,6 +17,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:unique_identifier/unique_identifier.dart';
 import 'package:user/localization/application.dart';
 import 'package:user/localization/localizations.dart';
+import 'package:user/models/EmergencyHelpModel.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/models/NewsupdateModel.dart'as news;
 import 'package:user/models/UserDashboardModel.dart';
@@ -40,6 +41,7 @@ class DashboardUserNew extends StatefulWidget {
 }
 
 class _DashboardUserNewState extends State<DashboardUserNew> {
+  EmergencyHelpModel emergencyHelpModel;
   int _currentIndex = 0;
   int _selectedIndex = 0;
   String motherName, lastPerioddt, deliverydt, id;
@@ -97,6 +99,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
   SharedPref sharedPref = SharedPref();
 
   LoginResponse1 loginResponse1;
+  
 
   @override
   void initState() {
@@ -106,7 +109,8 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
 
     callApi();
     callNewsApi();
-
+    callEmergencyAPI();
+   
     FirebaseMessaging.instance
         .getInitialMessage()
         .then((RemoteMessage message) {
@@ -122,6 +126,33 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
       print('A new onMessageOpenedApp event was published!');
       Navigator.pushNamed(context, '/aboutus');
     });
+  }
+   callEmergencyAPI() {
+    print(ApiFactory.EMERGENCY_HELP +
+        loginResponse1.body.user +
+        "\n" +
+        loginResponse1.body.token);
+
+    widget.model.GETMETHODCALL_TOKEN(
+        api: ApiFactory.EMERGENCY_HELP + loginResponse1.body.user,
+        token: widget.model.token,
+        fun: (Map<String, dynamic> map) {
+          print("Value is>>>>" + JsonEncoder().convert(map));
+            setState(() {
+               String msg = map[Const.MESSAGE];
+            if (map[Const.STATUS1] == Const.SUCCESS) {
+              emergencyHelpModel = EmergencyHelpModel.fromJson(map);              
+             widget.model.emergencyContact = emergencyHelpModel.emergency.length;
+             print('---Narmada---- ' + widget.model.emergencyContact.toString());
+               
+            } else {
+              // isDataNotAvail = true;
+              // AppData.showInSnackBar(context, msg);
+            }
+            });
+           
+          });
+        
   }
 
   /*callProfApi() {
@@ -209,7 +240,6 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
 
         });
   }
-
 
   String getTime(String date) {
     List<String> split = date.split("-");
@@ -1689,7 +1719,12 @@ class MyPage1Widget extends StatelessWidget {
                         //AppData.showInSnackBar(context, "Coming soon");
                         // AppData.showSnack(
                         //   context, "Coming soon", Colors.green);
-                        Navigator.pushNamed(context, "/emergencyHelp");
+                        print(model.emergencyContact);
+                         if(model.emergencyContact == 0){
+                        Navigator.pushNamed(context, "/setupcontacts");
+                      }
+                      else
+                      Navigator.pushNamed(context, "/emergencyHelp");
                       },
                       color: AppData.kPrimaryColor,
                       bordercolor: AppData.kPrimaryColor,

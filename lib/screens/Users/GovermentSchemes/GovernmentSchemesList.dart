@@ -133,7 +133,9 @@ class _GovernmentSchemesListState extends State<GovernmentSchemesList> {
                 height: double.maxFinite,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [(isDataNotFound)?Text(MyLocalizations.of(context).text("NO_DATA_FOUND")):CircularProgressIndicator()],
+                  children: [(isDataNotFound)?Image.asset("assets/NoRecordFound.png",
+                                              // height: 25,
+                                            ):CircularProgressIndicator()],
                 ),
               ),
       ),
