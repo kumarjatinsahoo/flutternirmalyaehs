@@ -387,8 +387,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: Stack(
+        automaticallyImplyLeading: true,
+       /* title: Stack(
           children: [
             Center(
               child: Padding(
@@ -402,7 +402,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             Align(
               alignment: Alignment.topRight,
               child: Padding(
-                padding: const EdgeInsets.only(right: 30.0),
+                padding: const EdgeInsets.all(0),
                 child: InkWell(
                   onTap: () {
                     Navigator.pushNamed(context, "/qrcode");
@@ -411,7 +411,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
               ),
             ),
-            /*Align(
+            *//*Align(
               alignment: Alignment.topRight,
               child: InkWell(
                 onTap: () {
@@ -425,7 +425,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                 ),
               ),
-            ),*/
+            ),*//*
             Align(
               alignment: Alignment.topLeft,
               child: InkWell(
@@ -436,7 +436,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
             )
           ],
-        ),
+        ),*/
+        centerTitle: true,
+        title: Text("My Profile"),
+        actions: [
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Padding(
+              padding: const EdgeInsets.only(right: 10),
+              child: InkWell(
+                onTap: () {
+                  Navigator.pushNamed(context, "/qrcode");
+                },
+                child: Icon(Icons.qr_code_outlined),
+              ),
+            ),
+          ),
+        ],
         backgroundColor: AppData.kPrimaryColor,
         //centerTitle: true,
         // iconTheme: IconThemeData(color: AppData.kPrimaryColor,),
@@ -696,8 +712,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             Padding(
                               padding: const EdgeInsets.symmetric(vertical: 12),
                               child: Text(
-                                  MyLocalizations.of(context)
-                                      .text("FAMILY_DOCTORS")
+                                  "Family Doctors"
                                       .toUpperCase(),
                                   style: TextStyle(
                                       fontWeight: FontWeight.w900,
@@ -2194,7 +2209,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20.0),
                       child: Text(
-                        "Please click on plus icon (+) to add family doctor's",
+                        "Please click on plus icon (+) to add family doctors",
                         style: TextStyle(color: Colors.black, fontSize: 18),
                         textAlign: TextAlign.center,
                       ),

@@ -624,11 +624,11 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
               // SizedBox(
               //   height: 22,
               // ),
-          Expanded(child: Container()),
                Expanded(
                  child: Container(
+                   padding: EdgeInsets.symmetric(horizontal: 10,vertical: 50),
                       child: Text(
-                      "Hey "+ " \" ${loginResponse1?.body?.userName??"N/A"} \"  " +
+                      "Hey "+ "${loginResponse1?.body?.userName??"N/A"}, " +
                          "please add emergency contact !",
                                                 textAlign:
                                                     TextAlign.center,

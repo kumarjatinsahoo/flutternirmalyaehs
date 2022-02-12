@@ -26,7 +26,7 @@ class RestAPI extends Model with PassData{
     Const.MESSAGE: Const.NETWORK_ISSUE,
   };
   GETMETHODCAL({@required String api, @required Function fun}) async {
-    print("<<>>>>>API CALL>>>>>>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" + api);
+    // print("<<>>>>>API CALL>>>>>>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" + api);
     try {
       Response response = await dio.get(api);
       if (response.statusCode == 200) {

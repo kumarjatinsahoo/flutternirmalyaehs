@@ -162,11 +162,12 @@ class _DieseInfoState extends State<DieseInfo> {
             ),*/
         actions: <Widget>[
           Padding(
-              padding: EdgeInsets.only(right: 10.0),
+              padding: EdgeInsets.only(right: 7.0),
               child: GestureDetector(
                 onTap: () {
                   setState(() {
                     isSearchShow = !isSearchShow;
+                    foundUser = dieseinfoModel.body;
                   });
 
                 },
