@@ -129,15 +129,7 @@ class _LoginScreenState extends State<LoginScreen> {
     tokenCall();
     getDeviceSerialNumber();
     _initPackageInfo();
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      /*await showDialog(
-        context: context,
-        barrierDismissible: false,
-        builder: dialogGender,
-      );*/
-      //dialogGender1();
-      _displayTextInputDialog(context);
-    });
+
 
   }
 

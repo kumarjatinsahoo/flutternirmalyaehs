@@ -480,7 +480,8 @@ class _GoogleSearchDetailsState extends State<GoogleSearchDetails> {
                                       padding: const EdgeInsets.only(left: 10),
                                       child: Column(
                                         children: [
-                                          Row(children: [
+                                          Row(
+                                              children: [
                                             InkWell(
                                                 onTap: () {
                                                   //Navigator.pop(context);
