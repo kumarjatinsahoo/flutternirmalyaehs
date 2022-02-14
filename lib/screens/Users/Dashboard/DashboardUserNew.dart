@@ -1923,7 +1923,7 @@ class MyPage1Widget extends StatelessWidget {
                              },
                              child: Container(
                               height: 50,
-                              decoration: BoxDecoration(color:Colors.amber,),
+                              decoration: BoxDecoration(color:Colors.green,),
                               child: Text("Continue",style: TextStyle(
                                   color: Colors.white,fontSize: 15),),
                               alignment: Alignment.center,
