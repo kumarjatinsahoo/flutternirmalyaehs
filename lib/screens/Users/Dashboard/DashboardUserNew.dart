@@ -1888,24 +1888,35 @@ class MyPage1Widget extends StatelessWidget {
                           Row(
                             children: [
                               Expanded(
-                                child: Container(
-                                  height: 50,
-                                  width: 50,
-                                  decoration: BoxDecoration(color:AppData.kPrimaryColor,),
-                                  child: Text("Contact Sales",style: TextStyle(
-                                      color: Colors.white,fontSize: 15),),
-                                  alignment: Alignment.center,
+                                child: InkWell(
+                                  onTap: (){
+                                    AppData.launchURL("tel://8888825912");
+                                  },
+                                  child: Container(
+                                    height: 50,
+                                    width: 50,
+                                    decoration: BoxDecoration(color:AppData.kPrimaryColor,),
+                                    child: Text("Contact Sales",style: TextStyle(
+                                        color: Colors.white,fontSize: 15),),
+                                    alignment: Alignment.center,
+                                  ),
                                 ),
                               ),
                               SizedBox(width: 10),
                               Expanded(
-                                child: Container(
-                                  height: 50,
-                                  width: 50,
-                                  decoration: BoxDecoration(color:AppData.kPrimaryColor,),
-                                  child: Text("Get a call back",style: TextStyle(
-                                      color: Colors.white,fontSize: 15),),
-                                  alignment: Alignment.center,
+                                child: InkWell(
+                                  onTap: (){
+                                    Navigator.pop(context);
+                                    AppData.showInSnackDone(context, "Thank you ! We will get back to you with in two working days");
+                                  },
+                                  child: Container(
+                                    height: 50,
+                                    width: 50,
+                                    decoration: BoxDecoration(color:AppData.kPrimaryColor,),
+                                    child: Text("Get a call back",style: TextStyle(
+                                        color: Colors.white,fontSize: 15),),
+                                    alignment: Alignment.center,
+                                  ),
                                 ),
                               ),
                             ],
