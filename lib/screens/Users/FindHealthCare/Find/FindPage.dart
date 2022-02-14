@@ -55,13 +55,14 @@ class _FindPageState extends State<FindPage> {
   String address;
   Position position;
   String cityName;
-
+  
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     /* loginResponse1 = widget.model.loginResponse1;
     callAPI();*/
+    
     FindPage.specialistModel=null;
     FindPage.healthcareProvider=null;
     _getLocationName();

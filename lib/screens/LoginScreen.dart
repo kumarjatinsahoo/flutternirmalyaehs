@@ -7,6 +7,7 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:package_info/package_info.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:intl/intl.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 import 'package:user/localization/application.dart';
 import 'package:user/localization/localizations.dart';
@@ -129,8 +130,70 @@ class _LoginScreenState extends State<LoginScreen> {
     getDeviceSerialNumber();
     _initPackageInfo();
 
+
   }
 
+  _displayTextInputDialog(BuildContext context) async {
+    bool _rememberMe=false;
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            insetPadding: EdgeInsets.zero,
+            content: StatefulBuilder(
+              builder: (BuildContext context, StateSetter setState) {
+
+                return Container(
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  //height: MediaQuery.of(context).size.height * 0.5,
+                  child: SingleChildScrollView(
+                    child: Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          SizedBox(height: 10),
+                          Text("You are dhan Arogya Kranti User.",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(color: Colors.black, fontSize: 20),
+                          ),
+
+                        /*  Row(
+                            children: [
+                              Checkbox(
+                                value: _rememberMe,
+                                onChanged: (value) {
+                                  setState(() {
+                                    _rememberMe = !_rememberMe;
+                                  });
+                                },
+                              ),
+                              Text("I accept terms & condition")
+                            ],
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+*/
+
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
+            actions: <Widget>[
+              FlatButton(
+                textColor: Colors.grey,
+                child: Text("OK",
+                    style: TextStyle(color: AppData.kPrimaryColor)),
+
+              ),
+            ],
+          );
+        });
+  }
   rememberMe() async {
     var userId = await sharedPref.getKey(Const.REMEMBER_USERID);
     var password = await sharedPref.getKey(Const.REMEMBER_PASSWORD);
@@ -202,7 +265,111 @@ class _LoginScreenState extends State<LoginScreen> {
       });
     });*/
   }
+  dialogGender1() {
+    return Alert(
+      context: context,
+      //title: "Success",
+      title: "Gender",
+      //type: AlertType.info,
+      onWillPopActive: true,
+      closeIcon: Icon(
+        Icons.info_outline,
+        color: Colors.transparent,
+      ),
+      buttons: [
+        DialogButton(
+          color: Colors.grey[200],
+          onPressed: () {
+            Navigator.pop(context);
+            Navigator.pop(context);
+          },
+          child: Text(
+            "CANCEL",
+            style: TextStyle(color: Colors.black45),
+          ),
+        )
+      ],
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          SizedBox(
+            height: 10,
+          ),
+         /*Text(
+            "Dana Arogya kranti ",
+            style: TextStyle(color: Colors.black, fontSize: 13,fontStyle: FontStyle.normal),
+            textAlign: TextAlign.center,
+          ),*/
+         /* IntrinsicHeight(
 
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              //crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Expanded(
+                  child: InkWell(
+                    onTap: () {
+                      setState(() {
+                      *//*  selectGender = "1";
+                        callingAPI(selectGender, salID);
+                        Navigator.pop(context);
+                        _selectDate(context);
+                        Navigator.pop(context);*//*
+                      });
+                    },
+                      child:DialogButton(
+                        color: Colors.grey[200],
+                        onPressed: () {
+                          Navigator.pop(context);
+                          Navigator.pop(context);
+                        },
+                        child: Text(
+                          "CANCEL",
+                          style: TextStyle(color: Colors.black45),
+                        ),
+                      )
+                  ),
+                ),
+                VerticalDivider(
+                  color: Colors.grey[400],
+                ),
+               *//* Expanded(
+                  child: InkWell(
+                    onTap: () {
+                      setState(() {
+                        *//**//*selectGender = "2";
+                        callingAPI(selectGender, salID);
+                        Navigator.pop(context);
+                        _selectDate(context);*//**//*
+                      });
+                    },
+                    child: Container(
+                      //width: double.maxFinite,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+
+
+                          Text(
+                            "FEMALE",
+                            style: TextStyle(color: Colors.black, fontSize: 13,fontStyle: FontStyle.normal),
+                            textAlign: TextAlign.center,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),*//*
+              ],
+            ),
+          ),*/
+          SizedBox(
+            height: 10,
+          )
+        ],
+      ),
+    ).show();
+  }
   @override
   Widget build(BuildContext context) {
     code = rng.nextInt(9000) + 1000;

@@ -39,7 +39,9 @@ class Body {
   String userParent;
   String userAddress;
   String userState;
+  String userStateId;
   String userCountry;
+  String userCountryId;
   String userDist;
   String userPin;
   bool userStatus;
@@ -65,6 +67,8 @@ class Body {
         this.userAddress,
         this.userState,
         this.userCountry,
+        this.userStateId,
+        this.userCountryId,
         this.userDist,
         this.userPin,
         this.userStatus,
@@ -88,7 +92,10 @@ class Body {
     userParent = json['userParent'];
     userAddress = json['userAddress'];
     userState = json['userState'];
+    userStateId = json['userStateId'];
     userCountry = json['userCountry'];
+    userCountryId = json['userCountryId'];
+    userStateId = json['userStateId'];
     userDist = json['userDist'];
     userPin = json['userPin'];
     userStatus = json['userStatus'];
@@ -115,7 +122,9 @@ class Body {
     data['userParent'] = this.userParent;
     data['userAddress'] = this.userAddress;
     data['userState'] = this.userState;
+    data['userStateId'] = this.userStateId;
     data['userCountry'] = this.userCountry;
+    data['userCountryId'] = this.userCountryId;
     data['userDist'] = this.userDist;
     data['userPin'] = this.userPin;
     data['userStatus'] = this.userStatus;

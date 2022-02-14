@@ -107,7 +107,17 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
     callApi();
     callNewsApi();
     // callEmergencyAPI();
-
+if(loginResponse1.body.userStateId == "21" ){
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      /*await showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: dialogGender,
+      );*/
+      //dialogGender1();
+      _displayTextInputDialog1(context);
+    });
+    }
     FirebaseMessaging.instance
         .getInitialMessage()
         .then((RemoteMessage message) {
@@ -121,6 +131,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
       print('A new onMessageOpenedApp event was published!');
       Navigator.pushNamed(context, '/aboutus');
+
     });
   }
 
@@ -150,7 +161,160 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
           });
         });
   }
+  _displayTextInputDialog1(BuildContext context) async {
+    bool _rememberMe=false;
+    return showDialog(
+        context: context,
+        barrierDismissible: false,
+        /*closeFunction: () {},*/
 
+        builder: (context) {
+          return AlertDialog(
+            insetPadding: EdgeInsets.zero,
+            content: StatefulBuilder(
+              builder: (BuildContext context, StateSetter setState) {
+
+                return Container(
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  //height: MediaQuery.of(context).size.height * 0.5,
+                  child: SingleChildScrollView(
+                    child: Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          SizedBox(height: 10),
+                         /* Row(
+                            children: [
+                              Checkbox(
+                                value: _rememberMe,
+                                onChanged: (value) {
+                                  setState(() {
+                                    _rememberMe = !_rememberMe;
+                                  });
+                                },
+                              ),
+                              //Text("I accept terms & condition",),
+                              Expanded(child:
+                              Text("log in as Dhan Arogya Kranti User.",
+                                textAlign: TextAlign.start,
+                                style: TextStyle(color: Colors.black, fontSize: 20),
+                              ),
+                                  )
+                            ],
+                          ),*/
+                          Row(
+                              children: [
+                                InkWell(
+                                    onTap: () {
+                                      //Navigator.pop(context);
+                                    },
+                                    child: Container(
+                                        child: Column(
+                                          children: [
+                                            Checkbox(
+                                              value: _rememberMe,
+                                              onChanged: (value) {
+                                                setState(() {
+                                                  _rememberMe = !_rememberMe;
+                                                });
+                                              },
+                                            ),
+                                          ],
+                                        ))),
+                                SizedBox(width: 5),
+                                Expanded(
+                                    child: Column(
+                                      children: [
+                                        Text.rich(TextSpan(children: [
+                                          TextSpan(text: "Log in as Dhan Arogya Kranti User",
+                                              style: TextStyle(color: Colors.black, fontSize: 18,)),
+                                          TextSpan(text: " Know More",
+                                              style: TextStyle(color: Colors.grey,fontSize: 12))
+                                        ])),
+                                        /*Text("Log in as Dhan Arogya Kranti User.",
+                                          textAlign: TextAlign.start,
+                                          style: TextStyle(color: Colors.black, fontSize: 20),
+                                        ),*/
+                                      ],
+                                    )),
+                              ]),
+                          SizedBox(
+                            height: 30,
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                          child:GestureDetector(
+                                  onTap: () {
+                                    Navigator.pop(context);
+                                  },
+                      child: Container(
+                                  height: 40,
+                                  width: 50,
+                                  decoration: BoxDecoration(color:AppData.kPrimaryColor,),
+                                  child: Text("CANCEL",style: TextStyle(
+                                      color: Colors.white,fontSize: 15),),
+                                  alignment: Alignment.center,
+                                ),
+                              ),),
+                              SizedBox(width: 10),
+                             Expanded(
+                               child:GestureDetector(
+                                 onTap: () {
+                                   Navigator.pop(context);
+                                 },
+
+                                 child: Container(
+                                  height: 40,
+                                  width: 50,
+                                  decoration: BoxDecoration(color:AppData.kPrimaryColor,),
+                                  child: Text("OK",style: TextStyle(
+                                      color: Colors.white,fontSize: 15),),
+                                  alignment: Alignment.center,
+                                ),
+                               ),
+                              ),
+
+                            ],
+                          ),
+                         /* InkWell(
+                            onTap: (){
+                              Navigator.pop(context);
+
+                            },
+
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                              child: Container(
+                                height: 40,
+                                decoration: BoxDecoration(color: AppData.kPrimaryColor),
+                                child: Text("CANCEL",style: TextStyle(
+                                    color: Colors.white,fontSize: 15),),
+                                alignment: Alignment.center,
+                              ),
+                            ),
+                          ),*/
+
+
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
+            /*actions: <Widget>[
+              FlatButton(
+                textColor: Colors.grey,
+                child: Text("OK",
+                    style: TextStyle(color: AppData.kPrimaryColor)),
+
+              ),
+            ],*/
+          );
+        });
+  }
   /*callProfApi() {
     widget.model.GETMETHODCALL_TOKEN(
         api: ApiFactory.PATIENT_PROFILE + loginResponse1.body.user,
@@ -1515,6 +1679,7 @@ class MyPage1Widget extends StatelessWidget {
   double _width;
 
   final MainModel model;
+  LoginResponse1 loginResponse1;
 
   MyPage1Widget({Key key, this.model}) : super(key: key);
 
@@ -1661,6 +1826,8 @@ class MyPage1Widget extends StatelessWidget {
   }
 
   _displayTextInputDialog(BuildContext context,int v) async {
+
+
     bool _rememberMe = false;
     return showDialog(
         context: context,
@@ -1782,10 +1949,13 @@ class MyPage1Widget extends StatelessWidget {
         });
   }
 
+
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     _width = (MediaQuery.of(context).size.width - 80) / 3;
+    loginResponse1 = model.loginResponse1;
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 7),
       child: Column(
@@ -1796,16 +1966,45 @@ class MyPage1Widget extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Column(
+              (loginResponse1.body?.userStateId != null&&loginResponse1.body?.userStateId == "21" )?Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                _buildTilePremium(
+                  icon: "assets/folder.png",
+                  fun: () {
+                    //AppData.showInSnackBar(context, "Coming soon");
+                    //Navigator.pushNamed(context, "/medicalrecordpage");
+                    _displayTextInputDialog(context,1);
+                  },
+                  color: AppData.BG2BLUE,
+                  bordercolor: AppData.BG2BLUE,
+                  // ,
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                Container(
+                  width: 100,
+                  height: 35,
+                  /* child: Expanded(*/
+                  child: Text(
+                    MyLocalizations.of(context).text("MEDICAL_RECORD"),
+                    textAlign: TextAlign.center,
+                    //overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+              ]):
+          Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    _buildTilePremium(
+                    _buildTileblue(
                       icon: "assets/folder.png",
                       fun: () {
                         //AppData.showInSnackBar(context, "Coming soon");
-                        //Navigator.pushNamed(context, "/medicalrecordpage");
-                        _displayTextInputDialog(context,1);
+                        Navigator.pushNamed(context, "/medicalrecordpage");
+                       // _displayTextInputDialog(context,1);
                       },
                       color: AppData.BG2BLUE,
                       bordercolor: AppData.BG2BLUE,
@@ -1829,6 +2028,7 @@ class MyPage1Widget extends StatelessWidget {
               SizedBox(
                 width: 5,
               ),
+              (loginResponse1.body?.userStateId != null&&loginResponse1.body.userStateId == "21" )?
               Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -1842,6 +2042,40 @@ class MyPage1Widget extends StatelessWidget {
                         //AppData.showInSnackDone(context, "Coming Soon");
                         //Navigator.pushNamed(context, "/insuranceList");
                         _displayTextInputDialog(context,2);
+
+                        /*  AppData.showSnack(
+                                    context, "Coming soon", Colors.green);*/
+                      },
+                      color: AppData.BG1RED,
+                      bordercolor: AppData.BG1RED,
+                      //size: (size.width - 130) / 3,
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      width: 100,
+                      height: 35,
+                      /* child: Expanded(*/
+                      child: Text(
+                        MyLocalizations.of(context).text("INSURANCE"),
+                        textAlign: TextAlign.center,
+                        //overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ]): Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _buildTilered(
+                      icon: "assets/insuranceF.png",
+                      //icon: Icons.drive_folder_upload,
+                      //icon: FontAwesomeIcons.accusoft,
+                      title: "Upload Medical Data",
+                      fun: () {
+                        //AppData.showInSnackDone(context, "Coming Soon");
+                        Navigator.pushNamed(context, "/insuranceList");
+                        //_displayTextInputDialog(context,2);
 
                         /*  AppData.showSnack(
                                     context, "Coming soon", Colors.green);*/

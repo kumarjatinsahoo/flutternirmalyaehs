@@ -65,13 +65,16 @@ class _GoogleFindResultState extends State<GoogleFindResult> {
 
   callAPI(int radius, int i) {
     log("API :Lati & Longi" + lati + "\n" + longi);
+    var pp = speciality.replaceAll(RegExp(' & +'), ' ');
+    speciality = pp.replaceAll(RegExp(' +'), '|');
     log(ApiFactory.GOOGLE_QUERY_API(
         lati: lati,
         longi: longi,
         radius: (radius * 1000).toString(),
         healthpro: (speciality != null)
-            ? healthpro + " " + speciality
-            : healthpro));
+                ? speciality.toLowerCase()  + "|" + healthpro.toLowerCase() + "|" + widget.model.city.toLowerCase()
+                : healthpro.toLowerCase() + "|" + widget.model.city.toLowerCase()
+            ));
     setState(() {
       isDataNotAvail = false;
       googlePlaceModel=null;
@@ -82,9 +85,13 @@ class _GoogleFindResultState extends State<GoogleFindResult> {
             lati: lati,
             longi: longi,
             radius: (radius * 1000).toString(),
+            // healthpro: (speciality != null)
+            //     ? healthpro + " " + speciality
+            //     : healthpro
             healthpro: (speciality != null)
-                ? healthpro + " " + speciality
-                : healthpro),
+                ? speciality.toLowerCase()  + "|" + healthpro.toLowerCase() + "|" + widget.model.city.toLowerCase()
+                : healthpro.toLowerCase() + "|" + widget.model.city.toLowerCase()
+                ),
         fun: (Map<String, dynamic> map) {
           setState(() {
             // String msg = map[Const.MESSAGE];
