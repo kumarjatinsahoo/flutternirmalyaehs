@@ -165,7 +165,7 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                             (value1 != null)
                                 ? _displayTextInputDialog1(
                                     context, emergencyHelpModel, 0)
-                                : _displayTextInputDialog(
+                                :_displayTextInputDialog(
                                     context, emergencyHelpModel);
                           },
                           child: Container(
