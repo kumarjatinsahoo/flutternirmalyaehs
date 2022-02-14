@@ -370,7 +370,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         fun: (Map<String, dynamic> map) {
           Navigator.pop(context);
           setState(() {
-            log("Value>>>" + jsonEncode(map));
+            log("IMAGE UPDatE>>>" + jsonEncode(map));
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
               AppData.showInSnackDone(context, msg);

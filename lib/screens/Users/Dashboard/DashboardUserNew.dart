@@ -373,7 +373,8 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
             */ /*Text(
               MyLocalizations.of(context).text("DASHBOARD"),
               style: TextStyle(color: Colors.white),
-            ),*/ /*
+            ),*/
+        /*
             //assets/images/User5.png
             //assets/images/user.png
             Image.asset("assets/images/User5.png",height: 50,width: 40,),
@@ -392,14 +393,16 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
             //SizedBox(width: 40),
             Row(
               children: [
-                */ /*Text(
+                */
+        /*Text(
                   "Hi, " + loginResponse1?.body?.userName ?? "N/A",
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 16,
                       fontWeight: FontWeight.w500),
                 ),
-                SizedBox(width: 20),*/ /*
+                SizedBox(width: 20),*/
+        /*
                 //Spacer(),
                 InkWell(onTap: (){
                   Navigator.pushNamed(context, "/medicinereminder");
@@ -416,13 +419,42 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            // ClipRRect(
+            //   borderRadius: BorderRadius.circular(25),
+            //     child: (loginResponse1?.body?.userPic!=null)?
+            //     Image.network(
+            //       loginResponse1?.body?.userPic,
+            //       width: 30,
+            //       height: 30,
+            //     ):Image.asset("assets/images/Dashboardimg5.png",
+            //       width: 30,
+            //       height: 30,),),
+
             ClipRRect(
-                borderRadius: BorderRadius.all(Radius.circular(20)),
-                child: Image.asset(
-                  "assets/images/Dashboardimg5.png",
+                borderRadius: BorderRadius.circular(25),
+                child:
+                (loginResponse1?.body?.userPic!=null)?Image.network(
+                  loginResponse1?.body?.userPic,
                   width: 30,
                   height: 30,
-                )),
+                  fit: BoxFit.cover,
+                ):Image.asset("assets/images/Dashboardimg5.png",
+                    width:30,
+                    height: 30)
+              //     Image.asset(
+              //   "assets/images/user.png",
+              //   // 'assets/images/Dashboardprofile.png',
+              //   height: size.height * 0.05,
+              //   width: size.width * 0.10,
+              //   //fit: BoxFit.cover,
+              // ),
+              /*: Image.network(
+                                    loginResponse1.body.userPic,
+                                    height: size.height * 0.07,
+                                    width: size.width * 0.13,
+                                    //fit: BoxFit.cover,
+                                  )*/
+            ),
             SizedBox(
               width: 10,
             ),
@@ -502,21 +534,24 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                   //fit: BoxFit.cover,
                                 )),
                           ),*/
-                          CircleAvatar(
-                            radius: 25,
-                            foregroundColor: Colors.white,
-                            backgroundColor: Colors.white,
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(25),
                             child:
-                                /*(loginResponse1?.body?.userPic != null &&
-                                    loginResponse1?.body?.userPic != "")
-                                ? */
-                                Image.asset(
-                              "assets/images/user.png",
-                              // 'assets/images/Dashboardprofile.png',
-                              height: size.height * 0.05,
-                              width: size.width * 0.10,
-                              //fit: BoxFit.cover,
-                            ),
+                            (loginResponse1?.body?.userPic!=null)?Image.network(
+                              loginResponse1?.body?.userPic,
+                              width: 40,
+                              height: 40,
+                              fit: BoxFit.cover,
+                            ):Image.asset("assets/images/Dashboardimg5.png",
+                              width:40,
+                              height: 40)
+                            //     Image.asset(
+                            //   "assets/images/user.png",
+                            //   // 'assets/images/Dashboardprofile.png',
+                            //   height: size.height * 0.05,
+                            //   width: size.width * 0.10,
+                            //   //fit: BoxFit.cover,
+                            // ),
                             /*: Image.network(
                                     loginResponse1.body.userPic,
                                     height: size.height * 0.07,
@@ -1633,11 +1668,18 @@ class MyPage1Widget extends StatelessWidget {
         builder: (context) {
           return AlertDialog(
             insetPadding: EdgeInsets.zero,
+              backgroundColor:Colors.transparent,
+            elevation: 0,
             content: StatefulBuilder(
               builder: (BuildContext context, StateSetter setState) {
                 return Container(
-                  width: MediaQuery.of(context).size.width * 0.8,
-                  height: MediaQuery.of(context).size.height * 0.5,
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  height: MediaQuery.of(context).size.height * 0.4,
+                  padding: EdgeInsets.all(19),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(30)),
+                    color: Colors.white
+                  ),
                   child: SingleChildScrollView(
                     child: Padding(
                       padding: const EdgeInsets.all(5.0),
@@ -1646,7 +1688,7 @@ class MyPage1Widget extends StatelessWidget {
                         children: [
                           SizedBox(height: 10),
                           Text(
-                            "Get your health insurance & check up done now ",
+                            "Get your health insurance & checkup done now ",
                             textAlign: TextAlign.center,
                             style: TextStyle(color: Colors.black, fontSize: 20),
                           ),
@@ -1663,12 +1705,37 @@ class MyPage1Widget extends StatelessWidget {
                                   });
                                 },
                               ),
-                              Text("I accept terms & condition")
+                              Text("I accept terms & condition"),
                             ],
                           ),
                           SizedBox(
                             height: 20,
                           ),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: Container(
+                                  height: 50,
+                                  width: 50,
+                                  decoration: BoxDecoration(color:AppData.kPrimaryColor,),
+                                  child: Text("Contact Sales",style: TextStyle(
+                                      color: Colors.white,fontSize: 15),),
+                                  alignment: Alignment.center,
+                                ),
+                              ),
+                              SizedBox(width: 10),
+                              Expanded(
+                                child: Container(
+                                  height: 50,
+                                  width: 50,
+                                  decoration: BoxDecoration(color:AppData.kPrimaryColor,),
+                                  child: Text("Get a call back",style: TextStyle(
+                                      color: Colors.white,fontSize: 15),),
+                                  alignment: Alignment.center,
+                                ),
+                              ),
+                            ],
+                          )
                         ],
                       ),
                     ),
@@ -1677,11 +1744,11 @@ class MyPage1Widget extends StatelessWidget {
               },
             ),
             actions: <Widget>[
-              FlatButton(
-                textColor: Colors.grey,
-                child: Text(MyLocalizations.of(context).text("CANCEL"),
-                    style: TextStyle(color: AppData.kPrimaryRedColor)),
-              ),
+              // FlatButton(
+              //   textColor: Colors.grey,
+              //   child: Text(MyLocalizations.of(context).text("CANCEL"),
+              //       style: TextStyle(color: AppData.kPrimaryRedColor)),
+              // ),
             ],
           );
         });
