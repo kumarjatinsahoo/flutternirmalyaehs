@@ -969,7 +969,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           ? _packageInfo.version
                           : Const.IOS_VERSION,
                       "deviceId": deviceid,
-                      "activityDate": */ /*"26-1-2021"*/ /* formattedDate,
+                      "activityDate": */ /*"26-1-2021"*/
+                    /* formattedDate,
                       "activityTime": currentTime,
                       "type": "LOGIN",
                       "status": "SUCCESS",

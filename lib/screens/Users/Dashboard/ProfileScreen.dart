@@ -373,6 +373,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             log("IMAGE UPDatE>>>" + jsonEncode(map));
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
+              loginResponse1.body.userPic = map["body"];
               AppData.showInSnackDone(context, msg);
             } else {
               isDataNotAvail = true;
