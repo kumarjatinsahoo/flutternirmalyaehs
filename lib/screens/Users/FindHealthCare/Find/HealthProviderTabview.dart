@@ -5,7 +5,7 @@ import 'package:user/scoped-models/MainModel.dart';
 import 'package:flutter/material.dart';
 import 'HealthProviderOurService.dart';
 
-import 'HealthProviderOngooglePage.dart';
+import 'GoogleFindResult.dart';
 class ChemistsTabview extends StatefulWidget {
   final MainModel model;
 
@@ -73,7 +73,7 @@ class _ChemistsTabviewState extends State<ChemistsTabview> {
         ),
         body: TabBarView(
           children: [
-            ChemistsOngooglePage(model:widget.model),
+            GoogleFindResult(model:widget.model),
             ChemistsPage(model:widget.model),
 
           ],

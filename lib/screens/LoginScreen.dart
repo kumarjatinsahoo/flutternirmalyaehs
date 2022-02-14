@@ -208,6 +208,9 @@ class _LoginScreenState extends State<LoginScreen> {
     if (userId != null && password!=null) {
       _loginId.text = json.decode(userId);
       passController.text = json.decode(password);
+      setState(() {
+        _rememberMe=true;
+      });
     }
   }
 
