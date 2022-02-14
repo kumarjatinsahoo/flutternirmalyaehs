@@ -569,11 +569,11 @@ class _LoginScreenState extends State<LoginScreen> {
                                 TextSpan(
                                     text: MyLocalizations.of(context)
                                             .text("DIDHAVEACC") +
-                                        "\n",
+                                        "\n\n",
                                     style: TextStyle(
                                         color: Colors.black, fontSize: 17)),
                                 TextSpan(
-                                    text: "   ",
+                                    text: " ",
                                     style: TextStyle(color: Colors.black)),
                                 TextSpan(
                                     text: MyLocalizations.of(context)
@@ -582,13 +582,13 @@ class _LoginScreenState extends State<LoginScreen> {
                                         color: AppData.matruColor,
                                         fontStyle: FontStyle.normal,
                                         fontSize: 17,
-                                        fontWeight: FontWeight.w600))
+                                        fontWeight: FontWeight.w700))
                               ],
                             ),
                           ),
                         ),
                       ),
-
+                      SizedBox(height: 10),
                       InkWell(
                           onTap: () {
                             Navigator.pushNamed(context, "/forgotpassword");
@@ -599,6 +599,11 @@ class _LoginScreenState extends State<LoginScreen> {
                             style: TextStyle(
                                 fontSize: 17, color: AppData.kPrimaryColor),
                           )),
+
+
+
+
+
                       SizedBox(
                         height: size.height * 0.06,
                       ),
