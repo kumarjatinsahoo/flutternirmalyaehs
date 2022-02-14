@@ -1,4 +1,5 @@
 import 'package:user/localization/localizations.dart';
+import 'package:user/models/LoginResponse1.dart';
 import 'package:user/notification/TokenMonitor.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
@@ -18,13 +19,21 @@ class _MedicalRecordPageState extends State<MedicalRecordPage> {
   var selectedMinValue;
 
   var _token;
+  LoginResponse1 loginResponse1;
 
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    loginResponse1 = widget.model.loginResponse1;
+  }
 
   @override
   Widget build(BuildContext context) {
     double tileSize = 80;
     double spaceTab = 20;
     double edgeInsets = 3;
+
 
     return Scaffold(
       appBar: AppBar(
@@ -472,8 +481,9 @@ class _MedicalRecordPageState extends State<MedicalRecordPage> {
                                           ),
                                         )),
                                   ),
+                                  (loginResponse1.body?.userStateId != null&&loginResponse1.body.userStateId == "21" )?
                                   Positioned(right: 5,top: 5,
-                                      child: Image.asset("assets/images/premium1.png",width: 35,))
+                                      child: Image.asset("assets/images/premium1.png",width: 35,)):Container(),
                                 ],
                               ),
                             ),
