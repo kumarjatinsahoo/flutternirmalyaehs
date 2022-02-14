@@ -429,7 +429,6 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
             //     ):Image.asset("assets/images/Dashboardimg5.png",
             //       width: 30,
             //       height: 30,),),
-
             ClipRRect(
                 borderRadius: BorderRadius.circular(25),
                 child:

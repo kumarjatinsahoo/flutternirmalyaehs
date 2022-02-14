@@ -417,58 +417,64 @@ class _MedicalRecordPageState extends State<MedicalRecordPage> {
                                 Navigator.pushNamed(
                                     context, "/testReportListUser1");
                               },
-                              child: Card(
-                                elevation: 5,
-                                child: Container(
-                                    height: tileSize,
-                                    width: double.maxFinite,
-                                    decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        border: Border.all(
-                                          color: Colors.grey[300],
-                                        ),
-                                        borderRadius: BorderRadius.circular(
-                                            8)),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(10.0),
-                                      child: Row(
-                                        crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                        children: [
-                                          Container(
-                                            color: AppData.kPrimaryRedColor,
-                                            padding: EdgeInsets.all(3),
-                                            child: Image.asset(
-                                              "assets/images/usertest.png",
-                                              height: 40,
+                              child: Stack(
+                                children: [
+                                  Card(
+                                    elevation: 5,
+                                    child: Container(
+                                        height: tileSize,
+                                        width: double.maxFinite,
+                                        decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            border: Border.all(
+                                              color: Colors.grey[300],
                                             ),
-                                          ),
-                                          SizedBox(
-                                            width: spaceTab,
-                                          ),
-                                          Expanded(
-                                            child: Column(
-                                              crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                              mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                              children: [
-                                                Text(MyLocalizations.of(context).text("TEST_REPORT"),
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                      FontWeight.normal,
-                                                      fontSize: 18),
+                                            borderRadius: BorderRadius.circular(
+                                                8)),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(10.0),
+                                          child: Row(
+                                            crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                            children: [
+                                              Container(
+                                                color: AppData.kPrimaryRedColor,
+                                                padding: EdgeInsets.all(3),
+                                                child: Image.asset(
+                                                  "assets/images/usertest.png",
+                                                  height: 40,
                                                 ),
-                                              ],
-                                            ),
+                                              ),
+                                              SizedBox(
+                                                width: spaceTab,
+                                              ),
+                                              Expanded(
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                                  mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                                  children: [
+                                                    Text(MyLocalizations.of(context).text("TEST_REPORT"),
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                          FontWeight.normal,
+                                                          fontSize: 18),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              Image.asset(
+                                                "assets/Forwordarrow.png",
+                                                height: 25,
+                                              )
+                                            ],
                                           ),
-                                          Image.asset(
-                                            "assets/Forwordarrow.png",
-                                            height: 25,
-                                          )
-                                        ],
-                                      ),
-                                    )),
+                                        )),
+                                  ),
+                                  Positioned(right: 5,top: 5,
+                                      child: Image.asset("assets/images/premium1.png",width: 35,))
+                                ],
                               ),
                             ),
                             GestureDetector(
