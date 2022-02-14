@@ -193,14 +193,16 @@ Map<String, dynamic> postData = {
 
   }*/
   callAPI(int radius, int i) {
+    var locationName;
+    locationName = medicallserviceType.replaceAll(RegExp(' +'), '|');
     // log("API :Lati & Longi" + lati + "\n" + lati);
-    log("API CALL>>>" + ApiFactory.GOOGLE_QUERY_API(lati: lati, radius: (radius * 1000).toString(), longi: longi, healthpro: medicallserviceType) +
+    log("API CALL>>>" + ApiFactory.GOOGLE_QUERY_API(lati: lati, radius: (radius * 1000).toString(), longi: longi,   healthpro:(city!=null)?locationName.toLowerCase() +"|"+city.toLowerCase():locationName.toLowerCase()) +
         "\n\n\n");
         
     widget.model.GETMETHODCAL(
         api: ApiFactory.GOOGLE_QUERY_API(
             lati: lati, longi: longi, radius: (radius * 1000).toString(),
-            healthpro:(city!=null)?medicallserviceType+" in "+city:medicallserviceType),
+            healthpro:(city!=null)?locationName.toLowerCase() +"|"+city.toLowerCase():locationName.toLowerCase()),
         fun: (Map<String, dynamic> map) {
           setState(() {
             // String msg = map[Const.MESSAGE];
