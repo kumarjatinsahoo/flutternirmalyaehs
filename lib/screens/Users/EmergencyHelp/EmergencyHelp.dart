@@ -131,6 +131,10 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
             String msg = map[Const.MESSAGE];
             if (map[Const.STATUS1] == Const.SUCCESS) {
               emergencyHelpModel = EmergencyHelpModel.fromJson(map);
+              if(emergencyHelpModel.emergency!=null && emergencyHelpModel.emergency.isEmpty){
+                Navigator.pop(context);
+                Navigator.pushNamed(context, "/setupcontacts");
+              }
             } else {
               isDataNotAvail = true;
               // AppData.showInSnackBar(context, msg);
@@ -293,7 +297,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Stack(
+    return (emergencyHelpModel!=null)?Stack(
       children: [
         Scaffold(
             backgroundColor: Colors.grey.shade100,
@@ -1048,6 +1052,56 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                           Image.asset("assets/images/indication.png")))),
             ))
       ],
+    ):Scaffold(
+      appBar: AppBar(
+        title: Stack(
+          children: [
+            Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  MyLocalizations.of(context).text("EMERGENCY_HELP"),
+                  style: TextStyle(color: Colors.white),
+                ),
+              ],
+            ),
+            Align(
+                alignment: Alignment.topRight,
+                child: InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, "/setupcontacts").then((value) => callAPI());
+                    },
+                    child: Icon(Icons.settings))),
+            Align(
+              alignment: Alignment.topLeft,
+              child: InkWell(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: Icon(
+                  Icons.arrow_back,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ],
+        ),
+        automaticallyImplyLeading: false,
+        centerTitle: true,
+        backgroundColor: AppData.kPrimaryColor,
+        iconTheme: IconThemeData(color: Colors.white),
+      ),
+      body: Container(
+        height: double.maxFinite,
+        width: double.maxFinite,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            CircularProgressIndicator(),
+          ],
+        ),
+      ),
     );
   }
 
