@@ -90,14 +90,14 @@ class _CountDownPageState extends State<CountDownPage>
   callHelpBtn() {    
     Map<String, dynamic> postmap = {
       "userid" : loginResponse1.body.user,
-      "mapurl" : ApiFactory.googleMapUrl(lati:widget.model.lati ,longi: widget.model.longi)
+      "mapurl" : ApiFactory.googleMapUrl(longi: widget.model.longi,lati:widget.model.lati)
     };     
       widget.model.POSTMETHOD_TOKEN(
         api: ApiFactory.EMERGENCY_HELP_NEW,   
         token: widget.model.token,
         json: postmap,
         fun: (Map<String, dynamic> map) {
-          print("Value is>>>>" + JsonEncoder().convert(map));
+          print("Narmada is>>>>" +  ApiFactory.googleMapUrl(longi: widget.model.longi,lati:widget.model.lati) + ' s ' + widget.model.longi);
           setState(() {
             String msg = map[Const.MESSAGE];
             if (map[Const.STATUS1] == Const.SUCCESS) {
@@ -274,6 +274,7 @@ class _CountDownPageState extends State<CountDownPage>
               emergencyHelpModel = EmergencyHelpModel.fromJson(map);
               emergencyHelpModel.emergency.forEach((element) {
                 userMobList.add(element.mobile);
+                print('========Narmada+++++++ ' + userMobList.toString());
               });
             } else {
               //isDataNotAvail = true;
