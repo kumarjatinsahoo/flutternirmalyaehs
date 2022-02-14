@@ -476,9 +476,9 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                               new Spacer(),
                               InkWell(
                                   onTap: () {
-                                    //FlutterPhoneDirectCaller.callNumber("7008553233");
+                                    FlutterPhoneDirectCaller.callNumber(emergencyHelpModel.emergency[0].mobile);
                                     // Navigator.pop(context);
-                                   // AppData.launchURL("tel://" + emergencyHelpModel.emergency[0].mobile);
+                                  //  AppData.launchURL("tel:" + emergencyHelpModel.emergency[0].mobile);
                                   },
                                   child: Align(
                                     alignment: Alignment.center,
