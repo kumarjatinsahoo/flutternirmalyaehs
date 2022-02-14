@@ -1661,7 +1661,7 @@ class MyPage1Widget extends StatelessWidget {
     );
   }
 
-  _displayTextInputDialog(BuildContext context) async {
+  _displayTextInputDialog(BuildContext context,int v) async {
     bool _rememberMe = false;
     return showDialog(
         context: context,
@@ -1674,10 +1674,10 @@ class MyPage1Widget extends StatelessWidget {
               builder: (BuildContext context, StateSetter setState) {
                 return Container(
                   width: MediaQuery.of(context).size.width * 0.9,
-                  height: MediaQuery.of(context).size.height * 0.4,
+                  height: MediaQuery.of(context).size.height * 0.45,
                   padding: EdgeInsets.all(19),
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(30)),
+                    borderRadius: BorderRadius.all(Radius.circular(15)),
                     color: Colors.white
                   ),
                   child: SingleChildScrollView(
@@ -1705,7 +1705,12 @@ class MyPage1Widget extends StatelessWidget {
                                   });
                                 },
                               ),
-                              Text("I accept terms & condition"),
+                              //Text("I accept terms & condition",),
+                              Text.rich(TextSpan(children: [
+                                TextSpan(text: "I accept "),
+                                TextSpan(text: "terms & condition",
+                                    style: TextStyle(color: Colors.blue,))
+                              ]))
                             ],
                           ),
                           SizedBox(
@@ -1735,7 +1740,26 @@ class MyPage1Widget extends StatelessWidget {
                                 ),
                               ),
                             ],
-                          )
+                          ),
+                           SizedBox(height: 10),
+                           InkWell(
+                             onTap: (){
+                               if(v==2) {
+                                 Navigator.pushNamed(
+                                     context, "/insuranceList");
+                               }else{
+                                 Navigator.pushNamed(
+                                     context, "/medicalrecordpage");
+                               }
+                             },
+                             child: Container(
+                              height: 50,
+                              decoration: BoxDecoration(color:Colors.amber,),
+                              child: Text("Continue",style: TextStyle(
+                                  color: Colors.white,fontSize: 15),),
+                              alignment: Alignment.center,
+                          ),
+                           ),
                         ],
                       ),
                     ),
@@ -1776,7 +1800,8 @@ class MyPage1Widget extends StatelessWidget {
                       icon: "assets/folder.png",
                       fun: () {
                         //AppData.showInSnackBar(context, "Coming soon");
-                        Navigator.pushNamed(context, "/medicalrecordpage");
+                        //Navigator.pushNamed(context, "/medicalrecordpage");
+                        _displayTextInputDialog(context,1);
                       },
                       color: AppData.BG2BLUE,
                       bordercolor: AppData.BG2BLUE,
@@ -1796,6 +1821,7 @@ class MyPage1Widget extends StatelessWidget {
                       ),
                     ),
                   ]),
+
               SizedBox(
                 width: 5,
               ),
@@ -1811,7 +1837,7 @@ class MyPage1Widget extends StatelessWidget {
                       fun: () {
                         //AppData.showInSnackDone(context, "Coming Soon");
                         //Navigator.pushNamed(context, "/insuranceList");
-                        _displayTextInputDialog(context);
+                        _displayTextInputDialog(context,2);
 
                         /*  AppData.showSnack(
                                     context, "Coming soon", Colors.green);*/
@@ -2527,17 +2553,20 @@ class MyPage1Widget extends StatelessWidget {
         decoration: BoxDecoration(
 
             /// borderRadius: BorderRadius.circular(7.0),
-            borderRadius: BorderRadius.only(
+           /* borderRadius: BorderRadius.only(
               topLeft: Radius.circular(10.0),
               topRight: Radius.zero,
               bottomLeft: Radius.zero,
               bottomRight: Radius.circular(10.0),
-            ),
+            ),*/
             color: color,
-            border: Border.all(
+            image: DecorationImage(
+              image: AssetImage("assets/images/premium2.png")
+            ),
+          /*  border: Border.all(
               color: Colors.amber,
               width: 2.5,
-            )
+            )*/
             /* boxShadow: [
             BoxShadow(
               color: bordercolor,
@@ -2600,15 +2629,15 @@ class MyPage1Widget extends StatelessWidget {
                     ),*/
               ],
             ),
-            Positioned(
+           /* Positioned(
                 right: 9,
                 top: 3,
                 child: Icon(
-                  /* "assets/logo1.png"*/
+                  *//* "assets/logo1.png"*//*
                   FontAwesomeIcons.crown,
                   color: Colors.amberAccent,
                   size: 15,
-                )),
+                )),*/
 
             /* Positioned(
           top: -3,
@@ -2662,19 +2691,22 @@ class MyPage1Widget extends StatelessWidget {
         width: _width,
         decoration: BoxDecoration(
 
-            /// borderRadius: BorderRadius.circular(7.0),
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(10.0),
-              topRight: Radius.zero,
-              bottomLeft: Radius.zero,
-              bottomRight: Radius.circular(10.0),
-            ),
+            // /// borderRadius: BorderRadius.circular(7.0),
+            // borderRadius: BorderRadius.only(
+            //   topLeft: Radius.circular(10.0),
+            //   topRight: Radius.zero,
+            //   bottomLeft: Radius.zero,
+            //   bottomRight: Radius.circular(10.0),
+            // ),
             color: color,
-            border: Border.all(
-              //color: AppData.kPrimaryRedColor,
-              color: Colors.amber,
-              width: 2.5,
-            )
+          image: DecorationImage(
+              image: AssetImage("assets/images/premium3.png")
+          ),
+            // border: Border.all(
+            //   //color: AppData.kPrimaryRedColor,
+            //   color: Colors.amber,
+            //   width: 2.5,
+            // )
             /* boxShadow: [
             BoxShadow(
               color: bordercolor,
@@ -2737,15 +2769,15 @@ class MyPage1Widget extends StatelessWidget {
                     ),*/
               ],
             ),
-            Positioned(
-                right: 9,
-                top: 3,
-                child: Icon(
-                  /* "assets/logo1.png"*/
-                  FontAwesomeIcons.crown,
-                  color: Colors.amberAccent,
-                  size: 15,
-                )),
+            // Positioned(
+            //     right: 9,
+            //     top: 3,
+            //     child: Icon(
+            //       /* "assets/logo1.png"*/
+            //       FontAwesomeIcons.crown,
+            //       color: Colors.amberAccent,
+            //       size: 15,
+            //     )),
 
             /* Positioned(
           top: -3,
