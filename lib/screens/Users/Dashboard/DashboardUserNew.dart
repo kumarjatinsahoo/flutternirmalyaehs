@@ -1706,11 +1706,16 @@ class MyPage1Widget extends StatelessWidget {
                                 },
                               ),
                               //Text("I accept terms & condition",),
-                              Text.rich(TextSpan(children: [
-                                TextSpan(text: "I accept "),
-                                TextSpan(text: "terms & condition",
-                                    style: TextStyle(color: Colors.blue,))
-                              ]))
+                              InkWell(
+                                onTap: (){
+                                  Navigator.pushNamed(context, "/termsandConditionPage");
+                                },
+                                child: Text.rich(TextSpan(children: [
+                                  TextSpan(text: "I accept "),
+                                  TextSpan(text: "terms & conditions",
+                                      style: TextStyle(color: Colors.blue,))
+                                ])),
+                              )
                             ],
                           ),
                           SizedBox(
