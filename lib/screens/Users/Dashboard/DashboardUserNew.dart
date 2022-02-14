@@ -95,7 +95,6 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
   ];
 
   SharedPref sharedPref = SharedPref();
-
   LoginResponse1 loginResponse1;
 
   @override
@@ -103,11 +102,10 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
     // TODO: implement initState
     super.initState();
     loginResponse1 = widget.model.loginResponse1;
-
     callApi();
     callNewsApi();
     // callEmergencyAPI();
-if(loginResponse1.body.userStateId == "21" ){
+ if(loginResponse1.body.userStateId == "21" ){
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       /*await showDialog(
         context: context,

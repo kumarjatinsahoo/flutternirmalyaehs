@@ -6,6 +6,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:user/localization/application.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/models/HealthChartResponse.dart';
+import 'package:user/models/MasterLoginResponse.dart';
 import 'package:user/providers/SharedPref.dart';
 import 'package:user/providers/Const.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +21,7 @@ class RestAPI extends Model with PassData{
   var dio = Dio();
   SharedPref sharedPref = SharedPref();
   LoginResponse1 loginData1;
+  MasterLoginResponse loginData;
   HealthChartResponse healthChartData;
   Map<String, dynamic> failedMap = {
     Const.STATUS: Const.FAILED,
@@ -668,7 +670,9 @@ class RestAPI extends Model with PassData{
   LoginResponse1 get loginResponse1 {
     return loginData1;
   }
-
+  MasterLoginResponse get loginResponse {
+    return loginData;
+  }
   Future<bool> POST_METHOD_TRUE(
       {@required String api, @required Map<String, dynamic> json}) async {
     print("<<>>>>>API CALL>>>>>>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" + api);

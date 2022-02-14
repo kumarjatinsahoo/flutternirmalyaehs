@@ -835,7 +835,7 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  roleUpdateApi(userId, data) {
+  roleUpdateApi(userId,master.Body data) {
     MyWidgets.showLoading(context);
     widget.model.GETMETHODCALL(
         api: ApiFactory.GET_ROLE + userId,
@@ -853,6 +853,10 @@ class _LoginScreenState extends State<LoginScreen> {
             body.userPassword = data.userPassword;
             body.userMobile = data.userMobile;
             body.userStatus = data.userStatus;
+            body.userStateId = data.userStateId;
+            body.userState = data.userState;
+            body.userCountry = data.userCountry;
+            body.userCountryId = data.userCountryId;
             body.token = data.token;
             body.roles = [];
             body.roles.add(map["body"]["roleid"]);
