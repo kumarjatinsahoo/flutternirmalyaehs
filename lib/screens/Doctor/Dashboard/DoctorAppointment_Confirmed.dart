@@ -405,6 +405,35 @@ class _DoctorAppointmentConfirmedState
                                                                 height: 4,
                                                               ),
                                                               Text(
+                                                                'Time: ',
+                                                                style: TextStyle(
+                                                                    color:
+                                                                    Colors.blue,
+                                                                    fontWeight:
+                                                                    FontWeight
+                                                                        .w600),
+                                                              ),
+                                                              SizedBox(
+                                                                height: 3,
+                                                              ),
+                                                              Text(
+                                                                /*'23-Nov-2020-11:30AM'*/
+                                                                appointmentlist
+                                                                    .apptime ??
+                                                                    "N/A",
+                                                                overflow:
+                                                                TextOverflow
+                                                                    .clip,
+                                                                style: TextStyle(
+                                                                    fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                                    fontSize: 15),
+                                                              ),
+                                                              SizedBox(
+                                                                height: 4,
+                                                              ),
+                                                              Text(
                                                                 'Address: ',
                                                                 style: TextStyle(
                                                                     color: Colors.blue,
