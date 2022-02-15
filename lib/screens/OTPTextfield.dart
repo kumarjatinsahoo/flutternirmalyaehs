@@ -243,15 +243,15 @@ String formattedDate;
                   autoFocus:  true,
                   onCodeSubmitted: (code) {
                     setState(() {
-                      _fourthDigit =4;
+                      _fourthDigit = 4;
                     });
                   },
                   onCodeChanged: (code) {
-                    if (code.length == 4) {
-                      print('code Changed ' + code);
+                    if (code.length == 4) {                      
                       otpController.text= code;         
-                      setState(() {
+                      setState(() {                        
                         _fourthDigit =4; 
+                        print('code Changed ' + _fourthDigit.toString());
                       });            
                       FocusScope.of(context).requestFocus(FocusNode());
                     }
@@ -431,6 +431,7 @@ String formattedDate;
     Size size = MediaQuery.of(context).size;
     return MyWidgets.nextButton(
         text: "Resend OTP", context: context, fun: () {
+          otpController..clear();
       MyWidgets.showLoading(context);
       widget.model.GETMETHODCALL(
           api: ApiFactory.LOGIN_Otp(widget.model.phnNo),
@@ -446,8 +447,8 @@ String formattedDate;
                // widget.loginData=loginResponse;
                 otpGenerateStr = masterResponse.body[0].otp;
                 otpGenerate = int.parse(otpGenerateStr);
-                otpController.text=otpGenerateStr;
-                // _hideResendButton =true;
+                // otpController.text=otpGenerate.toString();
+                _hideResendButton =true;
               /*  Navigator.push(
                   context,
                   MaterialPageRoute(

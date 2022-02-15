@@ -40,7 +40,7 @@ class _ImmunizationState extends State<Immunization> {
   bool isDataNoFound = false;
   String valueText = null;
   String selectDob;
-  bool isdata = false;
+  bool isdata = true;
   DateTime selectedDate = DateTime.now();
   final df = new DateFormat('dd/MM/yyyy');
 
@@ -81,7 +81,6 @@ class _ImmunizationState extends State<Immunization> {
     super.initState();
 
     loginResponse1 = widget.model.loginResponse1;
-    isdata = true;
     callApi();
   }
 
@@ -95,12 +94,12 @@ class _ImmunizationState extends State<Immunization> {
           setState(() {
             log("Immunisation>>>" + jsonEncode(map));
             String msg = map[Const.MESSAGE];
-            if (map[Const.CODE] == Const.SUCCESS) {
-              isdata = false;
-              setState(() {
+            if (map[Const.CODE] == Const.SUCCESS) {              
+              // setState(() {
+                isdata = false;
                 immunizationListModel =
                     immunization.ImmunizationListModel.fromJson(map);
-              });
+              // });
             } else {
               setState(() {
                 isdata = false;
@@ -164,8 +163,7 @@ class _ImmunizationState extends State<Immunization> {
               backgroundColor: AppData.matruColor,
             ),
           )
-              : immunizationListModel == null ||
-              immunizationListModel == null
+              : immunizationListModel == null
               ? Container(
             child: Center(
               child: Image.asset("assets/NoRecordFound.png",

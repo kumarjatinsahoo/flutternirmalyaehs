@@ -29,7 +29,7 @@ class _DocumentListState extends State<DocumentList> {
   bool isDataNoFound = false;
   String valueText = null;
   String selectDob;
-  bool isdata = false;
+  bool isdata = true;
   DateTime selectedDate = DateTime.now();
   final df = new DateFormat('dd/MM/yyyy');
   List<TextEditingController> textEditingController = [
@@ -70,10 +70,12 @@ class _DocumentListState extends State<DocumentList> {
             if (map[Const.CODE] == Const.SUCCESS) {
               setState(() {
                 documentListModel = document.DocumentlistModell.fromJson(map);
+                isdata = false;
               });
             } else {
               setState(() {
                 isDataNoFound = true;
+                isdata = false;
               });
               //AppData.showInSnackBar(context, msg);
             }
@@ -93,9 +95,11 @@ class _DocumentListState extends State<DocumentList> {
         title: Text(MyLocalizations.of(context).text("DOCUMENT_LIST")),
       ),*/
       body: isdata == true
-          ? CircularProgressIndicator(
-              backgroundColor: AppData.matruColor,
-            )
+          ? Center(
+            child: CircularProgressIndicator(
+                backgroundColor: AppData.matruColor,
+              ),
+          )
           : documentListModel == null || documentListModel == null
               ? Container(
                   child: Center(

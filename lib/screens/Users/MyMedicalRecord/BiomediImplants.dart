@@ -33,7 +33,7 @@ class _BiomediImplantsState extends State<BiomediImplants> {
   bool isDataNoFound = false;
   String valueText = null;
   String selectDob;
-  bool isdata = false;
+  bool isdata = true;
   DateTime selectedDate = DateTime.now();
   final df = new DateFormat('dd-MM-yyyy');
 
@@ -78,9 +78,10 @@ class _BiomediImplantsState extends State<BiomediImplants> {
           setState(() {
             log("Value>>>" + jsonEncode(map));
             String msg = map[Const.MESSAGE];
-            if (map[Const.CODE] == Const.SUCCESS) {
+            if (map[Const.CODE] == Const.SUCCESS) {  
+              isdata = false;            
               setState(() {
-                biomedicalModel = bio.BiomedicalModel.fromJson(map);
+                biomedicalModel = bio.BiomedicalModel.fromJson(map);                
               });
               if (biomedicalModel?.body[0].bioMName != null) {
                 BiomediImplants.admequipmentmodel = KeyvalueModel(
@@ -89,9 +90,12 @@ class _BiomediImplantsState extends State<BiomediImplants> {
               } else {
                 BiomediImplants.admequipmentmodel = null;
               }
+              
             } else {
               setState(() {
-                isDataNoFound = true;
+                isdata = false;
+                // isDataNoFound = true;
+                
               });
               //AppData.showInSnackBar(context, msg);
             }
@@ -123,10 +127,12 @@ class _BiomediImplantsState extends State<BiomediImplants> {
                 ),
               ]),
           body: isdata == true
-              ? CircularProgressIndicator(
-                  backgroundColor: AppData.matruColor,
-                )
-              : biomedicalModel == null || biomedicalModel == null
+              ? Center(
+                child: CircularProgressIndicator(
+                    backgroundColor: AppData.matruColor,
+                  ),
+              )
+              : biomedicalModel == null
                   ? Container(
                       child: Center(
                         child: Image.asset("assets/NoRecordFound.png",

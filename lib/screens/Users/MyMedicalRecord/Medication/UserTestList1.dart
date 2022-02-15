@@ -74,6 +74,7 @@ class _MedicineList extends State<UserTestList1> {
 
   Map<String, dynamic> mapK = {};
   bool isDataNoFound = false;
+  bool isdata = true;
 
   void initState() {
     // TODO: implement initState
@@ -97,10 +98,12 @@ class _MedicineList extends State<UserTestList1> {
           setState(() {
             log("Response from sagar>>>>>" + jsonEncode(map));
             medicineListModel = MedicalPrescriptionModel.fromJson(map);
+            isdata=false;
           });
         } else {
           setState(() {
             isDataNoFound = true;
+            isdata=false;
           });
           //isDataNotAvail = true;
           //AppData.showInSnackBar(context, msg);
@@ -158,7 +161,12 @@ class _MedicineList extends State<UserTestList1> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:
+      body:isdata == true
+              ? Center(
+            child: CircularProgressIndicator(
+              backgroundColor: AppData.matruColor,
+            ),
+          ):
       (medicineListModel != null)
           ?Container(
         child: SingleChildScrollView(
