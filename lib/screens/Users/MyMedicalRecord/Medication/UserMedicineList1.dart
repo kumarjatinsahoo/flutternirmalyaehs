@@ -338,7 +338,7 @@ class _MedicineList extends State<UserMedicineList1> {
     child: (isDataNoFound) ? 
     Center(
       child: Image.asset(
-                                              "assets/NoRecordFound.png",
+                                             "assets/NoRecordFound.png",
                                               // height: 25,
                                             ),
     ):

@@ -157,6 +157,8 @@ class SetReminderState extends State<SetReminder> {
     SetReminder.blockModel = null;
     SetReminder.dosageModel = null;
     textEditingController[0].text = widget.type;
+    stime.text="04:55 AM";
+    endtime.text="12:55 PM";
     getList();
   }
 
@@ -390,7 +392,7 @@ class SetReminderState extends State<SetReminder> {
               }),
             ),
             SizedBox(height: 10),
-            Padding(
+           /* Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 18),
                 child: Row(
                   children: const <Widget>[
@@ -426,7 +428,7 @@ class SetReminderState extends State<SetReminder> {
                     SizedBox(width: 8),
                     Expanded(child: endTime()),
                   ],
-                )),
+                )),*/
             SizedBox(height: 10),
             (SetReminder.timeDayModel != null)
                 ? Column(

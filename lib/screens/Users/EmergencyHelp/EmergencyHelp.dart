@@ -61,7 +61,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
     super.initState();
     loginResponse1 = widget.model.loginResponse1;
     callAPI();
-    _getLocationName();    
+    // _getLocationName();
   }
 
   /*_getLocationName() async {
@@ -127,24 +127,27 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
         fun: (Map<String, dynamic> map) {
           print("Value is>>>>" + JsonEncoder().convert(map));
 
-          setState(() {
+          // setState(() {
             String msg = map[Const.MESSAGE];
             if (map[Const.STATUS1] == Const.SUCCESS) {
-              emergencyHelpModel = EmergencyHelpModel.fromJson(map);
-              if(emergencyHelpModel.emergency!=null && emergencyHelpModel.emergency.isEmpty){
+              if(map["emergency"]==null || map["emergency"].isEmpty){
                 Navigator.pop(context);
                 Navigator.pushNamed(context, "/setupcontacts");
+              }else {
+                setState(() {
+                  emergencyHelpModel = EmergencyHelpModel.fromJson(map);
+                });
+                _getLocationName();
+
               }
             } else {
               isDataNotAvail = true;
               // AppData.showInSnackBar(context, msg);
             }
-          });
+          // });
         });
   }
 
- 
-  
   showUserList(BuildContext context, List<Emergency> list) {
     return showDialog(
         context: context,
