@@ -80,7 +80,7 @@ class _MedicineList extends State<UserMedicineList> {
   Map<String, dynamic> mapK = {};
 
   bool isDataNoFound = false;
-  bool isdata = false;
+  bool isdata = true;
   String selectPharma;
   String mode;
 
@@ -109,7 +109,10 @@ class _MedicineList extends State<UserMedicineList> {
             medicineListModel = MedicineListModel.fromJson(map);
           });
         } else {
-          isdata = false;
+          setState(() {
+          isdata = false;  
+          });
+          
           /* Center(
             child: Text(
               'Data Not Found',

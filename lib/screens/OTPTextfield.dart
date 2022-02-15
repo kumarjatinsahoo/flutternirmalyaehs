@@ -64,6 +64,7 @@ class OTPTextfieldState extends State<OTPTextfield> with SingleTickerProviderSta
   Timer timer;
   int totalTimeInSeconds;
   bool _hideResendButton;
+  bool _submitBtn=false;
 
   String userName = "";
   bool didReadNotifications = false;
@@ -244,6 +245,7 @@ String formattedDate;
                   onCodeSubmitted: (code) {
                     setState(() {
                       _fourthDigit = 4;
+                      _submitBtn=true;
                     });
                   },
                   onCodeChanged: (code) {
@@ -251,7 +253,8 @@ String formattedDate;
                       otpController.text= code;         
                       setState(() {                        
                         _fourthDigit =4; 
-                        print('code Changed ' + _fourthDigit.toString());
+                        // print('code Changed ' + _fourthDigit.toString());
+                        _submitBtn=true;
                       });            
                       FocusScope.of(context).requestFocus(FocusNode());
                     }
@@ -259,7 +262,7 @@ String formattedDate;
                 ),
               ),
         SizedBox(height: _screenSize.height * 0.08 ),
-          _hideResendButton?  Visibility(
+          _submitBtn?  Visibility(
                       maintainSize: true,
                       maintainAnimation: true,
                       maintainState: true,
@@ -448,7 +451,7 @@ String formattedDate;
                 otpGenerateStr = masterResponse.body[0].otp;
                 otpGenerate = int.parse(otpGenerateStr);
                 // otpController.text=otpGenerate.toString();
-                _hideResendButton =true;
+                _submitBtn =true;
               /*  Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -739,40 +742,6 @@ return OTPTextField(
         ),
       ),
     );
-  }
-
-  // Returns "Otp keyboard action Button"
-  _otpKeyboardActionButton({Widget label, VoidCallback onPressed}) {
-    return InkWell(
-      onTap: onPressed,
-      borderRadius: BorderRadius.circular(40.0),
-      child: Container(
-        height: 80.0,
-        width: 80.0,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-        ),
-        child: Center(
-          child: label,
-        ),
-      ),
-    );
-  }
-
-  // Current digit
-  void _setCurrentDigit(int i) {
-    setState(() {
-      _currentDigit = i;
-        if (_fourthDigit == null) {
-        _fourthDigit = _currentDigit;
-
-        var otp =  _fourthDigit.toString();
-        otpType = int.parse(otp.toString());
-        otpTypeStr = otp.toString();
-
-        // Verify your otp by here. API call
-      }
-    });
   }
 
   Future<Null> _startCountdown() async {

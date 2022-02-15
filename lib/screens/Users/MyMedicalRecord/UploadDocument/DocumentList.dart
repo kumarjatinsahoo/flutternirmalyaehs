@@ -100,7 +100,7 @@ class _DocumentListState extends State<DocumentList> {
                 backgroundColor: AppData.matruColor,
               ),
           )
-          : documentListModel == null || documentListModel == null
+          : documentListModel == null
               ? Container(
                   child: Center(
                     child: Image.asset("assets/NoRecordFound.png",
