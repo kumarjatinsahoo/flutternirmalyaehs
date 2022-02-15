@@ -24,7 +24,7 @@ class TestReportListUser1 extends StatefulWidget {
 class _TestReportListUser1State extends State<TestReportListUser1> {
   PocReportModel pocReportModel;
   bool isDataNotAvail = false;
-  bool isdata = false;
+  bool isdata = true;
 
   session.LoginResponse1 loginResponse1;
   ScrollController _scrollController = ScrollController();
@@ -74,6 +74,7 @@ class _TestReportListUser1State extends State<TestReportListUser1> {
           setState(() {
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
+              isdata=false;
               if (i == 1) {
                 pocReportModel = PocReportModel.fromJson(map);
                 //Navigator.pop(context);
@@ -81,7 +82,10 @@ class _TestReportListUser1State extends State<TestReportListUser1> {
                 pocReportModel.addMore(map);
               }
             } else {
-              isdata=true;
+              setState(() {
+              isdata=false;  
+              });
+              
              // isDataNotAvail = true;
               //if (i == 1) AppData.showInSnackBar(context, msg);
             }
@@ -108,7 +112,13 @@ class _TestReportListUser1State extends State<TestReportListUser1> {
             centerTitle: true,
             backgroundColor:AppData.kPrimaryColor,
         ),
-        body: (pocReportModel != null)? SingleChildScrollView(
+        body: isdata == true
+              ? Center(
+            child: CircularProgressIndicator(
+              backgroundColor: AppData.matruColor,
+            ),
+          ):
+         (pocReportModel != null)? SingleChildScrollView(
      // physics: ScrollPhysics(),
       child: Column(
         children: <Widget>[
@@ -271,14 +281,9 @@ class _TestReportListUser1State extends State<TestReportListUser1> {
     )
             :Container(
           child: Center(
-            child: Column(
-              children: [
-                SizedBox(height: 300,),
-                (isdata)? Image.asset("assets/NoRecordFound.png",
-                                              // height: 25,
-                                            ):CircularProgressIndicator(),
-              ],
-            ),
+            child:  Image.asset("assets/NoRecordFound.png",
+                                          // height: 25,
+                                        ),
           ),
         )
     );

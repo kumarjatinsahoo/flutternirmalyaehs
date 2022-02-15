@@ -43,7 +43,7 @@ class _RecentDocumentState extends State<RecentDocument> {
   bool isDataNoFound = false;
   String valueText = null;
   String selectDob;
-  bool isdata = false;
+  bool isdata = true;
   DateTime selectedDate = DateTime.now();
   final df = new DateFormat('dd/MM/yyyy');
   String profilePath = null, idproof = null;
@@ -103,8 +103,10 @@ class _RecentDocumentState extends State<RecentDocument> {
             if (map[Const.CODE] == Const.SUCCESS) {
               // pocReportModel = PocReportModel.fromJson(map);
              recentUploadDocument = recent.RecentUploadDocument.fromJson(map);
+             isdata=false;
             } else {
               setState(() {
+                isdata=false;
                 //isDataNoFound = true;
                 // AppData.showInSnackBar(context, msg);
               });
@@ -214,7 +216,13 @@ class _RecentDocumentState extends State<RecentDocument> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      body: Container(
+      body:isdata == true
+              ? Center(
+            child: CircularProgressIndicator(
+              backgroundColor: AppData.matruColor,
+            ),
+          ):
+       Container(
           child: SingleChildScrollView(
         child: Padding(
           padding:
@@ -465,7 +473,13 @@ class _RecentDocumentState extends State<RecentDocument> {
             },
             itemCount: recentUploadDocument.body.length,
           )
-                :Container()
+                :Container(
+            child: Center(
+              child: Image.asset("assets/NoRecordFound.png",
+                                              // height: 25,
+                                            )
+            ),
+          )
         ),
       )),
     );

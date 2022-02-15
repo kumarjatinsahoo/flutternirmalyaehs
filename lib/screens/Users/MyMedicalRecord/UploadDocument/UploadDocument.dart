@@ -39,7 +39,7 @@ class _UploadDocumentState extends State<UploadDocument> {
   bool isDataNoFound = false;
   String valueText = null;
   String selectDob;
-  bool isdata = false;
+  bool isdata = true;
   DateTime selectedDate = DateTime.now();
   final df = new DateFormat('dd/MM/yyyy');
   String profilePath = null, idproof = null;
@@ -100,6 +100,7 @@ class _UploadDocumentState extends State<UploadDocument> {
           setState(() {
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
+              isdata=false;
               if (i == 1) {
                 documentListModel = document.DocumentListModel.fromJson(map);
 
@@ -108,6 +109,9 @@ class _UploadDocumentState extends State<UploadDocument> {
                 //documentListModel.addMore(map);
               }
             } else {
+              setState(() {
+                isdata=false;
+              });
               //if (i == 1) AppData.showInSnackBar(context, msg);
             }
           });
@@ -217,7 +221,8 @@ class _UploadDocumentState extends State<UploadDocument> {
               ]),
           body:
           isdata == true
-              ? Center(
+              ? 
+              Center(
                   child: Column(
                     children: [
                       SizedBox(
@@ -233,16 +238,9 @@ class _UploadDocumentState extends State<UploadDocument> {
               : documentListModel == null || documentListModel.body == null
                   ? Container(
                       child: Center(
-                        child: Column(
-                          children: [
-                            SizedBox(
-                              height: MediaQuery.of(context).size.height * 0.35,
-                            ),
-                           Image.asset("assets/NoRecordFound.png",
-                                              // height: 25,
-                                            )
-                          ],
-                        ),
+                        child: Image.asset("assets/NoRecordFound.png",
+                                           // height: 25,
+                                         ),
                       ),
                     )
                   : Container(
