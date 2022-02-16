@@ -410,7 +410,6 @@ class _BiomediImplantsState extends State<BiomediImplants> {
                         SizedBox(height: 8),
                         dob(),
                         SizedBox(height: 8),
-
                         formField(
                             1, MyLocalizations.of(context).text("REASON")),
                       ],
