@@ -12,9 +12,11 @@ class KeyvalueModel {
   dynamic hospitalid;
   dynamic type;
   dynamic userid;
+  dynamic groupId;
+  dynamic testNameId;
 
 
-  KeyvalueModel({this.name, this.key,this.code, this.optional, this.genderOptional,this.itemid,this.desc,this.minqty,this.userid});
+  KeyvalueModel({this.name, this.key,this.code, this.optional, this.genderOptional,this.itemid,this.desc,this.minqty,this.userid, this.testNameId, this.groupId });
 
   static List<KeyvalueModel> fromJsonList(List list) {
     if (list == null) return null;
@@ -43,6 +45,8 @@ class KeyvalueModel {
     image = json['image'];
     type = json['type'];
     userid = json['userid'];
+    groupId = json['groupId'];
+    testNameId = json['testNameId'];
 
     if (json.containsKey("optional")) {
       optional = json['optional'].toString();
@@ -63,6 +67,8 @@ class KeyvalueModel {
     data['desc'] = this.desc;
     data['minqty'] = this.minqty;
     data['userid'] = this.userid;
+    data['groupId'] = this.groupId;
+    data['testNameId'] = this.testNameId;
     return data;
   }
 
