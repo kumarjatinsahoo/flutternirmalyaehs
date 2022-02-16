@@ -95,330 +95,7 @@ class _MedicalRecordPageState extends State<MedicalRecordPage> {
                           shrinkWrap: true,
                           physics: NeverScrollableScrollPhysics(),
                           children: [
-                            GestureDetector(
-                              onTap: () =>
 
-                                  Navigator.pushNamed(context, "/userTab1"),
-                              child: Card(
-                                elevation: 5,
-                                child: Container(
-                                    height: tileSize,
-                                    width: double.maxFinite,
-                                    decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        border: Border.all(
-                                          color: Colors.grey[300],
-                                        ),
-                                        borderRadius: BorderRadius.circular(
-                                            8)),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(10.0),
-                                      child: Row(
-                                        crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                        children: [
-                                          Container(
-                                              height: 45,
-                                              width: 45,
-                                              color: AppData.kPrimaryRedColor,
-                                              padding: EdgeInsets.all(6),
-                                              child: Image.asset(
-                                                "assets/intro/generic_medicine2.png",
-                                                height: 25,
-                                                width: 25,
-                                                color: Colors.white,
-                                              )),
-                                          SizedBox(
-                                            width: spaceTab,
-                                          ),
-                                          Expanded(
-                                            child: Text(MyLocalizations.of(context).text("MEDICATION"),
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight
-                                                      .normal,
-                                                  fontSize: 18),
-                                            ),
-                                          ),
-                                          Image.asset(
-                                            "assets/Forwordarrow.png",
-                                            height: 25,
-                                          )
-                                        ],
-                                      ),
-                                    )),
-                              ),
-                            ),
-                            GestureDetector(
-                              onTap: () => Navigator.pushNamed(context, "/vitalSigns"),
-                              child: Card(
-                                elevation: 5,
-                                child: Container(
-                                    height: tileSize,
-                                    width: double.maxFinite,
-                                    decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        border: Border.all(
-                                          color: Colors.grey[300],
-                                        ),
-                                        borderRadius: BorderRadius.circular(
-                                            8)),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(10.0),
-                                      child: Row(
-                                        crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                        children: [
-                                          Container(
-                                              color:AppData.kPrimaryBlueColor,
-                                              padding: EdgeInsets.all(3),
-                                              child: Image.asset(
-                                                "assets/images/Vitalsigns.png",
-                                                height: 40,
-                                              )),
-                                          SizedBox(
-                                            width: spaceTab,
-                                          ),
-                                          Expanded(
-                                            child: Text(MyLocalizations.of(context).text("VITAL_SIGNS"),
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight
-                                                      .normal,
-                                                  fontSize: 18),
-                                            ),
-                                          ),
-                                          Image.asset(
-                                            "assets/Forwordarrow.png",
-                                            height: 25,
-                                          )
-                                        ],
-                                      ),
-                                    )),
-                              ),
-                            ),
-                            GestureDetector(
-                              onTap: () => Navigator.pushNamed(context, "/immunizationlist"),
-                              child: Card(
-                                elevation: 5,
-                                child: Container(
-                                    height: tileSize,
-                                    width: double.maxFinite,
-                                    decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        border: Border.all(
-                                          color: Colors.grey[300],
-                                        ),
-                                        borderRadius: BorderRadius.circular(
-                                            8)),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(10.0),
-                                      child: Row(
-                                        crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                        children: [
-                                          Container(
-                                              color: AppData.kPrimaryRedColor,
-                                              padding: EdgeInsets.all(3),
-                                              child: Image.asset(
-                                                "assets/images/Immunizationimg.png",
-                                                height: 40,
-                                              )),
-                                          SizedBox(
-                                            width: spaceTab,
-                                          ),
-                                          Expanded(
-                                            child: Column(
-                                              crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                              mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                              children: [
-                                                Text(MyLocalizations.of(context).text("IMMUNIZATION"),
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                      FontWeight.normal,
-                                                      fontSize: 18),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          Image.asset(
-                                            "assets/Forwordarrow.png",
-                                            height: 25,
-                                          )
-                                        ],
-                                      ),
-                                    )),
-                              ),
-                            ),
-                            GestureDetector(
-                              onTap: () => Navigator.pushNamed(
-                                  context, "/allergicListList"),
-                              child: Card(
-                                elevation: 5,
-                                child: Container(
-                                    height: tileSize,
-                                    width: double.maxFinite,
-                                    decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        border: Border.all(
-                                          color: Colors.grey[300],
-                                        ),
-                                        borderRadius: BorderRadius.circular(
-                                            8)),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(10.0),
-                                      child: Row(
-                                        crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                        children: [
-                                          Container(
-                                              color: AppData.kPrimaryBlueColor,
-                                              padding: EdgeInsets.all(3),
-                                              child: Image.asset(
-                                                "assets/images/Allergicimg.png",
-                                                height: 40,
-                                              )),
-                                          SizedBox(
-                                            width: spaceTab,
-                                          ),
-                                          Expanded(
-                                            child: Column(
-                                              crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                              mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                              children: [
-                                                Text(MyLocalizations.of(context).text("ALLERGIC"),
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                      FontWeight.normal,
-                                                      fontSize: 18),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          Image.asset(
-                                            "assets/Forwordarrow.png",
-                                            height: 25,
-                                          )
-                                        ],
-                                      ),
-                                    )),
-                              ),
-                            ),
-                            GestureDetector(
-                              onTap: () => Navigator.pushNamed(
-                                  context, "/biomedicalimplants"),
-                              child: Card(
-                                elevation: 5,
-                                child: Container(
-                                    height: tileSize,
-                                    width: double.maxFinite,
-                                    decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        border: Border.all(
-                                          color: Colors.grey[300],
-                                        ),
-                                        borderRadius: BorderRadius.circular(
-                                            8)),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(10.0),
-                                      child: Row(
-                                        crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                        children: [
-                                          Container(
-                                              color: AppData.kPrimaryRedColor,
-                                              padding: EdgeInsets.all(3),
-                                              child: Image.asset(
-                                                "assets/images/Biomedicalimg.png",
-                                                height: 40,
-                                              )),
-                                          SizedBox(
-                                            width: spaceTab,
-                                          ),
-                                          Expanded(
-                                            child: Column(
-                                              crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                              mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                              children: [
-                                                Text(MyLocalizations.of(context).text("BIOMEDICAL"),
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                      FontWeight.normal,
-                                                      fontSize: 18),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          Image.asset(
-                                            "assets/Forwordarrow.png",
-                                            height: 25,
-                                          )
-                                        ],
-                                      ),
-                                    )),
-                              ),
-                            ),
-                            GestureDetector(
-                              onTap: () =>
-                                Navigator.pushNamed(context, "/healthchart"),
-                              //Navigator.pushNamed(context, "/healthChaatlist"),
-                              child: Card(
-                                elevation: 5,
-                                child: Container(
-                                    height: tileSize,
-                                    width: double.maxFinite,
-                                    decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        border: Border.all(
-                                          color: Colors.grey[300],
-                                        ),
-                                        borderRadius: BorderRadius.circular(
-                                            8)),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(10.0),
-                                      child: Row(
-                                        crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                        children: [
-                                          Container(
-                                              color: AppData.kPrimaryBlueColor,
-                                              padding: EdgeInsets.all(3),
-                                              child: Image.asset(
-                                                "assets/images/userhealth.png",
-                                                height: 40,
-                                              )),
-                                          SizedBox(
-                                            width: spaceTab,
-                                          ),
-                                          Expanded(
-                                            child: Column(
-                                              crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                              mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                              children: [
-                                                Text(MyLocalizations.of(context).text("HEALTH_CHART"),
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                      FontWeight.normal,
-                                                      fontSize: 18),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          Image.asset(
-                                            "assets/Forwordarrow.png",
-                                            height: 25,
-                                          )
-                                        ],
-                                      ),
-                                    )),
-                              ),
-                            ),
                             GestureDetector(
                               onTap: () {
                                 /*AppData.launchURL(
@@ -489,6 +166,374 @@ class _MedicalRecordPageState extends State<MedicalRecordPage> {
                               ),
                             ),
                             GestureDetector(
+                              onTap: () =>
+
+                                  Navigator.pushNamed(context, "/userTab1"),
+                              child: Stack(
+                                children: [
+                                  Card(
+                                    elevation: 5,
+                                    child: Container(
+                                        height: tileSize,
+                                        width: double.maxFinite,
+                                        decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            border: Border.all(
+                                              color: Colors.grey[300],
+                                            ),
+                                            borderRadius: BorderRadius.circular(
+                                                8)),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(10.0),
+                                          child: Row(
+                                            crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                            children: [
+                                              Container(
+                                                  height: 45,
+                                                  width: 45,
+                                                  color: AppData.kPrimaryRedColor,
+                                                  padding: EdgeInsets.all(6),
+                                                  child: Image.asset(
+                                                    "assets/intro/generic_medicine2.png",
+                                                    height: 25,
+                                                    width: 25,
+                                                    color: Colors.white,
+                                                  )),
+                                              SizedBox(
+                                                width: spaceTab,
+                                              ),
+                                              Expanded(
+                                                child: Text(MyLocalizations.of(context).text("MEDICATION"),
+                                                  style: TextStyle(
+                                                      fontWeight: FontWeight
+                                                          .normal,
+                                                      fontSize: 18),
+                                                ),
+                                              ),
+                                              Image.asset(
+                                                "assets/Forwordarrow.png",
+                                                height: 25,
+                                              )
+                                            ],
+                                          ),
+                                        )),
+                                  ),
+                                  (loginResponse1.body?.userStateId != null&&loginResponse1.body.userStateId == "21" )?
+                                  Positioned(right: 5,top: 5,
+                                      child: Image.asset("assets/images/premium1.png",width: 35,)):Container(),
+
+                                ],
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () => Navigator.pushNamed(context, "/vitalSigns"),
+                              child: Stack(
+                                children: [
+                                  Card(
+                                    elevation: 5,
+                                    child: Container(
+                                        height: tileSize,
+                                        width: double.maxFinite,
+                                        decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            border: Border.all(
+                                              color: Colors.grey[300],
+                                            ),
+                                            borderRadius: BorderRadius.circular(
+                                                8)),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(10.0),
+                                          child: Row(
+                                            crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                            children: [
+                                              Container(
+                                                  color:AppData.kPrimaryBlueColor,
+                                                  padding: EdgeInsets.all(3),
+                                                  child: Image.asset(
+                                                    "assets/images/Vitalsigns.png",
+                                                    height: 40,
+                                                  )),
+                                              SizedBox(
+                                                width: spaceTab,
+                                              ),
+                                              Expanded(
+                                                child: Text(MyLocalizations.of(context).text("VITAL_SIGNS"),
+                                                  style: TextStyle(
+                                                      fontWeight: FontWeight
+                                                          .normal,
+                                                      fontSize: 18),
+                                                ),
+                                              ),
+                                              Image.asset(
+                                                "assets/Forwordarrow.png",
+                                                height: 25,
+                                              )
+                                            ],
+                                          ),
+                                        )),
+                                  ),
+                                  (loginResponse1.body?.userStateId != null&&loginResponse1.body.userStateId == "21" )?
+                                  Positioned(right: 5,top: 5,
+                                      child: Image.asset("assets/images/premium1.png",width: 35,)):Container(),
+                                ],
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () => Navigator.pushNamed(context, "/immunizationlist"),
+                              child: Stack(
+                                children: [
+                                  Card(
+                                    elevation: 5,
+                                    child: Container(
+                                        height: tileSize,
+                                        width: double.maxFinite,
+                                        decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            border: Border.all(
+                                              color: Colors.grey[300],
+                                            ),
+                                            borderRadius: BorderRadius.circular(
+                                                8)),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(10.0),
+                                          child: Row(
+                                            crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                            children: [
+                                              Container(
+                                                  color: AppData.kPrimaryRedColor,
+                                                  padding: EdgeInsets.all(3),
+                                                  child: Image.asset(
+                                                    "assets/images/Immunizationimg.png",
+                                                    height: 40,
+                                                  )),
+                                              SizedBox(
+                                                width: spaceTab,
+                                              ),
+                                              Expanded(
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                                  mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                                  children: [
+                                                    Text(MyLocalizations.of(context).text("IMMUNIZATION"),
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                          FontWeight.normal,
+                                                          fontSize: 18),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              Image.asset(
+                                                "assets/Forwordarrow.png",
+                                                height: 25,
+                                              )
+                                            ],
+                                          ),
+                                        )),
+                                  ),
+                                  (loginResponse1.body?.userStateId != null&&loginResponse1.body.userStateId == "21" )?
+                                  Positioned(right: 5,top: 5,
+                                      child: Image.asset("assets/images/premium1.png",width: 35,)):Container(),
+                                ],
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () => Navigator.pushNamed(
+                                  context, "/allergicListList"),
+                              child: Stack(
+                                children: [
+                                  Card(
+                                    elevation: 5,
+                                    child: Container(
+                                        height: tileSize,
+                                        width: double.maxFinite,
+                                        decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            border: Border.all(
+                                              color: Colors.grey[300],
+                                            ),
+                                            borderRadius: BorderRadius.circular(
+                                                8)),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(10.0),
+                                          child: Row(
+                                            crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                            children: [
+                                              Container(
+                                                  color: AppData.kPrimaryBlueColor,
+                                                  padding: EdgeInsets.all(3),
+                                                  child: Image.asset(
+                                                    "assets/images/Allergicimg.png",
+                                                    height: 40,
+                                                  )),
+                                              SizedBox(
+                                                width: spaceTab,
+                                              ),
+                                              Expanded(
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                                  mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                                  children: [
+                                                    Text(MyLocalizations.of(context).text("ALLERGIC"),
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                          FontWeight.normal,
+                                                          fontSize: 18),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              Image.asset(
+                                                "assets/Forwordarrow.png",
+                                                height: 25,
+                                              )
+                                            ],
+                                          ),
+                                        )),
+                                  ),
+                                  (loginResponse1.body?.userStateId != null&&loginResponse1.body.userStateId == "21" )?
+                                  Positioned(right: 5,top: 5,
+                                      child: Image.asset("assets/images/premium1.png",width: 35,)):Container(),
+                                ],
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () => Navigator.pushNamed(
+                                  context, "/biomedicalimplants"),
+                              child: Stack(
+                                children: [
+                                  Card(
+                                    elevation: 5,
+                                    child: Container(
+                                        height: tileSize,
+                                        width: double.maxFinite,
+                                        decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            border: Border.all(
+                                              color: Colors.grey[300],
+                                            ),
+                                            borderRadius: BorderRadius.circular(
+                                                8)),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(10.0),
+                                          child: Row(
+                                            crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                            children: [
+                                              Container(
+                                                  color: AppData.kPrimaryRedColor,
+                                                  padding: EdgeInsets.all(3),
+                                                  child: Image.asset(
+                                                    "assets/images/Biomedicalimg.png",
+                                                    height: 40,
+                                                  )),
+                                              SizedBox(
+                                                width: spaceTab,
+                                              ),
+                                              Expanded(
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                                  mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                                  children: [
+                                                    Text(MyLocalizations.of(context).text("BIOMEDICAL"),
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                          FontWeight.normal,
+                                                          fontSize: 18),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              Image.asset(
+                                                "assets/Forwordarrow.png",
+                                                height: 25,
+                                              )
+                                            ],
+                                          ),
+                                        )),
+                                  ),
+                                  (loginResponse1.body?.userStateId != null&&loginResponse1.body.userStateId == "21" )?
+                                  Positioned(right: 5,top: 5,
+                                      child: Image.asset("assets/images/premium1.png",width: 35,)):Container(),
+                                ],
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () =>
+                                Navigator.pushNamed(context, "/healthchart"),
+                              //Navigator.pushNamed(context, "/healthChaatlist"),
+                              child: Stack(
+                                children: [
+                                  Card(
+                                    elevation: 5,
+                                    child: Container(
+                                        height: tileSize,
+                                        width: double.maxFinite,
+                                        decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            border: Border.all(
+                                              color: Colors.grey[300],
+                                            ),
+                                            borderRadius: BorderRadius.circular(
+                                                8)),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(10.0),
+                                          child: Row(
+                                            crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                            children: [
+                                              Container(
+                                                  color: AppData.kPrimaryBlueColor,
+                                                  padding: EdgeInsets.all(3),
+                                                  child: Image.asset(
+                                                    "assets/images/userhealth.png",
+                                                    height: 40,
+                                                  )),
+                                              SizedBox(
+                                                width: spaceTab,
+                                              ),
+                                              Expanded(
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                                  mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                                  children: [
+                                                    Text(MyLocalizations.of(context).text("HEALTH_CHART"),
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                          FontWeight.normal,
+                                                          fontSize: 18),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              Image.asset(
+                                                "assets/Forwordarrow.png",
+                                                height: 25,
+                                              )
+                                            ],
+                                          ),
+                                        )),
+                                  ),
+                                  (loginResponse1.body?.userStateId != null&&loginResponse1.body.userStateId == "21" )?
+                                  Positioned(right: 5,top: 5,
+                                      child: Image.asset("assets/images/premium1.png",width: 35,)):Container(),
+                                ],
+                              ),
+                            ),
+
+                            GestureDetector(
                               onTap: () {
                                 //String userrole="1";
                                 widget.model.uploadbyrole="1";
@@ -500,58 +545,65 @@ class _MedicalRecordPageState extends State<MedicalRecordPage> {
                                /* Navigator.pushNamed(
                                     context, "/testReportListUser1");*/
                               },
-                              child: Card(
-                                elevation: 5,
-                                child: Container(
-                                    height: tileSize,
-                                    width: double.maxFinite,
-                                    decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        border: Border.all(
-                                          color: Colors.grey[300],
-                                        ),
-                                        borderRadius: BorderRadius.circular(
-                                            8)),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(10.0),
-                                      child: Row(
-                                        crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                        children: [
-                                          Container(
-                                            color: AppData.kPrimaryBlueColor,
-                                            padding: EdgeInsets.all(3),
-                                            child: Image.asset(
-                                              "assets/images/up-arrow.png",
-                                              height: 40,
+                              child: Stack(
+                                children: [
+                                  Card(
+                                    elevation: 5,
+                                    child: Container(
+                                        height: tileSize,
+                                        width: double.maxFinite,
+                                        decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            border: Border.all(
+                                              color: Colors.grey[300],
                                             ),
-                                          ),
-                                          SizedBox(
-                                            width: spaceTab,
-                                          ),
-                                          Expanded(
-                                            child: Column(
-                                              crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                              mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                              children: [
-                                                Text(MyLocalizations.of(context).text("UPLOAD_DOCUMENT"),
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                      FontWeight.normal,
-                                                      fontSize: 18),
+                                            borderRadius: BorderRadius.circular(
+                                                8)),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(10.0),
+                                          child: Row(
+                                            crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                            children: [
+                                              Container(
+                                                color: AppData.kPrimaryBlueColor,
+                                                padding: EdgeInsets.all(3),
+                                                child: Image.asset(
+                                                  "assets/images/up-arrow.png",
+                                                  height: 40,
                                                 ),
-                                              ],
-                                            ),
+                                              ),
+                                              SizedBox(
+                                                width: spaceTab,
+                                              ),
+                                              Expanded(
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                                  mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                                  children: [
+                                                    Text(MyLocalizations.of(context).text("UPLOAD_DOCUMENT"),
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                          FontWeight.normal,
+                                                          fontSize: 18),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              Image.asset(
+                                                "assets/Forwordarrow.png",
+                                                height: 25,
+                                              )
+                                            ],
                                           ),
-                                          Image.asset(
-                                            "assets/Forwordarrow.png",
-                                            height: 25,
-                                          )
-                                        ],
-                                      ),
-                                    )),
+                                        )),
+                                  ),
+                                  (loginResponse1.body?.userStateId != null&&loginResponse1.body.userStateId == "21" )?
+                                  Positioned(right: 5,top: 5,
+                                      child: Image.asset("assets/images/premium1.png",width: 35,)):Container(),
+                                ],
                               ),
                             ),
                             GestureDetector(
@@ -562,58 +614,65 @@ class _MedicalRecordPageState extends State<MedicalRecordPage> {
                                  Navigator.pushNamed(
                                     context, "/lifeStyleHistory");
                               },
-                              child: Card(
-                                elevation: 5,
-                                child: Container(
-                                    height: tileSize,
-                                    width: double.maxFinite,
-                                    decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        border: Border.all(
-                                          color: Colors.grey[300],
-                                        ),
-                                        borderRadius: BorderRadius.circular(
-                                            8)),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(10.0),
-                                      child: Row(
-                                        crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                        children: [
-                                          Container(
-                                            color: AppData.kPrimaryRedColor,
-                                            padding: EdgeInsets.all(3),
-                                            child: Image.asset(
-                                              "assets/lifestyle.png",
-                                              height: 40,
+                              child: Stack(
+                                children: [
+                                  Card(
+                                    elevation: 5,
+                                    child: Container(
+                                        height: tileSize,
+                                        width: double.maxFinite,
+                                        decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            border: Border.all(
+                                              color: Colors.grey[300],
                                             ),
-                                          ),
-                                          SizedBox(
-                                            width: spaceTab,
-                                          ),
-                                          Expanded(
-                                            child: Column(
-                                              crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                              mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                              children: [
-                                                Text(MyLocalizations.of(context).text("LIFESTYLE_HISTORY"),
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                      FontWeight.normal,
-                                                      fontSize: 18),
+                                            borderRadius: BorderRadius.circular(
+                                                8)),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(10.0),
+                                          child: Row(
+                                            crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                            children: [
+                                              Container(
+                                                color: AppData.kPrimaryRedColor,
+                                                padding: EdgeInsets.all(3),
+                                                child: Image.asset(
+                                                  "assets/lifestyle.png",
+                                                  height: 40,
                                                 ),
-                                              ],
-                                            ),
+                                              ),
+                                              SizedBox(
+                                                width: spaceTab,
+                                              ),
+                                              Expanded(
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                                  mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                                  children: [
+                                                    Text(MyLocalizations.of(context).text("LIFESTYLE_HISTORY"),
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                          FontWeight.normal,
+                                                          fontSize: 18),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              Image.asset(
+                                                "assets/Forwordarrow.png",
+                                                height: 25,
+                                              )
+                                            ],
                                           ),
-                                          Image.asset(
-                                            "assets/Forwordarrow.png",
-                                            height: 25,
-                                          )
-                                        ],
-                                      ),
-                                    )),
+                                        )),
+                                  ),
+                                  (loginResponse1.body?.userStateId != null&&loginResponse1.body.userStateId == "21" )?
+                                  Positioned(right: 5,top: 5,
+                                      child: Image.asset("assets/images/premium1.png",width: 35,)):Container(),
+                                ],
                               ),
                             ),
                            /*  GestureDetector(
