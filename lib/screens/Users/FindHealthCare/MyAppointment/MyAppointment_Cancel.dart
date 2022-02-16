@@ -171,17 +171,9 @@ class _MyAppointmentCancleState extends State<MyAppointmentCancle> {
                   : appointmentlistModel == null || appointmentlistModel == null
                       ? Container(
                           child: Center(
-                            child: Column(
-                              children: [
-                                SizedBox(
-                                  height:
-                                  MediaQuery.of(context).size.height * 0.35,
-                                ),
-                               Image.asset("assets/NoRecordFound.png",
-                                                                       // height: 25,
-                                                                     )
-                              ],
-                            ),
+                            child: Image.asset("assets/NoRecordFound.png",
+                                                                    // height: 25,
+                                                                  ),
                           ),
                         )
                       : (appointmentlistModel != null)
