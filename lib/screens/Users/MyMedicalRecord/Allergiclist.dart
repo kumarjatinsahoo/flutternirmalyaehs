@@ -83,8 +83,10 @@ class _AllergicListListState extends State<AllergicListList> {
             if (map[Const.CODE] == Const.SUCCESS) {
               // pocReportModel = PocReportModel.fromJson(map);
               allergicModel = allergic.AllergicModel.fromJson(map);
+              isdata=false;
             } else {
               setState(() {
+                isdata=false;
                // AppData.showInSnackBar(context, msg);
               });
             }
@@ -134,16 +136,22 @@ class _AllergicListListState extends State<AllergicListList> {
               ],
             ),
             body: isdata == true
-                ? CircularProgressIndicator(
-                    backgroundColor: AppData.matruColor,
-                  )
-                : allergicModel == null || allergicModel == null
-                    ? Container(
+                ? Container(
                         child: Center(
                           child: Image.asset("assets/NoRecordFound.png",
                                               // height: 25,
                                             )
                         ),
+                      )
+                 
+                : allergicModel == null
+                    ? Container(
+                        child:
+                        Center(
+                          child: CircularProgressIndicator(
+                    backgroundColor: AppData.matruColor,
+                  ),
+                        )
                       )
                     : Container(
                         child: SingleChildScrollView(

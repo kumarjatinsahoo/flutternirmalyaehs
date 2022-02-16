@@ -74,6 +74,7 @@ class _MedicineList extends State<UserMedicineList1> {
 
   Map<String, dynamic> mapK = {};
   String mode;
+  bool isdata = true;
 
   void initState() {
     // TODO: implement initState
@@ -97,10 +98,12 @@ class _MedicineList extends State<UserMedicineList1> {
             log("Response from sagar>>>>>" + jsonEncode(map));
             medicineListModel = MedicalPrescriptionModel.fromJson(map);
             print("location>>>>>>>>>>>>>>>>>>"+medicineListModel.body[0].meddate);
+            isdata=false;
           });
         } else {
           setState(() {
             isDataNoFound = true;
+            isdata=false;
           });
           //isDataNotAvail = true;
           //AppData.showInSnackBar(context, msg);
@@ -159,7 +162,12 @@ class _MedicineList extends State<UserMedicineList1> {
   Widget build(BuildContext context) {
     return Scaffold(
       //appBar: AppBar(title: Text("aasd")),
-      body:
+      body: isdata == true
+              ? Center(
+            child: CircularProgressIndicator(
+              backgroundColor: AppData.matruColor,
+            ),
+          ):
       (medicineListModel != null)
         ?Container(
     child: SingleChildScrollView(
@@ -338,7 +346,7 @@ class _MedicineList extends State<UserMedicineList1> {
     child: (isDataNoFound) ? 
     Center(
       child: Image.asset(
-                                              "assets/NoRecordFound.png",
+                                             "assets/NoRecordFound.png",
                                               // height: 25,
                                             ),
     ):
