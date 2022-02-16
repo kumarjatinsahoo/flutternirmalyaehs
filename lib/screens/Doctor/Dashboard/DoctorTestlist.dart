@@ -338,7 +338,7 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
                                                                   Text(
                                                                     "Type: " +
                                                                             medicationlis
-                                                                                .testgroup ??
+                                                                                .testgroup.toString() ??
                                                                         "N/A",
                                                                     overflow:
                                                                         TextOverflow
@@ -524,6 +524,7 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
                             DoctorTestlist.medicinModel.key;
                         textEditingController[1].text =
                             DoctorTestlist.medicinModel.code;
+                            print('Group __- ' + DoctorTestlist.medicinModel.groupId);
 
                         /* userModel.country=data.key;
                                                     userModel.countryCode=data.code;*/
@@ -569,8 +570,10 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
                   "appno": widget.model.appointmentlist.doctorName, //appno"4",
                   "remarks": textEditingController[2].text,
                   "doctor": widget.model.user,
-                  "testgroup": textEditingController[0].text,
-                  "testname": textEditingController[1].text
+                  // "testgroup": textEditingController[0].text,
+                  // "testname": textEditingController[1].text
+                  "testgroup": DoctorTestlist.medicinModel.groupId,
+                  "testname":DoctorTestlist.medicinModel.testNameId
                 }
               ];
 
