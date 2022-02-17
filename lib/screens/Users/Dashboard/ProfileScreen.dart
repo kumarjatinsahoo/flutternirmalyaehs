@@ -4890,7 +4890,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               focusNode: currentfn,
 
               inputFormatters: [
-                UpperCaseTextFormatter(),
+                //UpperCaseTextFormatter(),
                 WhitelistingTextInputFormatter(RegExp("[a-zA-Z0-9 -]")),
               ],
               //maxLength: 10,

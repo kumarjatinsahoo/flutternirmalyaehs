@@ -5,7 +5,7 @@ class ApiFactory {
   // static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
   static String MAIN_URL = "http://api-demo.ehealthsystem.com/nirmalyaRest/api/";
   //static String MAIN_URL = "http://api-demo.ehealthsystem.com/nirmalyaRest/api/";
-  // static String MAIN_URL = "http://192.168.0.110:8062/nirmalyaRest/api/";
+  // static String MAIN_URL = "http://192.168.0.115:8062/nirmalyaRest/api/";
   //static String MAIN_URL = "http://api-demo.ehealthsystem.com/nirmalyaRest/api/";
   //static String MAIN_URL = "http://192.168.0.115:8062/nirmalyaRest/api/";
   static String MAIN_URL1 = "https://1331.co.in/api";
