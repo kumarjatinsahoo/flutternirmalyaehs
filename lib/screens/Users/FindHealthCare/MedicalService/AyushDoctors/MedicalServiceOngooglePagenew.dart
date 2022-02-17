@@ -81,7 +81,7 @@ class _MedicalServiceOngooglePagenewState extends State<MedicalServiceOngooglePa
       //var address = await Geocoder.local.findAddressesFromCoordinates(coordinates);
       var first = addresses.first;
       print("${first.featureName} : ${first.addressLine}");
-      print("================Chuti + ${first.locality}}");
+      print("================locality + ${first.locality}}");
       // setState(() {
         // address = "${first.addressLine}";
        city = first.locality;
