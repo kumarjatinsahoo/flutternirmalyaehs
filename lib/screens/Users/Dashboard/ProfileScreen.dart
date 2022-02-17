@@ -412,7 +412,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
               ),
             ),
-            *//*Align(
+            */
+        /*Align(
               alignment: Alignment.topRight,
               child: InkWell(
                 onTap: () {
@@ -426,7 +427,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                 ),
               ),
-            ),*//*
+            ),*/
+        /*
             Align(
               alignment: Alignment.topLeft,
               child: InkWell(
@@ -481,8 +483,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
               //CircularProgressIndicator()
              Image.asset("assets/NoRecordFound.png",
-                                                     // height: 25,
-                                                   )
+               // height: 25,
+             )
             ],
           ),
         ),

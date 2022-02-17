@@ -9,7 +9,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_share/flutter_share.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:pageview_indicator_plugins/pageview_indicator_plugins.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
@@ -1824,8 +1823,6 @@ class MyPage1Widget extends StatelessWidget {
   }
 
   _displayTextInputDialog(BuildContext context,int v) async {
-
-
     bool _rememberMe = false;
     return showDialog(
         context: context,
@@ -1957,6 +1954,9 @@ class MyPage1Widget extends StatelessWidget {
           );
         });
   }
+
+
+
 
 
 

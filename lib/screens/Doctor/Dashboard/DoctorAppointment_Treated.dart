@@ -168,19 +168,10 @@ class _DoctorAppointmentTreatedState extends State<DoctorAppointmentTreated> {
                   : doctorAppointmment == null || doctorAppointmment == null
                       ? Container(
                           child: Center(
-                            child: Column(
-                              children: [
-                                // SizedBox(height: 300,),
-                                SizedBox(
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.35,
-                                ),
-                                Center(
+                            child: Center(
       child: Image.asset("assets/NoRecordFound.png",
-                                              // height: 25,
-                                            ),)
-                              ],
-                            ),
+                                          // height: 25,
+                                        ),),
                           ),
                         )
                       : (doctorAppointmment != null)

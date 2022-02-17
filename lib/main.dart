@@ -117,6 +117,8 @@ import 'screens/Doctor/Dashboard/Showemr/MobileUpload/DoctorUploaddocument.dart'
 import 'screens/PinViewUserID.dart';
 import 'screens/Syndicate Partner/Dashboard/SyndicateDashboard.dart';
 import 'screens/Syndicate Partner/Registration/Syndicatepartner.dart';
+import 'screens/Users/FindHealthCare/Find/GoogleFindResult.dart';
+import 'screens/Users/GenericMedicine/GenericMedicineNew.dart';
 import 'screens/Users/MyMedicalRecord/HealthChat1/HealthChart.dart';
 import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/UploadDocument.dart';
 import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/VideoDetailsPage.dart';
@@ -1266,6 +1268,9 @@ class _MyAppState extends State<MyApp> {
                 model: _model,
               ),
               '/doctorAddUploadDocument': (context) => DoctorAddUploadDocument(
+                model: _model,
+              ),
+              '/genericMedicineNew': (context) => GenericMedicineNew(
                 model: _model,
               ),
 
