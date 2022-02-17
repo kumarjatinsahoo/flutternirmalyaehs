@@ -99,7 +99,7 @@ class _HealthTipsListState extends State<HealthTipsList> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text("eHealthSystem",style: TextStyle(fontWeight: FontWeight.bold,color: Color(0xFF006CE2),),),
-                                    Text("5 days ago"),
+                                    //Text("5 days ago"),
                                   ],
                                 ),
                               ),
@@ -111,40 +111,40 @@ class _HealthTipsListState extends State<HealthTipsList> {
                           fit: BoxFit.contain,
                           width: size.width,
                         ),
-                        Divider(),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            children: [
-                              Icon(Icons.visibility,color: Color(0xFF006CE2),size: 16,),
-                              SizedBox(width: 5),
-                              Text("250",style: TextStyle(fontSize: 12),),
-                              SizedBox(width: 20),
-                              Icon(Icons.thumb_up,color: Color(0xFF006CE2),size: 16),
-                              SizedBox(width: 5),
-                              Text("95",style: TextStyle(fontSize: 12),),
-                              SizedBox(width: 20),
-                              Icon(Icons.message,color: Color(0xFF006CE2),size: 16),
-                              SizedBox(width: 5),
-                              Text("45",style: TextStyle(fontSize: 12),),
-                              SizedBox(width: 20),
-                              Icon(Icons.share,color: Color(0xFF006CE2),size: 16),
-                              SizedBox(width: 5),
-                              Text("28",style: TextStyle(fontSize: 12),),
-                            ],
-                          ),
-                        ),
-                        Divider(),
-                        Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Icon(Icons.thumb_up,color: Colors.red,size: 20,),
-                            Icon(Icons.message,color: Colors.black,size: 20),
-                            Icon(Icons.bookmark,color: Colors.black,size: 20),
-                            Icon(Icons.share,color: Colors.black,size: 20),
-                          ],
-                        ),SizedBox(height: 10,)
+                        //Divider(),
+                        // Padding(
+                        //   padding: const EdgeInsets.all(8.0),
+                        //   child: Row(
+                        //     children: [
+                        //       Icon(Icons.visibility,color: Color(0xFF006CE2),size: 16,),
+                        //       SizedBox(width: 5),
+                        //       Text("250",style: TextStyle(fontSize: 12),),
+                        //       SizedBox(width: 20),
+                        //       Icon(Icons.thumb_up,color: Color(0xFF006CE2),size: 16),
+                        //       SizedBox(width: 5),
+                        //       Text("95",style: TextStyle(fontSize: 12),),
+                        //       SizedBox(width: 20),
+                        //       Icon(Icons.message,color: Color(0xFF006CE2),size: 16),
+                        //       SizedBox(width: 5),
+                        //       Text("45",style: TextStyle(fontSize: 12),),
+                        //       SizedBox(width: 20),
+                        //       Icon(Icons.share,color: Color(0xFF006CE2),size: 16),
+                        //       SizedBox(width: 5),
+                        //       Text("28",style: TextStyle(fontSize: 12),),
+                        //     ],
+                        //   ),
+                        // ),
+                        // Divider(),
+                        // Row(
+                        //   mainAxisSize: MainAxisSize.max,
+                        //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        //   children: [
+                        //     Icon(Icons.thumb_up,color: Colors.red,size: 20,),
+                        //     Icon(Icons.message,color: Colors.black,size: 20),
+                        //     Icon(Icons.bookmark,color: Colors.black,size: 20),
+                        //     Icon(Icons.share,color: Colors.black,size: 20),
+                        //   ],
+                        // ),SizedBox(height: 10,)
                       ],
                     ),
                   );

@@ -3352,7 +3352,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               focusNode: currentfn,
               keyboardType: TextInputType.text,
               inputFormatters: [
-                FilteringTextInputFormatter.allow(RegExp("[a-zA-Z . @]")),
+                WhitelistingTextInputFormatter(RegExp("[a-zA-Z . @]")),
               ],
               // Validator.getKeyboardTyp(validateModel.fieldType.toLowerCase()),
               style: TextStyle(fontSize: 15),
