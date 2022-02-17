@@ -109,7 +109,7 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
             //String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
               lifeStyleHistryModel = LifeStyleHistryModel.fromJson(map);
-
+              print('exercise ' + lifeStyleHistryModel.body.exercise);
               if (lifeStyleHistryModel?.body?.smokingName != null) {
                 LifeStyleHistory.smokingmodel = KeyvalueModel(
                     key: lifeStyleHistryModel.body.smokingId,
@@ -131,6 +131,11 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
               } else {
                 LifeStyleHistory.ditemodel = null;
               }
+              //  if (lifeStyleHistryModel?.body?.exercise != null) {
+              //   lifeStyleHistryModel.body.exercise = textEditingController[0].text;
+              // } else {
+              //   lifeStyleHistryModel.body.exercise = "N/A";
+              // }
               if (lifeStyleHistryModel?.body?.petName != null) {
                 LifeStyleHistory.petsmodel = KeyvalueModel(
                     key: lifeStyleHistryModel.body.pets,
@@ -277,12 +282,13 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                                   _buildTile1(
                                     icon: "assets/exercise.png",
                                     title: (lifeStyleHistryModel?.body == null ||
-                                            lifeStyleHistryModel?.body.exercise
-                                                    .toString() ==
-                                                "0")
+                                              lifeStyleHistryModel?.body.exercise
+                                                      .toString() ==
+                                                  "0")
+                                    //  (lifeStyleHistryModel?.body == null ||
+                                    //         lifeStyleHistryModel?.body.exercise.toString() == "0")
                                         ? "N/A"
-                                        : lifeStyleHistryModel.body.exercise
-                                                .toString() +
+                                        : lifeStyleHistryModel.body.exercise.toString() +
                                             " times",
                                     subtitle: MyLocalizations.of(context)
                                         .text("EXERCISE"),
@@ -778,6 +784,8 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                   textEditingController[2].text == "") {
                 AppData.showInSnackBar(context, "Please enter  Pets");
               }*/ else {
+                lifeStyleHistryModel.body.exercise = textEditingController[0].text;
+                print('send exercise ' + lifeStyleHistryModel.body.exercise);
                 var sendData = {
                   "smokingId": LifeStyleHistory.smokingmodel.key,
                   "alcoholId": LifeStyleHistory.alcoholmodel.key,
@@ -836,7 +844,7 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                     }
                   }*/
                 );
-                callAPI();
+                // callAPI();
                 Navigator.of(context).pop();
 
               }

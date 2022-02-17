@@ -98,7 +98,7 @@ class _GoogleFindResultState extends State<GoogleFindResult> {
             if (map["status"] == "OK") {
               // if (i == 1) {
               googlePlaceModel = GooglePlaceModel.fromJson(map);
-              nextpage = googlePlaceModel.nextPageToken;
+              nextpage = googlePlaceModel.nextPageToken;              
               print('================ Narmada ' +
                   googlePlaceModel.results[0].geometry.location.lat.toString() +
                   ',' +

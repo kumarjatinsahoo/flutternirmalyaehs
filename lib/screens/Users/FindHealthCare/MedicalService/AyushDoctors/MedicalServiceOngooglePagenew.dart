@@ -211,6 +211,7 @@ Map<String, dynamic> postData = {
               googlePlaceModel = GooglePlaceModel.fromJson(map);
               nextpage=googlePlaceModel.nextPageToken;
               isDataNotAvail=false;
+              AppData.showbar(context,"All the locations are coming based on google api distance may differ");
               print('================ nextpage ' + googlePlaceModel.results.length.toString());
               // } else {
               //   googlePlaceModel.addMore(map);
