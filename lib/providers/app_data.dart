@@ -482,25 +482,20 @@ static void showbar(BuildContext context, String value) {
     //   ),
     // );
 
-    Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Container(),
-        Flushbar(
-          //  title:  "Hey SuperHero",
-          message: value,
-          backgroundColor: Colors.red,
-          isDismissible: true,
-          dismissDirection:FlushbarDismissDirection.HORIZONTAL,
-          flushbarPosition: FlushbarPosition.TOP,
-          flushbarStyle: FlushbarStyle.FLOATING,
-          forwardAnimationCurve: Curves.easeOutCirc,
-          reverseAnimationCurve:Curves.easeOutCirc,
-           margin: EdgeInsets.only(top: 60.0),
-          duration: Duration(seconds: 8),
-        )..show(context),
-      ],
-    );
+    Flushbar(
+      //  title:  "Hey SuperHero",
+      message: value,
+      backgroundColor: Colors.red,
+      isDismissible: true,
+      dismissDirection:FlushbarDismissDirection.HORIZONTAL,
+      flushbarPosition: FlushbarPosition.TOP,
+      flushbarStyle: FlushbarStyle.FLOATING,
+      forwardAnimationCurve: Curves.easeOutCirc,
+      reverseAnimationCurve:Curves.easeOutCirc,
+       margin: EdgeInsets.only(top: 60.0),
+      duration: Duration(seconds: 6),
+      maxWidth: 370,
+    )..show(context);
   }
 
   static String getYoutubeThumbnail(String videoUrl) {

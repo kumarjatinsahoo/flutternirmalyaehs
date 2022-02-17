@@ -34,7 +34,7 @@ class _GoogleFindResultState extends State<GoogleFindResult> {
   String longi, lati, city, addr, healthpro, type, speciality;
   String nextpage;
   int currentMax = 1;
-
+  bool issnackbar=true;
 
   @override
   void initState() {
@@ -47,7 +47,7 @@ class _GoogleFindResultState extends State<GoogleFindResult> {
     healthpro = widget.model.healthproname;
     type = widget.model.type;
     speciality = FindPage.specialistModel?.name ?? "";
-    callAPI(5, currentMax);
+    callAPI(5, currentMax);    
     _scrollController.addListener(() {
       if (_scrollController.position.pixels ==
           _scrollController.position.maxScrollExtent) {
@@ -61,7 +61,7 @@ class _GoogleFindResultState extends State<GoogleFindResult> {
     KeyvalueModel(name: "10 KM", key: 10),
     KeyvalueModel(name: "20 KM", key: 20),
     KeyvalueModel(name: "50 KM", key: 50),
-  ];
+  ];  
 
   callAPI(int radius, int i) {
     log("API :Lati & Longi" + lati + "\n" + longi);
@@ -127,6 +127,9 @@ class _GoogleFindResultState extends State<GoogleFindResult> {
               // } else {
               //   googlePlaceModel.addMore(map);
               // }
+              if(issnackbar){
+              AppData.showbar(context,"All the locations are coming based on google api, distance may differ.");
+              }
             } else {
               //   isDataNotAvail = true;
               isDataNotAvail = true;
@@ -134,6 +137,14 @@ class _GoogleFindResultState extends State<GoogleFindResult> {
             }
           });
         });
+  }
+  callSnack(){
+    setState(() {
+      if(googlePlaceModel != null){
+      AppData.showbar(context,"All the locations are coming based on google api, distance may differ.");
+    }
+    });
+    
   }
 
   callAPIPagination(nxtpagetoken) {
@@ -186,6 +197,7 @@ class _GoogleFindResultState extends State<GoogleFindResult> {
                     child: DropDown.networkDrop("5 KM", "5 KM", selectDistance,
                         (KeyvalueModel data) {
                       setState(() {
+                        issnackbar=false;
                         GoogleFindResult.distancelistModel = data;
                         callAPI(data.key, currentMax);
                       });

@@ -558,7 +558,7 @@ class _GenericStoresState extends State<GenericStores> {
           // state = GenericStores.stateModel.name;
           // district = GenericStores.districtModel.name;
           // city = GenericStores?.cityModel?.name ?? "";
-          widget.model.medicineStore = "generic medicine store," ;
+          widget.model.medicineStore = "medicine store" ;
               // city +
               // "," +
               // district +
@@ -570,8 +570,8 @@ class _GenericStoresState extends State<GenericStores> {
           widget.model.lati = latitudes;
           widget.model.addr = address;
           widget.model.city = cityName;
-          widget.model.healthpro = 'generic medicine store';
-          widget.model.healthproname = 'Generic medicine store';
+          widget.model.healthpro = 'pharmacy';
+          widget.model.healthproname = 'pharmacy';
           //widget.model.healthproname = "Doctor";
 
           //Navigator.pushNamed(context, "/navigation");

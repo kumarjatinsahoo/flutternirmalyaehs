@@ -63,14 +63,14 @@ class _GenericMedicineNewState extends State<GenericMedicineNew> {
 
   callAPI(int radius, int i) {
     log("API :Lati & Longi" + lati + "\n" + longi);
-    var pp = healthpro.replaceAll(RegExp(' & +'), ' ');
-    healthpro = pp.replaceAll(RegExp(' +'), '|');
+    // var pp = healthpro.replaceAll(RegExp(' & +'), ' ');
+    // healthpro = pp.replaceAll(RegExp(' +'), '|');
     log(ApiFactory.GOOGLE_QUERY_API(
         lati: lati,
         longi: longi,
         radius: (radius * 1000).toString(),
         healthpro: (healthpro != null)
-                ? speciality.toLowerCase()  + "|" + healthpro.toLowerCase() + "|" + widget.model.city.toLowerCase()
+                ?  healthpro.toLowerCase() + "|" + widget.model.city.toLowerCase()
                 : healthpro.toLowerCase() + "|" + widget.model.city.toLowerCase()
             ));
     setState(() {
@@ -86,8 +86,8 @@ class _GenericMedicineNewState extends State<GenericMedicineNew> {
             // healthpro: (speciality != null)
             //     ? healthpro + " " + speciality
             //     : healthpro
-            healthpro: (speciality != null)
-                ? speciality.toLowerCase()  + "|" + healthpro.toLowerCase() + "|" + widget.model.city.toLowerCase()
+            healthpro: (healthpro != null)
+                ? healthpro.toLowerCase() + "|" + widget.model.city.toLowerCase()
                 : healthpro.toLowerCase() + "|" + widget.model.city.toLowerCase()
                 ),
         fun: (Map<String, dynamic> map) {
@@ -125,6 +125,9 @@ class _GenericMedicineNewState extends State<GenericMedicineNew> {
               // } else {
               //   googlePlaceModel.addMore(map);
               // }
+              
+              AppData.showbar(context,"All the locations are coming based on google api, distance may differ.");
+              
             } else {
               //   isDataNotAvail = true;
               isDataNotAvail = true;
