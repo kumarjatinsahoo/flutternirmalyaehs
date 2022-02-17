@@ -819,9 +819,9 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                           //AppData.showInSnackDone(context, map["message"]);
                           callAPI();
                           //AppData.showInSnackDone(context, map[Const.MESSAGE]);
-                          AppData.showInSnackBargreen(context,"chs");
+                          //AppData.showInSnackBargreen(context,"chs");
                         } else {
-                          AppData.showInSnackBar(context,/* map[Const.MESSAGE]*/"gkhyjjd");
+                          //AppData.showInSnackBar(context,/* map[Const.MESSAGE]*/"gkhyjjd");
                         }
                       });
                     },

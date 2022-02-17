@@ -221,7 +221,7 @@ class _MedicalRecordPageState extends State<MedicalRecordPage> {
                                   ),
                                   (loginResponse1.body?.userStateId != null&&loginResponse1.body.userStateId == "21" )?
                                   Positioned(right: 5,top: 5,
-                                      child: Image.asset("assets/images/premium1.png",width: 35,)):Container(),
+                                      child: Image.asset("assets/images/free.png",width: 35,)):Container(),
 
                                 ],
                               ),
@@ -276,7 +276,7 @@ class _MedicalRecordPageState extends State<MedicalRecordPage> {
                                   ),
                                   (loginResponse1.body?.userStateId != null&&loginResponse1.body.userStateId == "21" )?
                                   Positioned(right: 5,top: 5,
-                                      child: Image.asset("assets/images/premium1.png",width: 35,)):Container(),
+                                      child: Image.asset("assets/images/free.png",width: 35,)):Container(),
                                 ],
                               ),
                             ),
@@ -338,7 +338,7 @@ class _MedicalRecordPageState extends State<MedicalRecordPage> {
                                   ),
                                   (loginResponse1.body?.userStateId != null&&loginResponse1.body.userStateId == "21" )?
                                   Positioned(right: 5,top: 5,
-                                      child: Image.asset("assets/images/premium1.png",width: 35,)):Container(),
+                                      child: Image.asset("assets/images/free.png",width: 35,)):Container(),
                                 ],
                               ),
                             ),
@@ -401,7 +401,7 @@ class _MedicalRecordPageState extends State<MedicalRecordPage> {
                                   ),
                                   (loginResponse1.body?.userStateId != null&&loginResponse1.body.userStateId == "21" )?
                                   Positioned(right: 5,top: 5,
-                                      child: Image.asset("assets/images/premium1.png",width: 35,)):Container(),
+                                      child: Image.asset("assets/images/free.png",width: 35,)):Container(),
                                 ],
                               ),
                             ),
@@ -464,7 +464,7 @@ class _MedicalRecordPageState extends State<MedicalRecordPage> {
                                   ),
                                   (loginResponse1.body?.userStateId != null&&loginResponse1.body.userStateId == "21" )?
                                   Positioned(right: 5,top: 5,
-                                      child: Image.asset("assets/images/premium1.png",width: 35,)):Container(),
+                                      child: Image.asset("assets/images/free.png",width: 35,)):Container(),
                                 ],
                               ),
                             ),
@@ -528,7 +528,7 @@ class _MedicalRecordPageState extends State<MedicalRecordPage> {
                                   ),
                                   (loginResponse1.body?.userStateId != null&&loginResponse1.body.userStateId == "21" )?
                                   Positioned(right: 5,top: 5,
-                                      child: Image.asset("assets/images/premium1.png",width: 35,)):Container(),
+                                      child: Image.asset("assets/images/free.png",width: 35,)):Container(),
                                 ],
                               ),
                             ),
@@ -602,7 +602,7 @@ class _MedicalRecordPageState extends State<MedicalRecordPage> {
                                   ),
                                   (loginResponse1.body?.userStateId != null&&loginResponse1.body.userStateId == "21" )?
                                   Positioned(right: 5,top: 5,
-                                      child: Image.asset("assets/images/premium1.png",width: 35,)):Container(),
+                                      child: Image.asset("assets/images/free.png",width: 35,)):Container(),
                                 ],
                               ),
                             ),
@@ -671,7 +671,7 @@ class _MedicalRecordPageState extends State<MedicalRecordPage> {
                                   ),
                                   (loginResponse1.body?.userStateId != null&&loginResponse1.body.userStateId == "21" )?
                                   Positioned(right: 5,top: 5,
-                                      child: Image.asset("assets/images/premium1.png",width: 35,)):Container(),
+                                      child: Image.asset("assets/images/free.png",width: 35,)):Container(),
                                 ],
                               ),
                             ),
