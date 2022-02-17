@@ -128,6 +128,7 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () => Navigator.of(context).pop(),
+
         ),
         centerTitle: true,
         title: Text(MyLocalizations.of(context).text("SETUP_CONTACT")),
@@ -978,7 +979,6 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
             //contentPadding: EdgeInsets.symmetric(horizontal: 10),
             content: StatefulBuilder(
               builder: (BuildContext context, StateSetter setState) {
-
                 void _runFilter(String enteredKeyword) {
                   List<Contact> results = [];
                   if (enteredKeyword.isEmpty) {

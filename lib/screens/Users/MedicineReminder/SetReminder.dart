@@ -859,6 +859,7 @@ class SetReminderState extends State<SetReminder> {
       initialDate: DateTime.now(),
       firstDate: DateTime.now(),
       lastDate: DateTime.now().add(Duration(days: 365)),
+      initialEntryMode: DatePickerEntryMode.calendarOnly,
       // lastDate: DateTime.now()
       //     .subtract(Duration(days: 6570))
     ); //18 years is 6570 days
