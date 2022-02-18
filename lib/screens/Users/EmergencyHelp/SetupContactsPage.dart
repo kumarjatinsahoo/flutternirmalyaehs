@@ -549,7 +549,7 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                   //     height: 15,
                   //   ),
                   // ),
-                 
+
                   // GestureDetector(
                   //   // onTap: () =>   Navigator.pushNamed(context, "/medicalService"),
                   //   child: InkWell(
@@ -1110,15 +1110,16 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
   }
 
   void getContactDetails() async {
-    if (await FlutterContacts.requestPermission()) {
-      // Get all contacts (lightly fetched)
-      MyWidgets.showLoading(context);
-      List<Contact> contacts = await FlutterContacts.getContacts(
-          withProperties: true, withPhoto: true);
-      Navigator.pop(context);
+    try {
+      if (await FlutterContacts.requestPermission()) {
+        // Get all contacts (lightly fetched)
+        MyWidgets.showLoading(context);
+        List<Contact> contacts = await FlutterContacts.getContacts(
+            withProperties: true, withPhoto: true);
+        Navigator.pop(context);
 
-      _displayContact(context, contacts);
-     /* if(contacts!=null && contacts.isNotEmpty) {
+        _displayContact(context, contacts);
+        /* if(contacts!=null && contacts.isNotEmpty) {
 
           contacts = await FlutterContacts.getContacts(
               withProperties: true, withPhoto: true);
@@ -1127,6 +1128,9 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
       }else{
         _displayContact(context, contacts);
       }*/
+
+      }
+    }catch(e){
 
     }
   }

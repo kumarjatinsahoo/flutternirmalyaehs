@@ -4,7 +4,6 @@ import 'dart:io' as plat;
 
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:dio/dio.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -16,14 +15,10 @@ import 'package:user/models/LoginResponse1.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/models/MasterLoginResponse.dart' as master;
 
-// import 'package:user/models/LoginResponse1.dart';
-// import 'package:user/providers/Contsants.dart';
-// import 'package:user/providers/FileProvider.dart';
 import 'package:user/providers/SharedPref.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
-// import 'package:user/scoped-model/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
