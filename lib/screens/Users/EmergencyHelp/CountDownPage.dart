@@ -68,62 +68,65 @@ class _CountDownPageState extends State<CountDownPage>
     super.dispose();
   }
 
-  List<String> userMobList=[];
+  List<String> userMobList = [];
 
   session.LoginResponse1 loginResponse1;
+
   @override
   void initState() {
     super.initState();
-    loginResponse1=widget.model.loginResponse1;
-    callEmergency();
+    loginResponse1 = widget.model.loginResponse1;
+    //callEmergency();
     _controller = new AnimationController(
       vsync: this,
       duration: new Duration(seconds: kStartValue),
     );
-   print('+++++++++++++++= '+ ApiFactory.googleMapUrl(lati:widget.model.longi ,longi: widget.model.lati));
+    print('+++++++++++++++= ' +
+        ApiFactory.googleMapUrl(
+            lati: widget.model.longi, longi: widget.model.lati));
     _controller.forward(from: 0.0).whenComplete(() {
-       callHelpBtn();
+      callHelpBtn();
       // _sendSMS("Hi this is "+loginResponse1.body.userName+", eHealthSystem Emergency Alert! I need help. My Location is "+ApiFactory.googleMapUrl(lati:widget.model.longi ,longi: widget.model.lati), userMobList);
       //callAPI();
-     
-    }
-    );
+    });
   }
 
-  callHelpBtn() {    
+  callHelpBtn() {
     Map<String, dynamic> postmap = {
-      "userid" : loginResponse1.body.user,
-      "mapurl" : ApiFactory.googleMapUrl(longi: widget.model.longi,lati:widget.model.lati)
-    };     
-      widget.model.POSTMETHOD_TOKEN(
-        api: ApiFactory.EMERGENCY_HELP_NEW,   
+      "userid": loginResponse1.body.user,
+      "mapurl": ApiFactory.googleMapUrl(
+          longi: widget.model.longi, lati: widget.model.lati)
+    };
+    widget.model.POSTMETHOD_TOKEN(
+        api: ApiFactory.EMERGENCY_HELP_NEW,
         token: widget.model.token,
         json: postmap,
         fun: (Map<String, dynamic> map) {
-          print("Narmada is>>>>" +  ApiFactory.googleMapUrl(longi: widget.model.longi,lati:widget.model.lati) + ' s ' + widget.model.longi);
+          print("Narmada is>>>>" +
+              ApiFactory.googleMapUrl(
+                  longi: widget.model.longi, lati: widget.model.lati) +
+              ' s ' +
+              widget.model.longi);
           setState(() {
             String msg = map[Const.MESSAGE];
             if (map[Const.STATUS1] == Const.SUCCESS) {
               emergencyHelpModel = EmergencyHelpModel.fromJson(map);
-              popup(map[Const.MESSAGE],context);
-               // getMobNo(widget.model.placeIdno??widget.model.placeIdno1);
-               FlutterPhoneDirectCaller.callNumber("108");
+               popup(map[Const.MESSAGE], context);
+              // getMobNo(widget.model.placeIdno??widget.model.placeIdno1);
+              FlutterPhoneDirectCaller.callNumber(widget?.model?.hospitalNo??"108");
               //FlutterPhoneDirectCaller.callNumber("7008553233");
-              //launchUrl("tel:+99364921507");
 
-              //FlutterPhoneDirectCaller.callNumber("108");
 
-              // AppData.showInSnackDone(context, msg);
-            
             } else {
-              popuplailed(map[Const.MESSAGE],context);
+
+              // popuplailed(map[Const.MESSAGE], context);
               // isDataNotAvail = true;
               // AppData.showInSnackBar(context, msg);
             }
           });
         });
-   
   }
+
   getMobNo(placeId) {
     MyWidgets.showLoading(context);
     widget.model.GETMETHODCAL(
@@ -135,17 +138,19 @@ class _CountDownPageState extends State<CountDownPage>
           setState(() {
             String msg = map[Const.MESSAGE];
             if (map[Const.STATUS1] == Const.RESULT_OK) {
-              GooglePlacesSearchModel googlePlacesSearch = GooglePlacesSearchModel.fromJson(map);
-              if(googlePlacesSearch
-                  ?.result?.formattedPhoneNumber !=
-                  null)
+              GooglePlacesSearchModel googlePlacesSearch =
+                  GooglePlacesSearchModel.fromJson(map);
+
+              if (googlePlacesSearch?.result?.formattedPhoneNumber != null)
                 /*AppData.launchURL("tel://" +
                     googlePlacesSearch.result
                         .formattedPhoneNumber);*/
-                FlutterPhoneDirectCaller.callNumber(googlePlacesSearch.result
-                    .formattedPhoneNumber);
+
+                FlutterPhoneDirectCaller.callNumber(
+                    googlePlacesSearch.result.formattedPhoneNumber);
               else
                 AppData.showInSnackBar(context, "Mobile no is not available");
+              //popup(map[Const.MESSAGE];,  context);
               //log(">>>>>>>GGGGG<<<<<<<" + jsonEncode(map));
             } else {
               isDataNotAvail = true;
@@ -159,7 +164,8 @@ class _CountDownPageState extends State<CountDownPage>
           });
         });
   }
-   popup(String msg, BuildContext context) {
+
+  popup(String msg, BuildContext context) {
     return Alert(
         context: context,
         title: "",
@@ -181,13 +187,14 @@ class _CountDownPageState extends State<CountDownPage>
             onPressed: () {
               Navigator.pop(context, true);
               Navigator.pop(context, true);
-               Navigator.pop(context, true);
+              Navigator.pop(context, true);
             },
             color: Color.fromRGBO(0, 179, 134, 1.0),
             radius: BorderRadius.circular(0.0),
           ),
         ]).show();
   }
+
   popuplailed(String msg, BuildContext context) {
     return Alert(
         context: context,
@@ -225,7 +232,6 @@ class _CountDownPageState extends State<CountDownPage>
                   fontWeight: FontWeight.w400),
               textAlign: TextAlign.center,
             ),*/
-
           ],
         ),
         closeIcon: Icon(
@@ -249,7 +255,6 @@ class _CountDownPageState extends State<CountDownPage>
           ),
         ]).show();
   }
-
 
   // callAPI() {
   //   MyWidgets.showLoading(context);
@@ -315,7 +320,7 @@ class _CountDownPageState extends State<CountDownPage>
           setState(() {
             String msg = map[Const.MESSAGE];
             if (map[Const.STATUS1] == Const.SUCCESS) {
-              userMobList=[];
+              userMobList = [];
               emergencyHelpModel = EmergencyHelpModel.fromJson(map);
               emergencyHelpModel.emergency.forEach((element) {
                 userMobList.add(element.mobile);
