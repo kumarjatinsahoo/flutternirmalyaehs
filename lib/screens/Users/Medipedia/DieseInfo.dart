@@ -260,21 +260,28 @@ class _DieseInfoState extends State<DieseInfo> {
                                       SizedBox(
                                         height: 10,
                                       ),
-                                      Expanded(
-                                          child: Column(
-                                            children: [
-                                              Text.rich(TextSpan(children: [
-                                                TextSpan(text: "Log in as Dhan Arogya Kranti User",
-                                                    style: TextStyle(color: Colors.black, fontSize: 18,)),
-                                                TextSpan(text: " Know More",
-                                                    style: TextStyle(color: Colors.grey,fontSize: 12))
-                                              ])),
-                                              /*Text("Log in as Dhan Arogya Kranti User.",
-                                          textAlign: TextAlign.start,
-                                          style: TextStyle(color: Colors.black, fontSize: 20),
-                                        ),*/
-                                            ],
-                                          )),
+                                      Center(
+                                          child: Text(foundUser[i].name ?? "N/A",
+                                              style: TextStyle(
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.bold))
+                                      ),
+                                      SizedBox(
+                                        height: 20,
+                                      ),
+                                      Column(
+                                        children: [
+                                          Text.rich(TextSpan(children: [
+                                            TextSpan(text:foundUser[i].details?? "N/A"/* "Log in as Dhan Arogya Kranti User"*/,
+                                                style: TextStyle(color: Colors.black, fontSize: 13,)),
+                                            TextSpan(text: " Know More",
+                                                style: TextStyle(color: Colors.grey,fontSize: 10,decoration: TextDecoration.underline))
+                                          ])),
+
+
+                                        ],
+
+                                      ),
                                       /*Container(
                                           child: ClipRRect(
                                               borderRadius:
@@ -292,7 +299,7 @@ class _DieseInfoState extends State<DieseInfo> {
                                         height: 20,
                                       ),
 
-                                      Center(
+                                     /* Center(
                                         child: Text(foundUser[i].name ?? "N/A",
                                                   style: TextStyle(
                                                       fontSize: 15,
@@ -300,7 +307,7 @@ class _DieseInfoState extends State<DieseInfo> {
                                       ),
                                       SizedBox(
                                         height: 10,
-                                      ),
+                                      ),*/
 
                                       //  SizedBox(height: 10,),
                                       InkWell(
