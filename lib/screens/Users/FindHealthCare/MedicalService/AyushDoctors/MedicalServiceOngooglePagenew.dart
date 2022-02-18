@@ -88,6 +88,7 @@ class _MedicalServiceOngooglePagenewState extends State<MedicalServiceOngooglePa
         // longitudes = position.longitude.toString();
         // latitudes = position.altitude.toString();
       // });
+      AppData.showbar(context,"All the locations are coming based on google api, distance may differ.");
     } catch (e) {
       print(e.toString());
     }
@@ -210,8 +211,7 @@ Map<String, dynamic> postData = {
               // if (i == 1) {
               googlePlaceModel = GooglePlaceModel.fromJson(map);
               nextpage=googlePlaceModel.nextPageToken;
-              isDataNotAvail=false;
-              AppData.showbar(context,"All the locations are coming based on google api distance may differ");
+              isDataNotAvail=false;              
               print('================ nextpage ' + googlePlaceModel.results.length.toString());
               // } else {
               //   googlePlaceModel.addMore(map);
