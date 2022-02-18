@@ -282,7 +282,12 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                 FlutterPhoneDirectCaller.callNumber(
                     googlePlacesSearch.result.formattedPhoneNumber);
               else {
-                getMobNo(googlePlaceModel.results[k+1].placeId);
+                if(googlePlaceModel.results.length>(k+1)){
+                  getMobNo(googlePlaceModel.results[k+1].placeId);
+                }else{
+                  AppData.showInSnackBar(context, "Ambulance Mobile no is not available");
+                }
+
                 // AppData.showInSnackBar(context, "Ambulance Mobile no is not available");
               }
               //log(">>>>>>>GGGGG<<<<<<<" + jsonEncode(map));
