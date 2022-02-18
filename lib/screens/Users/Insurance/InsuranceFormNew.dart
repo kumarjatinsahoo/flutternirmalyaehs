@@ -93,6 +93,7 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
   ];
   TextEditingController _message = TextEditingController();
   TextEditingController stdob = TextEditingController();
+  TextEditingController nomdob = TextEditingController();
   List<bool> error = [false, false, false, false, false, false];
   bool _isSignUpLoading = false;
 
@@ -322,6 +323,30 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
         stdob.value = TextEditingValue(text: df.format(picked));
       });
   }
+  Future<Null> _selectDate2(BuildContext context) async {
+    final DateTime picked = await showDatePicker(
+      context: context,
+      locale: Locale("en"),
+      // initialDate: DateTime.now().subtract(Duration(days: 6570)),
+      //firstDate: DateTime(1901, 1),
+      initialDate: DateTime.now(),
+      firstDate: DateTime.now().subtract(Duration(days: 10000)),
+      lastDate: DateTime.now(),/*add(Duration(days: 365))*/
+      initialEntryMode: DatePickerEntryMode.calendarOnly,
+      // lastDate: DateTime.now()
+      //     .subtract(Duration(days: 6570))
+    ); //18 years is 6570 days
+    if (picked != null && picked != selectedDate)
+      setState(() {
+        selectedDate = picked;
+        selectedStartDate = picked;
+        error[2] = false;
+        nomdob.value = TextEditingValue(text: df.format(picked));
+      });
+  }
+
+
+
   List<DropdownMenuItem<KeyvalueModel>> buildDropDownMenuItems(List listItems) {
     List<DropdownMenuItem<KeyvalueModel>> items = List();
     for (KeyvalueModel listItem in listItems) {
@@ -615,528 +640,551 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
           style: TextStyle(fontSize: 20, color: Colors.white),
         ),
       ),
-      body: Container(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              SizedBox(
-                height: 10,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: TextFormField(
-                  //controller: textEditingController[7],
-                  decoration: InputDecoration(
-                    hintText: "Customer Id (UHID)",
-                    hintStyle: TextStyle(color: Colors.grey),
-                    // suffixIcon: InkWell(
-                    //   onTap: () {
-                    //     // Navigator.pop(context);
-                    //     getContactDetails();
-                    //   },
-                    //   child: Icon(Icons.contacts),
-                    // )
+      body: Padding(
+        padding: const EdgeInsets.only(left: 8,right: 8),
+        child: Container(
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 10,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: TextFormField(
+                    //controller: textEditingController[7],
+                    decoration: InputDecoration(
+                      hintText: "Customer Id (UHID)",
+                      hintStyle: TextStyle(color: Colors.grey),
+                      // suffixIcon: InkWell(
+                      //   onTap: () {
+                      //     // Navigator.pop(context);
+                      //     getContactDetails();
+                      //   },
+                      //   child: Icon(Icons.contacts),
+                      // )
+                    ),
+                    textInputAction: TextInputAction.next,
+                    keyboardType: TextInputType.number,
+                    inputFormatters: [
+                      WhitelistingTextInputFormatter(RegExp("[0-9]")),
+                    ],
                   ),
-                  textInputAction: TextInputAction.next,
-                  keyboardType: TextInputType.number,
-                  inputFormatters: [
-                    WhitelistingTextInputFormatter(RegExp("[0-9]")),
-                  ],
                 ),
-              ),
-              SizedBox(
-                height: 8,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: TextFormField(
-                  //controller: textEditingController[7],
-                  decoration: InputDecoration(
-                    hintText: "First Name",
-                    hintStyle: TextStyle(color: Colors.grey),
-                    // suffixIcon: InkWell(
-                    //   onTap: () {
-                    //     // Navigator.pop(context);
-                    //     getContactDetails();
-                    //   },
-                    //   child: Icon(Icons.contacts),
-                    // )
+                SizedBox(
+                  height: 8,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: TextFormField(
+                    //controller: textEditingController[7],
+                    decoration: InputDecoration(
+                      hintText: "First Name",
+                      hintStyle: TextStyle(color: Colors.grey),
+                      // suffixIcon: InkWell(
+                      //   onTap: () {
+                      //     // Navigator.pop(context);
+                      //     getContactDetails();
+                      //   },
+                      //   child: Icon(Icons.contacts),
+                      // )
+                    ),
+                    textInputAction: TextInputAction.next,
+                    keyboardType: TextInputType.text,
+                    inputFormatters: [
+                      WhitelistingTextInputFormatter(RegExp("[a-zA-Z., ]")),
+                    ],
                   ),
-                  textInputAction: TextInputAction.next,
-                  keyboardType: TextInputType.text,
-                  inputFormatters: [
-                    WhitelistingTextInputFormatter(RegExp("[a-zA-Z., ]")),
-                  ],
                 ),
-              ),
-              SizedBox(
-                height: 8,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: TextFormField(
-                  //controller: textEditingController[7],
-                  decoration: InputDecoration(
-                    hintText: "Middle Name",
-                    hintStyle: TextStyle(color: Colors.grey),
-                    // suffixIcon: InkWell(
-                    //   onTap: () {
-                    //     // Navigator.pop(context);
-                    //     getContactDetails();
-                    //   },
-                    //   child: Icon(Icons.contacts),
-                    // )
+                SizedBox(
+                  height: 8,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: TextFormField(
+                    //controller: textEditingController[7],
+                    decoration: InputDecoration(
+                      hintText: "Middle Name",
+                      hintStyle: TextStyle(color: Colors.grey),
+                      // suffixIcon: InkWell(
+                      //   onTap: () {
+                      //     // Navigator.pop(context);
+                      //     getContactDetails();
+                      //   },
+                      //   child: Icon(Icons.contacts),
+                      // )
+                    ),
+                    textInputAction: TextInputAction.next,
+                    keyboardType: TextInputType.text,
+                    inputFormatters: [
+                      WhitelistingTextInputFormatter(RegExp("[a-zA-Z., ]")),
+                    ],
                   ),
-                  textInputAction: TextInputAction.next,
-                  keyboardType: TextInputType.text,
-                  inputFormatters: [
-                    WhitelistingTextInputFormatter(RegExp("[a-zA-Z., ]")),
-                  ],
                 ),
-              ),
-              SizedBox(
-                height: 8,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: TextFormField(
-                  //controller: textEditingController[7],
-                  decoration: InputDecoration(
-                    hintText: "Last Name",
-                    hintStyle: TextStyle(color: Colors.grey),
-                    // suffixIcon: InkWell(
-                    //   onTap: () {
-                    //     // Navigator.pop(context);
-                    //     getContactDetails();
-                    //   },
-                    //   child: Icon(Icons.contacts),
-                    // )
+                SizedBox(
+                  height: 8,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: TextFormField(
+                    //controller: textEditingController[7],
+                    decoration: InputDecoration(
+                      hintText: "Last Name",
+                      hintStyle: TextStyle(color: Colors.grey),
+                      // suffixIcon: InkWell(
+                      //   onTap: () {
+                      //     // Navigator.pop(context);
+                      //     getContactDetails();
+                      //   },
+                      //   child: Icon(Icons.contacts),
+                      // )
+                    ),
+                    textInputAction: TextInputAction.next,
+                    keyboardType: TextInputType.text,
+                    inputFormatters: [
+                      WhitelistingTextInputFormatter(RegExp("[a-zA-Z., ]")),
+                    ],
                   ),
-                  textInputAction: TextInputAction.next,
-                  keyboardType: TextInputType.text,
-                  inputFormatters: [
-                    WhitelistingTextInputFormatter(RegExp("[a-zA-Z., ]")),
-                  ],
                 ),
-              ),
-              SizedBox(
-                height: 8,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: DropDown.networkDropdownGetpartUserundreline(
-                    MyLocalizations.of(context).text("GENDER"),
-                    ApiFactory.GENDER_API,
-                    "gender5", (KeyvalueModel model) {
-                  setState(() {
-                    InsuranceFormNew.relationmodel = model;
+                SizedBox(
+                  height: 8,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: DropDown.networkDropdownGetpartUserundreline(
+                      MyLocalizations.of(context).text("GENDER"),
+                      ApiFactory.GENDER_API,
+                      "gender5", (KeyvalueModel model) {
+                    setState(() {
+                      InsuranceFormNew.relationmodel = model;
 
-                  });
-                }),
-              ),
-              SizedBox(height: 8),
-              dob1(MyLocalizations.of(context).text("DOB")),
-              SizedBox(height: 8),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: TextFormField(
-                  //controller: textEditingController[7],
-                  decoration: InputDecoration(
-                    hintText: "Address Line 1",
-                    hintStyle: TextStyle(color: Colors.grey),
-                    // suffixIcon: InkWell(
-                    //   onTap: () {
-                    //     // Navigator.pop(context);
-                    //     getContactDetails();
-                    //   },
-                    //   child: Icon(Icons.contacts),
-                    // )
+                    });
+                  }),
+                ),
+                SizedBox(height: 8),
+                dob1(MyLocalizations.of(context).text("DOB")),
+                SizedBox(height: 8),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: TextFormField(
+                    //controller: textEditingController[7],
+                    decoration: InputDecoration(
+                      hintText: "Address Line 1",
+                      hintStyle: TextStyle(color: Colors.grey),
+                      // suffixIcon: InkWell(
+                      //   onTap: () {
+                      //     // Navigator.pop(context);
+                      //     getContactDetails();
+                      //   },
+                      //   child: Icon(Icons.contacts),
+                      // )
+                    ),
+                    textInputAction: TextInputAction.next,
+                    keyboardType: TextInputType.text,
+                    inputFormatters: [
+                      WhitelistingTextInputFormatter(RegExp("[a-zA-Z., ]")),
+                    ],
                   ),
-                  textInputAction: TextInputAction.next,
-                  keyboardType: TextInputType.text,
-                  inputFormatters: [
-                    WhitelistingTextInputFormatter(RegExp("[a-zA-Z., ]")),
-                  ],
                 ),
-              ),
-              SizedBox(height: 8),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: TextFormField(
-                  //controller: textEditingController[7],
-                  decoration: InputDecoration(
-                    hintText: "Address Line 2",
-                    hintStyle: TextStyle(color: Colors.grey),
-                    // suffixIcon: InkWell(
-                    //   onTap: () {
-                    //     // Navigator.pop(context);
-                    //     getContactDetails();
-                    //   },
-                    //   child: Icon(Icons.contacts),
-                    // )
+                SizedBox(height: 8),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: TextFormField(
+                    //controller: textEditingController[7],
+                    decoration: InputDecoration(
+                      hintText: "Address Line 2",
+                      hintStyle: TextStyle(color: Colors.grey),
+                      // suffixIcon: InkWell(
+                      //   onTap: () {
+                      //     // Navigator.pop(context);
+                      //     getContactDetails();
+                      //   },
+                      //   child: Icon(Icons.contacts),
+                      // )
+                    ),
+                    textInputAction: TextInputAction.next,
+                    keyboardType: TextInputType.text,
+                    inputFormatters: [
+                      WhitelistingTextInputFormatter(RegExp("[a-zA-Z., ]")),
+                    ],
                   ),
-                  textInputAction: TextInputAction.next,
-                  keyboardType: TextInputType.text,
-                  inputFormatters: [
-                    WhitelistingTextInputFormatter(RegExp("[a-zA-Z., ]")),
-                  ],
                 ),
-              ),
-              SizedBox(height: 8),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: DropDown.networkDropdownGetpartUserundreline(
-                    MyLocalizations.of(context).text("COUNTRY"),
-                    ApiFactory.COUNTRY_API,
-                    "country5", (KeyvalueModel model) {
-                  setState(() {
-                    print(ApiFactory.COUNTRY_API);
-                    InsuranceFormNew.countryModel = model;
-                    InsuranceFormNew.stateModel = null;
-                    InsuranceFormNew.districtModel = null;
-                    InsuranceFormNew.cityModel = null;
-                  });
-                }),
-              ),
-              SizedBox(height: 8),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: DropDown.networkDropdownGetpartUserundreline(
-                    MyLocalizations.of(context).text("STATE"),
-                    ApiFactory.STATE_API+InsuranceFormNew.countryModel.key,
-                    "state5", (KeyvalueModel model) {
-                  setState(() {
-                    print(ApiFactory.STATE_API);
-                    InsuranceFormNew.stateModel = model;
-                    InsuranceFormNew.districtModel = null;
-                    InsuranceFormNew.cityModel = null;
-                  });
-                }),
-              ),
-              SizedBox(height: 8),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: DropDown.networkDropdownGetpartUserundreline(
-                    MyLocalizations.of(context).text("DIST"),
-                    ApiFactory.DISTRICT_API+InsuranceFormNew.stateModel.key,
-                    "dist5", (KeyvalueModel model) {
-                  setState(() {
-                    InsuranceFormNew.districtModel = model;
-                    InsuranceFormNew.cityModel = null;
-
-                  });
-                }),
-              ),
-              SizedBox(height: 8),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: DropDown.networkDropdownGetpartUserundreline(
-                    MyLocalizations.of(context).text("CITY"),
-                    ApiFactory.CITY_API+InsuranceFormNew.districtModel.key,
-                    "city5", (KeyvalueModel model) {
-                  setState(() {
-                    InsuranceFormNew.cityModel = model;
-
-                  });
-                }),
-              ),
-              SizedBox(height: 8),
-
-
-
-
-
-
-              // (patientProfileModel != null &&
-              //     patientProfileModel.body.dob != null)
-              //     ? Padding(
-              //   padding: const EdgeInsets.symmetric(horizontal: 20),
-              //   child: TextFormField(
-              //     controller: textEditingController[2],
-              //     decoration: InputDecoration(
-              //         counterText: "",
-              //         //hintText: patientProfileModel?.body?.dob??"N/A",
-              //         hintText: MyLocalizations.of(context).text("DOB1"),
-              //         hintStyle: TextStyle(color: Colors.grey)),
-              //     textInputAction: TextInputAction.next,
-              //     maxLength: 10,
-              //     enabled: false,
-              //     autofocus: false,
-              //     keyboardType: TextInputType.number,
-              //     inputFormatters: [
-              //       WhitelistingTextInputFormatter(RegExp("[0-9 -]")),
-              //     ],
-              //   ),
-              // )
-              //     : Padding(
-              //   padding: const EdgeInsets.symmetric(horizontal: 20),
-              //   child: dob(),
-              // ),
-              // Padding(
-              //   padding: const EdgeInsets.symmetric(horizontal: 20),
-              //   child: TextFormField(
-              //     controller: textEditingController[3],
-              //     decoration: InputDecoration(
-              //         counterText: "",
-              //         //hintText: patientProfileModel?.body?.ageYears??"N/A",
-              //         hintText: MyLocalizations.of(context).text("AGE"),
-              //         hintStyle: TextStyle(color: Colors.grey)),
-              //     textInputAction: TextInputAction.next,
-              //     maxLength: 3,
-              //     enabled: false,
-              //     autofocus: false,
-              //     keyboardType: TextInputType.number,
-              //     inputFormatters: [
-              //       WhitelistingTextInputFormatter(RegExp("[0-9]")),
-              //     ],
-              //   ),
-              // ),
-              // SizedBox(
-              //   height: 8,
-              // ),
-              // (patientProfileModel != null &&
-              //     patientProfileModel.body.bloodGroup != null)
-              //     ? Padding(
-              //   padding: const EdgeInsets.symmetric(horizontal: 20),
-              //   child: TextFormField(
-              //     controller: textEditingController[15],
-              //     decoration: InputDecoration(
-              //       // hintText: patientProfileModel?.body?.bloodGroup??"N/A",
-              //         hintText: MyLocalizations.of(context).text("Blood Group"),
-              //         hintStyle: TextStyle(color: Colors.grey)),
-              //     textInputAction: TextInputAction.next,
-              //     keyboardType: TextInputType.text,
-              //     enabled: false,
-              //     autofocus: false,
-              //     inputFormatters: [
-              //       WhitelistingTextInputFormatter(
-              //           RegExp("[0-9,a-zA-Z./-]")),
-              //     ],
-              //   ),
-              // ) : Padding(
-              //   padding: const EdgeInsets.symmetric(horizontal: 20),
-              //   child: DropDown.networkDropdownGetpartUserundreline(
-              //       MyLocalizations.of(context).text("BLOODGROUP"),
-              //       ApiFactory.BLOODGROUP_API,
-              //       "bloodgroupdn", (KeyvalueModel data) {
-              //     setState(() {
-              //       print(ApiFactory.BLOODGROUP_API);
-              //       InsuranceFormNew.bloodgroupModel = data;
-              //       //DonorApplication.bloodgroupModel = null;
-              //     });
-              //   }),
-              // ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: TextFormField(
-                  controller: textEditingController[4],
-                  decoration: InputDecoration(
-                      counterText: "",
-                      //hintText: patientProfileModel?.body?.mobile??"N/A",
-                      hintText: MyLocalizations.of(context).text("MOBILE_NO"),
-                      hintStyle: TextStyle(color: Colors.grey)),
-                  textInputAction: TextInputAction.next,
-                  keyboardType: TextInputType.number,
-                  maxLength: 10,
-                  enabled: false,
-                  autofocus: false,
-                  inputFormatters: [
-                    WhitelistingTextInputFormatter(RegExp("[0-9]")),
-                  ],
+                SizedBox(height: 8),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: DropDown.networkDropdownGetpartUserundreline(
+                      MyLocalizations.of(context).text("COUNTRY"),
+                      ApiFactory.COUNTRY_API,
+                      "country5", (KeyvalueModel model) {
+                    setState(() {
+                      print(ApiFactory.COUNTRY_API);
+                      InsuranceFormNew.countryModel = model;
+                      InsuranceFormNew.stateModel = null;
+                      InsuranceFormNew.districtModel = null;
+                      InsuranceFormNew.cityModel = null;
+                    });
+                  }),
                 ),
-              ),
-              SizedBox(
-                height: 8,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: TextFormField(
-                  controller: textEditingController[5],
-                  decoration: InputDecoration(
-                    //hintText: patientProfileModel?.body?.email??"N/A",
-                      hintText: MyLocalizations.of(context).text("EMAILID"),
-                      hintStyle: TextStyle(color: Colors.grey)),
-                  textInputAction: TextInputAction.next,
-                  keyboardType: TextInputType.emailAddress,
-                  enabled: false,
-                  autofocus: false,
-                  inputFormatters: [
-                    WhitelistingTextInputFormatter(RegExp("[a-zA-Z@.]")),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 8,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: TextFormField(
-                  controller: textEditingController[6],
-                  decoration: InputDecoration(
-                    // hintText: patientProfileModel?.body?.address??"N/A",
-                      hintText: MyLocalizations.of(context).text("ADDRESS"),
-                      hintStyle: TextStyle(color: Colors.grey)),
-                  textInputAction: TextInputAction.next,
-                  keyboardType: TextInputType.text,
-                  enabled: false,
-                  autofocus: false,
-                  inputFormatters: [
-                    WhitelistingTextInputFormatter(RegExp("[0-9,a-zA-Z./-]")),
-                  ],
-                ),
-              ),
-              SizedBox(height: 10),
+                SizedBox(height: 8),
+                (InsuranceFormNew.countryModel != null)
+                    ?  Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: DropDown.networkDropdownGetpartUserundreline(
+                      MyLocalizations.of(context).text("STATE"),
+                      ApiFactory.STATE_API+InsuranceFormNew.countryModel.key,
+                      "state5", (KeyvalueModel model) {
+                    setState(() {
+                      print(ApiFactory.STATE_API);
+                      InsuranceFormNew.stateModel = model;
+                      InsuranceFormNew.districtModel = null;
+                      InsuranceFormNew.cityModel = null;
+                    });
+                  }),
+                ): Container(),
+                SizedBox(height: 8),
+                (InsuranceFormNew.stateModel != null)
+                    ?Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: DropDown.networkDropdownGetpartUserundreline(
+                      MyLocalizations.of(context).text("DIST"),
+                      ApiFactory.DISTRICT_API+InsuranceFormNew.stateModel.key,
+                      "dist5", (KeyvalueModel model) {
+                    setState(() {
+                      InsuranceFormNew.districtModel = model;
+                      InsuranceFormNew.cityModel = null;
 
-              InkWell(
-                onTap: () {
-                  showDialog(
-                    context: context,
-                    builder: (BuildContext context) =>
-                        dialogaddnomination(context),
-                  );
-                },
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    color: Colors.black26,
-                    height: 40,
-                    child: Row(
-                      //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(
-                          child: Text("Add Nominee",
-                           // MyLocalizations.of(context).text("ADD_WITNESS"),
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 17,
-                                fontWeight: FontWeight.bold),
-                            textAlign: TextAlign.center,
+                    });
+                  }),
+                ):Container(),
+                SizedBox(height: 8),
+                (InsuranceFormNew.districtModel != null)
+                    ?  Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: DropDown.networkDropdownGetpartUserundreline(
+                      MyLocalizations.of(context).text("CITY"),
+                      ApiFactory.CITY_API+InsuranceFormNew.districtModel.key,
+                      "city5", (KeyvalueModel model) {
+                    setState(() {
+                      InsuranceFormNew.cityModel = model;
+
+                    });
+                  }),
+                ):Container(),
+                SizedBox(height: 8),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: TextFormField(
+                   // controller: textEditingController[11],
+                    decoration: InputDecoration(
+                        counterText: "",
+                        hintText: "Pin Code",
+                        hintStyle: TextStyle(color: Colors.grey)),
+                    textInputAction: TextInputAction.next,
+                    keyboardType: TextInputType.number,
+                    maxLength: 6,
+                    inputFormatters: [
+                      WhitelistingTextInputFormatter(RegExp("[0-9]")),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 8),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: TextFormField(
+                    //controller: textEditingController[7],
+                    decoration: InputDecoration(
+                      hintText: "Occupation",
+                      hintStyle: TextStyle(color: Colors.grey),
+                      // suffixIcon: InkWell(
+                      //   onTap: () {
+                      //     // Navigator.pop(context);
+                      //     getContactDetails();
+                      //   },
+                      //   child: Icon(Icons.contacts),
+                      // )
+                    ),
+                    textInputAction: TextInputAction.next,
+                    keyboardType: TextInputType.text,
+                    inputFormatters: [
+                      WhitelistingTextInputFormatter(RegExp("[a-zA-Z., ]")),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 8),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: TextFormField(
+                    // controller: textEditingController[11],
+                    decoration: InputDecoration(
+                        counterText: "",
+                        hintText: "Mobile No.",
+                        hintStyle: TextStyle(color: Colors.grey)),
+                    textInputAction: TextInputAction.next,
+                    keyboardType: TextInputType.number,
+                    maxLength: 10,
+                    inputFormatters: [
+                      WhitelistingTextInputFormatter(RegExp("[0-9]")),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 8),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: TextFormField(
+                    //controller: textEditingController[7],
+                    decoration: InputDecoration(
+                      hintText: "Email id",
+                      hintStyle: TextStyle(color: Colors.grey),
+                      // suffixIcon: InkWell(
+                      //   onTap: () {
+                      //     // Navigator.pop(context);
+                      //     getContactDetails();
+                      //   },
+                      //   child: Icon(Icons.contacts),
+                      // )
+                    ),
+                    textInputAction: TextInputAction.next,
+                    keyboardType: TextInputType.text,
+                    inputFormatters: [
+                      WhitelistingTextInputFormatter(RegExp("[a-zA-Z0-9.@  ]")),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 20),
+
+
+
+
+                // (patientProfileModel != null &&
+                //     patientProfileModel.body.dob != null)
+                //     ? Padding(
+                //   padding: const EdgeInsets.symmetric(horizontal: 20),
+                //   child: TextFormField(
+                //     controller: textEditingController[2],
+                //     decoration: InputDecoration(
+                //         counterText: "",
+                //         //hintText: patientProfileModel?.body?.dob??"N/A",
+                //         hintText: MyLocalizations.of(context).text("DOB1"),
+                //         hintStyle: TextStyle(color: Colors.grey)),
+                //     textInputAction: TextInputAction.next,
+                //     maxLength: 10,
+                //     enabled: false,
+                //     autofocus: false,
+                //     keyboardType: TextInputType.number,
+                //     inputFormatters: [
+                //       WhitelistingTextInputFormatter(RegExp("[0-9 -]")),
+                //     ],
+                //   ),
+                // )
+                //     : Padding(
+                //   padding: const EdgeInsets.symmetric(horizontal: 20),
+                //   child: dob(),
+                // ),
+                // Padding(
+                //   padding: const EdgeInsets.symmetric(horizontal: 20),
+                //   child: TextFormField(
+                //     controller: textEditingController[3],
+                //     decoration: InputDecoration(
+                //         counterText: "",
+                //         //hintText: patientProfileModel?.body?.ageYears??"N/A",
+                //         hintText: MyLocalizations.of(context).text("AGE"),
+                //         hintStyle: TextStyle(color: Colors.grey)),
+                //     textInputAction: TextInputAction.next,
+                //     maxLength: 3,
+                //     enabled: false,
+                //     autofocus: false,
+                //     keyboardType: TextInputType.number,
+                //     inputFormatters: [
+                //       WhitelistingTextInputFormatter(RegExp("[0-9]")),
+                //     ],
+                //   ),
+                // ),
+                // SizedBox(
+                //   height: 8,
+                // ),
+                // (patientProfileModel != null &&
+                //     patientProfileModel.body.bloodGroup != null)
+                //     ? Padding(
+                //   padding: const EdgeInsets.symmetric(horizontal: 20),
+                //   child: TextFormField(
+                //     controller: textEditingController[15],
+                //     decoration: InputDecoration(
+                //       // hintText: patientProfileModel?.body?.bloodGroup??"N/A",
+                //         hintText: MyLocalizations.of(context).text("Blood Group"),
+                //         hintStyle: TextStyle(color: Colors.grey)),
+                //     textInputAction: TextInputAction.next,
+                //     keyboardType: TextInputType.text,
+                //     enabled: false,
+                //     autofocus: false,
+                //     inputFormatters: [
+                //       WhitelistingTextInputFormatter(
+                //           RegExp("[0-9,a-zA-Z./-]")),
+                //     ],
+                //   ),
+                // ) : Padding(
+                //   padding: const EdgeInsets.symmetric(horizontal: 20),
+                //   child: DropDown.networkDropdownGetpartUserundreline(
+                //       MyLocalizations.of(context).text("BLOODGROUP"),
+                //       ApiFactory.BLOODGROUP_API,
+                //       "bloodgroupdn", (KeyvalueModel data) {
+                //     setState(() {
+                //       print(ApiFactory.BLOODGROUP_API);
+                //       InsuranceFormNew.bloodgroupModel = data;
+                //       //DonorApplication.bloodgroupModel = null;
+                //     });
+                //   }),
+                // ),
+                InkWell(
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) =>
+                          dialogaddnomination(context),
+                    );
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      color: Colors.black26,
+                      height: 40,
+                      child: Row(
+                        //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: Text("Add Nominee",
+                             // MyLocalizations.of(context).text("ADD_WITNESS"),
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.bold),
+                              textAlign: TextAlign.center,
+                            ),
                           ),
-                        ),
-                        //Spacer(),
-                        Padding(
-                          padding: const EdgeInsets.only(right: 10.0),
-                          child: Icon(
-                            Icons.add_box,
+                          //Spacer(),
+                          Padding(
+                            padding: const EdgeInsets.only(right: 10.0),
+                            child: Icon(
+                              Icons.add_box,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              ),
-              // ListView.builder(
-              //   itemBuilder: (context, i) {
-              //     //= witnessModle[i];
-              //     // widget.model.medicinelist = ;
-              //     return Padding(
-              //       padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-              //       child: Card(
-              //         shape: RoundedRectangleBorder(
-              //           borderRadius: BorderRadius.circular(5.0),
-              //         ),
-              //         shadowColor: Colors.grey,
-              //         elevation: 4,
-              //         child: ClipPath(
-              //           clipper: ShapeBorderClipper(
-              //               shape: RoundedRectangleBorder(
-              //                   borderRadius: BorderRadius.circular(5))),
-              //           child: Container(
-              //             //height: 100,
-              //               width: double.maxFinite,
-              //               /*  margin: const EdgeInsets.only(top: 6.0),*/
-              //               child: Padding(
-              //                 padding: const EdgeInsets.all(10.0),
-              //                 child: Row(
-              //                   crossAxisAlignment: CrossAxisAlignment.start,
-              //                   children: [
-              //                     Expanded(
-              //                       child: Column(
-              //                         crossAxisAlignment:
-              //                         CrossAxisAlignment.start,
-              //                         children: [
-              //                           Text(
-              //                             "Witness Name: " +
-              //                                 witnessModle[i].donorName,
-              //                             style: TextStyle(fontSize: 15),
-              //                           ),
-              //                           SizedBox(
-              //                             height: 4,
-              //                           ),
-              //                           Text(
-              //                             "Mobile No.: " + witnessModle[i].mob,
-              //                             style: TextStyle(fontSize: 15),
-              //                           ),
-              //                           SizedBox(
-              //                             height: 4,
-              //                           ),
-              //                           Text(
-              //                             "Age: " + witnessModle[i].age,
-              //                             overflow: TextOverflow.clip,
-              //                             style: TextStyle(color: Colors.grey),
-              //                           ),
-              //                           SizedBox(
-              //                             height: 4,
-              //                           ),
-              //                           Text(
-              //                             "Address: " + witnessModle[i].address,
-              //                             overflow: TextOverflow.clip,
-              //                             style: TextStyle(color: Colors.grey),
-              //                           ),
-              //                         ],
-              //                       ),
-              //                     ),
-              //                     InkWell(
-              //                       onTap: () {
-              //                         setState(() {
-              //                           //witnessModle.remove(i);
-              //                           witnessModle.remove(witnessModle[i]);
-              //                         });
-              //                       },
-              //                       child: Icon(
-              //                         Icons.delete_forever,
-              //                         // color: Colors.red,
-              //                       ),
-              //                     ),
-              //                     //Icon(Icons.arrow_forward_ios, size: 30,color: Colors.black),
-              //                     /*Image.asset(
-              //                   "assets/forwardarrow.png",
-              //                   fit: BoxFit.fitWidth,
-              //                   */
-              //                     /*width: 50,*/
-              //                     /*
-              //                   height: 30,
-              //                 ),*/
-              //                     SizedBox(
-              //                       width: 10,
-              //                     ),
-              //                   ],
-              //                 ),
-              //               )),
-              //           /* clipper: ShapeBorderClipper(shape: RoundedRectangleBorder(
-              //                   borderRadius: BorderRadius.circular(8))),
-              //             ),*/
-              //         ),
-              //       ),
-              //
-              //       /* */
-              //     );
-              //   },
-              //   itemCount: witnessModle.length,
-              //   shrinkWrap: true,
-              //   physics: NeverScrollableScrollPhysics(),
-              // ),
-              SizedBox(
-                height: 20,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 0),
-                child: _submitButton(),
-              ),
-              SizedBox(
-                height: 25,
-              ),
-            ],
+                // ListView.builder(
+                //   itemBuilder: (context, i) {
+                //     //= witnessModle[i];
+                //     // widget.model.medicinelist = ;
+                //     return Padding(
+                //       padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+                //       child: Card(
+                //         shape: RoundedRectangleBorder(
+                //           borderRadius: BorderRadius.circular(5.0),
+                //         ),
+                //         shadowColor: Colors.grey,
+                //         elevation: 4,
+                //         child: ClipPath(
+                //           clipper: ShapeBorderClipper(
+                //               shape: RoundedRectangleBorder(
+                //                   borderRadius: BorderRadius.circular(5))),
+                //           child: Container(
+                //             //height: 100,
+                //               width: double.maxFinite,
+                //               /*  margin: const EdgeInsets.only(top: 6.0),*/
+                //               child: Padding(
+                //                 padding: const EdgeInsets.all(10.0),
+                //                 child: Row(
+                //                   crossAxisAlignment: CrossAxisAlignment.start,
+                //                   children: [
+                //                     Expanded(
+                //                       child: Column(
+                //                         crossAxisAlignment:
+                //                         CrossAxisAlignment.start,
+                //                         children: [
+                //                           Text(
+                //                             "Witness Name: " +
+                //                                 witnessModle[i].donorName,
+                //                             style: TextStyle(fontSize: 15),
+                //                           ),
+                //                           SizedBox(
+                //                             height: 4,
+                //                           ),
+                //                           Text(
+                //                             "Mobile No.: " + witnessModle[i].mob,
+                //                             style: TextStyle(fontSize: 15),
+                //                           ),
+                //                           SizedBox(
+                //                             height: 4,
+                //                           ),
+                //                           Text(
+                //                             "Age: " + witnessModle[i].age,
+                //                             overflow: TextOverflow.clip,
+                //                             style: TextStyle(color: Colors.grey),
+                //                           ),
+                //                           SizedBox(
+                //                             height: 4,
+                //                           ),
+                //                           Text(
+                //                             "Address: " + witnessModle[i].address,
+                //                             overflow: TextOverflow.clip,
+                //                             style: TextStyle(color: Colors.grey),
+                //                           ),
+                //                         ],
+                //                       ),
+                //                     ),
+                //                     InkWell(
+                //                       onTap: () {
+                //                         setState(() {
+                //                           //witnessModle.remove(i);
+                //                           witnessModle.remove(witnessModle[i]);
+                //                         });
+                //                       },
+                //                       child: Icon(
+                //                         Icons.delete_forever,
+                //                         // color: Colors.red,
+                //                       ),
+                //                     ),
+                //                     //Icon(Icons.arrow_forward_ios, size: 30,color: Colors.black),
+                //                     /*Image.asset(
+                //                   "assets/forwardarrow.png",
+                //                   fit: BoxFit.fitWidth,
+                //                   */
+                //                     /*width: 50,*/
+                //                     /*
+                //                   height: 30,
+                //                 ),*/
+                //                     SizedBox(
+                //                       width: 10,
+                //                     ),
+                //                   ],
+                //                 ),
+                //               )),
+                //           /* clipper: ShapeBorderClipper(shape: RoundedRectangleBorder(
+                //                   borderRadius: BorderRadius.circular(8))),
+                //             ),*/
+                //         ),
+                //       ),
+                //
+                //       /* */
+                //     );
+                //   },
+                //   itemCount: witnessModle.length,
+                //   shrinkWrap: true,
+                //   physics: NeverScrollableScrollPhysics(),
+                // ),
+                SizedBox(
+                  height: 20,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 0),
+                  child: _submitButton(),
+                ),
+                SizedBox(
+                  height: 25,
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -1165,14 +1213,14 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
               children: <Widget>[
                 //_buildAboutText(),
                 //_buildLogoAttribution(),
-                Text(MyLocalizations.of(context).text("ADD_WITNESS")),
+                Text("Add Nominee"),
                 SizedBox(
                   height: 8,
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: TextFormField(
-                    controller: textEditingController[7],
+                    //controller: textEditingController[7],
                     decoration: InputDecoration(
                         hintText: "First Name",
                         hintStyle: TextStyle(color: Colors.grey),
@@ -1197,7 +1245,7 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: TextFormField(
-                    controller: textEditingController[8],
+                    //controller: textEditingController[8],
                     decoration: InputDecoration(
                       hintText:"Middle Name",
                       hintStyle: TextStyle(color: Colors.grey),
@@ -1215,7 +1263,7 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: TextFormField(
-                    controller: textEditingController[9],
+                    //controller: textEditingController[9],
                     decoration: InputDecoration(
                       hintText: "Last Name",
                       hintStyle: TextStyle(color: Colors.grey),
@@ -1243,7 +1291,7 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
                   }),
                 ),
                 SizedBox(height: 8),
-                dob1(MyLocalizations.of(context).text("DOB")),
+                dob2(MyLocalizations.of(context).text("DOB")),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: DropDown.networkDropdownGetpartUserundreline(
@@ -1262,7 +1310,7 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: TextFormField(
-                    controller: textEditingController[11],
+                   // controller: textEditingController[11],
                     decoration: InputDecoration(
                         counterText: "",
                         hintText: MyLocalizations.of(context).text("MOBILE_NO"),
@@ -1298,73 +1346,73 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
               style: TextStyle(color: AppData.kPrimaryRedColor)),
         ),
         new FlatButton(
-          onPressed: () {
-            setState(() {
-              if (textEditingController[7].text == "" ||
-                  textEditingController[7].text == null) {
-                AppData.showInSnackBar(context, "Please enter first name");
-              } else if (textEditingController[7].text != "" &&
-                  textEditingController[7].text.length <= 2) {
-                AppData.showInSnackBar(
-                    context, "Please enter a valid  name");
-
-              } else if (textEditingController[8].text == "" ||
-                  textEditingController[8].text == null) {
-                AppData.showInSnackBar(context, "Please enter second name");
-              } else if (textEditingController[8].text != "" &&
-                  textEditingController[8].text.length <= 2) {
-                AppData.showInSnackBar(
-                    context, "Please enter a valid  name");
-
-              } else if (textEditingController[9].text == "" ||
-                  textEditingController[9].text == null) {
-                AppData.showInSnackBar(context, "Please enter last name");
-              } else if (textEditingController[9].text != "" &&
-                  textEditingController[9].text.length <= 2) {
-                AppData.showInSnackBar(
-                    context, "Please enter a valid  name");
-
-              } else if (InsuranceFormNew.genderModel == null ||
-                  InsuranceFormNew.genderModel == "") {
-                AppData.showInSnackBar(context, "Please select gender");
-
-              } else if (InsuranceFormNew.relationmodel == null ||
-                  InsuranceFormNew.relationmodel == "") {
-                AppData.showInSnackBar(context, "Please select relation");
-
-              } else if (textEditingController[10].text == "" ||
-                  textEditingController[10].text == null) {
-                AppData.showInSnackBar(context, "Please enter DOB");
-              } else {
-                // WitnessModel witness = WitnessModel();
-                // witness.donorName = textEditingController[7].text;
-                // witness.donorType = _selectedItem1.key;
-                // witness.typeUserName = textEditingController[8].text;
-                // witness.relation = InsuranceFormNew.relationmodel.key;
-                // witness.age = textEditingController[9].text;
-                // witness.mob = textEditingController[10].text;
-                // witness.email = textEditingController[11].text;
-                // witness.address = textEditingController[12].text;
-
-                //nomineeModel.relaion = AddEmployeePage.RelationModel.key;
-
-                // setState(() {
-                //   witnessModle.add(witness);
-                //   Navigator.of(context).pop();
-                // }
-               // );
-              }
-            });
-            /* Navigator.of(context).pop();
-            textEditingController[7].text = "";
-            textEditingController[8].text = "";
-            textEditingController[9].text = "";
-            textEditingController[10].text = "";
-            textEditingController[11].text = "";
-            textEditingController[12].text = "";*/
-            /*controller[0].text="";
-             controller[1].text="";*/
-          },
+          // onPressed: () {
+          //   setState(() {
+          //     if (textEditingController[7].text == "" ||
+          //         textEditingController[7].text == null) {
+          //       AppData.showInSnackBar(context, "Please enter first name");
+          //     } else if (textEditingController[7].text != "" &&
+          //         textEditingController[7].text.length <= 2) {
+          //       AppData.showInSnackBar(
+          //           context, "Please enter a valid  name");
+          //
+          //     } else if (textEditingController[8].text == "" ||
+          //         textEditingController[8].text == null) {
+          //       AppData.showInSnackBar(context, "Please enter second name");
+          //     } else if (textEditingController[8].text != "" &&
+          //         textEditingController[8].text.length <= 2) {
+          //       AppData.showInSnackBar(
+          //           context, "Please enter a valid  name");
+          //
+          //     } else if (textEditingController[9].text == "" ||
+          //         textEditingController[9].text == null) {
+          //       AppData.showInSnackBar(context, "Please enter last name");
+          //     } else if (textEditingController[9].text != "" &&
+          //         textEditingController[9].text.length <= 2) {
+          //       AppData.showInSnackBar(
+          //           context, "Please enter a valid  name");
+          //
+          //     } else if (InsuranceFormNew.genderModel == null ||
+          //         InsuranceFormNew.genderModel == "") {
+          //       AppData.showInSnackBar(context, "Please select gender");
+          //
+          //     } else if (InsuranceFormNew.relationmodel == null ||
+          //         InsuranceFormNew.relationmodel == "") {
+          //       AppData.showInSnackBar(context, "Please select relation");
+          //
+          //     } else if (textEditingController[10].text == "" ||
+          //         textEditingController[10].text == null) {
+          //       AppData.showInSnackBar(context, "Please enter DOB");
+          //     } else {
+          //       // WitnessModel witness = WitnessModel();
+          //       // witness.donorName = textEditingController[7].text;
+          //       // witness.donorType = _selectedItem1.key;
+          //       // witness.typeUserName = textEditingController[8].text;
+          //       // witness.relation = InsuranceFormNew.relationmodel.key;
+          //       // witness.age = textEditingController[9].text;
+          //       // witness.mob = textEditingController[10].text;
+          //       // witness.email = textEditingController[11].text;
+          //       // witness.address = textEditingController[12].text;
+          //
+          //       //nomineeModel.relaion = AddEmployeePage.RelationModel.key;
+          //
+          //       // setState(() {
+          //       //   witnessModle.add(witness);
+          //       //   Navigator.of(context).pop();
+          //       // }
+          //      // );
+          //     }
+          //   });
+          //   /* Navigator.of(context).pop();
+          //   textEditingController[7].text = "";
+          //   textEditingController[8].text = "";
+          //   textEditingController[9].text = "";
+          //   textEditingController[10].text = "";
+          //   textEditingController[11].text = "";
+          //   textEditingController[12].text = "";*/
+          //   /*controller[0].text="";
+          //    controller[1].text="";*/
+          // },
           child: Text(
             MyLocalizations.of(context).text("SUBMIT"),
             //style: TextStyle(color: Colors.grey),
@@ -1556,85 +1604,85 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
         context: context,
         fun: () {
           //Navigator.pushNamed(context, "/addWitness");
-          if (textEditingController[0].text == "" ||
-              textEditingController[0].text == null) {
-            AppData.showInSnackBar(context, "Please enter name");
-          } else if (textEditingController[0].text != "" &&
-              textEditingController[0].text.length <= 2) {
-            AppData.showInSnackBar(context, "Please enter a valid  name");
-          } else if (textEditingController[1].text == "" ||
-              textEditingController[1].text == null) {
-            AppData.showInSnackBar(context, "Please enter S/O,D/O,W/O");
-          } else if (textEditingController[1].text != "" &&
-              textEditingController[1].text.length <= 2) {
-            AppData.showInSnackBar(
-                context, "Please enter a valid  S/O,D/O,W/O");
-          } else if (textEditingController[2].text == "" ||
-              textEditingController[2].text == null) {
-            AppData.showInSnackBar(context, "Please enter DOB");
-          } else if (textEditingController[3].text == "" ||
-              textEditingController[3].text == null) {
-            AppData.showInSnackBar(context, "Please enter age");
-            /*} else if (textEditingController[3].text != null &&
-              (int.tryParse(year) < 18)) {
-            AppData.showInSnackBar(context, "Age should be 18 above");
-          } */}else if (textEditingController[4].text == "" ||
-              textEditingController[4].text == null) {
-            AppData.showInSnackBar(context, "Please enter mobile number");
-          } else if (textEditingController[4].text != "" &&
-              textEditingController[4].text.length != 10) {
-            AppData.showInSnackBar(context, "Please enter valid mobile number");
-            // } else if (textEditingController[5].text == '') {
-            //   AppData.showInSnackBar(context, "Please enter E-mail");
-            // } else if (textEditingController[5].text != '' &&
-            //     !AppData.isValidEmail(textEditingController[5].text)) {
-            //   AppData.showInSnackBar(context, "Please enter a valid E-mail");
-            // } else if (textEditingController[6].text == "" ||
-            //     textEditingController[6].text == null) {
-            //   AppData.showInSnackBar(context, "Please enter Address");
-            // } else if (textEditingController[15].text == "" ||
-            //     textEditingController[15].text == null) {
-            //   AppData.showInSnackBar(context, "Please enter Blood Group");
-          } else if (patientProfileModel.body.bloodGroup == null && InsuranceFormNew.bloodgroupModel == null ||
-              InsuranceFormNew.bloodgroupModel == "") {
-            AppData.showInSnackBar(context, "Please select blood group");
-          } else {
-            AddOrganDonModel addOrganDonModel = AddOrganDonModel();
-            addOrganDonModel.patientId = widget.model.user;
-            addOrganDonModel.donorName = textEditingController[0].text;
-            addOrganDonModel.donorType = _selectedItem.key;
-            addOrganDonModel.typeUserName = textEditingController[1].text;
-            (patientProfileModel != null &&
-                patientProfileModel.body.dob != null)
-                ?addOrganDonModel.dob = toDate(patientProfileModel.body.dob):
-            addOrganDonModel.dob = textEditingController[2].text;
-            addOrganDonModel.dob = toDate(patientProfileModel.body.dob);
-            addOrganDonModel.age = year;
-            addOrganDonModel.mob = textEditingController[4].text;
-            addOrganDonModel.email = textEditingController[5].text;
-            addOrganDonModel.address = textEditingController[6].text;
-            (patientProfileModel.body.bloodGroup != null)
-                ? addOrganDonModel.bldGr = patientProfileModel.body.bloodGroupId
-                : addOrganDonModel.bldGr = InsuranceFormNew.bloodgroupModel.key;
-            addOrganDonModel.witnessList = witnessModle;
-            addOrganDonModel.organList = selectedOrganList;
-            addOrganDonModel.tissueList = selectedTissueList;
-            log("Post json>>>>" + jsonEncode(addOrganDonModel.toJson()));
+          // if (textEditingController[0].text == "" ||
+          //     textEditingController[0].text == null) {
+          //   AppData.showInSnackBar(context, "Please enter name");
+          // } else if (textEditingController[0].text != "" &&
+          //     textEditingController[0].text.length <= 2) {
+          //   AppData.showInSnackBar(context, "Please enter a valid  name");
+          // } else if (textEditingController[1].text == "" ||
+          //     textEditingController[1].text == null) {
+          //   AppData.showInSnackBar(context, "Please enter S/O,D/O,W/O");
+          // } else if (textEditingController[1].text != "" &&
+          //     textEditingController[1].text.length <= 2) {
+          //   AppData.showInSnackBar(
+          //       context, "Please enter a valid  S/O,D/O,W/O");
+          // } else if (textEditingController[2].text == "" ||
+          //     textEditingController[2].text == null) {
+          //   AppData.showInSnackBar(context, "Please enter DOB");
+          // } else if (textEditingController[3].text == "" ||
+          //     textEditingController[3].text == null) {
+          //   AppData.showInSnackBar(context, "Please enter age");
+          //   /*} else if (textEditingController[3].text != null &&
+          //     (int.tryParse(year) < 18)) {
+          //   AppData.showInSnackBar(context, "Age should be 18 above");
+          // } */}else if (textEditingController[4].text == "" ||
+          //     textEditingController[4].text == null) {
+          //   AppData.showInSnackBar(context, "Please enter mobile number");
+          // } else if (textEditingController[4].text != "" &&
+          //     textEditingController[4].text.length != 10) {
+          //   AppData.showInSnackBar(context, "Please enter valid mobile number");
+          //   // } else if (textEditingController[5].text == '') {
+          //   //   AppData.showInSnackBar(context, "Please enter E-mail");
+          //   // } else if (textEditingController[5].text != '' &&
+          //   //     !AppData.isValidEmail(textEditingController[5].text)) {
+          //   //   AppData.showInSnackBar(context, "Please enter a valid E-mail");
+          //   // } else if (textEditingController[6].text == "" ||
+          //   //     textEditingController[6].text == null) {
+          //   //   AppData.showInSnackBar(context, "Please enter Address");
+          //   // } else if (textEditingController[15].text == "" ||
+          //   //     textEditingController[15].text == null) {
+          //   //   AppData.showInSnackBar(context, "Please enter Blood Group");
+          // } else if (patientProfileModel.body.bloodGroup == null && InsuranceFormNew.bloodgroupModel == null ||
+          //     InsuranceFormNew.bloodgroupModel == "") {
+          //   AppData.showInSnackBar(context, "Please select blood group");
+          // } else {
+          //   AddOrganDonModel addOrganDonModel = AddOrganDonModel();
+          //   addOrganDonModel.patientId = widget.model.user;
+          //   addOrganDonModel.donorName = textEditingController[0].text;
+          //   addOrganDonModel.donorType = _selectedItem.key;
+          //   addOrganDonModel.typeUserName = textEditingController[1].text;
+          //   (patientProfileModel != null &&
+          //       patientProfileModel.body.dob != null)
+          //       ?addOrganDonModel.dob = toDate(patientProfileModel.body.dob):
+          //   addOrganDonModel.dob = textEditingController[2].text;
+          //   addOrganDonModel.dob = toDate(patientProfileModel.body.dob);
+          //   addOrganDonModel.age = year;
+          //   addOrganDonModel.mob = textEditingController[4].text;
+          //   addOrganDonModel.email = textEditingController[5].text;
+          //   addOrganDonModel.address = textEditingController[6].text;
+          //   (patientProfileModel.body.bloodGroup != null)
+          //       ? addOrganDonModel.bldGr = patientProfileModel.body.bloodGroupId
+          //       : addOrganDonModel.bldGr = InsuranceFormNew.bloodgroupModel.key;
+          //   addOrganDonModel.witnessList = witnessModle;
+          //   addOrganDonModel.organList = selectedOrganList;
+          //   addOrganDonModel.tissueList = selectedTissueList;
+           // log("Post json>>>>" + jsonEncode(addOrganDonModel.toJson()));
             //AppData.showInSnackBar(context, "add Successfully");
-            MyWidgets.showLoading(context);
-            widget.model.POSTMETHOD1(
-                api: ApiFactory.POST_ORGAN_DONOR,
-                token: widget.model.token,
-                json: addOrganDonModel.toJson(),
-                fun: (Map<String, dynamic> map) {
-                  Navigator.pop(context);
-                  if (map[Const.STATUS] == Const.SUCCESS) {
-                    popup(context, map[Const.MESSAGE]);
-                  } else {
-                    AppData.showInSnackBar(context, map[Const.MESSAGE]);
-                  }
-                });
-          }
+           // MyWidgets.showLoading(context);
+           //  widget.model.POSTMETHOD1(
+           //      api: ApiFactory.POST_ORGAN_DONOR,
+           //      token: widget.model.token,
+           //      json: addOrganDonModel.toJson(),
+           //      fun: (Map<String, dynamic> map) {
+           //        Navigator.pop(context);
+           //        if (map[Const.STATUS] == Const.SUCCESS) {
+           //          popup(context, map[Const.MESSAGE]);
+           //        } else {
+           //          AppData.showInSnackBar(context, map[Const.MESSAGE]);
+           //        }
+           //      });
+         // }
         });
   }
 
@@ -1943,77 +1991,7 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
     );
   }
 
-  Widget dob() {
-    return Padding(
-      //padding: const EdgeInsets.symmetric(horizontal: 8),
-      padding: const EdgeInsets.symmetric(horizontal: 0),
-      child: GestureDetector(
-       /* onTap: () => _selectDate(context),*/
-        child: AbsorbPointer(
-          child: Container(
-            // margin: EdgeInsets.symmetric(vertical: 10),
-            height: 45,
-            padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-            // width: size.width * 0.8,
-            decoration: BoxDecoration(
-              // color: AppData.kPrimaryLightColor,
-              // borderRadius: BorderRadius.circular(29),
-              border: Border(
-                bottom: BorderSide(
-                  width: 1.0,
-                  color: Colors.grey,
-                ),
-                // border: Border.all(color: Colors.black, width: 0.3)
-              ),
-            ),
-            child: TextFormField(
-              focusNode: fnode3,
-              enabled: !widget.isConfirmPage ? false : true,
-              controller: textEditingController[2],
-              keyboardType: TextInputType.datetime,
-              textAlign: TextAlign.left,
-              onSaved: (value) {
-                //userPersonalForm.dob = value;
-                selectDob = value;
-              },
-              validator: (value) {
-                if (value.isEmpty) {
-                  error[2] = true;
-                  return null;
-                }
-                error[2] = false;
-                return null;
-              },
-              onFieldSubmitted: (value) {
-                error[2] = false;
-                // print("error>>>" + error[2].toString());
 
-                setState(() {});
-                AppData.fieldFocusChange(context, fnode3, fnode4);
-              },
-              decoration: InputDecoration(
-                // hintText: patientProfileModel?.body?.dob ?? "N/A",
-                hintText: MyLocalizations.of(context).text("DOB1"),
-                //"Date of Birth",
-                border: InputBorder.none,
-                //contentPadding: EdgeInsets.symmetric(vertical: 10),
-                suffixIcon: Icon(
-                  Icons.calendar_today,
-                  size: 18,
-                  color: Colors.grey,
-                ),
-                /*prefixIcon: Icon(
-                  Icons.calendar_today,
-                  size: 18,
-                  color: AppData.kPrimaryColor,
-                ),*/
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
 
   Widget continueButton() {
     return InkWell(
@@ -2090,6 +2068,87 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
                     padding: const EdgeInsets.symmetric(horizontal: 5.0),
                     child: TextFormField(
                       controller: stdob/*textEditingController[10]*/,
+                      keyboardType: TextInputType.datetime,
+                      textAlign: TextAlign.left,
+                      textAlignVertical: TextAlignVertical.center,
+                      onSaved: (value) {
+                        // registrationModel.dathOfBirth = value;
+                      },
+                      validator: (value) {
+                        if (value.isEmpty) {
+                          error[3] = true;
+                          return null;
+                        }
+                        error[3] = false;
+                        return null;
+                      },
+                      onFieldSubmitted: (value) {
+                        error[3] = false;
+                        // print("error>>>" + error[2].toString());
+
+                        setState(() {});
+                        // AppData.fieldFocusChange(context, fnode4, fnode5);
+                      },
+                      decoration: InputDecoration(
+                        hintText: //"Last Period Date",
+                        "DOB",
+                        border: InputBorder.none,
+
+                        //contentPadding: EdgeInsets.symmetric(vertical: 10),
+                        suffixIcon: Icon(
+                          Icons.calendar_today,
+                          size: 18,
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+
+  Widget dob2(String hint) {
+    return Padding(
+      //padding: const EdgeInsets.symmetric(horizontal: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 0),
+      child: GestureDetector(
+        onTap: () => _selectDate2(
+          context,
+        ),
+        child: AbsorbPointer(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 9,right: 9),
+                child: Container(
+                  decoration: BoxDecoration(
+                    // color: AppData.kPrimaryLightColor,
+                    // borderRadius: BorderRadius.circular(29),
+                    border: Border(
+                      bottom: BorderSide(
+                        width: 1.0,
+
+                        color: Colors.grey,
+                      ),
+                      // border: Border.all(color: Colors.black, width: 0.3)
+                    ),
+                  ),
+                  // margin: EdgeInsets.symmetric(vertical: 10),
+                  alignment: Alignment.center,
+                  height: 50,
+                  padding: EdgeInsets.symmetric(horizontal: 5, vertical: 0),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                    child: TextFormField(
+                      controller: nomdob/*textEditingController[10]*/,
                       keyboardType: TextInputType.datetime,
                       textAlign: TextAlign.left,
                       textAlignVertical: TextAlignVertical.center,

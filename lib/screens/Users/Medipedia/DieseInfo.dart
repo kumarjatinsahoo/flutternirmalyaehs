@@ -336,7 +336,7 @@ class _DieseInfoState extends State<DieseInfo> {
                                             width: 400,
                                             decoration: BoxDecoration(
                                                 borderRadius:
-                                                    BorderRadius.circular(5),
+                                                BorderRadius.circular(5),
                                                 border: Border.all(
                                                     color: Colors.black12),
                                                 color: AppData.kPrimaryColor),
