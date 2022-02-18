@@ -272,14 +272,13 @@ class _DieseInfoState extends State<DieseInfo> {
                                         children: [
                                           InkWell(
                                             onTap: (){
-
+                                              String pdfurl = foundUser[i].url;
+                                              widget.model.diesepdf=pdfurl;
                                               Navigator.pushNamed(
                                                 context,
                                                 "/diesepdf",
                                               );
-
-
-                                            },
+                                              },
                                             child: Text.rich(TextSpan(children: [
                                               TextSpan(text:foundUser[i].details?? "N/A"/* "Log in as Dhan Arogya Kranti User"*/,
                                                   style: TextStyle(color: Colors.black, fontSize: 14,)),

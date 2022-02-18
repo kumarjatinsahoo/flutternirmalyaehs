@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -26,7 +28,7 @@ class _DiesepdfState extends State<Diesepdf> {
   void initState() {
     loginResponse = widget.model.loginResponse1;
     diese=widget.model.diesepdf;
-   // print("PPPPPPPPPPPPPPPPDDDDDDDDDFFFFFF"+diese);
+    print("PPPPPPPPPPPPPPPPDDDDDDDDDFFFFFF"+diese);
     super.initState();
     // print(ApiFactory.REPORT_URL+loginResponse.ashadtls[0].reg_no);
   }
@@ -53,6 +55,7 @@ class _DiesepdfState extends State<Diesepdf> {
         elevation: 0,
       ),
       //  url: ApiFactory.REPORT_URL+loginResponse.ashadtls[0].reg_no,
+
        url:'https://docs.google.com/viewer?url='+widget.model.diesepdf,
      // url:'https://docs.google.com/viewer?url=http://api.ehealthsystem.com/nirmalyaRest/document/disease/upper_respiratory_tract_infection.pdf',
       //url:'https://docs.google.com/viewer?url=http://www.africau.edu/images/default/sample.pdf',

@@ -76,7 +76,7 @@ class _CountDownPageState extends State<CountDownPage>
   void initState() {
     super.initState();
     loginResponse1 = widget.model.loginResponse1;
-    callEmergency();
+    //callEmergency();
     _controller = new AnimationController(
       vsync: this,
       duration: new Duration(seconds: kStartValue),
@@ -111,7 +111,7 @@ class _CountDownPageState extends State<CountDownPage>
             String msg = map[Const.MESSAGE];
             if (map[Const.STATUS1] == Const.SUCCESS) {
               emergencyHelpModel = EmergencyHelpModel.fromJson(map);
-              // popup(map[Const.MESSAGE], context);
+               popup(map[Const.MESSAGE], context);
               // getMobNo(widget.model.placeIdno??widget.model.placeIdno1);
               FlutterPhoneDirectCaller.callNumber(widget?.model?.hospitalNo??"108");
               //FlutterPhoneDirectCaller.callNumber("7008553233");
@@ -140,14 +140,17 @@ class _CountDownPageState extends State<CountDownPage>
             if (map[Const.STATUS1] == Const.RESULT_OK) {
               GooglePlacesSearchModel googlePlacesSearch =
                   GooglePlacesSearchModel.fromJson(map);
+
               if (googlePlacesSearch?.result?.formattedPhoneNumber != null)
                 /*AppData.launchURL("tel://" +
                     googlePlacesSearch.result
                         .formattedPhoneNumber);*/
+
                 FlutterPhoneDirectCaller.callNumber(
                     googlePlacesSearch.result.formattedPhoneNumber);
               else
                 AppData.showInSnackBar(context, "Mobile no is not available");
+              //popup(map[Const.MESSAGE];,  context);
               //log(">>>>>>>GGGGG<<<<<<<" + jsonEncode(map));
             } else {
               isDataNotAvail = true;
