@@ -412,8 +412,9 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                           widget.model.lati = longitude;
                           widget.model.city = cityName;
                           widget.model.emgmobile = emergencyHelpModel.emergency[0].mobile;
-                          googlePlaceModel==null?widget.model.placeIdno = googlePlaceModel?.results[0]?.placeId
-                          : widget.model.placeIdno1 = googlePlaceModel?.results[0]?.placeId;
+                          widget.model.placeIdno = googlePlaceModel?.results[0]?.placeId;
+                          /*googlePlaceModel==null?widget.model.placeIdno = googlePlaceModel?.results[0]?.placeId
+                          : widget.model.placeIdno1 = googlePlaceModel?.results[0]?.placeId;*/
 
                            Navigator.pushNamed(context, "/countDown");
                           // callHelpBtn();
@@ -762,9 +763,9 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                                                     context,
                                                     "Data not found");
                                               /* } else {
-                  isDataNotAvail = true;
-                  AppData.showInSnackBar(context, "Google api doesn't work");
-                }*/
+                                                    isDataNotAvail = true;
+                                                       AppData.showInSnackBar(context, "Google api doesn't work");
+                                            }*/
                                             });
                                           });
                                     }else{
