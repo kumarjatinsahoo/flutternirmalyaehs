@@ -260,7 +260,22 @@ class _DieseInfoState extends State<DieseInfo> {
                                       SizedBox(
                                         height: 10,
                                       ),
-                                      Container(
+                                      Expanded(
+                                          child: Column(
+                                            children: [
+                                              Text.rich(TextSpan(children: [
+                                                TextSpan(text: "Log in as Dhan Arogya Kranti User",
+                                                    style: TextStyle(color: Colors.black, fontSize: 18,)),
+                                                TextSpan(text: " Know More",
+                                                    style: TextStyle(color: Colors.grey,fontSize: 12))
+                                              ])),
+                                              /*Text("Log in as Dhan Arogya Kranti User.",
+                                          textAlign: TextAlign.start,
+                                          style: TextStyle(color: Colors.black, fontSize: 20),
+                                        ),*/
+                                            ],
+                                          )),
+                                      /*Container(
                                           child: ClipRRect(
                                               borderRadius:
                                                   BorderRadius.circular(55),
@@ -271,7 +286,7 @@ class _DieseInfoState extends State<DieseInfo> {
                                               )
                                               // height: 95,
 
-                                              )),
+                                              )),*/
 
                                       SizedBox(
                                         height: 20,

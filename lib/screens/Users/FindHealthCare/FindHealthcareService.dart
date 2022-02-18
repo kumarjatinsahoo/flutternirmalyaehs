@@ -98,6 +98,129 @@ class _FindHealthcareServiceState extends State<FindHealthcareService> {
                           shrinkWrap: true,
                           physics: NeverScrollableScrollPhysics(),
                           children: [
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.pushNamed(
+                                    context, "/appointmenttab");
+                                /*Navigator.pushNamed(
+                                    context, "/doctorconsultationPage");*/
+                                /* Navigator.pushNamed(context, "/docConsult1");*/
+                              },
+                              child: Card(
+                                elevation: 5,
+                                child: Container(
+                                    height: tileSize,
+                                    width: double.maxFinite,
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        border: Border.all(
+                                          color: Colors.grey[300],
+                                        ),
+                                        borderRadius: BorderRadius.circular(
+                                            8)),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(10.0),
+                                      child: Row(
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                        children: [
+                                          Container(color: AppData.kPrimaryRedColor,
+                                            padding: EdgeInsets.all(3),
+                                            child: Icon(Icons.date_range,
+                                                size: 40,
+                                                color: Colors.white),
+                                          ),
+                                          SizedBox(
+                                            width: spaceTab,
+                                          ),
+                                          Expanded(
+                                            child: Column(
+                                              crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                              mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                              children: [
+                                                Text(MyLocalizations.of(context).text("BOOK_APPOINTMENT"),
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                      FontWeight.normal,
+                                                      fontSize: 18),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          Image.asset(
+                                            "assets/Forwordarrow.png",
+                                            height: 25,)
+                                        ],
+                                      ),
+                                    )),
+                              ),
+                            ),
+
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.pushNamed(
+                                    context, "/myAppointment");
+
+                                /*Navigator.pushNamed(
+                                    context, "/userAppoint");*/
+                                /* Navigator.pushNamed(
+                                    context, "/Appointtab");*/
+                              }
+                              ,
+                              child: Card(
+                                elevation: 5,
+                                child: Container(
+                                    height: tileSize,
+                                    width: double.maxFinite,
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        border: Border.all(
+                                          color: Colors.grey[300],
+                                        ),
+                                        borderRadius: BorderRadius.circular(
+                                            8)),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(10.0),
+                                      child: Row(
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                        children: [
+                                          Container(color: AppData.kPrimaryBlueColor,
+                                            padding: EdgeInsets.all(3),
+                                            child: Icon(
+                                                Icons.date_range_rounded,
+                                                size: 40,
+                                                color: Colors.white),
+                                          ),
+                                          SizedBox(
+                                            width: spaceTab,
+                                          ),
+                                          Expanded(
+                                            child: Column(
+                                              crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                              mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                              children: [
+                                                Text(MyLocalizations.of(context).text("MY_APPOINTMENT"),
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                      FontWeight.normal,
+                                                      fontSize: 18),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          Image.asset(
+                                            "assets/Forwordarrow.png",
+                                            height: 25,)
+                                        ],
+                                      ),
+                                    )),
+                              ),
+                            ),
 
                             GestureDetector(
                               onTap: () =>

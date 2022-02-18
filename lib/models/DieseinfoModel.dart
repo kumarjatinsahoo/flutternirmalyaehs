@@ -30,18 +30,21 @@ class DieseinfoModel {
 class Body {
   String name;
   String url;
+  String details;
 
-  Body({this.name, this.url});
+  Body({this.name, this.url,this.details});
 
   Body.fromJson(Map<String, dynamic> json) {
     name = json['name'];
     url = json['url'];
+    details = json['details'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['name'] = this.name;
     data['url'] = this.url;
+    data['details'] = this.details;
     return data;
   }
 }
