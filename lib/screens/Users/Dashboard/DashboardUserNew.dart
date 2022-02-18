@@ -866,8 +866,8 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                 selected: _selectedDestination == 4,
                 onTap: () {
                   selectDestination(4);
-                  //Navigator.pushNamed(context, "/aboutus");
-                  Navigator.pushNamed(context, "/insurancenew");
+                  Navigator.pushNamed(context, "/aboutus");
+                  //Navigator.pushNamed(context, "/insurancenew");
                 },
               ),
               /* ListTile(
@@ -1923,7 +1923,7 @@ class MyPage1Widget extends StatelessWidget {
                              onTap: (){
                                if(v==2) {
                                  Navigator.pushNamed(
-                                     context, "/insuranceList");
+                                     context, "/insurancenew");
                                }else{
                                  Navigator.pushNamed(
                                      context, "/medicalrecordpage");
@@ -2083,7 +2083,8 @@ class MyPage1Widget extends StatelessWidget {
                       title: "Upload Medical Data",
                       fun: () {
                         //AppData.showInSnackDone(context, "Coming Soon");
-                        Navigator.pushNamed(context, "/insuranceList");
+                        //Navigator.pushNamed(context, "/insuranceList");
+                        Navigator.pushNamed(context, "/insurancenew");
                         //_displayTextInputDialog(context,2);
 
                         /*  AppData.showSnack(
