@@ -47,43 +47,47 @@ class _DiesepdfState extends State<Diesepdf> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Stack(
-      children: [
-        WebviewScaffold(
-          // backgroundColor: Colors.grey[200],
-          clearCache: true,
-          clearCookies: true,
-          appBar: AppBar(
-            /*title: Text(
-              "Patient List",
-              style: TextStyle(color: Colors.white),
-            ),*/
-            title: Text(MyLocalizations.of(context).text("PDF"),
-              style: TextStyle(color: Colors.white),
+    return Container(
+      width: size.width,
+      height: size.height,
+      child: Stack(
+        children: [
+          WebviewScaffold(
+            // backgroundColor: Colors.grey[200],
+            clearCache: true,
+            clearCookies: true,
+            appBar: AppBar(
+              /*title: Text(
+                "Patient List",
+                style: TextStyle(color: Colors.white),
+              ),*/
+              title: Text(MyLocalizations.of(context).text("PDF"),
+                style: TextStyle(color: Colors.white),
+              ),
+              centerTitle: true,
+              titleSpacing: 5,
+              iconTheme: IconThemeData(color: Colors.white),
+              backgroundColor: AppData.matruColor,
+              elevation: 0,
             ),
-            centerTitle: true,
-            titleSpacing: 5,
-            iconTheme: IconThemeData(color: Colors.white),
-            backgroundColor: AppData.matruColor,
-            elevation: 0,
-          ),
-          //  url: ApiFactory.REPORT_URL+loginResponse.ashadtls[0].reg_no,
+            //  url: ApiFactory.REPORT_URL+loginResponse.ashadtls[0].reg_no,
 
-           url:'https://docs.google.com/viewer?url='+widget.model.diesepdf,
-         // url:'https://docs.google.com/viewer?url=http://api.ehealthsystem.com/nirmalyaRest/document/disease/upper_respiratory_tract_infection.pdf',
-          //url:'https://docs.google.com/viewer?url=http://www.africau.edu/images/default/sample.pdf',
-          withZoom: true,
-          useWideViewPort: false,
-          displayZoomControls: true,
-        ),
-        (showLoading)?Container(width: size.width,height: size.height,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            CircularProgressIndicator()
-          ],
-        ),):Container()
-      ],
+             url:'https://docs.google.com/viewer?url='+widget.model.diesepdf,
+           // url:'https://docs.google.com/viewer?url=http://api.ehealthsystem.com/nirmalyaRest/document/disease/upper_respiratory_tract_infection.pdf',
+            //url:'https://docs.google.com/viewer?url=http://www.africau.edu/images/default/sample.pdf',
+            withZoom: true,
+            useWideViewPort: false,
+            displayZoomControls: true,
+          ),
+          (showLoading)?Container(width: size.width,height: size.height,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CircularProgressIndicator()
+            ],
+          ),):Container()
+        ],
+      ),
     );
   }
 
