@@ -275,15 +275,13 @@ class _DieseInfoState extends State<DieseInfo> {
                                               String pdfurl = foundUser[i].url;
                                               widget.model.diesepdf=pdfurl;
                                               Navigator.pushNamed(
-                                                context,
-                                                "/diesepdf",
+                                                context, "/diesepdf",
                                               );
                                               },
                                             child: Text.rich(TextSpan(children: [
-                                              TextSpan(text:foundUser[i].details?? "N/A"/* "Log in as Dhan Arogya Kranti User"*/,
+                                              TextSpan(text:foundUser[i].details?? "N/A" /*"Log in as Dhan Arogya Kranti User"*/,
                                                   style: TextStyle(color: Colors.black, fontSize: 14,)),
-                                              TextSpan(text: " Know More",
-                                                  style: TextStyle(color: Colors.grey,fontSize: 12,decoration: TextDecoration.underline))
+                                              TextSpan(text: " Know More", style: TextStyle(color: Colors.grey,fontSize: 12,decoration: TextDecoration.underline))
                                             ]),textAlign: TextAlign.justify
                                             ),
 
