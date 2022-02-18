@@ -859,6 +859,7 @@ class SetReminderState extends State<SetReminder> {
       initialDate: DateTime.now(),
       firstDate: DateTime.now(),
       lastDate: DateTime.now().add(Duration(days: 365)),
+      initialEntryMode: DatePickerEntryMode.calendarOnly,
       // lastDate: DateTime.now()
       //     .subtract(Duration(days: 6570))
     ); //18 years is 6570 days
@@ -978,7 +979,7 @@ class SetReminderState extends State<SetReminder> {
         initialEntryMode: TimePickerEntryMode.dial,
         builder: (BuildContext context, Widget child) {
           return MediaQuery(
-            data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
+            data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
             child: child,
           );
         });
@@ -998,7 +999,7 @@ class SetReminderState extends State<SetReminder> {
         initialEntryMode: TimePickerEntryMode.dial,
         builder: (BuildContext context, Widget child) {
           return MediaQuery(
-            data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
+            data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
             child: child,
           );
         });
@@ -1020,7 +1021,7 @@ class SetReminderState extends State<SetReminder> {
         initialEntryMode: TimePickerEntryMode.dial,
         builder: (BuildContext context, Widget child) {
           return MediaQuery(
-            data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
+            data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
             child: child,
           );
         });
