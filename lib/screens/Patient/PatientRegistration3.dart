@@ -2,6 +2,7 @@ import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/KeyvalueModel.dart';
+import 'package:user/providers/Aadhar.dart';
 import 'package:user/providers/DropDown.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
@@ -423,6 +424,12 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
         } else if (textEditingController[3].text != '' &&
             textEditingController[3].text.length != 12) {
           AppData.showInSnackBar(context, "Please enter a valid aadhaar no.");
+
+        // } else if (textEditingController[3].text != ""  && (!Aadhar.validateVerhoeff(
+        //     textEditingController[3].text.replaceAll("-", "").toString())|| textEditingController[7].text.length!=12)) {
+        //   AppData.showInSnackBar(context, "Please enter valid aadhar no");
+
+
         } else if (PatientRegistration3.countryModel == null ||
             PatientRegistration3.countryModel == "") {
           AppData.showInSnackBar(context, "Please select country");
