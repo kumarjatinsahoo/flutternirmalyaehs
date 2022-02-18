@@ -106,8 +106,12 @@ class _CountDownPageState extends State<CountDownPage>
             if (map[Const.STATUS1] == Const.SUCCESS) {
               emergencyHelpModel = EmergencyHelpModel.fromJson(map);
               popup(map[Const.MESSAGE],context);
-                getMobNo(widget.model.placeIdno??widget.model.placeIdno1);
-              //FlutterPhoneDirectCaller.callNumber(widget.model.placeIdno??widget.model.placeIdno1);
+               // getMobNo(widget.model.placeIdno??widget.model.placeIdno1);
+              FlutterPhoneDirectCaller.callNumber("108");
+              //FlutterPhoneDirectCaller.callNumber("7008553233");
+              //launchUrl("tel:+99364921507");
+
+              //FlutterPhoneDirectCaller.callNumber("108");
 
               // AppData.showInSnackDone(context, msg);
             
