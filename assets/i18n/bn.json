@@ -280,7 +280,7 @@
   "TO_PLACE": "ସ୍ଥାନକୁ",
   "BLOODBANK_NAME": "ବ୍ଲଡ ବ୍ୟାଙ୍କ ନାମ ",
 
-  "WALK_IN_PATIENT": "Walk in Patient",
+  "WALK_IN_PATIENT": "ରୋଗୀ",
   "EMERGENCY_ACCESS": "ଜରୁରୀକାଳୀନ ପ୍ରବେଶ",
   "SHARE_APPOINTMENT": "ନିଯୁକ୍ତି ଶେୟାର କରନ୍ତୁ",
   "MY_PATIENT": "ମୋର ରୋଗୀ",
@@ -452,6 +452,7 @@
   "MONTHLY_OVERVIEW_LIST": "ମାସିକ ସମୀକ୍ଷା ତାଲିକା",
   "ORDER_ID": "ଅର୍ଡର ID",
   "TIME": "ସମୟ",
+  "REFFERED_PATIENT": "ରେଫର୍ଡ୍ ରୋଗୀ",
 
 
 

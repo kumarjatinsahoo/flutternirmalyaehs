@@ -271,12 +271,25 @@ class _DieseInfoState extends State<DieseInfo> {
                                       ),
                                       Column(
                                         children: [
-                                          Text.rich(TextSpan(children: [
-                                            TextSpan(text:foundUser[i].details?? "N/A"/* "Log in as Dhan Arogya Kranti User"*/,
-                                                style: TextStyle(color: Colors.black, fontSize: 13,)),
-                                            TextSpan(text: " Know More",
-                                                style: TextStyle(color: Colors.grey,fontSize: 10,decoration: TextDecoration.underline))
-                                          ])),
+                                          InkWell(
+                                            onTap: (){
+
+                                              Navigator.pushNamed(
+                                                context,
+                                                "/diesepdf",
+                                              );
+
+
+                                            },
+                                            child: Text.rich(TextSpan(children: [
+                                              TextSpan(text:foundUser[i].details?? "N/A"/* "Log in as Dhan Arogya Kranti User"*/,
+                                                  style: TextStyle(color: Colors.black, fontSize: 14,)),
+                                              TextSpan(text: " Know More",
+                                                  style: TextStyle(color: Colors.grey,fontSize: 12,decoration: TextDecoration.underline))
+                                            ]),textAlign: TextAlign.justify
+                                            ),
+
+                                          ),
 
 
                                         ],

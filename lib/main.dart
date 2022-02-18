@@ -84,6 +84,7 @@ import 'package:user/screens/Users/GovermentSchemes/GovetListPage6.dart';
 import 'package:user/screens/Users/GovermentSchemes/GovetListPage7.dart';
 import 'package:user/screens/Users/GovermentSchemes/GovetListPage8.dart';
 import 'package:user/screens/Users/Insurance/AddInsuranceForm.dart';
+import 'package:user/screens/Users/Insurance/InsuranceFormNew.dart';
 import 'package:user/screens/Users/IntrestSignup.dart';
 import 'package:user/screens/Users/LoginFBandGooglePage.dart';
 import 'package:user/screens/Users/Medication/UserMedicineList.dart';
@@ -1226,6 +1227,10 @@ class _MyAppState extends State<MyApp> {
                   ),
               '/monthlyOverviewPharmaklist': (context) =>
                   MonthlyOverviewPharmaklist(
+                    model: _model,
+                  ),
+              '/insurancenew': (context) =>
+                  InsuranceFormNew(
                     model: _model,
                   ),
               '/organlist': (context) => Organlist(
