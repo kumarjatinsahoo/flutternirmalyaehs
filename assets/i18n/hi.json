@@ -281,7 +281,7 @@
   "BLOODBANK_NAME": "ब्लड बैंक का नाम",
 
 
-  "WALK_IN_PATIENT": "Walk in Patient",
+  "WALK_IN_PATIENT": "मरीज़",
   "EMERGENCY_ACCESS": "आपातकालीन पहुँच",
   "SHARE_APPOINTMENT": "शेयर अपॉइंटमेंट",
   "MY_PATIENT": "मेरे रोगी",
@@ -457,7 +457,7 @@
   "MONTHLY_OVERVIEW_LIST": "मासिक अवलोकन सूची",
   "ORDER_ID": "आदेश ID",
   "TIME": "समय",
-
+  "REFFERED_PATIENT": "रेफर किया गया रोगी",
 
 
 

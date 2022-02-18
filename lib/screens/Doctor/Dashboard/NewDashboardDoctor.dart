@@ -544,8 +544,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                                 Container(
                                   width: 100,
                                   height: 35,
-                                  child: Text(
-                                    "Reffered Patient",
+                                  child: Text(MyLocalizations.of(context).text("REFFERED_PATIENT"),
                                     textAlign: TextAlign.center,
                                     //overflow: TextOverflow.ellipsis,
                                   ),
@@ -860,7 +859,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                     ],
                   ),
                 ),
-                title: Text("Change Password"),
+                title: Text(MyLocalizations.of(context).text("CHANGE_PASSWORD")),
                 onTap: () {
                   Navigator.pop(context);
                   Navigator.pushNamed(context, "/changePassword");
