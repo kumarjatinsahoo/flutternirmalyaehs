@@ -469,6 +469,35 @@ static bool validateStructure(String value){
     )..show(context);
   }
 
+static void showbar(BuildContext context, String value) {
+    // final scaffold = Scaffold.of(context);
+    // scaffold.showSnackBar(
+    //   SnackBar(
+    //     content: new Text(
+    //       value.toUpperCase(),
+    //       style: TextStyle(color: Colors.white),
+    //     ),
+    //     duration: Duration(seconds: 1),
+    //     backgroundColor: Colors.red,
+    //   ),
+    // );
+
+    Flushbar(
+      //  title:  "Hey SuperHero",
+      message: value,
+      backgroundColor: Colors.red,
+      isDismissible: true,
+      dismissDirection:FlushbarDismissDirection.HORIZONTAL,
+      flushbarPosition: FlushbarPosition.TOP,
+      flushbarStyle: FlushbarStyle.FLOATING,
+      forwardAnimationCurve: Curves.easeOutCirc,
+      reverseAnimationCurve:Curves.easeOutCirc,
+       margin: EdgeInsets.only(top: 60.0),
+      duration: Duration(seconds: 6),
+      maxWidth: 370,
+    )..show(context);
+  }
+
   static String getYoutubeThumbnail(String videoUrl) {
     final Uri uri = Uri.tryParse(videoUrl);
     if (uri == null) {

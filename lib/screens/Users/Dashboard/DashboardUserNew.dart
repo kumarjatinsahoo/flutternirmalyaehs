@@ -382,9 +382,9 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
 
   callNewsApi() {
     widget.model.GETMETHODCALL(
-        api: ApiFactory.NEWSUPDATE_VIEW,
+        api: ApiFactory.NEWSUPDATE_VIEW + loginResponse1.body.user,
         fun: (Map<String, dynamic> map) {
-          // log("Json Response>>>" + JsonEncoder().convert(map));
+           log("Json Response>>>" + JsonEncoder().convert(map));
           // String msg = map[Const.MESSAGE];
           if (map[Const.CODE] == Const.SUCCESS) {
             // pocReportModel = PocReportModel.fromJson(map);

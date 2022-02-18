@@ -168,7 +168,7 @@ class _ImmunizationState extends State<Immunization> {
             child: Center(
               child: Image.asset("assets/NoRecordFound.png",
                                               // height: 25,
-                                            )
+              )
             ),
           )
               : Padding(

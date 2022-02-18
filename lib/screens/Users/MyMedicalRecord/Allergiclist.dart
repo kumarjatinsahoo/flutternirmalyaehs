@@ -74,7 +74,7 @@ class _AllergicListListState extends State<AllergicListList> {
   callAPI() {
     widget.model.GETMETHODCALL_TOKEN_FORM(
         api: ApiFactory.ALLERGY_LIST + loginResponse.body.user,
-        userId: loginResponse.body.user,
+        //userId: loginResponse.body.user,
         token: widget.model.token,
         fun: (Map<String, dynamic> map) {
           setState(() {
@@ -140,10 +140,9 @@ class _AllergicListListState extends State<AllergicListList> {
                         child: Center(
                           child: Image.asset("assets/NoRecordFound.png",
                                               // height: 25,
-                                            )
+                          )
                         ),
                       )
-                 
                 : allergicModel == null
                     ? Container(
                         child:

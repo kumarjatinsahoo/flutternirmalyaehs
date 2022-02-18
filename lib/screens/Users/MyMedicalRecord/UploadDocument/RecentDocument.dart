@@ -221,7 +221,7 @@ class _RecentDocumentState extends State<RecentDocument> {
             child: CircularProgressIndicator(
               backgroundColor: AppData.matruColor,
             ),
-          ):
+          ):(recentUploadDocument != null && recentUploadDocument.body!=null)?
        Container(
           child: SingleChildScrollView(
         child: Padding(
@@ -473,15 +473,17 @@ class _RecentDocumentState extends State<RecentDocument> {
             },
             itemCount: recentUploadDocument.body.length,
           )
-                :Container(
+                :Container()
+        ),
+      )
+      ):Container(
             child: Center(
               child: Image.asset("assets/NoRecordFound.png",
                                               // height: 25,
                                             )
             ),
           )
-        ),
-      )),
+      ,
     );
   }
 }
