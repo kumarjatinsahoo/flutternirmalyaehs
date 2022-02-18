@@ -389,7 +389,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                                 // widget.model.emgmobile = emergencyHelpModel.emergency[0].mobile;
                                 // widget.model.placeIdno = googlePlaceModel?.results[0]?.placeId;
                                 /*googlePlaceModel==null?widget.model.placeIdno = googlePlaceModel?.results[0]?.placeId
-                          : widget.model.placeIdno1 = googlePlaceModel?.results[0]?.placeId;*/
+                                : widget.model.placeIdno1 = googlePlaceModel?.results[0]?.placeId;*/
 
                                 Navigator.pushNamed(context, "/countDown");
                                 // callHelpBtn();
