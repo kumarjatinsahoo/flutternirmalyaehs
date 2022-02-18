@@ -683,10 +683,10 @@ class SetReminderState extends State<SetReminder> {
       AppData.showInSnackBar(context, "Please select dosage");
     } else if (SetReminder.timeDayModel == null) {
       AppData.showInSnackBar(context, "Please select how many times");
-    } else if (stime.text == "" || stime.text == null) {
-      AppData.showInSnackBar(context, "Please enter start time");
-    } else if (endtime.text == "" || endtime.text == null) {
-      AppData.showInSnackBar(context, "Please enter end time");
+    // } else if (stime.text == "" || stime.text == null) {
+    //   AppData.showInSnackBar(context, "Please enter start time");
+    // } else if (endtime.text == "" || endtime.text == null) {
+    //   AppData.showInSnackBar(context, "Please enter end time");
     } else if (stdob.text == "" || stdob.text == null) {
       AppData.showInSnackBar(context, "Please enter start date");
     } else if (textEditingController[2].text == "" ||
