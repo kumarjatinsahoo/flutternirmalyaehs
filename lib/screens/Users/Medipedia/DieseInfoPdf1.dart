@@ -75,7 +75,8 @@ class _DieseInfoPdf1State extends State<DieseInfoPdf1> {
       children: <Widget>[
         Container(
           height: MediaQuery.of(context).size.height,
-          color: Color(0xFF041B33),
+          // color: Color(0xFF041B33),
+          color: Colors.white,
           child: Column(
             children: <Widget>[
               Expanded(
@@ -156,10 +157,11 @@ class _DieseInfoPdf1State extends State<DieseInfoPdf1> {
                 ? Container(
               height: double.maxFinite,
               width: double.maxFinite,
-              color: Color(0xFF041B33),
+              // color: Color(0xFF041B33),
+              color: Colors.white,
               // color: Colors.white,
               // child: Image.asset("assets/images/logo_data.gif"),
-              child: Center(child: CircularProgressIndicator(color: Colors.white,)),
+              child: Center(child: CircularProgressIndicator()),
             )
             // ? CircularProgressIndicator(value: progress,)
                 : Container(
