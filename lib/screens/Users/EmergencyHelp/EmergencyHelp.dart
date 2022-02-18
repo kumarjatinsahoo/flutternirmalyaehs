@@ -61,6 +61,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
     super.initState();
     loginResponse1 = widget.model.loginResponse1;
     callAPI();
+    callAPI1();
     // _getLocationName();
   }
 
@@ -147,7 +148,41 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
           // });
         });
   }
+  callAPI1() {
+    widget.model.GETMETHODCAL(
+        api: ApiFactory
+            .GOOGLE_QUERY_API(
+            lati: latitude,
+            longi: longitude,
+            healthpro: "ambulance"),
+        fun: (
+            Map<String, dynamic> map) {
+          setState(() {
+            //String msg = map[Const.MESSAGE];
+            //if (map["status"] == "ok") {
+            googlePlaceModel = GooglePlaceModel.fromJson(map);
+            //Navigator.pop(context);
+            if (googlePlaceModel !=
+                null &&
+                googlePlaceModel
+                    .results.isNotEmpty) {
+              /* showUserList1(context,
+                                                    googlePlaceModel
+                                                        .results);*/
+              getMobNo(googlePlaceModel.results[0].placeId);
 
+            }
+            else
+              AppData.showInSnackBar(
+                  context,
+                  "Data not found");
+            /* } else {
+                  isDataNotAvail = true;
+                  AppData.showInSnackBar(context, "Google api doesn't work");
+                }*/
+          });
+        });
+  }
   showUserList(BuildContext context, List<Emergency> list) {
     return showDialog(
         context: context,
@@ -283,7 +318,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                 FlutterPhoneDirectCaller.callNumber(googlePlacesSearch.result
                     .formattedPhoneNumber);
               else
-                AppData.showInSnackBar(context, "Mobile no is not available");
+                AppData.showInSnackBar(context, "Ambulance Mobile no is not available");
               //log(">>>>>>>GGGGG<<<<<<<" + jsonEncode(map));
             } else {
               isDataNotAvail = true;
@@ -376,6 +411,10 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                           widget.model.longi = latitude;
                           widget.model.lati = longitude;
                           widget.model.city = cityName;
+                          widget.model.emgmobile = emergencyHelpModel.emergency[0].mobile;
+                          googlePlaceModel==null?widget.model.placeIdno = googlePlaceModel?.results[0]?.placeId
+                          : widget.model.placeIdno1 = googlePlaceModel?.results[0]?.placeId;
+
                            Navigator.pushNamed(context, "/countDown");
                           // callHelpBtn();
                         },
@@ -689,7 +728,7 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                               InkWell(
                                   onTap: () {
                                     // Navigator.pop(context);
-                                    // FlutterPhoneDirectCaller.callNumber(googlePlacesSearch.result[0].);
+                                     //FlutterPhoneDirectCaller.callNumber(googlePlacesSearch.result[0].placeId);
                                     //AppData.launchURL("tel://" + emergencyHelpModel.ambulance);
 
 
@@ -706,21 +745,18 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                                             setState(() {
                                               //String msg = map[Const.MESSAGE];
                                               //if (map["status"] == "ok") {
-                                              googlePlaceModel =
-                                                  GooglePlaceModel
-                                                      .fromJson(
-                                                      map);
+                                              googlePlaceModel = GooglePlaceModel.fromJson(map);
                                               Navigator.pop(context);
-                                              if (googlePlaceModel !=
-                                                  null &&
-                                                  googlePlaceModel
-                                                      .results.isNotEmpty) {
+                                              if (googlePlaceModel != null && googlePlaceModel.results.isNotEmpty) {
                                                /* showUserList1(context,
                                                     googlePlaceModel
                                                         .results);*/
-                                                getMobNo(googlePlaceModel.results[0].placeId);
-
-                                              }
+                                              /*for (var i = 0; i < googlePlaceModel.results.length; i++) {*/
+                                                 getMobNo(
+                                                     googlePlaceModel.results[0]
+                                                         .placeId);
+                                               /*}
+                                                */  }
                                               else
                                                 AppData.showInSnackBar(
                                                     context,

@@ -85,6 +85,9 @@ class PassData extends Model {
   String longi;
   String lati;
   String city;
+  String emgmobile;
+  String placeIdno;
+  String placeIdno1;
   String addr;
   String healthpro;
   String healthproname;

@@ -267,8 +267,7 @@ class _DieseInfoState extends State<DieseInfo> {
                                                   fontWeight: FontWeight.bold))
                                       ),
                                       SizedBox(
-                                        height: 20,
-                                      ),
+                                        height: 20,),
                                       Column(
                                         children: [
                                           Text.rich(TextSpan(children: [
