@@ -3070,7 +3070,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     } else if (textEditingController[7].text != ""  && (!Aadhar.validateVerhoeff(
                         textEditingController[7].text.replaceAll("-", "").toString())|| textEditingController[7].text.length!=12)) {
                      AppData.showInSnackBar(context, "Please enter valid aadhar no");
-
                     //   FocusScope.of(context).requestFocus(fnode6);
                     // } else if (textEditingController[8].text == "" ||
                     //     textEditingController[8].text == null) {
@@ -3087,7 +3086,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     // } else if (textEditingController[11].text == "" ||
                     //     textEditingController[11].text == null) {
                     //   AppData.showInSnackBar(context, "Please enter Email");
-                     } else if (textEditingController[12].text == "" ||
+                    } else if (textEditingController[12].text == "" ||
                         textEditingController[12].text == null) {
                      AppData.showInSnackBar(context, "Please enter pin code");
                     } else if (textEditingController[12].text != "" &&
