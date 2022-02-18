@@ -1108,22 +1108,31 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
       },
     );
   }
-
+  /*void getContactDetails() async {
+    if (await FlutterContacts.requestPermission()) {
+      contacts = await FlutterContacts.getContacts(
+          withProperties: true, withPhoto: true);
+      print(contacts);
+      setState(() {  });
+      (contacts) == null
+          ? Center(child: CircularProgressIndicator())
+          : _displayContact(context, contacts);
+    }
+  }*/
   void getContactDetails() async {
     if (await FlutterContacts.requestPermission()) {
-      // Get all contacts (lightly fetched)
+      //Get all contacts (lightly fetched)
       MyWidgets.showLoading(context);
-      List<Contact> contacts = await FlutterContacts.getContacts(
-          withProperties: true, withPhoto: true);
+      List<Contact> contacts = await FlutterContacts.getContacts(withProperties: true, withPhoto: true);
       Navigator.pop(context);
-
       _displayContact(context, contacts);
-     /* if(contacts!=null && contacts.isNotEmpty) {
-
-          contacts = await FlutterContacts.getContacts(
+      /*if(contacts!=null && contacts.isNotEmpty) {
+         contacts = await FlutterContacts.getContacts(
               withProperties: true, withPhoto: true);
-          setState(() {});
-          _displayContact(context, contacts);
+       setState(() {
+            //Navigator.pop(context);
+            _displayContact(context, contacts);});
+
       }else{
         _displayContact(context, contacts);
       }*/
