@@ -91,6 +91,7 @@ import 'package:user/screens/Users/Medication/UserMedicineList.dart';
 import 'package:user/screens/Users/Medication/UserTestList.dart';
 import 'package:user/screens/Users/MedicineReminder/EditReminder.dart';
 import 'package:user/screens/Users/Medipedia/DieseInfo.dart';
+import 'package:user/screens/Users/Medipedia/DieseInfoPdf1.dart';
 import 'package:user/screens/Users/Medipedia/Diesepdf.dart';
 import 'package:user/screens/Users/Medipedia/HealthTipsList.dart';
 import 'package:user/screens/Users/Medication/UserMedicineTab.dart';
@@ -1143,7 +1144,7 @@ class _MyAppState extends State<MyApp> {
               '/dieseinfo': (context) => DieseInfo(
                     model: _model,
                   ),
-              '/diesepdf': (context) => Diesepdf(
+              '/diesepdf': (context) => DieseInfoPdf1(
                     model: _model,
                   ),
               '/addimmunization': (context) => AddImmunization(
