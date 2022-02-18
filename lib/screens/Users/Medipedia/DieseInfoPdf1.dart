@@ -31,8 +31,8 @@ class _DieseInfoPdf1State extends State<DieseInfoPdf1> {
   @override
   void initState() {
     loginResponse = widget.model.loginResponse1;
-    diese=widget.model.diesepdf;
-    print("PPPPPPPPPPPPPPPPDDDDDDDDDFFFFFF"+diese);
+    diese = widget.model.diesepdf;
+    print("PPPPPPPPPPPPPPPPDDDDDDDDDFFFFFF" + diese);
     super.initState();
     // print(ApiFactory.REPORT_URL+loginResponse.ashadtls[0].reg_no);
   }
@@ -42,80 +42,79 @@ class _DieseInfoPdf1State extends State<DieseInfoPdf1> {
     // TODO: implement dispose
     webView.clearCache();
     super.dispose();
-
   }
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      // backgroundColor: Colors.grey[200],
-      // clearCache: true,
-      // clearCookies: true,
-      appBar: AppBar(
-        /*title: Text(
+        // backgroundColor: Colors.grey[200],
+        // clearCache: true,
+        // clearCookies: true,
+        appBar: AppBar(
+          /*title: Text(
           "Patient List",
           style: TextStyle(color: Colors.white),
         ),*/
-        title: Text(MyLocalizations.of(context).text("PDF"),
-          style: TextStyle(color: Colors.white),
+          title: Text(
+            MyLocalizations.of(context).text("PDF"),
+            style: TextStyle(color: Colors.white),
+          ),
+          centerTitle: true,
+          titleSpacing: 5,
+          iconTheme: IconThemeData(color: Colors.white),
+          backgroundColor: AppData.matruColor,
+          elevation: 0,
         ),
-        centerTitle: true,
-        titleSpacing: 5,
-        iconTheme: IconThemeData(color: Colors.white),
-        backgroundColor: AppData.matruColor,
-        elevation: 0,
-      ),
 
 /*       url:'https://docs.google.com/viewer?url='+widget.model.diesepdf,
       withZoom: true,
       useWideViewPort: false,
       displayZoomControls: true,*/
-    body: Stack(
-      children: <Widget>[
-        Container(
-          height: MediaQuery.of(context).size.height,
-          // color: Color(0xFF041B33),
-          color: Colors.white,
-          child: Column(
-            children: <Widget>[
-              Expanded(
-                child: Container(
-                  color: Color(0xFF041B33),
-                  child: InAppWebView(
-                    initialUrlRequest: URLRequest(
-                        url: Uri.parse(diese)),
-                    /*initialUrl: ApiFactory.SOCIAL_DETAIL+widget.model.socialType+
+        body: Stack(
+          children: <Widget>[
+            Container(
+              height: MediaQuery.of(context).size.height,
+              // color: Color(0xFF041B33),
+              color: Colors.white,
+              child: Column(
+                children: <Widget>[
+                  Expanded(
+                    child: Container(
+                      color: Color(0xFF041B33),
+                      child: InAppWebView(
+                        initialUrlRequest: URLRequest(url: Uri.parse(diese)),
+                        /*initialUrl: ApiFactory.SOCIAL_DETAIL+widget.model.socialType+
                             widget.model.socialRequest,*/
-                    initialOptions: InAppWebViewGroupOptions(
-                      crossPlatform: InAppWebViewOptions(
-                          userAgent:
-                          (Platform.isAndroid) ? "Chrome" : "Safari"
-                        //debuggingEnabled: true,
-                      ),
-                      android: AndroidInAppWebViewOptions(
-                        useHybridComposition: true,
-                      ),
-                      /*android: AndroidInAppWebViewOptions(
+                        initialOptions: InAppWebViewGroupOptions(
+                          crossPlatform: InAppWebViewOptions(
+                              userAgent:
+                                  (Platform.isAndroid) ? "Chrome" : "Safari"
+                              //debuggingEnabled: true,
+                              ),
+                          android: AndroidInAppWebViewOptions(
+                            useHybridComposition: true,
+                          ),
+                          /*android: AndroidInAppWebViewOptions(
 
                             ),
                             ios: IOSInAppWebViewOptions(
 
                             )*/
-                    ),
-                    onWebViewCreated: (InAppWebViewController controller) {
-                      webView = controller;
-                    },
-                    onLoadStart: (controller, Uri url) {
-                      setState(() {
-                        //log("Path>>>"+url);
-                        //this.url = url;
-                      });
-                    },
-                    onConsoleMessage: (controller, consoleMessage) {
-                      // log("Console msg>>" + consoleMessage.message);
-                    },
-                    /*  onLoadResource: (InAppWebViewController controller,LoadedResource res){
+                        ),
+                        onWebViewCreated: (InAppWebViewController controller) {
+                          webView = controller;
+                        },
+                        onLoadStart: (controller, Uri url) {
+                          setState(() {
+                            //log("Path>>>"+url);
+                            //this.url = url;
+                          });
+                        },
+                        onConsoleMessage: (controller, consoleMessage) {
+                          // log("Console msg>>" + consoleMessage.message);
+                        },
+                        /*  onLoadResource: (InAppWebViewController controller,LoadedResource res){
                           log("Resource>>>>"+res.url.query);
                         },
                         onPrint: (InAppWebViewController controller, Uri url) {
@@ -135,44 +134,41 @@ class _DieseInfoPdf1State extends State<DieseInfoPdf1> {
                             AppData.showInSnackDone(context, "Data Comming");
                           }
                         },*/
-                    onLoadStop:
-                        (InAppWebViewController controller, Uri url) async {
-
-                    },
-
-                    onProgressChanged:
-                        (InAppWebViewController controller, int progress) {
-                      setState(() {
-                        this.progress = progress / 100;
-                      });
-                    },
+                        onLoadStop: (InAppWebViewController controller,
+                            Uri url) async {},
+                        onProgressChanged:
+                            (InAppWebViewController controller, int progress) {
+                          setState(() {
+                            this.progress = progress / 100;
+                          });
+                        },
+                      ),
+                    ),
                   ),
-                ),
+                ],
               ),
-            ],
-          ),
-        ),
-        Center(
-            child: progress < 1.0
-                ? Container(
-              height: double.maxFinite,
-              width: double.maxFinite,
-              // color: Color(0xFF041B33),
-              color: Colors.white,
-              // color: Colors.white,
-              // child: Image.asset("assets/images/logo_data.gif"),
-              child: Center(child: CircularProgressIndicator()),
-            )
-            // ? CircularProgressIndicator(value: progress,)
-                : Container(
-              // color: ColorsAsset.loginColor,
-            )),
-      ],
-    )
-    );
+            ),
+            Center(
+                child: progress < 1.0
+                    ? Container(
+                        height: double.maxFinite,
+                        width: double.maxFinite,
+                        // color: Color(0xFF041B33),
+                        color: Colors.white,
+                        // color: Colors.white,
+                        // child: Image.asset("assets/images/logo_data.gif"),
+                        child: Center(child: CircularProgressIndicator()),
+                      )
+                    // ? CircularProgressIndicator(value: progress,)
+                    : Container(
+                        // color: ColorsAsset.loginColor,
+                        )),
+          ],
+        ));
   }
 
-  Widget _buildTile({String icon, String title, String text, String image, Function fun}) {
+  Widget _buildTile(
+      {String icon, String title, String text, String image, Function fun}) {
     return InkWell(
       onTap: fun,
       child: Container(
@@ -185,7 +181,7 @@ class _DieseInfoPdf1State extends State<DieseInfoPdf1> {
         child: Stack(
           children: [
             Padding(
-              padding: const EdgeInsets.all( 15.0),
+              padding: const EdgeInsets.all(15.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -197,12 +193,22 @@ class _DieseInfoPdf1State extends State<DieseInfoPdf1> {
                       fontFamily: "Monte",
                       fontSize: 12.0,
                     ),
-
                   ),
-                  SizedBox(height: 10,),
-                  Text(text, style: TextStyle(color: Colors.white, fontFamily: "Monte", fontWeight: FontWeight.bold, fontSize: 17),),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    text,
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontFamily: "Monte",
+                        fontWeight: FontWeight.bold,
+                        fontSize: 17),
+                  ),
                   Spacer(),
-                  Image.network(image, fit: BoxFit.cover,
+                  Image.network(
+                    image,
+                    fit: BoxFit.cover,
                     height: 60,
                     width: double.infinity,
                   )
@@ -212,12 +218,14 @@ class _DieseInfoPdf1State extends State<DieseInfoPdf1> {
             Positioned(
                 top: 15,
                 right: 15,
-                child: Image.asset(icon, height: 10, color: Colors.white,)),
+                child: Image.asset(
+                  icon,
+                  height: 10,
+                  color: Colors.white,
+                )),
           ],
         ),
       ),
     );
   }
-
-
 }
