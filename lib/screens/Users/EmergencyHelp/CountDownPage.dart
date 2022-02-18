@@ -3,12 +3,14 @@ import 'dart:convert';
 import 'package:date_format/date_format.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:flutter_sms/flutter_sms.dart';
 
 import 'package:geolocator/geolocator.dart' as loca;
 import 'package:geolocator/geolocator.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:user/models/EmergencyHelpModel.dart';
+import 'package:user/models/GooglePlaceSearchModell.dart';
 import 'package:user/models/ResultsServer.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/api_factory.dart';
@@ -58,6 +60,7 @@ class _CountDownPageState extends State<CountDownPage>
   String cityName;
   final GlobalKey<ScaffoldState> _scaffoldKey1 = GlobalKey<ScaffoldState>();
   EmergencyHelpModel emergencyHelpModel;
+  bool isDataNotAvail = false;
 
   @override
   void dispose() {
@@ -102,7 +105,14 @@ class _CountDownPageState extends State<CountDownPage>
             String msg = map[Const.MESSAGE];
             if (map[Const.STATUS1] == Const.SUCCESS) {
               emergencyHelpModel = EmergencyHelpModel.fromJson(map);
-             popup(map[Const.MESSAGE],context);
+              popup(map[Const.MESSAGE],context);
+               // getMobNo(widget.model.placeIdno??widget.model.placeIdno1);
+               FlutterPhoneDirectCaller.callNumber("108");
+              //FlutterPhoneDirectCaller.callNumber("7008553233");
+              //launchUrl("tel:+99364921507");
+
+              //FlutterPhoneDirectCaller.callNumber("108");
+
               // AppData.showInSnackDone(context, msg);
             
             } else {
@@ -113,6 +123,41 @@ class _CountDownPageState extends State<CountDownPage>
           });
         });
    
+  }
+  getMobNo(placeId) {
+    MyWidgets.showLoading(context);
+    widget.model.GETMETHODCAL(
+        api: ApiFactory.GOOGLE_SEARCH(
+            place_id: placeId /*"ChIJ9UsgSdYJGToRiGHjtrS-JNc"*/),
+        fun: (Map<String, dynamic> map) {
+          print("Value is>>>>" + JsonEncoder().convert(map));
+          Navigator.pop(context);
+          setState(() {
+            String msg = map[Const.MESSAGE];
+            if (map[Const.STATUS1] == Const.RESULT_OK) {
+              GooglePlacesSearchModel googlePlacesSearch = GooglePlacesSearchModel.fromJson(map);
+              if(googlePlacesSearch
+                  ?.result?.formattedPhoneNumber !=
+                  null)
+                /*AppData.launchURL("tel://" +
+                    googlePlacesSearch.result
+                        .formattedPhoneNumber);*/
+                FlutterPhoneDirectCaller.callNumber(googlePlacesSearch.result
+                    .formattedPhoneNumber);
+              else
+                AppData.showInSnackBar(context, "Mobile no is not available");
+              //log(">>>>>>>GGGGG<<<<<<<" + jsonEncode(map));
+            } else {
+              isDataNotAvail = true;
+              AppData.showInSnackBar(context, msg);
+            }
+
+            /* } else {
+              isDataNotAvail = true;
+              AppData.showInSnackBar(context, "Google api doesn't work");
+            }*/
+          });
+        });
   }
    popup(String msg, BuildContext context) {
     return Alert(
