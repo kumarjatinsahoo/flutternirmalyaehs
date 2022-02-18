@@ -23,7 +23,7 @@ class _HealthTipsFBState extends State<HealthTipsFB> {
   @override
   void initState() {
     super.initState();
-    pdfUrl = "https://www.facebook.com/nirmalyalabs";
+    pdfUrl = "https://www.facebook.com/Health-Tips-112341063598103/?ref=page_internal";
     print(">>>>>>PDF URL TEST REPORT????>>" + pdfUrl);
   }
 
