@@ -128,6 +128,7 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () => Navigator.of(context).pop(),
+
         ),
         centerTitle: true,
         title: Text(MyLocalizations.of(context).text("SETUP_CONTACT")),
@@ -549,7 +550,7 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                   //     height: 15,
                   //   ),
                   // ),
-
+                 
                   // GestureDetector(
                   //   // onTap: () =>   Navigator.pushNamed(context, "/medicalService"),
                   //   child: InkWell(

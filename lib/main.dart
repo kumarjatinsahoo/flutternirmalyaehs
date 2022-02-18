@@ -85,6 +85,7 @@ import 'package:user/screens/Users/GovermentSchemes/GovetListPage7.dart';
 import 'package:user/screens/Users/GovermentSchemes/GovetListPage8.dart';
 import 'package:user/screens/Users/Insurance/AddInsuranceForm.dart';
 import 'package:user/screens/Users/IntrestSignup.dart';
+import 'package:user/screens/Users/LoginFBandGooglePage.dart';
 import 'package:user/screens/Users/Medication/UserMedicineList.dart';
 import 'package:user/screens/Users/Medication/UserTestList.dart';
 import 'package:user/screens/Users/MedicineReminder/EditReminder.dart';
@@ -118,6 +119,7 @@ import 'screens/Syndicate Partner/Dashboard/SyndicateDashboard.dart';
 import 'screens/Syndicate Partner/Registration/Syndicatepartner.dart';
 import 'screens/Users/FindHealthCare/Find/GoogleFindResult.dart';
 import 'screens/Users/GenericMedicine/GenericMedicineNew.dart';
+import 'screens/Users/Medipedia/HealthTipsFB.dart';
 import 'screens/Users/MyMedicalRecord/HealthChat1/HealthChart.dart';
 import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/UploadDocument.dart';
 import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/VideoDetailsPage.dart';
@@ -837,6 +839,9 @@ class _MyAppState extends State<MyApp> {
               '/shareappointment': (context) => ShareAppointment(
                     model: _model,
                   ),
+              '/loginFBandGooglePage': (context) => LoginFBandGooglePage(
+                model: _model,
+              ),
 
               //////////////////DOCTOR USER//////////////////////
               /*   '/dashDoctor': (context) => DasboardDoctor(
@@ -1267,6 +1272,9 @@ class _MyAppState extends State<MyApp> {
                 model: _model,
               ),
               '/genericMedicineNew': (context) => GenericMedicineNew(
+                model: _model,
+              ),
+              '/healthTipsFB': (context) => HealthTipsFB(
                 model: _model,
               ),
 

@@ -56,7 +56,7 @@ class _MedicineList extends State<UserTestList> {
   TextEditingController toThis_ = TextEditingController();
   String selectedDatestr;
   String userid;
-  bool isdata =false;
+  bool isdata =true;
   String selectlab;
   final df = new DateFormat('dd/MM/yyyy');
   var selectedMinValue;
@@ -97,8 +97,12 @@ class _MedicineList extends State<UserTestList> {
           setState(() {
             log("Response from sagar>>>>>" + jsonEncode(map));
             userListModel = UserListModel.fromJson(map);
+            isdata=false;
           });
         } else {
+          setState(() {
+            isdata=false;
+          });
           //isDataNotAvail = true;
           //AppData.showInSnackBar(context, msg);
         }

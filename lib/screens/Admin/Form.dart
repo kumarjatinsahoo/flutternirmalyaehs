@@ -859,7 +859,7 @@ class MediaupdateState extends State<Mediaupdate> {
         textEditingController[1].text == "") {
       AppData.showInSnackBar(context, "Please enter Title");
     }  else if (textEditingController[1].text.length<3) {
-      AppData.showInSnackBar(context, "Please enter valid address");
+      AppData.showInSnackBar(context, "Please enter valid title");
     } else if (textEditingController[2].text ==null||
         textEditingController[2].text == "" ) {
       AppData.showInSnackBar(context, "Please enter SubTitle");
@@ -1228,10 +1228,11 @@ class MediaupdateState extends State<Mediaupdate> {
     log("File extension is:::::>>>>>" +
         textEditingController[1].text +
         "," +
-        textEditingController[2].text +
-        "," +textEditingController[3].text+","+
-        extension +
-        ","+selectFile.path );
+        textEditingController[2].text+","+Mediaupdate.countryModel.key+","+
+        Mediaupdate.stateModel.key+","+ Mediaupdate.cityModel.key+","+
+        Mediaupdate.districtModel.key+"," +textEditingController[3].text
+        +","+
+        extension + ","+selectFile.path );
     var formData = FormData();
     formData.fields
       ..add(MapEntry('title',
@@ -1253,7 +1254,7 @@ class MediaupdateState extends State<Mediaupdate> {
       ))
       ..add(MapEntry(
         'state',
-        Mediaupdate.cityModel.key,
+        Mediaupdate.stateModel.key,
       ))
       ..add(MapEntry(
         'district',

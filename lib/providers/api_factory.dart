@@ -3,8 +3,8 @@ class ApiFactory {
   static String REG_DEVICE = "https://cca.medtel.in/Ziniai/manageDeviceId";
   //static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
   // static String MAIN_URL = "http://api.ehealthsystem.com/nirmalyaRest/api/";
-  static String MAIN_URL = "http://api-demo.ehealthsystem.com/nirmalyaRest/api/";
   //static String MAIN_URL = "http://api-demo.ehealthsystem.com/nirmalyaRest/api/";
+  static String MAIN_URL = "http://api-demo.ehealthsystem.com/nirmalyaRest/api/";
   // static String MAIN_URL = "http://192.168.0.115:8062/nirmalyaRest/api/";
   //static String MAIN_URL = "http://api-demo.ehealthsystem.com/nirmalyaRest/api/";
   //static String MAIN_URL = "http://192.168.0.115:8062/nirmalyaRest/api/";
@@ -306,7 +306,7 @@ static String GOOGLE_NEARBY_API(
       MAIN_URL + 'view-requested-test-details?orderid=';
   static String ALLERGY_LIST = MAIN_URL + 'view-user-allergy-list-api?userid=';
   static String RECENT_DOCUMENT_LIST = MAIN_URL + 'get-documents-using-limit?userid=';
-  static String NEWSUPDATE_VIEW = MAIN_URL + 'get-news-media-details-api';
+  static String NEWSUPDATE_VIEW = MAIN_URL + 'get-news-media-details-api?patid=';
   static String AMBULANCE_LIST =
       MAIN_URL + 'get-patient-ambulance-details?userid=';
   //static String AMBULANCE_LIST = MAIN_URL + 'get-patient-ambulance-details?userid=';
