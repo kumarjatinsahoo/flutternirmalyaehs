@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:developer';
 
 import 'package:flutter/foundation.dart';
@@ -23,6 +24,15 @@ class Diesepdf extends StatefulWidget {
 class _DiesepdfState extends State<Diesepdf> {
   LoginResponse1 loginResponse;
   String diese;
+  bool showLoading=true;
+
+  void callResourceTimer() {
+    Timer(Duration(seconds: 8), (){
+      setState(() {
+        showLoading=false;
+      });
+    });
+  }
 
   @override
   void initState() {
@@ -30,38 +40,50 @@ class _DiesepdfState extends State<Diesepdf> {
     diese=widget.model.diesepdf;
     print("PPPPPPPPPPPPPPPPDDDDDDDDDFFFFFF"+diese);
     super.initState();
+    callResourceTimer();
     // print(ApiFactory.REPORT_URL+loginResponse.ashadtls[0].reg_no);
   }
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return WebviewScaffold(
-      // backgroundColor: Colors.grey[200],
-      clearCache: true,
-      clearCookies: true,
-      appBar: AppBar(
-        /*title: Text(
-          "Patient List",
-          style: TextStyle(color: Colors.white),
-        ),*/
-        title: Text(MyLocalizations.of(context).text("PDF"),
-          style: TextStyle(color: Colors.white),
-        ),
-        centerTitle: true,
-        titleSpacing: 5,
-        iconTheme: IconThemeData(color: Colors.white),
-        backgroundColor: AppData.matruColor,
-        elevation: 0,
-      ),
-      //  url: ApiFactory.REPORT_URL+loginResponse.ashadtls[0].reg_no,
+    return Stack(
+      children: [
+        WebviewScaffold(
+          // backgroundColor: Colors.grey[200],
+          clearCache: true,
+          clearCookies: true,
+          appBar: AppBar(
+            /*title: Text(
+              "Patient List",
+              style: TextStyle(color: Colors.white),
+            ),*/
+            title: Text(MyLocalizations.of(context).text("PDF"),
+              style: TextStyle(color: Colors.white),
+            ),
+            centerTitle: true,
+            titleSpacing: 5,
+            iconTheme: IconThemeData(color: Colors.white),
+            backgroundColor: AppData.matruColor,
+            elevation: 0,
+          ),
+          //  url: ApiFactory.REPORT_URL+loginResponse.ashadtls[0].reg_no,
 
-       url:'https://docs.google.com/viewer?url='+widget.model.diesepdf,
-     // url:'https://docs.google.com/viewer?url=http://api.ehealthsystem.com/nirmalyaRest/document/disease/upper_respiratory_tract_infection.pdf',
-      //url:'https://docs.google.com/viewer?url=http://www.africau.edu/images/default/sample.pdf',
-      withZoom: true,
-      useWideViewPort: false,
-      displayZoomControls: true,
+           url:'https://docs.google.com/viewer?url='+widget.model.diesepdf,
+         // url:'https://docs.google.com/viewer?url=http://api.ehealthsystem.com/nirmalyaRest/document/disease/upper_respiratory_tract_infection.pdf',
+          //url:'https://docs.google.com/viewer?url=http://www.africau.edu/images/default/sample.pdf',
+          withZoom: true,
+          useWideViewPort: false,
+          displayZoomControls: true,
+        ),
+        (showLoading)?Container(width: size.width,height: size.height,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            CircularProgressIndicator()
+          ],
+        ),):Container()
+      ],
     );
   }
 

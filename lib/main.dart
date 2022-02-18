@@ -1144,7 +1144,7 @@ class _MyAppState extends State<MyApp> {
               '/dieseinfo': (context) => DieseInfo(
                     model: _model,
                   ),
-              '/diesepdf': (context) => DieseInfoPdf1(
+              '/diesepdf': (context) => Diesepdf(
                     model: _model,
                   ),
               '/addimmunization': (context) => AddImmunization(
