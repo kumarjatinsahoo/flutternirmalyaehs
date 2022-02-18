@@ -274,16 +274,19 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
             String msg = map[Const.MESSAGE];
             if (map[Const.STATUS1] == Const.RESULT_OK) {
               GooglePlacesSearchModel googlePlacesSearch =
-                  GooglePlacesSearchModel.fromJson(map);
-              if (googlePlacesSearch?.result?.formattedPhoneNumber != null)
-                /*AppData.launchURL("tel://" +
+              GooglePlacesSearchModel.fromJson(map);
+              if (googlePlacesSearch?.result?.formattedPhoneNumber != null){
+              /*AppData.launchURL("tel://" +
                     googlePlacesSearch.result
                         .formattedPhoneNumber);*/
-                FlutterPhoneDirectCaller.callNumber(
-                    googlePlacesSearch.result.formattedPhoneNumber);
-              else {
+
+                widget.model.hospitalNo=googlePlacesSearch.result.formattedPhoneNumber;
+
+              /*FlutterPhoneDirectCaller.callNumber(
+                    googlePlacesSearch.result.formattedPhoneNumber);*/
+            }    else {
                 if(googlePlaceModel.results.length>(k+1)){
-                  getMobNo(googlePlaceModel.results[k+1].placeId);
+                  getMobNo(googlePlaceModel.results[(k+1)].placeId);
                 }else{
                   AppData.showInSnackBar(context, "Ambulance Mobile no is not available");
                 }

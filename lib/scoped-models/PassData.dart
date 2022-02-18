@@ -166,6 +166,7 @@ class PassData extends Model {
   String emrdocumentcategories;
   String receptionhospitalid;
   String receptionpatientid;
+  String hospitalNo;
 
   // Event selectEvent;
 
