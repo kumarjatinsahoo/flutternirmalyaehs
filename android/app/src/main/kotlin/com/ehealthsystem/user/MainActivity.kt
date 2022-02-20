@@ -110,6 +110,73 @@ class MainActivity : FlutterActivity() {
                     dialog.show()
                 }
 
+            } else if (call.method == "lab2") {
+
+                var isAppInstalled = appInstalledOrNot("info.safey.peakflowapp")
+                if (isAinaPackageAvailable1(this@MainActivity)) {
+                    if (isAppInstalled) {
+                        val string: String = call.arguments as String
+//                        val data: List<String> = string.split(",")
+                        val LaunchIntent = packageManager
+                            .getLaunchIntentForPackage("info.safey.peakflowapp")
+                        LaunchIntent!!.action = Intent.ACTION_SEND
+                        LaunchIntent.putExtra(Intent.EXTRA_TEXT, "1")
+//                        LaunchIntent.putExtra("apid", "8036d1868bd71fb6b500cb18eeec3936")
+//                        LaunchIntent.putExtra("puniqueid", data.get(0))
+//                        LaunchIntent.putExtra("name", data.get(1))
+//                        LaunchIntent.putExtra("mobile", data.get(2))
+//                        LaunchIntent.putExtra("gender", data.get(3))
+//                        LaunchIntent.putExtra("height", data.get(4))
+//                        LaunchIntent.putExtra("weight", data.get(5))
+//                        LaunchIntent.putExtra("age", data.get(6))
+                        LaunchIntent.type = "text/plain"
+                       /* val t = Toast.makeText(
+                            this@MainActivity,
+                            "Height: " + data.get(4) + " Weight: " + data.get(5),
+                            Toast.LENGTH_SHORT
+                        )
+                        t.show()*/
+                        startActivity(LaunchIntent)
+
+                    } else {
+                        /*val string: String = call.arguments as String
+                        val data: List<String> = string.split(",")
+                        Toast.makeText(this@MainActiivty, "Height: "+data.get(4)+" Weight: "+data.get(5), Toast.LENGTH_SHORT).show()*/
+                        redirectToPlayStore1()
+
+                        // Do whatever we want to do if application not installed
+                        // For example, Redirect to play store
+
+                        // Log.i("Application is not currently installed.");
+                    }
+                } else {
+                    var dialog = Dialog(this@MainActivity)
+                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE) //before
+                    dialog.setContentView(R.layout.noapkdialog)
+                    val downloadbtn: Button = dialog.findViewById(R.id.downloadbtn) as Button
+                    /*downloadbtn.setOnClickListener(object : View.OnClickListener() {
+                        fun onClick(view: View?) {
+                            redirectToPlayStore()
+                            //   Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.janacare.aina.production"));
+                            // startActivity(intent);
+                        }
+                    })*/
+                    downloadbtn.setOnClickListener(object : View.OnClickListener {
+                        override fun onClick(view: View?) {
+                            // Do some work here
+                            redirectToPlayStore1()
+                        }
+
+                    })
+                    val cancelbtn: Button = dialog.findViewById(R.id.cancelbtn) as Button
+                    cancelbtn.setOnClickListener(object : View.OnClickListener {
+                        override fun onClick(view: View?) {
+                            dialog.dismiss()
+                        }
+                    })
+                    dialog.show()
+                }
+
             } else {
                 result.notImplemented()
             }
@@ -120,6 +187,16 @@ class MainActivity : FlutterActivity() {
     fun redirectToPlayStore() {
         val url =
             "https://drive.google.com/file/d/1iB4IUeT4vOV9lCRiEwilbHLYA-DBlgJ2/view?usp=sharing"
+        // String url="https://drive.google.com/file/d/1cDKAENDCdOOzyk9jwOtHjRs8gE3PVxW8/view?usp=sharing";
+        val i = Intent(Intent.ACTION_VIEW)
+        i.data = Uri.parse(url)
+        startActivity(i)
+    }
+
+
+    fun redirectToPlayStore1() {
+        val url =
+            "https://play.google.com/store/apps/details?id=info.safey.peakflowapp"
         // String url="https://drive.google.com/file/d/1cDKAENDCdOOzyk9jwOtHjRs8gE3PVxW8/view?usp=sharing";
         val i = Intent(Intent.ACTION_VIEW)
         i.data = Uri.parse(url)
@@ -143,6 +220,19 @@ class MainActivity : FlutterActivity() {
         packages = pm.getInstalledApplications(0)
         for (packageInfo in packages) {
             if (packageInfo.packageName.contains("ilabmini.in.ilab")) {
+                return true
+            }
+        }
+        return false
+    }
+
+    fun isAinaPackageAvailable1(context: Context): Boolean {
+        val packages: List<ApplicationInfo>
+        val pm: PackageManager
+        pm = context.getPackageManager()
+        packages = pm.getInstalledApplications(0)
+        for (packageInfo in packages) {
+            if (packageInfo.packageName.contains("info.safey.peakflowapp")) {
                 return true
             }
         }
