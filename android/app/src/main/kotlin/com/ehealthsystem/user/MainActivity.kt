@@ -152,7 +152,7 @@ class MainActivity : FlutterActivity() {
                 } else {
                     var dialog = Dialog(this@MainActivity)
                     dialog.requestWindowFeature(Window.FEATURE_NO_TITLE) //before
-                    dialog.setContentView(R.layout.noapkdialog)
+                    dialog.setContentView(R.layout.noapkdialog1)
                     val downloadbtn: Button = dialog.findViewById(R.id.downloadbtn) as Button
                     /*downloadbtn.setOnClickListener(object : View.OnClickListener() {
                         fun onClick(view: View?) {
