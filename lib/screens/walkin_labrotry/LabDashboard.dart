@@ -68,10 +68,19 @@ class _LabDashboardState extends State<LabDashboard> {
 
   int _selectedDestination = -1;
 
+
+  static const platform = AppData.channel;
+
   void selectDestination(int index) {
     setState(() {
       _selectedDestination = index;
     });
+  }
+
+  Future<void> _callLabApp(String data) async {
+    try {
+      final int result = await platform.invokeMethod('lab2', data);
+    } on PlatformException catch (e) {}
   }
 
   @override
@@ -649,6 +658,17 @@ class _LabDashboardState extends State<LabDashboard> {
                     selectDestination(7);
                     widget.model.contactscreen = "Support Screen";
                     Navigator.pushNamed(context, "/contactus");
+                  }),
+  ListTile(
+                  leading: Image.asset(
+                    "assets/images/support.png",
+                    height: 30,
+                  ),
+                  title: Text("Peak Flow App"),
+                  selected: _selectedDestination == 8,
+                  onTap: () {
+                    selectDestination(8);
+                    _callLabApp("");
                   }),
 
               ListTile(
