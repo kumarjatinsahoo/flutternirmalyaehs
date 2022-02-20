@@ -2083,8 +2083,10 @@ class MyPage1Widget extends StatelessWidget {
                       title: "Upload Medical Data",
                       fun: () {
                         //AppData.showInSnackDone(context, "Coming Soon");
-                        //Navigator.pushNamed(context, "/insuranceList");
-                        Navigator.pushNamed(context, "/insurancenew");
+                        (loginResponse1.body?.userStateId != null&&loginResponse1.body.userStateId == "21" )?
+                        Navigator.pushNamed(context, "/insurancenew"):
+                        Navigator.pushNamed(context, "/insuranceList");
+
                         //_displayTextInputDialog(context,2);
 
                         /*  AppData.showSnack(

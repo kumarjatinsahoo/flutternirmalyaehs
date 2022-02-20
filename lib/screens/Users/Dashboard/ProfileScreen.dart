@@ -2595,8 +2595,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
     //patientProfileModel.body.eName.toString() == null?"N/A":_eName.text =patientProfileModel.body.eName.toString();
     // patientProfileModel.body.docMobile.toString() == null?"N/A":_docMobile.text == patientProfileModel.body.docMobile;
     //textEditingController[5].text = (patientProfileModel != null)||(patientProfileModel.body.address == null)?patientProfileModel.body.address.toString(): "N/A";
-    textEditingController[1].text = patientProfileModel.body.address ?? ""/*""+patientProfileModel.body.pAddress ?? ""*/;
-    textEditingController[2].text = patientProfileModel.body.occupation ?? "";
+    textEditingController[1].text = patientProfileModel.body.address ?? null/*""+patientProfileModel.body.pAddress ?? ""*/;
+    textEditingController[2].text = patientProfileModel.body.occupation ?? null;
     textEditingController[3].text = patientProfileModel.body.qualification ?? "";
     textEditingController[4].text = patientProfileModel.body.specialization ?? "";
     textEditingController[5].text = patientProfileModel.body.pancardno ?? "";
@@ -3036,7 +3036,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     //   AppData.showInSnackBar(
                     //       context, "Please select Bloodgroup");
                     } else if (textEditingController[1].text == "" ||
-                        textEditingController[1].text == null) {
+                        textEditingController[1].text == null  ) {
                       AppData.showInSnackBar(context, "Please enter address");
                     // } else if (ProfileScreen.materialmodel == null ||
                     //     ProfileScreen.materialmodel == "") {
