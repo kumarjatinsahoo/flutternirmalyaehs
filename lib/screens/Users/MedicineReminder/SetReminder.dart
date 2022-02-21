@@ -95,7 +95,6 @@ class SetReminderState extends State<SetReminder> {
   TextEditingController endtime = TextEditingController();
   List<bool> error = [false, false, false, false, false, false];
   bool _isSignUpLoading = false;
-
   FocusNode fnode1 = new FocusNode();
   FocusNode fnode2 = new FocusNode();
   FocusNode fnode3 = new FocusNode();
