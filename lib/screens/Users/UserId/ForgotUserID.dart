@@ -147,7 +147,6 @@ class _ForgotUserIDState extends State<ForgotUserID> {
                     log("userid response " + jsonEncode(map));
                     String otp = map["body"]["code"];
                    // ForgotUseridModel forgotUseridModel = map["body"];
-
                     Navigator.push(
                       context,
                       MaterialPageRoute(

@@ -2033,7 +2033,6 @@ class MyPage1Widget extends StatelessWidget {
                       ),
                     ),
                   ]),
-
               SizedBox(
                 width: 5,
               ),

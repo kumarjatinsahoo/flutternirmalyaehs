@@ -16,7 +16,6 @@ import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
 import 'package:flutter/material.dart';
-import '../../Doctor/Dashboard/DasboardDoctor.dart';
 
 class SetupContactsPage extends StatefulWidget {
   MainModel model;
@@ -36,6 +35,7 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
   String emger_ms;
   EmergencyHelpModel emergencyHelpModel;
   bool isDataNotAvail = false;
+  bool isloading = true;
 
   List<TextEditingController> textEditingController = [
     new TextEditingController(),
@@ -68,6 +68,7 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    isloading=true;
     loginResponse1 = widget.model.loginResponse1;
     callAPI();
     // SetupContactsPage.relationmodel=null;
@@ -845,6 +846,7 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                             hintText: MyLocalizations.of(context).text("NAME"),
                             suffixIcon: InkWell(
                               onTap: () {
+                                isloading=true;
                                // Navigator.pop(context);
                                 getContactDetails();
                               },
@@ -1016,10 +1018,11 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                       shrinkWrap: true,
                         itemBuilder: (c, i) {
                           return ListTile(
-                            title: Text(foundUser[i].displayName),
-                            subtitle: Text((foundUser[i]?.phones[0]?.number??"")),
-                            onTap: (){
-
+                            title: Text((foundUser[i].displayName.isNotEmpty)?foundUser[i].displayName:"N/A"),
+                            // subtitle: Text((foundUser[i]?.phones[0]?.number??"")),
+                            subtitle:  Text((foundUser[i].phones.isNotEmpty)?foundUser[i].phones[0].number.toString():"N/A"),
+                            onTap: (){   
+                              isloading=false;                             
                               log("Selected Response>>>"+list[i].toString());
                               log("Selected Response>>>"+list[i]?.phones[0]?.number??"");
                               widget.model.contMobileno=list[i]?.phones[0]?.number??"";
@@ -1028,6 +1031,9 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                               _mobile.text=foundUser[i]?.phones[0]?.number.replaceAll(" ", "").replaceAll("-", "").replaceAll("+91", "")??"".replaceAll("+", "")??"".toString();
                              //_mobile.text=list[i]?.phones[0]?.number.replaceAll(" ":"", "").replaceAll("-", "")??"".toString();
                               Navigator.pop(context);
+                  //             setState(() {
+                  //  isloading=false;
+                  // });
                             },
                           );
                         },
@@ -1114,7 +1120,7 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
     try {
       if (await FlutterContacts.requestPermission()) {
         // Get all contacts (lightly fetched)
-        MyWidgets.showLoading(context);
+        isloading == true? MyWidgets.showLoading(context):false;
         List<Contact> contacts = await FlutterContacts.getContacts(
             withProperties: true, withPhoto: true);
         Navigator.pop(context);

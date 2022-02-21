@@ -45,7 +45,7 @@ enum PayMode1 { Daily, Weekly, Monthly }
 
 class SetReminderState extends State<SetReminder> {
   final _formKey = GlobalKey<FormState>();
-  bool _autovalidate = false;
+  bool _autovalidate = true;
   DateTime selectedDate = DateTime.now();
   DateTime selectedStartDate;
   DateTime selectedEndDate;

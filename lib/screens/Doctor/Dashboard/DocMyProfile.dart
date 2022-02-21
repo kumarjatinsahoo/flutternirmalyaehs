@@ -1139,7 +1139,6 @@ class _DocMyProfileState extends State<DocMyProfile> {
                 onPressed: () {
                   //AppData.showInSnackBar(context, "click");
                   setState(() {
-
                  if (textEditingController[0].text == "N/A" ||
                         textEditingController[0].text == null ||
                         textEditingController[0].text == "") {
@@ -1151,8 +1150,6 @@ class _DocMyProfileState extends State<DocMyProfile> {
           DocMyProfile.bloodgroupmodel == "") {
           AppData.showInSnackBar(context, "Please select blood group");
           }
-
-
                    //        bool isAllBlank = true;
                    //        textEditingController.forEach((element) {
                    // if (element.text != "") isAllBlank = false;
@@ -1161,7 +1158,6 @@ class _DocMyProfileState extends State<DocMyProfile> {
                    // //AppData.showInSnackBar(context, "Please select Smoking");
                    // AppData.showInSnackBar(
                    // context, "Please Fill Up all details ");
-
                  else if (textEditingController[1].text == "N/A" ||
                         textEditingController[1].text == null ||
                         textEditingController[1].text == "") {
@@ -1173,14 +1169,13 @@ class _DocMyProfileState extends State<DocMyProfile> {
                         textEditingController[2].text == "" || double.tryParse(textEditingController[2].text)>99) {
                       AppData.showInSnackBar(
                           context, "Please enter your experience ");
-
                     // } else if (textEditingController[3].text == "" ||
                     //     textEditingController[3].text == null ||
                     //     textEditingController[3].text == "") {
                     //   AppData.showInSnackBar(
                     //       context, "Please enter IMA No.");
-                 } else if (textEditingController[7].text != ""  && (!Aadhar.validateVerhoeff(
-                     textEditingController[7].text.replaceAll("-", "").toString())|| textEditingController[7].text.length!=12)) {
+                 } else if (textEditingController[4].text != ""  && (!Aadhar.validateVerhoeff(
+                     textEditingController[4].text.replaceAll("-", "").toString())|| textEditingController[4].text.length!=12)) {
                    AppData.showInSnackBar(context, "Please enter valid aadhar no");
                     // } else if (textEditingController[5].text == "N/A" ||
                     //     textEditingController[5].text == null ||
