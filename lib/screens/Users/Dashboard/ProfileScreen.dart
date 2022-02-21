@@ -142,7 +142,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   ];
   TextEditingController _message = TextEditingController();
   List<bool> error = [false, false, false, false, false, false];
-
+  final alphaNumericText = RegExp(r'^[a-zA-Z0-9]+$');
   FocusNode fnode1 = new FocusNode();
   FocusNode fnode2 = new FocusNode();
   FocusNode fnode3 = new FocusNode();
@@ -2261,7 +2261,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ],
             ),
           ),
-          (patientProfileModel != null && patientProfileModel?.body?.familyDoctorList.isNotEmpty) ?
+          (patientProfileModel != null && patientProfileModel?.body?.familyDetailsList.isNotEmpty) ?
           ListView.builder(
             shrinkWrap: true,
             physics: NeverScrollableScrollPhysics(),
@@ -2595,8 +2595,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
     //patientProfileModel.body.eName.toString() == null?"N/A":_eName.text =patientProfileModel.body.eName.toString();
     // patientProfileModel.body.docMobile.toString() == null?"N/A":_docMobile.text == patientProfileModel.body.docMobile;
     //textEditingController[5].text = (patientProfileModel != null)||(patientProfileModel.body.address == null)?patientProfileModel.body.address.toString(): "N/A";
-    textEditingController[1].text = patientProfileModel.body.address ?? null/*""+patientProfileModel.body.pAddress ?? ""*/;
-    textEditingController[2].text = patientProfileModel.body.occupation ?? null;
+    textEditingController[1].text = patientProfileModel.body.address ?? "";  /*""+patientProfileModel.body.pAddress ?? ""*/
+    textEditingController[1].text = patientProfileModel.body.address ?? "";
+    //textEditingController[1].text = textEditingController[1].text.replaceAll(" ", "");
+
+
+    textEditingController[2].text = patientProfileModel.body.occupation ?? "";
+
     textEditingController[3].text = patientProfileModel.body.qualification ?? "";
     textEditingController[4].text = patientProfileModel.body.specialization ?? "";
     textEditingController[5].text = patientProfileModel.body.pancardno ?? "";
@@ -3036,7 +3041,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     //   AppData.showInSnackBar(
                     //       context, "Please select Bloodgroup");
                     } else if (textEditingController[1].text == "" ||
-                        textEditingController[1].text == null  ) {
+                        textEditingController[1].text == null && textEditingController[1].text.isEmpty ) {
                       AppData.showInSnackBar(context, "Please enter address");
                     // } else if (ProfileScreen.materialmodel == null ||
                     //     ProfileScreen.materialmodel == "") {
@@ -3315,10 +3320,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   counterText: '',
                   contentPadding:
                       EdgeInsets.symmetric(vertical: 2, horizontal: 0)),
-              onChanged: (newValue) {},
+              onChanged: (newValue) {
+                /*String s=textEditingController[controller].toString();
+                s = newValue.replaceAll("  ", "").toLowerCase();*/
+              },
               onFieldSubmitted: (value) {
                 AppData.fieldFocusChange(context, currentfn, nextFn);
               },
+               /* onChange(val) {
+            s = val.trim().toLowerCase()
+            }*/
+
+
             ),
           ),
         ),
