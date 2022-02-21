@@ -45,7 +45,7 @@ enum PayMode1 { Daily, Weekly, Monthly }
 
 class SetReminderState extends State<SetReminder> {
   final _formKey = GlobalKey<FormState>();
-  bool _autovalidate = false;
+  bool _autovalidate = true;
   DateTime selectedDate = DateTime.now();
   DateTime selectedStartDate;
   DateTime selectedEndDate;
@@ -387,6 +387,7 @@ class SetReminderState extends State<SetReminder> {
                   SetReminder.timeDayModel = data;
                   timePicker.forEach((element) {
                     element.text = "";
+                    //_autovalidate=false;
                   });
                 });
               }),
@@ -462,7 +463,11 @@ class SetReminderState extends State<SetReminder> {
                                   mainAxisExtent: 50,
                                   mainAxisSpacing: 15.0),
                           itemBuilder: (BuildContext context, int i) {
+                           /* for (int i = 0; i < ; i++) {
+                              _autovalidate=false;
+                            }*/
                             return dynamicTiming(i);
+
                           },
                         ),
                       ),
@@ -683,20 +688,18 @@ class SetReminderState extends State<SetReminder> {
       AppData.showInSnackBar(context, "Please select dosage");
     } else if (SetReminder.timeDayModel == null) {
       AppData.showInSnackBar(context, "Please select how many times");
-    // } else if (stime.text == "" || stime.text == null) {
-    //   AppData.showInSnackBar(context, "Please enter start time");
-    // } else if (endtime.text == "" || endtime.text == null) {
-    //   AppData.showInSnackBar(context, "Please enter end time");
-    } else if (stdob.text == "" || stdob.text == null) {
+    /*} else if (_autovalidate == true) {
+      AppData.showInSnackBar(context, "Please select timings");}*/
+    /*} else if (endtime.text == "" || endtime.text == null) {
+      AppData.showInSnackBar(context, "Please enter end time");
+    }*/ }else if (stdob.text == "" || stdob.text == null) {
       AppData.showInSnackBar(context, "Please enter start date");
     } else if (textEditingController[2].text == "" ||
         textEditingController[2].text == null) {
       AppData.showInSnackBar(context, "Please enter days");
     } else if (int.parse(textEditingController[2].text) < 1) {
       AppData.showInSnackBar(context, "Days should not be less than 1");
-    }  
-
-    else {
+    }else {
       SetReminderModel setReminderModel = SetReminderModel();
       setReminderModel.userId=loginResponse.body.user;
       setReminderModel.medType=textEditingController[0].text;

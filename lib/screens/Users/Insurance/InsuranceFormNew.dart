@@ -298,9 +298,9 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
     setState(() {
       isOnline = connectionStatus.hasConnection;
     });*/
-    organcallAPI();
-    tissuecallAPI();
-    profileAPI();
+    //organcallAPI();
+    //tissuecallAPI();
+    //profileAPI();
   }
   Future<Null> _selectDate1(BuildContext context) async {
     final DateTime picked = await showDatePicker(
@@ -374,47 +374,47 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
     return items;
   }
 
-  profileAPI() {
-    widget.model.GETMETHODCALL_TOKEN(
-      api: ApiFactory.PATIENT_PROFILE + widget.model.loginResponse1.body.user,
-      token: widget.model.token,
-      fun: (Map<String, dynamic> map) {
-        String msg = map[Const.MESSAGE];
-        //String msg = map[Const.MESSAGE];
-        if (map[Const.CODE] == Const.SUCCESS) {
-          setState(() {
-            log("Response from sagar>>>>>" + jsonEncode(map));
-            patientProfileModel = ProfileModel.fromJson(map);
-            textEditingController[0].text = patientProfileModel.body.fullName;
-            textEditingController[2].text = patientProfileModel.body.dob;
-
-            //textEditingController[3].text=patientProfileModel.body.ageYears;
-            textEditingController[4].text = patientProfileModel.body.mobile;
-            textEditingController[5].text = patientProfileModel.body.email;
-            textEditingController[6].text = patientProfileModel.body.address +
-                " , " +
-                patientProfileModel.body.pAddress;
-            textEditingController[15].text = patientProfileModel.body.bloodGroup;
-            //String dob=patientProfileModel.body.dob;
-            textEditingController[3].value = TextEditingValue(
-                text: calculateTimeDif(patientProfileModel.body.dob));
-            //textEditingController[15].text=patientProfileModel.body.bloodGroupId;
-          });
-        } else {
-          setState(() {
-            //isDataNoFound = true;
-          });
-          /* Center(
-            child: Text(
-              'Data Not Found',
-              style: TextStyle(fontSize: 12),
-            ),
-          );*/
-          // AppData.showInSnackBar(context, msg);
-        }
-      },
-    );
-  }
+  // profileAPI() {
+  //   widget.model.GETMETHODCALL_TOKEN(
+  //     api: ApiFactory.PATIENT_PROFILE + widget.model.loginResponse1.body.user,
+  //     token: widget.model.token,
+  //     fun: (Map<String, dynamic> map) {
+  //       String msg = map[Const.MESSAGE];
+  //       //String msg = map[Const.MESSAGE];
+  //       if (map[Const.CODE] == Const.SUCCESS) {
+  //         setState(() {
+  //           log("Response from sagar>>>>>" + jsonEncode(map));
+  //           patientProfileModel = ProfileModel.fromJson(map);
+  //           textEditingController[0].text = patientProfileModel.body.fullName;
+  //           textEditingController[2].text = patientProfileModel.body.dob;
+  //
+  //           //textEditingController[3].text=patientProfileModel.body.ageYears;
+  //           textEditingController[4].text = patientProfileModel.body.mobile;
+  //           textEditingController[5].text = patientProfileModel.body.email;
+  //           textEditingController[6].text = patientProfileModel.body.address +
+  //               " , " +
+  //               patientProfileModel.body.pAddress;
+  //           textEditingController[15].text = patientProfileModel.body.bloodGroup;
+  //           //String dob=patientProfileModel.body.dob;
+  //           textEditingController[3].value = TextEditingValue(
+  //               text: calculateTimeDif(patientProfileModel.body.dob));
+  //           //textEditingController[15].text=patientProfileModel.body.bloodGroupId;
+  //         });
+  //       } else {
+  //         setState(() {
+  //           //isDataNoFound = true;
+  //         });
+  //         /* Center(
+  //           child: Text(
+  //             'Data Not Found',
+  //             style: TextStyle(fontSize: 12),
+  //           ),
+  //         );*/
+  //         // AppData.showInSnackBar(context, msg);
+  //       }
+  //     },
+  //   );
+  // }
   void getContactDetails() async {
     if (await FlutterContacts.requestPermission()) {
       // Get all contacts (lightly fetched)
@@ -533,93 +533,93 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
                 ),
                 onPressed: () {
                   //AppData.showInSnackBar(context, "click");
-                  setState(() {
-                    emergencyMessageModel = EmergencyMessageModel();
-                    emergencyMessageModel.msg = _message.text;
-                    emergencyMessageModel.userid = widget.model.user;
-
-                    print("Value json>>" +
-                        emergencyMessageModel.toJson().toString());
-                    widget.model.POSTMETHOD_TOKEN(
-                        api: ApiFactory.POST_EMERGENCY_MESSAGE,
-                        json: emergencyMessageModel.toJson(),
-                        token: widget.model.token,
-                        fun: (Map<String, dynamic> map) {
-                          //Navigator.pop(context);
-                          if (map[Const.STATUS1] == Const.SUCCESS) {
-                            // popup(context, map[Const.MESSAGE]);
-                            Navigator.pop(context);
-                            //callApi();
-                            AppData.showInSnackDone(
-                                context, map[Const.MESSAGE]);
-                          } else {
-                            // AppData.showInSnackBar(context, map[Const.MESSAGE]);
-                          }
-                        });
-                    /*codeDialog = valueText;
-                    Navigator.pop(context);*/
-                  });
+                  // setState(() {
+                  //   emergencyMessageModel = EmergencyMessageModel();
+                  //   emergencyMessageModel.msg = _message.text;
+                  //   emergencyMessageModel.userid = widget.model.user;
+                  //
+                  //   print("Value json>>" +
+                  //       emergencyMessageModel.toJson().toString());
+                  //   widget.model.POSTMETHOD_TOKEN(
+                  //       api: ApiFactory.POST_EMERGENCY_MESSAGE,
+                  //       json: emergencyMessageModel.toJson(),
+                  //       token: widget.model.token,
+                  //       fun: (Map<String, dynamic> map) {
+                  //         //Navigator.pop(context);
+                  //         if (map[Const.STATUS1] == Const.SUCCESS) {
+                  //           // popup(context, map[Const.MESSAGE]);
+                  //           Navigator.pop(context);
+                  //           //callApi();
+                  //           AppData.showInSnackDone(
+                  //               context, map[Const.MESSAGE]);
+                  //         } else {
+                  //           // AppData.showInSnackBar(context, map[Const.MESSAGE]);
+                  //         }
+                  //       });
+                  //   /*codeDialog = valueText;
+                  //   Navigator.pop(context);*/
+                  // });
                 },
               ),
             ],
           );
         });
   }
-  tissuecallAPI() {
-    widget.model.GETMETHODCALL_TOKEN(
-      api: ApiFactory.TISSUE_API,
-      token: widget.model.token,
-      fun: (Map<String, dynamic> map) {
-        String msg = map[Const.MESSAGE];
-        //String msg = map[Const.MESSAGE];
-        if (map[Const.CODE] == Const.SUCCESS) {
-          setState(() {
-            log("Response from sagar>>>>>" + jsonEncode(map));
-            tissueModel = TissueModel.fromJson(map);
-          });
-        } else {
-          setState(() {
-            //isDataNoFound = true;
-          });
-          /* Center(
-            child: Text(
-              'Data Not Found',
-              style: TextStyle(fontSize: 12),
-            ),
-          );*/
-          // AppData.showInSnackBar(context, msg);
-        }
-      },
-    );
-  }
+  // tissuecallAPI() {
+  //   widget.model.GETMETHODCALL_TOKEN(
+  //     api: ApiFactory.TISSUE_API,
+  //     token: widget.model.token,
+  //     fun: (Map<String, dynamic> map) {
+  //       String msg = map[Const.MESSAGE];
+  //       //String msg = map[Const.MESSAGE];
+  //       if (map[Const.CODE] == Const.SUCCESS) {
+  //         setState(() {
+  //           log("Response from sagar>>>>>" + jsonEncode(map));
+  //           tissueModel = TissueModel.fromJson(map);
+  //         });
+  //       } else {
+  //         setState(() {
+  //           //isDataNoFound = true;
+  //         });
+  //         /* Center(
+  //           child: Text(
+  //             'Data Not Found',
+  //             style: TextStyle(fontSize: 12),
+  //           ),
+  //         );*/
+  //         // AppData.showInSnackBar(context, msg);
+  //       }
+  //     },
+  //   );
+  // }
 
-  organcallAPI() {
-    widget.model.GETMETHODCALL_TOKEN(
-      api: ApiFactory.ORGAN_API,
-      token: widget.model.token,
-      fun: (Map<String, dynamic> map) {
-        String msg = map[Const.MESSAGE];
-        //String msg = map[Const.MESSAGE];
-        if (map[Const.CODE] == Const.SUCCESS) {
-          setState(() {
-            log("Response from sagar>>>>>" + jsonEncode(map));
-            organModel = OrganModel.fromJson(map);
-          });
-        } else {
-          setState(() {
-            //  isDataNoFound = true;
-          });
-          /* Center(
-            child: Text(
-              'Data Not Found',
-              style: TextStyle(fontSize: 12),
-            ),
-          );*/
-          // AppData.showInSnackBar(context, msg);
-        }
-      },
-    );
-  }
+  // organcallAPI() {
+  //   widget.model.GETMETHODCALL_TOKEN(
+  //     api: ApiFactory.ORGAN_API,
+  //     token: widget.model.token,
+  //     fun: (Map<String, dynamic> map) {
+  //       String msg = map[Const.MESSAGE];
+  //       //String msg = map[Const.MESSAGE];
+  //       if (map[Const.CODE] == Const.SUCCESS) {
+  //         setState(() {
+  //           log("Response from sagar>>>>>" + jsonEncode(map));
+  //           organModel = OrganModel.fromJson(map);
+  //         });
+  //       } else {
+  //         setState(() {
+  //           //  isDataNoFound = true;
+  //         });
+  //         /* Center(
+  //           child: Text(
+  //             'Data Not Found',
+  //             style: TextStyle(fontSize: 12),
+  //           ),
+  //         );*/
+  //         // AppData.showInSnackBar(context, msg);
+  //       }
+  //     },
+  //   );
+  // }
 
   void connectionChanged(dynamic hasConnection) {
     setState(() {
@@ -647,8 +647,11 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
             child: Column(
               children: [
                 SizedBox(
-                  height: 10,
+                  height: 15,
                 ),
+                Text("*  Aditya Birla Health Insurance",style: TextStyle(
+                    fontSize: 20,color: Colors.blue),),
+                SizedBox(height: 10),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: TextFormField(
@@ -870,7 +873,7 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
                     });
                   }),
                 ):Container(),
-                SizedBox(height: 8),
+
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: TextFormField(
@@ -951,10 +954,6 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
                   ),
                 ),
                 SizedBox(height: 20),
-
-
-
-
                 // (patientProfileModel != null &&
                 //     patientProfileModel.body.dob != null)
                 //     ? Padding(
@@ -1603,7 +1602,7 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
         text: MyLocalizations.of(context).text("SUBMIT"),
         context: context,
         fun: () {
-          //Navigator.pushNamed(context, "/addWitness");
+          Navigator.pushNamed(context, "/dashboard");
           // if (textEditingController[0].text == "" ||
           //     textEditingController[0].text == null) {
           //   AppData.showInSnackBar(context, "Please enter name");
