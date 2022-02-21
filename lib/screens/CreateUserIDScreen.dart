@@ -52,6 +52,11 @@ class _CreateUserIDScreenState extends State<CreateUserIDScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 30),
               child: TextFormField(
                 controller: _uhid,
+                inputFormatters: [
+                  //UpperCaseTextFormatter(),
+                  // ignore: deprecated_member_use
+                  WhitelistingTextInputFormatter(RegExp("[0-9]")),
+                ],
                 decoration: InputDecoration(
                   hintText:MyLocalizations.of(context).text("UHID_NO"),
                 ),
@@ -75,11 +80,11 @@ class _CreateUserIDScreenState extends State<CreateUserIDScreen> {
               child: TextFormField(
                 controller: _userid,
                 keyboardType: TextInputType.text,
-                // inputFormatters: [
-                //   //UpperCaseTextFormatter(),
-                //   // ignore: deprecated_member_use
-                //   WhitelistingTextInputFormatter(RegExp("[0-9]")),
-                // ],
+                inputFormatters: [
+                  //UpperCaseTextFormatter(),
+                  // ignore: deprecated_member_use
+                  WhitelistingTextInputFormatter(RegExp("[0-9]")),
+                ],
                 decoration: InputDecoration(
                   counterText: "",
                   hintText:'Create User ID',
