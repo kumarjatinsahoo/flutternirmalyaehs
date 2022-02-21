@@ -676,7 +676,7 @@ class SetReminderState extends State<SetReminder> {
 
     bool isAllDateFill=true;
     if(SetReminder.timeDayModel != null) {
-      for (int i = 0; i <= int.tryParse(SetReminder.timeDayModel.name); i++) {
+      for (int i = 0; i <int.tryParse(SetReminder.timeDayModel.name); i++) {
         if (timePicker[i].text == "") {
           isAllDateFill = false;
           break;
@@ -694,10 +694,10 @@ class SetReminderState extends State<SetReminder> {
     } else if (SetReminder.dosageModel == null) {
       AppData.showInSnackBar(context, "Please select dosage");
     } else if (SetReminder.timeDayModel == null) {
-      AppData.showInSnackBar(context, "Please select how many times");
-   /* }else if (isAllDateFill == true) {
+      AppData.showInSnackBar(context, "Please select reminder time");
+    }else if (!isAllDateFill) {
       AppData.showInSnackBar(context, "Please enter timings");
-    }*/}else if (stdob.text == "" || stdob.text == null) {
+    }else if (stdob.text == "" || stdob.text == null) {
       AppData.showInSnackBar(context, "Please enter start date");
     } else if (textEditingController[2].text == "" ||
         textEditingController[2].text == null) {
