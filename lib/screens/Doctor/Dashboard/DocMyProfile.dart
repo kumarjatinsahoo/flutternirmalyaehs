@@ -2257,7 +2257,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
                 SizedBox(
                   height: 6.0,
                 ),
-                Text(MyLocalizations.of(context).text("AADHAAR_NO")
+                Text(MyLocalizations.of(context).text("AADHAAR_NO1")
                  + ": " + profileModel1.body.aadhaar ?? "N/A",
                   style: TextStyle(color: Colors.white, fontSize: 14),
                   textAlign: TextAlign.center,
