@@ -195,7 +195,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
     // comeFrom = widget.model.apntUserType;
     loginResponse1 = widget.model.loginResponse1;
     id = base64.encode(utf8.encode(loginResponse1.body.user));
-
+    /*String id1 =loginResponse1.body.user;
+    id1.substring(1,3);
+    log("Valuedgfcgrbhgjktgnkfjjhiory>>>" + id1);*/
     setState(() {
       callApi();
     });
@@ -1543,6 +1545,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           size: 20,
                         ),
                         SizedBox(width: 10),
+                        (loginResponse1.body.userCountryId=="208")?
+                        Expanded(
+                          flex: 1,
+                          child: Text("NIC No",
+                            /*'Confirmed'*/
+                            style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 15,
+                            ),
+                          ),
+                        ):
                         Expanded(
                           flex: 1,
                           child: Text(MyLocalizations.of(context).text("AADHAAR_NO1"),
@@ -1553,12 +1566,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             ),
                           ),
                         ),
+
                         SizedBox(width: 10),
                         Expanded(
                           flex: 1,
+
                           child: Text(
                             (patientProfileModel?.body?.adharno ?? "N/A"),
                             style: TextStyle(fontSize: 14
+
                                 //fontWeight: FontWeight.w500,
                                 // color: AppData.kPrimaryColor,
                                 ),
