@@ -4482,8 +4482,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           shrinkWrap: true,
                           itemBuilder: (c, i) {
                             return ListTile(
-                              title: Text(foundUser[i].displayName),
-                              subtitle: Text((foundUser[i]?.phones[0]?.number??"")),
+                               title: Text((foundUser[i].displayName.isNotEmpty)?foundUser[i].displayName:"N/A"),
+                              // subtitle: Text((foundUser[i]?.phones[0]?.number??"")),
+                               subtitle:  Text((foundUser[i].phones.isNotEmpty)?foundUser[i].phones[0].number.toString():"N/A"),
                               onTap: (){
 
                                 log("Selected Response>>>"+list[i].toString());
