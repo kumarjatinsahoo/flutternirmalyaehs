@@ -97,7 +97,7 @@ class _MonthlyOverviewlistState extends State<MonthlyOverviewlist> {
     }else if(widget.model.apntUserType == Const.TREATED){
       widget.model.GETMETHODCALL_TOKEN(
           api: ApiFactory.GET_DOCTEROVERVIEWLIST + loginResponse.body.user +
-              "&status=" + "5" + "&frmdt=" + widget.model.wfromdate + "&todt=" +
+              "&status=" + "4" + "&frmdt=" + widget.model.wfromdate + "&todt=" +
               widget.model.wtodate,
           token: widget.model.token,
           fun: (Map<String, dynamic> map) {
