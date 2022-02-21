@@ -24,6 +24,7 @@ class _ConfirmOrdersLabState extends State<ConfirmOrdersLab> {
   int _selectedDestination = -1;
   LoginResponse1 loginResponse;
   bool isDataNotAvail = false;
+  bool isdata = false;
   oderlist.PharmacyorderModel pharmacyorderModel;
   void selectDestination(int index) {
     setState(() {
@@ -50,11 +51,13 @@ class _ConfirmOrdersLabState extends State<ConfirmOrdersLab> {
             if (map[Const.CODE] == Const.SUCCESS) {
               setState(() {
                 pharmacyorderModel = oderlist.PharmacyorderModel.fromJson(map);
+                isdata=false;
               });
 
             } else {
-              isDataNotAvail = true;
-              AppData.showInSnackBar(context, msg);
+              isdata=false;
+            /*  isDataNotAvail = true;
+              AppData.showInSnackBar(context, msg);*/
             }
           });
         });
@@ -78,197 +81,215 @@ class _ConfirmOrdersLabState extends State<ConfirmOrdersLab> {
         ],
       ),*/
       body:
-      (pharmacyorderModel != null)
-      ?  ListView.builder(
-        //physics: NeverScrollableScrollPhysics(),
-        // controller: _scrollController,
-        shrinkWrap: true,
-        itemBuilder: (context, i) {
-          if (i == pharmacyorderModel.body.length) {
-            return (pharmacyorderModel.body.length % 10 == 0)
-                ? CupertinoActivityIndicator()
-                : Container();
-          }
-          oderlist.Body body = pharmacyorderModel.body[i];
-            return Padding(
-              padding: const EdgeInsets.only(left: 15,right: 15,top: 15),
-              child: Card(
-                child: Container(
-                  //height: height * 0.30,
-                  // color: Colors.grey[200],
-                  child: Column(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                            gradient: LinearGradient(colors: [
-                          Colors.blueGrey[50],
-                          Colors.blue[50]
-                        ])),
-                        child: Padding(
-                          padding: const EdgeInsets.only(
-                              left: 10.0, right: 10.0, top: 10, bottom: 5),
-                          child: InkWell(
-                            onTap: () {
-                              widget.model.pharmacyorderModel=body;
-                              Navigator.pushNamed(context, "/orderDetails");
-                            },
-                            child: Row(
-                              mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                               /* Expanded(
-                                  child: Image.asset(
-                                    'assets/discount2.jpg',
-                                    width: width * 0.4,
-                                    // height: height,
-                                    height: height * 0.17,
-                                    fit: BoxFit.cover,
+      /*(pharmacyorderModel != null)
+      ? */
+      isdata == true
+          ? Center(
+        child: CircularProgressIndicator(
+          //backgroundColor: AppData.matruColor,
+        ),
+      )
+          : pharmacyorderModel == null || pharmacyorderModel == null
+          ? Container(
+        child: Center(
+            child:Image.asset("assets/NoRecordFound.png",
+              // height: 25,
+            )
+        ),
+      )
+          : (pharmacyorderModel != null)
+          ?SingleChildScrollView(
+          child: ListView.builder(
+          //physics: NeverScrollableScrollPhysics(),
+          // controller: _scrollController,
+          shrinkWrap: true,
+          itemBuilder: (context, i) {
+            if (i == pharmacyorderModel.body.length) {
+              return (pharmacyorderModel.body.length % 10 == 0)
+                  ? CupertinoActivityIndicator()
+                  : Container();
+            }
+            oderlist.Body body = pharmacyorderModel.body[i];
+              return Padding(
+                padding: const EdgeInsets.only(left: 15,right: 15,top: 15),
+                child: Card(
+                  child: Container(
+                    //height: height * 0.30,
+                    // color: Colors.grey[200],
+                    child: Column(
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                              gradient: LinearGradient(colors: [
+                            Colors.blueGrey[50],
+                            Colors.blue[50]
+                          ])),
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                                left: 10.0, right: 10.0, top: 10, bottom: 5),
+                            child: InkWell(
+                              onTap: () {
+                                widget.model.pharmacyorderModel=body;
+                                Navigator.pushNamed(context, "/orderDetails");
+                              },
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                 /* Expanded(
+                                    child: Image.asset(
+                                      'assets/discount2.jpg',
+                                      width: width * 0.4,
+                                      // height: height,
+                                      height: height * 0.17,
+                                      fit: BoxFit.cover,
+                                    ),
                                   ),
-                                ),
-                                SizedBox(
-                                  width: size.width * 0.05,
-                                ),*/
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        body.name,
-                                        overflow: TextOverflow.clip,
-                                        maxLines: 2,
-                                        style: TextStyle(
-                                            fontSize: 17,
-                                            fontWeight: FontWeight.w600),
-                                      ),
-                                      SizedBox(
-                                        height: 7,
-                                      ),
-                                      Row(
-                                        children: [
-                                          Icon(
-                                            Icons.calendar_today,
-                                            size: 14,
-                                            color: Colors.blue,
-                                          ),
-                                          SizedBox(
-                                            width: 5,
-                                          ),
-                                          Text(
-                                            body.date,
-                                            textAlign: TextAlign.right,
-                                          ),
-                                        ],
-                                      ),
-                                      SizedBox(
-                                        height: size.height * 0.01,
-                                      ),
-                                      Row(
-                                        children: [
-                                          Icon(
-                                            Icons.alarm,
-                                            size: 15,
-                                            color: Colors.blue,
-                                          ),
-                                          SizedBox(
-                                            width: 5,
-                                          ),
-                                          Text(
-                                            body.time,
-                                            textAlign: TextAlign.right,
-                                          ),
-                                        ],
-                                      ),
-                                      SizedBox(
-                                        height: size.height * 0.01,
-                                      ),
-                                      Text(
-                                        'Order ID: ',
-                                        style: TextStyle(
-                                            color: Colors.blue,
-                                            fontWeight: FontWeight.w600),
-                                      ),
-                                      SizedBox(
-                                        height: 5,
-                                      ),
-                                      Text(
-                                        body.orderid,
-                                        overflow: TextOverflow.clip,
-                                        maxLines: 2,
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w600),
-                                      ),
-                                      SizedBox(
-                                        height: 4,
-                                      ),
-                                      Text(
-                                        'Address: ',
-                                        style: TextStyle(
-                                            color: Colors.blue,
-                                            fontWeight: FontWeight.w600),
-                                      ),
-                                      SizedBox(
-                                        height: 3,
-                                      ),
-                                      Text(
-                                        body.address,
-                                        overflow: TextOverflow.clip,
-                                        maxLines: 2,
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w600),
-                                      ),
-                                    ],
+                                  SizedBox(
+                                    width: size.width * 0.05,
+                                  ),*/
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          body.name,
+                                          overflow: TextOverflow.clip,
+                                          maxLines: 2,
+                                          style: TextStyle(
+                                              fontSize: 17,
+                                              fontWeight: FontWeight.w600),
+                                        ),
+                                        SizedBox(
+                                          height: 7,
+                                        ),
+                                        Row(
+                                          children: [
+                                            Icon(
+                                              Icons.calendar_today,
+                                              size: 14,
+                                              color: Colors.blue,
+                                            ),
+                                            SizedBox(
+                                              width: 5,
+                                            ),
+                                            Text(
+                                              body.date,
+                                              textAlign: TextAlign.right,
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(
+                                          height: size.height * 0.01,
+                                        ),
+                                        Row(
+                                          children: [
+                                            Icon(
+                                              Icons.alarm,
+                                              size: 15,
+                                              color: Colors.blue,
+                                            ),
+                                            SizedBox(
+                                              width: 5,
+                                            ),
+                                            Text(
+                                              body.time,
+                                              textAlign: TextAlign.right,
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(
+                                          height: size.height * 0.01,
+                                        ),
+                                        Text(
+                                          'Order ID: ',
+                                          style: TextStyle(
+                                              color: Colors.blue,
+                                              fontWeight: FontWeight.w600),
+                                        ),
+                                        SizedBox(
+                                          height: 5,
+                                        ),
+                                        Text(
+                                          body.orderid,
+                                          overflow: TextOverflow.clip,
+                                          maxLines: 2,
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w600),
+                                        ),
+                                        SizedBox(
+                                          height: 4,
+                                        ),
+                                        Text(
+                                          'Address: ',
+                                          style: TextStyle(
+                                              color: Colors.blue,
+                                              fontWeight: FontWeight.w600),
+                                        ),
+                                        SizedBox(
+                                          height: 3,
+                                        ),
+                                        Text(
+                                          body.address,
+                                          overflow: TextOverflow.clip,
+                                          maxLines: 2,
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w600),
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      //Spacer(),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10,
-                            left: 10.0, right: 10.0, bottom: 10),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Expanded(
-                              child: InkWell(
-                                onTap: (){
-                                },
-                                child: Container(
-                                  height: size.height * 0.06,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(5),
-                                      border: Border.all(color: Colors.black12),
-                                      color: Colors.blue),
-                                  child: RaisedButton(
-                                    onPressed: null,
-                                    child: Text(
-                                      'Accepted',
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w400),
+                        //Spacer(),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10,
+                              left: 10.0, right: 10.0, bottom: 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: InkWell(
+                                  onTap: (){
+                                  },
+                                  child: Container(
+                                    height: size.height * 0.06,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(5),
+                                        border: Border.all(color: Colors.black12),
+                                        color: Colors.blue),
+                                    child: RaisedButton(
+                                      onPressed: null,
+                                      child: Text(
+                                        'Accepted',
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w400),
+                                      ),
+                                      disabledColor: Colors.blue[600],
                                     ),
-                                    disabledColor: Colors.blue[600],
                                   ),
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                      )
-                    ],
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            );
-          },
-        itemCount: pharmacyorderModel.body.length,
+              );
+            },
+          itemCount: pharmacyorderModel.body.length,
       )
-          : Container(),
+
+    ) : Container(),
     );
   }
 
