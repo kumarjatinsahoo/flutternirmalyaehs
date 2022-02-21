@@ -52,12 +52,15 @@ class _CreateUserIDScreenState extends State<CreateUserIDScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 30),
               child: TextFormField(
                 controller: _uhid,
+                keyboardType: TextInputType.number,
+                maxLength: 16,
                 inputFormatters: [
                   //UpperCaseTextFormatter(),
                   // ignore: deprecated_member_use
                   WhitelistingTextInputFormatter(RegExp("[0-9]")),
                 ],
                 decoration: InputDecoration(
+                  counterText: "",
                   hintText:MyLocalizations.of(context).text("UHID_NO"),
                 ),
               ),
@@ -79,7 +82,8 @@ class _CreateUserIDScreenState extends State<CreateUserIDScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 30),
               child: TextFormField(
                 controller: _userid,
-                keyboardType: TextInputType.text,
+                keyboardType: TextInputType.number,
+                maxLength: 15,
                 inputFormatters: [
                   //UpperCaseTextFormatter(),
                   // ignore: deprecated_member_use
@@ -139,11 +143,13 @@ class _CreateUserIDScreenState extends State<CreateUserIDScreen> {
       fun: () {        
         if (_uhid.text == null || _uhid.text == "") {
           AppData.showInSnackBar(context, "Please enter UHID no");
-        } 
-        else if (_userid.text == "" || _userid.text == null) {
-          AppData.showInSnackBar(context, "Please enter userid");
-        }  
-       
+        }else if (_uhid.text == "" || _uhid.text.length !=16) {
+            AppData.showInSnackBar(context, "Please enter valid UHID no");
+        } else if (_userid.text == "" || _userid.text == null) {
+          AppData.showInSnackBar(context, "Please enter user id");
+        } else if (_userid.text == "" || _userid.text.length <= 7) {
+          AppData.showInSnackBar(context, "Please enter valid user id");
+        }
         else{
           //  MyWidgets.showLoading(context);
        widget.model.GETMETHODCALL(
