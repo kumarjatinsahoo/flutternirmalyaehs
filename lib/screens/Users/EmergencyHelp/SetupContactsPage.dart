@@ -1142,7 +1142,7 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
     } catch (e) {}*/
 
     List<Contact> contacts = await ContactsService.getContacts();
-    log(jsonEncode(contacts[5].toMap()));
+    log("My contacts"+jsonEncode(contacts[5].toMap()));
     _displayContact(context, contacts);
   }
 

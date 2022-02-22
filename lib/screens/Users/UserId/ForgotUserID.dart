@@ -41,7 +41,7 @@ class _ForgotUserIDState extends State<ForgotUserID> {
              color: Colors.white,
            ),*/
         title: Text(
-          MyLocalizations.of(context).text("FORGOT_USERID"),
+          MyLocalizations.of(context).text("FORGOT_USERID1"),
           style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
