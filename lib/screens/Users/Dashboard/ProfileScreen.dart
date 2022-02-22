@@ -4468,7 +4468,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           controller: textEditingController[index],
           textAlignVertical: TextAlignVertical.center,
           inputFormatters: [
-            WhitelistingTextInputFormatter(RegExp("[a-z A-Z.]")),
+            WhitelistingTextInputFormatter(RegExp("[a-zA-Z. ]")),
           ],
         ),
       ),
