@@ -1008,6 +1008,7 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                                         (foundUser[i].phones.isNotEmpty)
                                             ? foundUser[i]
                                                 .phones[0]
+                                        .value
                                                 .toString()
                                             : "N/A"),
                                     onTap: () {
@@ -1142,7 +1143,7 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
     } catch (e) {}*/
 
     List<Contact> contacts = await ContactsService.getContacts();
-    log("My contacts"+jsonEncode(contacts[5].toMap()));
+    // log(jsonEncode(contacts[5].toMap()));
     _displayContact(context, contacts);
   }
 
