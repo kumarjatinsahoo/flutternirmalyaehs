@@ -102,10 +102,10 @@ class _CountDownPageState extends State<CountDownPage>
         token: widget.model.token,
         json: postmap,
         fun: (Map<String, dynamic> map) {
-          print("Narmada is>>>>" +
+          print("google Api>>>>" +
               ApiFactory.googleMapUrl(
                   longi: widget.model.longi, lati: widget.model.lati) +
-              ' s ' +
+              ' ' +
               widget.model.longi);
           setState(() {
             String msg = map[Const.MESSAGE];
