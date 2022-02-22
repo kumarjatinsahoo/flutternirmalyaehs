@@ -41,7 +41,7 @@ class _SplashScreenState extends State<SplashScreen> {
   var phnNostr, passWordstr;
   String selectedLan = "";
   String androidVersion;
-  String iosVersion = "2.0.0";
+  String iosVersion = "2.0.0 ";
 
   /*@override
   void initState() {
