@@ -704,7 +704,7 @@ class _MedicineList extends State<UserMedicineList> {
     data['userid'] = loginResponse1.body.user;
     data['pharmacistid'] = (UserMedicineList.pharmacyModel != null)
         ? UserMedicineList.pharmacyModel.key : selectPharma;
-    data['patientnote'] = textEditingController[0].text;
+    data['patientnote'] = textEditingController[1].text;
     data['meddetails'] = this.selectedMedicine.map((v) => v.toJson1()).toList();
     return data;
   }

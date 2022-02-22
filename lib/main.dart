@@ -844,6 +844,10 @@ class _MyAppState extends State<MyApp> {
               '/loginFBandGooglePage': (context) => LoginFBandGooglePage(
                 model: _model,
               ),
+              '/disitalPrescriptionPage': (context) => DisitalPrescriptionPage(
+                model: _model,
+              ),
+
 
               //////////////////DOCTOR USER//////////////////////
               /*   '/dashDoctor': (context) => DasboardDoctor(
