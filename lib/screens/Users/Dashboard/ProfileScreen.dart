@@ -4494,6 +4494,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     //   }*/
 
     // }
+     MyWidgets.showLoading(context);
      List<Contact> contacts = await ContactsService.getContacts();
     // log(jsonEncode(contacts[5].toMap()));
     _displayContact(context, contacts);
@@ -4563,6 +4564,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   (widget.model.apntUserType == Const.HEALTH_SCREENING_USER_APNT) ?
                                 textEditingController[14].text=foundUser[i]?.phones[0]?.value.replaceAll(" ", "").replaceAll("-", "").replaceAll("+91", "")??"".replaceAll("+", "")??"".toString():textEditingController[16].text=foundUser[i]?.phones[0]?.value.replaceAll(" ", "").replaceAll("-", "").replaceAll("+91", "")??"".replaceAll("+", "")??"".toString();
                                 //_mobile.text=list[i]?.phones[0]?.number.replaceAll(" ":"", "").replaceAll("-", "")??"".toString();
+                                Navigator.pop(context);
                                 Navigator.pop(context);
                               },
                             );
