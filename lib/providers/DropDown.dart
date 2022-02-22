@@ -4,7 +4,6 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_contacts/contact.dart';
 import 'package:user/models/DoctoreModel.dart';
 import 'package:user/models/ShareApntModel.dart';
 import 'package:user/models/TimeScheduleModel.dart';
@@ -979,68 +978,68 @@ class DropDown {
     ));
   }
 
-  static staticContactDropdown(
-      String label, String callFrom, List<Contact> list, fun) {
-    return inputFieldContainer(DropdownSearch<Contact>(
-      mode: Mode.BOTTOM_SHEET,
-      searchBoxDecoration: InputDecoration(
-        hintText: "Search here",
-        hintStyle: TextStyle(color: Colors.grey),
-        contentPadding: EdgeInsets.only(left: 15),
-        border: OutlineInputBorder(
-          borderSide: const BorderSide(color: Colors.green, width: 3.0),
-          borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(3.0),
-              bottomRight: Radius.circular(3.0),
-              topRight: Radius.circular(3.0),
-              topLeft: Radius.circular(3.0)),
-        ),
-      ),
-      dropdownSearchDecoration: InputDecoration(
-        // filled: true,
-        isDense: true,
-        disabledBorder: InputBorder.none,
-        // border: InputBorder.none,
-        enabledBorder: const OutlineInputBorder(
-          borderSide: const BorderSide(color: Colors.transparent, width: 0.0),
-        ),
-        border: OutlineInputBorder(
-            borderSide: const BorderSide(color: Colors.transparent, width: 0.0),
-            borderRadius: BorderRadius.circular(29)),
-        floatingLabelBehavior: FloatingLabelBehavior.never,
-        contentPadding: EdgeInsets.all(0),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.all(Radius.circular(29)),
-          borderSide: BorderSide(width: 0, color: AppData.kPrimaryLightColor),
-        ),
-      ),
-      errorBuilder: (cg, value, v) {
-        return Material(
-            child: Container(
-                alignment: Alignment.center,
-                child: Text(
-                  "No Data Found",
-                  style: TextStyle(color: Colors.black),
-                )));
-      },
-      emptyBuilder: (context, searchEntry) {
-        return Material(
-          child: Center(
-            child: Text(
-              "No Data Found",
-              style: TextStyle(color: Colors.black),
-            ),
-          ),
-        );
-      },
-      label: label,
-      showSearchBox: true,
-      items: list,
-      onChanged: (Contact data) {
-        fun(data);
-      },
-    ));
-  }
+  // static staticContactDropdown(
+  //     String label, String callFrom, List<Contact> list, fun) {
+  //   return inputFieldContainer(DropdownSearch<Contact>(
+  //     mode: Mode.BOTTOM_SHEET,
+  //     searchBoxDecoration: InputDecoration(
+  //       hintText: "Search here",
+  //       hintStyle: TextStyle(color: Colors.grey),
+  //       contentPadding: EdgeInsets.only(left: 15),
+  //       border: OutlineInputBorder(
+  //         borderSide: const BorderSide(color: Colors.green, width: 3.0),
+  //         borderRadius: BorderRadius.only(
+  //             bottomLeft: Radius.circular(3.0),
+  //             bottomRight: Radius.circular(3.0),
+  //             topRight: Radius.circular(3.0),
+  //             topLeft: Radius.circular(3.0)),
+  //       ),
+  //     ),
+  //     dropdownSearchDecoration: InputDecoration(
+  //       // filled: true,
+  //       isDense: true,
+  //       disabledBorder: InputBorder.none,
+  //       // border: InputBorder.none,
+  //       enabledBorder: const OutlineInputBorder(
+  //         borderSide: const BorderSide(color: Colors.transparent, width: 0.0),
+  //       ),
+  //       border: OutlineInputBorder(
+  //           borderSide: const BorderSide(color: Colors.transparent, width: 0.0),
+  //           borderRadius: BorderRadius.circular(29)),
+  //       floatingLabelBehavior: FloatingLabelBehavior.never,
+  //       contentPadding: EdgeInsets.all(0),
+  //       focusedBorder: OutlineInputBorder(
+  //         borderRadius: BorderRadius.all(Radius.circular(29)),
+  //         borderSide: BorderSide(width: 0, color: AppData.kPrimaryLightColor),
+  //       ),
+  //     ),
+  //     errorBuilder: (cg, value, v) {
+  //       return Material(
+  //           child: Container(
+  //               alignment: Alignment.center,
+  //               child: Text(
+  //                 "No Data Found",
+  //                 style: TextStyle(color: Colors.black),
+  //               )));
+  //     },
+  //     emptyBuilder: (context, searchEntry) {
+  //       return Material(
+  //         child: Center(
+  //           child: Text(
+  //             "No Data Found",
+  //             style: TextStyle(color: Colors.black),
+  //           ),
+  //         ),
+  //       );
+  //     },
+  //     label: label,
+  //     showSearchBox: true,
+  //     items: list,
+  //     onChanged: (Contact data) {
+  //       fun(data);
+  //     },
+  //   ));
+  // }
 
   static employeeInfo() {
     return inputFieldContainer(Padding(
