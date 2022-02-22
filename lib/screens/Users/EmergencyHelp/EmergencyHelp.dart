@@ -8,6 +8,7 @@ import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:geolocator/geolocator.dart' as loca;
 import 'package:lottie/lottie.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/GooglePlaceSearchModell.dart';
 import 'package:user/models/GooglePlacesModel.dart';
@@ -69,18 +70,32 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
   }
 
   _getLocationName() async {
+    print('INNNNNNNN >>>>>>>>>>>>>>>>>>:');
     Position position = await Geolocator()
         .getCurrentPosition(desiredAccuracy: loca.LocationAccuracy.high);
     this.position = position;
-    debugPrint('location: ${position.latitude}');
+    // debugPrint('location: ${position.latitude}');
     print('location>>>>>>>>>>>>>>>>>>: ${position.latitude}');
-    latitude = position.latitude.toString();
-    longitude = position.longitude.toString();
-
-    callAmbulance();
-
-    print('============== ' +
+  //  latitude =position.latitude.toString();
+  //  longitude = position.longitude.toString();
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    
+    if((position.latitude != null || position.latitude != "") || (position.longitude != null || position.longitude != "")){
+      await preferences.setString("Latitude", position.latitude.toString());
+      await preferences.setString("Longitude", position.longitude.toString());       
+      latitude = preferences.getString("Latitude");
+   longitude = preferences.getString("Longitude");  
+   print('======111======== ' +
+        ApiFactory.googleMapUrl(lati: latitude, longi: longitude));  
+      return true;
+    } 
+    else{
+      print('======222222======== ' +
         ApiFactory.googleMapUrl(lati: latitude, longi: longitude));
+    }
+    
+    callAmbulance();      
+    
     try {
       final coordinates =
           new Coordinates(position.latitude, position.longitude);
@@ -389,12 +404,22 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                                 widget.model.longi = latitude;
                                 widget.model.lati = longitude;
                                 widget.model.city = cityName;
+                                print('longi ___ lati + ' + widget.model.longi + '' + widget.model.lati);
                                 // widget.model.emgmobile = emergencyHelpModel.emergency[0].mobile;
                                 // widget.model.placeIdno = googlePlaceModel?.results[0]?.placeId;
                                 /*googlePlaceModel==null?widget.model.placeIdno = googlePlaceModel?.results[0]?.placeId
                                 : widget.model.placeIdno1 = googlePlaceModel?.results[0]?.placeId;*/
-
-                                Navigator.pushNamed(context, "/countDown");
+                              // if(latitude == null){
+                              //    setState(() {
+                              //       Center(child: CircularProgressIndicator());
+                              //   });
+                                
+                              // }
+                              // else{
+                               Navigator.pushNamed(context, "/countDown");
+                              // }
+                            
+                                
                                 // callHelpBtn();
                               },
                               child: Container(
