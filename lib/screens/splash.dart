@@ -41,7 +41,7 @@ class _SplashScreenState extends State<SplashScreen> {
   var phnNostr, passWordstr;
   String selectedLan = "";
   String androidVersion;
-  String iosVersion = "2.0.0";
+  String iosVersion = "7";
 
   /*@override
   void initState() {
@@ -290,7 +290,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 alignment: Alignment.bottomCenter,
                 child: Text(
                   Platform.isAndroid?
-                  ("Version: "+ _packageInfo.version):("Version: "+ "2.0.0"),
+                  ("Version: "+ _packageInfo.version):("Version: "+ Const.IOS_VERSION),
                   style: TextStyle(
                       color: AppData.kPrimaryColor,
                       fontSize: 15.0,
@@ -388,8 +388,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void navigationPage() async {
     //SharedPref sharedPref = SharedPref();
     try {
-      if (androidVersion != null && iosVersion!=null &&
-          int.tryParse((Platform.isAndroid)?androidVersion:iosVersion) > int.tryParse((Platform.isAndroid)?Const.ANDROID:Const.IOS)) {
+      if (androidVersion != null && iosVersion!=null && int.tryParse((Platform.isAndroid)?androidVersion:iosVersion) > int.tryParse((Platform.isAndroid)?Const.ANDROID:Const.IOS)) {
         // log("Out login>>>>>>>");
         showDialog(
           context: context,

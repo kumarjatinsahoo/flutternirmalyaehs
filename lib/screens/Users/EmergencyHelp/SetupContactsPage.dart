@@ -826,7 +826,7 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                             hintText: MyLocalizations.of(context).text("NAME"),
                             suffixIcon: InkWell(
                               onTap: () {
-                                isloading = false;
+                                // isloading = false;
                                 // Navigator.pop(context);
                                 getContactDetails();
                               },

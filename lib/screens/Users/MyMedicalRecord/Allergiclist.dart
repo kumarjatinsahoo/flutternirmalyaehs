@@ -62,7 +62,7 @@ class _AllergicListListState extends State<AllergicListList> {
   LoginResponse1 loginResponse;
   bool isDataNoFound = false;
   allergic.AllergicModel allergicModel;
-  bool isdata = false;
+  bool isdata = true;
 
   @override
   void initState() {
@@ -137,21 +137,22 @@ class _AllergicListListState extends State<AllergicListList> {
             ),
             body: isdata == true
                 ? Container(
-                        child: Center(
-                          child: Image.asset("assets/NoRecordFound.png",
-                                              // height: 25,
-                          )
-                        ),
-                      )
+            child:
+            Center(
+            child: CircularProgressIndicator(
+            backgroundColor: AppData.matruColor,
+            ),
+            )
+            )
+
                 : allergicModel == null
-                    ? Container(
-                        child:
-                        Center(
-                          child: CircularProgressIndicator(
-                    backgroundColor: AppData.matruColor,
-                  ),
-                        )
-                      )
+                    ?  Container(
+              child: Center(
+                  child: Image.asset("assets/NoRecordFound.png",
+                    // height: 25,
+                  )
+              ),
+            )
                     : Container(
                         child: SingleChildScrollView(
                           child: (allergicModel != null)

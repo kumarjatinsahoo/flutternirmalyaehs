@@ -95,6 +95,7 @@ class _InsuranceListState extends State<InsuranceList> {
   FocusNode fnode14 = new FocusNode();
 
   bool isShown = true;
+  bool isData = true;
 
   @override
   void initState() {
@@ -114,10 +115,12 @@ class _InsuranceListState extends State<InsuranceList> {
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
               setState(() {
+                isData=false;
                 insuranceModel = insurance.InsuranceModel.fromJson(map);
               });
             } else {
               setState(() {
+                isData=false;
                 // isDataNoFound = true;
               });
               //AppData.showInSnackBar(context, msg);
@@ -157,7 +160,16 @@ class _InsuranceListState extends State<InsuranceList> {
                   },*/
                 ),
               ]),
-          body: (insuranceModel != null)
+          body: isData == true
+              ? Container(
+              child:
+              Center(
+                child: CircularProgressIndicator(
+                  backgroundColor: AppData.matruColor,
+                ),
+              )
+          ):
+          (insuranceModel != null)
               ? Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: SingleChildScrollView(
@@ -255,7 +267,13 @@ class _InsuranceListState extends State<InsuranceList> {
                     ),
                   ),
                 )
-              : Container(),
+              : Container(
+            child: Center(
+                child: Image.asset("assets/NoRecordFound.png",
+                  // height: 25,
+                )
+            ),
+          ),
         ),
         (isShown)?Container(
           width: double.maxFinite,

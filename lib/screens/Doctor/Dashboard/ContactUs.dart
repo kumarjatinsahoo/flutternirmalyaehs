@@ -78,10 +78,10 @@ class _ContactScreenState extends State<ContactScreen> {
                     child: Column(children: <Widget>[
                       buildTile(
                           name: "Contact Number".toUpperCase(),
-                          value: " 20 2565 6552",
+                          value: " 7020186259",
                           /*value1: "011-41182138",*/
                           fun: () {
-                            AppData.launchURL("tel:+2025656552");
+                            AppData.launchURL("tel:+7020186259");
                           },
                           icon: CupertinoIcons.phone_fill),
                       SizedBox(

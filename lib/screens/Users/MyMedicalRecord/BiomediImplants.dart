@@ -78,10 +78,10 @@ class _BiomediImplantsState extends State<BiomediImplants> {
           setState(() {
             log("Value>>>" + jsonEncode(map));
             String msg = map[Const.MESSAGE];
-            if (map[Const.CODE] == Const.SUCCESS) {  
-              isdata = false;            
+            if (map[Const.CODE] == Const.SUCCESS) {
               setState(() {
-                biomedicalModel = bio.BiomedicalModel.fromJson(map);                
+                biomedicalModel = bio.BiomedicalModel.fromJson(map);
+                isdata = false;
               });
               if (biomedicalModel?.body[0].bioMName != null) {
                 BiomediImplants.admequipmentmodel = KeyvalueModel(
@@ -132,7 +132,7 @@ class _BiomediImplantsState extends State<BiomediImplants> {
                     backgroundColor: AppData.matruColor,
                   ),
               )
-              : biomedicalModel == null
+              : (biomedicalModel.body.length.toString() == "0" || biomedicalModel == null)
                   ? Container(
                       child: Center(
                         child: Image.asset("assets/NoRecordFound.png",
