@@ -663,7 +663,7 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                             //emergencyHelpModel.
                           });
                         },
-                        controller: _fname,
+                        controller: _fname??'',
                         inputFormatters: [
                           WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
                         ],
@@ -999,10 +999,9 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                                 shrinkWrap: true,
                                 itemBuilder: (c, i) {
                                   return ListTile(
-                                    title: Text(
-                                        (foundUser[i].displayName.isNotEmpty)
-                                            ? foundUser[i].displayName
-                                            : "N/A"),
+                                    title: Text(                                       
+                                             foundUser[i]?.displayName??""
+                                            ),
                                     // subtitle: Text((foundUser[i]?.phones[0]?.number??"")),
                                     subtitle: Text(
                                         (foundUser[i].phones.isNotEmpty)

@@ -224,6 +224,7 @@
   "APPLICATION": "अर्ज",
   "DONOR_APPLICATION": "दाता अर्ज",
   "EMAILID": "ई - मेल आयडी",
+  "EMAILID1": "ई - मेल (पर्यायी)",
   "ALTER_EMAILID": "पर्यायी ईमेल आयडी",
   "RELATION_OF": "चा पुत्र, ची कन्या, ची पत्नी",
   "REQUEST_DOCTOR_PRESCRIBE": "",

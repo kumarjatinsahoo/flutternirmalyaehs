@@ -230,6 +230,7 @@
   "APPLICATION": "आवेदन",
   "DONOR_APPLICATION": "दाता आवेदन",
   "EMAILID": "ईमेल आईडी",
+  "EMAILID1": "ईमेल (ऐच्छिक)",
   "ALTER_EMAILID": "वैकल्पिक ईमेल आईडी",
   "RELATION_OF": "पिता/पति का नाम",
   "REQUEST_DOCTOR_PRESCRIBE": "",

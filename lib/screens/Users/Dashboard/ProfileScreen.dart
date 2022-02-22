@@ -2,15 +2,16 @@ import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 import 'dart:async';
+import 'package:contacts_service/contacts_service.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_contacts/flutter_contacts.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/AddUserFamilyDetailsModel.dart';
@@ -191,6 +192,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   void initState() {
     // TODO: implement initState
+    _askPermissions(null);
     super.initState();
     // comeFrom = widget.model.apntUserType;
     loginResponse1 = widget.model.loginResponse1;
@@ -203,6 +205,40 @@ class _ProfileScreenState extends State<ProfileScreen> {
     });
    // callApi();
   }
+
+  Future<void> _askPermissions(String routeName) async {
+    PermissionStatus permissionStatus = await _getContactPermission();
+    if (permissionStatus == PermissionStatus.granted) {
+      if (routeName != null) {
+        Navigator.of(context).pushNamed(routeName);
+      }
+    } else {
+      _handleInvalidPermissions(permissionStatus);
+    }
+  }
+
+  Future<PermissionStatus> _getContactPermission() async {
+    PermissionStatus permission = await Permission.contacts.status;
+    if (permission != PermissionStatus.granted &&
+        permission != PermissionStatus.permanentlyDenied) {
+      PermissionStatus permissionStatus = await Permission.contacts.request();
+      return permissionStatus;
+    } else {
+      return permission;
+    }
+  }
+
+  void _handleInvalidPermissions(PermissionStatus permissionStatus) {
+    if (permissionStatus == PermissionStatus.denied) {
+      final snackBar = SnackBar(content: Text('Access to contact data denied'));
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    } else if (permissionStatus == PermissionStatus.permanentlyDenied) {
+      final snackBar =
+          SnackBar(content: Text('Contact data not available on device'));
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    }
+  }
+  
   final Completer<InAppWebViewController> _controller1 =
   Completer<InAppWebViewController>();
 
@@ -4439,25 +4475,28 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
   void getContactDetails() async {
-    if (await FlutterContacts.requestPermission()) {
-      // Get all contacts (lightly fetched)
-      MyWidgets.showLoading(context);
-      List<Contact> contacts = await FlutterContacts.getContacts(
-          withProperties: true, withPhoto: true);
-      Navigator.pop(context);
+    // if (await FlutterContacts.requestPermission()) {
+    //   // Get all contacts (lightly fetched)
+    //   MyWidgets.showLoading(context);
+    //   List<Contact> contacts = await FlutterContacts.getContacts(
+    //       withProperties: true, withPhoto: true);
+    //   Navigator.pop(context);
 
-      _displayContact(context, contacts);
-      /* if(contacts!=null && contacts.isNotEmpty) {
+    //   _displayContact(context, contacts);
+    //   /* if(contacts!=null && contacts.isNotEmpty) {
 
-          contacts = await FlutterContacts.getContacts(
-              withProperties: true, withPhoto: true);
-          setState(() {});
-          _displayContact(context, contacts);
-      }else{
-        _displayContact(context, contacts);
-      }*/
+    //       contacts = await FlutterContacts.getContacts(
+    //           withProperties: true, withPhoto: true);
+    //       setState(() {});
+    //       _displayContact(context, contacts);
+    //   }else{
+    //     _displayContact(context, contacts);
+    //   }*/
 
-    }
+    // }
+     List<Contact> contacts = await ContactsService.getContacts();
+    // log(jsonEncode(contacts[5].toMap()));
+    _displayContact(context, contacts);
   }
   Future<void> _displayContact(BuildContext context, List<Contact> list) async {
     List<Contact> foundUser=[];
@@ -4511,19 +4550,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           shrinkWrap: true,
                           itemBuilder: (c, i) {
                             return ListTile(
-                               title: Text((foundUser[i].displayName.isNotEmpty)?foundUser[i].displayName:"N/A"),
+                               title: Text(foundUser[i]?.displayName??""),
                               // subtitle: Text((foundUser[i]?.phones[0]?.number??"")),
-                               subtitle:  Text((foundUser[i].phones.isNotEmpty)?foundUser[i].phones[0].number.toString():"N/A"),
+                               subtitle:  Text((foundUser[i].phones.isNotEmpty)?foundUser[i].phones[0].value.toString():"N/A"),
                               onTap: (){
-
                                 log("Selected Response>>>"+list[i].toString());
-                                log("Selected Response>>>"+list[i]?.phones[0]?.number??"");
-                                widget.model.contMobileno=list[i]?.phones[0]?.number??"";
+                                log("Selected Response>>>"+list[i]?.phones[0]?.value??"");
+                                widget.model.contMobileno=list[i]?.phones[0]?.value??"";
                                 (widget.model.apntUserType == Const.HEALTH_SCREENING_USER_APNT) ?
                                 textEditingController[13].text=foundUser[i].displayName.toString():textEditingController[15].text=foundUser[i].displayName.toString();
                                 //_mobile.text=list[i]?.phones[0]?.number.replaceAll("- ", "")??"".toString();
                                   (widget.model.apntUserType == Const.HEALTH_SCREENING_USER_APNT) ?
-                                textEditingController[14].text=foundUser[i]?.phones[0]?.number.replaceAll(" ", "").replaceAll("-", "").replaceAll("+91", "")??"".replaceAll("+", "")??"".toString():textEditingController[16].text=foundUser[i]?.phones[0]?.number.replaceAll(" ", "").replaceAll("-", "").replaceAll("+91", "")??"".replaceAll("+", "")??"".toString();
+                                textEditingController[14].text=foundUser[i]?.phones[0]?.value.replaceAll(" ", "").replaceAll("-", "").replaceAll("+91", "")??"".replaceAll("+", "")??"".toString():textEditingController[16].text=foundUser[i]?.phones[0]?.value.replaceAll(" ", "").replaceAll("-", "").replaceAll("+91", "")??"".replaceAll("+", "")??"".toString();
                                 //_mobile.text=list[i]?.phones[0]?.number.replaceAll(" ":"", "").replaceAll("-", "")??"".toString();
                                 Navigator.pop(context);
                               },
