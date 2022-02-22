@@ -9,6 +9,7 @@
   "FORGOT_PASSWORD": "Forgot Password?",
   "FORGOT_PASSWORD1": "Forgot Password",
   "FORGOT_USERID": "FORGOT USER ID?",
+  "FORGOT_USERID1": "FORGOT USER ID",
   "OR": "OR",
   "REG_SUCCESS_POPUP": "Now you can login through your mobile no and password is: User@123",
 
@@ -63,6 +64,7 @@
   "ENTER_HOME_PHONE": "Enter Home Phone(Optional)",
   "ENTER_OFFICE_PHONE": "Enter Office Phone(Optional)",
   "EMAILID": "Email Id",
+  "EMAILID1": "Email (Optional)",
   "ALTER_EMAILID": "Alternate Email Id(Optional)",
   "MOBILE_NO": "Mobile No.",
   "COUNTRY": "Country",

@@ -663,7 +663,7 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                             //emergencyHelpModel.
                           });
                         },
-                        controller: _fname,
+                        controller: _fname??'',
                         inputFormatters: [
                           WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
                         ],
@@ -826,7 +826,7 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                             hintText: MyLocalizations.of(context).text("NAME"),
                             suffixIcon: InkWell(
                               onTap: () {
-                                isloading = true;
+                                isloading = false;
                                 // Navigator.pop(context);
                                 getContactDetails();
                               },
@@ -999,10 +999,9 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                                 shrinkWrap: true,
                                 itemBuilder: (c, i) {
                                   return ListTile(
-                                    title: Text(
-                                        (foundUser[i].displayName.isNotEmpty)
-                                            ? foundUser[i].displayName
-                                            : "N/A"),
+                                    title: Text(                                       
+                                             foundUser[i]?.displayName??""
+                                            ),
                                     // subtitle: Text((foundUser[i]?.phones[0]?.number??"")),
                                     subtitle: Text(
                                         (foundUser[i].phones.isNotEmpty)
@@ -1033,6 +1032,7 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                                           "".toString();
                                       //_mobile.text=list[i]?.phones[0]?.number.replaceAll(" ":"", "").replaceAll("-", "")??"".toString();
                                       Navigator.pop(context);
+                                        Navigator.pop(context);
                                       //             setState(() {
                                       //  isloading=false;
                                       // });
@@ -1141,10 +1141,11 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
 
       }
     } catch (e) {}*/
-
+    MyWidgets.showLoading(context);
     List<Contact> contacts = await ContactsService.getContacts();
     // log(jsonEncode(contacts[5].toMap()));
     _displayContact(context, contacts);
+    
   }
 
   Future<void> _askPermissions(String routeName) async {

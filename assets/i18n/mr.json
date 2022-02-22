@@ -9,6 +9,7 @@
   "FORGOT_PASSWORD":"पासवर्ड विसरलात?",
   "FORGOT_PASSWORD1":"पासवर्ड विसरलात",
   "FORGOT_USERID": "यूजर आयडी विसरलो?",
+  "FORGOT_USERID1": "यूजर आयडी विसरलो",
   "OR": "किंवा",
   "REG_SUCCESS_POPUP": "आता तुम्ही तुमच्या मोबाईल नंबर वरून लॉग इन करू शकता आणि पासवर्ड आहे: User@123",
 
@@ -223,6 +224,7 @@
   "APPLICATION": "अर्ज",
   "DONOR_APPLICATION": "दाता अर्ज",
   "EMAILID": "ई - मेल आयडी",
+  "EMAILID1": "ई - मेल (पर्यायी)",
   "ALTER_EMAILID": "पर्यायी ईमेल आयडी",
   "RELATION_OF": "चा पुत्र, ची कन्या, ची पत्नी",
   "REQUEST_DOCTOR_PRESCRIBE": "",

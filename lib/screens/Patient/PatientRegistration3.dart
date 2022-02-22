@@ -85,7 +85,7 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: formField(2, MyLocalizations.of(context).text("EMAIL(Optional)")),
+                    child: formField(2, MyLocalizations.of(context).text("EMAILID1")),
                   ),
                   SizedBox(
                     height:5,
@@ -402,32 +402,41 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
       text:  MyLocalizations.of(context).text("NEXT").toUpperCase(),
       context: context,
       fun: () {
-        if (textEditingController[0].text == "" ||
-            textEditingController[0].text == null) {
-          AppData.showInSnackBar(context, "Please enter height(cm)");
+        // if (textEditingController[0].text == "" ||
+        //     textEditingController[0].text == null) {
+        //   AppData.showInSnackBar(context, "Please enter height(cm)");
+        //
+        // }else if (double.tryParse(textEditingController[0].text)>250) {
+        //   AppData.showInSnackBar(
+        //       context, "Invalid height");
+        if (textEditingController[0].text.trim()=="") {
+          //AppData.showInSnackBar(context, "Please select Smoking");
+          AppData.showInSnackBar(
+              context, "Please enter height");
 
         }else if (double.tryParse(textEditingController[0].text)>250) {
+          //AppData.showInSnackBar(context, "Please select Smoking");
           AppData.showInSnackBar(
               context, "Invalid height");
-
-        } else if (textEditingController[1].text == "" ||
-            textEditingController[1].text == null) {
-          AppData.showInSnackBar(context, "Please enter weight(kg)");
-
+        }else if (textEditingController[1].text.trim()=="") {
+          //AppData.showInSnackBar(context, "Please select Smoking");
+          AppData.showInSnackBar(
+              context, "Please enter weight");
         }else if (double.tryParse(textEditingController[1].text)>636) {
+          //AppData.showInSnackBar(context, "Please select Smoking");
           AppData.showInSnackBar(
               context, "Invalid weight");
 
         } else if (textEditingController[2].text != ""  &&
             !AppData.isValidEmail(textEditingController[2].text)) {
           AppData.showInSnackBar(context, "Please enter a valid e-mail");
-        } else if (textEditingController[3].text != '' &&
-            textEditingController[3].text.length != 12) {
-          AppData.showInSnackBar(context, "Please enter a valid aadhaar no.");
+        // } else if (textEditingController[3].text != '' &&
+        //     textEditingController[3].text.length != 12) {
+        //   AppData.showInSnackBar(context, "Please enter a valid aadhaar no.");
 
-        // } else if (textEditingController[3].text != ""  && (!Aadhar.validateVerhoeff(
-        //     textEditingController[3].text.replaceAll("-", "").toString())|| textEditingController[7].text.length!=12)) {
-        //   AppData.showInSnackBar(context, "Please enter valid aadhar no");
+        } else if (textEditingController[3].text != ""  && (!Aadhar.validateVerhoeff(
+            textEditingController[3].text.replaceAll("-", "").toString())|| textEditingController[3].text.length!=12)) {
+          AppData.showInSnackBar(context, "Please enter valid aadhar no");
 
 
         } else if (PatientRegistration3.countryModel == null ||
