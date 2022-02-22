@@ -7,7 +7,9 @@
   "DIDHAVEACC":"खाते नाही?",
   "CREATE_ACCOUNT":" साइन अप करा",
   "FORGOT_PASSWORD":"पासवर्ड विसरलात?",
+  "FORGOT_PASSWORD1":"पासवर्ड विसरलात",
   "FORGOT_USERID": "यूजर आयडी विसरलो?",
+  "FORGOT_USERID1": "यूजर आयडी विसरलो",
   "OR": "किंवा",
   "REG_SUCCESS_POPUP": "आता तुम्ही तुमच्या मोबाईल नंबर वरून लॉग इन करू शकता आणि पासवर्ड आहे: User@123",
 

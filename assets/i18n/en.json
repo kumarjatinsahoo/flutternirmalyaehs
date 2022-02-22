@@ -7,7 +7,9 @@
   "DIDHAVEACC": "Don't have Account?",
   "CREATE_ACCOUNT": "Create Account",
   "FORGOT_PASSWORD": "Forgot Password?",
+  "FORGOT_PASSWORD1": "Forgot Password",
   "FORGOT_USERID": "FORGOT USER ID?",
+  "FORGOT_USERID1": "FORGOT USER ID",
   "OR": "OR",
   "REG_SUCCESS_POPUP": "Now you can login through your mobile no and password is: User@123",
 

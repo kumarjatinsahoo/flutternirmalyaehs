@@ -397,7 +397,7 @@ class _MonthlyOverview extends State<MonthlyOverview> {
                         widget.model.wfromdate =
                             monthlyOverviewModel.body.fromdate;
                         Navigator.pushNamed(
-                            context, "/monthlyOverviewPharmaklist");
+                            context, "/receptionlistsignup");
                       },
                       child: Container(
                         padding: const EdgeInsets.all(0.0),
@@ -473,7 +473,7 @@ class _MonthlyOverview extends State<MonthlyOverview> {
                         widget.model.wfromdate =
                             monthlyOverviewModel.body.fromdate;
                         Navigator.pushNamed(
-                            context, "/monthlyOverviewPharmaklist");
+                            context, "/receptionlistsignup");
                       },
                       child: Container(
                         padding: const EdgeInsets.all(0.0),
@@ -548,7 +548,7 @@ class _MonthlyOverview extends State<MonthlyOverview> {
                         widget.model.wfromdate =
                             monthlyOverviewModel.body.fromdate;
                         Navigator.pushNamed(
-                            context, "/monthlyOverviewPharmaklist");
+                            context, "/receptionlistsignup");
                       },
                       child: Container(
                         padding: const EdgeInsets.all(0.0),

@@ -36,7 +36,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
              color: Colors.white,
            ),*/
         title: Text(
-          MyLocalizations.of(context).text("FORGOT_PASSWORD"),
+          MyLocalizations.of(context).text("FORGOT_PASSWORD1"),
           style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,

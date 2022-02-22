@@ -1,8 +1,11 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'package:contacts_service/contacts_service.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_contacts/flutter_contacts.dart';
+
+// import 'package:flutter_contacts/flutter_contacts.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/EmergencyHelpModel.dart';
 import 'package:user/models/EmergencyMessageModel.dart';
@@ -67,8 +70,9 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
   @override
   void initState() {
     // TODO: implement initState
+    _askPermissions(null);
     super.initState();
-    isloading=true;
+    isloading = true;
     loginResponse1 = widget.model.loginResponse1;
     callAPI();
     // SetupContactsPage.relationmodel=null;
@@ -129,7 +133,6 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () => Navigator.of(context).pop(),
-
         ),
         centerTitle: true,
         title: Text(MyLocalizations.of(context).text("SETUP_CONTACT")),
@@ -160,14 +163,13 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                       child: ClipPath(
                         clipper: ShapeBorderClipper(
                             shape: RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.circular(5))),
+                                borderRadius: BorderRadius.circular(5))),
                         child: InkWell(
                           onTap: () {
                             (value1 != null)
                                 ? _displayTextInputDialog1(
                                     context, emergencyHelpModel, 0)
-                                :_displayTextInputDialog(
+                                : _displayTextInputDialog(
                                     context, emergencyHelpModel);
                           },
                           child: Container(
@@ -176,14 +178,12 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                             decoration: BoxDecoration(
                                 border: Border(
                                     left: BorderSide(
-                                        color:
-                                            AppData.kPrimaryRedColor,
+                                        color: AppData.kPrimaryRedColor,
                                         width: 5))),
                             child: Padding(
                               padding: const EdgeInsets.all(10.0),
                               child: Row(
-                                crossAxisAlignment:
-                                    CrossAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Container(
                                       color: Colors.white,
@@ -206,13 +206,11 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                                         Text(
                                           (value1 != null)
                                               ? value1
-                                              : MyLocalizations.of(
-                                                      context)
+                                              : MyLocalizations.of(context)
                                                   .text(
                                                       "ADD_EMERGENCY_CONTACT"),
                                           style: TextStyle(
-                                              fontWeight:
-                                                  FontWeight.bold,
+                                              fontWeight: FontWeight.bold,
                                               fontSize: 15),
                                         ),
                                       ],
@@ -240,8 +238,7 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                       child: ClipPath(
                         clipper: ShapeBorderClipper(
                             shape: RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.circular(5))),
+                                borderRadius: BorderRadius.circular(5))),
                         child: InkWell(
                           onTap: () {
                             (value2 != null)
@@ -256,14 +253,12 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                               decoration: BoxDecoration(
                                   border: Border(
                                       left: BorderSide(
-                                          color:
-                                              AppData.kPrimaryColor,
+                                          color: AppData.kPrimaryColor,
                                           width: 5))),
                               child: Padding(
                                 padding: const EdgeInsets.all(10.0),
                                 child: Row(
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Container(
                                         //color: Colors.red,
@@ -286,13 +281,11 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                                           Text(
                                             (value2 != null)
                                                 ? value2
-                                                : MyLocalizations.of(
-                                                        context)
+                                                : MyLocalizations.of(context)
                                                     .text(
                                                         "ADD_EMERGENCY_CONTACT"),
                                             style: TextStyle(
-                                                fontWeight:
-                                                    FontWeight.bold,
+                                                fontWeight: FontWeight.bold,
                                                 fontSize: 15),
                                           ),
                                         ],
@@ -319,8 +312,7 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                       child: ClipPath(
                         clipper: ShapeBorderClipper(
                             shape: RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.circular(5))),
+                                borderRadius: BorderRadius.circular(5))),
                         child: InkWell(
                           onTap: () {
                             /* _displayTextInputDialog1(
@@ -337,14 +329,12 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                               decoration: BoxDecoration(
                                   border: Border(
                                       left: BorderSide(
-                                          color: AppData
-                                              .kPrimaryRedColor,
+                                          color: AppData.kPrimaryRedColor,
                                           width: 5))),
                               child: Padding(
                                 padding: const EdgeInsets.all(10.0),
                                 child: Row(
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Container(
                                         color: Colors.white,
@@ -367,13 +357,11 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                                           Text(
                                             (value3 != null)
                                                 ? value3
-                                                : MyLocalizations.of(
-                                                        context)
+                                                : MyLocalizations.of(context)
                                                     .text(
                                                         "ADD_EMERGENCY_CONTACT"),
                                             style: TextStyle(
-                                                fontWeight:
-                                                    FontWeight.bold,
+                                                fontWeight: FontWeight.bold,
                                                 fontSize: 15),
                                           ),
                                         ],
@@ -400,8 +388,7 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                       child: ClipPath(
                         clipper: ShapeBorderClipper(
                             shape: RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.circular(5))),
+                                borderRadius: BorderRadius.circular(5))),
                         child: InkWell(
                           onTap: () {
                             (value4 != null)
@@ -416,14 +403,12 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                               decoration: BoxDecoration(
                                   border: Border(
                                       left: BorderSide(
-                                          color:
-                                              AppData.kPrimaryColor,
+                                          color: AppData.kPrimaryColor,
                                           width: 5))),
                               child: Padding(
                                 padding: const EdgeInsets.all(10.0),
                                 child: Row(
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Container(
                                         color: Colors.white,
@@ -446,13 +431,11 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                                           Text(
                                             (value4 != null)
                                                 ? value4
-                                                : MyLocalizations.of(
-                                                        context)
+                                                : MyLocalizations.of(context)
                                                     .text(
                                                         "ADD_EMERGENCY_CONTACT"),
                                             style: TextStyle(
-                                                fontWeight:
-                                                    FontWeight.bold,
+                                                fontWeight: FontWeight.bold,
                                                 fontSize: 15),
                                           ),
                                         ],
@@ -479,8 +462,7 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                       child: ClipPath(
                         clipper: ShapeBorderClipper(
                             shape: RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.circular(5))),
+                                borderRadius: BorderRadius.circular(5))),
                         child: InkWell(
                           onTap: () {
                             if (value5 != null)
@@ -496,14 +478,12 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                               decoration: BoxDecoration(
                                   border: Border(
                                       left: BorderSide(
-                                          color: AppData
-                                              .kPrimaryRedColor,
+                                          color: AppData.kPrimaryRedColor,
                                           width: 5))),
                               child: Padding(
                                 padding: const EdgeInsets.all(10.0),
                                 child: Row(
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Container(
                                         color: Colors.white,
@@ -526,13 +506,11 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                                           Text(
                                             (value5 != null)
                                                 ? value5
-                                                : MyLocalizations.of(
-                                                        context)
+                                                : MyLocalizations.of(context)
                                                     .text(
                                                         "ADD_EMERGENCY_CONTACT"),
                                             style: TextStyle(
-                                                fontWeight:
-                                                    FontWeight.bold,
+                                                fontWeight: FontWeight.bold,
                                                 fontSize: 15),
                                           ),
                                         ],
@@ -551,7 +529,7 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                   //     height: 15,
                   //   ),
                   // ),
-                 
+
                   // GestureDetector(
                   //   // onTap: () =>   Navigator.pushNamed(context, "/medicalService"),
                   //   child: InkWell(
@@ -626,21 +604,21 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
               // SizedBox(
               //   height: 22,
               // ),
-               Expanded(
-                 child: Container(
-                   padding: EdgeInsets.symmetric(horizontal: 10,vertical: 50),
-                      child: Text(
-                      "Hey "+ "${loginResponse1?.body?.userName??"N/A"}, " +
-                         "please add emergency contact !",
-                                                textAlign:
-                                                    TextAlign.center,
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.w600,
-                                                    fontSize: 17,
-                                                    ),
-                                              ),
+              Expanded(
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 50),
+                  child: Text(
+                    "Hey " +
+                        "${loginResponse1?.body?.userName ?? "N/A"}, " +
+                        "please add emergency contact !",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 17,
                     ),
-               ),
+                  ),
+                ),
+              ),
             ],
           ),
         ),
@@ -821,7 +799,9 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       SizedBox(height: 10),
-                      Text(MyLocalizations.of(context).text("ADD_EMERGENCY_CONTACT"),
+                      Text(
+                        MyLocalizations.of(context)
+                            .text("ADD_EMERGENCY_CONTACT"),
                         style: TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.bold,
@@ -846,8 +826,8 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                             hintText: MyLocalizations.of(context).text("NAME"),
                             suffixIcon: InkWell(
                               onTap: () {
-                                isloading=true;
-                               // Navigator.pop(context);
+                                isloading = true;
+                                // Navigator.pop(context);
                                 getContactDetails();
                               },
                               child: Icon(Icons.contacts),
@@ -967,10 +947,9 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
   }
 
   Future<void> _displayContact(BuildContext context, List<Contact> list) async {
-    List<Contact> foundUser=[];
-    foundUser=list;
+    List<Contact> foundUser = [];
+    foundUser = list;
     // List<Contact> myList;
-
 
     return showDialog(
         context: context,
@@ -981,67 +960,91 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
             //contentPadding: EdgeInsets.symmetric(horizontal: 10),
             content: StatefulBuilder(
               builder: (BuildContext context, StateSetter setState) {
-
                 void _runFilter(String enteredKeyword) {
                   List<Contact> results = [];
                   if (enteredKeyword.isEmpty) {
                     results = list;
                   } else {
                     results = list
-                        .where((user) => user.displayName.toLowerCase()
-                        .contains(enteredKeyword.toLowerCase()))
+                        .where((user) => user.displayName
+                            .toLowerCase()
+                            .contains(enteredKeyword.toLowerCase()))
                         .toList();
                   }
                   setState(() {
                     foundUser = results;
                   });
                 }
+
                 return Container(
                   height: 400,
-                  width: double.maxFinite-50,
-                  child:(list!=null && list.isNotEmpty)?Column(
-
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                        child: Container(
-                          child: TextField(
-                            onChanged: (value) => _runFilter(value),
-                            decoration: InputDecoration(
-                                suffixIcon: Icon(Icons.search),
-                                hintText: "Search"),
-                          ),
-                        ),
-                      ),
-                Expanded(
-                    child:ListView.builder(
-                      shrinkWrap: true,
-                        itemBuilder: (c, i) {
-                          return ListTile(
-                            title: Text((foundUser[i].displayName.isNotEmpty)?foundUser[i].displayName:"N/A"),
-                            // subtitle: Text((foundUser[i]?.phones[0]?.number??"")),
-                            subtitle:  Text((foundUser[i].phones.isNotEmpty)?foundUser[i].phones[0].number.toString():"N/A"),
-                            onTap: (){   
-                              isloading=false;                             
-                              log("Selected Response>>>"+list[i].toString());
-                              log("Selected Response>>>"+list[i]?.phones[0]?.number??"");
-                              widget.model.contMobileno=list[i]?.phones[0]?.number??"";
-                              _fname.text=foundUser[i].displayName.toString();
-                              //_mobile.text=list[i]?.phones[0]?.number.replaceAll("- ", "")??"".toString();
-                              _mobile.text=foundUser[i]?.phones[0]?.number.replaceAll(" ", "").replaceAll("-", "").replaceAll("+91", "")??"".replaceAll("+", "")??"".toString();
-                             //_mobile.text=list[i]?.phones[0]?.number.replaceAll(" ":"", "").replaceAll("-", "")??"".toString();
-                              Navigator.pop(context);
-                  //             setState(() {
-                  //  isloading=false;
-                  // });
-                            },
-                          );
-                        },
-                        itemCount: foundUser.length,
-                      ),
-                ),
-                    ],
-                  ):Container(),
+                  width: double.maxFinite - 50,
+                  child: (list != null && list.isNotEmpty)
+                      ? Column(
+                          children: [
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 8.0),
+                              child: Container(
+                                child: TextField(
+                                  onChanged: (value) => _runFilter(value),
+                                  decoration: InputDecoration(
+                                      suffixIcon: Icon(Icons.search),
+                                      hintText: "Search"),
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              child: ListView.builder(
+                                shrinkWrap: true,
+                                itemBuilder: (c, i) {
+                                  return ListTile(
+                                    title: Text(
+                                        (foundUser[i].displayName.isNotEmpty)
+                                            ? foundUser[i].displayName
+                                            : "N/A"),
+                                    // subtitle: Text((foundUser[i]?.phones[0]?.number??"")),
+                                    subtitle: Text(
+                                        (foundUser[i].phones.isNotEmpty)
+                                            ? foundUser[i]
+                                                .phones[0]
+                                        .value
+                                                .toString()
+                                            : "N/A"),
+                                    onTap: () {
+                                      isloading = false;
+                                      log("Selected Response>>>" +
+                                          list[i].toString());
+                                      log("Selected Response>>>" +
+                                              list[i]?.phones[0]?.value ??
+                                          "");
+                                      widget.model.contMobileno =
+                                          list[i]?.phones[0]?.value ?? "";
+                                      _fname.text =
+                                          foundUser[i].displayName.toString();
+                                      //_mobile.text=list[i]?.phones[0]?.number.replaceAll("- ", "")??"".toString();
+                                      _mobile.text = foundUser[i]
+                                              ?.phones[0]
+                                              ?.value
+                                              .replaceAll(" ", "")
+                                              .replaceAll("-", "")
+                                              .replaceAll("+91", "") ??
+                                          "".replaceAll("+", "") ??
+                                          "".toString();
+                                      //_mobile.text=list[i]?.phones[0]?.number.replaceAll(" ":"", "").replaceAll("-", "")??"".toString();
+                                      Navigator.pop(context);
+                                      //             setState(() {
+                                      //  isloading=false;
+                                      // });
+                                    },
+                                  );
+                                },
+                                itemCount: foundUser.length,
+                              ),
+                            ),
+                          ],
+                        )
+                      : Container(),
                 );
               },
             ),
@@ -1117,16 +1120,16 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
   }
 
   void getContactDetails() async {
-    try {
+   /* try {
       if (await FlutterContacts.requestPermission()) {
         // Get all contacts (lightly fetched)
-        isloading == true? MyWidgets.showLoading(context):false;
+        isloading == true ? MyWidgets.showLoading(context) : false;
         List<Contact> contacts = await FlutterContacts.getContacts(
             withProperties: true, withPhoto: true);
         Navigator.pop(context);
 
         _displayContact(context, contacts);
-        /* if(contacts!=null && contacts.isNotEmpty) {
+        *//* if(contacts!=null && contacts.isNotEmpty) {
 
           contacts = await FlutterContacts.getContacts(
               withProperties: true, withPhoto: true);
@@ -1134,11 +1137,46 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
           _displayContact(context, contacts);
       }else{
         _displayContact(context, contacts);
-      }*/
+      }*//*
 
       }
-    }catch(e){
+    } catch (e) {}*/
 
+    List<Contact> contacts = await ContactsService.getContacts();
+    // log(jsonEncode(contacts[5].toMap()));
+    _displayContact(context, contacts);
+  }
+
+  Future<void> _askPermissions(String routeName) async {
+    PermissionStatus permissionStatus = await _getContactPermission();
+    if (permissionStatus == PermissionStatus.granted) {
+      if (routeName != null) {
+        Navigator.of(context).pushNamed(routeName);
+      }
+    } else {
+      _handleInvalidPermissions(permissionStatus);
+    }
+  }
+
+  Future<PermissionStatus> _getContactPermission() async {
+    PermissionStatus permission = await Permission.contacts.status;
+    if (permission != PermissionStatus.granted &&
+        permission != PermissionStatus.permanentlyDenied) {
+      PermissionStatus permissionStatus = await Permission.contacts.request();
+      return permissionStatus;
+    } else {
+      return permission;
+    }
+  }
+
+  void _handleInvalidPermissions(PermissionStatus permissionStatus) {
+    if (permissionStatus == PermissionStatus.denied) {
+      final snackBar = SnackBar(content: Text('Access to contact data denied'));
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    } else if (permissionStatus == PermissionStatus.permanentlyDenied) {
+      final snackBar =
+          SnackBar(content: Text('Contact data not available on device'));
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
     }
   }
 }

@@ -29,6 +29,7 @@ class _OrderDetailsState extends State<OrderDetails> {
   LoginResponse1 loginResponse;
   bool isDataNotAvail = false;
   String pharamctorderid;
+  bool isdata = false;
   cnfrmorder. PharmacycnfrmModel pharmacycnfrmModel;
   @override
   void initState() {
@@ -47,9 +48,10 @@ class _OrderDetailsState extends State<OrderDetails> {
             if (map[Const.CODE] == Const.SUCCESS) {
               // pocReportModel = PocReportModel.fromJson(map);
               pharmacycnfrmModel = cnfrmorder.PharmacycnfrmModel.fromJson(map);
+              isdata=false;
             } else {
-              isDataNotAvail = true;
-              AppData.showInSnackBar(context, msg);
+              isdata=false;
+              //AppData.showInSnackBar(context, msg);
             }
           });
         });
@@ -68,9 +70,27 @@ class _OrderDetailsState extends State<OrderDetails> {
         backgroundColor: AppData.kPrimaryColor,
         iconTheme: IconThemeData(color: Colors.white),
       ),
-      body:
-      (pharmacycnfrmModel != null)
-          ?  ListView.builder(
+      body: isdata == true
+          ? Container(
+        child: Center(
+            child: Image.asset("assets/NoRecordFound.png",
+              // height: 25,
+            )
+        ),
+      )
+          : pharmacycnfrmModel == null
+          ? Container(
+          child:
+          Center(
+            child: CircularProgressIndicator(
+              backgroundColor: AppData.matruColor,
+            ),
+          )
+      )
+          : Container(
+        child: SingleChildScrollView(
+            child: (pharmacycnfrmModel != null)
+                ?ListView.builder(
           physics: NeverScrollableScrollPhysics(),
           // controller: _scrollController,
           shrinkWrap: true,
@@ -159,7 +179,10 @@ class _OrderDetailsState extends State<OrderDetails> {
           },
         itemCount: pharmacycnfrmModel.body.length,
       )
-          : Container(),
+    : Container()
+        ),
+    ),
+         /* : Container(),*/
     );
   }
 }
