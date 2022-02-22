@@ -826,7 +826,7 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                             hintText: MyLocalizations.of(context).text("NAME"),
                             suffixIcon: InkWell(
                               onTap: () {
-                                isloading = true;
+                                isloading = false;
                                 // Navigator.pop(context);
                                 getContactDetails();
                               },
@@ -1032,6 +1032,7 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                                           "".toString();
                                       //_mobile.text=list[i]?.phones[0]?.number.replaceAll(" ":"", "").replaceAll("-", "")??"".toString();
                                       Navigator.pop(context);
+                                        Navigator.pop(context);
                                       //             setState(() {
                                       //  isloading=false;
                                       // });
@@ -1140,10 +1141,11 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
 
       }
     } catch (e) {}*/
-
+    MyWidgets.showLoading(context);
     List<Contact> contacts = await ContactsService.getContacts();
     // log(jsonEncode(contacts[5].toMap()));
     _displayContact(context, contacts);
+    
   }
 
   Future<void> _askPermissions(String routeName) async {
