@@ -90,8 +90,8 @@ class Const {
   static const String EDIT_BENEFICIARY = "Edit Beneficiary";
   static const String POST = "Edit Beneficiary";
   static const String ANDROID = "6";
-  static const String IOS = "6";
-  static const String IOS_VERSION = "2.0.0";
+  static const String IOS = "7";
+  static const String IOS_VERSION = "2.0.1";
 
   static GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 

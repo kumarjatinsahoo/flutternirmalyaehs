@@ -1,3 +1,4 @@
+/*
 import 'package:flutter/material.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 import 'package:user/providers/app_data.dart';
@@ -76,3 +77,4 @@ class _RazorPayPageState extends State<RazorPayPage> {
     AppData.showInSnackDone(context,"EXTERNAL_WALLET: " + response.walletName);
   }
 }
+*/
