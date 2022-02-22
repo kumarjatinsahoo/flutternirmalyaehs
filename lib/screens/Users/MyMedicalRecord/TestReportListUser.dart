@@ -77,6 +77,7 @@ class _TestReportListUser1State extends State<TestReportListUser1> {
               isdata=false;
               if (i == 1) {
                 pocReportModel = PocReportModel.fromJson(map);
+                print('-Suvam----' + pocReportModel.body.toString());
                 //Navigator.pop(context);
               } else {
                 pocReportModel.addMore(map);
@@ -118,7 +119,8 @@ class _TestReportListUser1State extends State<TestReportListUser1> {
               backgroundColor: AppData.matruColor,
             ),
           ):
-         (pocReportModel != null)? SingleChildScrollView(
+         (pocReportModel != null)?
+         SingleChildScrollView(
      // physics: ScrollPhysics(),
       child: Column(
         children: <Widget>[
