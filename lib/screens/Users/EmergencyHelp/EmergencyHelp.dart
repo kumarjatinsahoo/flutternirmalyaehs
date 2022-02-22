@@ -409,15 +409,13 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                                 // widget.model.placeIdno = googlePlaceModel?.results[0]?.placeId;
                                 /*googlePlaceModel==null?widget.model.placeIdno = googlePlaceModel?.results[0]?.placeId
                                 : widget.model.placeIdno1 = googlePlaceModel?.results[0]?.placeId;*/
-                              // if(latitude == null){
-                              //    setState(() {
-                              //       Center(child: CircularProgressIndicator());
-                              //   });
+                              if((latitude == null || latitude == "") || (longitude == null || longitude == "")){
+                                 AppData.showInSnackBar(context, "Please Allow Location");
                                 
-                              // }
-                              // else{
+                              }
+                              else{
                                Navigator.pushNamed(context, "/countDown");
-                              // }
+                              }
                             
                                 
                                 // callHelpBtn();
