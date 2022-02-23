@@ -265,7 +265,7 @@ class OrganisationSignUpFormState extends State<OrganisationSignUpForm> {
                                   SizedBox(
                                     height: 8,
                                   ),
-                                  formField1(0, "Organization Name"),
+                                  formFieldorg(0, "Organization Name"),
                                   SizedBox(
                                     height: 8,
                                   ),
@@ -2178,6 +2178,59 @@ class OrganisationSignUpFormState extends State<OrganisationSignUpForm> {
             },
             inputFormatters: [
               WhitelistingTextInputFormatter(
+                  RegExp("[a-zA-Z0-9 ]")),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+  Widget formFieldorg(
+      int index,
+      String hint,
+      ) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+          horizontal: 8),
+      child: Container(
+        height: 50,
+        padding:
+        EdgeInsets.symmetric(horizontal: 5),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius:
+          BorderRadius.circular(5),
+          border: Border.all(
+              color: Colors.black, width: 0.3),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          child: TextFormField(
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: hint,
+              /* prefixIcon:
+              Icon(Icons.person_rounded),*/
+              hintStyle: TextStyle(
+                  color: AppData.hintColor,
+                  fontSize: 15),
+            ),
+            textInputAction: TextInputAction.next,
+            keyboardType: TextInputType.text,
+            controller: textEditingController[index],
+            //focusNode: fnode1,
+            textAlignVertical:
+            TextAlignVertical.center,
+            onFieldSubmitted: (value) {
+              print("ValueValue" + error[index].toString());
+
+              setState(() {
+                error[index] = false;
+              });
+              AppData.fieldFocusChange(context, fnode1, null);
+            },
+            inputFormatters: [
+              WhitelistingTextInputFormatter(
                   RegExp("[a-zA-Z ]")),
             ],
           ),
@@ -2185,6 +2238,7 @@ class OrganisationSignUpFormState extends State<OrganisationSignUpForm> {
       ),
     );
   }
+
   Widget formFieldPassPortno(
       int index,
       String hint,
