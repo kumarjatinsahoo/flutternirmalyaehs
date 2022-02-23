@@ -2,14 +2,15 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
+import 'package:contacts_service/contacts_service.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_contacts/flutter_contacts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:user/models/AddOrganDonModel.dart';
 import 'package:user/models/EmergencyMessageModel.dart';
@@ -277,6 +278,7 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
 
   @override
   void initState() {
+    _askPermissions(null);
     super.initState();
     InsuranceFormNew.districtModel = null;
     InsuranceFormNew.blockModel = null;
@@ -301,6 +303,39 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
     //organcallAPI();
     //tissuecallAPI();
     //profileAPI();
+  }
+
+  Future<void> _askPermissions(String routeName) async {
+    PermissionStatus permissionStatus = await _getContactPermission();
+    if (permissionStatus == PermissionStatus.granted) {
+      if (routeName != null) {
+        Navigator.of(context).pushNamed(routeName);
+      }
+    } else {
+      _handleInvalidPermissions(permissionStatus);
+    }
+  }
+
+  Future<PermissionStatus> _getContactPermission() async {
+    PermissionStatus permission = await Permission.contacts.status;
+    if (permission != PermissionStatus.granted &&
+        permission != PermissionStatus.permanentlyDenied) {
+      PermissionStatus permissionStatus = await Permission.contacts.request();
+      return permissionStatus;
+    } else {
+      return permission;
+    }
+  }
+
+  void _handleInvalidPermissions(PermissionStatus permissionStatus) {
+    if (permissionStatus == PermissionStatus.denied) {
+      final snackBar = SnackBar(content: Text('Access to contact data denied'));
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    } else if (permissionStatus == PermissionStatus.permanentlyDenied) {
+      final snackBar =
+          SnackBar(content: Text('Contact data not available on device'));
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    }
   }
   Future<Null> _selectDate1(BuildContext context) async {
     final DateTime picked = await showDatePicker(
@@ -416,25 +451,29 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
   //   );
   // }
   void getContactDetails() async {
-    if (await FlutterContacts.requestPermission()) {
-      // Get all contacts (lightly fetched)
-      MyWidgets.showLoading(context);
-      List<Contact> contacts = await FlutterContacts.getContacts(
-          withProperties: true, withPhoto: true);
-      Navigator.pop(context);
+    // if (await FlutterContacts.requestPermission()) {
+    //   // Get all contacts (lightly fetched)
+    //   MyWidgets.showLoading(context);
+    //   List<Contact> contacts = await FlutterContacts.getContacts(
+    //       withProperties: true, withPhoto: true);
+    //   Navigator.pop(context);
 
-      _displayContact(context, contacts);
-      /* if(contacts!=null && contacts.isNotEmpty) {
+    //   _displayContact(context, contacts);
+    //   /* if(contacts!=null && contacts.isNotEmpty) {
 
-          contacts = await FlutterContacts.getContacts(
-              withProperties: true, withPhoto: true);
-          setState(() {});
-          _displayContact(context, contacts);
-      }else{
-        _displayContact(context, contacts);
-      }*/
+    //       contacts = await FlutterContacts.getContacts(
+    //           withProperties: true, withPhoto: true);
+    //       setState(() {});
+    //       _displayContact(context, contacts);
+    //   }else{
+    //     _displayContact(context, contacts);
+    //   }*/
 
-    }
+    // }
+    MyWidgets.showLoading(context);
+    List<Contact> contacts = await ContactsService.getContacts();
+    // log(jsonEncode(contacts[5].toMap()));
+    _displayContact(context, contacts);
   }
   Future<void> _displayContact(BuildContext context, List<Contact> list) async {
     List<Contact> foundUser=[];
@@ -488,20 +527,21 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
                           shrinkWrap: true,
                           itemBuilder: (c, i) {
                             return ListTile(
-                              title: Text(foundUser[i].displayName),
-                              subtitle: Text((foundUser[i]?.phones[0]?.number??"")),
+                              title: Text(foundUser[i]?.displayName??""),
+                              subtitle: Text((foundUser[i]?.phones[0]?.value??"")),
                               onTap: (){
 
                                 log("Selected Response>>>"+list[i].toString());
-                                log("Selected Response>>>"+list[i]?.phones[0]?.number??"");
-                                widget.model.contMobileno=list[i]?.phones[0]?.number??"";
+                                log("Selected Response>>>"+list[i]?.phones[0]?.value??"");
+                                widget.model.contMobileno=list[i]?.phones[0]?.value??"";
 
                                 textEditingController[7].text=foundUser[i].displayName.toString();
                                 //_mobile.text=list[i]?.phones[0]?.number.replaceAll("- ", "")??"".toString();
 
-                                textEditingController[10].text=foundUser[i]?.phones[0]?.number.replaceAll(" ", "").replaceAll("-", "").replaceAll("+91", "")??"".replaceAll("+", "")??"".toString();
+                                textEditingController[10].text=foundUser[i]?.phones[0]?.value.replaceAll(" ", "").replaceAll("-", "").replaceAll("+91", "")??"".replaceAll("+", "")??"".toString();
                                 //_mobile.text=list[i]?.phones[0]?.number.replaceAll(" ":"", "").replaceAll("-", "")??"".toString();
                                 Navigator.pop(context);
+                                 Navigator.pop(context);
                               },
                             );
                           },
