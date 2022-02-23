@@ -1059,6 +1059,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 if (map[Const.CODE] == Const.SUCCESS) {
                   masterResponse = master.MasterLoginResponse.fromJson(map);
                   final signature = await SmsAutoFill().getAppSignature;
+                  widget.model.empid = signature;
                   print('signature ' + signature);
                   Navigator.push(
                     context,

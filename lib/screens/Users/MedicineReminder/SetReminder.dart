@@ -1015,10 +1015,15 @@ class SetReminderState extends State<SetReminder> {
     setState(() {
       // selectedTime = timeOfDay;
       // selectedStartTime = timeOfDay;
-      actualTime[v] = timeOfDay;
-      timePicker[v].text = formatTimeOfDay(timeOfDay);
-      doseTimeList.add(timePicker[v].text.toString());
-
+      actualTime[v] = timeOfDay;  
+      timePicker[v].text = formatTimeOfDay(timeOfDay);    
+      if(doseTimeList.contains(timePicker[v].text)){    
+           selectedTime = TimeOfDay.now();
+           timePicker[v].text="";
+          AppData.showInSnackBar(context, 'Time is Already Added!');
+                   
+      }      
+     doseTimeList.add(timePicker[v].text.toString());     
     });
     // }
   }
