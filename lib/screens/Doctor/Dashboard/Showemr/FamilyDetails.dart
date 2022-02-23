@@ -71,12 +71,12 @@ class _FamilyDetails extends State<FamilyDetails> {
             child: Center(
               child: Column(
                 children: [
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.35,
-                  ),
+                  // SizedBox(
+                  //   height: MediaQuery.of(context).size.height * 0.5,
+                  // ),
                   Image.asset("assets/NoRecordFound.png",
                                               // height: 25,
-                                            )
+                  )
                 ],
               ),
             ),

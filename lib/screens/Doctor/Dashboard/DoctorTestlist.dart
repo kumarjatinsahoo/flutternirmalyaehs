@@ -229,7 +229,6 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
                       ],
                     ),
                   ),
-
                 ):*/
                     isdata == true
                         ? Center(
@@ -240,7 +239,6 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
                                       MediaQuery.of(context).size.height * 0.35,
                                 ),
                                 CircularProgressIndicator(
-
                                     // backgroundColor: AppData.matruColor,
                                     ),
                               ],
@@ -253,11 +251,11 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
 
                                   child: Column(
                                     children: [
-                                      SizedBox(
-                                        height:
-                                            MediaQuery.of(context).size.height *
-                                                0.35,
-                                      ),
+                                      // SizedBox(
+                                      //   height:
+                                      //       MediaQuery.of(context).size.height *
+                                      //           0.35,
+                                      // ),
                                       Image.asset("assets/NoRecordFound.png",
                                               // height: 25,
                                             )

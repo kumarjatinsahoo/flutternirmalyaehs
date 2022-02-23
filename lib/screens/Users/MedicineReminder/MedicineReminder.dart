@@ -124,7 +124,6 @@ MedicineReminderDTO1 medicineReminderDTO1;
         fun: (Map<String, dynamic> map){
           print("Value is>>>>" + JsonEncoder().convert(map));
       setState(() {
-
         if (map[Const.CODE] == Const.SUCCESS) {
           medicineReminderDTO1 = MedicineReminderDTO1.fromJson(map);
         }/*else{
