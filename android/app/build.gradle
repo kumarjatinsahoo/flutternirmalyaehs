@@ -39,7 +39,7 @@ android {
         applicationId "com.ehealthsystem.user"
         minSdkVersion 23
         targetSdkVersion 30
-        versionCode 29
+        versionCode 30
         multiDexEnabled true
         versionName "2.1.4"
     }
