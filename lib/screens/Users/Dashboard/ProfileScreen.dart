@@ -4525,7 +4525,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     results = list;
                   } else {
                     results = list
-                        .where((user) => user.displayName.toLowerCase()
+                        .where((user) => (user?.displayName??"").toLowerCase()
                         .contains(enteredKeyword.toLowerCase()))
                         .toList();
                   }
@@ -4588,6 +4588,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     style: TextStyle(color: AppData.kPrimaryRedColor)),
                 onPressed: () {
                   setState(() {
+                    Navigator.pop(context);
                     Navigator.pop(context);
                   });
                 },
