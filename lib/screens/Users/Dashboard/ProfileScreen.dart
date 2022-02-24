@@ -4401,7 +4401,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       AppData.showInSnackBar(context, "Please enter UHID no");
                     }else if ((loginResponse1.body.user==textEditingController[19].text)) {
                       AppData.showInSnackBar(context, "Please enter correct UHID no");
-                    } else {
+                    } else { 
                       MyWidgets.showLoading(context);
                       widget.model.GETMETHODCALL_TOKEN(
                           api: ApiFactory.UHID_LIST +
