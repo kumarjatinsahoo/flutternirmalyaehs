@@ -966,7 +966,7 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                     results = list;
                   } else {
                     results = list
-                        .where((user) => user.displayName
+                        .where((user) => (user?.displayName??"")
                             .toLowerCase()
                             .contains(enteredKeyword.toLowerCase()))
                         .toList();
@@ -1055,6 +1055,7 @@ class _SetupContactsPageState extends State<SetupContactsPage> {
                     style: TextStyle(color: AppData.kPrimaryRedColor)),
                 onPressed: () {
                   setState(() {
+                    Navigator.pop(context);
                     Navigator.pop(context);
                   });
                 },
