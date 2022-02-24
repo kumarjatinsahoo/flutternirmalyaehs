@@ -3976,11 +3976,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     } else if (textEditingController[13].text != "" &&
                         textEditingController[13].text.length <= 2) {
                       AppData.showInSnackBar(
-                          context, "Please enter a valid first name");
-                    } else if (ProfileScreen.relationmodel == "" ||
-                        ProfileScreen.relationmodel == null) {
-                      AppData.showInSnackBar(
-                          context, "Please select relation ");
+                          context, "Please enter a valid name");
+
                     } else if (textEditingController[14].text == "" ||
                         textEditingController[14].text == null) {
                       AppData.showInSnackBar(
@@ -3989,6 +3986,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         textEditingController[14].text.length != 10) {
                       AppData.showInSnackBar(
                           context, "Please enter valid  mobile no.");
+                    } else if (ProfileScreen.relationmodel == "" ||
+                        ProfileScreen.relationmodel == null) {
+                      AppData.showInSnackBar(
+                          context, "Please select relation ");
                     } else {
                       UpdateEmergencyModel updateEmergencyModel =
                           UpdateEmergencyModel();
@@ -4127,7 +4128,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ProfileScreen.relationmodel == null) {
                       AppData.showInSnackBar(
                           context, "Please select relation ");
-                    } else if (textEditingController[14].text == "" ||
+                    }else if (textEditingController[14].text == "" ||
                         textEditingController[14].text == null) {
                       AppData.showInSnackBar(
                           context, "Please enter emergency mobile no.");
@@ -4135,7 +4136,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         textEditingController[14].text.length != 10) {
                       AppData.showInSnackBar(
                           context, "Please enter valid emergency mobile no.");
-                    } else {
+
+          }
+                    else {
                       UpdateEmergencyModel updateEmergencyModel =
                           UpdateEmergencyModel();
                       updateEmergencyModel.name =
@@ -4265,11 +4268,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         textEditingController[15].text.length <= 2) {
                       AppData.showInSnackBar(
                           context, "Please enter a valid  name");
-                    } else if (ProfileScreen.specialitymodel == "" ||
-                        ProfileScreen.specialitymodel == null) {
-                      AppData.showInSnackBar(
-                          context, "Please select speciallity ");
-                    } else if (textEditingController[16].text == "" ||
+                    }else if (textEditingController[16].text == "" ||
                         textEditingController[16].text == null) {
                       AppData.showInSnackBar(
                           context, "Please enter  mobile no.");
@@ -4277,7 +4276,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         textEditingController[16].text.length != 10) {
                       AppData.showInSnackBar(
                           context, "Please enter valid mobile no.");
-                    } else {
+                    } else if (ProfileScreen.specialitymodel == "" ||
+                        ProfileScreen.specialitymodel == null) {
+                      AppData.showInSnackBar(
+                          context, "Please select speciality ");
+
+                  } else {
                       FamilyDoctorModel familydoctormodel = FamilyDoctorModel();
                       familydoctormodel.name = textEditingController[15].text;
                       familydoctormodel.mobile = textEditingController[16].text;

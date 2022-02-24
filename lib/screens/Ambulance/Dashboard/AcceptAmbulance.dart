@@ -261,6 +261,32 @@ class _AcceptAmbulanceState extends State<AcceptAmbulance> {
                                                   ),
                                                   Row(
                                                     children: [
+                                                      Container(
+                                                        width: 140,
+                                                        child: Text(
+                                                         "Date",
+                                                          style: TextStyle(
+                                                            fontWeight:
+                                                            FontWeight
+                                                                .w600,
+                                                            fontSize: 15,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      Expanded(
+                                                        child: Text(
+                                                          body.bookedDate,
+                                                          style: TextStyle(
+                                                              fontSize: 15),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  SizedBox(
+                                                    height: 10,
+                                                  ),
+                                                  Row(
+                                                    children: [
                                                       Text(
                                                         ' ',
                                                         style: TextStyle(
