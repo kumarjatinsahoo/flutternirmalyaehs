@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/LabBookModel.dart' as lab;
+import 'package:user/models/LoginResponse1.dart';
 import 'package:user/models/UserDetailsModel.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/api_factory.dart';
@@ -36,6 +37,7 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
 
   //LoginResponse1 loginResponse;
   lab.LabBookModel appointModel;
+  LoginResponse1 loginResponse1;
 
   StreamSubscription _connectionChangeStream;
   Color bgColor = Colors.white;
@@ -62,6 +64,7 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
   @override
   void initState() {
     super.initState();
+    loginResponse1 = widget.model.loginResponse1;
     comeFrom = widget.model.apntUserType;
     //final df = new DateFormat('yyyy/MM/dd');
     final df = new DateFormat('dd/MM/yyyy');
@@ -76,7 +79,7 @@ class _AllAppointmentPageState extends State<AllAppointmentPage> {
   callAPI(String today) {
     if (comeFrom == Const.HEALTH_SCREENING_APNT) {
       widget.model.GETMETHODCALL_TOKEN(
-          api: ApiFactory.HEALTH_SCREENING_LIST + today,
+          api: ApiFactory.HEALTH_SCREENING_LIST + today + "&labid="+loginResponse1.body.user,
           token: widget.model.token,
           fun: (Map<String, dynamic> map) {
             setState(() {

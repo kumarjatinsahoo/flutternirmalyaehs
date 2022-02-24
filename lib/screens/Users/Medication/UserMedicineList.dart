@@ -208,14 +208,14 @@ class _MedicineList extends State<UserMedicineList> {
                   // backgroundColor: AppData.matruColor,
                   ),
             ) /*MyWidgets.showLoading(context)`*/
-          : medicineListModel == null || medicineListModel == null
-              ? Container(
-                  child: Center(
-                    child: Image.asset("assets/NoRecordFound.png",
-                                              // height: 25,
-                                            )
-                  ),
-                )
+          // : medicineListModel == null || medicineListModel == null
+          //     ? Container(
+          //         child: Center(
+          //           child: Image.asset("assets/NoRecordFound.png",
+          //                                     // height: 25,
+          //                                   )
+          //         ),
+          //       )
               : (medicineListModel != null)
                   ? Container(
                       child: Padding(
@@ -506,11 +506,14 @@ class _MedicineList extends State<UserMedicineList> {
                               ),
                               (selectedMedicine != null &&
                                       selectedMedicine.length > 0)
-                                  ? Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 10),
-                                      child: nextButton(),
-                                    )
+                                  ? Visibility(
+                                    visible: _isChecked,
+                                    child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 10),
+                                        child: nextButton(),
+                                      ),
+                                  )
                                   : Container(),
                             ],
                           ),
@@ -521,11 +524,12 @@ class _MedicineList extends State<UserMedicineList> {
                       width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.height,
                       alignment: Alignment.center,
-                      child: (isDataNoFound)
-                          ? Image.asset("assets/NoRecordFound.png",
+                      child:
+                      //  (isDataNoFound)?
+                           Image.asset("assets/NoRecordFound.png",
                                               // height: 25,
                                             )
-                          : CircularProgressIndicator(),
+                         ,
                     ),
     ));
   }
@@ -686,6 +690,7 @@ class _MedicineList extends State<UserMedicineList> {
                               AppData.showInSnackBar(
                                   context, map[Const.MESSAGE]);
                             }
+                            _isChecked=false;
                           });
                         });
                   }
