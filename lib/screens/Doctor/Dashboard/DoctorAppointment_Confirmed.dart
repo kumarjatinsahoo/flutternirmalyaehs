@@ -497,7 +497,7 @@ class _DoctorAppointmentConfirmedState
                                                                         //height: 40.0,
                                                                         child: Text(
                                                                           /*'Confirmed'*/
-                                                                          "My medical Record",
+                                                                          "My Medical Record",
                                                                           textAlign: TextAlign.center,
                                                                           style: TextStyle(
                                                                               fontWeight:

@@ -867,7 +867,7 @@ class _MedicationlistState extends State<Medicationlist> {
         textInputAction: inputAct,
         inputFormatters: [
           //UpperCaseTextFormatter(),
-          WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
+          WhitelistingTextInputFormatter(RegExp("[a-zA-Z0-9 ]")),
         ],
         keyboardType: keyType,
         decoration: InputDecoration(

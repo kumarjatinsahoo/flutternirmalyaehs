@@ -537,7 +537,7 @@ class _DoctorAppointmentTreatedState extends State<DoctorAppointmentTreated> {
                                                                           child:
                                                                               Text(
                                                                             /*'Confirmed'*/
-                                                                                "My medical Record",
+                                                                                "My Medical Record",
                                                                                 textAlign: TextAlign.center,
                                                                             style: TextStyle(
                                                                                 fontWeight: FontWeight.bold,

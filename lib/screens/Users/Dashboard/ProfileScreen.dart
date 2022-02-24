@@ -200,6 +200,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     /*String id1 =loginResponse1.body.user;
     id1.substring(1,3);
     log("Valuedgfcgrbhgjktgnkfjjhiory>>>" + id1);*/
+    //log("Nayak---------"+loginResponse1.body.user);
     setState(() {
       callApi();
     });
@@ -4354,6 +4355,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             SizedBox(
                               height: 20,
                             ),
+
                             Padding(
                               padding: const EdgeInsets.all(5.0),
                               child: TextField(
@@ -4401,7 +4403,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     if (textEditingController[19].text == null ||
                         textEditingController[19].text == "") {
                       AppData.showInSnackBar(context, "Please enter UHID no");
-                    } else {
+                    }else if ((loginResponse1.body.user==textEditingController[19].text)) {
+                      AppData.showInSnackBar(context, "You can't add yourself");
+                    } else { 
                       MyWidgets.showLoading(context);
                       widget.model.GETMETHODCALL_TOKEN(
                           api: ApiFactory.UHID_LIST +
@@ -4525,7 +4529,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     results = list;
                   } else {
                     results = list
-                        .where((user) => user.displayName.toLowerCase()
+                        .where((user) => (user?.displayName??"").toLowerCase()
                         .contains(enteredKeyword.toLowerCase()))
                         .toList();
                   }
@@ -4588,6 +4592,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     style: TextStyle(color: AppData.kPrimaryRedColor)),
                 onPressed: () {
                   setState(() {
+                    Navigator.pop(context);
                     Navigator.pop(context);
                   });
                 },

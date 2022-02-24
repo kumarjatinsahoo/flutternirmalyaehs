@@ -2352,7 +2352,7 @@ class MyPage1Widget extends StatelessWidget {
                       fun: () {
                         //chooseAppointment(context, model);
                         //Navigator.pushNamed(context, "/userAppoint");
-                        Navigator.pushNamed(context, "/myAppointment");
+                         Navigator.pushNamed(context, "/myAppointment");
                         /*Navigator.pushNamed(
                                       context, "/medipedia");*/
                         // AppData.showSnack(

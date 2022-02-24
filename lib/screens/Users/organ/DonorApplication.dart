@@ -464,7 +464,7 @@ class DonorApplicationState extends State<DonorApplication> {
                     results = list;
                   } else {
                     results = list
-                        .where((user) => user.displayName.toLowerCase()
+                        .where((user) => (user?.displayName??"").toLowerCase()
                         .contains(enteredKeyword.toLowerCase()))
                         .toList();
                   }
@@ -528,6 +528,7 @@ class DonorApplicationState extends State<DonorApplication> {
                 onPressed: () {
                   setState(() {
                     Navigator.pop(context);
+                      Navigator.pop(context);
                   });
                 },
               ),
