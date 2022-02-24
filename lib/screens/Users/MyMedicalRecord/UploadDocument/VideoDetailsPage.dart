@@ -102,42 +102,46 @@ class _VideoDetailsPageState extends State<VideoDetailsPage> {
           },
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
-        body: Container(
-          // padding: EdgeInsets.only(bottom: 70),
-          width: double.maxFinite,
-          height: double.maxFinite,
-          padding: EdgeInsets.zero,
-          child: Column(
-            children: [
-              Stack(
+        body: ListView(
+          children: [
+            Container(
+              // padding: EdgeInsets.only(bottom: 70),
+              width: double.maxFinite,
+              height: double.maxFinite,
+              padding: EdgeInsets.zero,
+              child: Column(
                 children: [
-                  Center(
-                    child: _chewieController != null &&
-                            _chewieController
-                                .videoPlayerController.value.isInitialized
-                        ? AspectRatio(
-                            aspectRatio:
-                                _videoPlayerController1.value.aspectRatio,
-                            child: Chewie(
-                              controller: _chewieController,
-                            ),
-                          )
-                        : Container(
-                            height: 200,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: const [
-                                CupertinoActivityIndicator(),
-                                SizedBox(height: 20),
-                                Text('Loading'),
-                              ],
-                            ),
-                          ),
+                  Stack(
+                    children: [
+                      Center(
+                        child: _chewieController != null &&
+                                _chewieController
+                                    .videoPlayerController.value.isInitialized
+                            ? AspectRatio(
+                                aspectRatio:
+                                    _videoPlayerController1.value.aspectRatio,
+                                child: Chewie(
+                                  controller: _chewieController,
+                                ),
+                              )
+                            : Container(
+                                height: 200,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: const [
+                                    CupertinoActivityIndicator(),
+                                    SizedBox(height: 20),
+                                    Text('Loading'),
+                                  ],
+                                ),
+                              ),
+                      ),
+                    ],
                   ),
                 ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
