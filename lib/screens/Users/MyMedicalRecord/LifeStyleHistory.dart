@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/KeyvalueModel.dart';
 import 'package:user/models/LifeStyleHistryModel.dart';
@@ -800,13 +801,14 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                 log("API NAME>>>>" + ApiFactory.patient_lifestyle_details);
                 log("TO POST>>>>" + jsonEncode(sendData));
                 MyWidgets.showLoading(context);
-                Navigator.pop(context);
+                // Navigator.pop(context);
                 widget.model.POSTMETHOD_TOKEN(
                     api: ApiFactory.patient_lifestyle_details,
                     json: sendData,
                     token: widget.model.token,
                     fun: (Map<String, dynamic> map) {
-                      Navigator.pop(context);
+                      
+                      String msg = map["message"].toString();
                       /*setState(() {
                         if (map[Const.STATUS1] == Const.SUCCESS) {
                           Navigator.pop(context);
@@ -821,17 +823,20 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
                         }
                       });*/
                     /*});*/
-                      setState(() {
+                     
                         if (map[Const.CODE] == Const.SUCCESS) {
+                           setState(() {
                           //Navigator.pop(context);
-                          //AppData.showInSnackDone(context, map["message"]);
+                          // AppData.showInSnackDone(context, map["message"]);
+                           popup(msg, context);
                           callAPI();
                           //AppData.showInSnackDone(context, map[Const.MESSAGE]);
                           //AppData.showInSnackBargreen(context,"chs");
+                        });
                         } else {
                           //AppData.showInSnackBar(context,/* map[Const.MESSAGE]*/"gkhyjjd");
                         }
-                      });
+                      
                     },
                   /*fun: (Map<String, dynamic> map) {
                     Navigator.pop(context);
@@ -857,7 +862,59 @@ class _LifeStyleHistoryState extends State<LifeStyleHistory> {
       ],
     );
   }
-
+popup(String msg, BuildContext context) {
+    return Alert(
+        context: context,
+        //title: "Success",
+        title: "Success",
+        //type: AlertType.info,
+        onWillPopActive: true,
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              Icons.check_circle_outline_outlined,
+              size: 140,
+              color: Colors.green,
+            ),
+            SizedBox(
+              height: 5,
+            ),
+            Text(
+              msg,
+              style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 17,
+                  fontWeight: FontWeight.w400),
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(
+              height: 5,
+            ),
+           
+          ],
+        ),
+        closeIcon: Icon(
+          Icons.info,
+          color: Colors.transparent,
+        ),
+        closeFunction: () {},
+        buttons: [
+          DialogButton(
+            child: Text(
+              "OK",
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+            onPressed: () {
+              // Navigator.pop(context);
+              Navigator.pop(context);
+              Navigator.pop(context, true);
+            },
+            color: Color.fromRGBO(0, 179, 134, 1.0),
+            radius: BorderRadius.circular(0.0),
+          ),
+        ]).show();
+  }
   Widget gender() {
     return DropDown.staticDropdown3(
         MyLocalizations.of(context).text("DIET"), "diet", genderList,
