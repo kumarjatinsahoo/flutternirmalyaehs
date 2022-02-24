@@ -200,6 +200,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     /*String id1 =loginResponse1.body.user;
     id1.substring(1,3);
     log("Valuedgfcgrbhgjktgnkfjjhiory>>>" + id1);*/
+    //log("Nayak---------"+loginResponse1.body.user);
     setState(() {
       callApi();
     });
@@ -4350,6 +4351,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             SizedBox(
                               height: 20,
                             ),
+
                             Padding(
                               padding: const EdgeInsets.all(5.0),
                               child: TextField(
@@ -4397,6 +4399,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     if (textEditingController[19].text == null ||
                         textEditingController[19].text == "") {
                       AppData.showInSnackBar(context, "Please enter UHID no");
+                    }else if ((loginResponse1.body.user==textEditingController[19].text)) {
+                      AppData.showInSnackBar(context, "Please enter correct UHID no");
                     } else {
                       MyWidgets.showLoading(context);
                       widget.model.GETMETHODCALL_TOKEN(
