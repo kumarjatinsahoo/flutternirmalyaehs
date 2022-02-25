@@ -2463,7 +2463,7 @@ class AddinsuranceFormState extends State<AddinsuranceForm> {
             textInputAction: TextInputAction.next,
             keyboardType: TextInputType.text,
             controller: textEditingController[index],
-            maxLength: 10,
+            maxLength: 14,
 
             //focusNode: fnode1,
             textAlignVertical:
@@ -2477,8 +2477,8 @@ class AddinsuranceFormState extends State<AddinsuranceForm> {
               AppData.fieldFocusChange(context, fnode1, null);
             },
             inputFormatters: [
-              UpperCaseTextFormatter(),
-              WhitelistingTextInputFormatter(RegExp("[a-zA-Z0-9 ]")),
+              //UpperCaseTextFormatter(),
+              WhitelistingTextInputFormatter(RegExp("[a-zA-Z0-9 -]")),
             ],
 
           ),
