@@ -236,7 +236,7 @@ class _RefferedPatientsState extends State<RefferedPatients> {
                                         width: 120,
                                         child: Text(
                                           /*'Confirmed'*/
-                                          MyLocalizations.of(context).text("NOTES"),
+                                          ("Notes"),
                                           style: TextStyle(
                                             fontWeight:
                                             FontWeight
@@ -273,7 +273,7 @@ class _RefferedPatientsState extends State<RefferedPatients> {
                                         width: 120,
                                         child: Text(
                                           /*'Confirmed'*/
-                                          MyLocalizations.of(context).text("Date"),
+                                          MyLocalizations.of(context).text("DATE"),
                                           style: TextStyle(
                                             fontWeight:
                                             FontWeight
