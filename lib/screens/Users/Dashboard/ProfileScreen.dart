@@ -3086,15 +3086,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       AppData.showInSnackBar(
                           context, "Please Fill Up Atleast One Field ");
                     }*/
-                    if (textEditingController[0].text == null ||
-                        textEditingController[0].text == "") {
+                    if (textEditingController[0].text.trim() == null ||
+                        textEditingController[0].text.trim() == "") {
                       AppData.showInSnackBar(context, "Please enter  DOB");
                     // } else if (ProfileScreen.bloodgroupmodel == null ||
                     //     ProfileScreen.bloodgroupmodel == "") {
                     //   AppData.showInSnackBar(
                     //       context, "Please select Bloodgroup");
-                    } else if (textEditingController[1].text == "" ||
-                        textEditingController[1].text == null && textEditingController[1].text.isEmpty ) {
+                    } else if (textEditingController[1].text.trim() == "" ||
+                        textEditingController[1].text.trim()== null) {
                       AppData.showInSnackBar(context, "Please enter address");
                     // } else if (ProfileScreen.materialmodel == null ||
                     //     ProfileScreen.materialmodel == "") {
@@ -3125,7 +3125,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     //   AppData.showInSnackBar(
                     //       context, "Please enter a Passport No");
                     //   FocusScope.of(context).requestFocus(fnode5);
-                    } else if (textEditingController[7].text != ""  && (!Aadhar.validateVerhoeff(
+                    } else if (textEditingController[7].text.trim()!= ""  && (!Aadhar.validateVerhoeff(
                         textEditingController[7].text.replaceAll("-", "").toString())|| textEditingController[7].text.length!=12)) {
                      AppData.showInSnackBar(context, "Please enter valid aadhar no");
                     //   FocusScope.of(context).requestFocus(fnode6);
@@ -3144,16 +3144,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     // } else if (textEditingController[11].text == "" ||
                     //     textEditingController[11].text == null) {
                     //   AppData.showInSnackBar(context, "Please enter Email");
-                    } else if (textEditingController[12].text == "" ||
-                        textEditingController[12].text == null) {
+                    } else if (textEditingController[12].text.trim() == "" ||
+                        textEditingController[12].text.trim() == null) {
                      AppData.showInSnackBar(context, "Please enter pin code");
-                    } else if (textEditingController[12].text != "" &&
+                    } else if (textEditingController[12].text.trim() != "" &&
                         textEditingController[12].text.length <=5) {
                       AppData.showInSnackBar(context, "Please enter 6 digit pin code");
-                    } else if (textEditingController[13].text == "" ||
-                        textEditingController[13].text == null) {
+                    } else if (textEditingController[13].text.trim() == "" ||
+                        textEditingController[13].text.trim() == null) {
                       AppData.showInSnackBar(context, "Please enter mobile no");
-                    } else if (textEditingController[13].text != "" &&
+                    } else if (textEditingController[13].text.trim() != "" &&
                         textEditingController[13].text.length <=9) {
                       AppData.showInSnackBar(context, "Please enter 10 digit mobile no");
                    /* } else if (textEditingController[14].text == "" ||
@@ -3162,8 +3162,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     } else if (textEditingController[15].text == "" ||
                         textEditingController[15].text == null) {
                       AppData.showInSnackBar(context, "Please enter last name");*/
-                    } else if (textEditingController[16].text == "" ||
-                        textEditingController[16].text == null) {
+                    } else if (textEditingController[16].text.trim() == "" ||
+                        textEditingController[16].text.trim() == null) {
                       AppData.showInSnackBar(context, "Please enter gender");
                     } else if (ProfileScreen.countrymodel == null ||
                         ProfileScreen.countrymodel == "") {
