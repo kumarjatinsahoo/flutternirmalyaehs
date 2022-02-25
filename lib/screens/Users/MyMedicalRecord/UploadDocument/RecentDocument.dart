@@ -259,7 +259,6 @@ class _RecentDocumentState extends State<RecentDocument> {
                               child: Container(
                                 height: 120,
                                 // width: 50,
-
                                     child: InkWell(
                                       onTap: () {
                                         String pdfurl = body.fileName;
