@@ -112,7 +112,7 @@ class _Immunization extends State<Immunization> {
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Positioned(
+                      /*Positioned(
                         right: 10.0,
                         child: GestureDetector(
                           onTap: () {
@@ -127,7 +127,8 @@ class _Immunization extends State<Immunization> {
                             ),
                           ),
                         ),
-                      ),
+                      ),*/
+                      SizedBox(height: 20),
                       Center(
                         child: Text(
                           "Are you Vaccinated ?",
@@ -144,6 +145,17 @@ class _Immunization extends State<Immunization> {
               },
             ),
             actions: <Widget>[
+              FlatButton(
+                //textColor: Colors.grey,
+                child: Text("Cancle",
+                    style: TextStyle(color: AppData.kPrimaryRedColor)),
+                onPressed: () {
+
+                  setState(() {
+                    Navigator.pop(context);
+                  });
+                },
+              ),
               FlatButton(
                 //textColor: Colors.grey,
                 child: Text("No",
