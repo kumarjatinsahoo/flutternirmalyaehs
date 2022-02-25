@@ -96,6 +96,7 @@ class _DoctorAppointmentTreatedState extends State<DoctorAppointmentTreated> {
               // appointModel = lab.LabBookModel.fromJson(map);
             } else {
               isdata = false;
+              doctorAppointmment=null;
               // isDataNotAvail = true;
               //AppData.showInSnackBar(context, msg);
             }

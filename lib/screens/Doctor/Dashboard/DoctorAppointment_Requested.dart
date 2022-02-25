@@ -102,6 +102,7 @@ class _DoctorAppointmentRequestedState
               // appointModel = lab.LabBookModel.fromJson(map);
             } else {
               isdata = false;
+              doctorAppointmment=null;
               // isDataNotAvail = true;
 /*
               AppData.showInSnackBar(context, msg);
