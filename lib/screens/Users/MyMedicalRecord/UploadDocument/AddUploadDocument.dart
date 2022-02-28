@@ -136,7 +136,7 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: AppData.kPrimaryColor,
-        title: Text(/*MyLocalizations.of(context).text("UPLOAD_DOCUMENT")*/"UPLOAD_DOCUMENT"),
+        title: Text(MyLocalizations.of(context).text("UPLOAD_DOCUMENT")),
       ),
 
       /*floatingActionButton: UnicornDialer(
