@@ -219,7 +219,7 @@ class _OrganlistState extends State<Organlist> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          'Doneted Organ List : ',
+                                          'Donated Organ List : ',
                                           style: TextStyle(
                                               color: Colors.black,
                                               fontSize: 16,
