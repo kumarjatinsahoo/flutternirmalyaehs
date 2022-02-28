@@ -668,12 +668,11 @@ class _MedicineList extends State<UserMedicineList> {
               AppData.showInSnackBar(context, "Please select Pharmacy ");
             }*/
                   else {
-                    Map<String, dynamic> map =
-                        fromJsonListData(selectedMedicine);
+                    Map<String, dynamic> map = fromJsonListData(selectedMedicine);
                     log("API NAME>>>>" + ApiFactory.POST_PHARMACY_REQUST);
+
                     log("TO POST>>>>" + jsonEncode(map));
                     MyWidgets.showLoading(context);
-
                     widget.model.POSTMETHOD_TOKEN(
                         api: ApiFactory.POST_PHARMACY_REQUST,
                         json: map,

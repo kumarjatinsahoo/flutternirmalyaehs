@@ -1453,7 +1453,7 @@ class AddinsuranceFormState extends State<AddinsuranceForm> {
                   //maxLength: 6,
                   keyboardType: TextInputType.number,
                   inputFormatters: [
-                    WhitelistingTextInputFormatter(RegExp("[0-9 ]")),
+                    WhitelistingTextInputFormatter(RegExp("[0-9.]")),
                   ],
                   decoration: InputDecoration(
                     //suffixIcon: Icon(Icons.phone),
@@ -2478,7 +2478,7 @@ class AddinsuranceFormState extends State<AddinsuranceForm> {
             },
             inputFormatters: [
               //UpperCaseTextFormatter(),
-              WhitelistingTextInputFormatter(RegExp("[a-zA-Z0-9 -]")),
+              WhitelistingTextInputFormatter(RegExp("[a-zA-Z0-9-]")),
             ],
 
           ),

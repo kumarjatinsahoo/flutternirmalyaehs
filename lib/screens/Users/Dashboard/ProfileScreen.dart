@@ -4969,7 +4969,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
               inputFormatters: [
                 //UpperCaseTextFormatter(),
-                WhitelistingTextInputFormatter(RegExp("[a-zA-Z0-9 -]")),
+                WhitelistingTextInputFormatter(RegExp("[a-zA-Z0-9-]")),
               ],
               //maxLength: 10,
               // Validator.getKeyboardTyp(validateModel.fieldType.toLowerCase()),

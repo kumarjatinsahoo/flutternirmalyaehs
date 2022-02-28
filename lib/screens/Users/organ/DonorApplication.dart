@@ -1431,14 +1431,14 @@ class DonorApplicationState extends State<DonorApplication> {
           onPressed: () {
             setState(() {
               if (textEditingController[7].text.trim() == "" ||
-                  textEditingController[7].text == null) {
+                  textEditingController[7].text.trim()== null) {
                 AppData.showInSnackBar(context, "Please enter person name");
               } else if (textEditingController[7].text != "" &&
                   textEditingController[7].text.length <= 2) {
                 AppData.showInSnackBar(
                     context, "Please enter a valid person name");
               } else if (textEditingController[8].text.trim() == "" ||
-                  textEditingController[8].text == null) {
+                  textEditingController[8].text.trim() == null) {
                 AppData.showInSnackBar(context, "Please enter S/O,D/O,W/O");
               } else if (textEditingController[9].text == "" ||
                   textEditingController[9].text == null) {

@@ -684,11 +684,11 @@ class SetReminderState extends State<SetReminder> {
     }
 
 
-    if (textEditingController[0].text == "" ||
-        textEditingController[0].text == null) {
+    if (textEditingController[0].text.trim()== "" ||
+        textEditingController[0].text.trim() == null) {
       AppData.showInSnackBar(context, "Please enter type");
-    } else if (textEditingController[1].text == "" ||
-        textEditingController[1].text == null) {
+    } else if (textEditingController[1].text .trim()== "" ||
+        textEditingController[1].text.trim() == null) {
       AppData.showInSnackBar(context, "Please enter medicine name");
     } else if (SetReminder.dosageModel == null) {
       AppData.showInSnackBar(context, "Please select dosage");
@@ -698,8 +698,8 @@ class SetReminderState extends State<SetReminder> {
       AppData.showInSnackBar(context, "Please enter timings");
     }else if (stdob.text == "" || stdob.text == null) {
       AppData.showInSnackBar(context, "Please enter start date");
-    } else if (textEditingController[2].text == "" ||
-        textEditingController[2].text == null) {
+    } else if (textEditingController[2].text.trim()== "" ||
+        textEditingController[2].text.trim()== null) {
       AppData.showInSnackBar(context, "Please enter days");
     } else if (int.parse(textEditingController[2].text) < 1) {
       AppData.showInSnackBar(context, "Days should not be less than 1");
@@ -1020,7 +1020,7 @@ class SetReminderState extends State<SetReminder> {
       if(doseTimeList.contains(timePicker[v].text)){    
            selectedTime = TimeOfDay.now();
            timePicker[v].text="";
-          AppData.showInSnackBar(context, 'Time is Already Added!');
+          AppData.showInSnackBar(context, 'Time is already added');
                    
       }      
      doseTimeList.add(timePicker[v].text.toString());     
