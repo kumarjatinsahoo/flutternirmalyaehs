@@ -1733,55 +1733,55 @@ class AddinsuranceFormState extends State<AddinsuranceForm> {
       text:  MyLocalizations.of(context).text("SUBMIT"),
       context: context,
       fun: () {
-        if (textEditingController[1].text == null ||
-            textEditingController[1].text == "") {
+        if (textEditingController[1].text.trim() == null ||
+            textEditingController[1].text.trim() == "") {
           AppData.showInSnackBar(
               context, "Please enter insurance company name ");
-        } else if (textEditingController[2].text == null ||
-            textEditingController[2].text == "") {
+        } else if (textEditingController[2].text.trim() == null ||
+            textEditingController[2].text.trim() == "") {
           AppData.showInSnackBar(
               context, "Please enter health insurance type");
-        } else if (textEditingController[3].text == null ||
-            textEditingController[3].text == "") {
+        } else if (textEditingController[3].text.trim() == null ||
+            textEditingController[3].text.trim() == "") {
           AppData.showInSnackBar(context, "Please enter policy no ");
         } else if (_startdate.text == "" || _startdate.text == null) {
           AppData.showInSnackBar(context, "Please enter policy start date");
-        } else if (textEditingController[5].text == "" ||
-            textEditingController[5].text == null) {
+        } else if (textEditingController[5].text.trim() == "" ||
+            textEditingController[5].text.trim() == null) {
           AppData.showInSnackBar(
               context, "Please enter total insurance amount");
         } else if (_premiumdate.text == "" || _premiumdate.text == null) {
           AppData.showInSnackBar(context, "Please enter premium due date");
-        } else if (textEditingController[7].text == "" ||
-            textEditingController[7].text == null) {
+        } else if (textEditingController[7].text.trim() == "" ||
+            textEditingController[7].text.trim() == null) {
           AppData.showInSnackBar(context, "Please enter insurance type");
-        } else if (textEditingController[8].text == "" ||
-            textEditingController[8].text == null) {
+        } else if (textEditingController[8].text.trim() == "" ||
+            textEditingController[8].text.trim() == null) {
           AppData.showInSnackBar(
               context, "Please enter third party adminstrator");
-        } else if (textEditingController[9].text == "" ||
-            textEditingController[9].text == null) {
+        } else if (textEditingController[9].text.trim()== "" ||
+            textEditingController[9].text.trim() == null) {
           AppData.showInSnackBar(context, "Please enter premium amount");
         } else if (_enddate.text == "" || _enddate.text == null) {
           AppData.showInSnackBar(context, "Please enter policy end  date");
-        } else if (textEditingController[11].text == "" ||
-            textEditingController[11].text == null) {
+        } else if (textEditingController[11].text.trim() == "" ||
+            textEditingController[11].text.trim() == null) {
           AppData.showInSnackBar(
               context, "Please enter sum assured amount");
-        }else if (textEditingController[12].text == "" ||
-            textEditingController[12].text == null) {
+        }else if (textEditingController[12].text.trim() == "" ||
+            textEditingController[12].text.trim() == null) {
           AppData.showInSnackBar(context, "Please enter document name 1");
-        }else if (textEditingController[12].text != "" &&
+        }else if (textEditingController[12].text.trim() != "" &&
             idproof == null) {
           AppData.showInSnackBar(context, "Please upload document 1");
-        }else if (textEditingController[13].text != "" &&
+        }else if (textEditingController[13].text.trim() != "" &&
             idproof1 == null) {
           AppData.showInSnackBar(context, "Please upload document 2");
-        }else if (textEditingController[14].text != "" &&
+        }else if (textEditingController[14].text.trim() != "" &&
             idproof2 == null) {
           AppData.showInSnackBar(context, "Please upload document 3");
 
-        }else if (textEditingController[15].text != "" &&
+        }else if (textEditingController[15].text.trim() != "" &&
             idproof3 == null) {
           AppData.showInSnackBar(context, "Please upload document 4");
 
@@ -2463,7 +2463,7 @@ class AddinsuranceFormState extends State<AddinsuranceForm> {
             textInputAction: TextInputAction.next,
             keyboardType: TextInputType.text,
             controller: textEditingController[index],
-            maxLength: 10,
+            maxLength: 14,
 
             //focusNode: fnode1,
             textAlignVertical:
@@ -2477,8 +2477,8 @@ class AddinsuranceFormState extends State<AddinsuranceForm> {
               AppData.fieldFocusChange(context, fnode1, null);
             },
             inputFormatters: [
-              UpperCaseTextFormatter(),
-              WhitelistingTextInputFormatter(RegExp("[a-zA-Z0-9 ]")),
+              //UpperCaseTextFormatter(),
+              WhitelistingTextInputFormatter(RegExp("[a-zA-Z0-9 -]")),
             ],
 
           ),

@@ -170,13 +170,13 @@ class _BookAppointment extends State<BookAppointment> {
                 onTap: () {
                    if (BookAppointment.doctorreceptionmodel == null ||
                       BookAppointment.doctorreceptionmodel == "") {
-                    AppData.showInSnackBar(context, "Please select Doctor");
+                    AppData.showInSnackBar(context, "Please select doctor");
                   } else if (appointmentdate.text == "" || appointmentdate.text == null) {
-                    AppData.showInSnackBar(context, "Please select your Appointment Date");
+                    AppData.showInSnackBar(context, "Please select your appointment date");
                   } else if (BookAppointment.timeModel == null) {
-                    AppData.showInSnackBar(context, "Please select Time");
+                    AppData.showInSnackBar(context, "Please select time");
                   } else if (!isValidtime) {
-                    AppData.showInSnackBar(context, "Please select valid Time");
+                    AppData.showInSnackBar(context, "Please select valid time");
                   } else {
                      saveDb();
 
@@ -201,7 +201,7 @@ class _BookAppointment extends State<BookAppointment> {
                           FontWeight
                               .bold,
                           fontSize:
-                          12,
+                          17,
                           color: Colors
                               .white),
                     ),

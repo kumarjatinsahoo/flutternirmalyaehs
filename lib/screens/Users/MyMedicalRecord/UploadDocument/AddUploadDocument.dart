@@ -126,7 +126,6 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
             getVideoUpload();
           },
         )));
-
     //callApi();
   }
 
@@ -138,7 +137,6 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
         backgroundColor: AppData.kPrimaryColor,
         title: Text(MyLocalizations.of(context).text("UPLOAD_DOCUMENT")),
       ),
-
       /*floatingActionButton: UnicornDialer(
           childPadding: 4.00,
           backgroundColor: Colors.transparent,
@@ -173,7 +171,6 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
                   SizedBox(height: 10),
                   dob(),
                   SizedBox(height: 15),
-
                   InkWell(
                     onTap: () {
                       getPdfAndUpload();
