@@ -151,11 +151,11 @@ class _MedicineList extends State<UserMedicineList> {
 
   geocodeFetch(lat, longi) {
     print(">>>>>>>>>" + ApiFactory.GOOGLE_LOC(lat: lat, long: longi));
-    MyWidgets.showLoading(context);
+    // MyWidgets.showLoading(context);
     widget.model.GETMETHODCALL(
         api: ApiFactory.GOOGLE_LOC(lat: lat, long: longi),
         fun: (Map<String, dynamic> map) {
-          Navigator.pop(context);
+          // Navigator.pop(context);
           ResultsServer finder = ResultsServer.fromJson(map["results"][0]);
           print("finder1>>>>>>>>>" + finder.toJson().toString());
           setState(() {
@@ -227,7 +227,7 @@ class _MedicineList extends State<UserMedicineList> {
                                 physics: NeverScrollableScrollPhysics(),
                                 // controller: _scrollController,
                                 shrinkWrap: true,
-                                itemBuilder: (context, i) {
+                                itemBuilder: (context, i) {                                 
                                   if (i == medicineListModel.body.length) {
                                     return (medicineListModel.body.length %
                                                 10 ==
@@ -238,6 +238,7 @@ class _MedicineList extends State<UserMedicineList> {
                                   medicine.Body body =
                                       medicineListModel.body[i];
                                   widget.model.medicinelist = body;
+                                   print(']]]]]]]]]]]]]]]]]] ' + body.reqstatus.toString());
                                   // Print("mediiiicinie"+$body);
                                   return Container(
                                     child: GestureDetector(
