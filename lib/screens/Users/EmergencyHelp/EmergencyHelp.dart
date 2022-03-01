@@ -8,6 +8,7 @@ import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:geolocator/geolocator.dart' as loca;
 import 'package:lottie/lottie.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:shake/shake.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/GooglePlaceSearchModell.dart';
@@ -67,6 +68,26 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
     callAPI();
     // callAmbulance();
     _getLocationName();
+
+    ShakeDetector detector = ShakeDetector.autoStart(
+        onPhoneShake: () {
+            widget.model.longi = latitude;
+            widget.model.lati = longitude;
+            widget.model.city = cityName;
+            print('longi ___ lati + ' + widget.model.longi + '' + widget.model.lati);
+            // widget.model.emgmobile = emergencyHelpModel.emergency[0].mobile;
+            // widget.model.placeIdno = googlePlaceModel?.results[0]?.placeId;
+            /*googlePlaceModel==null?widget.model.placeIdno = googlePlaceModel?.results[0]?.placeId
+                                : widget.model.placeIdno1 = googlePlaceModel?.results[0]?.placeId;*/
+            if((latitude == null || latitude == "") || (longitude == null || longitude == "")){
+              AppData.showInSnackBar(context, "Please Allow Location");
+
+            }
+            else{
+              Navigator.pushNamed(context, "/countDown");
+            }
+        }
+    );
   }
 
   _getLocationName() async {

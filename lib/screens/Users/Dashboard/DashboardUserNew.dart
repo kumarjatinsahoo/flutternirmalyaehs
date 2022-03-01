@@ -813,6 +813,9 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                   );
                   Add2Calendar.addEvent2Cal(event);*/
                 },
+                onLongPress: (){
+                  Navigator.pushNamed(context, "/razor");
+                },
               ),
               ListTile(
                 leading: Image.asset(

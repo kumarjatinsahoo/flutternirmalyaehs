@@ -1,9 +1,10 @@
-/*
 import 'package:flutter/material.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 import 'package:user/providers/app_data.dart';
+import 'package:user/scoped-models/MainModel.dart';
 class RazorPayPage extends StatefulWidget {
-  const RazorPayPage({Key key}) : super(key: key);
+  final MainModel model;
+   RazorPayPage({Key key,this.model}) : super(key: key);
 
   @override
   _RazorPayPageState createState() => _RazorPayPageState();
@@ -77,4 +78,3 @@ class _RazorPayPageState extends State<RazorPayPage> {
     AppData.showInSnackDone(context,"EXTERNAL_WALLET: " + response.walletName);
   }
 }
-*/

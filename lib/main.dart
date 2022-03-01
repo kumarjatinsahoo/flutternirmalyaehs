@@ -113,6 +113,7 @@ import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/DocumentList.d
 import 'package:user/screens/Users/MyMedicalRecord/UploadDocument/UploadDocumentTab.dart';
 import 'package:user/screens/Users/Preventivehealthcare/PreventiveHealthCare.dart';
 import 'package:user/screens/Users/organ/OrganCardPage.dart';
+import 'package:user/screens/payment/RazorPayPage.dart';
 import 'notification/MedReminder.dart';
 import 'screens/CreateUserIDScreen.dart';
 import 'screens/Doctor/Dashboard/Showemr/MobileUpload/DoctorUploaddocument.dart';
@@ -1285,6 +1286,9 @@ class _MyAppState extends State<MyApp> {
                 model: _model,
               ),
               '/healthTipsFB': (context) => HealthTipsFB(
+                model: _model,
+              ),
+              '/razor': (context) => RazorPayPage(
                 model: _model,
               ),
 
