@@ -856,6 +856,7 @@ class _LoginScreenState extends State<LoginScreen> {
             body.userState = data.userState;
             body.userCountry = data.userCountry;
             body.userCountryId = data.userCountryId;
+            body.userPic = data.userPic;
             body.token = data.token;
             body.roles = [];
             body.roles.add(map["body"]["roleid"]);
@@ -1059,6 +1060,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 if (map[Const.CODE] == Const.SUCCESS) {
                   masterResponse = master.MasterLoginResponse.fromJson(map);
                   final signature = await SmsAutoFill().getAppSignature;
+                  widget.model.empid = signature;
                   print('signature ' + signature);
                   Navigator.push(
                     context,

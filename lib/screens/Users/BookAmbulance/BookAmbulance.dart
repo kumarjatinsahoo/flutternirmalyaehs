@@ -220,6 +220,7 @@ class BookAmbulancePageState extends State<BookAmbulancePage> {
         context: context,
         initialTime: selectedTime,
         initialEntryMode: TimePickerEntryMode.dial,
+        //displayDisabledValues: true,
         builder: (BuildContext context, Widget child) {
           return MediaQuery(
             data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
@@ -228,12 +229,30 @@ class BookAmbulancePageState extends State<BookAmbulancePage> {
         });
     /*if (timeOfDay != null && timeOfDay != selectedTime) {*/
       setState(() {
-        selectedTime = timeOfDay;
-        selectedStartTime = timeOfDay;
-        selectTime24 = (timeOfDay.hour).toString()+":"+(timeOfDay.minute).toString();
-        stime.text = formatTimeOfDay(timeOfDay);
+       /* if (mHour >= Integer.getInteger(c.get(Calendar.HOUR_OF_DAY)) && mMinute >= Integer.getInteger(c.get(Calendar.MINUTE))) {
+          mHour = hourOfDay;
+          mMinute = minute;
+          updateDisplay();
+        } else
+        //Display a toast or something to inform the user that he can't pi ck a past time.
+        }*/
+        if(selectedDate.difference(DateTime.now()).isNegative && validTime(timeOfDay)) {
+         AppData.showInSnackBar(context, "You can't use past time");
+        }else{
+          selectedTime = timeOfDay;
+          selectedStartTime = timeOfDay;
+          selectTime24 =
+              (timeOfDay.hour).toString() + ":" + (timeOfDay.minute).toString();
+          stime.text = formatTimeOfDay(timeOfDay);
+        }
       });
     /*}*/
+  }
+
+  validTime(TimeOfDay selectedTime){
+    log("Time by previous"+(selectedTime.hour.toString()+((selectedTime.minute.toString().length>1)?selectedTime.minute.toString():selectedTime.minute.toString()+"0")));
+    log("Time by now"+(TimeOfDay.now().hour.toString()+TimeOfDay.now().minute.toString()));
+    return (num.parse((selectedTime.hour.toString()+((selectedTime.minute.toString().length>1)?selectedTime.minute.toString():selectedTime.minute.toString()+"0")))<num.parse((TimeOfDay.now().hour.toString()+((TimeOfDay.now().minute.toString().length>1)?TimeOfDay.now().minute.toString():TimeOfDay.now().minute.toString()+"0"))));
   }
 
   String formatTimeOfDay(TimeOfDay tod) {

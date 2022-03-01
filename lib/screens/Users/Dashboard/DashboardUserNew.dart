@@ -1958,8 +1958,6 @@ class MyPage1Widget extends StatelessWidget {
 
 
 
-
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -2352,7 +2350,7 @@ class MyPage1Widget extends StatelessWidget {
                       fun: () {
                         //chooseAppointment(context, model);
                         //Navigator.pushNamed(context, "/userAppoint");
-                        Navigator.pushNamed(context, "/myAppointment");
+                         Navigator.pushNamed(context, "/myAppointment");
                         /*Navigator.pushNamed(
                                       context, "/medipedia");*/
                         // AppData.showSnack(

@@ -464,7 +464,7 @@ class DonorApplicationState extends State<DonorApplication> {
                     results = list;
                   } else {
                     results = list
-                        .where((user) => user.displayName.toLowerCase()
+                        .where((user) => (user?.displayName??"").toLowerCase()
                         .contains(enteredKeyword.toLowerCase()))
                         .toList();
                   }
@@ -528,6 +528,7 @@ class DonorApplicationState extends State<DonorApplication> {
                 onPressed: () {
                   setState(() {
                     Navigator.pop(context);
+                      Navigator.pop(context);
                   });
                 },
               ),
@@ -1429,15 +1430,15 @@ class DonorApplicationState extends State<DonorApplication> {
         new FlatButton(
           onPressed: () {
             setState(() {
-              if (textEditingController[7].text == "" ||
-                  textEditingController[7].text == null) {
+              if (textEditingController[7].text.trim() == "" ||
+                  textEditingController[7].text.trim()== null) {
                 AppData.showInSnackBar(context, "Please enter person name");
               } else if (textEditingController[7].text != "" &&
                   textEditingController[7].text.length <= 2) {
                 AppData.showInSnackBar(
                     context, "Please enter a valid person name");
-              } else if (textEditingController[8].text == "" ||
-                  textEditingController[8].text == null) {
+              } else if (textEditingController[8].text.trim() == "" ||
+                  textEditingController[8].text.trim() == null) {
                 AppData.showInSnackBar(context, "Please enter S/O,D/O,W/O");
               } else if (textEditingController[9].text == "" ||
                   textEditingController[9].text == null) {
@@ -1460,19 +1461,19 @@ class DonorApplicationState extends State<DonorApplication> {
               } else if (textEditingController[11].text != "" &&
                   !AppData.isValidEmail(textEditingController[11].text)) {
                 AppData.showInSnackBar(context, "Please enter a valid e-mail");
-              } else if (textEditingController[12].text == "" ||
+              } else if (textEditingController[12].text.trim() == "" ||
                   textEditingController[12].text == null) {
                 AppData.showInSnackBar(context, "Please enter address");
               } else {
                 WitnessModel witness = WitnessModel();
-                witness.donorName = textEditingController[7].text;
+                witness.donorName = textEditingController[7].text.trimLeft();
                 witness.donorType = _selectedItem1.key;
-                witness.typeUserName = textEditingController[8].text;
+                witness.typeUserName = textEditingController[8].text.trimLeft();
                 witness.relation = DonorApplication.relationmodel.key;
                 witness.age = textEditingController[9].text;
                 witness.mob = textEditingController[10].text;
                 witness.email = textEditingController[11].text;
-                witness.address = textEditingController[12].text;
+                witness.address = textEditingController[12].text.trimLeft();
 
                 //nomineeModel.relaion = AddEmployeePage.RelationModel.key;
 

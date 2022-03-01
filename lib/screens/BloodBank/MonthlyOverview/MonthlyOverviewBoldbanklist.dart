@@ -194,7 +194,7 @@ class _MonthlyOverviewBloodbanklistState extends State<MonthlyOverviewBloodbankl
                                               Row(
                                                 children: [
                                                   Text(
-                                                    " Patient Name ",
+                                                    "Patient Name ",
                                                     style: TextStyle(
                                                       fontWeight:
                                                           FontWeight.w600,

@@ -345,8 +345,7 @@ class _MedicineList extends State<UserMedicineList1> {
     alignment: Alignment.center,
     child: (isDataNoFound) ? 
     Center(
-      child: Image.asset(
-                                             "assets/NoRecordFound.png",
+      child: Image.asset("assets/NoRecordFound.png",
                                               // height: 25,
                                             ),
     ):

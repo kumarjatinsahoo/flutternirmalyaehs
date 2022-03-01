@@ -320,13 +320,13 @@ class _DoctorAddUploadDocumentState extends State<DoctorAddUploadDocument> {
                       if (textEditingController[1].text == "" ||
                           textEditingController[1].text == null) {
                         AppData.showInSnackBar(
-                            context, "Please Enter Document Name");
+                            context, "Please enter document name");
                       } else if (_date.text == "" || _date.text == null) {
                         AppData.showInSnackBar(
-                            context, "Please Enter Document Date");
+                            context, "Please enter document date");
                       } else if (idproof == "" || idproof == null) {
                         AppData.showInSnackBar(context,
-                            "Please Select  at least One Image,Video,Document");
+                            "Please select  at least one image,video,document");
                       } else {
                         postMultiPart();
                       }

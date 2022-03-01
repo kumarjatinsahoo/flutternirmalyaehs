@@ -143,7 +143,7 @@ class _RequestBloodBankState extends State<RequestBloodBank> {
                                   Row(
                                     children: [
                                       Text(
-                                        "Name ",
+                                        "Name  ",
                                         style: TextStyle(
                                           fontWeight:
                                           FontWeight.w600,
@@ -236,6 +236,72 @@ class _RequestBloodBankState extends State<RequestBloodBank> {
                                           onTap: () {
                                             String orderid = body.orderId;
                                             rejectApi(orderid);
+                                            callAPI();
+                                          },
+                                          child: Container(
+                                            // height: size.height * 0.06,
+                                            //width: 100,
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                BorderRadius.circular(5),
+                                                border: Border.all(
+                                                    color: Colors.black12),
+                                                color: Colors.red[900]),
+                                            child: RaisedButton(
+                                              onPressed: null,
+                                              child: Text(
+                                                "Reject",
+                                                style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.w400),
+                                              ),
+                                              disabledColor: Colors.red[900],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(width: 5),
+                                      Expanded(
+                                        child: InkWell(
+                                          onTap: () {
+                                            String orderid = body.orderId;
+                                            acceptApi(orderid);
+                                          },
+                                          child: Container(
+                                            // height: size.height * 0.06,
+                                            //width: 100,
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                BorderRadius.circular(5),
+                                                border: Border.all(
+                                                    color: Colors.black12),
+                                                color: Colors.blue),
+                                            child: RaisedButton(
+                                              onPressed: null,
+                                              child: Text(
+                                                  'Accept',
+                                                style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.w400),
+                                              ),
+                                              disabledColor: Colors.blue[600],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  /*Row(
+                                    mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Expanded(
+                                        child: InkWell(
+                                          onTap: () {
+                                            String orderid = body.orderId;
+                                            acceptApi(orderid);
                                            // callAPI();
                                           },
                                           child: Container(
@@ -290,7 +356,7 @@ class _RequestBloodBankState extends State<RequestBloodBank> {
                                         ),
                                       ),
                                     ],
-                                  ),
+                                  ),*/
                                /*   Row(
                                     children: [
                                       Text(

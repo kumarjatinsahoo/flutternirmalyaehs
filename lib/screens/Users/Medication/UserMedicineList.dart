@@ -151,11 +151,11 @@ class _MedicineList extends State<UserMedicineList> {
 
   geocodeFetch(lat, longi) {
     print(">>>>>>>>>" + ApiFactory.GOOGLE_LOC(lat: lat, long: longi));
-    MyWidgets.showLoading(context);
+    // MyWidgets.showLoading(context);
     widget.model.GETMETHODCALL(
         api: ApiFactory.GOOGLE_LOC(lat: lat, long: longi),
         fun: (Map<String, dynamic> map) {
-          Navigator.pop(context);
+          // Navigator.pop(context);
           ResultsServer finder = ResultsServer.fromJson(map["results"][0]);
           print("finder1>>>>>>>>>" + finder.toJson().toString());
           setState(() {
@@ -208,14 +208,14 @@ class _MedicineList extends State<UserMedicineList> {
                   // backgroundColor: AppData.matruColor,
                   ),
             ) /*MyWidgets.showLoading(context)`*/
-          : medicineListModel == null || medicineListModel == null
-              ? Container(
-                  child: Center(
-                    child: Image.asset("assets/NoRecordFound.png",
-                                              // height: 25,
-                                            )
-                  ),
-                )
+          // : medicineListModel == null || medicineListModel == null
+          //     ? Container(
+          //         child: Center(
+          //           child: Image.asset("assets/NoRecordFound.png",
+          //                                     // height: 25,
+          //                                   )
+          //         ),
+          //       )
               : (medicineListModel != null)
                   ? Container(
                       child: Padding(
@@ -227,7 +227,7 @@ class _MedicineList extends State<UserMedicineList> {
                                 physics: NeverScrollableScrollPhysics(),
                                 // controller: _scrollController,
                                 shrinkWrap: true,
-                                itemBuilder: (context, i) {
+                                itemBuilder: (context, i) {                                 
                                   if (i == medicineListModel.body.length) {
                                     return (medicineListModel.body.length %
                                                 10 ==
@@ -238,6 +238,7 @@ class _MedicineList extends State<UserMedicineList> {
                                   medicine.Body body =
                                       medicineListModel.body[i];
                                   widget.model.medicinelist = body;
+                                   print(']]]]]]]]]]]]]]]]]] ' + body.reqstatus.toString());
                                   // Print("mediiiicinie"+$body);
                                   return Container(
                                     child: GestureDetector(
@@ -506,11 +507,14 @@ class _MedicineList extends State<UserMedicineList> {
                               ),
                               (selectedMedicine != null &&
                                       selectedMedicine.length > 0)
-                                  ? Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 10),
-                                      child: nextButton(),
-                                    )
+                                  ? Visibility(
+                                    visible: _isChecked,
+                                    child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 10),
+                                        child: nextButton(),
+                                      ),
+                                  )
                                   : Container(),
                             ],
                           ),
@@ -521,11 +525,12 @@ class _MedicineList extends State<UserMedicineList> {
                       width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.height,
                       alignment: Alignment.center,
-                      child: (isDataNoFound)
-                          ? Image.asset("assets/NoRecordFound.png",
+                      child:
+                      //  (isDataNoFound)?
+                           Image.asset("assets/NoRecordFound.png",
                                               // height: 25,
                                             )
-                          : CircularProgressIndicator(),
+                         ,
                     ),
     ));
   }
@@ -664,12 +669,11 @@ class _MedicineList extends State<UserMedicineList> {
               AppData.showInSnackBar(context, "Please select Pharmacy ");
             }*/
                   else {
-                    Map<String, dynamic> map =
-                        fromJsonListData(selectedMedicine);
+                    Map<String, dynamic> map = fromJsonListData(selectedMedicine);
                     log("API NAME>>>>" + ApiFactory.POST_PHARMACY_REQUST);
+
                     log("TO POST>>>>" + jsonEncode(map));
                     MyWidgets.showLoading(context);
-
                     widget.model.POSTMETHOD_TOKEN(
                         api: ApiFactory.POST_PHARMACY_REQUST,
                         json: map,
@@ -686,6 +690,7 @@ class _MedicineList extends State<UserMedicineList> {
                               AppData.showInSnackBar(
                                   context, map[Const.MESSAGE]);
                             }
+                            _isChecked=false;
                           });
                         });
                   }
@@ -717,7 +722,7 @@ class _MedicineList extends State<UserMedicineList> {
         textInputAction: inputAct,
         inputFormatters: [
           //UpperCaseTextFormatter(),
-          WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
+          WhitelistingTextInputFormatter(RegExp("[a-zA-Z0-9]")),
         ],
         keyboardType: keyType,
         decoration: InputDecoration(

@@ -510,7 +510,7 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                                                                     .readOnly(
                                                                   filledIcon:
                                                                       Icons
-                                                                          .star,
+                                                                           .star,
                                                                   emptyIcon: Icons
                                                                       .star_border,
                                                                   initialRating:
@@ -1230,7 +1230,7 @@ class _MyAppointmentTreatedState extends State<MyAppointmentTreated> {
                     }
                     else if (textEditingController[1].text == null ||
                         textEditingController[1].text == "") {
-                      AppData.showInSnackBar(context, "Please enter Reviews");
+                      AppData.showInSnackBar(context, "Please enter reviews");
                     }
                     else{
                       Ratingmodel ratingmode = Ratingmodel();

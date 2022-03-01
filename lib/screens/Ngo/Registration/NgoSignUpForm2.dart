@@ -371,8 +371,6 @@ class NgoSignUpForm2State extends State<NgoSignUpForm2> {
                                       // LabSignUpForm3.districtModel = null;
                                     });
                                   }),
-
-
                                   // (NgoSignUpForm2.countryModel != null)
                                   //     ?DropDown.networkDropdownGetpartUser(
                                   //     "State", ApiFactory.STATE_API +(NgoSignUpForm2?.countryModel?.key??""), "state_Ngo", Icons.location_on_rounded,
@@ -412,7 +410,6 @@ class NgoSignUpForm2State extends State<NgoSignUpForm2> {
                                   //         // LabSignUpForm3.districtModel = null;
                                   //       });
                                   //     }):Container(),
-
                                   SizedBox(
                                     height: 8,
                                   ),

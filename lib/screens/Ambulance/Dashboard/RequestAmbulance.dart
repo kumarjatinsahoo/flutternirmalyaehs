@@ -141,7 +141,7 @@ class _RequestAmbulanceState extends State<RequestAmbulance> {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Container(
-                                        width: 180,
+                                        width:140.00,
                                         child: Text(
                                           MyLocalizations.of(context).text("NAME"),
                                           style: TextStyle(
@@ -169,7 +169,7 @@ class _RequestAmbulanceState extends State<RequestAmbulance> {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Container(
-                                        width: 180,
+                                        width:140.00,
                                         child: Text(
                                           MyLocalizations.of(context).text("FROM"),
                                           style: TextStyle(
@@ -197,7 +197,7 @@ class _RequestAmbulanceState extends State<RequestAmbulance> {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Container(
-                                        width: 180,
+                                        width:140.00,
                                         child: Text(
                                           MyLocalizations.of(context).text("DESTINATION"),
                                           style: TextStyle(
@@ -223,7 +223,7 @@ class _RequestAmbulanceState extends State<RequestAmbulance> {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Container(
-                                        width: 180,
+                                        width:140.00,
                                         child: Text(
                                           MyLocalizations.of(context).text("PATIENT_NOTES"),
                                           style: TextStyle(
@@ -243,6 +243,57 @@ class _RequestAmbulanceState extends State<RequestAmbulance> {
                                       ),
                                     ],
                                   ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Row(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        width:140.00,
+                                        child: Text(
+                                          "Date",
+                                          style: TextStyle(
+                                            fontWeight:
+                                            FontWeight.w600,
+                                            fontSize: 15,
+                                          ),
+                                        ),
+                                      ),
+                                      Expanded(
+                                        child: Text(
+                                          body.bookedDate.trim(),
+                                          textAlign: TextAlign.left,
+                                          style: TextStyle(
+                                              fontSize: 15),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  /*Row(
+                                    children: [
+                                      Container(
+                                        width:140.00,
+                                        child: Text(
+                                          "Date",
+                                          style: TextStyle(
+                                            fontWeight:
+                                            FontWeight.w600,
+                                            fontSize: 15,
+                                          ),
+                                        ),
+                                      ),
+                                      // Spacer(),
+                                      Expanded(
+                                        child: Text(
+                                          body.bookedDate,
+                                          textAlign: TextAlign.left,
+                                          style: TextStyle(
+                                              fontSize: 15),
+                                        ),
+                                      ),
+                                    ],
+                                  ),*/
                                   SizedBox(
                                     height: 10,
                                   ),

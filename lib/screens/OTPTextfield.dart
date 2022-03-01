@@ -195,6 +195,7 @@ String formattedDate;
     _controller.dispose();
     cancel();
     super.dispose();
+    otpController.clear();
   }
  
   @override
@@ -235,13 +236,21 @@ String formattedDate;
                 padding: const EdgeInsets.only(left:50.0, right: 50.0),
                 child: PinFieldAutoFill(
                   codeLength: 4,
+                  enableInteractiveSelection: false,
+                 cursor: Cursor(
+    width: 1,
+    height: 20,
+    color: Colors.white,
+    radius: Radius.circular(1),
+    enabled: true,
+  ),
                   decoration: UnderlineDecoration(
                     lineHeight: 1.0,
                     textStyle: TextStyle(fontSize: 20, color: Colors.white),
                     colorBuilder: FixedColorBuilder(Colors.white),
                   ),
                   currentCode: otpController.text,
-                  autoFocus:  true,
+                  autoFocus:  false,
                   onCodeSubmitted: (code) {
                     setState(() {
                       _fourthDigit = 4;
@@ -256,7 +265,7 @@ String formattedDate;
                         // print('code Changed ' + _fourthDigit.toString());
                         _submitBtn=true;
                       });            
-                      FocusScope.of(context).requestFocus(FocusNode());
+                      // FocusScope.of(context).requestFocus(FocusNode());
                     }
                   },
                 ),
@@ -574,6 +583,7 @@ String formattedDate;
                                 widget.model.setLoginData1(loginResponse);
                                 sharedPref.save(Const.IS_LOGIN, "true");*/
                                 // updateStatus(data[i]);
+                                //roleUpdateApi(data[i].user, data[i]);
                                 roleUpdateApi(data[i].user, data[i]);
                               },
                               trailing: Icon(Icons.arrow_right),
@@ -606,7 +616,7 @@ String formattedDate;
     );
   }
 
-  roleUpdateApi(userId, data) {
+  roleUpdateApi(userId,master.Body data) {
     MyWidgets.showLoading(context);
     widget.model.GETMETHODCALL(
         api: ApiFactory.GET_ROLE + userId,
@@ -623,6 +633,11 @@ String formattedDate;
             body.userPassword = data.userPassword;
             body.userMobile = data.userMobile;
             body.userStatus = data.userStatus;
+            body.userStateId = data.userStateId;
+            body.userState = data.userState;
+            body.userCountry = data.userCountry;
+            body.userCountryId = data.userCountryId;
+            body.userPic = data.userPic;
             body.token = data.token;
             body.roles = [];
             body.roles.add(map["body"]["roleid"]);

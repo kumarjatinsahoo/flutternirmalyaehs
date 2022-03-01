@@ -55,7 +55,7 @@ class Body {
   String vendorId;
   String otp;
   String token;
-  String profilePic;
+  String userPic;
 
   Body(
       {this.user,
@@ -81,7 +81,8 @@ class Body {
         this.dateFormatJS,
         this.vendorId,
         this.otp,
-        this.token});
+        this.token,
+        this.userPic});
 
   Body.fromJson(Map<String, dynamic> json) {
     user = json['user'];
@@ -109,7 +110,7 @@ class Body {
     vendorId = json['vendorId'];
     otp = json['otp'];
     token = json['token'];
-    profilePic = json['profilePic'];
+    userPic = json['userPic'];
   }
 
   Map<String, dynamic> toJson() {
@@ -138,7 +139,7 @@ class Body {
     data['vendorId'] = this.vendorId;
     data['otp'] = this.otp;
     data['token'] = this.token;
-    data['profilePic'] = this.profilePic;
+    data['userPic'] = this.userPic;
     return data;
   }
 }

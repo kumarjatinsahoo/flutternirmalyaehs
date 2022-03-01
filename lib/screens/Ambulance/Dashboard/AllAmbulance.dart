@@ -245,6 +245,32 @@ class _AllAmbulanceState extends State<AllAmbulance> {
                                               SizedBox(
                                                 height: 5,
                                               ),
+                                              Row(
+                                                children: [
+                                                  Container(
+                                                    width:140.00,
+                                                    child: Text(
+                                                      "Date",
+                                                      style: TextStyle(
+                                                        fontWeight:
+                                                        FontWeight.w600,
+                                                        fontSize: 15,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  // Spacer(),
+                                                  Expanded(
+                                                    child: Text(
+                                                      body.bookedDate,
+                                                      style: TextStyle(
+                                                          fontSize: 15),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              SizedBox(
+                                                height: 10,
+                                              ),
                                             ],
                                           ),
                                         ),

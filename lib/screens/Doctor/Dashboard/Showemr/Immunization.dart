@@ -112,7 +112,7 @@ class _Immunization extends State<Immunization> {
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Positioned(
+                      /*Positioned(
                         right: 10.0,
                         child: GestureDetector(
                           onTap: () {
@@ -127,7 +127,8 @@ class _Immunization extends State<Immunization> {
                             ),
                           ),
                         ),
-                      ),
+                      ),*/
+                      SizedBox(height: 20),
                       Center(
                         child: Text(
                           "Are you Vaccinated ?",
@@ -144,6 +145,17 @@ class _Immunization extends State<Immunization> {
               },
             ),
             actions: <Widget>[
+              FlatButton(
+                //textColor: Colors.grey,
+                child: Text("Cancle",
+                    style: TextStyle(color: AppData.kPrimaryRedColor)),
+                onPressed: () {
+
+                  setState(() {
+                    Navigator.pop(context);
+                  });
+                },
+              ),
               FlatButton(
                 //textColor: Colors.grey,
                 child: Text("No",
@@ -353,7 +365,7 @@ class _Immunization extends State<Immunization> {
                                 Container(
                                   width: 110,
                                   child: Text(
-                                    "Prescribed",
+                                    "Prescribed by",
                                     style: TextStyle(
                                         color: Colors.black, fontSize: 15),
                                   ),
@@ -564,17 +576,17 @@ class _Immunization extends State<Immunization> {
                   if (Immunization.immunizationmodel == null ||
                       Immunization.immunizationmodel == "") {
                     AppData.showInSnackBar(
-                        context, "Please Select Immunization Type ");
+                        context, "Please select immunization type ");
                   } else if (_date.text == "" || _date.text == null) {
-                    AppData.showInSnackBar(context, "Please Enter Date");
+                    AppData.showInSnackBar(context, "Please enter date");
                   } else if (textEditingController[1].text == "" ||
                       textEditingController[1].text == null) {
                     AppData.showInSnackBar(
-                        context, "Please Enter Prescribed By");
+                        context, "Please enter prescribed by");
                   } else if (textEditingController[2].text == "" ||
                       textEditingController[2].text == null) {
                     AppData.showInSnackBar(
-                        context, "Please Enter Immunization Details ");
+                        context, "Please enter immunization details ");
                   } else {
                     MyWidgets.showLoading(context);
                     ImmunizationPostModel immunizationmodel =

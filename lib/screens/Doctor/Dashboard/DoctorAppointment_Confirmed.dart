@@ -102,6 +102,7 @@ class _DoctorAppointmentConfirmedState
               // appointModel = lab.LabBookModel.fromJson(map);
             } else {
               isdata = false;
+              doctorAppointmment=null;
               // isDataNotAvail = true;
               //AppData.showInSnackBar(context, msg);
             }
@@ -497,7 +498,7 @@ class _DoctorAppointmentConfirmedState
                                                                         //height: 40.0,
                                                                         child: Text(
                                                                           /*'Confirmed'*/
-                                                                          "My medical Record",
+                                                                          "My Medical Record",
                                                                           textAlign: TextAlign.center,
                                                                           style: TextStyle(
                                                                               fontWeight:

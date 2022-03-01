@@ -407,7 +407,7 @@ class _MonthlyOverview extends State<MonthlyOverviewBloodBank> {
                         widget.model.wfromdate =
                             monthlyOverviewModel.body.fromdate;
                         Navigator.pushNamed(
-                            context, "/monthlyOverviewPharmaklist");
+                            context, "/monthlyOverviewBloodbanklist");
                       },
                       child: Container(
                         padding: const EdgeInsets.all(0.0),
@@ -483,7 +483,7 @@ class _MonthlyOverview extends State<MonthlyOverviewBloodBank> {
                         widget.model.wfromdate =
                             monthlyOverviewModel.body.fromdate;
                         Navigator.pushNamed(
-                            context, "/monthlyOverviewPharmaklist");
+                            context, "/monthlyOverviewBloodbanklist");
                       },
                       child: Container(
                         padding: const EdgeInsets.all(0.0),
@@ -558,7 +558,7 @@ class _MonthlyOverview extends State<MonthlyOverviewBloodBank> {
                         widget.model.wfromdate =
                             monthlyOverviewModel.body.fromdate;
                         Navigator.pushNamed(
-                            context, "/monthlyOverviewPharmaklist");
+                            context, "/monthlyOverviewBloodbanklist");
                       },
                       child: Container(
                         padding: const EdgeInsets.all(0.0),

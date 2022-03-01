@@ -142,6 +142,7 @@ class _OrganlistState extends State<Organlist> {
           title: Text("Organ List"),
           centerTitle: true,
         ),*/
+
         body: (organlistModel != null)
             ? Container(
                 child: SingleChildScrollView(
@@ -218,7 +219,7 @@ class _OrganlistState extends State<Organlist> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          'Doneted Organ List : ',
+                                          'Donated Organ List : ',
                                           style: TextStyle(
                                               color: Colors.black,
                                               fontSize: 16,

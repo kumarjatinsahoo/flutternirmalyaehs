@@ -32,7 +32,6 @@ class _BookAppointmentTab extends State<UploadDocumentTab> {
           backgroundColor: AppData.kPrimaryColor,
           actions: <Widget>[
           ],
-
           bottom: TabBar(
             //indicatorSize: TabBarIndicatorSize.label,
             indicatorColor: AppData.white,

@@ -136,8 +136,7 @@ class BookBloodBankPageState extends State<BookBloodBankPage> {
         locale: Locale("en"),
         initialDate: DateTime.now(),
         firstDate: DateTime.now(),
-        lastDate:
-            DateTime.now().add(Duration(days: 6570))); //18 years is 6570 days
+        lastDate: DateTime.now().add(Duration(days: 6570))); //18 years is 6570 days
     //if (picked != null && picked != selectedDate)
     setState(() {
       selectedDate = picked;

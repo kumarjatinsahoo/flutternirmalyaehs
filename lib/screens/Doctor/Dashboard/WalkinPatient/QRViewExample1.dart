@@ -89,7 +89,7 @@ class _QRViewExample1State extends State<QRViewExample1> {
                       onPressed: () {
                         if (_regNo.text == null ||
                             _regNo.text == "") {
-                          AppData.showInSnackBar(context, "Please Scan Reg no");
+                          AppData.showInSnackBar(context, "Please scan reg no");
                         } else{
                           widget.model.regNoValue = _regNo.text.toString();
                           print("regnooooooo"+_regNo.text.toString());

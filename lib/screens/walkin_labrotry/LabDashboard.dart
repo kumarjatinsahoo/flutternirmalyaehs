@@ -166,7 +166,6 @@ class _LabDashboardState extends State<LabDashboard> {
             ),
           ),
           SizedBox(height:3),
-
         ],
       ),
       Container(
@@ -1353,7 +1352,6 @@ class _LabDashboardState extends State<LabDashboard> {
         height: 85,
         width: 100,
         decoration: BoxDecoration(
-
           /// borderRadius: BorderRadius.circular(7.0),
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(10.0),
