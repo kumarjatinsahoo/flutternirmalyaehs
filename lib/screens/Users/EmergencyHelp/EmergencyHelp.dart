@@ -9,6 +9,7 @@ import 'package:geolocator/geolocator.dart' as loca;
 import 'package:lottie/lottie.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:shake/shake.dart';
+// import 'package:shake/shake.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/GooglePlaceSearchModell.dart';
@@ -86,7 +87,8 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
             else{
               Navigator.pushNamed(context, "/countDown");
             }
-        }
+        },
+        shakeThresholdGravity:2.1
     );
   }
 

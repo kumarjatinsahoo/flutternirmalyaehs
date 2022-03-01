@@ -301,7 +301,6 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                                 SizedBox(
                                   height: 5,
                                 ),
-
                                 Container(
                                   width: 100,
                                   height: 35,

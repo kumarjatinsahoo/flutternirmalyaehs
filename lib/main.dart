@@ -1288,9 +1288,9 @@ class _MyAppState extends State<MyApp> {
               '/healthTipsFB': (context) => HealthTipsFB(
                 model: _model,
               ),
-              '/razor': (context) => RazorPayPage(
-                model: _model,
-              ),
+              // '/razor': (context) => RazorPayPage(
+              //   model: _model,
+              // ),
 
             },
             localizationsDelegates: [
