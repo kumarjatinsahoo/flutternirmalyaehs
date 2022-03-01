@@ -42,7 +42,7 @@ class Body {
   Null todate;
   Null userid;
   Null appno;
-  Null remarks;
+  String remarks;
   Null duration;
   Null meddate;
   String qty;

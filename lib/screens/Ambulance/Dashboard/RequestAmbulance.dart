@@ -153,7 +153,7 @@ class _RequestAmbulanceState extends State<RequestAmbulance> {
                                       ),
                                       Expanded(
                                         child: Text(
-                                          body.patientName.trim(),
+                                            ( body.patientName!=null)?body.patientName.trim():"",
                                           style: TextStyle(
                                               fontSize: 15),
                                           textAlign:
@@ -181,7 +181,7 @@ class _RequestAmbulanceState extends State<RequestAmbulance> {
                                       ),
                                       Expanded(
                                         child: Text(
-                                          body.fromLocation.trim(),
+                                            (body.fromLocation!=null)?body.fromLocation.trim():"",
                                           style: TextStyle(
                                               fontSize: 15),
                                           textAlign:
@@ -209,7 +209,7 @@ class _RequestAmbulanceState extends State<RequestAmbulance> {
                                       ),
                                       Expanded(
                                         child: Text(
-                                          body.toDestination.trim(),
+                                            (body.toDestination!=null)?body.toDestination.trim():"",
                                           style: TextStyle(
                                               fontSize: 15),
                                         ),
@@ -235,7 +235,7 @@ class _RequestAmbulanceState extends State<RequestAmbulance> {
                                       ),
                                       Expanded(
                                         child: Text(
-                                          body.patientNote.trim(),
+                                            (body.patientNote != null)?body.patientNote.trim():"",
                                           textAlign: TextAlign.left,
                                           style: TextStyle(
                                               fontSize: 15),
@@ -262,7 +262,7 @@ class _RequestAmbulanceState extends State<RequestAmbulance> {
                                       ),
                                       Expanded(
                                         child: Text(
-                                          body.bookedDate.trim(),
+                                            (body.bookedDate!=null)?body.bookedDate.trim():"",
                                           textAlign: TextAlign.left,
                                           style: TextStyle(
                                               fontSize: 15),
