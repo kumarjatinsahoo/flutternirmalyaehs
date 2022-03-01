@@ -507,8 +507,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               });
                             },
                           ),
-                          Text(
-                            "Remember me",
+                          Text(MyLocalizations.of(context).text("REMEMBER_ME"),
                             style: TextStyle(fontSize: 15),
                           ),
                         ],
@@ -530,8 +529,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     context, "/createUserIDScreen");
                                 //FlutterPhoneDirectCaller.callNumber("7008553233");
                               },
-                              child: Text(
-                                'Create User ID',
+                              child: Text(MyLocalizations.of(context).text("CREATE_ID"),
                                 style: TextStyle(color: Colors.black54),
                               ),
                             ),
