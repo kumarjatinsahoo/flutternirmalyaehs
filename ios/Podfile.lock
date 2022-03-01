@@ -81,8 +81,6 @@ PODS:
     - GoogleUtilities/UserDefaults (~> 7.4)
     - nanopb (~> 2.30908.0)
   - Flutter (1.0.0)
-  - flutter_contacts (0.0.1):
-    - Flutter
   - flutter_inappwebview (0.0.1):
     - Flutter
     - flutter_inappwebview/Core (= 0.0.1)
@@ -104,9 +102,6 @@ PODS:
     - Flutter
   - flutter_webview_plugin (0.0.1):
     - Flutter
-  - fluttertoast (0.0.2):
-    - Flutter
-    - Toast
   - geocoder (0.0.1):
     - Flutter
   - geolocator (5.2.1):
@@ -163,10 +158,6 @@ PODS:
   - qr_code_scanner (0.2.0):
     - Flutter
     - MTBBarcodeScanner
-  - razorpay-pod (1.1.18)
-  - razorpay_flutter (1.1.10):
-    - Flutter
-    - razorpay-pod
   - Reachability (3.2)
   - SDWebImage (5.11.1):
     - SDWebImage/Core (= 5.11.1)
@@ -178,7 +169,6 @@ PODS:
   - sms_autofill (0.0.1):
     - Flutter
   - SwiftyGif (5.4.0)
-  - Toast (4.0.0)
   - TOCropViewController (2.6.0)
   - unique_identifier (0.0.1):
     - Flutter
@@ -199,7 +189,6 @@ DEPENDENCIES:
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - firebase_messaging (from `.symlinks/plugins/firebase_messaging/ios`)
   - Flutter (from `Flutter`)
-  - flutter_contacts (from `.symlinks/plugins/flutter_contacts/ios`)
   - flutter_inappwebview (from `.symlinks/plugins/flutter_inappwebview/ios`)
   - flutter_keyboard_visibility (from `.symlinks/plugins/flutter_keyboard_visibility/ios`)
   - flutter_local_notifications (from `.symlinks/plugins/flutter_local_notifications/ios`)
@@ -208,7 +197,6 @@ DEPENDENCIES:
   - flutter_share (from `.symlinks/plugins/flutter_share/ios`)
   - flutter_sms (from `.symlinks/plugins/flutter_sms/ios`)
   - flutter_webview_plugin (from `.symlinks/plugins/flutter_webview_plugin/ios`)
-  - fluttertoast (from `.symlinks/plugins/fluttertoast/ios`)
   - geocoder (from `.symlinks/plugins/geocoder/ios`)
   - geolocator (from `.symlinks/plugins/geolocator/ios`)
   - image_cropper (from `.symlinks/plugins/image_cropper/ios`)
@@ -221,7 +209,6 @@ DEPENDENCIES:
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
   - permission_handler (from `.symlinks/plugins/permission_handler/ios`)
   - qr_code_scanner (from `.symlinks/plugins/qr_code_scanner/ios`)
-  - razorpay_flutter (from `.symlinks/plugins/razorpay_flutter/ios`)
   - share (from `.symlinks/plugins/share/ios`)
   - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
   - sms_autofill (from `.symlinks/plugins/sms_autofill/ios`)
@@ -249,11 +236,9 @@ SPEC REPOS:
     - nanopb
     - OrderedSet
     - PromisesObjC
-    - razorpay-pod
     - Reachability
     - SDWebImage
     - SwiftyGif
-    - Toast
     - TOCropViewController
 
 EXTERNAL SOURCES:
@@ -271,8 +256,6 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/firebase_messaging/ios"
   Flutter:
     :path: Flutter
-  flutter_contacts:
-    :path: ".symlinks/plugins/flutter_contacts/ios"
   flutter_inappwebview:
     :path: ".symlinks/plugins/flutter_inappwebview/ios"
   flutter_keyboard_visibility:
@@ -289,8 +272,6 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/flutter_sms/ios"
   flutter_webview_plugin:
     :path: ".symlinks/plugins/flutter_webview_plugin/ios"
-  fluttertoast:
-    :path: ".symlinks/plugins/fluttertoast/ios"
   geocoder:
     :path: ".symlinks/plugins/geocoder/ios"
   geolocator:
@@ -315,8 +296,6 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/permission_handler/ios"
   qr_code_scanner:
     :path: ".symlinks/plugins/qr_code_scanner/ios"
-  razorpay_flutter:
-    :path: ".symlinks/plugins/razorpay_flutter/ios"
   share:
     :path: ".symlinks/plugins/share/ios"
   shared_preferences:
@@ -352,7 +331,6 @@ SPEC CHECKSUMS:
   FirebaseInstallations: 2563cb18a723ef9c6ef18318a49519b75dce613c
   FirebaseMessaging: ce0a5ee974f7bfe83b6cc5acce88c2d969e37c41
   Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
-  flutter_contacts: edb1c5ce76aa433e20e6cb14c615f4c0b66e0983
   flutter_inappwebview: bfd58618f49dc62f2676de690fc6dcda1d6c3721
   flutter_keyboard_visibility: 0339d06371254c3eb25eeb90ba8d17dca8f9c069
   flutter_local_notifications: 0c0b1ae97e741e1521e4c1629a459d04b9aec743
@@ -361,7 +339,6 @@ SPEC CHECKSUMS:
   flutter_share: 4be0208963c60b537e6255ed2ce1faae61cd9ac2
   flutter_sms: 91ce41530f55c85d6524d82307a5d555844c086a
   flutter_webview_plugin: ed9e8a6a96baf0c867e90e1bce2673913eeac694
-  fluttertoast: 6122fa75143e992b1d3470f61000f591a798cc58
   geocoder: 3cfab70531a0b367e917bafe82df4c30f6d4c45a
   geolocator: a048cc412bf350b17d671d170f151b0c9fb8f098
   GoogleDataTransport: 85fd18ff3019bb85d3f2c551d04c481dedf71fc9
@@ -380,15 +357,12 @@ SPEC CHECKSUMS:
   permission_handler: ccb20a9fad0ee9b1314a52b70b76b473c5f8dab0
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
   qr_code_scanner: bb67d64904c3b9658ada8c402e8b4d406d5d796e
-  razorpay-pod: 9aca3a303ef2f9281232c2f742fc6de937679500
-  razorpay_flutter: 84b3bfd206ae9c9c2a9ba585524a1b3d8102b6c1
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
   share: 0b2c3e82132f5888bccca3351c504d0003b3b410
   shared_preferences: af6bfa751691cdc24be3045c43ec037377ada40d
   sms_autofill: c461043483362c3f1709ee76eaae6eb570b31686
   SwiftyGif: 5d4af95df24caf1c570dbbcb32a3b8a0763bc6d7
-  Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
   TOCropViewController: 3105367e808b7d3d886a74ff59bf4804e7d3ab38
   unique_identifier: 5b4b48cfe07a95df6aa11746944c0dce22ab5400
   url_launcher: 6fef411d543ceb26efce54b05a0a40bfd74cbbef
@@ -396,6 +370,6 @@ SPEC CHECKSUMS:
   wakelock: d0fc7c864128eac40eba1617cb5264d9c940b46f
   webview_flutter: 3603125dfd3bcbc9d8d418c3f80aeecf331c068b
 
-PODFILE CHECKSUM: 8db33312c0a6693ccc46c0051cfb7a74a9c062a7
+PODFILE CHECKSUM: b3f946216d819c3c49d90574980c10f0965fa2db
 
 COCOAPODS: 1.10.1
