@@ -44,6 +44,7 @@ class _AllAmbulanceState extends State<AllAmbulance> {
   }
 
   callAPI() {
+    log("Nayak----------" +ApiFactory.AMBULANCE_ALL + loginResponse.body.user+ "&status=" +"");
     widget.model.GETMETHODCALL(
         api: ApiFactory.AMBULANCE_ALL + loginResponse.body.user+ "&status=" +"",
         // userId: loginResponse.body.user,
