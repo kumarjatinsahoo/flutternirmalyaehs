@@ -247,9 +247,8 @@ String formattedDate;
                   decoration: UnderlineDecoration(
                     lineHeight: 1.0,
                     textStyle: TextStyle(fontSize: 20, color: Colors.white),
-                    colorBuilder: FixedColorBuilder(Colors.white),
-                  ),
-                  currentCode: otpController.text,
+                    colorBuilder: FixedColorBuilder(Colors.white),),
+                    currentCode: otpController.text,
                   autoFocus:  false,
                   onCodeSubmitted: (code) {
                     setState(() {
@@ -259,13 +258,19 @@ String formattedDate;
                   },
                   onCodeChanged: (code) {
                     if (code.length == 4) {                      
-                      otpController.text= code;         
-                      setState(() {                        
-                        _fourthDigit =4; 
+
+                      //FocusScope.of(context).requestFocus(FocusNode());
+                      otpController.text= code;
+                      setState(() {
+
+                        _fourthDigit =4;
+
                         // print('code Changed ' + _fourthDigit.toString());
                         _submitBtn=true;
                       });            
                       // FocusScope.of(context).requestFocus(FocusNode());
+                    }else{
+                      //_submitBtn=false;
                     }
                   },
                 ),
@@ -275,7 +280,7 @@ String formattedDate;
                       maintainSize: true,
                       maintainAnimation: true,
                       maintainState: true,
-                      visible: (_fourthDigit == 4)?true:false,
+                      visible:(_fourthDigit == 4)?true:false/*otpController.text.length <= 4*/,
                       child: Padding(
                         padding: const EdgeInsets.only(left:30.0, right: 30.0 ),
                         child: Container(
@@ -289,7 +294,7 @@ String formattedDate;
                             onPressed: () {
                               print('otpGenerate ' + otpGenerate.toString());
                               print('otpController.text ' + otpController.text);
-                              if (otpGenerateStr == otpController.text) {
+                              if (otpController.text.length == 4&&otpGenerateStr == otpController.text) {
                                 showDialog(
                                   context: context,
                                   builder: (BuildContext context) =>

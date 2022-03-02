@@ -440,7 +440,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
               child: Stack(
                 //alignment: Alignment.topCenter,
                 //fit: ,
-                children: [
+                children:[
                   Align(
                     alignment: Alignment.centerRight,
                     child: Image.asset(
@@ -598,6 +598,11 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                   width: 30,
                   height: 30,
                   fit: BoxFit.cover,
+                  errorBuilder:(context, error, stackTrace) {
+                    return Image.asset("assets/images/Dashboardimg5.png",
+                        width:30,
+                        height: 30);
+                  },
                 ):Image.asset("assets/images/Dashboardimg5.png",
                     width:30,
                     height: 30)
@@ -702,6 +707,11 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                               width: 40,
                               height: 40,
                               fit: BoxFit.cover,
+                              errorBuilder:(context, error, stackTrace) {
+                                return Image.asset("assets/images/Dashboardimg5.png",
+                                    width:40,
+                                    height: 40);
+                              },
                             ):Image.asset("assets/images/Dashboardimg5.png",
                               width:40,
                               height: 40)
@@ -1046,8 +1056,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
 
   _exitApp() async {
     FirebaseMessaging.instance.unsubscribeFromTopic(loginResponse1.body.user);
-    FirebaseMessaging.instance
-        .unsubscribeFromTopic(loginResponse1.body.userMobile);
+    FirebaseMessaging.instance.unsubscribeFromTopic(loginResponse1.body.userMobile);
     sharedPref.save(Const.IS_LOGIN, false.toString());
     sharedPref.save(Const.IS_REGISTRATION, false.toString());
     sharedPref.remove(Const.IS_REGISTRATION);
