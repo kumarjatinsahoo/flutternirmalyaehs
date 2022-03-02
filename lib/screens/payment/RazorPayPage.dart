@@ -47,11 +47,12 @@ class _RazorPayPageState extends State<RazorPayPage> {
 
   void openCheckout() async {
     var options = {
-      'key': 'rzp_live_ILgsfZCZoFIKMb',
+      //'key': 'rzp_live_ILgsfZCZoFIKMb',
+      'key': 'rzp_test_Ja6NMC7dN2MKbq',
       'amount': 100,
-      'name': 'Acme Corp.',
-      'description': 'Fine T-Shirt',
-      'retry': {'enabled': true, 'max_count': 1},
+      'name': 'eHealthSystem',
+      'description': 'Health insurance',
+      'retry': {'enabled': true, 'max_count': 1 },
       'send_sms_hash': true,
       'prefill': {'contact': '8888888888', 'email': 'test@razorpay.com'},
       'external': {

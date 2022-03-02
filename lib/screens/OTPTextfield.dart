@@ -247,8 +247,9 @@ String formattedDate;
                   decoration: UnderlineDecoration(
                     lineHeight: 1.0,
                     textStyle: TextStyle(fontSize: 20, color: Colors.white),
-                    colorBuilder: FixedColorBuilder(Colors.white),),
-                    currentCode: otpController.text,
+                    colorBuilder: FixedColorBuilder(Colors.white),
+                  ),
+                  currentCode: otpController.text,
                   autoFocus:  false,
                   onCodeSubmitted: (code) {
                     setState(() {
@@ -258,19 +259,13 @@ String formattedDate;
                   },
                   onCodeChanged: (code) {
                     if (code.length == 4) {                      
-
-                      //FocusScope.of(context).requestFocus(FocusNode());
-                      otpController.text= code;
-                      setState(() {
-
-                        _fourthDigit =4;
-
+                      otpController.text= code;         
+                      setState(() {                        
+                        _fourthDigit =4; 
                         // print('code Changed ' + _fourthDigit.toString());
                         _submitBtn=true;
                       });            
                       // FocusScope.of(context).requestFocus(FocusNode());
-                    }else{
-                      //_submitBtn=false;
                     }
                   },
                 ),
@@ -280,7 +275,7 @@ String formattedDate;
                       maintainSize: true,
                       maintainAnimation: true,
                       maintainState: true,
-                      visible:(_fourthDigit == 4)?true:false/*otpController.text.length <= 4*/,
+                      visible: (_fourthDigit == 4)?true:false,
                       child: Padding(
                         padding: const EdgeInsets.only(left:30.0, right: 30.0 ),
                         child: Container(
@@ -294,7 +289,7 @@ String formattedDate;
                             onPressed: () {
                               print('otpGenerate ' + otpGenerate.toString());
                               print('otpController.text ' + otpController.text);
-                              if (otpController.text.length == 4&&otpGenerateStr == otpController.text) {
+                              if (otpGenerateStr == otpController.text) {
                                 showDialog(
                                   context: context,
                                   builder: (BuildContext context) =>
@@ -588,7 +583,6 @@ String formattedDate;
                                 widget.model.setLoginData1(loginResponse);
                                 sharedPref.save(Const.IS_LOGIN, "true");*/
                                 // updateStatus(data[i]);
-                                //roleUpdateApi(data[i].user, data[i]);
                                 roleUpdateApi(data[i].user, data[i]);
                               },
                               trailing: Icon(Icons.arrow_right),
@@ -621,7 +615,7 @@ String formattedDate;
     );
   }
 
-  roleUpdateApi(userId,master.Body data) {
+  roleUpdateApi(userId, data) {
     MyWidgets.showLoading(context);
     widget.model.GETMETHODCALL(
         api: ApiFactory.GET_ROLE + userId,
@@ -638,11 +632,6 @@ String formattedDate;
             body.userPassword = data.userPassword;
             body.userMobile = data.userMobile;
             body.userStatus = data.userStatus;
-            body.userStateId = data.userStateId;
-            body.userState = data.userState;
-            body.userCountry = data.userCountry;
-            body.userCountryId = data.userCountryId;
-            body.userPic = data.userPic;
             body.token = data.token;
             body.roles = [];
             body.roles.add(map["body"]["roleid"]);
