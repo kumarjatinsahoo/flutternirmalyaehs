@@ -4405,7 +4405,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       AppData.showInSnackBar(context, "Please enter UHID no");
                     }else if ((loginResponse1.body.user==textEditingController[19].text)) {
                       AppData.showInSnackBar(context, "You can't add yourself");
-                    } else { 
+                    } else {
                       MyWidgets.showLoading(context);
                       widget.model.GETMETHODCALL_TOKEN(
                           api: ApiFactory.UHID_LIST +
@@ -4416,6 +4416,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             setState(() {
                               String msg = map[Const.MESSAGE];
                               if (map["code"] == Const.SUCCESS) {
+                                log("Suvam>>>>>>>>>>>>>"+jsonEncode(map));
                                 setState(() {
                                   // isdata = false;
                                   userfamilydetails =
@@ -4428,6 +4429,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 // isdata = false;
                                 // isDataNotAvail = true;
                                 AppData.showInSnackBar(context, msg);
+                                //log("Suvam>>>>>>>>>>>>>"+jsonEncode(map));
                               }
                             });
                           });
@@ -4440,7 +4442,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
         },
         context: context);
   }
-
   Widget formField1(
     int index,
     String hint,
