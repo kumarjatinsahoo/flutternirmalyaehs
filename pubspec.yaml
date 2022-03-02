@@ -102,7 +102,8 @@ dependencies:
   showcaseview: ^1.1.4
   flutter_phone_direct_caller: ^2.1.0
   contacts_service: ^0.6.3
-#  razorpay_flutter: ^1.1.0
+  razorpay_flutter: ^1.2.5
+  fluttertoast: ^8.0.6
 #  razorpay_flutter: ^1.2.6
   sms_autofill: ^2.2.0
   shake: ^0.1.0
