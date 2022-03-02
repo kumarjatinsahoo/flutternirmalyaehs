@@ -96,6 +96,8 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
   }
 
   callAPI(String today) {
+    log("Suvam----------" +ApiFactory.HEALTH_SCREENING_LIST + today + "&labid="
+        +loginResponse1.body.user,);
     widget.model.GETMETHODCALL_TOKEN(
         api: ApiFactory.HEALTH_SCREENING_LIST + today + "&labid="+loginResponse1.body.user,
         token: widget.model.token,

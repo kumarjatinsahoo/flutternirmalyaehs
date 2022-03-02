@@ -62,6 +62,11 @@ class _TestReportListUser1State extends State<TestReportListUser1> {
   }
 */
   callAPI(int i) {
+    log("SUVAM==========" +ApiFactory.POC_REPORT_LIST +
+        "page=" +
+        i.toString() +
+        "&search=" +
+        widget.model.user,);
     // MyWidgets.showLoading(context);
     widget.model.GETMETHODCALL_TOKEN(
         api: ApiFactory.POC_REPORT_LIST +

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:user/localization/localizations.dart';
@@ -53,6 +55,11 @@ class _PocReportListPageState extends State<PocReportListPage> {
   }*/
 
   callAPI(int i) {
+    log("SUVAM================" +ApiFactory.POC_REPORT_LISTT +
+        loginResponse1.body.user +
+        "&page=" +
+        i.toString() +
+        "&search=",);
     widget.model.GETMETHODCALL_TOKEN(
         api: ApiFactory.POC_REPORT_LISTT +
             loginResponse1.body.user +

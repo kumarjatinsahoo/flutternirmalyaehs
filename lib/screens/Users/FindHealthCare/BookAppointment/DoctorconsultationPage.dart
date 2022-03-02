@@ -629,7 +629,8 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 20),
                           child:
-                              nextButton(), /*Buttons.nextButton(
+                              nextButton(),
+                          /*Buttons.nextButton(
                               function: () {
                                 //Navigator.pushNamed(context, "/UserRegister1");
                                 //personalFormValidate();
@@ -965,7 +966,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
         textInputAction: inputAct,
         inputFormatters: [
           //UpperCaseTextFormatter(),
-          WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
+          WhitelistingTextInputFormatter(RegExp("[a-zA-Z0-9 ]")),
         ],
         keyboardType: keyType,
         decoration: InputDecoration(
