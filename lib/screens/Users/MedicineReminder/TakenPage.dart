@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:user/models/TakeMedModel.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
@@ -92,12 +93,15 @@ class _TakenPageState extends State<TakenPage> {
                 }
               }
 
+              DateTime date=DateTime.now();
               var postMap={
                 "userId": widget.model.loginResponse1.body.user,
                 "yesId": filterYes.join(","),
                 "noId": filterNo.join(","),
-                "dosageDate": "03-03-2022",
-                "dosageTime": "12:57:00"
+                // "dosageDate": DateFormatte"03-03-2022",
+                "dosageDate": DateFormat("dd-MM-yyyy").format(date),
+                // "dosageTime": "12:57:00"
+                "dosageTime": DateFormat("HH:mm:ss").format(date)
               };
 
               log("<<<<<<<<<>>>>>>>>>" +widget.model.token+"\n\n\n?????PostMap"+jsonEncode(postMap));
