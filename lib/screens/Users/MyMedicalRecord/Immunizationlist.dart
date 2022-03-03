@@ -623,7 +623,6 @@ class _ImmunizationState extends State<Immunization> {
                         //     BiomediImplants.admequipmentmodel = model;
                         //   });
                         // }),
-
                         DropDown.networkDropdownGetpartUser1(
                             MyLocalizations.of(context)
                                 .text("IMMUNIZATION_TYPE"),
