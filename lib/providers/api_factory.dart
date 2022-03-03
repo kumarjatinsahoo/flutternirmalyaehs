@@ -8,7 +8,7 @@ class ApiFactory {
 
   static bool isProduction = false;
   static bool isLocal = true;
-  static String LOCAL_URL = "http://192.168.0.144:8062/nirmalyaRest/api/";
+  static String LOCAL_URL = "http://192.168.0.107:8062/nirmalyaRest/api/";
 
   static String REG_DEVICE = "https://cca.medtel.in/Ziniai/manageDeviceId";
   static String MAIN_URL = (!isLocal)
@@ -213,6 +213,9 @@ class ApiFactory {
       MAIN_URL + 'sms-to-emergency-contact-users?userid=';
   static String USER_SOME_DETAILS =
       MAIN_URL + 'get-user-some-details-api?userid=';
+
+  static String POST_ADD_TRACKER =
+      MAIN_URL + 'post-treatment-tracker';
 
   static String FIND_HEALTH_PROVIDER(String longi, String lati, String addr,
       String city, String healthpro, String type) {
