@@ -246,8 +246,8 @@ bool fromLogin = false;
                             //     });
                             //   }),
                             // ),
-
-                            // // dob(),
+//
+                            // dob(),
                             // SizedBox(
                             //   height: 10,
                             // ),
