@@ -45,6 +45,8 @@ class InsuranceFormNew extends StatefulWidget {
   static KeyvalueModel blockModel = null;
   static KeyvalueModel genderModel = null;
   static KeyvalueModel relationmodel = null;
+  static KeyvalueModel materialmodel = null;
+  static KeyvalueModel titleModel = null;
   static List<KeyvalueModel> UserType1 = [];
 
   InsuranceFormNew({
@@ -605,61 +607,8 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
           );
         });
   }
-  // tissuecallAPI() {
-  //   widget.model.GETMETHODCALL_TOKEN(
-  //     api: ApiFactory.TISSUE_API,
-  //     token: widget.model.token,
-  //     fun: (Map<String, dynamic> map) {
-  //       String msg = map[Const.MESSAGE];
-  //       //String msg = map[Const.MESSAGE];
-  //       if (map[Const.CODE] == Const.SUCCESS) {
-  //         setState(() {
-  //           log("Response from sagar>>>>>" + jsonEncode(map));
-  //           tissueModel = TissueModel.fromJson(map);
-  //         });
-  //       } else {
-  //         setState(() {
-  //           //isDataNoFound = true;
-  //         });
-  //         /* Center(
-  //           child: Text(
-  //             'Data Not Found',
-  //             style: TextStyle(fontSize: 12),
-  //           ),
-  //         );*/
-  //         // AppData.showInSnackBar(context, msg);
-  //       }
-  //     },
-  //   );
-  // }
 
-  // organcallAPI() {
-  //   widget.model.GETMETHODCALL_TOKEN(
-  //     api: ApiFactory.ORGAN_API,
-  //     token: widget.model.token,
-  //     fun: (Map<String, dynamic> map) {
-  //       String msg = map[Const.MESSAGE];
-  //       //String msg = map[Const.MESSAGE];
-  //       if (map[Const.CODE] == Const.SUCCESS) {
-  //         setState(() {
-  //           log("Response from sagar>>>>>" + jsonEncode(map));
-  //           organModel = OrganModel.fromJson(map);
-  //         });
-  //       } else {
-  //         setState(() {
-  //           //  isDataNoFound = true;
-  //         });
-  //         /* Center(
-  //           child: Text(
-  //             'Data Not Found',
-  //             style: TextStyle(fontSize: 12),
-  //           ),
-  //         );*/
-  //         // AppData.showInSnackBar(context, msg);
-  //       }
-  //     },
-  //   );
-  // }
+
 
   void connectionChanged(dynamic hasConnection) {
     setState(() {
@@ -692,387 +641,236 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
                 Text("*  Aditya Birla Health Insurance",style: TextStyle(
                     fontSize: 20,color: Colors.blue),),
                 SizedBox(height: 10),
+                formFieldPassPortno(0,"Customer Id (UHID)"),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: TextFormField(
-                    //controller: textEditingController[7],
-                    decoration: InputDecoration(
-                      hintText: "Customer Id (UHID)",
-                      hintStyle: TextStyle(color: Colors.grey),
-                      // suffixIcon: InkWell(
-                      //   onTap: () {
-                      //     // Navigator.pop(context);
-                      //     getContactDetails();
-                      //   },
-                      //   child: Icon(Icons.contacts),
-                      // )
-                    ),
-                    textInputAction: TextInputAction.next,
-                    keyboardType: TextInputType.number,
-                    inputFormatters: [
-                      WhitelistingTextInputFormatter(RegExp("[0-9]")),
-                    ],
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 0),
+                  child: SizedBox(
+                    height: 58,
+                    child:
+                    DropDown.
+                    networkDropdown1(
+                      // "TITLE"
+                        MyLocalizations.of(context)
+                            .text("TITLE"),
+                        ApiFactory.TITLE_API,
+                        "title",
+                        Icons.person_rounded,
+                        23.0, (KeyvalueModel data) {
+                      setState(() {
+                        print(ApiFactory.TITLE_API);
+                        InsuranceFormNew.titleModel = data;
+                        //userModel.title = data.key;
+                      });
+                    }),
                   ),
                 ),
+
                 SizedBox(
                   height: 8,
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: TextFormField(
-                    //controller: textEditingController[7],
-                    decoration: InputDecoration(
-                      hintText: "First Name",
-                      hintStyle: TextStyle(color: Colors.grey),
-                      // suffixIcon: InkWell(
-                      //   onTap: () {
-                      //     // Navigator.pop(context);
-                      //     getContactDetails();
-                      //   },
-                      //   child: Icon(Icons.contacts),
-                      // )
-                    ),
-                    textInputAction: TextInputAction.next,
-                    keyboardType: TextInputType.text,
-                    inputFormatters: [
-                      WhitelistingTextInputFormatter(RegExp("[a-zA-Z., ]")),
-                    ],
-                  ),
-                ),
+                formField1(
+                    1,
+                    "First Name"),
+            SizedBox(
+              height: 8,),
+                formField1(
+                    2,
+                    "Middle Name(Optional)"),
+
                 SizedBox(
                   height: 8,
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: TextFormField(
-                    //controller: textEditingController[7],
-                    decoration: InputDecoration(
-                      hintText: "Middle Name",
-                      hintStyle: TextStyle(color: Colors.grey),
-                      // suffixIcon: InkWell(
-                      //   onTap: () {
-                      //     // Navigator.pop(context);
-                      //     getContactDetails();
-                      //   },
-                      //   child: Icon(Icons.contacts),
-                      // )
-                    ),
-                    textInputAction: TextInputAction.next,
-                    keyboardType: TextInputType.text,
-                    inputFormatters: [
-                      WhitelistingTextInputFormatter(RegExp("[a-zA-Z., ]")),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: 8,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: TextFormField(
-                    //controller: textEditingController[7],
-                    decoration: InputDecoration(
-                      hintText: "Last Name",
-                      hintStyle: TextStyle(color: Colors.grey),
-                      // suffixIcon: InkWell(
-                      //   onTap: () {
-                      //     // Navigator.pop(context);
-                      //     getContactDetails();
-                      //   },
-                      //   child: Icon(Icons.contacts),
-                      // )
-                    ),
-                    textInputAction: TextInputAction.next,
-                    keyboardType: TextInputType.text,
-                    inputFormatters: [
-                      WhitelistingTextInputFormatter(RegExp("[a-zA-Z., ]")),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: 8,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: DropDown.networkDropdownGetpartUserundreline(
-                      MyLocalizations.of(context).text("GENDER"),
-                      ApiFactory.GENDER_API,
-                      "gender5", (KeyvalueModel model) {
-                    setState(() {
-                      InsuranceFormNew.relationmodel = model;
-
-                    });
-                  }),
-                ),
+                formField1(
+                    3,
+                    "Last Name"),
                 SizedBox(height: 8),
-                dob1(MyLocalizations.of(context).text("DOB")),
-                SizedBox(height: 8),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: TextFormField(
-                    //controller: textEditingController[7],
-                    decoration: InputDecoration(
-                      hintText: "Address Line 1",
-                      hintStyle: TextStyle(color: Colors.grey),
-                      // suffixIcon: InkWell(
-                      //   onTap: () {
-                      //     // Navigator.pop(context);
-                      //     getContactDetails();
-                      //   },
-                      //   child: Icon(Icons.contacts),
-                      // )
-                    ),
-                    textInputAction: TextInputAction.next,
-                    keyboardType: TextInputType.text,
-                    inputFormatters: [
-                      WhitelistingTextInputFormatter(RegExp("[a-zA-Z., ]")),
-                    ],
-                  ),
-                ),
-                SizedBox(height: 8),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: TextFormField(
-                    //controller: textEditingController[7],
-                    decoration: InputDecoration(
-                      hintText: "Address Line 2",
-                      hintStyle: TextStyle(color: Colors.grey),
-                      // suffixIcon: InkWell(
-                      //   onTap: () {
-                      //     // Navigator.pop(context);
-                      //     getContactDetails();
-                      //   },
-                      //   child: Icon(Icons.contacts),
-                      // )
-                    ),
-                    textInputAction: TextInputAction.next,
-                    keyboardType: TextInputType.text,
-                    inputFormatters: [
-                      WhitelistingTextInputFormatter(RegExp("[a-zA-Z., ]")),
-                    ],
-                  ),
-                ),
-                SizedBox(height: 8),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: DropDown.networkDropdownGetpartUserundreline(
-                      MyLocalizations.of(context).text("COUNTRY"),
-                      ApiFactory.COUNTRY_API,
-                      "country5", (KeyvalueModel model) {
-                    setState(() {
-                      print(ApiFactory.COUNTRY_API);
-                      InsuranceFormNew.countryModel = model;
-                      InsuranceFormNew.stateModel = null;
-                      InsuranceFormNew.districtModel = null;
-                      InsuranceFormNew.cityModel = null;
-                    });
-                  }),
-                ),
-                SizedBox(height: 8),
-                (InsuranceFormNew.countryModel != null)
-                    ?  Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: DropDown.networkDropdownGetpartUserundreline(
-                      MyLocalizations.of(context).text("STATE"),
-                      ApiFactory.STATE_API+InsuranceFormNew.countryModel.key,
-                      "state5", (KeyvalueModel model) {
-                    setState(() {
-                      print(ApiFactory.STATE_API);
-                      InsuranceFormNew.stateModel = model;
-                      InsuranceFormNew.districtModel = null;
-                      InsuranceFormNew.cityModel = null;
-                    });
-                  }),
-                ): Container(),
-                SizedBox(height: 8),
-                (InsuranceFormNew.stateModel != null)
-                    ?Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: DropDown.networkDropdownGetpartUserundreline(
-                      MyLocalizations.of(context).text("DIST"),
-                      ApiFactory.DISTRICT_API+InsuranceFormNew.stateModel.key,
-                      "dist5", (KeyvalueModel model) {
-                    setState(() {
-                      InsuranceFormNew.districtModel = model;
-                      InsuranceFormNew.cityModel = null;
-
-                    });
-                  }),
-                ):Container(),
-                SizedBox(height: 8),
-                (InsuranceFormNew.districtModel != null)
-                    ?  Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: DropDown.networkDropdownGetpartUserundreline(
-                      MyLocalizations.of(context).text("CITY"),
-                      ApiFactory.CITY_API+InsuranceFormNew.districtModel.key,
-                      "city5", (KeyvalueModel model) {
-                    setState(() {
-                      InsuranceFormNew.cityModel = model;
-
-                    });
-                  }),
-                ):Container(),
+                dobBirth(),
 
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: TextFormField(
-                   // controller: textEditingController[11],
-                    decoration: InputDecoration(
-                        counterText: "",
-                        hintText: "Pin Code",
-                        hintStyle: TextStyle(color: Colors.grey)),
-                    textInputAction: TextInputAction.next,
-                    keyboardType: TextInputType.number,
-                    maxLength: 6,
-                    inputFormatters: [
-                      WhitelistingTextInputFormatter(RegExp("[0-9]")),
-                    ],
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 0),
+                  child: SizedBox(
+                    height: 58,
+                    child:DropDown.networkDropdown1(
+                      //"Gender"
+                        MyLocalizations.of(context)
+                            .text("GENDER"),
+                        ApiFactory.GENDER_API,
+                        "gender",
+                        Icons.wc_outlined,
+                        23.0, (KeyvalueModel data) {
+                      setState(() {
+                        print(ApiFactory.GENDER_API);
+                        InsuranceFormNew.genderModel = data;
+                        //userModel.gender = data.key;
+                        // UserSignUpForm.cityModel = null;
+                      });
+                    }),
+                  ),
+                ),
+                SizedBox(height: 8,),
+                educationalQualification(4, "Educational Qualification"),
+                SizedBox(height: 8,),
+                formFieldemail(5, MyLocalizations.of(context).text("EMAILID")),
+                SizedBox(height: 8),
+                formFieldPinno(12,MyLocalizations.of(context).text("PIN_CODE"), /*fnode13, fnode14*/),
+                SizedBox(height: 8),
+                formFieldAadhaaerno(7, "Uid No"),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 0),
+                  child: SizedBox(
+                    height: 58,
+                    child:DropDown.networkDropdown1(
+                        MyLocalizations.of(context).text("MARITAL_STATUS"),
+                        ApiFactory.MARITAL_API,
+                        "marital",
+                        Icons.wc_outlined,
+                        23.0, (KeyvalueModel data) {
+                      setState(() {
+                        print(ApiFactory.GENDER_API);
+                        InsuranceFormNew.materialmodel = data;
+                        patientProfileModel.body.mstausid =
+                            data.key;
+                        patientProfileModel.body.maritialstatus =
+                            data.name;
+                        //userModel.gender = data.key;
+                        // UserSignUpForm.cityModel = null;
+                      });
+                    }),
                   ),
                 ),
                 SizedBox(height: 8),
+                educationalQualification(4, "Occupation"),
+                SizedBox(height: 8),
+                formFieldPhoneNo(12,"Contact MobileNo", /*fnode13, fnode14*/),
+                SizedBox(height: 8),
+                stdLandlineNo(12,"Landline No", /*fnode13, fnode14*/),
+                SizedBox(height: 8),
+                panNo(12,"PanNo", /*fnode13, fnode14*/),
+                SizedBox(height: 8),
+                panNo(12,"Passport Number", /*fnode13, fnode14*/),
+                SizedBox(height: 8),
+                panNo(12,"Contact Person", /*fnode13, fnode14*/),
+                SizedBox(height: 8),
+                panNo(12,"Annual Income", /*fnode13, fnode14*/),
+                SizedBox(height: 8),
+                panNo(12,"remarks", /*fnode13, fnode14*/),
+                SizedBox(height: 8),
+                panNo(12,"remarks", /*fnode13, fnode14*/),
+                SizedBox(height: 8),
+                homeAddressLine1(12,"HomeAddressLine1", /*fnode13, fnode14*/),
+                SizedBox(height: 8),
+                homeAddressLine1(12,"HomeAddressLine2", /*fnode13, fnode14*/),
+                SizedBox(height: 8),
+                homeAddressLine1(12,"HomeAddressLine3", /*fnode13, fnode14*/),
+                SizedBox(height: 8),
+                panNo(12,"HomePinCode", /*fnode13, fnode14*/),
+                SizedBox(height: 8),
+                homeAddressLine1(12,"HomeArea", /*fnode13, fnode14*/),
+                SizedBox(height: 8),
+                formFieldPhoneNo(12,"HomeContactMobileNo", /*fnode13, fnode14*/),
+                SizedBox(height: 8),
+                formFieldPhoneNo(12,"homeContactMobileNo1", /*fnode13, fnode14*/),
+                SizedBox(height: 8),
+                stdLandlineNo(12,"HomeSTDLandlineNo", /*fnode13, fnode14*/),
+                SizedBox(height: 8),
+                homeAddressLine1(12,"HomeFaxNo", /*fnode13, fnode14*/),
+                SizedBox(height: 8),
+                homeAddressLine1(12,"SameAsHomeAddress", /*fnode13, fnode14*/),
+                SizedBox(height: 8),
+                homeAddressLine1(12,"MailingAddressLine1", /*fnode13, fnode14*/),
+                SizedBox(height: 8),
+                homeAddressLine1(12,"MailingAddressLine2", /*fnode13, fnode14*/),
+                SizedBox(height: 8),
+                homeAddressLine1(12,"mailingAddressLine3", /*fnode13, fnode14*/),
+                SizedBox(height: 8),
+                panNo(12,"MailingPinCode", /*fnode13, fnode14*/),
+                SizedBox(height: 8),
+                homeAddressLine1(12,"MailingArea", /*fnode13, fnode14*/),
+                SizedBox(height: 8),
+                formFieldPhoneNo(12,"MailingContactMobileNo", /*fnode13, fnode14*/),
+                SizedBox(height: 8),
+                formFieldPhoneNo(12,"MailingContactMobileNo2", /*fnode13, fnode14*/),
+                SizedBox(height: 8),
+                stdLandlineNo(12,"MailingSTDLandlineNo", /*fnode13, fnode14*/),
+                SizedBox(height: 8),
+                stdLandlineNo(12,"MailingSTDLandlineNo2", /*fnode13, fnode14*/),
+                SizedBox(height: 8),
+                homeAddressLine1(12,"MailingFaxNo"),
+                SizedBox(height: 8),
+                homeAddressLine1(12,"BankAccountType"),
+                SizedBox(height: 8),
+                panNo(12,"BankAccountNo"),
+                SizedBox(height: 8),
+                panNo(12,"ifscCode"),
+                SizedBox(height: 8),
+                formFieldPinno(12,"GSTIN"),
+                SizedBox(height: 8),
+                formFieldPinno(12,"GSTRegistrationStatus"),
+                SizedBox(height: 8),
+                panNo(12,"EIAAccountNo"),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: TextFormField(
-                    //controller: textEditingController[7],
-                    decoration: InputDecoration(
-                      hintText: "Occupation",
-                      hintStyle: TextStyle(color: Colors.grey),
-                      // suffixIcon: InkWell(
-                      //   onTap: () {
-                      //     // Navigator.pop(context);
-                      //     getContactDetails();
-                      //   },
-                      //   child: Icon(Icons.contacts),
-                      // )
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    color: Colors.black26,
+                    height: 40,
+                    child: Row(
+                      //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text("PolicyCreationRequest",
+                              // MyLocalizations.of(context).text("ADD_WITNESS"),
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.bold),
+                              textAlign: TextAlign.start,
+                            ),
+                          ),
+                        ),
+                        //Spacer(),
+
+                      ],
                     ),
-                    textInputAction: TextInputAction.next,
-                    keyboardType: TextInputType.text,
-                    inputFormatters: [
-                      WhitelistingTextInputFormatter(RegExp("[a-zA-Z., ]")),
-                    ],
                   ),
                 ),
+                formFieldPinno(12,"Quotation Number"),
                 SizedBox(height: 8),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: TextFormField(
-                    // controller: textEditingController[11],
-                    decoration: InputDecoration(
-                        counterText: "",
-                        hintText: "Mobile No.",
-                        hintStyle: TextStyle(color: Colors.grey)),
-                    textInputAction: TextInputAction.next,
-                    keyboardType: TextInputType.number,
-                    maxLength: 10,
-                    inputFormatters: [
-                      WhitelistingTextInputFormatter(RegExp("[0-9]")),
-                    ],
-                  ),
-                ),
+                homeAddressLine1(12,"MasterPolicyNumber"),
                 SizedBox(height: 8),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: TextFormField(
-                    //controller: textEditingController[7],
-                    decoration: InputDecoration(
-                      hintText: "Email id",
-                      hintStyle: TextStyle(color: Colors.grey),
-                      // suffixIcon: InkWell(
-                      //   onTap: () {
-                      //     // Navigator.pop(context);
-                      //     getContactDetails();
-                      //   },
-                      //   child: Icon(Icons.contacts),
-                      // )
-                    ),
-                    textInputAction: TextInputAction.next,
-                    keyboardType: TextInputType.text,
-                    inputFormatters: [
-                      WhitelistingTextInputFormatter(RegExp("[a-zA-Z0-9.@  ]")),
-                    ],
-                  ),
-                ),
-                SizedBox(height: 20),
-                // (patientProfileModel != null &&
-                //     patientProfileModel.body.dob != null)
-                //     ? Padding(
-                //   padding: const EdgeInsets.symmetric(horizontal: 20),
-                //   child: TextFormField(
-                //     controller: textEditingController[2],
-                //     decoration: InputDecoration(
-                //         counterText: "",
-                //         //hintText: patientProfileModel?.body?.dob??"N/A",
-                //         hintText: MyLocalizations.of(context).text("DOB1"),
-                //         hintStyle: TextStyle(color: Colors.grey)),
-                //     textInputAction: TextInputAction.next,
-                //     maxLength: 10,
-                //     enabled: false,
-                //     autofocus: false,
-                //     keyboardType: TextInputType.number,
-                //     inputFormatters: [
-                //       WhitelistingTextInputFormatter(RegExp("[0-9 -]")),
-                //     ],
-                //   ),
-                // )
-                //     : Padding(
-                //   padding: const EdgeInsets.symmetric(horizontal: 20),
-                //   child: dob(),
-                // ),
-                // Padding(
-                //   padding: const EdgeInsets.symmetric(horizontal: 20),
-                //   child: TextFormField(
-                //     controller: textEditingController[3],
-                //     decoration: InputDecoration(
-                //         counterText: "",
-                //         //hintText: patientProfileModel?.body?.ageYears??"N/A",
-                //         hintText: MyLocalizations.of(context).text("AGE"),
-                //         hintStyle: TextStyle(color: Colors.grey)),
-                //     textInputAction: TextInputAction.next,
-                //     maxLength: 3,
-                //     enabled: false,
-                //     autofocus: false,
-                //     keyboardType: TextInputType.number,
-                //     inputFormatters: [
-                //       WhitelistingTextInputFormatter(RegExp("[0-9]")),
-                //     ],
-                //   ),
-                // ),
-                // SizedBox(
-                //   height: 8,
-                // ),
-                // (patientProfileModel != null &&
-                //     patientProfileModel.body.bloodGroup != null)
-                //     ? Padding(
-                //   padding: const EdgeInsets.symmetric(horizontal: 20),
-                //   child: TextFormField(
-                //     controller: textEditingController[15],
-                //     decoration: InputDecoration(
-                //       // hintText: patientProfileModel?.body?.bloodGroup??"N/A",
-                //         hintText: MyLocalizations.of(context).text("Blood Group"),
-                //         hintStyle: TextStyle(color: Colors.grey)),
-                //     textInputAction: TextInputAction.next,
-                //     keyboardType: TextInputType.text,
-                //     enabled: false,
-                //     autofocus: false,
-                //     inputFormatters: [
-                //       WhitelistingTextInputFormatter(
-                //           RegExp("[0-9,a-zA-Z./-]")),
-                //     ],
-                //   ),
-                // ) : Padding(
-                //   padding: const EdgeInsets.symmetric(horizontal: 20),
-                //   child: DropDown.networkDropdownGetpartUserundreline(
-                //       MyLocalizations.of(context).text("BLOODGROUP"),
-                //       ApiFactory.BLOODGROUP_API,
-                //       "bloodgroupdn", (KeyvalueModel data) {
-                //     setState(() {
-                //       print(ApiFactory.BLOODGROUP_API);
-                //       InsuranceFormNew.bloodgroupModel = data;
-                //       //DonorApplication.bloodgroupModel = null;
-                //     });
-                //   }),
-                // ),
+                panNo(12,"GroupID"),
+                SizedBox(height: 8),
+                panNo(12,"Product Code"),
+                SizedBox(height: 8),
+                panNo(12,"IntermediaryCode"),
+                SizedBox(height: 8),
+                panNo(12,"AutoRenewal"),
+                SizedBox(height: 8),
+                panNo(12,"IntermediaryBranchCode"),
+                SizedBox(height: 8),
+                homeAddressLine1(12,"BusinessSourceChannel"),
+                SizedBox(height: 8),
+                panNo(12,"AssignPolicy"),
+                SizedBox(height: 8),
+                formField1(1,"AssigneeName"),
+                SizedBox(height: 8),
+                panNo(1,"leadID"),
+                SizedBox(height: 8),
+                formField1(1,"Source Name"),
+                SizedBox(height: 8),
+                formField1(1,"Source Name"),
+                panNo(12,"SPID"),
+                SizedBox(height: 8),
+                panNo(12,"TCN"),
+                SizedBox(height: 8),
+                panNo(12,"CRTNO"),
+                SizedBox(height: 8),
+
+
                 InkWell(
                   onTap: () {
                     showDialog(
@@ -1090,13 +888,16 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
                         //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Expanded(
-                            child: Text("Add Nominee",
-                             // MyLocalizations.of(context).text("ADD_WITNESS"),
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 17,
-                                  fontWeight: FontWeight.bold),
-                              textAlign: TextAlign.center,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text("Add Nominee",
+                               // MyLocalizations.of(context).text("ADD_WITNESS"),
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.bold),
+                                textAlign: TextAlign.start,
+                              ),
                             ),
                           ),
                           //Spacer(),
@@ -1229,6 +1030,503 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
       ),
     );
   }
+  Widget formField1(
+      int index,
+      String hint,
+      ) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+          horizontal: 8),
+      child: Container(
+        height: 50,
+        padding:
+        EdgeInsets.symmetric(horizontal: 0),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius:
+          BorderRadius.circular(5),
+          border: Border.all(
+              color: Colors.black, width: 0.3),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+          child: TextFormField(
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: hint,
+              /* prefixIcon:
+              Icon(Icons.person_rounded),*/
+              hintStyle: TextStyle(
+                  color: AppData.hintColor,
+                  fontSize: 15),
+            ),
+            textInputAction: TextInputAction.next,
+            keyboardType: TextInputType.text,
+            controller: textEditingController[index],
+            //focusNode: fnode1,
+            textAlignVertical:
+            TextAlignVertical.center,
+            onFieldSubmitted: (value) {
+              print("ValueValue" + error[index].toString());
+
+              setState(() {
+                error[index] = false;
+              });
+              AppData.fieldFocusChange(context, fnode1, null);
+            },
+            inputFormatters: [
+              WhitelistingTextInputFormatter(
+                  RegExp("[a-zA-Z ]")),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+  Widget educationalQualification(
+      int index,
+      String hint,
+      ) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+          horizontal: 8),
+      child: Container(
+        height: 50,
+        padding:
+        EdgeInsets.symmetric(horizontal: 0),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius:
+          BorderRadius.circular(5),
+          border: Border.all(
+              color: Colors.black, width: 0.3),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+          child: TextFormField(
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: hint,
+              /* prefixIcon:
+              Icon(Icons.person_rounded),*/
+              hintStyle: TextStyle(
+                  color: AppData.hintColor,
+                  fontSize: 15),
+            ),
+            textInputAction: TextInputAction.next,
+            keyboardType: TextInputType.text,
+            controller: textEditingController[index],
+            //focusNode: fnode1,
+            textAlignVertical:
+            TextAlignVertical.center,
+            onFieldSubmitted: (value) {
+              print("ValueValue" + error[index].toString());
+
+              setState(() {
+                error[index] = false;
+              });
+              AppData.fieldFocusChange(context, fnode1, null);
+            },
+            inputFormatters: [
+              WhitelistingTextInputFormatter(
+                  RegExp("[a-zA-Z0-9 ]")),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+  Widget formFieldPinno(
+      int index,
+      String hint,
+      ) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+          horizontal: 8),
+      child: Container(
+        height: 50,
+        padding:
+        EdgeInsets.symmetric(horizontal: 0),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius:
+          BorderRadius.circular(5),
+          border: Border.all(
+              color: Colors.black, width: 0.3),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+          child: TextFormField(
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: hint,
+              counterText: '',
+              /* prefixIcon:
+              Icon(Icons.person_rounded),*/
+              hintStyle: TextStyle(
+                  color: AppData.hintColor,
+                  fontSize: 15),
+            ),
+            controller: textEditingController[index],
+            textInputAction: TextInputAction.done,
+            keyboardType: TextInputType.number,
+            //focusNode: currentfn,
+            inputFormatters: [
+              WhitelistingTextInputFormatter(
+                RegExp("[0-9]"),
+              ),
+            ],
+            maxLength: 6,
+            //focusNode: fnode1,
+            textAlignVertical:
+            TextAlignVertical.center,
+            onFieldSubmitted: (value) {
+              print("ValueValue" + error[index].toString());
+
+              setState(() {
+                error[index] = false;
+              });
+              AppData.fieldFocusChange(context, fnode1, null);
+            },
+
+          ),
+        ),
+      ),
+    );
+  }
+  Widget formFieldPhoneNo(
+      int index,
+      String hint,
+      ) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+          horizontal: 8),
+      child: Container(
+        height: 50,
+        padding:
+        EdgeInsets.symmetric(horizontal: 0),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius:
+          BorderRadius.circular(5),
+          border: Border.all(
+              color: Colors.black, width: 0.3),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+          child: TextFormField(
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: hint,
+              counterText: '',
+              /* prefixIcon:
+              Icon(Icons.person_rounded),*/
+              hintStyle: TextStyle(
+                  color: AppData.hintColor,
+                  fontSize: 15),
+            ),
+            controller: textEditingController[index],
+            textInputAction: TextInputAction.done,
+            keyboardType: TextInputType.number,
+            //focusNode: currentfn,
+            inputFormatters: [
+              WhitelistingTextInputFormatter(
+                RegExp("[0-9]"),
+              ),
+            ],
+            maxLength: 10,
+            //focusNode: fnode1,
+            textAlignVertical:
+            TextAlignVertical.center,
+            onFieldSubmitted: (value) {
+              print("ValueValue" + error[index].toString());
+
+              setState(() {
+                error[index] = false;
+              });
+              AppData.fieldFocusChange(context, fnode1, null);
+            },
+
+          ),
+        ),
+      ),
+    );
+  }
+  Widget stdLandlineNo(
+      int index,
+      String hint,
+      ) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+          horizontal: 8),
+      child: Container(
+        height: 50,
+        padding:
+        EdgeInsets.symmetric(horizontal: 0),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius:
+          BorderRadius.circular(5),
+          border: Border.all(
+              color: Colors.black, width: 0.3),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+          child: TextFormField(
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: hint,
+              counterText: '',
+              /* prefixIcon:
+              Icon(Icons.person_rounded),*/
+              hintStyle: TextStyle(
+                  color: AppData.hintColor,
+                  fontSize: 15),
+            ),
+            controller: textEditingController[index],
+            textInputAction: TextInputAction.done,
+            keyboardType: TextInputType.number,
+            //focusNode: currentfn,
+            inputFormatters: [
+              WhitelistingTextInputFormatter(
+                RegExp("[0-9]"),
+              ),
+            ],
+            maxLength: 11,
+            //focusNode: fnode1,
+            textAlignVertical:
+            TextAlignVertical.center,
+            onFieldSubmitted: (value) {
+              print("ValueValue" + error[index].toString());
+
+              setState(() {
+                error[index] = false;
+              });
+              AppData.fieldFocusChange(context, fnode1, null);
+            },
+
+          ),
+        ),
+      ),
+    );
+  }
+  Widget panNo(
+      int index,
+      String hint,
+      ) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+          horizontal: 8),
+      child: Container(
+        height: 50,
+        padding:
+        EdgeInsets.symmetric(horizontal: 0),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius:
+          BorderRadius.circular(5),
+          border: Border.all(
+              color: Colors.black, width: 0.3),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+          child: TextFormField(
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: hint,
+              counterText: '',
+              /* prefixIcon:
+              Icon(Icons.person_rounded),*/
+              hintStyle: TextStyle(
+                  color: AppData.hintColor,
+                  fontSize: 15),
+            ),
+            controller: textEditingController[index],
+            textInputAction: TextInputAction.done,
+            keyboardType: TextInputType.number,
+            //focusNode: currentfn,
+            inputFormatters: [
+              //UpperCaseTextFormatter(),
+              WhitelistingTextInputFormatter(RegExp("[a-zA-Z0-9-]")),
+            ],
+            //maxLength: 11,
+            //focusNode: fnode1,
+            textAlignVertical:
+            TextAlignVertical.center,
+            onFieldSubmitted: (value) {
+              print("ValueValue" + error[index].toString());
+
+              setState(() {
+                error[index] = false;
+              });
+              AppData.fieldFocusChange(context, fnode1, null);
+            },
+
+          ),
+        ),
+      ),
+    );
+  }
+  Widget homeAddressLine1(
+      int index,
+      String hint,
+      ) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+          horizontal: 8),
+      child: Container(
+        height: 50,
+        padding:
+        EdgeInsets.symmetric(horizontal: 0),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius:
+          BorderRadius.circular(5),
+          border: Border.all(
+              color: Colors.black, width: 0.3),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+          child: TextFormField(
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: hint,
+              counterText: '',
+              /* prefixIcon:
+              Icon(Icons.person_rounded),*/
+              hintStyle: TextStyle(
+                  color: AppData.hintColor,
+                  fontSize: 15),
+            ),
+            controller: textEditingController[index],
+            textInputAction: TextInputAction.done,
+            keyboardType: TextInputType.number,
+            //focusNode: currentfn,
+
+            //maxLength: 11,
+            //focusNode: fnode1,
+            textAlignVertical:
+            TextAlignVertical.center,
+            onFieldSubmitted: (value) {
+              print("ValueValue" + error[index].toString());
+
+              setState(() {
+                error[index] = false;
+              });
+              AppData.fieldFocusChange(context, fnode1, null);
+            },
+
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget formFieldemail(
+      int index,
+      String hint,
+      ) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+          horizontal: 8),
+      child: Container(
+        height: 50,
+        padding:
+        EdgeInsets.symmetric(horizontal: 0),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius:
+          BorderRadius.circular(5),
+          border: Border.all(
+              color: Colors.black, width: 0.3),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+          child: TextFormField(
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: hint,
+              counterText: '',
+              /* prefixIcon:
+              Icon(Icons.person_rounded),*/
+              hintStyle: TextStyle(
+                  color: AppData.hintColor,
+                  fontSize: 15),
+            ),
+            controller: textEditingController[index],
+            textInputAction: TextInputAction.done,
+            //focusNode: currentfn,
+            keyboardType: TextInputType.text,
+
+            onFieldSubmitted: (value) {
+              print("ValueValue" + error[index].toString());
+
+              setState(() {
+                error[index] = false;
+              });
+              AppData.fieldFocusChange(context, fnode1, null);
+            },
+
+          ),
+        ),
+      ),
+    );
+  }
+  Widget formFieldAadhaaerno(
+      int index,
+      String hint,
+      ) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+          horizontal: 8),
+      child: Container(
+        height: 50,
+        padding:
+        EdgeInsets.symmetric(horizontal: 0),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius:
+          BorderRadius.circular(5),
+          border: Border.all(
+              color: Colors.black, width: 0.3),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+          child: TextFormField(
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: hint,
+              counterText: '',
+              /* prefixIcon:
+              Icon(Icons.person_rounded),*/
+              hintStyle: TextStyle(
+                  color: AppData.hintColor,
+                  fontSize: 15),
+            ),
+            controller: textEditingController[index],
+            textInputAction: TextInputAction.done,
+            keyboardType: TextInputType.number,
+
+            inputFormatters: [
+              WhitelistingTextInputFormatter(
+                RegExp("[0-9]"),
+              ),
+            ],
+            maxLength: 12,
+            onFieldSubmitted: (value) {
+              print("ValueValue" + error[index].toString());
+
+              setState(() {
+                error[index] = false;
+              });
+              AppData.fieldFocusChange(context, fnode1, null);
+            },
+
+          ),
+        ),
+      ),
+    );
+  }
 
   Widget dialogaddnomination(BuildContext context) {
     WitnessModel witness = WitnessModel();
@@ -1314,6 +1612,7 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
                     ],
                   ),
                 ),
+
                 SizedBox(
                   height: 8,
                 ),
@@ -1508,7 +1807,63 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
       ],
     );
   }
+  Widget formFieldPassPortno(
+      int index,
+      String hint,
+      ) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+          horizontal: 8),
+      child: Container(
+        height: 50,
+        padding:
+        EdgeInsets.symmetric(horizontal: 0),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius:
+          BorderRadius.circular(5),
+          border: Border.all(
+              color: Colors.black, width: 0.3),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          child: TextFormField(
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: hint,
+              counterText: '',
+              /* prefixIcon:
+              Icon(Icons.person_rounded),*/
+              hintStyle: TextStyle(
+                  color: AppData.hintColor,
+                  fontSize: 15),
+            ),
+            textInputAction: TextInputAction.next,
+            keyboardType: TextInputType.number,
+            controller: textEditingController[index],
+            maxLength: 14,
 
+            //focusNode: fnode1,
+            textAlignVertical:
+            TextAlignVertical.center,
+            onFieldSubmitted: (value) {
+              print("ValueValue" + error[index].toString());
+
+              setState(() {
+                error[index] = false;
+              });
+              AppData.fieldFocusChange(context, fnode1, null);
+            },
+            inputFormatters: [
+              //UpperCaseTextFormatter(),
+              WhitelistingTextInputFormatter(RegExp("[0-9-]")),
+            ],
+
+          ),
+        ),
+      ),
+    );
+  }
   Widget mobileNoOTPSearch() {
     return Row(
       children: <Widget>[
@@ -2071,7 +2426,7 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
     );
   }
 
-  Widget dob1(String hint) {
+  /*Widget dob1(String hint) {
     return Padding(
       //padding: const EdgeInsets.symmetric(horizontal: 8),
       padding: const EdgeInsets.symmetric(horizontal: 0),
@@ -2106,7 +2461,7 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 5.0),
                     child: TextFormField(
-                      controller: stdob/*textEditingController[10]*/,
+                      controller: stdob*//*textEditingController[10]*//*,
                       keyboardType: TextInputType.datetime,
                       textAlign: TextAlign.left,
                       textAlignVertical: TextAlignVertical.center,
@@ -2149,9 +2504,50 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
         ),
       ),
     );
+  }*/
+
+  Widget dobBirth() {
+    return Padding(
+      //padding: const EdgeInsets.symmetric(horizontal: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 8),
+      child: GestureDetector(
+        onTap: () => _selectDate1(context),
+        child: AbsorbPointer(
+          child: Container(
+            // margin: EdgeInsets.symmetric(vertical: 10),
+            height: 50,
+            padding: EdgeInsets.symmetric(horizontal: 8, vertical: 0),
+            // width: size.width * 0.8,
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(5),
+                border: Border.all(color: Colors.black, width: 0.3)),
+            child: TextFormField(
+              //focusNode: fnode4,
+              enabled: !widget.isConfirmPage ? false : true,
+              controller: stdob,
+              textAlignVertical: TextAlignVertical.center,
+              keyboardType: TextInputType.datetime,
+              textAlign: TextAlign.left,
+              decoration: InputDecoration(
+                hintText: "Date Of Birth",
+                hintStyle: TextStyle(
+                    color: AppData.hintColor,
+                    fontSize: 15),
+                border: InputBorder.none,
+                //contentPadding: EdgeInsets.symmetric(vertical: 10),
+                suffixIcon: Icon(
+                  Icons.calendar_today,
+                  size: 18,
+                  color: Colors.grey,
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
   }
-
-
   Widget dob2(String hint) {
     return Padding(
       //padding: const EdgeInsets.symmetric(horizontal: 8),
