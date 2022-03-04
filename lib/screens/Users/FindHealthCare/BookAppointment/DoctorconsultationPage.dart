@@ -966,7 +966,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
         textInputAction: inputAct,
         inputFormatters: [
           //UpperCaseTextFormatter(),
-          WhitelistingTextInputFormatter(RegExp("[a-zA-Z0-9 ]")),
+          WhitelistingTextInputFormatter(RegExp("[a-zA-Z0-9., ]")),
         ],
         keyboardType: keyType,
         decoration: InputDecoration(
