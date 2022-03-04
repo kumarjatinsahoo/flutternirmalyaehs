@@ -641,6 +641,11 @@ class RestAPI extends Model with PassData{
         fun(failedMap);
       }*/
       // fun(failedMap);
+
+      if (e.type == DioErrorType.RESPONSE) {
+       log("RESPONSE FROM SERVER"+jsonEncode(e.response.data));
+      }
+
       if(e.response.statusCode==401 && e.response.data.containsKey("error") && e.response.data["error"]=="Unauthorized"){
         // application.logoutCallBack;
         FirebaseMessaging.instance
@@ -658,6 +663,7 @@ class RestAPI extends Model with PassData{
         Navigator.of(Const.navigatorKey.currentContext)
             .pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
       }else {
+        log("");
         fun(failedMap);
       }
     }

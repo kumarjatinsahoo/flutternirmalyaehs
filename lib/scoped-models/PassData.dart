@@ -3,6 +3,7 @@ import 'package:scoped_model/scoped_model.dart';
 import 'package:user/models/ForgetUseridModel.dart' as forgotuser;
 import 'package:user/models/MasterLoginResponse.dart';
 import 'package:user/models/PharmacyorderModel.dart' as cnfrm;
+import 'package:user/models/TakeMedModel.dart';
 import 'package:user/models/UserListModel.dart' as test;
 import 'package:user/models/UserDetailsModel.dart';
 import 'package:user/models/LabBookModel.dart' as lab;
@@ -193,6 +194,8 @@ String activitytoken;
 String uhid;
 String otpText;
 int emergencyContact;
+
+TakeMedModel medicineData;
 
 
 }

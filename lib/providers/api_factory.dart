@@ -214,6 +214,9 @@ class ApiFactory {
   static String USER_SOME_DETAILS =
       MAIN_URL + 'get-user-some-details-api?userid=';
 
+  static String POST_ADD_TRACKER =
+      MAIN_URL + 'post-treatment-tracker';
+
   static String FIND_HEALTH_PROVIDER(String longi, String lati, String addr,
       String city, String healthpro, String type) {
     return MAIN_URL +

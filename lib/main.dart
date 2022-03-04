@@ -90,6 +90,7 @@ import 'package:user/screens/Users/LoginFBandGooglePage.dart';
 import 'package:user/screens/Users/Medication/UserMedicineList.dart';
 import 'package:user/screens/Users/Medication/UserTestList.dart';
 import 'package:user/screens/Users/MedicineReminder/EditReminder.dart';
+import 'package:user/screens/Users/MedicineReminder/TakenPage.dart';
 import 'package:user/screens/Users/Medipedia/DieseInfo.dart';
 import 'package:user/screens/Users/Medipedia/DieseInfoPdf1.dart';
 import 'package:user/screens/Users/Medipedia/Diesepdf.dart';
@@ -1289,6 +1290,9 @@ class _MyAppState extends State<MyApp> {
                 model: _model,
               ),
               '/razor': (context) => RazorPayPage(
+                model: _model,
+              ),
+              '/takenpage': (context) => TakenPage(
                 model: _model,
               ),
 
