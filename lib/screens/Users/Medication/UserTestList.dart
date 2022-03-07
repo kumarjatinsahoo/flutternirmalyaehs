@@ -317,20 +317,24 @@ class _MedicineList extends State<UserTestList> {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
-                                            Text(
-                                              "Appoint no: ",
-                                              style: TextStyle(
-                                                  fontSize: 15,
-                                                  fontWeight: FontWeight.bold),
+                                            Expanded(
+                                              child: Text(
+                                                "Appoint no: ",
+                                                style: TextStyle(
+                                                    fontSize: 15,
+                                                    fontWeight: FontWeight.bold),
+                                              ),
                                             ),
                                             SizedBox(
                                               height: 5,
                                             ),
-                                            Text(
-                                              body.appno ?? "N/A",
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: 15),
+                                            Expanded(
+                                              child: Text(
+                                                body.appno ?? "N/A",
+                                                style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontSize: 15),
+                                              ),
                                             ),
                                           ],
                                         ),
@@ -342,20 +346,24 @@ class _MedicineList extends State<UserTestList> {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
-                                            Text(
-                                              "Type: ",
-                                              style: TextStyle(
-                                                  fontSize: 15,
-                                                  fontWeight: FontWeight.bold),
+                                            Expanded(
+                                              child: Text(
+                                                "Type: ",
+                                                style: TextStyle(
+                                                    fontSize: 15,
+                                                    fontWeight: FontWeight.bold),
+                                              ),
                                             ),
                                             SizedBox(
                                               height: 5,
                                             ),
-                                            Text(
-                                              body.testgroup ?? "N/A",
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: 15),
+                                            Expanded(
+                                              child: Text(
+                                                body.testgroup ?? "N/A",
+                                                style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontSize: 15),
+                                              ),
                                             ),
                                           ],
                                         ),
@@ -368,20 +376,24 @@ class _MedicineList extends State<UserTestList> {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
-                                            Text(
-                                              "Remark: ",
-                                              style: TextStyle(
-                                                  fontSize: 15,
-                                                  fontWeight: FontWeight.bold),
+                                            Expanded(
+                                              child: Text(
+                                                "Remark: ",
+                                                style: TextStyle(
+                                                    fontSize: 15,
+                                                    fontWeight: FontWeight.bold),
+                                              ),
                                             ),
                                             SizedBox(
                                               height: 5,
                                             ),
-                                            Text(
-                                              body.remarks ?? "N/A",
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: 15),
+                                            Expanded(
+                                              child: Text(
+                                                body.remarks ?? "N/A",
+                                                style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontSize: 15),
+                                              ),
                                             ),
                                           ],
                                         ),
