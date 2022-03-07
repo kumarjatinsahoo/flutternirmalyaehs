@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:calendar_timeline/calendar_timeline.dart';
 import 'package:date_format/date_format.dart';
@@ -119,7 +120,8 @@ MedicineReminderDTO1 medicineReminderDTO1;
 
   callApi(String date){
     medicineReminderDTO1=null;
-    widget.model.GETMETHODCALL_TOKEN(api: ApiFactory.REMINDER_LIST(loginResponse.body.user, date),
+    widget.model.GETMETHODCALL_TOKEN(
+        api: ApiFactory.REMINDER_LIST(loginResponse.body.user, date),
         token: widget.model.token,
         fun: (Map<String, dynamic> map){
           print("Value is>>>>" + JsonEncoder().convert(map));

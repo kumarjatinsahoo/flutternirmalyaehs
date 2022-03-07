@@ -722,7 +722,7 @@ class _MedicineList extends State<UserMedicineList> {
         textInputAction: inputAct,
         inputFormatters: [
           //UpperCaseTextFormatter(),
-          WhitelistingTextInputFormatter(RegExp("[a-zA-Z0-9]")),
+          WhitelistingTextInputFormatter(RegExp("[a-zA-Z0-9 ]")),
         ],
         keyboardType: keyType,
         decoration: InputDecoration(

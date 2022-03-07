@@ -51,7 +51,7 @@ class OTPTextfield extends StatefulWidget {
 
 class OTPTextfieldState extends State<OTPTextfield> with SingleTickerProviderStateMixin,CodeAutoFill  {
   // Constants
-  final int time = 120;
+  final int time = 180;
   AnimationController _controller;
   master.MasterLoginResponse masterResponse;
   // Variables
@@ -287,18 +287,26 @@ String formattedDate;
                             color: Colors.white,
                             child: Text("Submit"),
                             onPressed: () {
-                              print('otpGenerate ' + otpGenerate.toString());
-                              print('otpController.text ' + otpController.text);
-                              if (otpGenerateStr == otpController.text) {
-                                showDialog(
-                                  context: context,
-                                  builder: (BuildContext context) =>
-                                      dialogUserView(context,widget.masterLoginResponse.body),
-                                );                          
+                              if(_hideResendButton) {
+                                print('otpGenerate ' + otpGenerate.toString());
+                                print(
+                                    'otpController.text ' + otpController.text);
+                                if (otpGenerateStr == otpController.text) {
+                                  showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) =>
+                                        dialogUserView(context,
+                                            widget.masterLoginResponse.body),
+                                  );
+                                }
+                                else {
+                                  AppData.showInSnackBar(
+                                      context, "Please enter valid OTP");
+                                }
+                              }else{
+                                AppData.showInSnackBar(
+                                    context, "OTP Timeout. Please resend OTP");
                               }
-                              else{
-                                AppData.showInSnackBar(context, "Please enter valid OTP");
-                              }                                                       
                             },
                             shape: new RoundedRectangleBorder(
                               borderRadius: new BorderRadius.circular(30.0),
@@ -453,6 +461,8 @@ String formattedDate;
             //log("LOGIN RESPONSE>>>>" + jsonEncode(map));
             //AppData.showInSnackBar(context, map[Const.MESSAGE]);
             if (map[Const.CODE] == Const.SUCCESS) {
+
+              _startCountdown();
               setState(() {
                // LoginResponse1 loginResponse = LoginResponse1.fromJson(map);
                 masterResponse = master.MasterLoginResponse.fromJson(map);
