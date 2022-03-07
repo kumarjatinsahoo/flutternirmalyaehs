@@ -559,7 +559,7 @@ class SetReminderState extends State<SetReminder> {
                 controller: textEditingController[5],
                 keyboardType: TextInputType.text,
                 inputFormatters: [
-                  WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
+                  WhitelistingTextInputFormatter(RegExp("[a-zA-Z0-9 ]")),
                 ],
               ),
             ),
