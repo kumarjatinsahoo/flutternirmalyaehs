@@ -468,9 +468,7 @@ class NgoSignUpForm2State extends State<NgoSignUpForm2> {
                                       children: [
                                         Expanded(
                                           child: Container(
-
                                             child: Text(
-
                                               "Report Path :" + idproof,
                                               style: TextStyle(color: Colors.green),
                                             ),
@@ -783,7 +781,6 @@ class NgoSignUpForm2State extends State<NgoSignUpForm2> {
           AppData.showInSnackBar(context, "Please check terms and conditions");
         }
         else {
-
           pharmaSignupModel.organizationid = ngoorganisation;
           pharmaSignupModel.titleid = ngotitle;
           pharmaSignupModel.docname = ngoprofessional;

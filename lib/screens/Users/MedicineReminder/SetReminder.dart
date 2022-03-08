@@ -122,6 +122,7 @@ class SetReminderState extends State<SetReminder> {
   bool fromLogin = false;
 
   bool isOnline = false;
+
   List<KeyvalueModel> dosageList = [
     KeyvalueModel(name: "0.5", key: "1"),
     KeyvalueModel(name: "1", key: "2"),
@@ -452,7 +453,7 @@ class SetReminderState extends State<SetReminder> {
                           shrinkWrap: true,
                           physics: NeverScrollableScrollPhysics(),
                           itemCount:
-                              int.tryParse(SetReminder.timeDayModel.name),
+                           int.tryParse(SetReminder.timeDayModel.name),
                           gridDelegate:
                               SliverGridDelegateWithFixedCrossAxisCount(
                                   crossAxisCount: 3,

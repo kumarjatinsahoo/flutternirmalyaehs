@@ -3144,6 +3144,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     // } else if (textEditingController[11].text == "" ||
                     //     textEditingController[11].text == null) {
                     //   AppData.showInSnackBar(context, "Please enter Email");
+
+                    } else if (textEditingController[11].text.trim()!= ""  &&
+                        !AppData.isValidEmail(textEditingController[11].text)){
+                      AppData.showInSnackBar(context, "Please enter a valid e-mail");
+
+
                     } else if (textEditingController[12].text.trim() == "" ||
                         textEditingController[12].text.trim() == null) {
                      AppData.showInSnackBar(context, "Please enter pin code");
@@ -3656,7 +3662,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
         locale: Locale("en"),
         initialDate: DateTime.now().subtract(Duration(days: 6570)),
         firstDate: DateTime(1901, 1),
-        lastDate: DateTime.now()
+        lastDate: DateTime.now(),
+      initialEntryMode: DatePickerEntryMode.calendarOnly,
           /*  .subtract(Duration(days: 6570))*/); //18 years is 6570 days
     if (picked != null && picked != selectedDate)
       setState(() {
