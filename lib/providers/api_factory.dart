@@ -26,6 +26,7 @@ class ApiFactory {
 
 
   static String VITALS_REPORT = MAIN_URL + 'medtel-screening-test-report';
+  static String GET_PATIENTALLLAB = MAIN_URL + 'get-patient-all-lab-request-list?userid=';
   static String COUNTRY_API = MAIN_URL + 'get-country-list';
   static String VIEW_PATIENT_HEALTH_API =
       REPORT_URL1 + 'user/mobile-view-patient-health-chart?id=';
