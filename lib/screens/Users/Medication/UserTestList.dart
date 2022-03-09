@@ -70,6 +70,7 @@ class _MedicineList extends State<UserTestList> {
   String address;
   Position position;
   String cityName;
+  bool familydetailsadd = true;
   List<UserListModel> testlist = [];
   List<test.Body> selectedTest = [];
 
@@ -215,6 +216,27 @@ class _MedicineList extends State<UserTestList> {
 
             child: Column(
               children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    children: [
+                      Text(""),
+                      Spacer(),
+                      InkWell(
+                        onTap: () {
+                          setState(() {
+                            Navigator.pushNamed(context, "/testDetailslist");
+                            //displayDialog3(context);
+
+                          });
+                        },
+
+                          child:Text("View Order History")
+
+                      ),
+                    ],
+                  ),
+                ),
 
                 /* DropDown.networkDropdownGetpartUserrrr(
                     "Choose Pharmacy",
