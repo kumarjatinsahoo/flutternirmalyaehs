@@ -8,7 +8,7 @@ class ApiFactory {
 
   static bool isProduction = false;
   static bool isLocal = true;
-  static String LOCAL_URL = "http://192.168.0.129:8063/nirmalyaRest/api/";
+  static String LOCAL_URL = "http://192.168.0.129:8062/nirmalyaRest/api/";
 
   static String REG_DEVICE = "https://cca.medtel.in/Ziniai/manageDeviceId";
   static String MAIN_URL = (!isLocal)
@@ -61,7 +61,6 @@ class ApiFactory {
   static String lab_list_by_searchvalue =
       MAIN_URL + 'get-lab-list-by-searchvalue?search=';
   static String GET_VERSION = MAIN_URL + 'get-version';
-  static String GET_PATIENTALLLAB = MAIN_URL + 'get-patient-all-lab-request-list?userid=';
 
   /*static String BIOMEDICAL_IMPLANTS =
   MAIN_URL + 'view-user-biomedical-implant-list-api?userid=';*/
@@ -95,6 +94,12 @@ class ApiFactory {
       MAIN_URL + 'get-doctor-list-by-org?userid=';
   static String SHARE_APPOINTMENT_DOCTORRECEPTIONIST =
       MAIN_URL + 'get-doctorreceptionist-list?drid=';
+
+
+  static String DELETE_REMINDER =
+      MAIN_URL + 'delete-medicine-reminder-details?reminderId=';
+
+
   static String GET_DOCUMENT_API = MAIN_URL + 'get-document-type-list';
   static String IMMUNIZATION_API = MAIN_URL + 'get-immunization-type-list';
   static String SPECIALITY_API = MAIN_URL + 'get-doctor-speciality-list';

@@ -427,25 +427,29 @@ class _MedicineList extends State<UserMedicineList> {
                                                 padding: EdgeInsets.symmetric(
                                                     horizontal: 15,
                                                     vertical: 10),
-                                                child: Column(
+                                                child: Row(
                                                   crossAxisAlignment:
                                                       CrossAxisAlignment.start,
                                                   children: [
-                                                    Text(
-                                                      "Duration: ",
-                                                      style: TextStyle(
-                                                          fontSize: 15,
-                                                          fontWeight:
-                                                              FontWeight.bold),
+                                                    Expanded(
+                                                      child: Text(
+                                                        "Duration: ",
+                                                        style: TextStyle(
+                                                            fontSize: 15,
+                                                            fontWeight:
+                                                                FontWeight.bold),
+                                                      ),
                                                     ),
                                                     SizedBox(
                                                       height: 5,
                                                     ),
-                                                    Text(
-                                                      body.dosage ?? "",
-                                                      style: TextStyle(
-                                                          color: Colors.black,
-                                                          fontSize: 15),
+                                                    Expanded(
+                                                      child: Text(
+                                                        body.dosage ?? "",
+                                                        style: TextStyle(
+                                                            color: Colors.black,
+                                                            fontSize: 15),
+                                                      ),
                                                     ),
                                                   ],
                                                 ),
@@ -458,17 +462,19 @@ class _MedicineList extends State<UserMedicineList> {
                                                   crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                                   children: [
-                                                    Text(
-                                                      "Remark: ",
-                                                      style: TextStyle(
-                                                          fontSize: 15,
-                                                          fontWeight:
-                                                          FontWeight.bold),
+                                                    Expanded(
+                                                      child: Text(
+                                                        "Remark: ",
+                                                        style: TextStyle(
+                                                            fontSize: 15,
+                                                            fontWeight:
+                                                            FontWeight.bold),
+                                                      ),
                                                     ),
                                                     SizedBox(
                                                       height: 5,
                                                     ),
-                                                    Center(
+                                                    Expanded(
                                                       child: Text(
                                                         body.remarks ?? "N/A",
                                                         style: TextStyle(

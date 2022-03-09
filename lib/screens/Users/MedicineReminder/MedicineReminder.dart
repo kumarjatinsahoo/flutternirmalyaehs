@@ -64,6 +64,7 @@ MedicineReminderDTO1 medicineReminderDTO1;
     // setState(() {
 
       callApi(dateData);
+      // deleteApi();
     // });
     // _retrieveCalendarEvents();
     childButtons.add(UnicornButton(
@@ -124,7 +125,7 @@ MedicineReminderDTO1 medicineReminderDTO1;
         api: ApiFactory.REMINDER_LIST(loginResponse.body.user, date),
         token: widget.model.token,
         fun: (Map<String, dynamic> map){
-          print("Value is>>>>" + JsonEncoder().convert(map));
+          print("Fetch Response is>>>>" + JsonEncoder().convert(map));
       setState(() {
         if (map[Const.CODE] == Const.SUCCESS) {
           medicineReminderDTO1 = MedicineReminderDTO1.fromJson(map);
@@ -135,6 +136,20 @@ MedicineReminderDTO1 medicineReminderDTO1;
       });
         }
     );
+  }
+
+  deleteApi(String id){
+    widget.model.GETMETHODCALL_TOKEN(
+        api: ApiFactory.DELETE_REMINDER +id,
+        token: widget.model.token,
+        fun: (Map<String,dynamic> map){
+          log("DElete api"+jsonEncode(map));
+          // setState(() {
+            if(map[Const.STATUS1] == Const.SUCCESS){
+              callApi(dateData);
+            }
+          // });
+        });
   }
 
   void _resetSelectedDate() {
@@ -333,7 +348,7 @@ MedicineReminderDTO1 medicineReminderDTO1;
                                   Navigator.pushNamed(context, '/editReminder');
                                   break;
                                 case 2:
-                                  //_deleteEvent(_calendarEvents[i].eventId);
+                                  deleteApi(medicineReminderDTO1.body[i].id);
                                   break;
                                 default:
                                   AppData.showInSnackBar(context, "Hey1");
