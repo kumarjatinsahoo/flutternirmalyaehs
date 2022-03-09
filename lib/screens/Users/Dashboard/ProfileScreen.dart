@@ -3100,25 +3100,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     //     ProfileScreen.materialmodel == "") {
                     //   AppData.showInSnackBar(
                     //       context, "Please select Marital Status");
-                    // } else if (textEditingController[2].text == "" ||
-                    //     textEditingController[2].text.length == null) {
-                    //   AppData.showInSnackBar(
-                    //       context, "Please enter Occupation");
+                    } else if (textEditingController[2].text.contains(" ")) {
+                      AppData.showInSnackBar(
+                          context, "Please enter valid occupation");
                       // FocusScope.of(context).requestFocus(fnode2);
-                    // } else if (textEditingController[3].text == "" ||
-                    //     textEditingController[3].text.length == null) {
+                    } else if (textEditingController[3].text.contains(" ")) {
+                      AppData.showInSnackBar(
+                          context, "Please enter valid qualification");
+                    //   FocusScope.of(context).requestFocus(fnode3);
+                    } else if (textEditingController[4].text.contains(" ")) {
+                      AppData.showInSnackBar(
+                          context, "Please enter valid specialization");
+                    //   FocusScope.of(context).requestFocus(fnode4);
+                    // } else if (textEditingController[5].text.contains(" ")) {
                     //   AppData.showInSnackBar(
-                    //       context, "Please enter Qualification");
-                      // FocusScope.of(context).requestFocus(fnode3);
-                    // } else if (textEditingController[4].text == "" &&
-                    //     textEditingController[4].text.length == null) {
-                    //   AppData.showInSnackBar(
-                    //       context, "Please enter  Specialization");
-                      // FocusScope.of(context).requestFocus(fnode4);
-                    // } else if (textEditingController[5].text == "" ||
-                    //     textEditingController[5].text == null) {
-                    //   AppData.showInSnackBar(
-                    //       context, "Please enter Pan Card No");
+                    //       context, "Please enter valid pan card no");
                       // FocusScope.of(context).requestFocus(fnode5);
                     // } else if (textEditingController[6].text == "" ||
                     //     textEditingController[6].text.length == null) {
@@ -3137,10 +3133,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     //     textEditingController[9].text == null) {
                     //   AppData.showInSnackBar(
                     //       context, "Please enter Licence No.");
-                    // } else if (textEditingController[10].text == "" ||
-                    //     textEditingController[10].text == null) {
-                    //   AppData.showInSnackBar(
-                    //       context, "Please enter Licence Authority");
+                    } else if (textEditingController[10].text.contains(" ")) {
+                      AppData.showInSnackBar(
+                          context, "Please enter valid licence authority");
                     // } else if (textEditingController[11].text == "" ||
                     //     textEditingController[11].text == null) {
                     //   AppData.showInSnackBar(context, "Please enter Email");
@@ -3196,11 +3191,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             textEditingController[1].text;
                       }
                       updateProfileModel.occupation =
-                          textEditingController[2].text;
+                          textEditingController[2].text.trim();
                       updateProfileModel.qualification =
-                          textEditingController[3].text;
+                          textEditingController[3].text.trim();
                       updateProfileModel.specialization =
-                          textEditingController[4].text;
+                          textEditingController[4].text.trim();
                       updateProfileModel.pancardno =
                           textEditingController[5].text;
                       updateProfileModel.passportno =
@@ -3212,7 +3207,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       updateProfileModel.licenceno =
                           textEditingController[9].text;
                       updateProfileModel.licenceauthority =
-                          textEditingController[10].text;
+                          textEditingController[10].text.trim();
                       updateProfileModel.email = textEditingController[11].text;
                       updateProfileModel.pincode = textEditingController[12].text;
                       updateProfileModel.mobile = textEditingController[13].text;
@@ -3389,8 +3384,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                /* onChange(val) {
             s = val.trim().toLowerCase()
             }*/
-
-
             ),
           ),
         ),

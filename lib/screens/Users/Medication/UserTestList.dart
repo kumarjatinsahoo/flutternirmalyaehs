@@ -87,6 +87,7 @@ class _MedicineList extends State<UserTestList> {
   }
 
   callAPI() {
+    log("nayak<<<<<<<<<<<<<" +ApiFactory.doctor_TEST_LIST +widget?.model?.appno ?? "",);
     widget.model.GETMETHODCALL_TOKEN(
       api: ApiFactory.doctor_TEST_LIST +widget?.model?.appno ?? "",//140
       token: widget.model.token,
@@ -523,7 +524,7 @@ class _MedicineList extends State<UserTestList> {
 
               MyWidgets.showLoading(context);
               widget.model.POSTMETHOD_TOKEN(
-                  api: ApiFactory.LAB_REQUEST,
+                  api: ApiFactory.LAB_REQUEST ,
                   json: map,
                   token: widget.model.token,
                   fun: (Map<String, dynamic> map) {
