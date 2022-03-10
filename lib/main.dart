@@ -87,6 +87,7 @@ import 'package:user/screens/Users/Insurance/AddInsuranceForm.dart';
 import 'package:user/screens/Users/Insurance/InsuranceFormNew.dart';
 import 'package:user/screens/Users/IntrestSignup.dart';
 import 'package:user/screens/Users/LoginFBandGooglePage.dart';
+import 'package:user/screens/Users/Medication/MedicineDetailslist.dart';
 import 'package:user/screens/Users/Medication/TestDetailslist.dart';
 import 'package:user/screens/Users/Medication/UserMedicineList.dart';
 import 'package:user/screens/Users/Medication/UserTestList.dart';
@@ -1294,6 +1295,9 @@ class _MyAppState extends State<MyApp> {
                 model: _model,
               ),
               '/takenpage': (context) => TakenPage(
+                model: _model,
+              ),
+              '/medicineDetailslist': (context) => MedicineDetailslist(
                 model: _model,
               ),
 

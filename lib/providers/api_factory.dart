@@ -7,7 +7,7 @@ class ApiFactory {
   ////Local : isLocal:true && isProduction:false
 
   static bool isProduction = false;
-  static bool isLocal = true;
+  static bool isLocal = false;
   static String LOCAL_URL = "http://192.168.0.109:8063/nirmalyaRest/api/";
 
   static String REG_DEVICE = "https://cca.medtel.in/Ziniai/manageDeviceId";
@@ -27,6 +27,7 @@ class ApiFactory {
 
   static String VITALS_REPORT = MAIN_URL + 'medtel-screening-test-report';
   static String GET_PATIENTALLLAB = MAIN_URL + 'get-patient-all-lab-request-list?userid=';
+  static String GET_PATIENTALLMEDICIN = MAIN_URL + 'get-patient-all-medicine-request-list?userid=';
   static String COUNTRY_API = MAIN_URL + 'get-country-list';
   static String VIEW_PATIENT_HEALTH_API =
       REPORT_URL1 + 'user/mobile-view-patient-health-chart?id=';

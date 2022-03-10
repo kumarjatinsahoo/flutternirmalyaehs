@@ -4,7 +4,7 @@ import 'dart:developer';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/models/MedicineDetailslistModel.dart'as cnfrmorder;
 import 'package:user/models/PharmacycnfrmModel.dart';
-import 'package:user/models/TestDetailslistModel.dart'as cnfrmorder;
+
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
@@ -51,7 +51,7 @@ class _MedicineDetailslistState extends State<MedicineDetailslist> {
   }
   callAPI(int i) {
     widget.model.GETMETHODCALL_TOKEN(
-        api: ApiFactory.GET_PATIENTALLLAB+loginResponse1.body.user+"&page="+ i.toString(),
+        api: ApiFactory.GET_PATIENTALLMEDICIN+loginResponse1.body.user+"&page="+ i.toString(),
         token: widget.model.token,
         fun: (Map<String, dynamic> map) {
           setState(() {
@@ -157,7 +157,7 @@ class _MedicineDetailslistState extends State<MedicineDetailslist> {
                                 style: TextStyle(
                                     color: AppData.kPrimaryColor),
                               ),
-                              Text(body.testname??"N/A"),
+                              Text(body?.testname??"N/A"),
                             ],
                           ),
 
@@ -173,7 +173,7 @@ class _MedicineDetailslistState extends State<MedicineDetailslist> {
                                 style: TextStyle(
                                     color: AppData.kPrimaryColor),
                               ),
-                              Text(body.testgroup??"N/A"),
+                              Text(body?.testgroup??"N/A"),
                             ],
                           ),
                           Row(
@@ -185,7 +185,7 @@ class _MedicineDetailslistState extends State<MedicineDetailslist> {
                                 style: TextStyle(
                                     color: AppData.kPrimaryColor),
                               ),
-                              Text(body.lab??"N/A"),
+                              Text(body?.lab??"N/A"),
                             ],
                           ),
 
@@ -198,7 +198,7 @@ class _MedicineDetailslistState extends State<MedicineDetailslist> {
                                 style: TextStyle(
                                     color: AppData.kPrimaryColor),
                               ),
-                              Text(body.reqDate??"N/A"),
+                              Text(body?.reqDate??"N/A"),
                             ],
                           ),
                           Row(
@@ -210,7 +210,7 @@ class _MedicineDetailslistState extends State<MedicineDetailslist> {
                                 style: TextStyle(
                                     color: AppData.kPrimaryColor),
                               ),
-                              Text(body.rejectDate??body?.acceptDate??""),
+                              Text(body?.rejectDate??body?.acceptDate??""),
                             ],
                           ),
                           Row(

@@ -232,7 +232,7 @@ class _MedicineList extends State<UserMedicineList> {
                                     InkWell(
                                         onTap: () {
                                           setState(() {
-                                            Navigator.pushNamed(context, "/testDetailslist");
+                                            Navigator.pushNamed(context, "/medicineDetailslist");
                                             //displayDialog3(context);
 
                                           });
