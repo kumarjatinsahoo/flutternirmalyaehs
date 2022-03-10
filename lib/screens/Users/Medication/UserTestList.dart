@@ -143,11 +143,11 @@ class _MedicineList extends State<UserTestList> {
 
   geocodeFetch(lat, longi) {
     print(">>>>>>>>>" + ApiFactory.GOOGLE_LOC(lat: lat, long: longi));
-   MyWidgets.showLoading(context);
+   //MyWidgets.showLoading(context);
     widget.model.GETMETHODCALL(
         api: ApiFactory.GOOGLE_LOC(lat: lat, long: longi),
         fun: (Map<String, dynamic> map) {
-          Navigator.pop(context);
+          //Navigator.pop(context);
           ResultsServer finder = ResultsServer.fromJson(map["results"][0]);
           print("finder1>>>>>>>>>" + finder.toJson().toString());
           setState(() {
@@ -232,7 +232,11 @@ class _MedicineList extends State<UserTestList> {
                           });
                         },
 
-                          child:Text("View Order History")
+                          child:Text("View Order History",
+                            style: TextStyle(
+                            decoration: TextDecoration.underline,color: AppData.kPrimaryColor
+                          )
+                          )
 
                       ),
                     ],

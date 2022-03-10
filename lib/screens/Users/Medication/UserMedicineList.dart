@@ -223,6 +223,32 @@ class _MedicineList extends State<UserMedicineList> {
                         child: SingleChildScrollView(
                           child: Column(
                             children: [
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                  children: [
+                                    Text(""),
+                                    Spacer(),
+                                    InkWell(
+                                        onTap: () {
+                                          setState(() {
+                                            Navigator.pushNamed(context, "/testDetailslist");
+                                            //displayDialog3(context);
+
+                                          });
+                                        },
+
+                                        child:Text("View Order History",
+                                            style: TextStyle(
+                                                decoration: TextDecoration.underline,color: AppData.kPrimaryColor
+                                            )
+                                        )
+
+                                    ),
+                                  ],
+                                ),
+                              ),
+
                               ListView.builder(
                                 physics: NeverScrollableScrollPhysics(),
                                 // controller: _scrollController,
