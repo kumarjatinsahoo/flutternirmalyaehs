@@ -964,7 +964,7 @@ class BookAmbulancePageState extends State<BookAmbulancePage> {
         textInputAction: inputAct,
         inputFormatters: [
           //UpperCaseTextFormatter(),
-          WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
+          WhitelistingTextInputFormatter(RegExp("[a-zA-Z,. ]")),
         ],
         keyboardType: keyType,
         decoration: InputDecoration(
