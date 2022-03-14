@@ -593,7 +593,7 @@ class _MedicineList extends State<UserMedicineList> {
               EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
           child: Text(
             // MyLocalizations.of(context).text("SIGN_BTN"),
-            "SUBMIT",
+            "Continue",
             textAlign: TextAlign.center,
             style: TextStyle(color: Colors.white, fontSize: 16.0),
           ),
