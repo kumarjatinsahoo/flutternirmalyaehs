@@ -6,8 +6,8 @@ class ApiFactory {
   ////Staging : isLocal:false && isProduction:false
   ////Local : isLocal:true && isProduction:false
 
-  static bool isProduction = false;
-  static bool isLocal = true;
+  static bool isProduction = true;
+  static bool isLocal = false;
   static String LOCAL_URL = "http://192.168.0.129:8062/nirmalyaRest/api/";
 
   static String REG_DEVICE = "https://cca.medtel.in/Ziniai/manageDeviceId";
@@ -20,8 +20,8 @@ class ApiFactory {
   static String MAIN_URL1 = "https://1331.co.in/api";
   static String REPORT_URL1 = (!isLocal)
       ? (isProduction)
-          ? "https://api.ehealthsystem.com/"
-          : "http://api-demo.ehealthsystem.com/"
+          ? "https://ehealthsystem.com/"
+          : "http://demo.ehealthsystem.com/"
       : LOCAL_URL.replaceAll("nirmalyaRest/api/", "");
 
 

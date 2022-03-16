@@ -2768,7 +2768,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       left: 0, right: 5, bottom: 0),
                                   child: Text(
                                     MyLocalizations.of(context)
-                                        .text("BLOODGROUP"),
+                                         .text("BLOODGROUP"),
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
                                         color: Colors.black,
