@@ -87,6 +87,8 @@ import 'package:user/screens/Users/Insurance/AddInsuranceForm.dart';
 import 'package:user/screens/Users/Insurance/InsuranceFormNew.dart';
 import 'package:user/screens/Users/IntrestSignup.dart';
 import 'package:user/screens/Users/LoginFBandGooglePage.dart';
+import 'package:user/screens/Users/Medication/MedicineDetailslist.dart';
+import 'package:user/screens/Users/Medication/TestDetailslist.dart';
 import 'package:user/screens/Users/Medication/UserMedicineList.dart';
 import 'package:user/screens/Users/Medication/UserTestList.dart';
 import 'package:user/screens/Users/MedicineReminder/EditReminder.dart';
@@ -1295,7 +1297,13 @@ class _MyAppState extends State<MyApp> {
               '/takenpage': (context) => TakenPage(
                 model: _model,
               ),
+              '/medicineDetailslist': (context) => MedicineDetailslist(
+                model: _model,
+              ),
 
+          '/testDetailslist': (context) => TestDetailslist(
+          model: _model,
+          )
             },
             localizationsDelegates: [
               MyLocalizationsDelegate(widget.localizedValues),

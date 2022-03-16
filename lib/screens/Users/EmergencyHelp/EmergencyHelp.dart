@@ -1,4 +1,6 @@
 import 'dart:convert';
+
+import 'package:android_intent/android_intent.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoder/geocoder.dart';
@@ -9,7 +11,9 @@ import 'package:geolocator/geolocator.dart' as loca;
 import 'package:lottie/lottie.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:shake/shake.dart';
+
 // import 'package:shake/shake.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/GooglePlaceSearchModell.dart';
@@ -59,66 +63,127 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
   String cityName;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   bool isShown = true;
-  int k=0;
+  int k = 0;
+  bool enabled;
+  static int count = 0;
+  bool forOnceShake=false;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     loginResponse1 = widget.model.loginResponse1;
-    callAPI();
+    //callAPI();
     // callAmbulance();
-    _getLocationName();
 
+    _gpsService();
+    callAPI();
+    // _getLocationName();
     ShakeDetector detector = ShakeDetector.autoStart(
         onPhoneShake: () {
-            widget.model.longi = latitude;
-            widget.model.lati = longitude;
-            widget.model.city = cityName;
-            print('longi ___ lati + ' + widget.model.longi + '' + widget.model.lati);
-            // widget.model.emgmobile = emergencyHelpModel.emergency[0].mobile;
-            // widget.model.placeIdno = googlePlaceModel?.results[0]?.placeId;
-            /*googlePlaceModel==null?widget.model.placeIdno = googlePlaceModel?.results[0]?.placeId
+          widget.model.longi = latitude;
+          widget.model.lati = longitude;
+          widget.model.city = cityName;
+          print('longi ___ lati + ' +
+              widget.model.longi +
+              '' +
+              widget.model.lati);
+          // widget.model.emgmobile = emergencyHelpModel.emergency[0].mobile;
+          // widget.model.placeIdno = googlePlaceModel?.results[0]?.placeId;
+          /*googlePlaceModel==null?widget.model.placeIdno = googlePlaceModel?.results[0]?.placeId
                                 : widget.model.placeIdno1 = googlePlaceModel?.results[0]?.placeId;*/
-            if((latitude == null || latitude == "") || (longitude == null || longitude == "")){
-              AppData.showInSnackBar(context, "Please Allow Location");
+          if ((latitude == null || latitude == "") ||
+              (longitude == null || longitude == "") && !forOnceShake) {
+            AppData.showInSnackBar(context, "Please Allow Location");
+          } else {
+            /*setState(() {
+              forOnceShake=true;
+            });*/
 
-            }
-            else{
-              Navigator.pushNamed(context, "/countDown");
-            }
+             /* count++;
+              if(count==4){*/
+                Navigator.pushNamed(context, "/countDown");
+            /*  }*/
+
+            //detector.
+
+          }
         },
-        shakeThresholdGravity:2.1
-    );
+        shakeThresholdGravity: 2.1);
+  }
+
+  Future _gpsService() async {
+    enabled = await Geolocator().isLocationServiceEnabled();
+    if (!(await Geolocator().isLocationServiceEnabled())) {
+      _checkGps();
+      return null;
+    } else {
+      //_getLocationName();
+    }
+
+    return true;
+  }
+
+  Future _checkGps() async {
+    if (!(await Geolocator().isLocationServiceEnabled())) {
+      if (Theme.of(context).platform == TargetPlatform.android) {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text("Can't get gurrent location"),
+              content:
+                  const Text('Please make sure you enable GPS and try again'),
+              actions: <Widget>[
+                FlatButton(
+                  child: Text('Ok'),
+                  onPressed: () {
+                    final AndroidIntent intent = AndroidIntent(
+                        action: 'android.settings.LOCATION_SOURCE_SETTINGS');
+                    intent.launch();
+                    Navigator.of(context, rootNavigator: true).pop();
+                    _getLocationName();
+                    //_getLocationName();
+                    // _gpsService();
+                  },
+                ),
+              ],
+            );
+          },
+        );
+      }
+    }
   }
 
   _getLocationName() async {
     print('INNNNNNNN >>>>>>>>>>>>>>>>>>:');
+    MyWidgets.showLoading(context);
     Position position = await Geolocator()
         .getCurrentPosition(desiredAccuracy: loca.LocationAccuracy.high);
     this.position = position;
-    // debugPrint('location: ${position.latitude}');
+
+    //debugPrint('location: ${position.latitude}');
     print('location>>>>>>>>>>>>>>>>>>: ${position.latitude}');
-  //  latitude =position.latitude.toString();
-  //  longitude = position.longitude.toString();
+    //latitude =position.latitude.toString();
+    //longitude = position.longitude.toString();
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    
-    if((position.latitude != null || position.latitude != "") || (position.longitude != null || position.longitude != "")){
+    if ((position.latitude != null || position.latitude != "") ||
+        (position.longitude != null || position.longitude != "")) {
+      Navigator.pop(context);
       await preferences.setString("Latitude", position.latitude.toString());
-      await preferences.setString("Longitude", position.longitude.toString());       
+      await preferences.setString("Longitude", position.longitude.toString());
       latitude = preferences.getString("Latitude");
-   longitude = preferences.getString("Longitude");  
-   print('======111======== ' +
-        ApiFactory.googleMapUrl(lati: latitude, longi: longitude));  
+      longitude = preferences.getString("Longitude");
+      print('======111======== ' +
+          ApiFactory.googleMapUrl(lati: latitude, longi: longitude));
       return true;
-    } 
-    else{
+    } else {
       print('======222222======== ' +
-        ApiFactory.googleMapUrl(lati: latitude, longi: longitude));
+          ApiFactory.googleMapUrl(lati: latitude, longi: longitude));
     }
-    
-    callAmbulance();      
-    
+
+    callAmbulance();
+
     try {
       final coordinates =
           new Coordinates(position.latitude, position.longitude);
@@ -156,7 +221,19 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
               setState(() {
                 emergencyHelpModel = EmergencyHelpModel.fromJson(map);
               });
-              _getLocationName();
+
+              /* if((latitude == null || latitude == "") || (longitude == null || longitude == "")){
+                AppSettings.openLocationSettings();
+
+              }
+              else{
+                _getLocationName();
+                //Navigator.pushNamed(context, "/countDown");
+              }*/
+              if (enabled) {
+                _getLocationName();
+                //_checkGps();
+              }
             }
           } else {
             isDataNotAvail = true;
@@ -176,7 +253,8 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
             //if (map["status"] == "ok") {
             googlePlaceModel = GooglePlaceModel.fromJson(map);
             //Navigator.pop(context);
-            if (googlePlaceModel != null && googlePlaceModel.results.isNotEmpty) {
+            if (googlePlaceModel != null &&
+                googlePlaceModel.results.isNotEmpty) {
               getMobNo(googlePlaceModel.results[k].placeId);
             } else {
               AppData.showInSnackBar(context, "Data not found");
@@ -312,21 +390,23 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
             String msg = map[Const.MESSAGE];
             if (map[Const.STATUS1] == Const.RESULT_OK) {
               GooglePlacesSearchModel googlePlacesSearch =
-              GooglePlacesSearchModel.fromJson(map);
-              if (googlePlacesSearch?.result?.formattedPhoneNumber != null){
-              /*AppData.launchURL("tel://" +
+                  GooglePlacesSearchModel.fromJson(map);
+              if (googlePlacesSearch?.result?.formattedPhoneNumber != null) {
+                /*AppData.launchURL("tel://" +
                     googlePlacesSearch.result
                         .formattedPhoneNumber);*/
 
-                widget.model.hospitalNo=googlePlacesSearch.result.formattedPhoneNumber;
+                widget.model.hospitalNo =
+                    googlePlacesSearch.result.formattedPhoneNumber;
 
-              /*FlutterPhoneDirectCaller.callNumber(
+                /*FlutterPhoneDirectCaller.callNumber(
                     googlePlacesSearch.result.formattedPhoneNumber);*/
-            }    else {
-                if(googlePlaceModel.results.length>(k+1)){
-                  getMobNo(googlePlaceModel.results[(k+1)].placeId);
-                }else{
-                  AppData.showInSnackBar(context, "Ambulance Mobile no is not available");
+              } else {
+                if (googlePlaceModel.results.length > (k + 1)) {
+                  getMobNo(googlePlaceModel.results[(k + 1)].placeId);
+                } else {
+                  AppData.showInSnackBar(
+                      context, "Ambulance Mobile no is not available");
                 }
 
                 // AppData.showInSnackBar(context, "Ambulance Mobile no is not available");
@@ -349,7 +429,8 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return (emergencyHelpModel != null)
-        ? Stack(
+        ? /*((position.latitude == null || position.latitude == "") || (position.longitude == null || position.longitude == ""))?MyWidgets.showLoading(context):*/
+        Stack(
             children: [
               Scaffold(
                   backgroundColor: Colors.grey.shade100,
@@ -427,20 +508,22 @@ class _EmergencyHelpState extends State<EmergencyHelp> {
                                 widget.model.longi = latitude;
                                 widget.model.lati = longitude;
                                 widget.model.city = cityName;
-                                print('longi ___ lati + ' + widget.model.longi + '' + widget.model.lati);
+                                print('longi ___ lati + ' +
+                                    widget.model.longi +
+                                    '' +
+                                    widget.model.lati);
                                 // widget.model.emgmobile = emergencyHelpModel.emergency[0].mobile;
                                 // widget.model.placeIdno = googlePlaceModel?.results[0]?.placeId;
                                 /*googlePlaceModel==null?widget.model.placeIdno = googlePlaceModel?.results[0]?.placeId
                                 : widget.model.placeIdno1 = googlePlaceModel?.results[0]?.placeId;*/
-                              if((latitude == null || latitude == "") || (longitude == null || longitude == "")){
-                                 AppData.showInSnackBar(context, "Please Allow Location");
-                                
-                              }
-                              else{
-                               Navigator.pushNamed(context, "/countDown");
-                              }
-                            
-                                
+                                if ((latitude == null || latitude == "") ||
+                                    (longitude == null || longitude == "")) {
+                                  AppData.showInSnackBar(
+                                      context, "Please Allow Location");
+                                } else {
+                                  Navigator.pushNamed(context, "/countDown");
+                                }
+
                                 // callHelpBtn();
                               },
                               child: Container(

@@ -70,6 +70,7 @@ class _MedicineList extends State<UserTestList> {
   String address;
   Position position;
   String cityName;
+  bool familydetailsadd = true;
   List<UserListModel> testlist = [];
   List<test.Body> selectedTest = [];
 
@@ -142,11 +143,11 @@ class _MedicineList extends State<UserTestList> {
 
   geocodeFetch(lat, longi) {
     print(">>>>>>>>>" + ApiFactory.GOOGLE_LOC(lat: lat, long: longi));
-   MyWidgets.showLoading(context);
+   //MyWidgets.showLoading(context);
     widget.model.GETMETHODCALL(
         api: ApiFactory.GOOGLE_LOC(lat: lat, long: longi),
         fun: (Map<String, dynamic> map) {
-          Navigator.pop(context);
+          //Navigator.pop(context);
           ResultsServer finder = ResultsServer.fromJson(map["results"][0]);
           print("finder1>>>>>>>>>" + finder.toJson().toString());
           setState(() {
@@ -216,6 +217,31 @@ class _MedicineList extends State<UserTestList> {
 
             child: Column(
               children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    children: [
+                      Text(""),
+                      Spacer(),
+                      InkWell(
+                        onTap: () {
+                          setState(() {
+                            Navigator.pushNamed(context, "/testDetailslist");
+                            //displayDialog3(context);
+
+                          });
+                        },
+
+                          child:Text("View Order History",
+                            style: TextStyle(
+                            decoration: TextDecoration.underline,color: AppData.kPrimaryColor
+                          )
+                          )
+
+                      ),
+                    ],
+                  ),
+                ),
 
                 /* DropDown.networkDropdownGetpartUserrrr(
                     "Choose Pharmacy",
@@ -801,7 +827,7 @@ class _MedicineList extends State<UserTestList> {
               EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
           child: Text(
             // MyLocalizations.of(context).text("SIGN_BTN"),
-            "SUBMIT",
+            "Continue",
             textAlign: TextAlign.center,
             style: TextStyle(color: Colors.white, fontSize: 16.0),
           ),

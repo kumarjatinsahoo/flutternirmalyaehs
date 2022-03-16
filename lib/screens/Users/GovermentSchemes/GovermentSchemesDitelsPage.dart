@@ -46,9 +46,19 @@ class _GovermentSchemesDitelsPageState extends State<GovermentSchemesDitelsPage>
         javaScriptCanOpenWindowsAutomatically:true,
         mediaPlaybackRequiresUserGesture: false,
         disableHorizontalScroll: false,
-        supportZoom: true,
+        preferredContentMode:UserPreferredContentMode.MOBILE,
+        // supportZoom: false,
         disableVerticalScroll: false,
       ),
+    android: AndroidInAppWebViewOptions(
+      // displayZoomControls: false,
+      // builtInZoomControls: false
+        textZoom:230
+    ), ios: IOSInAppWebViewOptions(
+      // displayZoomControls: false,
+      // builtInZoomControls: false
+      //  pageZoom: 270
+    )
   );
 /* final Completer<InAppWebViewController> _controller1 =
   Completer<InAppWebViewController>();
@@ -129,6 +139,9 @@ class _GovermentSchemesDitelsPageState extends State<GovermentSchemesDitelsPage>
               initialUrlRequest: URLRequest(
                   url: Uri.parse(widget.model.pdfurl)),
               initialOptions: _options,
+                onZoomScaleChanged:(c,val,cal1){
+
+                } ,
               shouldOverrideUrlLoading:(controller, action) {
                 print("override");
                 return Future.value(NavigationActionPolicy.ALLOW);
