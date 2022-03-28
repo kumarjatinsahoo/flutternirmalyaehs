@@ -425,6 +425,8 @@ class ApiFactory {
   //////////////////////////////
   // static String ABHA_BASE_URL = "https://dev.abdm.gov.in/gateway/v0.5/sessions";
   static String SESSION = "https://dev.abdm.gov.in/gateway/v0.5/sessions";
+  static String GET_ADHAR_OTP = "https://healthidsbx.abdm.gov.in/api/v1/registration/aadhaar/generateOtp";
+  static String POST_VERIFY_OTP = "https://healthidsbx.abdm.gov.in/api/v1/registration/aadhaar/verifyOTP";
 
 
 

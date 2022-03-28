@@ -13,7 +13,7 @@ import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
 
-import 'Doctor/Dashboard/DoctorMedicationlist.dart';
+import '../Doctor/Dashboard/DoctorMedicationlist.dart';
 
 class AadharRegistration extends StatefulWidget {
   // MainModel _model = MainModel();
@@ -44,12 +44,18 @@ class _AadharRegistrationState extends State<AadharRegistration> {
     preferences.setString("Lan", locale.toString());
   }
 
+  List<TextEditingController> controller = [
+    new TextEditingController(),
+    new TextEditingController(),
+  ];
+
   Color color = Colors.grey;
   String phoneNo;
 
   AbhaTokenModel abhaTokenModel;
 
   getSessionAbha() {
+    MyWidgets.showLoading(context);
     var postData = {
       "clientId": "SBX_000035",
       "clientSecret": "2f59bf0b-f396-4f2a-b639-0ef8572c8618"
@@ -57,19 +63,41 @@ class _AadharRegistrationState extends State<AadharRegistration> {
     widget.model.POSTMETHOD(
         api: ApiFactory.SESSION,
         fun: (Map<String, dynamic> map) {
-
-          log("Response>>>"+jsonEncode(map));
-          abhaTokenModel=AbhaTokenModel.fromJson(map);
+          Navigator.pop(context);
+          log("Response>>>" + jsonEncode(map));
+          abhaTokenModel = AbhaTokenModel.fromJson(map);
+          validateAdharNo();
         },
         json: postData);
   }
 
+  validateAdharNo() {
+    MyWidgets.showLoading(context);
+    var postData = {"aadhaar": controller[1].text};
+    widget.model.POSTMETHOD_TOKEN(
+        api: ApiFactory.GET_ADHAR_OTP,
+        token: "Bearer " + abhaTokenModel.accessToken,
+        fun: (Map<String, dynamic> map) {
+          Navigator.pop(context);
+          log("Response Token>>>" + jsonEncode(map));
+          if (map.containsKey("txnId")) {
+            widget.model.txnId=map["txnId"];
+            widget.model.abhaTokenModel=abhaTokenModel;
+
+            //Navigator.pushNamed(context, "/adharOtp");
+            Navigator.pushNamed(context, "/adharOtppinview");
+          } else {
+            AppData.showInSnackBar(context, map["details"]["message"]);
+          }
+        },
+        json: postData);
+  }
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    getSessionAbha();
+    // getSessionAbha();
   }
 
   @override
@@ -107,22 +135,27 @@ class _AadharRegistrationState extends State<AadharRegistration> {
               formField1(1, "Please Enter Aadhar No"),
               SizedBox(height: 8),
               //nextButton(),
-              Container(
-                width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
-                    color: AppData.kPrimaryColor,
-                    borderRadius: BorderRadius.circular(25.0),
-                    gradient: LinearGradient(
-                        begin: Alignment.bottomRight,
-                        end: Alignment.topLeft,
-                        colors: [Colors.black, AppData.kPrimaryColor])),
-                child: Padding(
-                  padding: EdgeInsets.only(
-                      left: 35.0, right: 35.0, top: 14.0, bottom: 14.0),
-                  child: Text(
-                    "Proceed",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(color: Colors.white, fontSize: 16.0),
+              InkWell(
+                onTap: () {
+                  getSessionAbha();
+                },
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  decoration: BoxDecoration(
+                      color: AppData.kPrimaryColor,
+                      borderRadius: BorderRadius.circular(25.0),
+                      gradient: LinearGradient(
+                          begin: Alignment.bottomRight,
+                          end: Alignment.topLeft,
+                          colors: [Colors.black, AppData.kPrimaryColor])),
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                        left: 35.0, right: 35.0, top: 14.0, bottom: 14.0),
+                    child: Text(
+                      "Proceed",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.white, fontSize: 16.0),
+                    ),
                   ),
                 ),
               ),
@@ -278,7 +311,7 @@ class _AadharRegistrationState extends State<AadharRegistration> {
             ),
             textInputAction: TextInputAction.next,
             keyboardType: TextInputType.text,
-            controller: textEditingController[index],
+            controller: controller[index],
             //focusNode: fnode1,
             textAlignVertical: TextAlignVertical.top,
             onFieldSubmitted: (value) {
