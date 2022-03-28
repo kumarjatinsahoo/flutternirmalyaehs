@@ -263,6 +263,7 @@ class _GovtSchemesState extends State<GovtSchemes> {
         } else if (GovtSchemes.districtModel == null) {
           AppData.showInSnackBar(context, "Please select district");*/
         } else {
+          //Navigator.pushNamed(context, "/govermentSchemesDitelsPage");
           Navigator.pushNamed(context, "/govetschemeslist");
         }
       },

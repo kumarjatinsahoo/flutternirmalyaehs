@@ -73,6 +73,25 @@ class BookAmbulancePageState extends State<BookAmbulancePage> {
     new TextEditingController(),
     new TextEditingController(),
   ];
+  List<TextEditingController> timePicker = [
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+  ];
+
+  List<TimeOfDay> actualTime = [
+    new TimeOfDay(minute: null, hour: null),
+    new TimeOfDay(minute: null, hour: null),
+    new TimeOfDay(minute: null, hour: null),
+    new TimeOfDay(minute: null, hour: null),
+    new TimeOfDay(minute: null, hour: null),
+    new TimeOfDay(minute: null, hour: null),
+    new TimeOfDay(minute: null, hour: null),
+  ];
 
   TextEditingController appointmentdate = TextEditingController();
   TextEditingController validitytime = TextEditingController();
@@ -945,7 +964,7 @@ class BookAmbulancePageState extends State<BookAmbulancePage> {
         textInputAction: inputAct,
         inputFormatters: [
           //UpperCaseTextFormatter(),
-          WhitelistingTextInputFormatter(RegExp("[a-zA-Z ]")),
+          WhitelistingTextInputFormatter(RegExp("[a-zA-Z,. ]")),
         ],
         keyboardType: keyType,
         decoration: InputDecoration(
@@ -1017,9 +1036,8 @@ class BookAmbulancePageState extends State<BookAmbulancePage> {
       //padding: const EdgeInsets.symmetric(horizontal: 8),
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: GestureDetector(
-        onTap: () => _selectDate(
-          context,
-        ),
+        onTap: () => _selectDate(context),
+        //_selectDynamicTime(),
         child: AbsorbPointer(
           child: Container(
             // margin: EdgeInsets.symmetric(vertical: 10),
@@ -1233,4 +1251,32 @@ class BookAmbulancePageState extends State<BookAmbulancePage> {
   finalFormSubmit() {
     print("form submit");
   }
+
+  // _selectDynamicTime(BuildContext context, v) async {
+  //   final TimeOfDay timeOfDay = await showTimePicker(
+  //       context: context,
+  //       initialTime: selectedTime,
+  //       initialEntryMode: TimePickerEntryMode.dial,
+  //       builder: (BuildContext context, Widget child) {
+  //         return MediaQuery(
+  //           data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
+  //           child: child,
+  //         );
+  //       });
+  //   setState(() {
+  //     // selectedTime = timeOfDay;
+  //     // selectedStartTime = timeOfDay;
+  //     actualTime[v] = timeOfDay;
+  //     timePicker[v].text = formatTimeOfDay(timeOfDay);
+  //     // if(doseTimeList.contains(timePicker[v].text)){
+  //     //   selectedTime = TimeOfDay.now();
+  //     //   timePicker[v].text="";
+  //     //   AppData.showInSnackBar(context, 'Time is already added');
+  //     //
+  //     // }
+  //     // doseTimeList.add(timePicker[v].text.toString());
+  //   });
+  //   // }
+  // }
+
 }

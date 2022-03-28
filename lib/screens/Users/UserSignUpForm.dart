@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:dropdown_search/dropdown_search.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -68,7 +69,8 @@ class UserSignUpFormState extends State<UserSignUpForm> {
     new TextEditingController()
   ];
 
-  String token;
+  String token,
+      idproof = null;
   TypeDob selectDobEn = TypeDob.Age;
   String _selectedGender = 'male';
 
@@ -579,10 +581,86 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                                 ),
                               )
                                   : Container(),
-
                               SizedBox(
                                 height: size.height * 0.01,
                               ),
+
+                              // formFieldzip(2, MyLocalizations.of(context).text("ENTER_ZIP_CODE"),fnode3,fnode4),
+                              // Row(
+                              //   children: [
+                              //     Padding(
+                              //       padding: const EdgeInsets.all(10),
+                              //       child: Text(MyLocalizations.of(context).text("UPLOAD_DOCUMENT"),
+                              //         style: TextStyle(color:AppData.kPrimaryColor,fontSize: 20,
+                              //         ),),
+                              //     ),
+                              //     SizedBox(width:5),
+                              //     Material(
+                              //       elevation: 3,
+                              //       color:AppData.kPrimaryColor,
+                              //       borderRadius: BorderRadius.circular(5.0),
+                              //       child: MaterialButton(
+                              //         onPressed: () {
+                              //           _settingModalBottomSheet1(context);
+                              //
+                              //         },
+                              //         minWidth: 145,
+                              //         height: 40.0,
+                              //         child: Text(MyLocalizations.of(context).text("UPLOAD"),
+                              //           style: TextStyle(
+                              //               color: Colors.white, fontSize: 17.0),
+                              //         ),
+                              //       ),
+                              //     ),
+                              //   ],
+                              // ),
+                              // SizedBox(height: 10),
+                              // (idproof != null)
+                              //     ? Padding(
+                              //   padding: const EdgeInsets.only(
+                              //       left: 10, right: 10),
+                              //   child: Row(
+                              //     mainAxisSize: MainAxisSize.max,
+                              //     mainAxisAlignment:
+                              //     MainAxisAlignment.spaceBetween,
+                              //     children: [
+                              //       Expanded(
+                              //         child: Container(
+                              //           child: Text(
+                              //             "Report Path :" + idproof,
+                              //             style: TextStyle(color: Colors.green),
+                              //           ),
+                              //         ),
+                              //       ),
+                              //       InkWell(
+                              //         child: SizedBox(
+                              //             width: 50.0,
+                              //             child: Icon(Icons.clear)),
+                              //         onTap: () {
+                              //           setState(() {
+                              //             userModel.documentExt = null;
+                              //             idproof = null;
+                              //             // registrationModel.profilePhotoBase64 =
+                              //             null;
+                              //             //registrationModel.profilePhotoExt =
+                              //             null;
+                              //           });
+                              //         },
+                              //       )
+                              //     ],
+                              //   ),
+                              // ):Container(),
+
+
+
+
+
+
+
+
+
+
+
 
                               /* Row(
                             children: [
@@ -930,6 +1008,61 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                   ],
                 ),
               ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget formFieldzip(int index, String hint,FocusNode currentfn, FocusNode nextFn,) {
+    return Padding(
+      //padding: const EdgeInsets.all(8.0),
+      padding:
+      const EdgeInsets.only(top: 0.0, left: 8.0, right: 8.0, bottom: 0.0),
+      child: Container(
+        decoration: BoxDecoration(
+            color: AppData.white,
+            borderRadius: BorderRadius.circular(5),
+            border: Border.all(
+                color: Colors.black,width: 0.3)
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15.0),
+          child: Row(
+            children: <Widget>[
+              new Expanded(
+                child: TextFormField(
+                  enabled: widget.isConfirmPage ? false : true,
+                  controller: textEditingController[index],
+                  focusNode: currentfn,
+                  cursorColor: AppData.kPrimaryColor,
+                  textInputAction: TextInputAction.next,
+                  maxLength: 6,
+                  keyboardType: TextInputType.number,
+                  inputFormatters: [
+                    WhitelistingTextInputFormatter(
+                        RegExp("[0-9 ]")),
+                  ],
+                  decoration: InputDecoration(
+                    //suffixIcon: Icon(Icons.phone),
+                    border: InputBorder.none,
+                    counterText: "",
+                    hintText:hint,
+                    hintStyle: TextStyle(color: AppData.hintColor, fontSize: 15),
+                  ),
+
+                  onFieldSubmitted: (value) {
+                    // print(error[2]);
+                    error[4] = false;
+                    setState(() {});
+                    AppData.fieldFocusChange(context, currentfn, nextFn);
+                  },
+                  onSaved: (value) {
+                    //userPersonalForm.phoneNumber = value;
+                  },
+                ),
+              )
             ],
           ),
         ),
@@ -1481,18 +1614,22 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                     title: new Text('Camera'),
                     onTap: () => {
                       Navigator.pop(context),
-                      //getCameraImage(),
-                      getImage(ImageSource.camera),
+                      getCameraImage(),
                     }),
                 new ListTile(
                   leading: new Icon(Icons.folder),
                   title: new Text('Gallery'),
                   onTap: () => {
                     Navigator.pop(context),
-                    //getGalleryImage(),
-                    getImage(ImageSource.gallery),
-                  },
+                    getGalleryImage()},
                 ),
+                // new ListTile(
+                //     leading: new Icon(Icons.file_copy),
+                //     title: new Text('Document'),
+                //     onTap: () => {
+                //       Navigator.pop(context),
+                //       getPdfAndUpload(),
+                //     }),
               ],
             ),
           );
@@ -1565,6 +1702,8 @@ class UserSignUpFormState extends State<UserSignUpForm> {
       });
     }
   }
+
+
 
   chooseAppointment(BuildContext context) {
     return showDialog(
@@ -1705,6 +1844,134 @@ class UserSignUpFormState extends State<UserSignUpForm> {
       });
     }
   }
+
+  // void _settingModalBottomSheet1(context) {
+  //   showModalBottomSheet(
+  //       context: context,
+  //       builder: (BuildContext bc) {
+  //         return Container(
+  //           child: new Wrap(
+  //             children: <Widget>[
+  //               new ListTile(
+  //                   leading: new Icon(Icons.camera),
+  //                   title: new Text('Camera'),
+  //                   onTap: () => {
+  //                     Navigator.pop(context),
+  //                     getCameraImage1(),
+  //                   }),
+  //               new ListTile(
+  //                 leading: new Icon(Icons.folder),
+  //                 title: new Text('Gallery'),
+  //                 onTap: () => {
+  //                   Navigator.pop(context),
+  //                   getGalleryImage1()},
+  //               ),
+  //               new ListTile(
+  //                   leading: new Icon(Icons.file_copy),
+  //                   title: new Text('Document'),
+  //                   onTap: () => {
+  //                     Navigator.pop(context),
+  //                     getPdfAndUpload1(),
+  //                   }),
+  //             ],
+  //           ),
+  //         );
+  //       });
+  // }
+  //
+  // Future getCameraImage1() async {
+  //   var image = await ImagePicker.pickImage(
+  //       source: ImageSource.camera, imageQuality: 25);
+  //   // var decodedImage = await decodeImageFromList(image.readAsBytesSync());
+  //   if (image != null) {
+  //     var enc = await image.readAsBytes();
+  //     String _path = image.path;
+  //     setState(() => pathUsr = File(_path));
+  //
+  //     String _fileName = _path != null ? _path.split('/').last : '...';
+  //     var pos = _fileName.lastIndexOf('.');
+  //     String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+  //     print(extName);
+  //
+  //     print("size>>>" + AppData.formatBytes(enc.length, 0).toString());
+  //     setState(() {
+  //       pathUsr = File(_path);
+  //       // widget.model.patientimg =base64Encode(enc);
+  //       // widget.model.patientimgtype =extName;
+  //       userModel. documentUpload= base64Encode(enc);
+  //       userModel.documentExt = extName;
+  //     });
+  //   }
+  // }
+  // /*Future getCerificateImage() async {
+  //   var image = await _picker.pickImage(
+  //     source: ImageSource.gallery,
+  //     imageQuality: 10,
+  //   );
+  //   var enc = await image.readAsBytes();
+  //   String _path = image.path;
+  //
+  //   String fileName = path != null ? _path.split('/').last : '...';
+  //   var pos = _fileName.lastIndexOf('.');
+  //   String extName = (pos != -1) ? fileName.substring(pos + 1) : fileName;
+  //   print(extName);
+  //
+  //   setState(() {
+  //     _imageCertificate = image;
+  //     idproof = _fileName;
+  //     pregnancyreportModel.ultrasoundrprt = base64Encode(enc);
+  //   });
+  // }*/
+  // Future getGalleryImage1() async {
+  //   var image = await ImagePicker.pickImage(
+  //       source: ImageSource.gallery, imageQuality: 25);
+  //   // var decodedImage = await decodeImageFromList(image.readAsBytesSync());
+  //   if (image != null) {
+  //     var enc = await image.readAsBytes();
+  //     String _path = image.path;
+  //     setState(() =>pathUsr = File(image.path));/*File(_path));*/
+  //
+  //     String _fileName = _path != null ? _path.split('/').last : '...';
+  //     var pos = _fileName.lastIndexOf('.');
+  //     String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+  //     print(extName);
+  //     print("size>>>" + AppData.formatBytes(enc.length, 0).toString());
+  //     setState(() {
+  //       ///pathUsr = image/*File(_path)*/;
+  //       // widget.model.patientimg =base64Encode(enc);
+  //       // widget.model.patientimgtype =extName;
+  //       userModel.documentUpload = base64Encode(enc);
+  //       userModel.documentExt = extName;
+  //     });
+  //   }
+  // }
+  //
+  // Future getPdfAndUpload1() async {
+  //   File file = await FilePicker.getFile(
+  //     type: FileType.custom,
+  //     allowedExtensions: [
+  //       'pdf',
+  //       'docx'
+  //     ], //here you can add any of extention what you need to pick
+  //   );
+  //   var enc = await file.readAsBytes();
+  //   String _path = file.path;
+  //
+  //   String _fileName = _path != null ? _path.split('/').last : '...';
+  //   var pos = _fileName.lastIndexOf('.');
+  //   String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+  //   print(extName);
+  //
+  //   if (file != null) {
+  //     setState(() {
+  //       idproof = file.path;
+  //       userModel.documentUpload=base64Encode(enc);
+  //       userModel.documentExt=extName;
+  //       //userModel. = base64Encode(enc);
+  //       //file1 = file; //file1 is a global variable which i created
+  //     });
+  //   }
+  // }
 
 
 }

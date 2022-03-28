@@ -20,6 +20,7 @@ import 'package:user/models/OrganModel.dart' as organ;
 import 'package:user/models/OrganModel.dart';
 import 'package:user/models/TissueModel.dart';
 import 'package:user/models/WitnessModel.dart';
+
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/DropDown.dart';
 import 'package:user/providers/api_factory.dart';
@@ -393,8 +394,7 @@ class DonorApplicationState extends State<DonorApplication> {
             //textEditingController[3].text=patientProfileModel.body.ageYears;
             textEditingController[4].text = patientProfileModel.body.mobile;
             textEditingController[5].text = patientProfileModel.body.email;
-            textEditingController[6].text = patientProfileModel.body.address +
-                " , " +
+            textEditingController[6].text = patientProfileModel.body.address + " , " +
                 patientProfileModel.body.pAddress;
             textEditingController[15].text = patientProfileModel.body.bloodGroup;
             //String dob=patientProfileModel.body.dob;

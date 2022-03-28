@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'dart:io';
 import 'package:contacts_service/contacts_service.dart';
 import 'package:dio/dio.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -19,7 +20,7 @@ import 'package:user/models/TissueModel.dart' as tissue;
 import 'package:user/models/OrganModel.dart' as organ;
 import 'package:user/models/OrganModel.dart';
 import 'package:user/models/TissueModel.dart';
-import 'package:user/models/WitnessModel.dart';
+import 'package:user/models/NomineeModel.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/DropDown.dart';
 import 'package:user/providers/api_factory.dart';
@@ -45,6 +46,8 @@ class InsuranceFormNew extends StatefulWidget {
   static KeyvalueModel blockModel = null;
   static KeyvalueModel genderModel = null;
   static KeyvalueModel relationmodel = null;
+  static KeyvalueModel materialmodel = null;
+  static KeyvalueModel titleModel = null;
   static List<KeyvalueModel> UserType1 = [];
 
   InsuranceFormNew({
@@ -73,8 +76,66 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
   ProfileModel patientProfileModel;
   EmergencyMessageModel emergencyMessageModel = EmergencyMessageModel();
   TextEditingController name = TextEditingController();
-
+  String profilePath = null,
+      idproof = null,
+      idproof1 = null,
+      idproof2 = null,
+      idproof3 = null,
+      labReport = null,
+      helathCheckup = null;
+  String extension;
+  String extension1;
+  String extension2;
+  String extension3;
+  File selectFile;
+  File selectFile1;
+  File selectFile2;
+  File selectFile3;
   List<TextEditingController> textEditingController = [
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
     new TextEditingController(),
     new TextEditingController(),
     new TextEditingController(),
@@ -114,7 +175,7 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
   List<tissue.Body> selectetissue = [];
   organ.OrganModel organModel;
   List<organ.Body> selectedorgan = [];
-  List<WitnessModel> witnessModle = [];
+  List<NomineeModel> witnessModle = [];
   DateTime selectedStartDate;
   List<bool> dropdownError = [false, false, false];
   var color = Colors.black;
@@ -332,6 +393,7 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
       final snackBar = SnackBar(content: Text('Access to contact data denied'));
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
     } else if (permissionStatus == PermissionStatus.permanentlyDenied) {
+
       final snackBar =
           SnackBar(content: Text('Contact data not available on device'));
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
@@ -605,61 +667,8 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
           );
         });
   }
-  // tissuecallAPI() {
-  //   widget.model.GETMETHODCALL_TOKEN(
-  //     api: ApiFactory.TISSUE_API,
-  //     token: widget.model.token,
-  //     fun: (Map<String, dynamic> map) {
-  //       String msg = map[Const.MESSAGE];
-  //       //String msg = map[Const.MESSAGE];
-  //       if (map[Const.CODE] == Const.SUCCESS) {
-  //         setState(() {
-  //           log("Response from sagar>>>>>" + jsonEncode(map));
-  //           tissueModel = TissueModel.fromJson(map);
-  //         });
-  //       } else {
-  //         setState(() {
-  //           //isDataNoFound = true;
-  //         });
-  //         /* Center(
-  //           child: Text(
-  //             'Data Not Found',
-  //             style: TextStyle(fontSize: 12),
-  //           ),
-  //         );*/
-  //         // AppData.showInSnackBar(context, msg);
-  //       }
-  //     },
-  //   );
-  // }
 
-  // organcallAPI() {
-  //   widget.model.GETMETHODCALL_TOKEN(
-  //     api: ApiFactory.ORGAN_API,
-  //     token: widget.model.token,
-  //     fun: (Map<String, dynamic> map) {
-  //       String msg = map[Const.MESSAGE];
-  //       //String msg = map[Const.MESSAGE];
-  //       if (map[Const.CODE] == Const.SUCCESS) {
-  //         setState(() {
-  //           log("Response from sagar>>>>>" + jsonEncode(map));
-  //           organModel = OrganModel.fromJson(map);
-  //         });
-  //       } else {
-  //         setState(() {
-  //           //  isDataNoFound = true;
-  //         });
-  //         /* Center(
-  //           child: Text(
-  //             'Data Not Found',
-  //             style: TextStyle(fontSize: 12),
-  //           ),
-  //         );*/
-  //         // AppData.showInSnackBar(context, msg);
-  //       }
-  //     },
-  //   );
-  // }
+
 
   void connectionChanged(dynamic hasConnection) {
     setState(() {
@@ -692,387 +701,588 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
                 Text("*  Aditya Birla Health Insurance",style: TextStyle(
                     fontSize: 20,color: Colors.blue),),
                 SizedBox(height: 10),
+                formFieldPassPortno(0,"Customer Id (UHID)"),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: TextFormField(
-                    //controller: textEditingController[7],
-                    decoration: InputDecoration(
-                      hintText: "Customer Id (UHID)",
-                      hintStyle: TextStyle(color: Colors.grey),
-                      // suffixIcon: InkWell(
-                      //   onTap: () {
-                      //     // Navigator.pop(context);
-                      //     getContactDetails();
-                      //   },
-                      //   child: Icon(Icons.contacts),
-                      // )
-                    ),
-                    textInputAction: TextInputAction.next,
-                    keyboardType: TextInputType.number,
-                    inputFormatters: [
-                      WhitelistingTextInputFormatter(RegExp("[0-9]")),
-                    ],
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 0),
+                  child: SizedBox(
+                    height: 58,
+                    child:
+                    DropDown.
+                    networkDropdown1(
+                      // "TITLE"
+                        MyLocalizations.of(context)
+                            .text("TITLE"),
+                        ApiFactory.TITLE_API,
+                        "title",
+                        Icons.person_rounded,
+                        23.0, (KeyvalueModel data) {
+                      setState(() {
+                        print(ApiFactory.TITLE_API);
+                        InsuranceFormNew.titleModel = data;
+                        //userModel.title = data.key;
+                      });
+                    }),
                   ),
                 ),
-                SizedBox(
-                  height: 8,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: TextFormField(
-                    //controller: textEditingController[7],
-                    decoration: InputDecoration(
-                      hintText: "First Name",
-                      hintStyle: TextStyle(color: Colors.grey),
-                      // suffixIcon: InkWell(
-                      //   onTap: () {
-                      //     // Navigator.pop(context);
-                      //     getContactDetails();
-                      //   },
-                      //   child: Icon(Icons.contacts),
-                      // )
-                    ),
-                    textInputAction: TextInputAction.next,
-                    keyboardType: TextInputType.text,
-                    inputFormatters: [
-                      WhitelistingTextInputFormatter(RegExp("[a-zA-Z., ]")),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: 8,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: TextFormField(
-                    //controller: textEditingController[7],
-                    decoration: InputDecoration(
-                      hintText: "Middle Name",
-                      hintStyle: TextStyle(color: Colors.grey),
-                      // suffixIcon: InkWell(
-                      //   onTap: () {
-                      //     // Navigator.pop(context);
-                      //     getContactDetails();
-                      //   },
-                      //   child: Icon(Icons.contacts),
-                      // )
-                    ),
-                    textInputAction: TextInputAction.next,
-                    keyboardType: TextInputType.text,
-                    inputFormatters: [
-                      WhitelistingTextInputFormatter(RegExp("[a-zA-Z., ]")),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: 8,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: TextFormField(
-                    //controller: textEditingController[7],
-                    decoration: InputDecoration(
-                      hintText: "Last Name",
-                      hintStyle: TextStyle(color: Colors.grey),
-                      // suffixIcon: InkWell(
-                      //   onTap: () {
-                      //     // Navigator.pop(context);
-                      //     getContactDetails();
-                      //   },
-                      //   child: Icon(Icons.contacts),
-                      // )
-                    ),
-                    textInputAction: TextInputAction.next,
-                    keyboardType: TextInputType.text,
-                    inputFormatters: [
-                      WhitelistingTextInputFormatter(RegExp("[a-zA-Z., ]")),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: 8,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: DropDown.networkDropdownGetpartUserundreline(
-                      MyLocalizations.of(context).text("GENDER"),
-                      ApiFactory.GENDER_API,
-                      "gender5", (KeyvalueModel model) {
-                    setState(() {
-                      InsuranceFormNew.relationmodel = model;
 
-                    });
-                  }),
+                SizedBox(
+                  height: 8,
                 ),
+                formField1(
+                    1,
+                    "First Name"),
+            SizedBox(
+              height: 8,),
+                formField1(
+                    2,
+                    "Middle Name(Optional)"),
+
+                SizedBox(
+                  height: 8,
+                ),
+                formField1(
+                    3,
+                    "Last Name"),
                 SizedBox(height: 8),
-                dob1(MyLocalizations.of(context).text("DOB")),
-                SizedBox(height: 8),
+                dobBirth(),
+
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: TextFormField(
-                    //controller: textEditingController[7],
-                    decoration: InputDecoration(
-                      hintText: "Address Line 1",
-                      hintStyle: TextStyle(color: Colors.grey),
-                      // suffixIcon: InkWell(
-                      //   onTap: () {
-                      //     // Navigator.pop(context);
-                      //     getContactDetails();
-                      //   },
-                      //   child: Icon(Icons.contacts),
-                      // )
-                    ),
-                    textInputAction: TextInputAction.next,
-                    keyboardType: TextInputType.text,
-                    inputFormatters: [
-                      WhitelistingTextInputFormatter(RegExp("[a-zA-Z., ]")),
-                    ],
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 0),
+                  child: SizedBox(
+                    height: 58,
+                    child:DropDown.networkDropdown1(
+                      //"Gender"
+                        MyLocalizations.of(context)
+                            .text("GENDER"),
+                        ApiFactory.GENDER_API,
+                        "gender",
+                        Icons.wc_outlined,
+                        23.0, (KeyvalueModel data) {
+                      setState(() {
+                        print(ApiFactory.GENDER_API);
+                        InsuranceFormNew.genderModel = data;
+                        //userModel.gender = data.key;
+                        // UserSignUpForm.cityModel = null;
+                      });
+                    }),
+                  ),
+                ),
+                SizedBox(height: 8,),
+                educationalQualification(4, "Educational Qualification"),
+                SizedBox(height: 8,),
+                formFieldemail(5, MyLocalizations.of(context).text("EMAILID")),
+                SizedBox(height: 8),
+                formFieldPinno(6,MyLocalizations.of(context).text("PIN_CODE"), /*fnode13, fnode14*/),
+                SizedBox(height: 8),
+                formFieldAadhaaerno(7, "Uid No"),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 0),
+                  child: SizedBox(
+                    height: 58,
+                    child:DropDown.networkDropdown1(
+                        MyLocalizations.of(context).text("MARITAL_STATUS"),
+                        ApiFactory.MARITAL_API,
+                        "marital",
+                        Icons.wc_outlined,
+                        23.0, (KeyvalueModel data) {
+                      setState(() {
+                        print(ApiFactory.GENDER_API);
+                        InsuranceFormNew.materialmodel = data;
+                        patientProfileModel.body.mstausid =
+                            data.key;
+                        patientProfileModel.body.maritialstatus =
+                            data.name;
+                        //userModel.gender = data.key;
+                        // UserSignUpForm.cityModel = null;
+                      });
+                    }),
                   ),
                 ),
                 SizedBox(height: 8),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: TextFormField(
-                    //controller: textEditingController[7],
-                    decoration: InputDecoration(
-                      hintText: "Address Line 2",
-                      hintStyle: TextStyle(color: Colors.grey),
-                      // suffixIcon: InkWell(
-                      //   onTap: () {
-                      //     // Navigator.pop(context);
-                      //     getContactDetails();
-                      //   },
-                      //   child: Icon(Icons.contacts),
-                      // )
+                educationalQualification(8, "Occupation"),
+                SizedBox(height: 8),
+                formFieldPhoneNo(9,"Contact MobileNo", /*fnode13, fnode14*/),
+                SizedBox(height: 8),
+                stdLandlineNo(10,"Landline No", /*fnode13, fnode14*/),
+                SizedBox(height: 8),
+                panNo(11,"PanNo", /*fnode13, fnode14*/),
+                SizedBox(height: 8),
+                panNo(12,"Passport Number", /*fnode13, fnode14*/),
+                SizedBox(height: 8),
+                panNo(13,"Contact Person", /*fnode13, fnode14*/),
+                SizedBox(height: 8),
+                panNo(14,"Annual Income", /*fnode13, fnode14*/),
+                SizedBox(height: 8),
+                panNo(15,"remarks", /*fnode13, fnode14*/),
+                SizedBox(height: 8),
+                panNo(16,"remarks", /*fnode13, fnode14*/),
+                SizedBox(height: 8),
+                homeAddressLine1(17,"HomeAddressLine1", /*fnode13, fnode14*/),
+                SizedBox(height: 8),
+                homeAddressLine1(18,"HomeAddressLine2", /*fnode13, fnode14*/),
+                SizedBox(height: 8),
+                homeAddressLine1(19,"HomeAddressLine3", /*fnode13, fnode14*/),
+                SizedBox(height: 8),
+                panNo(20,"HomePinCode", /*fnode13, fnode14*/),
+                SizedBox(height: 8),
+                homeAddressLine1(21,"HomeArea", /*fnode13, fnode14*/),
+                SizedBox(height: 8),
+                formFieldPhoneNo(22,"HomeContactMobileNo", /*fnode13, fnode14*/),
+                SizedBox(height: 8),
+                formFieldPhoneNo(23,"homeContactMobileNo1", /*fnode13, fnode14*/),
+                SizedBox(height: 8),
+                stdLandlineNo(24,"HomeSTDLandlineNo", /*fnode13, fnode14*/),
+                SizedBox(height: 8),
+                homeAddressLine1(25,"HomeFaxNo", /*fnode13, fnode14*/),
+                SizedBox(height: 8),
+                homeAddressLine1(26,"SameAsHomeAddress", /*fnode13, fnode14*/),
+                SizedBox(height: 8),
+                homeAddressLine1(27,"MailingAddressLine1", /*fnode13, fnode14*/),
+                SizedBox(height: 8),
+                homeAddressLine1(28,"MailingAddressLine2", /*fnode13, fnode14*/),
+                SizedBox(height: 8),
+                homeAddressLine1(29,"mailingAddressLine3", /*fnode13, fnode14*/),
+                SizedBox(height: 8),
+                panNo(30,"MailingPinCode", /*fnode13, fnode14*/),
+                SizedBox(height: 8),
+                homeAddressLine1(31,"MailingArea", /*fnode13, fnode14*/),
+                SizedBox(height: 8),
+                formFieldPhoneNo(32,"MailingContactMobileNo", /*fnode13, fnode14*/),
+                SizedBox(height: 8),
+                formFieldPhoneNo(33,"MailingContactMobileNo2", /*fnode13, fnode14*/),
+                SizedBox(height: 8),
+                stdLandlineNo(12,"MailingSTDLandlineNo", /*fnode13, fnode14*/),
+                SizedBox(height: 8),
+                stdLandlineNo(34,"MailingSTDLandlineNo2", /*fnode13, fnode14*/),
+                SizedBox(height: 8),
+                homeAddressLine1(35,"MailingFaxNo"),
+                SizedBox(height: 8),
+                homeAddressLine1(36,"BankAccountType"),
+                SizedBox(height: 8),
+                panNo(37,"BankAccountNo"),
+                SizedBox(height: 8),
+                panNo(38,"ifscCode"),
+                SizedBox(height: 8),
+                formFieldPinno(39,"GSTIN"),
+                SizedBox(height: 8),
+                formFieldPinno(40,"GSTRegistrationStatus"),
+                SizedBox(height: 8),
+                panNo(41,"EIAAccountNo"),
+               /* Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    color: Colors.black26,
+                    height: 40,
+                    child: Row(
+                      //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text("PolicyCreationRequest",
+                              // MyLocalizations.of(context).text("ADD_WITNESS"),
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.bold),
+                              textAlign: TextAlign.start,
+                            ),
+                          ),
+                        ),
+                        //Spacer(),
+
+                      ],
                     ),
-                    textInputAction: TextInputAction.next,
-                    keyboardType: TextInputType.text,
-                    inputFormatters: [
-                      WhitelistingTextInputFormatter(RegExp("[a-zA-Z., ]")),
-                    ],
                   ),
                 ),
+                formFieldPinno(12,"Quotation Number"),
                 SizedBox(height: 8),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: DropDown.networkDropdownGetpartUserundreline(
-                      MyLocalizations.of(context).text("COUNTRY"),
-                      ApiFactory.COUNTRY_API,
-                      "country5", (KeyvalueModel model) {
-                    setState(() {
-                      print(ApiFactory.COUNTRY_API);
-                      InsuranceFormNew.countryModel = model;
-                      InsuranceFormNew.stateModel = null;
-                      InsuranceFormNew.districtModel = null;
-                      InsuranceFormNew.cityModel = null;
-                    });
-                  }),
+                homeAddressLine1(12,"MasterPolicyNumber"),
+                SizedBox(height: 8),
+                panNo(12,"GroupID"),
+                SizedBox(height: 8),
+                panNo(12,"Product Code"),
+                SizedBox(height: 8),
+                panNo(12,"IntermediaryCode"),
+                SizedBox(height: 8),
+                panNo(12,"AutoRenewal"),
+                SizedBox(height: 8),
+                panNo(12,"IntermediaryBranchCode"),
+                SizedBox(height: 8),
+                homeAddressLine1(12,"BusinessSourceChannel"),
+                SizedBox(height: 8),
+                panNo(12,"AssignPolicy"),
+                SizedBox(height: 8),
+                formField1(1,"AssigneeName"),
+                SizedBox(height: 8),
+                panNo(1,"leadID"),
+                SizedBox(height: 8),
+                formField1(1,"Source Name"),
+                SizedBox(height: 8),
+                formField1(1,"Source Name"),
+                panNo(12,"SPID"),
+                SizedBox(height: 8),
+                panNo(12,"TCN"),
+                SizedBox(height: 8),
+                panNo(12,"CRTNO"),
+                SizedBox(height: 8),
+
+*/
+                SizedBox(height: 8),
+                formField1(12, MyLocalizations.of(context).text("DOCUMENT1")),
+                SizedBox(
+                  height: 8,
                 ),
-                SizedBox(height: 8),
-                (InsuranceFormNew.countryModel != null)
-                    ?  Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: DropDown.networkDropdownGetpartUserundreline(
-                      MyLocalizations.of(context).text("STATE"),
-                      ApiFactory.STATE_API+InsuranceFormNew.countryModel.key,
-                      "state5", (KeyvalueModel model) {
-                    setState(() {
-                      print(ApiFactory.STATE_API);
-                      InsuranceFormNew.stateModel = model;
-                      InsuranceFormNew.districtModel = null;
-                      InsuranceFormNew.cityModel = null;
-                    });
-                  }),
-                ): Container(),
-                SizedBox(height: 8),
-                (InsuranceFormNew.stateModel != null)
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Container(
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Text(MyLocalizations.of(context).text("UPLOAD_DOCUMENT1")
+                              ,style: TextStyle(color:AppData.kPrimaryColor,
+                                  fontSize: 18,fontWeight: FontWeight.bold),),
+                          ),
+                        ),
+                        SizedBox(width:5),
+                        Material(
+                          elevation: 3,
+                          color:AppData.kPrimaryColor,
+                          borderRadius: BorderRadius.circular(5.0),
+                          child: MaterialButton(
+                            onPressed: () {
+                              if (textEditingController[12].text == "" ||
+                                  textEditingController[12].text == null) {
+                                AppData.showInSnackBar(context, "Please Enter Document Name 1");
+                              }else {
+                                _settingModalBottomSheet(context);
+                              }
+                            },
+                            minWidth: 120,
+                            height: 30.0,
+                            child: Text(MyLocalizations.of(context).text("UPLOAD"),
+                              style: TextStyle(
+                                  color: Colors.white, fontSize: 17.0),
+                            ),
+                          ),
+                        ),
+
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(height: 10,),
+                (idproof != null)
+                    ? Padding(
+                  padding: const EdgeInsets.only(
+                      left: 10, right: 10),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment:
+                    MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: Container(
+
+                          child: Text(
+
+                            "Report Path :" + idproof,
+                            style: TextStyle(color: Colors.green),
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        child: SizedBox(
+                            width: 50.0,
+                            child: Icon(Icons.clear)),
+                        onTap: () {
+                          setState(() {
+                            idproof = null;
+                            // registrationModel.profilePhotoBase64 =
+                            null;
+                            //registrationModel.profilePhotoExt =
+                            null;
+                          });
+                        },
+                      )
+                    ],
+                  ),
+                )
+                    : Container(),
+                SizedBox(
+                  height: 8,
+                ),
+                (idproof != null)
+                    ?  formField1(13,  MyLocalizations.of(context).text("DOCUMENT2")):Container(),
+                (idproof != null)
+                    ? SizedBox(
+                  height: 8,
+                ):Container(),
+                (idproof != null)
+                    ? Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Container(
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Text(MyLocalizations.of(context).text("UPLOAD_DOCUMENT2")
+                              ,style: TextStyle(color:AppData.kPrimaryColor,
+                                  fontSize: 18,fontWeight: FontWeight.bold),),
+                          ),
+                        ),
+                        SizedBox(width:5),
+                        Material(
+                          elevation: 3,
+                          color:AppData.kPrimaryColor,
+                          borderRadius: BorderRadius.circular(5.0),
+                          child: MaterialButton(
+                            onPressed: ( ) {
+                              if (textEditingController[13].text == "" ||
+                                  textEditingController[13].text == null) {
+                                AppData.showInSnackBar(context, "Please Enter Document Name 2");
+                              }else {
+                                _settingModalBottomSheet1(
+                                    context);
+                              }
+                            },
+                            minWidth: 120,
+                            height: 30.0,
+                            child: Text(MyLocalizations.of(context).text("UPLOAD"),
+                              style: TextStyle(
+                                  color: Colors.white, fontSize: 17.0),
+                            ),
+                          ),
+                        ),
+
+                      ],
+                    ),
+                  ),
+                ):Container(),
+                SizedBox(height: 10,),
+                (idproof1 != null)
+                    ? Padding(
+                  padding: const EdgeInsets.only(
+                      left: 10, right: 10),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment:
+                    MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: Container(
+
+                          child: Text(
+
+                            "Report Path :" + idproof1,
+                            style: TextStyle(color: Colors.green),
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        child: SizedBox(
+                            width: 50.0,
+                            child: Icon(Icons.clear)),
+                        onTap: () {
+                          setState(() {
+                            idproof1 = null;
+                            // registrationModel.profilePhotoBase64 =
+                            null;
+                            //registrationModel.profilePhotoExt =
+                            null;
+                          });
+                        },
+                      )
+                    ],
+                  ),
+                )
+                    : Container(),
+                SizedBox(
+                  height: 8
+                ),
+                (idproof1 != null)
+                    ? formField1(14, MyLocalizations.of(context).text("DOCUMENT3")):Container(),
+                (idproof1 != null)
+                    ? SizedBox(
+                  height: 8,
+                ):Container(),
+                (idproof1 != null)
                     ?Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: DropDown.networkDropdownGetpartUserundreline(
-                      MyLocalizations.of(context).text("DIST"),
-                      ApiFactory.DISTRICT_API+InsuranceFormNew.stateModel.key,
-                      "dist5", (KeyvalueModel model) {
-                    setState(() {
-                      InsuranceFormNew.districtModel = model;
-                      InsuranceFormNew.cityModel = null;
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Container(
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Text(MyLocalizations.of(context).text("UPLOAD_DOCUMENT3")
+                              ,style: TextStyle(color:AppData.kPrimaryColor,fontSize: 18,
+                                  fontWeight: FontWeight.bold),),
+                          ),
+                        ),
+                        SizedBox(width:5),
+                        Material(
+                          elevation: 3,
+                          color:AppData.kPrimaryColor,
+                          borderRadius: BorderRadius.circular(5.0),
+                          child: MaterialButton(
+                            onPressed: () {
+                              if (textEditingController[14].text == "" ||
+                                  textEditingController[14].text == null) {
+                                AppData.showInSnackBar(context, "Please Enter Document Name 3");
+                              }else {
+                                _settingModalBottomSheet2(
+                                    context);
+                              }
+                            },
+                            minWidth: 120,
+                            height: 30.0,
+                            child: Text(MyLocalizations.of(context).text("UPLOAD"),
+                              style: TextStyle(
+                                  color: Colors.white, fontSize: 17.0),
+                            ),
+                          ),
+                        ),
 
-                    });
-                  }),
-                ):Container(),
-                SizedBox(height: 8),
-                (InsuranceFormNew.districtModel != null)
-                    ?  Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: DropDown.networkDropdownGetpartUserundreline(
-                      MyLocalizations.of(context).text("CITY"),
-                      ApiFactory.CITY_API+InsuranceFormNew.districtModel.key,
-                      "city5", (KeyvalueModel model) {
-                    setState(() {
-                      InsuranceFormNew.cityModel = model;
-
-                    });
-                  }),
-                ):Container(),
-
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: TextFormField(
-                   // controller: textEditingController[11],
-                    decoration: InputDecoration(
-                        counterText: "",
-                        hintText: "Pin Code",
-                        hintStyle: TextStyle(color: Colors.grey)),
-                    textInputAction: TextInputAction.next,
-                    keyboardType: TextInputType.number,
-                    maxLength: 6,
-                    inputFormatters: [
-                      WhitelistingTextInputFormatter(RegExp("[0-9]")),
-                    ],
-                  ),
-                ),
-                SizedBox(height: 8),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: TextFormField(
-                    //controller: textEditingController[7],
-                    decoration: InputDecoration(
-                      hintText: "Occupation",
-                      hintStyle: TextStyle(color: Colors.grey),
-                      // suffixIcon: InkWell(
-                      //   onTap: () {
-                      //     // Navigator.pop(context);
-                      //     getContactDetails();
-                      //   },
-                      //   child: Icon(Icons.contacts),
-                      // )
+                      ],
                     ),
-                    textInputAction: TextInputAction.next,
-                    keyboardType: TextInputType.text,
-                    inputFormatters: [
-                      WhitelistingTextInputFormatter(RegExp("[a-zA-Z., ]")),
+                  ),
+                ):Container(),
+
+                //SizedBox(height: 10,),
+                (idproof2 != null)
+                    ? Padding(
+                  padding: const EdgeInsets.only(
+                      left: 10, right: 10),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment:
+                    MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: Container(
+
+                          child: Text(
+
+                            "Report Path :" + idproof2,
+                            style: TextStyle(color: Colors.green),
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        child: SizedBox(
+                            width: 50.0,
+                            child: Icon(Icons.clear)),
+                        onTap: () {
+                          setState(() {
+                            idproof2 = null;
+                            // registrationModel.profilePhotoBase64 =
+                            null;
+                            //registrationModel.profilePhotoExt =
+                            null;
+                          });
+                        },
+                      )
                     ],
                   ),
+                )
+                    : Container(),
+                SizedBox(
+                  height: 8,
                 ),
-                SizedBox(height: 8),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: TextFormField(
-                    // controller: textEditingController[11],
-                    decoration: InputDecoration(
-                        counterText: "",
-                        hintText: "Mobile No.",
-                        hintStyle: TextStyle(color: Colors.grey)),
-                    textInputAction: TextInputAction.next,
-                    keyboardType: TextInputType.number,
-                    maxLength: 10,
-                    inputFormatters: [
-                      WhitelistingTextInputFormatter(RegExp("[0-9]")),
-                    ],
-                  ),
-                ),
-                SizedBox(height: 8),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: TextFormField(
-                    //controller: textEditingController[7],
-                    decoration: InputDecoration(
-                      hintText: "Email id",
-                      hintStyle: TextStyle(color: Colors.grey),
-                      // suffixIcon: InkWell(
-                      //   onTap: () {
-                      //     // Navigator.pop(context);
-                      //     getContactDetails();
-                      //   },
-                      //   child: Icon(Icons.contacts),
-                      // )
+                (idproof2 != null)
+                    ?formField1(15, MyLocalizations.of(context).text("DOCUMENT4")):Container(),
+                (idproof2 != null)
+                    ? SizedBox(
+                  height: 8,
+                ):Container(),
+                (idproof2 != null)
+                    ?Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Container(
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Text(MyLocalizations.of(context).text("UPLOAD_DOCUMENT4")
+                              ,style: TextStyle(color:AppData.kPrimaryColor,fontSize: 18,
+                                  fontWeight: FontWeight.bold),),
+                          ),
+                        ),
+                        SizedBox(width:5),
+                        Material(
+                          elevation: 3,
+                          color:AppData.kPrimaryColor,
+                          borderRadius: BorderRadius.circular(5.0),
+                          child: MaterialButton(
+                            onPressed: () {
+                              if (textEditingController[15].text == "" ||
+                                  textEditingController[15].text == null) {
+                                AppData.showInSnackBar(context, "Please Enter Document Name 4");
+                              }else {
+                                _settingModalBottomSheet3(
+                                    context);
+                              }
+
+                            },
+                            minWidth: 120,
+                            height: 30.0,
+                            child: Text(MyLocalizations.of(context).text("UPLOAD"),
+                              style: TextStyle(
+                                  color: Colors.white, fontSize: 17.0),
+                            ),
+                          ),
+                        ),
+
+                      ],
                     ),
-                    textInputAction: TextInputAction.next,
-                    keyboardType: TextInputType.text,
-                    inputFormatters: [
-                      WhitelistingTextInputFormatter(RegExp("[a-zA-Z0-9.@  ]")),
+                  ),
+                ):Container(),
+                SizedBox(height: 10,),
+                (idproof3 != null)
+                    ? Padding(
+                  padding: const EdgeInsets.only(
+                      left: 18, right: 10),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment:
+                    MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: Container(
+
+                          child: Text(
+
+                            "Report Path :" + idproof3,
+                            style: TextStyle(color: Colors.green),
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        child: SizedBox(
+                            width: 50.0,
+                            child: Icon(Icons.clear)),
+                        onTap: () {
+                          setState(() {
+                            idproof3 = null;
+                            // registrationModel.profilePhotoBase64 =
+                            null;
+                            //registrationModel.profilePhotoExt =
+                            null;
+                          });
+                        },
+                      )
                     ],
                   ),
-                ),
-                SizedBox(height: 20),
-                // (patientProfileModel != null &&
-                //     patientProfileModel.body.dob != null)
-                //     ? Padding(
-                //   padding: const EdgeInsets.symmetric(horizontal: 20),
-                //   child: TextFormField(
-                //     controller: textEditingController[2],
-                //     decoration: InputDecoration(
-                //         counterText: "",
-                //         //hintText: patientProfileModel?.body?.dob??"N/A",
-                //         hintText: MyLocalizations.of(context).text("DOB1"),
-                //         hintStyle: TextStyle(color: Colors.grey)),
-                //     textInputAction: TextInputAction.next,
-                //     maxLength: 10,
-                //     enabled: false,
-                //     autofocus: false,
-                //     keyboardType: TextInputType.number,
-                //     inputFormatters: [
-                //       WhitelistingTextInputFormatter(RegExp("[0-9 -]")),
-                //     ],
-                //   ),
-                // )
-                //     : Padding(
-                //   padding: const EdgeInsets.symmetric(horizontal: 20),
-                //   child: dob(),
-                // ),
-                // Padding(
-                //   padding: const EdgeInsets.symmetric(horizontal: 20),
-                //   child: TextFormField(
-                //     controller: textEditingController[3],
-                //     decoration: InputDecoration(
-                //         counterText: "",
-                //         //hintText: patientProfileModel?.body?.ageYears??"N/A",
-                //         hintText: MyLocalizations.of(context).text("AGE"),
-                //         hintStyle: TextStyle(color: Colors.grey)),
-                //     textInputAction: TextInputAction.next,
-                //     maxLength: 3,
-                //     enabled: false,
-                //     autofocus: false,
-                //     keyboardType: TextInputType.number,
-                //     inputFormatters: [
-                //       WhitelistingTextInputFormatter(RegExp("[0-9]")),
-                //     ],
-                //   ),
-                // ),
-                // SizedBox(
-                //   height: 8,
-                // ),
-                // (patientProfileModel != null &&
-                //     patientProfileModel.body.bloodGroup != null)
-                //     ? Padding(
-                //   padding: const EdgeInsets.symmetric(horizontal: 20),
-                //   child: TextFormField(
-                //     controller: textEditingController[15],
-                //     decoration: InputDecoration(
-                //       // hintText: patientProfileModel?.body?.bloodGroup??"N/A",
-                //         hintText: MyLocalizations.of(context).text("Blood Group"),
-                //         hintStyle: TextStyle(color: Colors.grey)),
-                //     textInputAction: TextInputAction.next,
-                //     keyboardType: TextInputType.text,
-                //     enabled: false,
-                //     autofocus: false,
-                //     inputFormatters: [
-                //       WhitelistingTextInputFormatter(
-                //           RegExp("[0-9,a-zA-Z./-]")),
-                //     ],
-                //   ),
-                // ) : Padding(
-                //   padding: const EdgeInsets.symmetric(horizontal: 20),
-                //   child: DropDown.networkDropdownGetpartUserundreline(
-                //       MyLocalizations.of(context).text("BLOODGROUP"),
-                //       ApiFactory.BLOODGROUP_API,
-                //       "bloodgroupdn", (KeyvalueModel data) {
-                //     setState(() {
-                //       print(ApiFactory.BLOODGROUP_API);
-                //       InsuranceFormNew.bloodgroupModel = data;
-                //       //DonorApplication.bloodgroupModel = null;
-                //     });
-                //   }),
-                // ),
+                )
+                    : Container(),
                 InkWell(
                   onTap: () {
                     showDialog(
@@ -1090,13 +1300,16 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
                         //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Expanded(
-                            child: Text("Add Nominee",
-                             // MyLocalizations.of(context).text("ADD_WITNESS"),
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 17,
-                                  fontWeight: FontWeight.bold),
-                              textAlign: TextAlign.center,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text("Add Nominee",
+                               // MyLocalizations.of(context).text("ADD_WITNESS"),
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.bold),
+                                textAlign: TextAlign.start,
+                              ),
                             ),
                           ),
                           //Spacer(),
@@ -1111,107 +1324,107 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
                     ),
                   ),
                 ),
-                // ListView.builder(
-                //   itemBuilder: (context, i) {
-                //     //= witnessModle[i];
-                //     // widget.model.medicinelist = ;
-                //     return Padding(
-                //       padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-                //       child: Card(
-                //         shape: RoundedRectangleBorder(
-                //           borderRadius: BorderRadius.circular(5.0),
-                //         ),
-                //         shadowColor: Colors.grey,
-                //         elevation: 4,
-                //         child: ClipPath(
-                //           clipper: ShapeBorderClipper(
-                //               shape: RoundedRectangleBorder(
-                //                   borderRadius: BorderRadius.circular(5))),
-                //           child: Container(
-                //             //height: 100,
-                //               width: double.maxFinite,
-                //               /*  margin: const EdgeInsets.only(top: 6.0),*/
-                //               child: Padding(
-                //                 padding: const EdgeInsets.all(10.0),
-                //                 child: Row(
-                //                   crossAxisAlignment: CrossAxisAlignment.start,
-                //                   children: [
-                //                     Expanded(
-                //                       child: Column(
-                //                         crossAxisAlignment:
-                //                         CrossAxisAlignment.start,
-                //                         children: [
-                //                           Text(
-                //                             "Witness Name: " +
-                //                                 witnessModle[i].donorName,
-                //                             style: TextStyle(fontSize: 15),
-                //                           ),
-                //                           SizedBox(
-                //                             height: 4,
-                //                           ),
-                //                           Text(
-                //                             "Mobile No.: " + witnessModle[i].mob,
-                //                             style: TextStyle(fontSize: 15),
-                //                           ),
-                //                           SizedBox(
-                //                             height: 4,
-                //                           ),
-                //                           Text(
-                //                             "Age: " + witnessModle[i].age,
-                //                             overflow: TextOverflow.clip,
-                //                             style: TextStyle(color: Colors.grey),
-                //                           ),
-                //                           SizedBox(
-                //                             height: 4,
-                //                           ),
-                //                           Text(
-                //                             "Address: " + witnessModle[i].address,
-                //                             overflow: TextOverflow.clip,
-                //                             style: TextStyle(color: Colors.grey),
-                //                           ),
-                //                         ],
-                //                       ),
-                //                     ),
-                //                     InkWell(
-                //                       onTap: () {
-                //                         setState(() {
-                //                           //witnessModle.remove(i);
-                //                           witnessModle.remove(witnessModle[i]);
-                //                         });
-                //                       },
-                //                       child: Icon(
-                //                         Icons.delete_forever,
-                //                         // color: Colors.red,
-                //                       ),
-                //                     ),
-                //                     //Icon(Icons.arrow_forward_ios, size: 30,color: Colors.black),
-                //                     /*Image.asset(
-                //                   "assets/forwardarrow.png",
-                //                   fit: BoxFit.fitWidth,
-                //                   */
-                //                     /*width: 50,*/
-                //                     /*
-                //                   height: 30,
-                //                 ),*/
-                //                     SizedBox(
-                //                       width: 10,
-                //                     ),
-                //                   ],
-                //                 ),
-                //               )),
-                //           /* clipper: ShapeBorderClipper(shape: RoundedRectangleBorder(
-                //                   borderRadius: BorderRadius.circular(8))),
-                //             ),*/
-                //         ),
-                //       ),
-                //
-                //       /* */
-                //     );
-                //   },
-                //   itemCount: witnessModle.length,
-                //   shrinkWrap: true,
-                //   physics: NeverScrollableScrollPhysics(),
-                // ),
+                ListView.builder(
+                  itemBuilder: (context, i) {
+                    //= witnessModle[i];
+                    // widget.model.medicinelist = ;
+                    return Padding(
+                      padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+                      child: Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5.0),
+                        ),
+                        shadowColor: Colors.grey,
+                        elevation: 4,
+                        child: ClipPath(
+                          clipper: ShapeBorderClipper(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5))),
+                          child: Container(
+                            //height: 100,
+                              width: double.maxFinite,
+                              /*  margin: const EdgeInsets.only(top: 6.0),*/
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            "MemberNo: " +
+                                                witnessModle[i].memberNo??"N?A",
+                                            style: TextStyle(fontSize: 15),
+                                          ),
+                                          SizedBox(
+                                            height: 4,
+                                          ),
+                                          Text(
+                                            "First_Name: " + witnessModle[i].first_Name??"N/A",
+                                            style: TextStyle(fontSize: 15),
+                                          ),
+                                          SizedBox(
+                                            height: 4,
+                                          ),
+                                          Text(
+                                            "Middle_Name: " + witnessModle[i].middle_Name??"N/A",
+                                            overflow: TextOverflow.clip,
+                                            style: TextStyle(color: Colors.grey),
+                                          ),
+                                          SizedBox(
+                                            height: 4,
+                                          ),
+                                         /* Text(
+                                            "DateOfBirth: "+ witnessModle[i].dateOfBirth??"N/A",
+                                            overflow: TextOverflow.clip,
+                                            style: TextStyle(color: Colors.grey),
+                                          ),*/
+                                        ],
+                                      ),
+                                    ),
+                                    InkWell(
+                                      onTap: () {
+                                        setState(() {
+                                          //witnessModle.remove(i);
+                                          witnessModle.remove(witnessModle[i]);
+                                        });
+                                      },
+                                      child: Icon(
+                                        Icons.delete_forever,
+                                        // color: Colors.red,
+                                      ),
+                                    ),
+                                    //Icon(Icons.arrow_forward_ios, size: 30,color: Colors.black),
+                                    /*Image.asset(
+                                  "assets/forwardarrow.png",
+                                  fit: BoxFit.fitWidth,
+                                  */
+                                    /*width: 50,*/
+                                    /*
+                                  height: 30,
+                                ),*/
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                  ],
+                                ),
+                              )),
+                          /* clipper: ShapeBorderClipper(shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8))),
+                            ),*/
+                        ),
+                      ),
+
+                      /* */
+                    );
+                  },
+                  itemCount: witnessModle.length,
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                ),
                 SizedBox(
                   height: 20,
                 ),
@@ -1229,15 +1442,517 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
       ),
     );
   }
+  void _settingModalBottomSheet(context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext bc) {
+          return Container(
+            child: new Wrap(
+              children: <Widget>[
+                new ListTile(
+                    leading: new Icon(Icons.camera),
+                    title: new Text('Camera'),
+                    onTap: () => {
+                      Navigator.pop(context),
+                      getCameraImage(),
+                    }),
+                new ListTile(
+                  leading: new Icon(Icons.folder),
+                  title: new Text('Gallery'),
+                  onTap: () => {
+                    Navigator.pop(context),
 
+
+                    /* MultiImagePicker.pickImages(
+                  maxImages: 300,
+                  enableCamera: true,
+                  //selectedAssets: images,
+                  materialOptions: MaterialOptions(
+                  actionBarTitle: "FlutterCorner.com",
+                  ),
+                  ),*/
+                    getCerificateImage()},
+                ),
+                new ListTile(
+                    leading: new Icon(Icons.file_copy),
+                    title: new Text('Document'),
+                    onTap: () => {
+                      Navigator.pop(context),
+                      getPdfAndUpload(),
+                    }),
+              ],
+            ),
+          );
+        });
+  }
+  Future getCameraImage() async {
+    var image1 = await ImagePicker.pickImage(
+      source: ImageSource.camera,
+      imageQuality: 10,
+    );
+    var enc = await image1.readAsBytes();
+    String _path = image1.path;
+
+    String _fileName = _path != null ? _path
+        .split('/')
+        .last : '...';
+    var pos = _fileName.lastIndexOf('.');
+    String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+    print(extName);
+
+    setState(() {
+      selectFile = image1;
+      idproof = image1.path;
+      //adduploaddocument.extension = extName;
+      extension = extName;
+      print("Message is: " +
+          extension); // adduploaddocument.mulFile=file.path as MultipartFile;
+      print("Message isssss: " +
+          extName); // adduploaddocument.mulFile=file.path as MultipartFile;
+    });
+  }
+  Future getCerificateImage() async {
+    var image1 = await ImagePicker.pickImage(
+      source: ImageSource.gallery,
+      imageQuality: 10,
+    );
+    var enc = await image1.readAsBytes();
+    String _path = image1.path;
+
+    String _fileName = _path != null ? _path
+        .split('/')
+        .last : '...';
+    var pos = _fileName.lastIndexOf('.');
+    String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+    print(extName);
+
+    setState(() {
+      selectFile = image1;
+      idproof = image1.path;
+      //adduploaddocument.extension = extName;
+      extension = extName;
+      print("Message is: " +
+          extension); // adduploaddocument.mulFile=file.path as MultipartFile;
+      print("Message isssss: " +
+          extName); // adduploaddocument.mulFile=file.path as MultipartFile;
+    });
+  }
+  Future<void> getPdfAndUpload() async {
+    File file = await FilePicker.getFile(
+      type: FileType.custom,
+      allowedExtensions: [
+        'pdf',
+        'docx'
+      ], //here you can add any of extention what you need to pick
+    );
+    var enc = await file.readAsBytes();
+    String _path = file.path;
+
+    String _fileName = _path != null ? _path
+        .split('/')
+        .last : '...';
+    var pos = _fileName.lastIndexOf('.');
+    String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+    print(extName);
+
+    if (file != null) {
+      setState(() {
+        selectFile = file;
+        idproof = file.path;
+//        adduploaddocument.extension = extName;
+        extension = extName;
+        print("Message is: " +
+            extension); // adduploaddocument.mulFile=file.path as MultipartFile;
+        print("Message isssss: " +
+            extName); // adduploaddocument.mulFile=file.path as MultipartFile;
+        //file1 = file; //file1 is a global variable which i created
+      });
+    }
+  }
+  void _settingModalBottomSheet1(context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext bc) {
+          return Container(
+            child: new Wrap(
+              children: <Widget>[
+                new ListTile(
+                    leading: new Icon(Icons.camera),
+                    title: new Text('Camera'),
+                    onTap: () => {
+                      Navigator.pop(context),
+                      getCameraImage1(),
+                    }),
+                new ListTile(
+                  leading: new Icon(Icons.folder),
+                  title: new Text('Gallery'),
+                  onTap: () => {
+                    Navigator.pop(context),
+
+
+                    /* MultiImagePicker.pickImages(
+                  maxImages: 300,
+                  enableCamera: true,
+                  //selectedAssets: images,
+                  materialOptions: MaterialOptions(
+                  actionBarTitle: "FlutterCorner.com",
+                  ),
+                  ),*/
+                    getCerificateImage1()},
+                ),
+                new ListTile(
+                    leading: new Icon(Icons.file_copy),
+                    title: new Text('Document'),
+                    onTap: () => {
+                      Navigator.pop(context),
+                      getPdfAndUpload1(),
+                    }),
+              ],
+            ),
+          );
+        });
+  }
+  Future getCameraImage1() async {
+    var image1 = await ImagePicker.pickImage(
+      source: ImageSource.camera,
+      imageQuality: 10,
+    );
+    var enc = await image1.readAsBytes();
+    String _path = image1.path;
+
+    String _fileName = _path != null ? _path
+        .split('/')
+        .last : '...';
+    var pos = _fileName.lastIndexOf('.');
+    String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+    print(extName);
+
+    setState(() {
+      selectFile1 = image1;
+      idproof1 = image1.path;
+      //adduploaddocument1.extension = extName;
+      extension1 = extName;
+      print("Message is: " +
+          extension1); // adduploaddocument.mulFile=file.path as MultipartFile;
+      print("Message isssss: " +
+          extName); // adduploaddocument.mulFile=file.path as MultipartFile;
+    });
+  }
+  Future getCerificateImage1() async {
+    var image1 = await ImagePicker.pickImage(
+      source: ImageSource.gallery,
+      imageQuality: 10,
+    );
+    var enc = await image1.readAsBytes();
+    String _path = image1.path;
+
+    String _fileName = _path != null ? _path
+        .split('/')
+        .last : '...';
+    var pos = _fileName.lastIndexOf('.');
+    String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+    print(extName);
+
+    setState(() {
+      selectFile1 = image1;
+      idproof1 = image1.path;
+      //adduploaddocument1.extension = extName;
+      extension1 = extName;
+      print("Message is: " +
+          extension1); // adduploaddocument.mulFile=file.path as MultipartFile;
+      print("Message isssss: " +
+          extName); // adduploaddocument.mulFile=file.path as MultipartFile;
+    });
+  }
+  Future<void> getPdfAndUpload1() async {
+    File file = await FilePicker.getFile(
+      type: FileType.custom,
+      allowedExtensions: [
+        'pdf',
+        'docx'
+      ], //here you can add any of extention what you need to pick
+    );
+    var enc = await file.readAsBytes();
+    String _path = file.path;
+
+    String _fileName = _path != null ? _path
+        .split('/')
+        .last : '...';
+    var pos = _fileName.lastIndexOf('.');
+    String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+    print(extName);
+
+    if (file != null) {
+      setState(() {
+        selectFile1 = file;
+        idproof1 = file.path;
+        //adduploaddocument1.extension = extName;
+        extension1 = extName;
+        print("Message is: " +
+            extension1); // adduploaddocument.mulFile=file.path as MultipartFile;
+        print("Message isssss: " +
+            extName); // adduploaddocument.mulFile=file.path as MultipartFile;
+        //file1 = file; //file1 is a global variable which i created
+      });
+    }
+  }
+  void _settingModalBottomSheet2(context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext bc) {
+          return Container(
+            child: new Wrap(
+              children: <Widget>[
+                new ListTile(
+                    leading: new Icon(Icons.camera),
+                    title: new Text('Camera'),
+                    onTap: () => {
+                      Navigator.pop(context),
+                      getCameraImage2(),
+                    }),
+                new ListTile(
+                  leading: new Icon(Icons.folder),
+                  title: new Text('Gallery'),
+                  onTap: () => {
+                    Navigator.pop(context),
+
+
+                    /* MultiImagePicker.pickImages(
+                  maxImages: 300,
+                  enableCamera: true,
+                  //selectedAssets: images,
+                  materialOptions: MaterialOptions(
+                  actionBarTitle: "FlutterCorner.com",
+                  ),
+                  ),*/
+                    getCerificateImage2()},
+                ),
+                new ListTile(
+                    leading: new Icon(Icons.file_copy),
+                    title: new Text('Document'),
+                    onTap: () => {
+                      Navigator.pop(context),
+                      getPdfAndUpload2(),
+                    }),
+              ],
+            ),
+          );
+        });
+  }
+  Future getCameraImage2() async {
+    var image1 = await ImagePicker.pickImage(
+      source: ImageSource.camera,
+      imageQuality: 10,
+    );
+    var enc = await image1.readAsBytes();
+    String _path = image1.path;
+
+    String _fileName = _path != null ? _path
+        .split('/')
+        .last : '...';
+    var pos = _fileName.lastIndexOf('.');
+    String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+    print(extName);
+
+    setState(() {
+      selectFile2 = image1;
+      idproof2 = image1.path;
+      //adduploaddocument1.extension = extName;
+      extension2 = extName;
+      print("Message is: " +
+          extension2); // adduploaddocument.mulFile=file.path as MultipartFile;
+      print("Message isssss: " +
+          extName); // adduploaddocument.mulFile=file.path as MultipartFile;
+    });
+  }
+  Future getCerificateImage2() async {
+    var image1 = await ImagePicker.pickImage(
+      source: ImageSource.gallery,
+      imageQuality: 10,
+    );
+    var enc = await image1.readAsBytes();
+    String _path = image1.path;
+
+    String _fileName = _path != null ? _path
+        .split('/')
+        .last : '...';
+    var pos = _fileName.lastIndexOf('.');
+    String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+    print(extName);
+
+    setState(() {
+      selectFile2 = image1;
+      idproof2 = image1.path;
+      //adduploaddocument1.extension = extName;
+      extension2 = extName;
+      print("Message is: " +
+          extension2); // adduploaddocument.mulFile=file.path as MultipartFile;
+      print("Message isssss: " +
+          extName); // adduploaddocument.mulFile=file.path as MultipartFile;
+    });
+  }
+  Future<void> getPdfAndUpload2() async {
+    File file = await FilePicker.getFile(
+      type: FileType.custom,
+      allowedExtensions: [
+        'pdf',
+        'docx'
+      ], //here you can add any of extention what you need to pick
+    );
+    var enc = await file.readAsBytes();
+    String _path = file.path;
+
+    String _fileName = _path != null ? _path
+        .split('/')
+        .last : '...';
+    var pos = _fileName.lastIndexOf('.');
+    String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+    print(extName);
+
+    if (file != null) {
+      setState(() {
+        selectFile2 = file;
+        idproof2 = file.path;
+        //adduploaddocument1.extension = extName;
+        extension2 = extName;
+        print("Message is: " +
+            extension2); // adduploaddocument.mulFile=file.path as MultipartFile;
+        print("Message isssss: " +
+            extName); // adduploaddocument.mulFile=file.path as MultipartFile;
+        //file1 = file; //file1 is a global variable which i created
+      });
+    }
+  }
+  void _settingModalBottomSheet3(context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext bc) {
+          return Container(
+            child: new Wrap(
+              children: <Widget>[
+                new ListTile(
+                    leading: new Icon(Icons.camera),
+                    title: new Text('Camera'),
+                    onTap: () => {
+                      Navigator.pop(context),
+                      getCameraImage3(),
+                    }),
+                new ListTile(
+                  leading: new Icon(Icons.folder),
+                  title: new Text('Gallery'),
+                  onTap: () => {
+                    Navigator.pop(context),
+
+                    getCerificateImage3()},
+                ),
+                new ListTile(
+                    leading: new Icon(Icons.file_copy),
+                    title: new Text('Document'),
+                    onTap: () => {
+                      Navigator.pop(context),
+                      getPdfAndUpload3(),
+                    }),
+              ],
+            ),
+          );
+        });
+  }
+  Future getCameraImage3() async {
+    var image1 = await ImagePicker.pickImage(
+      source: ImageSource.camera,
+      imageQuality: 10,
+    );
+    var enc = await image1.readAsBytes();
+    String _path = image1.path;
+
+    String _fileName = _path != null ? _path
+        .split('/')
+        .last : '...';
+    var pos = _fileName.lastIndexOf('.');
+    String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+    print(extName);
+
+    setState(() {
+      selectFile3 = image1;
+      idproof3 = image1.path;
+      //adduploaddocument1.extension = extName;
+      extension3 = extName;
+      print("Message is: " +
+          extension3); // adduploaddocument.mulFile=file.path as MultipartFile;
+      print("Message isssss: " +
+          extName); // adduploaddocument.mulFile=file.path as MultipartFile;
+    });
+  }
+  Future getCerificateImage3() async {
+    var image1 = await ImagePicker.pickImage(
+      source: ImageSource.gallery,
+      imageQuality: 10,
+    );
+    var enc = await image1.readAsBytes();
+    String _path = image1.path;
+
+    String _fileName = _path != null ? _path
+        .split('/')
+        .last : '...';
+    var pos = _fileName.lastIndexOf('.');
+    String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+    print(extName);
+
+    setState(() {
+      selectFile3 = image1;
+      idproof3 = image1.path;
+      //adduploaddocument1.extension = extName;
+      extension3 = extName;
+      print("Message is: " +
+          extension3); // adduploaddocument.mulFile=file.path as MultipartFile;
+      print("Message isssss: " +
+          extName); // adduploaddocument.mulFile=file.path as MultipartFile;
+    });
+  }
+  Future<void> getPdfAndUpload3() async {
+    File file = await FilePicker.getFile(
+      type: FileType.custom,
+      allowedExtensions: [
+        'pdf',
+        'docx'
+      ], //here you can add any of extention what you need to pick
+    );
+    var enc = await file.readAsBytes();
+    String _path = file.path;
+
+    String _fileName = _path != null ? _path
+        .split('/')
+        .last : '...';
+    var pos = _fileName.lastIndexOf('.');
+    String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
+    print(extName);
+
+    if (file != null) {
+      setState(() {
+        selectFile3 = file;
+        idproof3 = file.path;
+        //adduploaddocument1.extension = extName;
+        extension3 = extName;
+        print("Message is: " +
+            extension3); // adduploaddocument.mulFile=file.path as MultipartFile;
+        print("Message isssss: " +
+            extName); // adduploaddocument.mulFile=file.path as MultipartFile;
+        //file1 = file; //file1 is a global variable which i created
+      });
+    }
+  }
   Widget dialogaddnomination(BuildContext context) {
-    WitnessModel witness = WitnessModel();
-    textEditingController[7].text = "";
-    textEditingController[8].text = "";
-    textEditingController[9].text = "";
-    textEditingController[10].text = "";
-    textEditingController[11].text = "";
-    textEditingController[12].text = "";
+    NomineeModel witness = NomineeModel();
+    textEditingController[42].text = "";
+    textEditingController[43].text = "";
+    textEditingController[44].text = "";
+    textEditingController[45].text = "";
+    textEditingController[46].text = "";
+    textEditingController[47].text = "";
+    textEditingController[48].text = "";
+    textEditingController[49].text = "";
+    textEditingController[50].text = "";
+    textEditingController[51].text = "";
     InsuranceFormNew.relationmodel = null;
 
     return AlertDialog(
@@ -1256,115 +1971,88 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
                 SizedBox(
                   height: 8,
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: TextFormField(
-                    //controller: textEditingController[7],
-                    decoration: InputDecoration(
-                        hintText: "First Name",
-                        hintStyle: TextStyle(color: Colors.grey),
-                        // suffixIcon: InkWell(
-                        //   onTap: () {
-                        //     // Navigator.pop(context);
-                        //     getContactDetails();
-                        //   },
-                        //   child: Icon(Icons.contacts),
-                        // )
-                    ),
-                    textInputAction: TextInputAction.next,
-                    keyboardType: TextInputType.text,
-                    inputFormatters: [
-                      WhitelistingTextInputFormatter(RegExp("[a-zA-Z., ]")),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: 8,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: TextFormField(
-                    //controller: textEditingController[8],
-                    decoration: InputDecoration(
-                      hintText:"Middle Name",
-                      hintStyle: TextStyle(color: Colors.grey),
-                    ),
-                    textInputAction: TextInputAction.next,
-                    keyboardType: TextInputType.text,
-                    inputFormatters: [
-                      WhitelistingTextInputFormatter(RegExp("[a-zA-Z., ]")),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: 8,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: TextFormField(
-                    //controller: textEditingController[9],
-                    decoration: InputDecoration(
-                      hintText: "Last Name",
-                      hintStyle: TextStyle(color: Colors.grey),
-                    ),
-                    textInputAction: TextInputAction.next,
-                    keyboardType: TextInputType.text,
-                    inputFormatters: [
-                      WhitelistingTextInputFormatter(RegExp("[a-zA-Z., ]")),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: 8,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: DropDown.networkDropdownGetpartUserundreline(
-                      MyLocalizations.of(context).text("GENDER"),
-                      ApiFactory.GENDER_API,
-                      "gender5", (KeyvalueModel model) {
-                    setState(() {
-                      InsuranceFormNew.relationmodel = model;
+                panNo(42,"Member No"),
 
-                    });
-                  }),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 0),
+                  child: SizedBox(
+                    height: 58,
+                    child:
+                    DropDown.
+                    networkDropdown1(
+                      // "TITLE"
+                        MyLocalizations.of(context)
+                            .text("TITLE"),
+                        ApiFactory.TITLE_API,
+                        "title",
+                        Icons.person_rounded,
+                        23.0, (KeyvalueModel data) {
+                      setState(() {
+                        print(ApiFactory.TITLE_API);
+                        InsuranceFormNew.titleModel = data;
+                        //userModel.title = data.key;
+                      });
+                    }),
+                  ),
+                ),
+
+                SizedBox(
+                  height: 8,
+                ),
+                formField1(
+                    43,
+                    "First Name"),
+                SizedBox(
+                  height: 8,),
+                formField1(
+                    44,
+                    "Middle Name(Optional)"),
+
+                SizedBox(
+                  height: 8,
+                ),
+                formField1(
+                    45,
+                    "Last Name"),
+                SizedBox(height: 8),
+                dobBirth(),
+                SizedBox(height: 8),
+                panNo(37,"Relation Code"),
+
+
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 0),
+                  child: SizedBox(
+                    height: 58,
+                    child:DropDown.networkDropdown1(
+                        MyLocalizations.of(context).text("MARITAL_STATUS"),
+                        ApiFactory.MARITAL_API,
+                        "marital",
+                        Icons.wc_outlined,
+                        23.0, (KeyvalueModel data) {
+                      setState(() {
+                        print(ApiFactory.GENDER_API);
+                        InsuranceFormNew.materialmodel = data;
+                        patientProfileModel.body.mstausid =
+                            data.key;
+                        patientProfileModel.body.maritialstatus =
+                            data.name;
+                        //userModel.gender = data.key;
+                        // UserSignUpForm.cityModel = null;
+                      });
+                    }),
+                  ),
                 ),
                 SizedBox(height: 8),
-                dob2(MyLocalizations.of(context).text("DOB")),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: DropDown.networkDropdownGetpartUserundreline(
-                      MyLocalizations.of(context).text("RELATION"),
-                      ApiFactory.RELATION_API,
-                      "relation3", (KeyvalueModel model) {
-                    setState(() {
-                      InsuranceFormNew.relationmodel = model;
-
-                    });
-                  }),
-                ),
-                SizedBox(
-                  height: 8,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: TextFormField(
-                   // controller: textEditingController[11],
-                    decoration: InputDecoration(
-                        counterText: "",
-                        hintText: MyLocalizations.of(context).text("MOBILE_NO"),
-                        hintStyle: TextStyle(color: Colors.grey)),
-                    textInputAction: TextInputAction.next,
-                    keyboardType: TextInputType.number,
-                    maxLength: 10,
-                    inputFormatters: [
-                      WhitelistingTextInputFormatter(RegExp("[0-9]")),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: 8,
-                ),
+                height(48,"Height"),
+                SizedBox(height: 8),
+                height(49,"weight"),
+                SizedBox(height: 8),
+                educationalQualification(50,"Occupation"),
+                SizedBox(height: 8),
+                formField1(51,"PrimaryMember"),
               ],
             ),
           );
@@ -1374,84 +2062,90 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
         new FlatButton(
           onPressed: () {
             Navigator.of(context).pop();
-            textEditingController[7].text = "";
+           /* textEditingController[7].text = "";
             textEditingController[8].text = "";
             textEditingController[9].text = "";
             textEditingController[10].text = "";
             textEditingController[11].text = "";
-            textEditingController[12].text = "";
+            textEditingController[12].text = "";*/
           },
           child: Text(MyLocalizations.of(context).text("CANCEL"),
               style: TextStyle(color: AppData.kPrimaryRedColor)),
         ),
         new FlatButton(
-          // onPressed: () {
-          //   setState(() {
-          //     if (textEditingController[7].text == "" ||
-          //         textEditingController[7].text == null) {
-          //       AppData.showInSnackBar(context, "Please enter first name");
-          //     } else if (textEditingController[7].text != "" &&
-          //         textEditingController[7].text.length <= 2) {
-          //       AppData.showInSnackBar(
-          //           context, "Please enter a valid  name");
-          //
-          //     } else if (textEditingController[8].text == "" ||
-          //         textEditingController[8].text == null) {
-          //       AppData.showInSnackBar(context, "Please enter second name");
-          //     } else if (textEditingController[8].text != "" &&
-          //         textEditingController[8].text.length <= 2) {
-          //       AppData.showInSnackBar(
-          //           context, "Please enter a valid  name");
-          //
-          //     } else if (textEditingController[9].text == "" ||
-          //         textEditingController[9].text == null) {
-          //       AppData.showInSnackBar(context, "Please enter last name");
-          //     } else if (textEditingController[9].text != "" &&
-          //         textEditingController[9].text.length <= 2) {
-          //       AppData.showInSnackBar(
-          //           context, "Please enter a valid  name");
-          //
-          //     } else if (InsuranceFormNew.genderModel == null ||
-          //         InsuranceFormNew.genderModel == "") {
-          //       AppData.showInSnackBar(context, "Please select gender");
-          //
-          //     } else if (InsuranceFormNew.relationmodel == null ||
-          //         InsuranceFormNew.relationmodel == "") {
-          //       AppData.showInSnackBar(context, "Please select relation");
-          //
-          //     } else if (textEditingController[10].text == "" ||
-          //         textEditingController[10].text == null) {
-          //       AppData.showInSnackBar(context, "Please enter DOB");
-          //     } else {
-          //       // WitnessModel witness = WitnessModel();
-          //       // witness.donorName = textEditingController[7].text;
-          //       // witness.donorType = _selectedItem1.key;
-          //       // witness.typeUserName = textEditingController[8].text;
-          //       // witness.relation = InsuranceFormNew.relationmodel.key;
-          //       // witness.age = textEditingController[9].text;
-          //       // witness.mob = textEditingController[10].text;
-          //       // witness.email = textEditingController[11].text;
-          //       // witness.address = textEditingController[12].text;
-          //
-          //       //nomineeModel.relaion = AddEmployeePage.RelationModel.key;
-          //
-          //       // setState(() {
-          //       //   witnessModle.add(witness);
-          //       //   Navigator.of(context).pop();
-          //       // }
-          //      // );
-          //     }
-          //   });
-          //   /* Navigator.of(context).pop();
-          //   textEditingController[7].text = "";
-          //   textEditingController[8].text = "";
-          //   textEditingController[9].text = "";
-          //   textEditingController[10].text = "";
-          //   textEditingController[11].text = "";
-          //   textEditingController[12].text = "";*/
-          //   /*controller[0].text="";
-          //    controller[1].text="";*/
-          // },
+          onPressed: () {
+            setState(() {
+            /*  if (textEditingController[7].text == "" ||
+                  textEditingController[7].text == null) {
+                AppData.showInSnackBar(context, "Please enter first name");
+              } else if (textEditingController[7].text != "" &&
+                  textEditingController[7].text.length <= 2) {
+                AppData.showInSnackBar(
+                    context, "Please enter a valid  name");
+
+              } else if (textEditingController[8].text == "" ||
+                  textEditingController[8].text == null) {
+                AppData.showInSnackBar(context, "Please enter second name");
+              } else if (textEditingController[8].text != "" &&
+                  textEditingController[8].text.length <= 2) {
+                AppData.showInSnackBar(
+                    context, "Please enter a valid  name");
+
+              } else if (textEditingController[9].text == "" ||
+                  textEditingController[9].text == null) {
+                AppData.showInSnackBar(context, "Please enter last name");
+              } else if (textEditingController[9].text != "" &&
+                  textEditingController[9].text.length <= 2) {
+                AppData.showInSnackBar(
+                    context, "Please enter a valid  name");
+
+              } else if (InsuranceFormNew.genderModel == null ||
+                  InsuranceFormNew.genderModel == "") {
+                AppData.showInSnackBar(context, "Please select gender");
+
+              } else if (InsuranceFormNew.relationmodel == null ||
+                  InsuranceFormNew.relationmodel == "") {
+                AppData.showInSnackBar(context, "Please select relation");
+
+              } else if (textEditingController[10].text == "" ||
+                  textEditingController[10].text == null) {
+                AppData.showInSnackBar(context, "Please enter DOB");
+              } else {*/
+                NomineeModel witness = NomineeModel();
+                witness.memberNo = textEditingController[42].text;
+                witness.salutation = InsuranceFormNew.titleModel.key;
+                witness.first_Name = textEditingController[43].text;
+                witness.middle_Name = textEditingController[44].text;
+                witness.last_Name = textEditingController[45].text;
+
+               //witness.dateOfBirth = InsuranceFormNew.relationmodel.key;
+                witness.relation_Code = textEditingController[47].text;
+                //witness.marital_Status =InsuranceFormNew.materialmodel.key;
+                witness.height = textEditingController[48].text;
+                witness.weight = textEditingController[49].text;
+                witness.occupation = textEditingController[50].text;
+                witness.primaryMember = textEditingController[51].text;
+
+                //nomineeModel.relaion = AddEmployeePage.RelationModel.key;
+
+                setState(() {
+                  witnessModle.add(witness);
+                  Navigator.of(context).pop();
+                }
+                );
+             /* }*/
+            });
+
+            /* Navigator.of(context).pop();
+            textEditingController[7].text = "";
+            textEditingController[8].text = "";
+            textEditingController[9].text = "";
+            textEditingController[10].text = "";
+            textEditingController[11].text = "";
+            textEditingController[12].text = "";*/
+            /*controller[0].text="";
+             controller[1].text="";*/
+          },
           child: Text(
             MyLocalizations.of(context).text("SUBMIT"),
             //style: TextStyle(color: Colors.grey),
@@ -1461,6 +2155,562 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
       ],
     );
   }
+  Widget formField1(
+      int index,
+      String hint,
+      ) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+          horizontal: 8),
+      child: Container(
+        height: 50,
+        padding:
+        EdgeInsets.symmetric(horizontal: 0),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius:
+          BorderRadius.circular(5),
+          border: Border.all(
+              color: Colors.black, width: 0.3),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+          child: TextFormField(
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: hint,
+              /* prefixIcon:
+              Icon(Icons.person_rounded),*/
+              hintStyle: TextStyle(
+                  color: AppData.hintColor,
+                  fontSize: 15),
+            ),
+            textInputAction: TextInputAction.next,
+            keyboardType: TextInputType.text,
+            controller: textEditingController[index],
+            //focusNode: fnode1,
+            textAlignVertical:
+            TextAlignVertical.center,
+            onFieldSubmitted: (value) {
+              print("ValueValue" + error[index].toString());
+
+              setState(() {
+                error[index] = false;
+              });
+              AppData.fieldFocusChange(context, fnode1, null);
+            },
+            inputFormatters: [
+              WhitelistingTextInputFormatter(
+                  RegExp("[a-zA-Z ]")),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+  Widget educationalQualification(
+      int index,
+      String hint,
+      ) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+          horizontal: 8),
+      child: Container(
+        height: 50,
+        padding:
+        EdgeInsets.symmetric(horizontal: 0),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius:
+          BorderRadius.circular(5),
+          border: Border.all(
+              color: Colors.black, width: 0.3),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+          child: TextFormField(
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: hint,
+              /* prefixIcon:
+              Icon(Icons.person_rounded),*/
+              hintStyle: TextStyle(
+                  color: AppData.hintColor,
+                  fontSize: 15),
+            ),
+            textInputAction: TextInputAction.next,
+            keyboardType: TextInputType.text,
+            controller: textEditingController[index],
+            //focusNode: fnode1,
+            textAlignVertical:
+            TextAlignVertical.center,
+            onFieldSubmitted: (value) {
+              print("ValueValue" + error[index].toString());
+
+              setState(() {
+                error[index] = false;
+              });
+              AppData.fieldFocusChange(context, fnode1, null);
+            },
+            inputFormatters: [
+              WhitelistingTextInputFormatter(
+                  RegExp("[a-zA-Z0-9 ]")),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+  Widget formFieldPinno(
+      int index,
+      String hint,
+      ) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+          horizontal: 8),
+      child: Container(
+        height: 50,
+        padding:
+        EdgeInsets.symmetric(horizontal: 0),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius:
+          BorderRadius.circular(5),
+          border: Border.all(
+              color: Colors.black, width: 0.3),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+          child: TextFormField(
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: hint,
+              counterText: '',
+              /* prefixIcon:
+              Icon(Icons.person_rounded),*/
+              hintStyle: TextStyle(
+                  color: AppData.hintColor,
+                  fontSize: 15),
+            ),
+            controller: textEditingController[index],
+            textInputAction: TextInputAction.done,
+            keyboardType: TextInputType.number,
+            //focusNode: currentfn,
+            inputFormatters: [
+              WhitelistingTextInputFormatter(
+                RegExp("[0-9]"),
+              ),
+            ],
+            maxLength: 6,
+            //focusNode: fnode1,
+            textAlignVertical:
+            TextAlignVertical.center,
+            onFieldSubmitted: (value) {
+              print("ValueValue" + error[index].toString());
+
+              setState(() {
+                error[index] = false;
+              });
+              AppData.fieldFocusChange(context, fnode1, null);
+            },
+
+          ),
+        ),
+      ),
+    );
+  }
+  Widget formFieldPhoneNo(
+      int index,
+      String hint,
+      ) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+          horizontal: 8),
+      child: Container(
+        height: 50,
+        padding:
+        EdgeInsets.symmetric(horizontal: 0),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius:
+          BorderRadius.circular(5),
+          border: Border.all(
+              color: Colors.black, width: 0.3),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+          child: TextFormField(
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: hint,
+              counterText: '',
+              /* prefixIcon:
+              Icon(Icons.person_rounded),*/
+              hintStyle: TextStyle(
+                  color: AppData.hintColor,
+                  fontSize: 15),
+            ),
+            controller: textEditingController[index],
+            textInputAction: TextInputAction.done,
+            keyboardType: TextInputType.number,
+            //focusNode: currentfn,
+            inputFormatters: [
+              WhitelistingTextInputFormatter(
+                RegExp("[0-9]"),
+              ),
+            ],
+            maxLength: 10,
+            //focusNode: fnode1,
+            textAlignVertical:
+            TextAlignVertical.center,
+            onFieldSubmitted: (value) {
+              print("ValueValue" + error[index].toString());
+
+              setState(() {
+                error[index] = false;
+              });
+              AppData.fieldFocusChange(context, fnode1, null);
+            },
+
+          ),
+        ),
+      ),
+    );
+  }
+  Widget stdLandlineNo(
+      int index,
+      String hint,
+      ) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+          horizontal: 8),
+      child: Container(
+        height: 50,
+        padding:
+        EdgeInsets.symmetric(horizontal: 0),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius:
+          BorderRadius.circular(5),
+          border: Border.all(
+              color: Colors.black, width: 0.3),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+          child: TextFormField(
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: hint,
+              counterText: '',
+              /* prefixIcon:
+              Icon(Icons.person_rounded),*/
+              hintStyle: TextStyle(
+                  color: AppData.hintColor,
+                  fontSize: 15),
+            ),
+            controller: textEditingController[index],
+            textInputAction: TextInputAction.done,
+            keyboardType: TextInputType.number,
+            //focusNode: currentfn,
+            inputFormatters: [
+              WhitelistingTextInputFormatter(
+                RegExp("[0-9]"),
+              ),
+            ],
+            maxLength: 11,
+            //focusNode: fnode1,
+            textAlignVertical:
+            TextAlignVertical.center,
+            onFieldSubmitted: (value) {
+              print("ValueValue" + error[index].toString());
+
+              setState(() {
+                error[index] = false;
+              });
+              AppData.fieldFocusChange(context, fnode1, null);
+            },
+
+          ),
+        ),
+      ),
+    );
+  }
+  Widget panNo(
+      int index,
+      String hint,
+      ) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+          horizontal: 8),
+      child: Container(
+        height: 50,
+        padding:
+        EdgeInsets.symmetric(horizontal: 0),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius:
+          BorderRadius.circular(5),
+          border: Border.all(
+              color: Colors.black, width: 0.3),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+          child: TextFormField(
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: hint,
+              counterText: '',
+              /* prefixIcon:
+              Icon(Icons.person_rounded),*/
+              hintStyle: TextStyle(
+                  color: AppData.hintColor,
+                  fontSize: 15),
+            ),
+            controller: textEditingController[index],
+            textInputAction: TextInputAction.done,
+            keyboardType: TextInputType.number,
+            //focusNode: currentfn,
+            inputFormatters: [
+              //UpperCaseTextFormatter(),
+              WhitelistingTextInputFormatter(RegExp("[a-zA-Z0-9-]")),
+            ],
+            //maxLength: 11,
+            //focusNode: fnode1,
+            textAlignVertical:
+            TextAlignVertical.center,
+            onFieldSubmitted: (value) {
+              print("ValueValue" + error[index].toString());
+
+              setState(() {
+                error[index] = false;
+              });
+              AppData.fieldFocusChange(context, fnode1, null);
+            },
+
+          ),
+        ),
+      ),
+    );
+  }
+  Widget height(
+      int index,
+      String hint,
+      ) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+          horizontal: 8),
+      child: Container(
+        height: 50,
+        padding:
+        EdgeInsets.symmetric(horizontal: 0),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius:
+          BorderRadius.circular(5),
+          border: Border.all(
+              color: Colors.black, width: 0.3),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+          child: TextFormField(
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: hint,
+              counterText: '',
+              /* prefixIcon:
+              Icon(Icons.person_rounded),*/
+              hintStyle: TextStyle(
+                  color: AppData.hintColor,
+                  fontSize: 15),
+            ),
+            controller: textEditingController[index],
+            textInputAction: TextInputAction.done,
+            keyboardType: TextInputType.number,
+            //focusNode: currentfn,
+            inputFormatters: [
+              //UpperCaseTextFormatter(),
+              WhitelistingTextInputFormatter(RegExp("[0-9.-]")),
+            ],
+            //maxLength: 11,
+            //focusNode: fnode1,
+            textAlignVertical:
+            TextAlignVertical.center,
+            onFieldSubmitted: (value) {
+              print("ValueValue" + error[index].toString());
+
+              setState(() {
+                error[index] = false;
+              });
+              AppData.fieldFocusChange(context, fnode1, null);
+            },
+
+          ),
+        ),
+      ),
+    );
+  }
+  Widget homeAddressLine1(
+      int index,
+      String hint,
+      ) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+          horizontal: 8),
+      child: Container(
+        height: 50,
+        padding:
+        EdgeInsets.symmetric(horizontal: 0),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius:
+          BorderRadius.circular(5),
+          border: Border.all(
+              color: Colors.black, width: 0.3),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+          child: TextFormField(
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: hint,
+              counterText: '',
+              /* prefixIcon:
+              Icon(Icons.person_rounded),*/
+              hintStyle: TextStyle(
+                  color: AppData.hintColor,
+                  fontSize: 15),
+            ),
+            controller: textEditingController[index],
+            textInputAction: TextInputAction.done,
+            keyboardType: TextInputType.number,
+            //focusNode: currentfn,
+
+            //maxLength: 11,
+            //focusNode: fnode1,
+            textAlignVertical:
+            TextAlignVertical.center,
+            onFieldSubmitted: (value) {
+              print("ValueValue" + error[index].toString());
+
+              setState(() {
+                error[index] = false;
+              });
+              AppData.fieldFocusChange(context, fnode1, null);
+            },
+
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget formFieldemail(
+      int index,
+      String hint,
+      ) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+          horizontal: 8),
+      child: Container(
+        height: 50,
+        padding:
+        EdgeInsets.symmetric(horizontal: 0),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius:
+          BorderRadius.circular(5),
+          border: Border.all(
+              color: Colors.black, width: 0.3),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+          child: TextFormField(
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: hint,
+              counterText: '',
+              /* prefixIcon:
+              Icon(Icons.person_rounded),*/
+              hintStyle: TextStyle(
+                  color: AppData.hintColor,
+                  fontSize: 15),
+            ),
+            controller: textEditingController[index],
+            textInputAction: TextInputAction.done,
+            //focusNode: currentfn,
+            keyboardType: TextInputType.text,
+
+            onFieldSubmitted: (value) {
+              print("ValueValue" + error[index].toString());
+
+              setState(() {
+                error[index] = false;
+              });
+              AppData.fieldFocusChange(context, fnode1, null);
+            },
+
+          ),
+        ),
+      ),
+    );
+  }
+  Widget formFieldAadhaaerno(
+      int index,
+      String hint,
+      ) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+          horizontal: 8),
+      child: Container(
+        height: 50,
+        padding:
+        EdgeInsets.symmetric(horizontal: 0),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius:
+          BorderRadius.circular(5),
+          border: Border.all(
+              color: Colors.black, width: 0.3),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+          child: TextFormField(
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: hint,
+              counterText: '',
+              /* prefixIcon:
+              Icon(Icons.person_rounded),*/
+              hintStyle: TextStyle(
+                  color: AppData.hintColor,
+                  fontSize: 15),
+            ),
+            controller: textEditingController[index],
+            textInputAction: TextInputAction.done,
+            keyboardType: TextInputType.number,
+
+            inputFormatters: [
+              WhitelistingTextInputFormatter(
+                RegExp("[0-9]"),
+              ),
+            ],
+            maxLength: 12,
+            onFieldSubmitted: (value) {
+              print("ValueValue" + error[index].toString());
+
+              setState(() {
+                error[index] = false;
+              });
+              AppData.fieldFocusChange(context, fnode1, null);
+            },
+
+          ),
+        ),
+      ),
+    );
+  }
+
+
 
   Widget viewMode() {
     return Row(
@@ -1508,7 +2758,63 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
       ],
     );
   }
+  Widget formFieldPassPortno(
+      int index,
+      String hint,
+      ) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+          horizontal: 8),
+      child: Container(
+        height: 50,
+        padding:
+        EdgeInsets.symmetric(horizontal: 0),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius:
+          BorderRadius.circular(5),
+          border: Border.all(
+              color: Colors.black, width: 0.3),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          child: TextFormField(
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: hint,
+              counterText: '',
+              /* prefixIcon:
+              Icon(Icons.person_rounded),*/
+              hintStyle: TextStyle(
+                  color: AppData.hintColor,
+                  fontSize: 15),
+            ),
+            textInputAction: TextInputAction.next,
+            keyboardType: TextInputType.number,
+            controller: textEditingController[index],
+            maxLength: 14,
 
+            //focusNode: fnode1,
+            textAlignVertical:
+            TextAlignVertical.center,
+            onFieldSubmitted: (value) {
+              print("ValueValue" + error[index].toString());
+
+              setState(() {
+                error[index] = false;
+              });
+              AppData.fieldFocusChange(context, fnode1, null);
+            },
+            inputFormatters: [
+              //UpperCaseTextFormatter(),
+              WhitelistingTextInputFormatter(RegExp("[0-9-]")),
+            ],
+
+          ),
+        ),
+      ),
+    );
+  }
   Widget mobileNoOTPSearch() {
     return Row(
       children: <Widget>[
@@ -1527,7 +2833,7 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
       ],
     );
   }
-  Future getCerificateImage() async {
+/*  Future getCerificateImage() async {
     // ignore: deprecated_member_use
     var image = await ImagePicker.pickImage(source: ImageSource.gallery);
     var decodedImage = await decodeImageFromList(image.readAsBytesSync());
@@ -1539,7 +2845,7 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
       selectGallery = true;
       print('Image Path $_imageCertificate');
     });
-  }
+  }*/
 
   Future getImage() async {
     // ignore: deprecated_member_use
@@ -2071,7 +3377,7 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
     );
   }
 
-  Widget dob1(String hint) {
+  /*Widget dob1(String hint) {
     return Padding(
       //padding: const EdgeInsets.symmetric(horizontal: 8),
       padding: const EdgeInsets.symmetric(horizontal: 0),
@@ -2106,7 +3412,7 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 5.0),
                     child: TextFormField(
-                      controller: stdob/*textEditingController[10]*/,
+                      controller: stdob*//*textEditingController[10]*//*,
                       keyboardType: TextInputType.datetime,
                       textAlign: TextAlign.left,
                       textAlignVertical: TextAlignVertical.center,
@@ -2149,9 +3455,50 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
         ),
       ),
     );
+  }*/
+
+  Widget dobBirth() {
+    return Padding(
+      //padding: const EdgeInsets.symmetric(horizontal: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 8),
+      child: GestureDetector(
+        onTap: () => _selectDate1(context),
+        child: AbsorbPointer(
+          child: Container(
+            // margin: EdgeInsets.symmetric(vertical: 10),
+            height: 50,
+            padding: EdgeInsets.symmetric(horizontal: 8, vertical: 0),
+            // width: size.width * 0.8,
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(5),
+                border: Border.all(color: Colors.black, width: 0.3)),
+            child: TextFormField(
+              //focusNode: fnode4,
+              enabled: !widget.isConfirmPage ? false : true,
+              controller: stdob,
+              textAlignVertical: TextAlignVertical.center,
+              keyboardType: TextInputType.datetime,
+              textAlign: TextAlign.left,
+              decoration: InputDecoration(
+                hintText: "Date Of Birth",
+                hintStyle: TextStyle(
+                    color: AppData.hintColor,
+                    fontSize: 15),
+                border: InputBorder.none,
+                //contentPadding: EdgeInsets.symmetric(vertical: 10),
+                suffixIcon: Icon(
+                  Icons.calendar_today,
+                  size: 18,
+                  color: Colors.grey,
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
   }
-
-
   Widget dob2(String hint) {
     return Padding(
       //padding: const EdgeInsets.symmetric(horizontal: 8),

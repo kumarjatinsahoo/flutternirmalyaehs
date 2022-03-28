@@ -1,6 +1,6 @@
 {
   "WELCOMENACK": "Welcome Back",
-  "USER_NAME": "Mobile No/ Email id/ User id/ User name",
+  "USER_NAME": "Mobile No/ Email id/ User id",
   "PASSWORD": "Password",
   "LOGIN": "LOGIN",
   "LOGIN_WITH_OTP": "LOGIN WITH OTP",
@@ -78,7 +78,7 @@
   "UPLOAD": "Upload",
   "AGREE_TO_NCORDS": "I Agree to eHealthSystem's",
   "PRESCRIBED_BY": "Prescribed By",
-  "IMMUNIZATION_DETAILS": " Immunization Details",
+  "IMMUNIZATION_DETAILS": "Immunization Details",
 
 
 
@@ -464,6 +464,8 @@
   "ORDER_ID": "Order ID",
   "TIME": "Time",
   "REFFERED_PATIENT": "Reffered Patient",
+  "REMEMBER_ME": "Remember me",
+  "CREATE_ID": "Create User ID",
 
 
 

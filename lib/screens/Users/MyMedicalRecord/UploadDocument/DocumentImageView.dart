@@ -48,11 +48,18 @@ class _DocumentImageState extends State<DocumentImage> {
         elevation: 0,
       ),
       body: Container(
+       /* height: double.infinity,
+        width: double.infinity,*/
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         child: Image.network(
           pdfurl,
-          fit: BoxFit.cover,
+          //fit: BoxFit.cover,
+          /*fit: BoxFit.fitHeight,
+          fit: ,*/
+          height: double.infinity,
+          width: double.infinity,
+          fit: BoxFit.fill,
           errorBuilder: (context,i,j){
             return Image.asset('assets/images/nodata_found.png');
           },

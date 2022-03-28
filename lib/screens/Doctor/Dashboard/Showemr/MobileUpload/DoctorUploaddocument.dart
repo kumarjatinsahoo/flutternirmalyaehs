@@ -22,7 +22,7 @@ class DoctorUploadDocument extends StatefulWidget {
   final MainModel model;
   static KeyvalueModel admequipmentmodel = null;
 
-  const DoctorUploadDocument({
+  const  DoctorUploadDocument({
     Key key,
     this.model,
   }) : super(key: key);
@@ -244,7 +244,7 @@ class _DoctorUploadDocumentState extends State<DoctorUploadDocument> {
           child: Column(
             children: [
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.35,
+                height: MediaQuery.of(context).size.height * 0.20,
               ),
               Image.asset("assets/NoRecordFound.png",
                                               // height: 25,

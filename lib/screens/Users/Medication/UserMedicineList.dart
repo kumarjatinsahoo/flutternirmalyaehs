@@ -223,6 +223,32 @@ class _MedicineList extends State<UserMedicineList> {
                         child: SingleChildScrollView(
                           child: Column(
                             children: [
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                  children: [
+                                    Text(""),
+                                    Spacer(),
+                                    InkWell(
+                                        onTap: () {
+                                          setState(() {
+                                            Navigator.pushNamed(context, "/medicineDetailslist");
+                                            //displayDialog3(context);
+
+                                          });
+                                        },
+
+                                        child:Text("View Order History",
+                                            style: TextStyle(
+                                                decoration: TextDecoration.underline,color: AppData.kPrimaryColor
+                                            )
+                                        )
+
+                                    ),
+                                  ],
+                                ),
+                              ),
+
                               ListView.builder(
                                 physics: NeverScrollableScrollPhysics(),
                                 // controller: _scrollController,
@@ -427,25 +453,29 @@ class _MedicineList extends State<UserMedicineList> {
                                                 padding: EdgeInsets.symmetric(
                                                     horizontal: 15,
                                                     vertical: 10),
-                                                child: Column(
+                                                child: Row(
                                                   crossAxisAlignment:
                                                       CrossAxisAlignment.start,
                                                   children: [
-                                                    Text(
-                                                      "Duration: ",
-                                                      style: TextStyle(
-                                                          fontSize: 15,
-                                                          fontWeight:
-                                                              FontWeight.bold),
+                                                    Expanded(
+                                                      child: Text(
+                                                        "Duration: ",
+                                                        style: TextStyle(
+                                                            fontSize: 15,
+                                                            fontWeight:
+                                                                FontWeight.bold),
+                                                      ),
                                                     ),
                                                     SizedBox(
                                                       height: 5,
                                                     ),
-                                                    Text(
-                                                      body.dosage ?? "",
-                                                      style: TextStyle(
-                                                          color: Colors.black,
-                                                          fontSize: 15),
+                                                    Expanded(
+                                                      child: Text(
+                                                        body.dosage ?? "",
+                                                        style: TextStyle(
+                                                            color: Colors.black,
+                                                            fontSize: 15),
+                                                      ),
                                                     ),
                                                   ],
                                                 ),
@@ -458,17 +488,19 @@ class _MedicineList extends State<UserMedicineList> {
                                                   crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                                   children: [
-                                                    Text(
-                                                      "Remark: ",
-                                                      style: TextStyle(
-                                                          fontSize: 15,
-                                                          fontWeight:
-                                                          FontWeight.bold),
+                                                    Expanded(
+                                                      child: Text(
+                                                        "Remark: ",
+                                                        style: TextStyle(
+                                                            fontSize: 15,
+                                                            fontWeight:
+                                                            FontWeight.bold),
+                                                      ),
                                                     ),
                                                     SizedBox(
                                                       height: 5,
                                                     ),
-                                                    Center(
+                                                    Expanded(
                                                       child: Text(
                                                         body.remarks ?? "N/A",
                                                         style: TextStyle(
@@ -561,7 +593,7 @@ class _MedicineList extends State<UserMedicineList> {
               EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
           child: Text(
             // MyLocalizations.of(context).text("SIGN_BTN"),
-            "SUBMIT",
+            "Continue",
             textAlign: TextAlign.center,
             style: TextStyle(color: Colors.white, fontSize: 16.0),
           ),
@@ -722,7 +754,7 @@ class _MedicineList extends State<UserMedicineList> {
         textInputAction: inputAct,
         inputFormatters: [
           //UpperCaseTextFormatter(),
-          WhitelistingTextInputFormatter(RegExp("[a-zA-Z0-9]")),
+          WhitelistingTextInputFormatter(RegExp("[a-zA-Z0-9 ]")),
         ],
         keyboardType: keyType,
         decoration: InputDecoration(

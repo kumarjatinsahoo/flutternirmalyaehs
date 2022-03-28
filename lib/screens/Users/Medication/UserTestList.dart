@@ -70,6 +70,7 @@ class _MedicineList extends State<UserTestList> {
   String address;
   Position position;
   String cityName;
+  bool familydetailsadd = true;
   List<UserListModel> testlist = [];
   List<test.Body> selectedTest = [];
 
@@ -87,6 +88,7 @@ class _MedicineList extends State<UserTestList> {
   }
 
   callAPI() {
+    log("nayak<<<<<<<<<<<<<" +ApiFactory.doctor_TEST_LIST +widget?.model?.appno ?? "",);
     widget.model.GETMETHODCALL_TOKEN(
       api: ApiFactory.doctor_TEST_LIST +widget?.model?.appno ?? "",//140
       token: widget.model.token,
@@ -141,11 +143,11 @@ class _MedicineList extends State<UserTestList> {
 
   geocodeFetch(lat, longi) {
     print(">>>>>>>>>" + ApiFactory.GOOGLE_LOC(lat: lat, long: longi));
-   MyWidgets.showLoading(context);
+   //MyWidgets.showLoading(context);
     widget.model.GETMETHODCALL(
         api: ApiFactory.GOOGLE_LOC(lat: lat, long: longi),
         fun: (Map<String, dynamic> map) {
-          Navigator.pop(context);
+          //Navigator.pop(context);
           ResultsServer finder = ResultsServer.fromJson(map["results"][0]);
           print("finder1>>>>>>>>>" + finder.toJson().toString());
           setState(() {
@@ -215,6 +217,31 @@ class _MedicineList extends State<UserTestList> {
 
             child: Column(
               children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    children: [
+                      Text(""),
+                      Spacer(),
+                      InkWell(
+                        onTap: () {
+                          setState(() {
+                            Navigator.pushNamed(context, "/testDetailslist");
+                            //displayDialog3(context);
+
+                          });
+                        },
+
+                          child:Text("View Order History",
+                            style: TextStyle(
+                            decoration: TextDecoration.underline,color: AppData.kPrimaryColor
+                          )
+                          )
+
+                      ),
+                    ],
+                  ),
+                ),
 
                 /* DropDown.networkDropdownGetpartUserrrr(
                     "Choose Pharmacy",
@@ -317,20 +344,24 @@ class _MedicineList extends State<UserTestList> {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
-                                            Text(
-                                              "Appoint no: ",
-                                              style: TextStyle(
-                                                  fontSize: 15,
-                                                  fontWeight: FontWeight.bold),
+                                            Expanded(
+                                              child: Text(
+                                                "Appoint no: ",
+                                                style: TextStyle(
+                                                    fontSize: 15,
+                                                    fontWeight: FontWeight.bold),
+                                              ),
                                             ),
                                             SizedBox(
                                               height: 5,
                                             ),
-                                            Text(
-                                              body.appno ?? "N/A",
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: 15),
+                                            Expanded(
+                                              child: Text(
+                                                body.appno ?? "N/A",
+                                                style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontSize: 15),
+                                              ),
                                             ),
                                           ],
                                         ),
@@ -342,20 +373,24 @@ class _MedicineList extends State<UserTestList> {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
-                                            Text(
-                                              "Type: ",
-                                              style: TextStyle(
-                                                  fontSize: 15,
-                                                  fontWeight: FontWeight.bold),
+                                            Expanded(
+                                              child: Text(
+                                                "Type: ",
+                                                style: TextStyle(
+                                                    fontSize: 15,
+                                                    fontWeight: FontWeight.bold),
+                                              ),
                                             ),
                                             SizedBox(
                                               height: 5,
                                             ),
-                                            Text(
-                                              body.testgroup ?? "N/A",
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: 15),
+                                            Expanded(
+                                              child: Text(
+                                                body.testgroup ?? "N/A",
+                                                style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontSize: 15),
+                                              ),
                                             ),
                                           ],
                                         ),
@@ -368,20 +403,24 @@ class _MedicineList extends State<UserTestList> {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
-                                            Text(
-                                              "Remark: ",
-                                              style: TextStyle(
-                                                  fontSize: 15,
-                                                  fontWeight: FontWeight.bold),
+                                            Expanded(
+                                              child: Text(
+                                                "Remark: ",
+                                                style: TextStyle(
+                                                    fontSize: 15,
+                                                    fontWeight: FontWeight.bold),
+                                              ),
                                             ),
                                             SizedBox(
                                               height: 5,
                                             ),
-                                            Text(
-                                              body.remarks ?? "N/A",
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: 15),
+                                            Expanded(
+                                              child: Text(
+                                                body.remarks ?? "N/A",
+                                                style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontSize: 15),
+                                              ),
                                             ),
                                           ],
                                         ),
@@ -511,7 +550,7 @@ class _MedicineList extends State<UserTestList> {
 
               MyWidgets.showLoading(context);
               widget.model.POSTMETHOD_TOKEN(
-                  api: ApiFactory.LAB_REQUEST,
+                  api: ApiFactory.LAB_REQUEST ,
                   json: map,
                   token: widget.model.token,
                   fun: (Map<String, dynamic> map) {
@@ -788,7 +827,7 @@ class _MedicineList extends State<UserTestList> {
               EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
           child: Text(
             // MyLocalizations.of(context).text("SIGN_BTN"),
-            "SUBMIT",
+            "Continue",
             textAlign: TextAlign.center,
             style: TextStyle(color: Colors.white, fontSize: 16.0),
           ),

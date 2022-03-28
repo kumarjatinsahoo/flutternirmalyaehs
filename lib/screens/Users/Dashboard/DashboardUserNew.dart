@@ -19,6 +19,7 @@ import 'package:user/localization/localizations.dart';
 import 'package:user/models/EmergencyHelpModel.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/models/NewsupdateModel.dart' as news;
+import 'package:user/models/TakeMedModel.dart';
 import 'package:user/models/UserDashboardModel.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/SharedPref.dart';
@@ -118,17 +119,32 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
     FirebaseMessaging.instance
         .getInitialMessage()
         .then((RemoteMessage message) {
-      if (message != null) {
+    /*  if (message != null) {
         Navigator.pushNamed(context, '/aboutus');
+      }*/
+      if(message!=null && message.data!=null && message.data.containsKey("id")){
+        TakeMedModel model=TakeMedModel.fromJson(message.data);
+        widget.model.medicineData=model;
+        Navigator.pushNamed(context, '/takenpage');
       }
     });
 
-    FirebaseMessaging.onMessage.listen((RemoteMessage message) {});
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      if(message!=null && message.data!=null && message.data.containsKey("id")){
+        TakeMedModel model=TakeMedModel.fromJson(message.data);
+        widget.model.medicineData=model;
+        Navigator.pushNamed(context, '/takenpage');
+      }
+    });
 
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
       print('A new onMessageOpenedApp event was published!');
-      Navigator.pushNamed(context, '/aboutus');
-
+      // Navigator.pushNamed(context, '/aboutus');
+      if(message!=null && message.data!=null && message.data.containsKey("id")){
+        TakeMedModel model=TakeMedModel.fromJson(message.data);
+        widget.model.medicineData=model;
+        Navigator.pushNamed(context, '/takenpage');
+      }
     });
   }
 
@@ -440,7 +456,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
               child: Stack(
                 //alignment: Alignment.topCenter,
                 //fit: ,
-                children: [
+                children:[
                   Align(
                     alignment: Alignment.centerRight,
                     child: Image.asset(
@@ -598,6 +614,11 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                   width: 30,
                   height: 30,
                   fit: BoxFit.cover,
+                  errorBuilder:(context, error, stackTrace) {
+                    return Image.asset("assets/images/Dashboardimg5.png",
+                        width:30,
+                        height: 30);
+                  },
                 ):Image.asset("assets/images/Dashboardimg5.png",
                     width:30,
                     height: 30)
@@ -702,6 +723,11 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                               width: 40,
                               height: 40,
                               fit: BoxFit.cover,
+                              errorBuilder:(context, error, stackTrace) {
+                                return Image.asset("assets/images/Dashboardimg5.png",
+                                    width:40,
+                                    height: 40);
+                              },
                             ):Image.asset("assets/images/Dashboardimg5.png",
                               width:40,
                               height: 40)
@@ -929,6 +955,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                   onTap: () {
                     selectDestination(8);
                     Navigator.pushNamed(context, "/changePassword");
+                    //Navigator.pushNamed(context, "/takenpage");
                   }),
               /*  ListTile(
                   leading: Image.asset(
@@ -1046,8 +1073,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
 
   _exitApp() async {
     FirebaseMessaging.instance.unsubscribeFromTopic(loginResponse1.body.user);
-    FirebaseMessaging.instance
-        .unsubscribeFromTopic(loginResponse1.body.userMobile);
+    FirebaseMessaging.instance.unsubscribeFromTopic(loginResponse1.body.userMobile);
     sharedPref.save(Const.IS_LOGIN, false.toString());
     sharedPref.save(Const.IS_REGISTRATION, false.toString());
     sharedPref.remove(Const.IS_REGISTRATION);

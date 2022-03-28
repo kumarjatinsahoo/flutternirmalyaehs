@@ -9,6 +9,7 @@ import 'package:user/providers/Const.dart';
 import 'package:user/providers/SharedPref.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
+import 'package:user/screens/AadharRegistration.dart';
 import 'package:user/screens/Admin/Admin.dart';
 import 'package:user/screens/Ambulance/Dashboard/AcceptAmbulance.dart';
 import 'package:user/screens/Ambulance/Dashboard/AllAmbulance.dart';
@@ -87,9 +88,12 @@ import 'package:user/screens/Users/Insurance/AddInsuranceForm.dart';
 import 'package:user/screens/Users/Insurance/InsuranceFormNew.dart';
 import 'package:user/screens/Users/IntrestSignup.dart';
 import 'package:user/screens/Users/LoginFBandGooglePage.dart';
+import 'package:user/screens/Users/Medication/MedicineDetailslist.dart';
+import 'package:user/screens/Users/Medication/TestDetailslist.dart';
 import 'package:user/screens/Users/Medication/UserMedicineList.dart';
 import 'package:user/screens/Users/Medication/UserTestList.dart';
 import 'package:user/screens/Users/MedicineReminder/EditReminder.dart';
+import 'package:user/screens/Users/MedicineReminder/TakenPage.dart';
 import 'package:user/screens/Users/Medipedia/DieseInfo.dart';
 import 'package:user/screens/Users/Medipedia/DieseInfoPdf1.dart';
 import 'package:user/screens/Users/Medipedia/Diesepdf.dart';
@@ -1180,6 +1184,9 @@ class _MyAppState extends State<MyApp> {
               '/healthChaatlist': (context) => HealthChaatlist(
                     model: _model,
                   ),
+              '/aadharregistration': (context) => AadharRegistration(
+                    model: _model,
+                  ),
 
 ////////////////////////////////////////////////////////////////////////////////
               // syndicate partner
@@ -1288,10 +1295,19 @@ class _MyAppState extends State<MyApp> {
               '/healthTipsFB': (context) => HealthTipsFB(
                 model: _model,
               ),
-              // '/razor': (context) => RazorPayPage(
-              //   model: _model,
-              // ),
+              '/razor': (context) => RazorPayPage(
+                model: _model,
+              ),
+              '/takenpage': (context) => TakenPage(
+                model: _model,
+              ),
+              '/medicineDetailslist': (context) => MedicineDetailslist(
+                model: _model,
+              ),
 
+          '/testDetailslist': (context) => TestDetailslist(
+          model: _model,
+          )
             },
             localizationsDelegates: [
               MyLocalizationsDelegate(widget.localizedValues),

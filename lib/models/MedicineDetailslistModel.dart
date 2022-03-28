@@ -1,21 +1,21 @@
-class PharmacycnfrmModel {
+class MedicineDetailslistModel {
   List<Body> body;
   String message;
   String code;
- // Null total;
+  String total;
 
-  PharmacycnfrmModel({this.body, this.message, this.code});
+  MedicineDetailslistModel({this.body, this.message, this.code, this.total});
 
-  PharmacycnfrmModel.fromJson(Map<String, dynamic> json) {
+  MedicineDetailslistModel.fromJson(Map<String, dynamic> json) {
     if (json['body'] != null) {
-      body = new List<Body>();
+      body = <Body>[];
       json['body'].forEach((v) {
         body.add(new Body.fromJson(v));
       });
     }
     message = json['message'];
     code = json['code'];
-   // total = json['total'];
+    total = json['total'];
   }
 
   Map<String, dynamic> toJson() {
@@ -25,34 +25,53 @@ class PharmacycnfrmModel {
     }
     data['message'] = this.message;
     data['code'] = this.code;
-   // data['total'] = this.total;
+    data['total'] = this.total;
     return data;
+
+  }
+  toJson1(List<Body> list) {
+    return list.map((v) => v.toJson()).toList();
+  }
+
+  addMore(Map<String, dynamic> json) {
+    if (json['body'] != null) {
+      json['body'].forEach((v) {
+        body.add(new Body.fromJson(v));
+      });
+    }
   }
 }
 
 class Body {
   String medname;
   String medtype;
-  Null dosage;
-  Null morning;
-  Null afternoon;
-  Null evening;
-  Null doctor;
-  Null fromdate;
-  Null todate;
-  Null userid;
-  Null appno;
+  String dosage;
+  String morning;
+  String afternoon;
+  String evening;
+  String doctor;
+  String fromdate;
+  String todate;
+  String userid;
+  String appno;
   String remarks;
-  Null duration;
-  Null meddate;
+  String duration;
+  String meddate;
   String qty;
-  Null srlNoOne;
-  Null srlNoTwo;
-  Null medid;
-  Null reqstatus;
-  Null status;
-  dynamic key;
-  dynamic name;
+  String srlNoOne;
+  String srlNoTwo;
+  String medid;
+  String reqstatus;
+  String status;
+  String testgroup;
+  String testname;
+  String quantity;
+  String drName;
+  String lab;
+  String reqDate;
+  String acceptDate;
+  String rejectDate;
+  String orderId;
 
   Body(
       {this.medname,
@@ -74,7 +93,16 @@ class Body {
         this.srlNoTwo,
         this.medid,
         this.reqstatus,
-        this.status});
+        this.status,
+        this.testgroup,
+        this.testname,
+        this.quantity,
+        this.drName,
+        this.lab,
+        this.reqDate,
+        this.acceptDate,
+        this.rejectDate,
+        this.orderId});
 
   Body.fromJson(Map<String, dynamic> json) {
     medname = json['medname'];
@@ -97,11 +125,15 @@ class Body {
     medid = json['medid'];
     reqstatus = json['reqstatus'];
     status = json['status'];
-    if(json.containsKey("key")) {
-      key = json["key"];
-    }if(json.containsKey("name")) {
-      name = json["name"];
-    }
+    testgroup = json['testgroup'];
+    testname = json['testname'];
+    quantity = json['quantity'];
+    drName = json['drName'];
+    lab = json['lab'];
+    reqDate = json['reqDate'];
+    acceptDate = json['acceptDate'];
+    rejectDate = json['rejectDate'];
+    orderId = json['orderId'];
   }
 
   Map<String, dynamic> toJson() {
@@ -126,6 +158,15 @@ class Body {
     data['medid'] = this.medid;
     data['reqstatus'] = this.reqstatus;
     data['status'] = this.status;
+    data['testgroup'] = this.testgroup;
+    data['testname'] = this.testname;
+    data['quantity'] = this.quantity;
+    data['drName'] = this.drName;
+    data['lab'] = this.lab;
+    data['reqDate'] = this.reqDate;
+    data['acceptDate'] = this.acceptDate;
+    data['rejectDate'] = this.rejectDate;
+    data['orderId'] = this.orderId;
     return data;
   }
 }

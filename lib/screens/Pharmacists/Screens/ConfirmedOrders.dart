@@ -150,6 +150,20 @@ class _ConfirmOrdersState extends State<ConfirmOrders> {
                                 SizedBox(
                                   height: 10,
                                 ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Patient Notes: ',
+                                      style: TextStyle(
+                                          color: AppData.kPrimaryColor),
+                                    ),
+                                    Text(body.remarks??"N/A"),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
                               ],
                             ),
                             /*Icon(Icons.more_vert)*/
