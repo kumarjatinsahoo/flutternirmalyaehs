@@ -203,12 +203,9 @@ class _MedicineList extends State<UserMedicineList1> {
                               Navigator.pushNamed(
                                   context,
                                   "/userMedicineList");
-
                           //  Navigator.pushNamed(context, "/medicinelisturl");
-
                           },
                           child: Container(
-
                             child: GestureDetector(
                               // onTap:()=> Navigator.pushNamed(context, "/immunizitaion"),
                               // onTap: () =>   Navigator.pushNamed(context, "/immunizationlist")
