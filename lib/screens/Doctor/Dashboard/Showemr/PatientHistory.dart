@@ -27,7 +27,7 @@ class _PatientHistory extends State<PatientHistory> {
   final myControllerpass = TextEditingController();
   String eHealthCardno;
   PatientmedicalhistoryModel patientmedicalhistoryModel = PatientmedicalhistoryModel();
-
+  bool isdata = true;
   @override
   void initState() {
     super.initState();
@@ -43,10 +43,12 @@ class _PatientHistory extends State<PatientHistory> {
         fun: (Map<String, dynamic> map) {
           log("Personal deatils API>>>" + jsonEncode(map));
           setState(() {
+            isdata = false;
             String msg = map[Const.MESSAGE];
             if (map[Const.CODE] == Const.SUCCESS) {
               patientmedicalhistoryModel = PatientmedicalhistoryModel.fromJson(map);
             } else {
+              isdata = false;
               ///isDataNotAvail = true;
             //  AppData.showInSnackBar(context, msg);
             }
@@ -59,7 +61,27 @@ class _PatientHistory extends State<PatientHistory> {
     return Scaffold(
       // backgroundColor: Color(0xfff3f4f4),
 
-      body:Container(
+      body:isdata == true
+          ?
+      Center(
+        child: Column(
+          children: [
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.35,
+            ),
+            CircularProgressIndicator(
+              //backgroundColor: AppData.matruColor,
+            ),
+          ],
+        ),
+      ) : patientmedicalhistoryModel == null || patientmedicalhistoryModel.body!=null||patientmedicalhistoryModel.body?.medicalHistory==null
+          ? Container(
+        child: Center(
+          child: Image.asset("assets/NoRecordFound.png",
+            // height: 25,
+          ),
+        ),
+      ):Container(
         height: double.maxFinite,
         width: double.maxFinite,
         child: SingleChildScrollView(
