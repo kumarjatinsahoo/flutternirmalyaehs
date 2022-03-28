@@ -129,12 +129,10 @@ class _LoginScreenState extends State<LoginScreen> {
     tokenCall();
     getDeviceSerialNumber();
     _initPackageInfo();
-
-
   }
 
   _displayTextInputDialog(BuildContext context) async {
-    bool _rememberMe=false;
+    bool _rememberMe = false;
     return showDialog(
         context: context,
         builder: (context) {
@@ -142,7 +140,6 @@ class _LoginScreenState extends State<LoginScreen> {
             insetPadding: EdgeInsets.zero,
             content: StatefulBuilder(
               builder: (BuildContext context, StateSetter setState) {
-
                 return Container(
                   width: MediaQuery.of(context).size.width * 0.8,
                   //height: MediaQuery.of(context).size.height * 0.5,
@@ -153,12 +150,13 @@ class _LoginScreenState extends State<LoginScreen> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           SizedBox(height: 10),
-                          Text("You are dhan Arogya Kranti User.",
+                          Text(
+                            "You are dhan Arogya Kranti User.",
                             textAlign: TextAlign.center,
                             style: TextStyle(color: Colors.black, fontSize: 20),
                           ),
 
-                        /*  Row(
+                          /*  Row(
                             children: [
                               Checkbox(
                                 value: _rememberMe,
@@ -175,7 +173,6 @@ class _LoginScreenState extends State<LoginScreen> {
                             height: 20,
                           ),
 */
-
                         ],
                       ),
                     ),
@@ -186,22 +183,22 @@ class _LoginScreenState extends State<LoginScreen> {
             actions: <Widget>[
               FlatButton(
                 textColor: Colors.grey,
-                child: Text("OK",
-                    style: TextStyle(color: AppData.kPrimaryColor)),
-
+                child:
+                    Text("OK", style: TextStyle(color: AppData.kPrimaryColor)),
               ),
             ],
           );
         });
   }
+
   rememberMe() async {
     var userId = await sharedPref.getKey(Const.REMEMBER_USERID);
     var password = await sharedPref.getKey(Const.REMEMBER_PASSWORD);
-    if (userId != null && password!=null) {
+    if (userId != null && password != null) {
       _loginId.text = json.decode(userId);
       passController.text = json.decode(password);
       setState(() {
-        _rememberMe=true;
+        _rememberMe = true;
       });
     }
   }
@@ -265,6 +262,7 @@ class _LoginScreenState extends State<LoginScreen> {
       });
     });*/
   }
+
   dialogGender1() {
     return Alert(
       context: context,
@@ -295,12 +293,12 @@ class _LoginScreenState extends State<LoginScreen> {
           SizedBox(
             height: 10,
           ),
-         /*Text(
+          /*Text(
             "Dana Arogya kranti ",
             style: TextStyle(color: Colors.black, fontSize: 13,fontStyle: FontStyle.normal),
             textAlign: TextAlign.center,
           ),*/
-         /* IntrinsicHeight(
+          /* IntrinsicHeight(
 
             child: Row(
               mainAxisSize: MainAxisSize.max,
@@ -310,11 +308,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: InkWell(
                     onTap: () {
                       setState(() {
-                      *//*  selectGender = "1";
+                      */ /*  selectGender = "1";
                         callingAPI(selectGender, salID);
                         Navigator.pop(context);
                         _selectDate(context);
-                        Navigator.pop(context);*//*
+                        Navigator.pop(context);*/ /*
                       });
                     },
                       child:DialogButton(
@@ -333,14 +331,14 @@ class _LoginScreenState extends State<LoginScreen> {
                 VerticalDivider(
                   color: Colors.grey[400],
                 ),
-               *//* Expanded(
+               */ /* Expanded(
                   child: InkWell(
                     onTap: () {
                       setState(() {
-                        *//**//*selectGender = "2";
+                        */ /**/ /*selectGender = "2";
                         callingAPI(selectGender, salID);
                         Navigator.pop(context);
-                        _selectDate(context);*//**//*
+                        _selectDate(context);*/ /**/ /*
                       });
                     },
                     child: Container(
@@ -359,7 +357,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                   ),
-                ),*//*
+                ),*/ /*
               ],
             ),
           ),*/
@@ -370,6 +368,7 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     ).show();
   }
+
   @override
   Widget build(BuildContext context) {
     code = rng.nextInt(9000) + 1000;
@@ -507,7 +506,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               });
                             },
                           ),
-                          Text(MyLocalizations.of(context).text("REMEMBER_ME"),
+                          Text(
+                            MyLocalizations.of(context).text("REMEMBER_ME"),
                             style: TextStyle(fontSize: 15),
                           ),
                         ],
@@ -529,7 +529,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                     context, "/createUserIDScreen");
                                 //FlutterPhoneDirectCaller.callNumber("7008553233");
                               },
-                              child: Text(MyLocalizations.of(context).text("CREATE_ID"),
+                              child: Text(
+                                MyLocalizations.of(context).text("CREATE_ID"),
                                 style: TextStyle(color: Colors.black54),
                               ),
                             ),
@@ -556,7 +557,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         padding: const EdgeInsets.only(
                             left: 10.0, right: 10.0, bottom: 5.0),
                         child: InkWell(
-                          onTap: () {dashOption(context);
+                          onTap: () {
+                            dashOption(context);
                             // Navigator.pushNamed(context, "/loginFBandGooglePage");
                           },
                           child: RichText(
@@ -596,10 +598,6 @@ class _LoginScreenState extends State<LoginScreen> {
                             style: TextStyle(
                                 fontSize: 17, color: AppData.kPrimaryColor),
                           )),
-
-
-
-
 
                       SizedBox(
                         height: size.height * 0.06,
@@ -832,7 +830,7 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  roleUpdateApi(userId,master.Body data) {
+  roleUpdateApi(userId, master.Body data) {
     MyWidgets.showLoading(context);
     widget.model.GETMETHODCALL(
         api: ApiFactory.GET_ROLE + userId,
@@ -1106,6 +1104,51 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
+  userRegSheet() {
+    showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      builder: (BuildContext context) {
+        return StatefulBuilder(
+            builder: (BuildContext context, StateSetter setDialog
+                /*You can rename this!*/) {
+          return FractionallySizedBox(
+            heightFactor: 0.34,
+            child: Container(
+              child: ListView(
+                children: [
+                  SizedBox(height: 10,),
+                  Center(
+                      child: Text("Registration option",
+                    style: TextStyle(color: Colors.black,
+                        fontSize: 22,fontWeight: FontWeight.bold),)),
+                  SizedBox(height: 10,),
+                  InkWell(
+                    onTap: (){
+                      Navigator.pushNamed(context, "/aadharregistration");
+                    },
+                    child: ListTile(
+                      title: Text("BY AADHAR "),
+                      trailing: Icon(Icons.arrow_right),
+                    ),
+                  ),
+                  ListTile(
+                    title: Text("BY PAN "),
+                    trailing: Icon(Icons.arrow_right),
+                  ),
+                  ListTile(
+                    title: Text("BY MOBILE "),
+                    trailing: Icon(Icons.arrow_right),
+                  )
+                ],
+              ),
+            ),
+          );
+        });
+      },
+    );
+  }
+
   dashOption(BuildContext context) {
     return showDialog(
         context: context,
@@ -1124,6 +1167,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
+
                         ListTile(
                           title: Center(
                               child: Text(MyLocalizations.of(context)
@@ -1134,8 +1178,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           // ),
                           onTap: () {
                             Navigator.pop(context);
-
-                            Navigator.pushNamed(context, "/userSignUpForm");
+                            // Navigator.pushNamed(context, "/userSignUpForm");
+                            userRegSheet();
+                            //dashOption1(context);
                             //_validate();
                           },
                         ),

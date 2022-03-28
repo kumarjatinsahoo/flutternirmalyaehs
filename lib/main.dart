@@ -9,6 +9,7 @@ import 'package:user/providers/Const.dart';
 import 'package:user/providers/SharedPref.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
+import 'package:user/screens/AadharRegistration.dart';
 import 'package:user/screens/Admin/Admin.dart';
 import 'package:user/screens/Ambulance/Dashboard/AcceptAmbulance.dart';
 import 'package:user/screens/Ambulance/Dashboard/AllAmbulance.dart';
@@ -1181,6 +1182,9 @@ class _MyAppState extends State<MyApp> {
                     model: _model,
                   ),
               '/healthChaatlist': (context) => HealthChaatlist(
+                    model: _model,
+                  ),
+              '/aadharregistration': (context) => AadharRegistration(
                     model: _model,
                   ),
 

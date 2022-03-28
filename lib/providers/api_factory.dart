@@ -416,12 +416,30 @@ class ApiFactory {
 
   static String API_VERSION = MAIN_URL + "get-version";
 
-/* (
-      String doctor, String appointdate, String hospitalid) {
-    return
-      MAIN_URL + "/Doc/GetDocSlotInfo?doctor=$doctor&appointdate=$appointdate&hospitalid=$hospitalid";
-  }*/
+
+
+
+
+
+
+  //////////////////////////////
+  // static String ABHA_BASE_URL = "https://dev.abdm.gov.in/gateway/v0.5/sessions";
+  static String SESSION = "https://dev.abdm.gov.in/gateway/v0.5/sessions";
+
+
+
+  //////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
 
 }
-/*
-https://1331.co.in/api/Doc/GetDocList?speciality=*/
+
