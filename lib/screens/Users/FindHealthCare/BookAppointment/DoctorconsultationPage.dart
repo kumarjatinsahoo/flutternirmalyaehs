@@ -594,8 +594,7 @@ class DoctorconsultationPageState extends State<DoctorconsultationPage> {
                                     setState(() {
                                       print(ApiFactory.DOCTER_AVAILABLE);
                                       DoctorconsultationPage.timeModel = data;
-                                      isValidtime =
-                                          (data.key == 1) ? false : true;
+                                      isValidtime = (data.key == 1) ? false : true;
                                       if (!isValidtime)
                                         AppData.showInSnackBar(context,
                                             "This time is already booked please select another time");
