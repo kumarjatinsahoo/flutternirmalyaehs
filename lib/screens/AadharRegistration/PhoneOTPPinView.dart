@@ -24,7 +24,7 @@ import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
-class AdharOTPPinView extends StatefulWidget {
+class PhoneOTPPinView extends StatefulWidget {
   // final String email;
   MainModel model;
   master.MasterLoginResponse masterLoginResponse;
@@ -32,7 +32,7 @@ class AdharOTPPinView extends StatefulWidget {
 
   // final bool isGuestCheckOut;
 
-  AdharOTPPinView({
+  PhoneOTPPinView({
     Key key,
     this.model,
     this.masterLoginResponse,
@@ -40,10 +40,10 @@ class AdharOTPPinView extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _AdharOTPPinViewState createState() => new _AdharOTPPinViewState();
+  _PhoneOTPPinViewState createState() => new _PhoneOTPPinViewState();
 }
 
-class _AdharOTPPinViewState extends State<AdharOTPPinView>
+class _PhoneOTPPinViewState extends State<PhoneOTPPinView>
     with SingleTickerProviderStateMixin {
   // Constants
   final int time = 120;
@@ -130,7 +130,7 @@ class _AdharOTPPinViewState extends State<AdharOTPPinView>
 
     log("....."+jsonEncode(postMap));
     widget.model.POSTMETHOD_TOKEN(
-        api: ApiFactory.POST_ADHAR_VERIFY_OTP,
+        api: ApiFactory.VERIFY_MOBILE_NO,
         //token: "Bearer " + abhaTokenModel.accessToken,
       token: "Bearer " + widget.model.abhaTokenModel.accessToken,
         json: postMap,
@@ -141,7 +141,7 @@ class _AdharOTPPinViewState extends State<AdharOTPPinView>
             // AppData.showInSnackDone(context, "OTP get successfully");
             widget.model.txnId=map["txnId"];
            // Navigator.pushNamed(context, "/abharegform");
-            Navigator.pushNamed(context, "/abhamobileverification");
+            Navigator.pushNamed(context, "/abharegform");
           } else {
             AppData.showInSnackBar(context, "Please enter valid OTP");
           }

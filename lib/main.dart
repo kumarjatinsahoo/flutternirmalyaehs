@@ -10,9 +10,11 @@ import 'package:user/providers/SharedPref.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/screens/AadharRegistration/AadharRegistration.dart';
+import 'package:user/screens/AadharRegistration/AbhaMobileVerification.dart';
 import 'package:user/screens/AadharRegistration/AbhaRegForm.dart';
 // import 'package:user/screens/AadharRegistration/AdharOTPPage.dart';
 import 'package:user/screens/AadharRegistration/AdharOTPPinView.dart';
+import 'package:user/screens/AadharRegistration/PhoneOTPPinView.dart';
 import 'package:user/screens/Admin/Admin.dart';
 import 'package:user/screens/Ambulance/Dashboard/AcceptAmbulance.dart';
 import 'package:user/screens/Ambulance/Dashboard/AllAmbulance.dart';
@@ -1199,6 +1201,9 @@ class _MyAppState extends State<MyApp> {
               '/abharegform': (context) => AbhaRegForm(
                     model: _model,
                   ),
+              '/abhamobileverification': (context) => AbhaMobileVerification(
+                    model: _model,
+                  ),
 
 ////////////////////////////////////////////////////////////////////////////////
               // syndicate partner
@@ -1314,6 +1319,9 @@ class _MyAppState extends State<MyApp> {
                 model: _model,
               ),
               '/medicineDetailslist': (context) => MedicineDetailslist(
+                model: _model,
+              ),
+              '/phoneOtp': (context) => PhoneOTPPinView(
                 model: _model,
               ),
 

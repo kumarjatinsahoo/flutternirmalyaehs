@@ -15,22 +15,22 @@ import 'package:user/widgets/MyWidget.dart';
 
 import '../Doctor/Dashboard/DoctorMedicationlist.dart';
 
-class AadharRegistration extends StatefulWidget {
+class AbhaMobileVerification extends StatefulWidget {
   // MainModel _model = MainModel();
   // LoginScreen(this._model);
 
   final MainModel model;
 
-  const AadharRegistration({
+  const AbhaMobileVerification({
     Key key,
     this.model,
   }) : super(key: key);
 
   @override
-  _AadharRegistrationState createState() => _AadharRegistrationState();
+  _AbhaMobileVerificationState createState() => _AbhaMobileVerificationState();
 }
 
-class _AadharRegistrationState extends State<AadharRegistration> {
+class _AbhaMobileVerificationState extends State<AbhaMobileVerification> {
   // String selectedLanguage = AppData.selectedLanguage;
   // String selectedLanCode = languagesMap[AppData.selectedLanguage];
 
@@ -54,7 +54,7 @@ class _AadharRegistrationState extends State<AadharRegistration> {
 
   AbhaTokenModel abhaTokenModel;
 
-  getSessionAbha() {
+  /*getSessionAbha() {
     MyWidgets.showLoading(context);
     var postData = {
       "clientId": "SBX_000035",
@@ -69,23 +69,28 @@ class _AadharRegistrationState extends State<AadharRegistration> {
           validateAdharNo();
         },
         json: postData);
-  }
+  }*/
 
-  validateAdharNo() {
+  validatePhoneNo() {
     MyWidgets.showLoading(context);
-    var postData = {"aadhaar": controller[1].text};
+    // var postData = {"aadhaar": controller[1].text};
+    var postData = {
+      "mobile": controller[1].text,
+      "txnId": widget.model.txnId
+    };
     widget.model.POSTMETHOD_TOKEN(
-        api: ApiFactory.GET_ADHAR_OTP,
-        token: "Bearer " + abhaTokenModel.accessToken,
+        api: ApiFactory.SEND_PERSONAL_NO,
+        // api: "https://healthidsbx.abdm.gov.in/api/v1/registration/aadhaar/generateMobileOTP",
+        token: "Bearer " + widget.model.abhaTokenModel.accessToken,
         fun: (Map<String, dynamic> map) {
           Navigator.pop(context);
           log("Response Token>>>" + jsonEncode(map));
           if (map.containsKey("txnId")) {
             widget.model.txnId=map["txnId"];
-            widget.model.abhaTokenModel=abhaTokenModel;
+            // widget.model.abhaTokenModel=abhaTokenModel;
 
             //Navigator.pushNamed(context, "/adharOtp");
-            Navigator.pushNamed(context, "/adharOtppinview");
+            Navigator.pushNamed(context, "/phoneOtp");
           } else {
             AppData.showInSnackBar(context, map["details"][0]["message"]);
           }
@@ -132,12 +137,12 @@ class _AadharRegistrationState extends State<AadharRegistration> {
           Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              formField1(1, "Please Enter Aadhar No"),
+              formField1(1, "Please Enter Mobile No"),
               SizedBox(height: 8),
               //nextButton(),
               InkWell(
                 onTap: () {
-                  getSessionAbha();
+                  validatePhoneNo();
                 },
                 child: Container(
                   width: MediaQuery.of(context).size.width,
@@ -209,7 +214,7 @@ class _AadharRegistrationState extends State<AadharRegistration> {
                         padding: const EdgeInsets.only(top: 18, left: 12),
                         child: Text('Reg. as a Partner',
                             style:
-                                TextStyle(color: Colors.black, fontSize: 20.0)),
+                            TextStyle(color: Colors.black, fontSize: 20.0)),
                       ),
                     ),
                     InkWell(
@@ -222,7 +227,7 @@ class _AadharRegistrationState extends State<AadharRegistration> {
 
                         child: Text('Reg. as a Customer',
                             style:
-                                TextStyle(color: Colors.black, fontSize: 20.0)),
+                            TextStyle(color: Colors.black, fontSize: 20.0)),
                       ),
                     ),
                     Align(
@@ -285,9 +290,9 @@ class _AadharRegistrationState extends State<AadharRegistration> {
   }
 
   Widget formField1(
-    int index,
-    String hint,
-  ) {
+      int index,
+      String hint,
+      ) {
     return Padding(
       padding: const EdgeInsets.only(left: 3, right: 3),
       child: Container(

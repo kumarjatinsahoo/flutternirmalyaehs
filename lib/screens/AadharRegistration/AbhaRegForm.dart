@@ -19,6 +19,7 @@ import 'package:user/models/UserRegistrationModel.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/DropDown.dart';
 import 'package:user/providers/api_factory.dart';
+import 'package:user/providers/text_field_container.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
 import 'package:user/widgets/text_field_container.dart';
@@ -61,6 +62,9 @@ class AbhaRegFormState extends State<AbhaRegForm> {
   bool _autovalidate = false;
   DateTime selectedDate = DateTime.now();
   List<TextEditingController> textEditingController = [
+    new TextEditingController(),
+    new TextEditingController(),
+    new TextEditingController(),
     new TextEditingController(),
     new TextEditingController(),
     new TextEditingController(),
@@ -547,10 +551,92 @@ class AbhaRegFormState extends State<AbhaRegForm> {
                                     TextAlignVertical.center,
                                     inputFormatters: [
                                       WhitelistingTextInputFormatter(
-                                          RegExp("[a-z A-Z]")),
+                                          RegExp("[a-z A-Z0-9,@./ ]")),
                                     ],
                                     onFieldSubmitted: (value) {
                                       AppData.fieldFocusChange(context, fnode4, fnode5);
+                                    },
+                                  ),
+                                ),
+                              ),
+                              SizedBox(height: 10),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 8),
+                                child: Container(
+                                  height: 50,
+                                  padding:
+                                  EdgeInsets.symmetric(horizontal: 0),
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius:
+                                    BorderRadius.circular(5),
+                                    border: Border.all(
+                                        color: Colors.black, width: 0.3),
+                                  ),
+                                  child: TextFormField(
+                                    decoration: InputDecoration(
+                                      border: InputBorder.none,
+                                      hintText: "Password",
+                                      prefixIcon:
+                                      Icon(Icons.remove_red_eye),
+                                      hintStyle: TextStyle(
+                                          color: AppData.hintColor,
+                                          fontSize: 16),
+                                    ),
+                                    textInputAction: TextInputAction.next,
+                                    keyboardType: TextInputType.text,
+                                    controller: textEditingController[6],
+                                    focusNode: fnode6,
+                                    textAlignVertical:
+                                    TextAlignVertical.center,
+                                    inputFormatters: [
+                                      WhitelistingTextInputFormatter(
+                                          RegExp("[a-z A-Z0-9 , @ . /]")),
+                                    ],
+                                    onFieldSubmitted: (value) {
+                                      AppData.fieldFocusChange(context, fnode6, fnode7);
+                                    },
+                                  ),
+                                ),
+                              ),
+                              SizedBox(height: 10),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 8),
+                                child: Container(
+                                  height: 50,
+                                  padding:
+                                  EdgeInsets.symmetric(horizontal: 0),
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius:
+                                    BorderRadius.circular(5),
+                                    border: Border.all(
+                                        color: Colors.black, width: 0.3),
+                                  ),
+                                  child: TextFormField(
+                                    decoration: InputDecoration(
+                                      border: InputBorder.none,
+                                      hintText: "Confirm Password",
+                                      prefixIcon:
+                                      Icon(Icons.remove_red_eye),
+                                      hintStyle: TextStyle(
+                                          color: AppData.hintColor,
+                                          fontSize: 16),
+                                    ),
+                                    textInputAction: TextInputAction.next,
+                                    keyboardType: TextInputType.text,
+                                    controller: textEditingController[7],
+                                    focusNode: fnode7,
+                                    textAlignVertical:
+                                    TextAlignVertical.center,
+                                    inputFormatters: [
+                                      WhitelistingTextInputFormatter(
+                                          RegExp("[a-z A-Z 0-9 @./]")),
+                                    ],
+                                    onFieldSubmitted: (value) {
+                                      AppData.fieldFocusChange(context, fnode7, fnode8);
                                     },
                                   ),
                                 ),
@@ -613,7 +699,6 @@ class AbhaRegFormState extends State<AbhaRegForm> {
                                 ),
                               )
                                   : Container(),
-
                               SizedBox(
                                 height: size.height * 0.01,
                               ),
@@ -1268,7 +1353,7 @@ class AbhaRegFormState extends State<AbhaRegForm> {
     );
   }
 
-  Widget fromField(int index, String hint, bool enb, inputAct, keyType,
+  /*Widget fromField(int index, String hint, bool enb, inputAct, keyType,
       FocusNode currentfn, FocusNode nextFn, String type) {
     // print(index);
     // print(currentfn);
@@ -1313,7 +1398,7 @@ class AbhaRegFormState extends State<AbhaRegForm> {
         },
       ),
     );
-  }
+  }*/
 
   Widget nextButton() {
     return GestureDetector(
@@ -1464,7 +1549,16 @@ class AbhaRegFormState extends State<AbhaRegForm> {
     }else if (textEditingController[0].text != "" &&
         textEditingController[0].text.length <= 2) {
       AppData.showInSnackBar(context, "Please enter a valid first name");
-    }else if (textEditingController[1].text == "" ||
+
+    }  /*else if (textEditingController[3].text == "" ||
+        textEditingController[3].text == null) {
+      AppData.showInSnackBar(context, "Please enter middle name");
+      FocusScope.of(context).requestFocus(fnode1);
+    }else if (textEditingController[3].text != "" &&
+          textEditingController[3].text.length <= 2) {
+      AppData.showInSnackBar(context, "Please enter a valid middle name");
+
+    }*/else if (textEditingController[1].text == "" ||
         textEditingController[1].text == null) {
       AppData.showInSnackBar(context, "Please enter last name");
       FocusScope.of(context).requestFocus(fnode2);
@@ -1482,6 +1576,16 @@ class AbhaRegFormState extends State<AbhaRegForm> {
         textEditingController[2].text == null) {
       AppData.showInSnackBar(context, "Please enter valid phone number");
       FocusScope.of(context).requestFocus(fnode3);
+
+
+   /* } else if (textEditingController[4].text == "" ||
+        textEditingController[4].text == null) {
+      AppData.showInSnackBar(context, "Please enter email id");
+    } else if (textEditingController[4].text != "" &&
+  !AppData.isValidEmail(textEditingController[4].text)) {
+      AppData.showInSnackBar(context, "Please enter a valid e-mail");
+*/
+
     }else if (AbhaRegForm.countryModel == null ||
         AbhaRegForm.countryModel == "") {
       AppData.showInSnackBar(context, "Please select country");
@@ -1510,27 +1614,11 @@ class AbhaRegFormState extends State<AbhaRegForm> {
     }
     else {
 
-      /* widget.model.title = UserSignUpForm.titleModel.key;
-      widget.model.firstname = textEditingController[0].text;
-      widget.model.lastname = textEditingController[1].text;
-      widget.model.userrphoneno = textEditingController[2].text;
-      widget.model.usercountry = UserSignUpForm.countryModel.key;
-      widget.model.countrycode = UserSignUpForm.countryModel.code;
-      widget.model.statecode = UserSignUpForm.stateModel.code;
-      widget.model.userstate = UserSignUpForm.stateModel.key;
-      widget.model.userdistrict = UserSignUpForm.districtModel.key;
-      widget.model.city = UserSignUpForm.cityModel.key;
-      widget.model.usergender = UserSignUpForm.genderModel.key;
-      Navigator.pushNamed(context, "/intrestsignup");
-
-    }*/
       // PatientSignupModel patientSignupModel = PatientSignupModel();
       userModel.fName = textEditingController[0].text;
       userModel.lName = textEditingController[1].text;
       userModel.mobile = textEditingController[2].text;
-      //  userModel.age = (textEditingController[3].text=="")?null:textEditingController[3].text;
-      //  userModel.ageYears = textEditingController[4].text;
-      //userModel.dob =(textEditingController[5].text=="")?null:textEditingController[5].text;
+
       userModel.country = AbhaRegForm.countryModel.key;
       userModel.countryCode = AbhaRegForm.countryModel.code;
       userModel.stateCode = AbhaRegForm.stateModel.code;
@@ -1543,27 +1631,73 @@ class AbhaRegFormState extends State<AbhaRegForm> {
       print("API NAME>>>>" + ApiFactory.USER_REGISTRATION);
       print("TO POST>>>>" + jsonEncode(userModel.toJson()));
 
-      MyWidgets.showLoading(context);
-      widget.model.POSTMETHOD(
-          api: ApiFactory.USER_REGISTRATION,
-          json: userModel.toJson(),
-          fun: (Map<String, dynamic> map) {
-            Navigator.pop(context);
-            String msg = map["message"].toString();
-            if (map[Const.STATUS] == Const.SUCCESS) {
-              setState(() {
-                useridd = map["body"]["key"];
-                password = map["body"]["name"];
-                log("Version>>>" + useridd + "<>>" + password);
-                popup(msg, context,password,useridd);
-              });
-              //popup(context, map[Const.MESSAGE]);
-            } else {
-              AppData.showInSnackBar(context, msg);
-              // AppData.showInSnackBar(context, map[Const.MESSAGE]);
-            }
-          });
+
+       postAbhaServer();
+      /*postOurServer();*/
+
+
+
     }
+  }
+
+
+  postAbhaServer(){
+
+    var postData={
+      "email": textEditingController[4].text.toString(),
+      "firstName": textEditingController[0].text.toString(),
+      "healthId": "",
+      "lastName": textEditingController[1].text.toString(),
+      "middleName":textEditingController[3].text.toString() ,
+      "password": textEditingController[6].text.toString(),
+      "profilePhoto": "",
+      "txnId": widget.model.txnId
+    };
+
+    MyWidgets.showLoading(context);
+    //log("<<<<<<<TESTING>>>>>>>>"+ApiFactory.POST_ABHA_REGISTRATION);
+    log("<<<<<<<Suvam>>>>>>>>"+jsonEncode(postData));
+    widget.model.POSTMETHOD_TOKEN(
+         api: ApiFactory.POST_ABHA_REGISTRATION,
+        //api: "https://healthidsbx.abdm.gov.in/api/v1/registration/aadhaar/createHealthIdWithPreVerified",
+        json: postData,
+        token: "Bearer "+widget.model.abhaTokenModel.accessToken,
+        fun: (Map<String, dynamic> map) {
+          Navigator.pop(context);
+          log("message????????????????"+jsonEncode(map));
+          // String msg = map["message"].toString();
+          if (map.containsKey("details")) {
+            AppData.showInSnackBar(context, (map["details"][0]["message"]??""));
+          } else {
+            AppData.showInSnackBar(context,map["message"]);
+            // AppData.showInSnackBar(context, map[Const.MESSAGE]);
+          }
+        });
+  }
+
+
+  postOurServer(){
+
+    MyWidgets.showLoading(context);
+    widget.model.POSTMETHOD(
+        api: ApiFactory.USER_REGISTRATION,
+        json: userModel.toJson(),
+        fun: (Map<String, dynamic> map) {
+          Navigator.pop(context);
+          String msg = map["message"].toString();
+          if (map[Const.STATUS] == Const.SUCCESS) {
+            setState(() {
+              useridd = map["body"]["key"];
+              password = map["body"]["name"];
+              log("Version>>>" + useridd + "<>>" + password);
+              popup(msg, context,password,useridd);
+            });
+            //popup(context, map[Const.MESSAGE]);
+          } else {
+            AppData.showInSnackBar(context, msg);
+            // AppData.showInSnackBar(context, map[Const.MESSAGE]);
+          }
+        });
   }
 
   // popup(BuildContext context, String message) {
