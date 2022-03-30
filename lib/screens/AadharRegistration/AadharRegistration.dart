@@ -82,6 +82,7 @@ class _AadharRegistrationState extends State<AadharRegistration> {
           log("Response Token>>>" + jsonEncode(map));
           if (map.containsKey("txnId")) {
             widget.model.txnId=map["txnId"];
+            widget.model.abhaadhar=controller[1].text;
             widget.model.abhaTokenModel=abhaTokenModel;
 
             //Navigator.pushNamed(context, "/adharOtp");
@@ -126,12 +127,22 @@ class _AadharRegistrationState extends State<AadharRegistration> {
                   //width: ,
                   height: 180.0,
                 ),
+
               ),
             ),
           ),
+
           Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 8.0,bottom: 9),
+                child: Row(
+                  children: [
+                    Text("Step 1",style: TextStyle(fontSize: 21,fontWeight:FontWeight.bold,),),
+                  ],
+                ),
+              ),
               formField1(1, "Please Enter Aadhar No"),
               SizedBox(height: 8),
               //nextButton(),
@@ -310,7 +321,7 @@ class _AadharRegistrationState extends State<AadharRegistration> {
                   fontSize: 15),*/
             ),
             textInputAction: TextInputAction.next,
-            keyboardType: TextInputType.text,
+            keyboardType: TextInputType.number,
             controller: controller[index],
             //focusNode: fnode1,
             textAlignVertical: TextAlignVertical.top,

@@ -4,21 +4,21 @@ class AbhaResponseModel {
   String healthIdNumber;
   String name;
   String gender;
-  String yearOfBirth;
-  String monthOfBirth;
-  String dayOfBirth;
+  dynamic yearOfBirth;
+  dynamic monthOfBirth;
+  dynamic dayOfBirth;
   String firstName;
   dynamic healthId;
   String lastName;
   String middleName;
-  String stateCode;
-  String districtCode;
+  dynamic stateCode;
+  dynamic districtCode;
   String stateName;
   String districtName;
   String email;
   dynamic kycPhoto;
   String profilePhoto;
-  String mobile;
+  dynamic mobile;
   List<String> authMethods;
   dynamic pincode;
   Tags tags;
@@ -73,7 +73,7 @@ class AbhaResponseModel {
     mobile = json['mobile'];
     authMethods = json['authMethods'].cast<String>();
     pincode = json['pincode'];
-    tags = json['tags'] != null ? new Tags.fromJson(json['tags']) : null;
+    // tags = json['tags'] != null ? new Tags.fromJson(json['tags']) : null;
     newOne = json['new'];
   }
 

@@ -233,10 +233,12 @@ class _AdharOTPPinViewState extends State<AdharOTPPinView>
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
+                _step2,
                 _getVerificationCodeLabel,
                 _getEmailLabel,
                 _getInputField,
                 _getOtpKeyboard,
+
                 // _hideResendButton ? _getTimerText : _getResendButton1(context),
               ],
             ),
@@ -281,6 +283,14 @@ class _AdharOTPPinViewState extends State<AdharOTPPinView>
     );
   }
 
+  get _step2 {
+    return Text("Step 2",
+      /*"Verification Code"*/
+      textAlign: TextAlign.center,
+      style: TextStyle(
+          fontSize: 21.0, color: Colors.white, fontWeight: FontWeight.bold),
+    );
+  }
   // Return "Verification Code" label
   get _getVerificationCodeLabel {
     return Text(

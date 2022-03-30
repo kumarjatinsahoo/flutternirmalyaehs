@@ -87,8 +87,8 @@ class _AbhaMobileVerificationState extends State<AbhaMobileVerification> {
           log("Response Token>>>" + jsonEncode(map));
           if (map.containsKey("txnId")) {
             widget.model.txnId=map["txnId"];
+            widget.model.abhaphoneno=controller[1].text;
             // widget.model.abhaTokenModel=abhaTokenModel;
-
             //Navigator.pushNamed(context, "/adharOtp");
             Navigator.pushNamed(context, "/phoneOtp");
           } else {
@@ -137,6 +137,14 @@ class _AbhaMobileVerificationState extends State<AbhaMobileVerification> {
           Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 8.0,bottom: 9),
+                child: Row(
+                  children: [
+                    Text("Step 3",style: TextStyle(fontSize: 21,fontWeight:FontWeight.bold,),),
+                  ],
+                ),
+              ),
               formField1(1, "Please Enter Mobile No"),
               SizedBox(height: 8),
               //nextButton(),
@@ -315,7 +323,7 @@ class _AbhaMobileVerificationState extends State<AbhaMobileVerification> {
                   fontSize: 15),*/
             ),
             textInputAction: TextInputAction.next,
-            keyboardType: TextInputType.text,
+            keyboardType: TextInputType.number,
             controller: controller[index],
             //focusNode: fnode1,
             textAlignVertical: TextAlignVertical.top,

@@ -205,5 +205,9 @@ TakeMedModel medicineData;
 AbhaTokenModel abhaTokenModel;
 String txnIDAdhar;
 
+String abhaadhar;
+String abhaphoneno;
+
+
 
 }

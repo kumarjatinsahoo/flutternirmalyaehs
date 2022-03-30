@@ -233,6 +233,7 @@ class _PhoneOTPPinViewState extends State<PhoneOTPPinView>
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
+                _step4,
                 _getVerificationCodeLabel,
                 _getEmailLabel,
                 _getInputField,
@@ -280,7 +281,14 @@ class _PhoneOTPPinViewState extends State<PhoneOTPPinView>
       centerTitle: true,
     );
   }
-
+  get _step4 {
+    return Text("Step 4",
+      /*"Verification Code"*/
+      textAlign: TextAlign.center,
+      style: TextStyle(
+          fontSize: 21.0, color: Colors.white, fontWeight: FontWeight.bold),
+    );
+  }
   // Return "Verification Code" label
   get _getVerificationCodeLabel {
     return Text(
