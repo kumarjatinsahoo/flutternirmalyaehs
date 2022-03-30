@@ -14,6 +14,7 @@ import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:user/models/AbhaResponseModel.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/models/UserRegistrationModel.dart';
 import 'package:user/providers/Const.dart';
@@ -329,8 +330,7 @@ class AbhaRegFormState extends State<AbhaRegForm> {
                                 child: SizedBox(
                                   height: 58,
                                   child:
-                                  DropDown.
-                                  networkDropdownGetpartUserundreline1(
+                                  DropDown.networkDropdownGetpartUserundreline1(
                                     // "TITLE"
                                       MyLocalizations.of(context)
                                           .text("TITLE") +"*",
@@ -1666,8 +1666,12 @@ class AbhaRegFormState extends State<AbhaRegForm> {
           Navigator.pop(context);
           log("message????????????????"+jsonEncode(map));
           // String msg = map["message"].toString();
-          if (map.containsKey("details")) {
-            AppData.showInSnackBar(context, (map["details"][0]["message"]??""));
+          if (!map.containsKey("message")) {
+            // AppData.showInSnackBar(context, (map["details"][0]["message"]??""));
+            AbhaResponseModel abhaResponseModel=AbhaResponseModel.fromJson(map);
+            userModel.typeAbha="AADHAR_INTEGRATION";
+            userModel.abhaResponseModel=abhaResponseModel;
+            postOurServer();
           } else {
             AppData.showInSnackBar(context,map["message"]);
             // AppData.showInSnackBar(context, map[Const.MESSAGE]);

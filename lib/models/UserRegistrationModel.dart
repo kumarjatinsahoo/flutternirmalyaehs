@@ -1,3 +1,5 @@
+import 'package:user/models/AbhaResponseModel.dart';
+
 class UserRegistrationModel{
   String title,
       fName,
@@ -11,8 +13,9 @@ class UserRegistrationModel{
       ageYears,
       countryCode,
       stateCode, districtid,cityid,
-      dob,
+      dob,typeAbha,
       profileImageType;
+  AbhaResponseModel abhaResponseModel;
   UserRegistrationModel();
   UserRegistrationModel.fromJson(Map<String, dynamic> json) {
     title = json['title'];
@@ -70,7 +73,9 @@ class UserRegistrationModel{
       "districtid": this.districtid,
       "cityid": this.cityid,
       "profileImageType": this.profileImageType,
-      "profileImage":[this.profileImage??'']
+      "profileImage":[this.profileImage??''],
+      "abhaAuthMethod":this.typeAbha,
+      "resp":abhaResponseModel.toJson()
     };
     return param;
   }
