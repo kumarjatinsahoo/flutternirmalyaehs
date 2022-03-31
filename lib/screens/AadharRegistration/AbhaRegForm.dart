@@ -1609,7 +1609,8 @@ class AbhaRegFormState extends State<AbhaRegForm> {
         textEditingController[0].text.length <= 2) {
       AppData.showInSnackBar(context, "Please enter a valid first name");
 
-    }  /*else if (textEditingController[3].text == "" ||
+    }
+    /*else if (textEditingController[3].text == "" ||
         textEditingController[3].text == null) {
       AppData.showInSnackBar(context, "Please enter middle name");
       FocusScope.of(context).requestFocus(fnode1);
@@ -1617,7 +1618,8 @@ class AbhaRegFormState extends State<AbhaRegForm> {
           textEditingController[3].text.length <= 2) {
       AppData.showInSnackBar(context, "Please enter a valid middle name");
 
-    }*/else if (textEditingController[1].text == "" ||
+    }*/
+    else if (textEditingController[1].text == "" ||
         textEditingController[1].text == null) {
       AppData.showInSnackBar(context, "Please enter last name");
       FocusScope.of(context).requestFocus(fnode2);
@@ -1701,14 +1703,14 @@ class AbhaRegFormState extends State<AbhaRegForm> {
 
 
   postAbhaServer(){
-    
-    /*var testing={
+  /*
+    var testing={
       "token": "eyJhbGciOiJSUzUxMiJ9.eyJzdWIiOiIxNy01NzY0LTQxNjUtODI2NyIsImNsaWVudElkIjoiU0JYXzAwMDAzNSIsInN5c3RlbSI6IkFCSEEtTiIsIm1vYmlsZSI6Ijg5MDg0MDEzNjMiLCJleHAiOjE2NDg1NTcyNDgsImhlYWx0aElkTnVtYmVyIjoiMTctNTc2NC00MTY1LTgyNjciLCJpYXQiOjE2NDg1NTU0NDh9.GQf_YPLT-A75b1UaXjHb9u9cNe4YZf47_jTF4VgxQ2704MnXbADXbRJCzh9G4tedA0Q61E_QRgvIPsyLI2KVO7yadLSssyAKri5SPYC_YI-IwIek4LbC2p_SMtSSX-WwmiZ5iHapl6x_0DDsQ5dTvKLVYscDCBq5u1Dsnrc07pewd0aDn23Dh0-cxMswvrZnyj-Y03jpnYFGPOKBnJYypM_8jXGpFNr6xQZYZDTAVV12PVT8OEyI893LHZI1jjHx6ziudOmGyICJ3jmBvpJ3ZoSuxsaHJ7ObQ_MkcRXLQMqkK6J9O-IGd8y_2iVbwcAbqERs9Dtk5g_QNXuElOHnOHgZIYM3nTD7tBuEvmIM2zK9xtZGQTrz9PHQzR_ukHiQp7ZF2cvQeyLuZbP5gvmKENRKA_3IYZxMKn4nJ8IF2iFGhT9fNzPY_zh7us4yhZWDpX1dcvSIxeImY4rgdqOfqDkPjwBxv_HOLZODLdPT6f4Nlv761wDI4L0txCqF-qtgdUfe4_QIzMVAbhKSgG1Bt7X9VfV5Qq-U6RkiosxNxfEJtOINr9Elt50XNvhv7Xw41ePWNdcyezqMgcl_Ro0KxJ5w_jzb2VNMpj2d-OKeSCZkcnVPbKAcVCRBQcPOmSAzU5y4oGO8I7sJqlXONuGRpuldjWa6Ol9VXQnwtftQA1U",
       "refreshToken": "eyJhbGciOiJSUzUxMiJ9.eyJzdWIiOiIxNy01NzY0LTQxNjUtODI2NyIsImNsaWVudElkIjoiU0JYXzAwMDAzNSIsInN5c3RlbSI6IkFCSEEtTiIsInR5cCI6IlJlZnJlc2giLCJleHAiOjE2NDg5ODc0NDgsImlhdCI6MTY0ODU1NTQ0OH0.APbiAWB6yY2OV2bfPkV-BybPRpcJLh4kNpYNWB6zW045r_47xH5yXtAzJbxWCJJcoiktLfvrAvqtheytRbnE7aUE7RkxznksidSx_A9KprcfsNdHlebIOihgSVz8URpPjnAysfdXEZbtGTD3RZjM7EU7flPbl00uNPIvFszRv1hRCodr2A6vlmB0WX3y9Goa4890qYARotO_x_ND7_KL0Tnp8wDQEhzqWWuo41yi852Nsg5f8yJTdIz2uTW3cDyx_gZAfDO6F1_LhKHuiI8pqzAv7SrouFVsAkRAJ2nrBHM5O3xg4AUK1HRF-nWbaCJSiHnH9a8eOjgLmVJsApUZXHlMif2mwEE--U3nyogEYKTTX_Y127eAholCIYUuDoIMrPRAoLWNvTHheqqaDaFKOITsSwGcMgewWGDz-VGvui_SCNgoh6CNPgs6JuEHi0yr78mojjFJKaNImktwkqZr3aMIZyibiQKs82ZGBUoL7bsUYMdohgy7ipKv_p4KUQoDVJbUjND2RHm9p4NGKeYRX3lWiPnIYmZ3tnjb1NOfHvXR1TSf6bISUom2YsEoS5Vu08aXJ7YZnSqlc9VJQv9JuO-96qKDZ081iMONtZMM37NUmxz6hxoR9dOl9FpaVYNjezACSi4SyLWSBvB4Wu2l7aF4Vf2uDJEnh4sxkoyaln0",
       "healthIdNumber": "17-5764-4165-8267",
       "name": "Sanjaya Jena",
       "gender": "M",
-      "yearOfBirth": "1997",
+      "yearOfBirth": 1997,
       "monthOfBirth": 5,
       "dayOfBirth": 15,
       "firstName": "Sanjaya",

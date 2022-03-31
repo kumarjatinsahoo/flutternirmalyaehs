@@ -10,6 +10,7 @@ import 'package:user/providers/SharedPref.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/screens/AadharRegistration/AadharRegistration.dart';
+import 'package:user/screens/AadharRegistration/AbhaAutoRegForm.dart';
 import 'package:user/screens/AadharRegistration/AbhaMobileVerification.dart';
 import 'package:user/screens/AadharRegistration/AbhaRegForm.dart';
 // import 'package:user/screens/AadharRegistration/AdharOTPPage.dart';
@@ -1202,6 +1203,9 @@ class _MyAppState extends State<MyApp> {
                     model: _model,
                   ),
               '/abhamobileverification': (context) => AbhaMobileVerification(
+                    model: _model,
+                  ),
+              '/abhaautoregform': (context) => AbhaAutoRegForm(
                     model: _model,
                   ),
 

@@ -8,6 +8,8 @@ import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/AbhaTokenModel.dart';
+import 'package:user/models/KeyvalueModel.dart';
+import 'package:user/providers/DropDown.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
@@ -21,10 +23,13 @@ class AbhaMobileVerification extends StatefulWidget {
 
   final MainModel model;
 
-  const AbhaMobileVerification({
-    Key key,
-    this.model,
-  }) : super(key: key);
+  const AbhaMobileVerification({Key key, this.model,}) : super(key: key);
+
+  static KeyvalueModel countryModel = null;
+  static KeyvalueModel stateModel = null;
+  static KeyvalueModel districtModel = null;
+  static KeyvalueModel cityModel = null;
+
 
   @override
   _AbhaMobileVerificationState createState() => _AbhaMobileVerificationState();
@@ -102,6 +107,11 @@ class _AbhaMobileVerificationState extends State<AbhaMobileVerification> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    AbhaMobileVerification.countryModel = null;
+    AbhaMobileVerification.stateModel = null;
+    AbhaMobileVerification.districtModel = null;
+    AbhaMobileVerification.cityModel = null;
+
     // getSessionAbha();
   }
 
@@ -120,9 +130,9 @@ class _AbhaMobileVerificationState extends State<AbhaMobileVerification> {
       child: Stack(
         children: [
           Padding(
-            padding: const EdgeInsets.only(bottom: 80),
+            padding: const EdgeInsets.only(top: 60),
             child: Align(
-              alignment: Alignment.center,
+              alignment: Alignment.topCenter,
               child: Padding(
                 padding: const EdgeInsets.only(left: 60.0, right: 60.0),
                 child: Image.asset(
@@ -146,7 +156,125 @@ class _AbhaMobileVerificationState extends State<AbhaMobileVerification> {
                 ),
               ),
               formField1(1, "Please Enter Mobile No"),
-              SizedBox(height: 8),
+              SizedBox(height: 2),
+              Padding(
+                padding: const EdgeInsets.only(
+                    left: 0, right: 0),
+                child: SizedBox(
+                  height: 58,
+                  child:DropDown.
+                  networkDropdownGetpartUserundreline1(
+                    // "Country",
+                      MyLocalizations.of(context)
+                          .text("COUNTRY")+"*" ,
+                      ApiFactory.COUNTRY_API,
+                      "countryU",
+                      Icons.location_on_rounded,
+                      23.0, (KeyvalueModel data) {
+                    setState(() {
+                      print(ApiFactory.COUNTRY_API);
+                      AbhaMobileVerification.countryModel = data;
+                      AbhaMobileVerification.stateModel = null;
+                      AbhaMobileVerification.districtModel = null;
+                      AbhaMobileVerification.cityModel = null;
+                    });
+                  }),
+                ),
+              ),
+
+              SizedBox(
+                height: 2,
+              ),
+
+              (AbhaMobileVerification.countryModel != null)
+                  ? Padding(
+                padding: const EdgeInsets.only(
+                    left: 0, right: 0, bottom: 0),
+                child: SizedBox(
+                  height: 58,
+                  child: DropDown.countryList(
+                    //"State",
+                      MyLocalizations.of(context)
+                          .text("STATE") +"*",
+                      ApiFactory.STATE_API +
+                          AbhaMobileVerification.countryModel.key,
+                      "stateabh",
+                      Icons.location_on_rounded,
+                      23.0,
+                          (KeyvalueModel data) {
+                        setState(() {
+                          AbhaMobileVerification.stateModel = data;
+                          AbhaMobileVerification.districtModel = null;
+                          AbhaMobileVerification.cityModel = null;
+                          /*userModel.state=data.key;
+                                      userModel.stateCode=data.code;*/
+                        });
+                      }),
+                ),
+              )
+                  : Container(),
+              SizedBox(
+                height: 2,
+              ),
+
+              (AbhaMobileVerification.stateModel != null)
+                  ?Padding(
+                padding: const EdgeInsets.only(
+                    left: 0, right: 0),
+                child: SizedBox(
+                  height: 58,
+                  child: DropDown.countryList(
+                    //"District",
+                      MyLocalizations.of(context)
+                          .text("DIST")+"*" ,
+                      ApiFactory.DISTRICT_API +
+                          AbhaMobileVerification.stateModel.key,
+                      "districtabh",
+                      Icons.location_on_rounded,
+                      23.0, (KeyvalueModel data) {
+                    setState(() {
+                      print(ApiFactory.COUNTRY_API);
+                      AbhaMobileVerification.districtModel = data;
+                      AbhaMobileVerification.cityModel = null ;
+                    });
+                  }),
+                ),
+              )
+                  : Container(),
+              SizedBox(
+                height: 2,
+              ),
+
+              (AbhaMobileVerification.districtModel != null)
+                  ? Padding(
+                padding: const EdgeInsets.only(
+                    left: 0, right: 0, bottom: 0),
+                child: SizedBox(
+                  height: 58,
+                  child: DropDown.countryList(
+                    //"City",
+                      MyLocalizations.of(context)
+                          .text("CITY") +"*",
+                      ApiFactory.CITY_API +
+                          AbhaMobileVerification
+                              .districtModel.key,
+                      "cityabh",
+                      Icons.location_on_rounded,
+                      23.0,
+                          (KeyvalueModel data) {
+                        setState(() {
+                          AbhaMobileVerification.cityModel = data;
+                          /*userModel.state=data.key;
+                                      userModel.stateCode=data.code;*/
+                        });
+                      }),
+                ),
+              )
+                  : Container(),
+
+              SizedBox(
+                height: 15,
+              ),
               //nextButton(),
               InkWell(
                 onTap: () {
@@ -302,13 +430,13 @@ class _AbhaMobileVerificationState extends State<AbhaMobileVerification> {
       String hint,
       ) {
     return Padding(
-      padding: const EdgeInsets.only(left: 3, right: 3),
+      padding: const EdgeInsets.only(left: 8, right: 8),
       child: Container(
-        height: 45,
+        height: 50,
         padding: EdgeInsets.symmetric(horizontal: 5),
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(25.0),
+          borderRadius: BorderRadius.circular(5.0),
           border: Border.all(color: Colors.black, width: 0.3),
         ),
         child: Padding(

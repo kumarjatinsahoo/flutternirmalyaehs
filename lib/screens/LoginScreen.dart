@@ -1132,9 +1132,14 @@ class _LoginScreenState extends State<LoginScreen> {
                       trailing: Icon(Icons.arrow_right),
                     ),
                   ),
-                  ListTile(
-                    title: Text("BY PAN "),
-                    trailing: Icon(Icons.arrow_right),
+                  InkWell(
+                    onTap: (){
+                      Navigator.pushNamed(context, "/abhaautoregform");
+                    },
+                    child: ListTile(
+                      title: Text("BY PAN "),
+                      trailing: Icon(Icons.arrow_right),
+                    ),
                   ),
                   ListTile(
                     title: Text("BY MOBILE "),

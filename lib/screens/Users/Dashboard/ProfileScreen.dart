@@ -3398,8 +3398,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       children: [
         Padding(
           padding: const EdgeInsets.only(left: 0, right: 5),
-          child: Text(
-            hint,
+          child: Text(hint,
             style: TextStyle(
                 color: Colors.black,
                 fontSize: 13,

@@ -8,6 +8,7 @@ import 'package:user/models/DoctoreModel.dart';
 import 'package:user/models/ShareApntModel.dart';
 import 'package:user/models/TimeScheduleModel.dart';
 import 'package:user/providers/api_factory.dart';
+import 'package:user/screens/AadharRegistration/AbhaMobileVerification.dart';
 import 'package:user/screens/Ambulance/Registration/ambulanceSignUpForm2.dart';
 import 'package:user/screens/Doctor/Dashboard/DocMyProfile.dart';
 import 'package:user/screens/Doctor/registartion/DoctorSignUpForm4.dart';
@@ -2366,6 +2367,20 @@ class DropDown {
       case "cityU":
         return UserSignUpForm.cityModel;
         break;
+
+        case "countryabh":
+        return AbhaMobileVerification.countryModel;
+        break;
+         case "stateabh":
+        return AbhaMobileVerification.stateModel;
+        break;
+         case "districtabh":
+        return AbhaMobileVerification.districtModel;
+        break;
+         case "cityabh":
+        return AbhaMobileVerification.cityModel;
+        break;
+
       case "stateDA":
         return DoctorconsultationPage.stateModel;
         break;
@@ -2963,6 +2978,21 @@ class DropDown {
           case "cityU":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
+            case "countryabh":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+            case "stateabh":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+            case "districtabh":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+            case "cityabh":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+
+
+
           case "stateDA":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
@@ -4526,6 +4556,9 @@ class DropDown {
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
           case "countryU":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+            case "countryabh":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
           case "organisation":
