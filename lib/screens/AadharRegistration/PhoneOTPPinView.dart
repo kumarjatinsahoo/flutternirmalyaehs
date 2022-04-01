@@ -141,7 +141,8 @@ class _PhoneOTPPinViewState extends State<PhoneOTPPinView>
             // AppData.showInSnackDone(context, "OTP get successfully");
             widget.model.txnId=map["txnId"];
             //Navigator.pushNamed(context, "/abharegform");
-            Navigator.pushNamed(context, "/abhaautoregform");
+            // Navigator.pushNamed(context, "/abhaautoregform");
+            Navigator.pushNamed(context, "/finalAdharStep");
           } else {
             AppData.showInSnackBar(context, "Please enter valid OTP");
           }

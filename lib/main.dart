@@ -1328,6 +1328,9 @@ class _MyAppState extends State<MyApp> {
               '/phoneOtp': (context) => PhoneOTPPinView(
                 model: _model,
               ),
+              '/finalAdharStep': (context) => AbhaAutoRegForm(
+                model: _model,
+              ),
 
           '/testDetailslist': (context) => TestDetailslist(
           model: _model,

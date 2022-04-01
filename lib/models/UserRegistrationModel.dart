@@ -15,6 +15,7 @@ class UserRegistrationModel{
       stateCode, districtid,cityid,
       dob,typeAbha,
       profileImageType;
+  String aadharNo;
   AbhaResponseModel abhaResponseModel;
   UserRegistrationModel();
   UserRegistrationModel.fromJson(Map<String, dynamic> json) {
@@ -74,6 +75,7 @@ class UserRegistrationModel{
       "profileImageType": this.profileImageType,
       "profileImage":[this.profileImage??''],
       "abhaAuthMethod":this.typeAbha,
+      "aadharNo":this.aadharNo,
       "resp":abhaResponseModel.toJson()
     };
     return param;
