@@ -24,6 +24,7 @@ static String defultImgUrll="https://pixabay.com/photos/tree-sunset-clouds-sky-s
   static Color BG1RED = Color(0xFFFEF7F8);
   static Color BG2BLUE = Color(0xFFF5FAFE);
   static Color klightblurColor = Color(0xFFF0F8FF);
+  static Color kappbarColor = Color(0xFFF2F2F2);
 
   static Color green1 = Color(0xFFE5FAEB);
   static Color green2 = Color(0xFFBCF9C5);

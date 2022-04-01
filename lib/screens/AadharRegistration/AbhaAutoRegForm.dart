@@ -47,11 +47,12 @@ class _AbhaAutoRegFormState extends State<AbhaAutoRegForm> {
         child: Center(
           child: Text(
             "Close",
-            style: TextStyle(fontSize: 16, color: Colors.red),
+            style: TextStyle(fontSize: 16, color: Colors.blue,fontWeight: FontWeight.bold),
           ),
         ),
       ),
       body: Container(
+        color: Colors.white,
         child: SingleChildScrollView(
           child: Column(
             children: [
@@ -70,7 +71,9 @@ class _AbhaAutoRegFormState extends State<AbhaAutoRegForm> {
                   ),
                 ),
               ),*/
-              SizedBox(height: 40),
+              Container(
+                  child: Image.asset("assets/congratulation.gif",fit: BoxFit.fill,)),
+              SizedBox(height: 20,),
               Align(
                 alignment: Alignment.topCenter,
                 child: Container(
@@ -163,42 +166,52 @@ class _AbhaAutoRegFormState extends State<AbhaAutoRegForm> {
                       title: Text("First Name"),
                       subtitle: Text("First Name"),
                     ),
+                    Divider(thickness: 2,),
                     ListTile(
                       title: Text("Middle Name"),
                       subtitle: Text("Middle Name"),
                     ),
+                    Divider(thickness: 2,),
                     ListTile(
                       title: Text("Last Name"),
                       subtitle: Text("Last Name"),
                     ),
+                    Divider(thickness: 2,),
                     ListTile(
                       title: Text("Date Of Birth"),
                       subtitle: Text("DOB"),
                     ),
+                    Divider(thickness: 2,),
                     ListTile(
                       title: Text("Gender"),
                       subtitle: Text("Gender"),
                     ),
+                    Divider(thickness: 2,),
                     ListTile(
                       title: Text("Aadhar No."),
                       subtitle: Text("Aadhar No."),
                     ),
+                    Divider(thickness: 2,),
                     ListTile(
                       title: Text("Mobile No."),
                       subtitle: Text("Mobile No."),
                     ),
+                    Divider(thickness: 2,),
                     ListTile(
                       title: Text("Country"),
                       subtitle: Text("Country"),
                     ),
+                    Divider(thickness: 2,),
                     ListTile(
                       title: Text("State"),
                       subtitle: Text("State"),
                     ),
+                    Divider(thickness: 2,),
                     ListTile(
                       title: Text("Dist"),
                       subtitle: Text("Dist"),
                     ),
+                    Divider(thickness: 2,),
                     ListTile(
                       title: Text("City"),
                       subtitle: Text("City"),
