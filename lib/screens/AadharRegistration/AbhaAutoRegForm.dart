@@ -100,8 +100,8 @@ class _AbhaAutoRegFormState extends State<AbhaAutoRegForm> {
                 : "Female";
             userModel.abhaResponseModel = abhaResponseModel;
 
-            log(">>>>>>>>PRINT LOGO>>>>>>" +
-                jsonEncode(abhaResponseModel.toJson()));
+            // log(">>>>>>>>PRINT LOGO>>>>>>\n\n\n\n\n\n\n\n\n\n\n\n\n" + jsonEncode(abhaResponseModel.toJson())+"\n\n\n\n\n\n\n\n\n\n\n\n\n");
+            log(">>>>>>>>PRINT AHBHH>>>>>>\n\n\n\n\n\n\n\n\n\n\n\n\n" + jsonEncode(userModel.toJson())+"\n\n\n\n\n\n\n\n\n\n\n\n\n");
 
             // postOurServer();
             setState(() {});

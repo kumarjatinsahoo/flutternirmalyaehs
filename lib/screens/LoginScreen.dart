@@ -1134,7 +1134,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   InkWell(
                     onTap: (){
-                      Navigator.pushNamed(context, "/abhaautoregform");
+                      //Navigator.pushNamed(context, "/abhaautoregform");
                     },
                     child: ListTile(
                       title: Text("BY PAN "),

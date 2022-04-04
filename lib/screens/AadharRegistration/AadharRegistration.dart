@@ -306,7 +306,7 @@ class _AadharRegistrationState extends State<AadharRegistration> {
         padding: EdgeInsets.symmetric(horizontal: 5),
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(25.0),
+          borderRadius: BorderRadius.circular(5.0),
           border: Border.all(color: Colors.black, width: 0.3),
         ),
         child: Padding(
