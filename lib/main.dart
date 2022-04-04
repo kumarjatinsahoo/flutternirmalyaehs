@@ -15,6 +15,7 @@ import 'package:user/screens/AadharRegistration/AbhaMobileVerification.dart';
 import 'package:user/screens/AadharRegistration/AbhaRegForm.dart';
 // import 'package:user/screens/AadharRegistration/AdharOTPPage.dart';
 import 'package:user/screens/AadharRegistration/AdharOTPPinView.dart';
+import 'package:user/screens/AadharRegistration/PANRegistration/AbhaPAN.dart';
 import 'package:user/screens/AadharRegistration/PhoneOTPPinView.dart';
 import 'package:user/screens/Admin/Admin.dart';
 import 'package:user/screens/Ambulance/Dashboard/AcceptAmbulance.dart';
@@ -1208,6 +1209,14 @@ class _MyAppState extends State<MyApp> {
               '/abhaautoregform': (context) => AbhaAutoRegForm(
                     model: _model,
                   ),
+              '/finalAdharStep': (context) => AbhaAutoRegForm(
+                model: _model,
+              ),
+              '/abhapan': (context) => AbhaPAN(
+                model: _model,
+              ),
+
+
 
 ////////////////////////////////////////////////////////////////////////////////
               // syndicate partner
@@ -1328,9 +1337,7 @@ class _MyAppState extends State<MyApp> {
               '/phoneOtp': (context) => PhoneOTPPinView(
                 model: _model,
               ),
-              '/finalAdharStep': (context) => AbhaAutoRegForm(
-                model: _model,
-              ),
+
 
           '/testDetailslist': (context) => TestDetailslist(
           model: _model,
