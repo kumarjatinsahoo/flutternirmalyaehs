@@ -2,7 +2,9 @@ import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/KeyvalueModel.dart';
+import 'package:user/models/PatientRegModel.dart';
 import 'package:user/providers/Aadhar.dart';
+import 'package:user/providers/Const.dart';
 import 'package:user/providers/DropDown.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
@@ -30,6 +32,7 @@ class PatientRegistration3 extends StatefulWidget {
 class _PatientRegistration3State extends State<PatientRegistration3> {
   var selectedMinValue;
   File pathUsr = null;
+  PatientRegModel patientRegModel;
 
   List<TextEditingController> textEditingController = [
     new TextEditingController(),
@@ -39,6 +42,27 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
   ];
   String email;
 
+  @override
+  void initState() {
+    // TODO: implement initState
+    callApi();
+
+  }
+  callApi(){
+    widget.model.GETMETHODCALL(
+        api: ApiFactory.PATIENT_REG_ADDRESS+widget.model.loginResponse1.body.user,
+        //token: widget.model.loginResponse.body.token,
+        fun: (Map<String, dynamic> map){
+          if (map[Const.CODE] == Const.SUCCESS) {
+            patientRegModel=PatientRegModel.fromJson(map);
+          }else {
+            setState(() {
+              //isDataNoFound = true;
+              // AppData.showInSnackBar(context, msg);
+            });
+          }
+    });
+  }
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;

@@ -542,7 +542,8 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Colors.grey[200],
+      // backgroundColor: Colors.grey[200],
+      backgroundColor: Colors.white,
       appBar: AppBar(
         /* title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -2042,8 +2043,8 @@ class MyPage1Widget extends StatelessWidget {
                         Navigator.pushNamed(context, "/medicalrecordpage");
                        // _displayTextInputDialog(context,1);
                       },
-                      color: AppData.BG2BLUE,
-                      bordercolor: AppData.BG2BLUE,
+                      /*color: AppData.BG2BLUE,
+                      bordercolor: AppData.BG2BLUE,*/
                       // ,
                     ),
                     SizedBox(
@@ -2120,8 +2121,8 @@ class MyPage1Widget extends StatelessWidget {
                         /*  AppData.showSnack(
                                     context, "Coming soon", Colors.green);*/
                       },
-                      color: AppData.BG1RED,
-                      bordercolor: AppData.BG1RED,
+                      /*color: AppData.BG1RED,
+                      bordercolor: AppData.BG1RED,*/
                       //size: (size.width - 130) / 3,
                     ),
                     SizedBox(
@@ -2208,8 +2209,8 @@ class MyPage1Widget extends StatelessWidget {
                               context, "/findHealthcareService");
                           //AppData.showInSnackBar(context, "Coming soon");
                         },
-                        color: AppData.BG1RED,
-                        bordercolor: AppData.BG1RED,
+                      /*  color: AppData.BG1RED,
+                        bordercolor: AppData.BG1RED,*/
                         //size: (size.width - 130) / 3,
                         fun2: () {
                           Navigator.pushNamed(context, "/covidMobile");
@@ -2249,8 +2250,8 @@ class MyPage1Widget extends StatelessWidget {
                         // AppData.showSnack(
                         //   context, "Coming soon", Colors.green);
                       },
-                      color: AppData.BG2BLUE,
-                      bordercolor: AppData.BG2BLUE,
+                      /*color: AppData.BG2BLUE,
+                      bordercolor: AppData.BG2BLUE,*/
                       //size: (size.width - 130) / 3,
                     ),
                     SizedBox(
@@ -2285,8 +2286,8 @@ class MyPage1Widget extends StatelessWidget {
                         //AppData.showInSnackDone(context, "Coming Soon");
                         Navigator.pushNamed(context, "/bookAmbulancelist");
                       },
-                      color: AppData.BG1RED,
-                      bordercolor: AppData.BG1RED,
+                     /* color: AppData.BG1RED,
+                      bordercolor: AppData.BG1RED,*/
                       //size: (size.width - 130) / 3,
                     ),
                     SizedBox(
@@ -2355,8 +2356,8 @@ class MyPage1Widget extends StatelessWidget {
                         // Navigator.pushNamed(context, "/healthCheckup");
                       },
                       iconColor: AppData.kPrimaryBlueColor,
-                      color: AppData.BG2BLUE,
-                      bordercolor: AppData.BG2BLUE,
+                      /*color: AppData.BG2BLUE,
+                      bordercolor: AppData.BG2BLUE,*/
                       //size: (size.width - 130) / 3,
                     ),
                     SizedBox(
@@ -2393,8 +2394,8 @@ class MyPage1Widget extends StatelessWidget {
                         // AppData.showSnack(
                         //     context, "Coming soon", Colors.green);
                       },
-                      color: AppData.BG1RED,
-                      bordercolor: AppData.BG1RED,
+                      /*color: AppData.BG1RED,
+                      bordercolor: AppData.BG1RED,*/
                       size: (size.width - 130) / 3,
                     ),
                     SizedBox(
@@ -2441,8 +2442,8 @@ class MyPage1Widget extends StatelessWidget {
                         // AppData.showSnack(
                         //     context, "Coming soon", Colors.green);
                       },
-                      color: AppData.BG2BLUE,
-                      bordercolor: AppData.BG2BLUE,
+                     /* color: AppData.BG2BLUE,
+                      bordercolor: AppData.BG2BLUE,*/
                       //size: (size.width - 130) / 3,
                     ),
                     SizedBox(
@@ -2489,8 +2490,8 @@ class MyPage1Widget extends StatelessWidget {
                         // AppData.showSnack(
                         //     context, "Coming soon", Colors.green);
                       },
-                      color: AppData.BG1RED,
-                      bordercolor: AppData.BG1RED,
+                      /*color: AppData.BG1RED,
+                      bordercolor: AppData.BG1RED,*/
                       size: (size.width - 130) / 3,
                     ),
                     SizedBox(
@@ -2570,8 +2571,8 @@ class MyPage1Widget extends StatelessWidget {
                         // AppData.showSnack(
                         //     context, "Coming soon", Colors.green);
                       },
-                      color: AppData.BG2BLUE,
-                      bordercolor: AppData.BG2BLUE,
+                      /*color: AppData.BG2BLUE,
+                      bordercolor: AppData.BG2BLUE,*/
                       //size: (size.width - 130) / 3,
                     ),
                     SizedBox(
@@ -2642,8 +2643,8 @@ class MyPage1Widget extends StatelessWidget {
                       // AppData.showSnack(
                       //     context, "Coming soon", Colors.green);
                     },
-                    color: AppData.BG1RED,
-                    bordercolor: AppData.BG1RED,
+                   /* color: AppData.BG1RED,
+                    bordercolor: AppData.BG1RED,*/
                     size: (size.width - 130) / 3,
                   ),
                   SizedBox(
@@ -2722,7 +2723,7 @@ class MyPage1Widget extends StatelessWidget {
               bottomRight: Radius.circular(10.0),
             ),*/
             shape: BoxShape.circle,
-            color: color,
+            color: Colors.white,
             border: Border.all(
               color: AppData.kPrimaryBlueColor,
               width: 1.0,
@@ -3242,7 +3243,7 @@ class MyPage1Widget extends StatelessWidget {
               bottomLeft: Radius.circular(10.0),
               bottomRight: Radius.circular(10.0),
             ),*/
-            color: color,
+            color: Colors.white,
             border: Border.all(
               color: AppData.kPrimaryRedColor,
               width: 1.0,

@@ -8,7 +8,7 @@ class ApiFactory {
 
   static bool isProduction = false;
   static bool isLocal = false;
-  static String LOCAL_URL = "http://192.168.0.138:8063/nirmalyaRest/api/";
+  static String LOCAL_URL = "http://192.168.0.139:8062/nirmalyaRest/api/";
 
   static String REG_DEVICE = "https://cca.medtel.in/Ziniai/manageDeviceId";
   static String MAIN_URL = (!isLocal)
@@ -144,6 +144,11 @@ class ApiFactory {
   static String STATE_API = MAIN_URL + 'get-state-list?country=';
   static String DISTRICT_API = MAIN_URL + 'get-district-list?state=';
   static String CITY_API = MAIN_URL + 'get-city-list?district=';
+
+
+  static String PATIENT_REG_ADDRESS = MAIN_URL + 'view-lab-technician-details?labTechId=';
+
+
   static String DOCTOOR_API = MAIN_URL + 'get-doctor-list?type=';
   static String HOSPITAL_API = MAIN_URL + 'get-hospital-list?doctor=';
   static String POST_ORGAN_DONOR = MAIN_URL + 'post-organ-donor-details';

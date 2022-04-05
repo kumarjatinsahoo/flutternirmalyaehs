@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'dart:developer';
+import 'dart:developer'as dev;
 
 import 'package:date_format/date_format.dart';
 import 'package:flutter/cupertino.dart';
@@ -66,8 +66,8 @@ class _AbhaAutoRegFormState extends State<AbhaAutoRegForm> {
     };
 
     // MyWidgets.showLoading(context);
-    //log("<<<<<<<TESTING>>>>>>>>"+ApiFactory.POST_ABHA_REGISTRATION);
-    log("<<<<<<<Suvam>>>>>>>>" + jsonEncode(postData));
+    //dev.log("<<<<<<<TESTING>>>>>>>>"+ApiFactory.POST_ABHA_REGISTRATION);
+    dev.log("<<<<<<<Suvam>>>>>>>>" + jsonEncode(postData));
     widget.model.POSTMETHOD_TOKEN(
         api: ApiFactory.POST_ABHA_REGISTRATION,
         //api: "https://healthidsbx.abdm.gov.in/api/v1/registration/aadhaar/createHealthIdWithPreVerified",
@@ -75,7 +75,7 @@ class _AbhaAutoRegFormState extends State<AbhaAutoRegForm> {
         token: "Bearer " + widget.model.abhaTokenModel.accessToken,
         fun: (Map<String, dynamic> map) {
           // Navigator.pop(context);
-          log("message????????????????" + jsonEncode(map));
+          dev.log("message????????????????" + jsonEncode(map));
           // String msg = map["message"].toString();
           if (!map.containsKey("message")) {
             // AppData.showInSnackBar(context, (map["details"][0]["message"]??""));
@@ -102,9 +102,12 @@ class _AbhaAutoRegFormState extends State<AbhaAutoRegForm> {
                 ? "Male"
                 : "Female";
             userModel.abhaResponseModel = abhaResponseModel;
+            userModel.title =(abhaResponseModel.gender.toLowerCase() == "m")
+                ? "Mr"
+                : "Ms";
 
-            // log(">>>>>>>>PRINT LOGO>>>>>>\n\n\n\n\n\n\n\n\n\n\n\n\n" + jsonEncode(abhaResponseModel.toJson())+"\n\n\n\n\n\n\n\n\n\n\n\n\n");
-            log(">>>>>>>>PRINT AHBHH>>>>>>\n\n\n\n\n\n\n\n\n\n\n\n\n" + jsonEncode(userModel.toJson())+"\n\n\n\n\n\n\n\n\n\n\n\n\n");
+            // dev.log(">>>>>>>>PRINT dev.logO>>>>>>\n\n\n\n\n\n\n\n\n\n\n\n\n" + jsonEncode(abhaResponseModel.toJson())+"\n\n\n\n\n\n\n\n\n\n\n\n\n");
+            dev.log(">>>>>>>>PRINT AHBHH>>>>>>\n\n\n\n\n\n\n\n\n\n\n\n\n" + jsonEncode(userModel.toJson())+"\n\n\n\n\n\n\n\n\n\n\n\n\n");
 
             postOurServer(userModel);
             setState(() {});
@@ -129,7 +132,7 @@ class _AbhaAutoRegFormState extends State<AbhaAutoRegForm> {
             setState(() {
                useridd = map["body"]["key"];
                password = map["body"]["name"];
-              log("Version>>>" + useridd + "<>>" + password);
+              dev.log("Version>>>" + useridd + "<>>" + password);
               //popup(msg, context,password,useridd);
             });
             //popup(context, map[Const.MESSAGE]);
@@ -146,7 +149,7 @@ class _AbhaAutoRegFormState extends State<AbhaAutoRegForm> {
       bottomNavigationBar: InkWell(
         onTap: (){
           Navigator.of(context).pushNamedAndRemoveUntil(
-              '/login', (Route<dynamic> route) => false);
+              '/dev.login', (Route<dynamic> route) => false);
         },
         child: Container(
           height: 60,
@@ -173,7 +176,7 @@ class _AbhaAutoRegFormState extends State<AbhaAutoRegForm> {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 60.0, right: 60.0),
                     child: Image.asset(
-                      "assets/logo1.png",
+                      "assets/dev.logo1.png",
                       fit: BoxFit.fitWidth,
                       //width: ,
                       height: 150.0,
