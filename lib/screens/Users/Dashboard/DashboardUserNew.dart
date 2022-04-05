@@ -2015,7 +2015,6 @@ class MyPage1Widget extends StatelessWidget {
                   },
                   color: AppData.BG2BLUE,
                   bordercolor: AppData.BG2BLUE,
-                  // ,
                 ),
                 SizedBox(
                   height: 5,
@@ -2028,6 +2027,7 @@ class MyPage1Widget extends StatelessWidget {
                     MyLocalizations.of(context).text("MEDICAL_RECORD"),
                     textAlign: TextAlign.center,
                     //overflow: TextOverflow.ellipsis,
+                   // style: TextStyle(fontSize: 30),
                   ),
                 ),
               ]):
@@ -2056,6 +2056,7 @@ class MyPage1Widget extends StatelessWidget {
                       child: Text(
                         MyLocalizations.of(context).text("MEDICAL_RECORD"),
                         textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 12),
                         //overflow: TextOverflow.ellipsis,
                       ),
                     ),
@@ -2095,6 +2096,7 @@ class MyPage1Widget extends StatelessWidget {
                       child: Text(
                         MyLocalizations.of(context).text("INSURANCE"),
                         textAlign: TextAlign.center,
+
                         //overflow: TextOverflow.ellipsis,
                       ),
                     ),
@@ -2132,6 +2134,7 @@ class MyPage1Widget extends StatelessWidget {
                       child: Text(
                         MyLocalizations.of(context).text("INSURANCE"),
                         textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 12),
                         //overflow: TextOverflow.ellipsis,
                       ),
                     ),
@@ -2160,8 +2163,8 @@ class MyPage1Widget extends StatelessWidget {
                           Navigator.pushNamed(context, "/emergencyHelp");
                         // }
                       },
-                      color: AppData.kPrimaryColor,
-                      bordercolor: AppData.kPrimaryColor,
+                      color: AppData.kPrimaryRedColor,
+                      bordercolor: AppData.kPrimaryRedColor,
                       //size: (size.width - 130) / 3,
                     ),
                     SizedBox(
@@ -2174,6 +2177,7 @@ class MyPage1Widget extends StatelessWidget {
                       child: Text(
                         MyLocalizations.of(context).text("EMERGENCY_HELP"),
                         textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 12),
                         //overflow: TextOverflow.ellipsis,
                       ),
                     ),
@@ -2220,6 +2224,7 @@ class MyPage1Widget extends StatelessWidget {
                       child: Text(
                         MyLocalizations.of(context).text("HEALTHCARE_SERVICE"),
                         textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 12),
                         //overflow: TextOverflow.ellipsis,
                       ),
                     ),
@@ -2259,6 +2264,7 @@ class MyPage1Widget extends StatelessWidget {
                         MyLocalizations.of(context)
                             .text("GENERIC_MEDICAL_STORE"),
                         textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 12),
                         //overflow: TextOverflow.ellipsis,
                       ),
                     ),
@@ -2292,6 +2298,7 @@ class MyPage1Widget extends StatelessWidget {
                       child: Text(
                         MyLocalizations.of(context).text("BOOK_AMBULANCE"),
                         textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 12),
                         //overflow: TextOverflow.ellipsis,
                       ),
                     ),
@@ -2361,6 +2368,7 @@ class MyPage1Widget extends StatelessWidget {
                       child: Text(
                         MyLocalizations.of(context).text("ORDER_BLOOD"),
                         textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 12),
                         //overflow: TextOverflow.ellipsis,
                       ),
                     ),
@@ -2399,6 +2407,7 @@ class MyPage1Widget extends StatelessWidget {
                       child: Text(
                         MyLocalizations.of(context).text("APPOINTMENT"),
                         textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 12),
                         //overflow: TextOverflow.ellipsis,
                       ),
                     ),
@@ -2446,6 +2455,7 @@ class MyPage1Widget extends StatelessWidget {
                       child: Text(
                         MyLocalizations.of(context).text("MEDICINE_REMINDER"),
                         textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 12),
                         //overflow: TextOverflow.ellipsis,
                       ),
                     ),
@@ -2493,6 +2503,7 @@ class MyPage1Widget extends StatelessWidget {
                       child: Text(
                         MyLocalizations.of(context).text("ORGAN_DONATION"),
                         textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 12),
                         //overflow: TextOverflow.ellipsis,
                       ),
                     ),
@@ -2573,6 +2584,7 @@ class MyPage1Widget extends StatelessWidget {
                       child: Text(
                         MyLocalizations.of(context).text("GOVT_SCHEMES"),
                         textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 12),
                         //overflow: TextOverflow.ellipsis,
                       ),
                     ),
@@ -2644,6 +2656,7 @@ class MyPage1Widget extends StatelessWidget {
                     child: Text(
                       MyLocalizations.of(context).text("MEDIPEDIA"),
                       textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 12),
                       //overflow: TextOverflow.ellipsis,
                     ),
                   ),
@@ -2702,12 +2715,13 @@ class MyPage1Widget extends StatelessWidget {
         decoration: BoxDecoration(
 
             /// borderRadius: BorderRadius.circular(7.0),
-            borderRadius: BorderRadius.only(
+           /* borderRadius: BorderRadius.only(
               topLeft: Radius.circular(10.0),
               topRight: Radius.zero,
               bottomLeft: Radius.zero,
               bottomRight: Radius.circular(10.0),
-            ),
+            ),*/
+            shape: BoxShape.circle,
             color: color,
             border: Border.all(
               color: AppData.kPrimaryBlueColor,
@@ -3107,12 +3121,13 @@ class MyPage1Widget extends StatelessWidget {
         width: _width,
         decoration: BoxDecoration(
           /// borderRadius: BorderRadius.circular(7.0),
-          borderRadius: BorderRadius.only(
+         /* borderRadius: BorderRadius.only(
             topLeft: Radius.zero,
             topRight: Radius.circular(10.0),
             bottomLeft: Radius.circular(10.0),
             bottomRight: Radius.zero,
-          ),
+          ),*/
+          shape: BoxShape.circle,
           color: color,
 
           /* boxShadow: [
@@ -3220,12 +3235,13 @@ class MyPage1Widget extends StatelessWidget {
         decoration: BoxDecoration(
 
             /// borderRadius: BorderRadius.circular(7.0),
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.zero,
+            // borderRadius:  BorderRadius.all(Radius.circular(60)),
+          shape: BoxShape.circle,
+          /*    topLeft:  Radius.circular(10.0),
               topRight: Radius.circular(10.0),
               bottomLeft: Radius.circular(10.0),
-              bottomRight: Radius.zero,
-            ),
+              bottomRight: Radius.circular(10.0),
+            ),*/
             color: color,
             border: Border.all(
               color: AppData.kPrimaryRedColor,

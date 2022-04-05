@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:user/models/AbhaResponseModel.dart';
 import 'package:user/models/UserRegistrationModel.dart';
+import 'package:user/providers/Const.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/providers/text_field_container.dart';
@@ -41,6 +42,8 @@ class _AbhaAutoRegFormState extends State<AbhaAutoRegForm> {
     new TextEditingController()
   ];
   AbhaResponseModel abhaResponseModel;
+  String useridd;
+  String password;
 
   //File pathUsr = null;
   @override
@@ -103,10 +106,35 @@ class _AbhaAutoRegFormState extends State<AbhaAutoRegForm> {
             // log(">>>>>>>>PRINT LOGO>>>>>>\n\n\n\n\n\n\n\n\n\n\n\n\n" + jsonEncode(abhaResponseModel.toJson())+"\n\n\n\n\n\n\n\n\n\n\n\n\n");
             log(">>>>>>>>PRINT AHBHH>>>>>>\n\n\n\n\n\n\n\n\n\n\n\n\n" + jsonEncode(userModel.toJson())+"\n\n\n\n\n\n\n\n\n\n\n\n\n");
 
-            // postOurServer();
+            postOurServer(userModel);
             setState(() {});
           } else {
             AppData.showInSnackBar(context, map["message"]);
+            // AppData.showInSnackBar(context, map[Const.MESSAGE]);
+          }
+        });
+  }
+
+
+  postOurServer(UserRegistrationModel userModel){
+
+    MyWidgets.showLoading(context);
+    widget.model.POSTMETHOD(
+        api: ApiFactory.USER_REGISTRATION,
+        json: userModel.toJson(),
+        fun: (Map<String, dynamic> map) {
+          Navigator.pop(context);
+          String msg = map["message"].toString();
+          if (map[Const.STATUS] == Const.SUCCESS) {
+            setState(() {
+               useridd = map["body"]["key"];
+               password = map["body"]["name"];
+              log("Version>>>" + useridd + "<>>" + password);
+              //popup(msg, context,password,useridd);
+            });
+            //popup(context, map[Const.MESSAGE]);
+          } else {
+            AppData.showInSnackBar(context, msg);
             // AppData.showInSnackBar(context, map[Const.MESSAGE]);
           }
         });
@@ -178,6 +206,21 @@ class _AbhaAutoRegFormState extends State<AbhaAutoRegForm> {
                         SizedBox(height: 10,),
                         Text(
                           abhaResponseModel.healthIdNumber,
+                          style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.black,
+                              fontWeight: FontWeight.w600),
+                        ),
+                        SizedBox(height: 10,),
+                        Text(
+                          "Your User Id is "+(useridd??""),
+                          style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.black,
+                              fontWeight: FontWeight.w600),
+                        ), SizedBox(height: 10,),
+                        Text(
+                          "Your Password is "+(password??""),
                           style: TextStyle(
                               fontSize: 18,
                               color: Colors.black,
