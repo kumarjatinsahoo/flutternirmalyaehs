@@ -14,6 +14,7 @@ import 'package:user/screens/Doctor/Dashboard/DocMyProfile.dart';
 import 'package:user/screens/Doctor/registartion/DoctorSignUpForm4.dart';
 import 'package:user/screens/Ngo/Registration/NgoSignUpForm2.dart';
 import 'package:user/screens/OrganisationSignUpForm.dart';
+import 'package:user/screens/Patient/PatientRegistration3.dart';
 import 'package:user/screens/Pharmacists/registration/PharmaSignUpForm3.dart';
 import 'package:user/screens/Receptionlist/registration/ReceptionlistSignUpFormm.dart';
 import 'package:user/screens/Users/Dashboard/ProfileScreen.dart';
@@ -2318,6 +2319,18 @@ class DropDown {
         break;
       case "stategov":
         return GovtSchemes.stateModel;
+        break;
+      case "countryReg":
+        return PatientRegistration3.countryModel;
+        break;
+        case "stateReg":
+        return PatientRegistration3.stateModel;
+        break;
+        case "districtReg":
+        return PatientRegistration3.districtModel;
+        break;
+        case "cityReg":
+        return PatientRegistration3.cityModel;
         break;
 
     }
@@ -4981,13 +4994,25 @@ class DropDown {
           case "country":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
+          case "countryReg":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
           case "state":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "stateReg":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
           case "districtid":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
+            case "districtReg":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
           case "city":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+            case "cityReg":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
           case "healthcareProvider":

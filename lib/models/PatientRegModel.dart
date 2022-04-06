@@ -31,32 +31,69 @@ class PatientRegModel {
 }
 
 class Body {
-  String key;
-  String name;
-  String code;
-  String image;
-  Null language;
-  Null pass;
+ /* Null id;
+  Null regNo;
+  Null patientName;
+  Null age;
+  Null gender;
+  Null mob;
+  Null appntmntDate;
+  Null appntmntTime;
+  Null appointStatus;
+  Null appntmntStatus;
+  Null slNo;*/
+  String countryId;
+  String countryName;
+  String stateId;
+  String stateName;
+  String districtId;
+  String districtName;
+  String cityId;
+  String cityName;
 
-  Body({this.key, this.name, this.code, this.image, this.language, this.pass});
+  Body(
+      {
+        this.countryId,
+        this.countryName,
+        this.stateId,
+        this.stateName,
+        this.districtId,
+        this.districtName,
+        this.cityId,
+        this.cityName});
 
   Body.fromJson(Map<String, dynamic> json) {
-    key = json['key'];
-    name = json['name'];
-    code = json['code'];
-    image = json['image'];
-    language = json['language'];
-    pass = json['pass'];
+   /* id = json['id'];
+    regNo = json['regNo'];
+    patientName = json['patientName'];
+    age = json['age'];
+    gender = json['gender'];
+    mob = json['mob'];
+    appntmntDate = json['appntmntDate'];
+    appntmntTime = json['appntmntTime'];
+    appointStatus = json['appointStatus'];
+    appntmntStatus = json['appntmntStatus'];
+    slNo = json['slNo'];*/
+    countryId = json['countryId'];
+    countryName = json['countryName'];
+    stateId = json['stateId'];
+    stateName = json['stateName'];
+    districtId = json['districtId'];
+    districtName = json['districtName'];
+    cityId = json['cityId'];
+    cityName = json['cityName'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['key'] = this.key;
-    data['name'] = this.name;
-    data['code'] = this.code;
-    data['image'] = this.image;
-    data['language'] = this.language;
-    data['pass'] = this.pass;
+    data['countryId'] = this.countryId;
+    data['countryName'] = this.countryName;
+    data['stateId'] = this.stateId;
+    data['stateName'] = this.stateName;
+    data['districtId'] = this.districtId;
+    data['districtName'] = this.districtName;
+    data['cityId'] = this.cityId;
+    data['cityName'] = this.cityName;
     return data;
   }
 }

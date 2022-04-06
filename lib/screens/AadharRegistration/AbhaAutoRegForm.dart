@@ -1,5 +1,7 @@
 import 'dart:convert';
-import 'dart:developer'as dev;
+import 'dart:developer' as dev;
+import 'dart:developer';
+// import 'package:flutter/src/painting/gradiant' as ui;
 
 import 'package:date_format/date_format.dart';
 import 'package:flutter/cupertino.dart';
@@ -42,6 +44,7 @@ class _AbhaAutoRegFormState extends State<AbhaAutoRegForm> {
     new TextEditingController()
   ];
   AbhaResponseModel abhaResponseModel;
+  UserRegistrationModel userModel;
   String useridd;
   String password;
 
@@ -82,7 +85,7 @@ class _AbhaAutoRegFormState extends State<AbhaAutoRegForm> {
             abhaResponseModel = AbhaResponseModel.fromJson(map);
             // UserModel userModel=UserMode
 
-            UserRegistrationModel userModel = UserRegistrationModel();
+            userModel = UserRegistrationModel();
             userModel.fName = abhaResponseModel.firstName;
             userModel.lName = abhaResponseModel.lastName;
             userModel.mobile = abhaResponseModel.mobile;
@@ -102,12 +105,12 @@ class _AbhaAutoRegFormState extends State<AbhaAutoRegForm> {
                 ? "Male"
                 : "Female";
             userModel.abhaResponseModel = abhaResponseModel;
-            userModel.title =(abhaResponseModel.gender.toLowerCase() == "m")
-                ? "Mr"
-                : "Ms";
+            userModel.title == "";
 
             // dev.log(">>>>>>>>PRINT dev.logO>>>>>>\n\n\n\n\n\n\n\n\n\n\n\n\n" + jsonEncode(abhaResponseModel.toJson())+"\n\n\n\n\n\n\n\n\n\n\n\n\n");
-            dev.log(">>>>>>>>PRINT AHBHH>>>>>>\n\n\n\n\n\n\n\n\n\n\n\n\n" + jsonEncode(userModel.toJson())+"\n\n\n\n\n\n\n\n\n\n\n\n\n");
+            dev.log(">>>>>>>>PRINT AHBHH>>>>>>\n\n\n\n\n\n\n\n\n\n\n\n\n" +
+                jsonEncode(userModel.toJson()) +
+                "\n\n\n\n\n\n\n\n\n\n\n\n\n");
 
             postOurServer(userModel);
             setState(() {});
@@ -118,9 +121,7 @@ class _AbhaAutoRegFormState extends State<AbhaAutoRegForm> {
         });
   }
 
-
-  postOurServer(UserRegistrationModel userModel){
-
+  postOurServer(UserRegistrationModel userModel) {
     MyWidgets.showLoading(context);
     widget.model.POSTMETHOD(
         api: ApiFactory.USER_REGISTRATION,
@@ -130,8 +131,8 @@ class _AbhaAutoRegFormState extends State<AbhaAutoRegForm> {
           String msg = map["message"].toString();
           if (map[Const.STATUS] == Const.SUCCESS) {
             setState(() {
-               useridd = map["body"]["key"];
-               password = map["body"]["name"];
+              useridd = map["body"]["key"];
+              password = map["body"]["name"];
               dev.log("Version>>>" + useridd + "<>>" + password);
               //popup(msg, context,password,useridd);
             });
@@ -147,9 +148,12 @@ class _AbhaAutoRegFormState extends State<AbhaAutoRegForm> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: InkWell(
-        onTap: (){
+        onTap: () {
           Navigator.of(context).pushNamedAndRemoveUntil(
-              '/dev.login', (Route<dynamic> route) => false);
+              '/login', (Route<dynamic> route) => false);
+          // AppData.showInSnackDone(context, "Hey");
+          // postAbhaServer();
+          //log("LOGIN RESPONSE>>>>"+jsonEncode(userModel.toJson()));
         },
         child: Container(
           height: 60,
@@ -158,7 +162,9 @@ class _AbhaAutoRegFormState extends State<AbhaAutoRegForm> {
             child: Text(
               "Close",
               style: TextStyle(
-                  fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),
+                  fontSize: 16,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold),
             ),
           ),
         ),
@@ -184,20 +190,64 @@ class _AbhaAutoRegFormState extends State<AbhaAutoRegForm> {
                   ),
                 ),
               ),*/
-                    Container(
-                        child: Image.asset(
-                      "assets/congratulation.gif",
-                      fit: BoxFit.fill,
-                      height: 300,
-                    )),
+                    Stack(
+                      children: [
+                        Container(
+                            height: 300,
+                            width: double.maxFinite,
+                            alignment: Alignment.center,
+                            child: Image.asset(
+                              "assets/congrat1.gif",
+                              fit: BoxFit.fill,
+                              height: 300,
+                            )),
+                        Container(
+                          height: 300,
+                          // margin: EdgeInsets.only(left: 25,bottom: 15),
+                          padding: EdgeInsets.only(left: 25,bottom: 15),
+                          child: Center(
+                            child: Text(
+                              "Congratulation",
+                              style: TextStyle(
+                                // color: Color(0xFF4f0d13),
+                                color: Color(0xFFc91430),
+                                fontSize: 24,
+                              fontFamily: "sans-serif-thin",
+                              // fontFamily: "Gujarati Sangam MN",
+                              shadows: [
+                                Shadow(
+                                  color: Color(0xFF4f0d13).withOpacity(0.6),
+                                  offset: Offset(5.0, 5.0),
+                                  blurRadius: 10.0,
+                                ),
+                              ],
+                              fontWeight: FontWeight.w600
+                              /*  foreground: Paint()
+                                  ..style = PaintingStyle.stroke
+                                  ..strokeWidth = 1
+                                  ..color = Colors.blue[700],*/
+
+
+                              ),
+
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         ClipRRect(
                             borderRadius: BorderRadius.all(Radius.circular(27)),
                             child: Image.memory(
-                                base64Decode(abhaResponseModel.profilePhoto),height: 100,width: 100,)),
-                        SizedBox(height: 10,),
+                              base64Decode(abhaResponseModel.profilePhoto),
+                              height: 100,
+                              width: 100,
+                            )),
+                        SizedBox(
+                          height: 10,
+                        ),
                         Text(
                           abhaResponseModel.name,
                           // patientProfileModel?.body?.fullName ?? "N/A",
@@ -206,7 +256,9 @@ class _AbhaAutoRegFormState extends State<AbhaAutoRegForm> {
                               color: Colors.black,
                               fontWeight: FontWeight.w600),
                         ),
-                        SizedBox(height: 10,),
+                        SizedBox(
+                          height: 10,
+                        ),
                         Text(
                           abhaResponseModel.healthIdNumber,
                           style: TextStyle(
@@ -214,21 +266,52 @@ class _AbhaAutoRegFormState extends State<AbhaAutoRegForm> {
                               color: Colors.black,
                               fontWeight: FontWeight.w600),
                         ),
-                        SizedBox(height: 10,),
-                        Text(
+                        SizedBox(
+                          height: 10,
+                        ),
+                        /*  Text(
                           "Your User Id is "+(useridd??""),
                           style: TextStyle(
                               fontSize: 18,
                               color: Colors.black,
                               fontWeight: FontWeight.w600),
-                        ), SizedBox(height: 10,),
-                        Text(
-                          "Your Password is "+(password??""),
-                          style: TextStyle(
-                              fontSize: 18,
-                              color: Colors.black,
-                              fontWeight: FontWeight.w600),
+                        ),*/
+
+                        Text.rich(TextSpan(children: [
+                          TextSpan(
+                            text: "User Id: ",
+                            style: TextStyle(
+                                fontSize: 18,
+                                color: Colors.black,
+                                fontWeight: FontWeight.w600),
+                          ),
+                          TextSpan(
+                            text: useridd ?? "",
+                            style: TextStyle(
+                                fontSize: 18,
+                                color: Colors.green,
+                                fontWeight: FontWeight.w600),
+                          )
+                        ])),
+                        SizedBox(
+                          height: 10,
                         ),
+                        Text.rich(TextSpan(children: [
+                          TextSpan(
+                            text: "Password: ",
+                            style: TextStyle(
+                                fontSize: 18,
+                                color: Colors.black,
+                                fontWeight: FontWeight.w600),
+                          ),
+                          TextSpan(
+                            text: password ?? "",
+                            style: TextStyle(
+                                fontSize: 18,
+                                color: Colors.green,
+                                fontWeight: FontWeight.w600),
+                          )
+                        ])),
                         //Icon(Icons.arrow_drop_down)
                       ],
                     ),
