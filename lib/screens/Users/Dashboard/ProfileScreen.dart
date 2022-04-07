@@ -480,7 +480,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ],
         ),*/
         centerTitle: true,
-        title: Text("My Profile"),
+        title: Text(MyLocalizations.of(context).text("MY_PROFILE")),
         actions: [
           Align(
             alignment: Alignment.centerLeft,
@@ -753,8 +753,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             ),
                             Padding(
                               padding: const EdgeInsets.symmetric(vertical: 12),
-                              child: Text(
-                                  "Family Doctors"
+                              child: Text(MyLocalizations.of(context).text("FAMILY_DOCTORS1")
                                       .toUpperCase(),
                                   style: TextStyle(
                                       fontWeight: FontWeight.w900,
@@ -774,8 +773,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             ),
                             Padding(
                               padding: const EdgeInsets.symmetric(vertical: 12),
-                              child: Text(
-                                  "Id card"
+                              child: Text(MyLocalizations.of(context).text("ID_CARD")
                                       .toUpperCase(),
                                   style: TextStyle(
                                       fontWeight: FontWeight.w900,

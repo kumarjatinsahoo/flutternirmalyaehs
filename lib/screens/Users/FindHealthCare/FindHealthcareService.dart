@@ -34,6 +34,7 @@ class _FindHealthcareServiceState extends State<FindHealthcareService> {
       appBar: AppBar(
         backgroundColor: AppData.kPrimaryColor,
         title: Text(MyLocalizations.of(context).text("HEALTHCARE_SERVICE")),
+        centerTitle: true,
         /* leading: Icon(
         Icons.menu,
       ),*/
