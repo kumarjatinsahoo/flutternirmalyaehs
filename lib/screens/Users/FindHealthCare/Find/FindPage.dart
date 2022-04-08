@@ -397,7 +397,7 @@ class _FindPageState extends State<FindPage> {
                         child: SizedBox(
                           height: 55,
                           child: DropDown.networkDropdownGetpart4(
-                              "Select Healthcare Provider",
+                            MyLocalizations.of(context).text("SELECT_HEALTHCARE"),
                               ApiFactory.HEALTHPROVIDER_API,
                               "healthcareProvider", (KeyvalueModel data) {
                             setState(() {

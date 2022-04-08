@@ -928,7 +928,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                   selected: _selectedDestination == 6,
                   onTap: () {
                     selectDestination(6);
-                    widget.model.contactscreen = "Contact Screen";
+                    widget.model.contactscreen = MyLocalizations.of(context).text("CONTACT_SCREEN");
                     Navigator.pushNamed(context, "/contactus");
                     //Navigator.pushNamed(context, "/discountoffer");
                   }),
@@ -941,7 +941,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                   selected: _selectedDestination == 7,
                   onTap: () {
                     selectDestination(7);
-                    widget.model.contactscreen = "Support Screen";
+                    widget.model.contactscreen = MyLocalizations.of(context).text("SUPPORT_SCREEN");
                     Navigator.pushNamed(context, "/contactus");
                   }),
 

@@ -28,7 +28,7 @@ class _BookAppointmentTab extends State<UploadDocumentTab> {
       child: Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: Text("Medical Data Upload"),
+          title: Text(MyLocalizations.of(context).text("MEDICAL_DATA_UPLOAD")),
           backgroundColor: AppData.kPrimaryColor,
           actions: <Widget>[
           ],
@@ -39,10 +39,10 @@ class _BookAppointmentTab extends State<UploadDocumentTab> {
             dragStartBehavior: DragStartBehavior.down,
             tabs: [
               Tab(
-                text:"Recent",
+                text:MyLocalizations.of(context).text("RECENT"),
               ),
               Tab(
-                text:"Categories"
+                text:MyLocalizations.of(context).text("CATEGORIES")
               ),
             ],
           ),

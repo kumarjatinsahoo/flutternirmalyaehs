@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:user/localization/localizations.dart';
 import 'package:user/models/AddBioMedicalModel.dart';
 import 'package:user/models/BiomedicalModel.dart' as bio;
 import 'package:user/models/DocumentListModel.dart' as document;
@@ -339,7 +340,7 @@ class _RecentDocumentState extends State<RecentDocument> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'Uploaded By: ',
+                                    MyLocalizations.of(context).text("UPLOADED_BY"),
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 15),
@@ -356,8 +357,7 @@ class _RecentDocumentState extends State<RecentDocument> {
                                   SizedBox(
                                     height: 4,
                                   ),
-                                  Text(
-                                    'Uploaded On: ',
+                                  Text(MyLocalizations.of(context).text("UPLOADED_ON"),
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 15),
@@ -416,8 +416,7 @@ class _RecentDocumentState extends State<RecentDocument> {
                             child: Row(
                               children: [
                                 Expanded(
-                                  child: Text(
-                                    "Capture",
+                                  child: Text(MyLocalizations.of(context).text("CAPTURE"),
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 16,

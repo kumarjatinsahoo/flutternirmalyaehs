@@ -573,8 +573,7 @@ RadioGroup1 radioGroup1 = RadioGroup1.RegisterDoctor;
         child: Padding(
           padding:
               EdgeInsets.only(left: 35.0, right: 35.0, top: 15.0, bottom: 15.0),
-          child: Text(
-            "Take Appointment",
+          child: Text(MyLocalizations.of(context).text("TAKE_APPOINTMENT"),
             textAlign: TextAlign.center,
             style: TextStyle(color: Colors.white, fontSize: 16.0),
           ),

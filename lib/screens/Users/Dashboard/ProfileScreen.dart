@@ -3913,8 +3913,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           child: Column(
                             children: [
                               Center(
-                                child: Text(
-                                  "Add Emergency Contact",
+                                child: Text(MyLocalizations.of(context).text("ADD_EMERGENCY_CONTACT"),
                                   style: TextStyle(
                                       color: Colors.black, fontSize: 20),
                                 ),
@@ -3925,12 +3924,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         SizedBox(
                           height: 15,
                         ),
-                        formField1(13, "Name"),
+                        formField1(13, MyLocalizations.of(context).text("NAME")),
                         SizedBox(height: 8),
-                        mobileformField1(14, "Mobile No"),
+                        mobileformField1(14,MyLocalizations.of(context).text("MOBILE_NO")),
                         SizedBox(height: 1),
                         DropDown.networkDropdownGetpartUser1(
-                            "Relation",
+                           MyLocalizations.of(context).text("RELATION"),
                             ApiFactory.RELATION_API,
                             "relation",
                             Icons.people_alt_rounded,
@@ -5604,28 +5603,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
   void emergencydetailsdisplayDialog(BuildContext context, ProfileModel patientProfileModel,
       int index) {
     Widget cancelButton = TextButton(
-      child: Text("No",style: TextStyle(color: AppData.kPrimaryRedColor)),
-
+      child: Text(MyLocalizations.of(context).text("NO"),
+          style: TextStyle(color: AppData.kPrimaryRedColor)),
       onPressed:  () {
         Navigator.pop(context);
       },
     );
     Widget continueButton = TextButton(
-      child: Text("Yes"),
+      child: Text(MyLocalizations.of(context).text("YES")),
       onPressed:  () {
         Navigator.pop(context);
         String listid = patientProfileModel.body.emergenceList[index].id;
         String emergency="1";
 
         emergencydoctorDeleteApi(listid,emergency);
-
       },
     );
 
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
-      title: Text("Delete"),
-      content: Text("Do You Want to Delete ?"),
+      title: Text(MyLocalizations.of(context).text("DELETE")),
+      content: Text(MyLocalizations.of(context).text("WANT_TO_DELETE")),
       actions: [
         cancelButton,
         continueButton,
