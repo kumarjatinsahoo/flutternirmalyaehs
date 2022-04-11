@@ -129,7 +129,6 @@ class _TestReportListUser1State extends State<TestReportListUser1> {
      // physics: ScrollPhysics(),
       child: Column(
         children: <Widget>[
-
           (pocReportModel != null)
               ? ListView.builder(
                   physics: NeverScrollableScrollPhysics(),
