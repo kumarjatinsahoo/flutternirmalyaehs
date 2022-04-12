@@ -250,8 +250,7 @@ class _DoctorAppointmentRequestedState
                                                         children: [
                                                           Row(
                                                             children: [
-                                                              Text(
-                                                                'User Name: ',
+                                                              Text(MyLocalizations.of(context).text("USER_NAME1"),
                                                                 style: TextStyle(
                                                                     color: Colors
                                                                         .blue,
@@ -293,8 +292,7 @@ class _DoctorAppointmentRequestedState
                                                           SizedBox(
                                                             height: 4,
                                                           ),
-                                                          Text(
-                                                            'Gender: ',
+                                                          Text(MyLocalizations.of(context).text("GENDER"),
                                                             style: TextStyle(
                                                                 color:
                                                                     Colors.blue,
@@ -321,8 +319,7 @@ class _DoctorAppointmentRequestedState
                                                           SizedBox(
                                                             height: 4,
                                                           ),
-                                                          Text(
-                                                            'Age: ',
+                                                          Text(MyLocalizations.of(context).text("AGE"),
                                                             style: TextStyle(
                                                                 color:
                                                                     Colors.blue,
@@ -354,8 +351,7 @@ class _DoctorAppointmentRequestedState
                                                           SizedBox(
                                                             height: 4,
                                                           ),
-                                                          Text(
-                                                            'Date: ',
+                                                          Text(MyLocalizations.of(context).text("DATE"),
                                                             style: TextStyle(
                                                                 color:
                                                                     Colors.blue,
@@ -422,7 +418,7 @@ class _DoctorAppointmentRequestedState
                                                           ),
 
                                                           Text(
-                                                            'Time: ',
+                                                            MyLocalizations.of(context).text("TIME"),
                                                             style: TextStyle(
                                                                 color:
                                                                 Colors.blue,
@@ -450,8 +446,7 @@ class _DoctorAppointmentRequestedState
                                                           SizedBox(
                                                             height: 4,
                                                           ),
-                                                          Text(
-                                                            'Address: ',
+                                                          Text(MyLocalizations.of(context).text("ADDRESS"),
                                                             style: TextStyle(
                                                                 color:
                                                                     Colors.blue,
@@ -479,8 +474,7 @@ class _DoctorAppointmentRequestedState
                                                           SizedBox(
                                                             height: 4,
                                                           ),
-                                                          Text(
-                                                            'Patient Notes: ',
+                                                          Text(MyLocalizations.of(context).text("PATIENT_NOTES"),
                                                             style: TextStyle(
                                                                 color:
                                                                     Colors.blue,

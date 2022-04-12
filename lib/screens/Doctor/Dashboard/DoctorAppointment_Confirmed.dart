@@ -176,7 +176,7 @@ class _DoctorAppointmentConfirmedState
                       ? Container(
                           child: Center(
                             child: Center(
-      child: Image.asset("assets/NoRecordFound.png",
+                        child: Image.asset("assets/NoRecordFound.png",
                                            // height: 25,
                                          ),),
                           ),
@@ -240,8 +240,7 @@ class _DoctorAppointmentConfirmedState
                                                             children: [
                                                               Row(
                                                                 children: [
-                                                                  Text(
-                                                                    'User Name: ',
+                                                                  Text(MyLocalizations.of(context).text("USER_NAME1"),
                                                                     style: TextStyle(
                                                                         color: Colors.blue,
                                                                         fontWeight:
@@ -279,8 +278,7 @@ class _DoctorAppointmentConfirmedState
                                                                     15),
                                                               ),
                                                               SizedBox(height: 4,),
-                                                              Text(
-                                                                'Gender: ',
+                                                              Text(MyLocalizations.of(context).text("GENDER"),
                                                                 style: TextStyle(
                                                                     color: Colors.blue,
                                                                     fontWeight:
@@ -305,7 +303,7 @@ class _DoctorAppointmentConfirmedState
                                                                 height: 4,
                                                               ),
                                                               Text(
-                                                                'Age: ',
+                                                                MyLocalizations.of(context).text("AGE"),
                                                                 style: TextStyle(
                                                                     color: Colors.blue,
                                                                     fontWeight:
@@ -332,8 +330,7 @@ class _DoctorAppointmentConfirmedState
                                                                 height: 4,
                                                               ),
 
-                                                              Text(
-                                                                'Date: ',
+                                                              Text(MyLocalizations.of(context).text("DATE"),
                                                                 style: TextStyle(
                                                                     color: Colors.blue,
                                                                     fontWeight:
@@ -395,8 +392,7 @@ class _DoctorAppointmentConfirmedState
                                                               SizedBox(
                                                                 height: 4,
                                                               ),
-                                                              Text(
-                                                                'Time: ',
+                                                              Text(MyLocalizations.of(context).text("TIME"),
                                                                 style: TextStyle(
                                                                     color:
                                                                     Colors.blue,
@@ -424,8 +420,7 @@ class _DoctorAppointmentConfirmedState
                                                               SizedBox(
                                                                 height: 4,
                                                               ),
-                                                              Text(
-                                                                'Address: ',
+                                                              Text(MyLocalizations.of(context).text("ADDRESS"),
                                                                 style: TextStyle(
                                                                     color: Colors.blue,
                                                                     fontWeight:
@@ -449,8 +444,7 @@ class _DoctorAppointmentConfirmedState
                                                               SizedBox(
                                                                 height: 4,
                                                               ),
-                                                              Text(
-                                                                'Patient Notes: ',
+                                                              Text(MyLocalizations.of(context).text("PATIENT_NOTES"),
                                                                 style: TextStyle(
                                                                     color: Colors.blue,
                                                                     fontWeight:
@@ -498,7 +492,7 @@ class _DoctorAppointmentConfirmedState
                                                                         //height: 40.0,
                                                                         child: Text(
                                                                           /*'Confirmed'*/
-                                                                          "My Medical Record",
+                                                                          MyLocalizations.of(context).text("MEDICAL_RECORD"),
                                                                           textAlign: TextAlign.center,
                                                                           style: TextStyle(
                                                                               fontWeight:
@@ -538,8 +532,8 @@ class _DoctorAppointmentConfirmedState
                                                                           minWidth: 50,
                                                                           height: 40.0,
                                                                           child: Text(
+                                                                            MyLocalizations.of(context).text("GIVE_PRESCRIPTION"),
                                                                             /*'Confirmed'*/
-                                                                            "Give Prescription",
                                                                             textAlign: TextAlign.center,
                                                                             style: TextStyle(
                                                                                 fontWeight:

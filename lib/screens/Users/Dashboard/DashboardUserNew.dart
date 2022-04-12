@@ -928,11 +928,11 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                   selected: _selectedDestination == 6,
                   onTap: () {
                     selectDestination(6);
-                    widget.model.contactscreen = MyLocalizations.of(context).text("CONTACT_SCREEN");
+                    //widget.model.contactscreen = MyLocalizations.of(context).text("CONTACT_SCREEN");
                     Navigator.pushNamed(context, "/contactus");
                     //Navigator.pushNamed(context, "/discountoffer");
                   }),
-              ListTile(
+            /*  ListTile(
                   leading: Image.asset(
                     "assets/images/support.png",
                     height: 30,
@@ -943,7 +943,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                     selectDestination(7);
                     widget.model.contactscreen = MyLocalizations.of(context).text("SUPPORT_SCREEN");
                     Navigator.pushNamed(context, "/contactus");
-                  }),
+                  }),*/
 
               ListTile(
                   leading: Image.asset(

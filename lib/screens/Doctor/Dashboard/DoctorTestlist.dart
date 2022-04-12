@@ -650,7 +650,8 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
       }).toList(),
     );
 
-    */ /*DataTable(
+    */
+  /*DataTable(
         onSelectAll: (b) {},
         //dataRowHeight: 3,
         columnSpacing: 6,
@@ -745,7 +746,8 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
             // selected: true,
             cells: [
 
-              */ /**/ /*DataCell(
+              */
+  /**/ /*DataCell(
                 Container(
                   width: 80,
                   child: Center(
@@ -814,7 +816,8 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
         ))
 
             .values
-            .toList());*/ /*
+            .toList());*/
+  /*
 
 
   }*/
