@@ -57,11 +57,12 @@ class _AadharRegistrationState extends State<AadharRegistration> {
 
   validateAadhar() {
     MyWidgets.showLoading(context);
+    log(">>>>>>>>>"+ApiFactory.VALIDATE_AADHAR+controller[1].text);
     widget.model.GETMETHODCAL(
         api: ApiFactory.VALIDATE_AADHAR+controller[1].text,
         fun: (Map<String, dynamic> map) {
           Navigator.pop(context);
-          log("Response>>>" + jsonEncode(map));
+          log("Response>>>>>" + jsonEncode(map));
           if (map.containsKey("result") && map["result"]) {
             getSessionAbha();
           } else {
@@ -170,7 +171,8 @@ class _AadharRegistrationState extends State<AadharRegistration> {
               //nextButton(),
               InkWell(
                 onTap: () {
-                  getSessionAbha();
+                  // getSessionAbha();
+                  validateAadhar();
                 },
                 child: Container(
                   width: MediaQuery.of(context).size.width,
