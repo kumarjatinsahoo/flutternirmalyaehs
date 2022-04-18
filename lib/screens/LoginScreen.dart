@@ -1174,7 +1174,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
-
                         ListTile(
                           title: Center(
                               child: Text(MyLocalizations.of(context)
