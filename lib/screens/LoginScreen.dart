@@ -1155,6 +1155,7 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
+
   dashOption(BuildContext context) {
     return showDialog(
         context: context,
@@ -1185,7 +1186,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           onTap: () {
                             Navigator.pop(context);
                             // Navigator.pushNamed(context, "/userSignUpForm");
-                            userRegSheet();
+                            Navigator.pushNamed(context, "/aadharregistration");
+                            //userRegSheet();
                             //dashOption1(context);
                             //_validate();
                           },
