@@ -7,8 +7,8 @@ class ApiFactory {
   ////Local : isLocal:true && isProduction:false
 
   static bool isProduction = false;
-  static bool isLocal = false;
-  static String LOCAL_URL = "http://192.168.0.141:8062/nirmalyaRest/api/";
+  static bool isLocal = true;
+  static String LOCAL_URL = "http://192.168.0.116:8062/nirmalyaRest/api/";
 
   static String REG_DEVICE = "https://cca.medtel.in/Ziniai/manageDeviceId";
   static String MAIN_URL = (!isLocal)
@@ -365,6 +365,10 @@ class ApiFactory {
   static String bloodbank_status =
       MAIN_URL + 'change-bloodbank-status?orderid=';
   static String TEST_REPORT_USER = MAIN_URL + 'view-medteltest-list-throughId';
+  static String VALIDATE_AADHAR = MAIN_URL + 'get-patient-aadhaar-exists?aadhhar=';
+
+
+
   static String USER_APPOINTMENTS =
       MAIN_URL + 'get-user-appointment-list?userid=';
   static String ORDER_LIST =

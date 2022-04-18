@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/AbhaTokenModel.dart';
+import 'package:user/providers/Const.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
@@ -54,6 +55,23 @@ class _AadharRegistrationState extends State<AadharRegistration> {
 
   AbhaTokenModel abhaTokenModel;
 
+  validateAadhar() {
+    MyWidgets.showLoading(context);
+    widget.model.GETMETHODCAL(
+        api: ApiFactory.VALIDATE_AADHAR+controller[1].text,
+        fun: (Map<String, dynamic> map) {
+          Navigator.pop(context);
+          log("Response>>>" + jsonEncode(map));
+          if (map.containsKey("result") && map["result"]) {
+            getSessionAbha();
+          } else {
+            AppData.showInSnackBar(
+                context, "This aadhaar no is already registered");
+          }
+        },
+        );
+  }
+
   getSessionAbha() {
     MyWidgets.showLoading(context);
     var postData = {
@@ -81,9 +99,9 @@ class _AadharRegistrationState extends State<AadharRegistration> {
           Navigator.pop(context);
           log("Response Token>>>" + jsonEncode(map));
           if (map.containsKey("txnId")) {
-            widget.model.txnId=map["txnId"];
-            widget.model.abhaadhar=controller[1].text;
-            widget.model.abhaTokenModel=abhaTokenModel;
+            widget.model.txnId = map["txnId"];
+            widget.model.abhaadhar = controller[1].text;
+            widget.model.abhaTokenModel = abhaTokenModel;
 
             //Navigator.pushNamed(context, "/adharOtp");
             Navigator.pushNamed(context, "/adharOtppinview");
@@ -127,19 +145,23 @@ class _AadharRegistrationState extends State<AadharRegistration> {
                   //width: ,
                   height: 180.0,
                 ),
-
               ),
             ),
           ),
-
           Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Padding(
-                padding: const EdgeInsets.only(left: 8.0,bottom: 9),
+                padding: const EdgeInsets.only(left: 8.0, bottom: 9),
                 child: Row(
                   children: [
-                    Text("Step 1",style: TextStyle(fontSize: 21,fontWeight:FontWeight.bold,),),
+                    Text(
+                      "Step 1",
+                      style: TextStyle(
+                        fontSize: 21,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ],
                 ),
               ),
