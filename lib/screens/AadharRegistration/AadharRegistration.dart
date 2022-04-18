@@ -63,7 +63,7 @@ class _AadharRegistrationState extends State<AadharRegistration> {
         fun: (Map<String, dynamic> map) {
           Navigator.pop(context);
           log("Response>>>>>" + jsonEncode(map));
-          if (map.containsKey("result") && map["result"]) {
+          if (map.containsKey("result") && !map["result"]) {
             getSessionAbha();
           } else {
             AppData.showInSnackBar(
