@@ -69,7 +69,7 @@ class _MyOrdersLabState extends State<MyOrdersLab> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: Text("Orders List",
+        title: Text(MyLocalizations.of(context).text("ORDER_LIST"),
           //MyLocalizations.of(context).text("ORDERS LIST").toUpperCase(),
           style: TextStyle(color: Colors.white),
         ),

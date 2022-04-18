@@ -529,7 +529,7 @@ class _NewDashboardPharmacyState extends State<NewDashboardPharmacy> {
                     Navigator.pushNamed(context, "/contactus");
                     //Navigator.pushNamed(context, "/discountoffer");
                   }),
-              ListTile(
+        /*      ListTile(
                   leading: Image.asset(
                     "assets/images/support.png",
                     height: 30,
@@ -540,7 +540,7 @@ class _NewDashboardPharmacyState extends State<NewDashboardPharmacy> {
                     selectDestination(7);
                     widget.model.contactscreen = "Support Screen";
                     Navigator.pushNamed(context, "/contactus");
-                  }),
+                  }),*/
               ListTile(
                 leading: Row(
                   mainAxisSize: MainAxisSize.min,
@@ -556,7 +556,7 @@ class _NewDashboardPharmacyState extends State<NewDashboardPharmacy> {
                     // ),
                   ],
                 ),
-                title: Text("Change Password"),
+                title: Text(MyLocalizations.of(context).text("CHANGE_PASSWORD")),
                 onTap: () {
                   Navigator.pop(context);
                   Navigator.pushNamed(context, "/changePassword");

@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'package:intl/intl.dart';
 import 'package:user/models/AmbulanceAllModel.dart' as ambulanceall;
 import 'package:user/models/AmbulanceAllModel.dart';
 import 'package:user/models/BloodBankModel.dart' as bloodbank;
@@ -35,6 +36,16 @@ class _AllBloodBankState extends State<AllBloodBank> {
     setState(() {
       _selectedDestination = index;
     });
+  }
+  static String toDate(String date) {
+    if (date != null && date != "") {
+      final DateTime formatter = DateFormat("yyyy-MM-dd").parse(date);
+      DateFormat toNeed = DateFormat("dd-MM-yyyy");
+      final String formatted = toNeed.format(formatter);
+      return formatted;
+    } else {
+      return "";
+    }
   }
 
   @override
@@ -232,7 +243,8 @@ class _AllBloodBankState extends State<AllBloodBank> {
                                                       //  Spacer(),
                                                       Expanded(
                                                         child: Text(
-                                                          body.bookedDate.trim(),
+                                                            toDate(body.bookedDate),
+                                                          //body.bookedDate.trim(),
                                                           style: TextStyle(
                                                               fontSize: 15),
                                                           textAlign:

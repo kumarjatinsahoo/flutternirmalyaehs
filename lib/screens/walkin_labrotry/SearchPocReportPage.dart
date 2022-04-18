@@ -80,35 +80,10 @@ class _SearchPocReportPageState extends State<SearchPocReportPage> {
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
-        /*title: Text(
-          "Patient List",
+        title: Text(MyLocalizations.of(context).text("SEARCH_HERE"),
           style: TextStyle(color: Colors.white),
-        ),*/
-        title: Row(
-          children: [
-            Text(
-              "Search Here",
-              style: TextStyle(color: Colors.white),
-            ),
-            Spacer(),
-            //Text(valueNetwork),
-            SizedBox(
-              width: 10,
-            ),
-            /* IconButton(
-                icon: Icon(Icons.qr_code),
-                onPressed: () {
-                  Navigator.pushNamed(context, "/qrCode").then((value) {
-                    setState(() {
-                      if (value != null) AppData.showInSnackBar(context, value);
-                    });
-                  });
-                }),*/
-            SizedBox(
-              width: 5,
-            ),
-          ],
         ),
+        centerTitle: true,
         titleSpacing: 5,
         iconTheme: IconThemeData(color: Colors.white),
         backgroundColor: AppData.matruColor,
@@ -278,7 +253,7 @@ class _SearchPocReportPageState extends State<SearchPocReportPage> {
               //fillColor: Colors.white,
               hintText: MyLocalizations.of(context).text("NAME") +
                   "/ " +
-                  MyLocalizations.of(context).text("MOBILE") +
+                  MyLocalizations.of(context).text("MOBILE_NO") +
                   "/ " +
                   MyLocalizations.of(context).text("REGISTER_NO."),
               hintStyle: TextStyle(color: Colors.white54),

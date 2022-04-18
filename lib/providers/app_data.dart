@@ -5,6 +5,7 @@ import 'dart:convert' show base64, utf8;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:intl/intl.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:another_flushbar/flushbar.dart';
@@ -470,7 +471,19 @@ static bool validateStructure(String value){
     )..show(context);
   }
 
-static void showbar(BuildContext context, String value) {
+  static String toDate(String date) {
+    if (date != null && date != "") {
+      final DateTime formatter = DateFormat("yyyy-MM-dd").parse(date);
+      DateFormat toNeed = DateFormat("dd-MM-yyyy");
+      final String formatted = toNeed.format(formatter);
+      return formatted;
+    } else {
+      return "";
+    }
+  }
+
+
+  static void showbar(BuildContext context, String value) {
     // final scaffold = Scaffold.of(context);
     // scaffold.showSnackBar(
     //   SnackBar(

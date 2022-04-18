@@ -646,7 +646,7 @@ class _LabDashboardState extends State<LabDashboard> {
                     Navigator.pushNamed(context, "/contactus");
                     //Navigator.pushNamed(context, "/discountoffer");
                   }),
-              ListTile(
+             /* ListTile(
                   leading: Image.asset(
                     "assets/images/support.png",
                     height: 30,
@@ -657,8 +657,8 @@ class _LabDashboardState extends State<LabDashboard> {
                     selectDestination(7);
                     widget.model.contactscreen = "Support Screen";
                     Navigator.pushNamed(context, "/contactus");
-                  }),
-  ListTile(
+                  }),*/
+              ListTile(
                   leading: Image.asset(
                     "assets/images/support.png",
                     height: 30,
@@ -685,7 +685,7 @@ class _LabDashboardState extends State<LabDashboard> {
                     // ),
                   ],
                 ),
-                title: Text("Change Password"),
+                title: Text(MyLocalizations.of(context).text("CHANGE_PASSWORD")),
                 onTap: () {
                   Navigator.pop(context);
                   Navigator.pushNamed(context, "/changePassword");

@@ -64,6 +64,7 @@
   "PATHOLOGYLAB": "ପାଥୋଲୋଜି ଲ୍ୟାବ୍",
   "NEXT": "ପରବର୍ତ୍ତୀ",
   "FILL_IN_PERSONAL_INFORMATION": "ବ୍ୟକ୍ତିଗତ ସୂଚନା ପୁରଣ କରନ୍ତୁ (ସମସ୍ତ କ୍ଷେତ୍ର ବାଧ୍ୟତାମୂଳକ)",
+  "PERSONAL_INFORMATION": "ବ୍ୟକ୍ତିଗତ ସୂଚନା",
   "ORGANIZATION_NAME": "ସଂଗଠନ ନାମ",
   "PROFESSIONAL_NAME": "ପ୍ରଫେସନାଲ୍ ନାମ",
   "EDUCATION": "ଶିକ୍ଷା ନାମ",
@@ -180,6 +181,7 @@
   "REGISTERED_DOCTOR": "ପଞ୍ଜୀକୃତ ଡାକ୍ତର",
   "OTHER_DOCTOR": "ଅନ୍ୟ ଡାକ୍ତର",
   "REASON_FOR_DOCTOR":"ପସନ୍ଦ ଡାକ୍ତରଙ୍କ କାରଣ ",
+  "REASON_FOR_CHOICE":"ପସନ୍ଦର କାରଣ ",
   "NOTE": "ଟିପ୍ପଣୀ",
   "FIND_HEALTH_PROVIDER": "",
   "HEALTHCARE_PROVIDER": "",
@@ -328,7 +330,7 @@
 
   "REGISTER_PATIENT": "ରୋଗୀ ପଞ୍ଜିକରଣ କରନ୍ତୁ ",
   "POC_REPORTS": "POC ରିପୋର୍ଟ",
-  "MY_ORDERS": "ମୋର ଆଦେଶ",
+  "MY_ORDERS": "ମୋର ଅର୍ଡର",
   "UPDATION_DATA": "ଅଦ୍ୟତନ ତଥ୍ୟ",
   "BENEFICIARY_LIST": "ହିତାଧିକାରୀ ତାଲିକା ପଞ୍ଜିକରଣ",
   "PATIENT_REGISTRATION": "ରୋଗୀ ପଞ୍ଜୀକରଣ",
@@ -342,12 +344,14 @@
   "REG_NO": "ସଂଖ୍ୟା",
   "STATUS": "ସ୍ଥିତି",
   "SEARCH_BENEFICIARY": "ହିତାଧିକାରୀ ଖୋଜ",
+  "SEARCH_HERE": "ଏଠାରେ ସନ୍ଧାନ କରନ୍ତୁ",
   "BENEFICIARY_NO": "ହିତାଧିକାରୀ ନଂ",
   "SCAN": "ସ୍କାନ୍",
   "POC_REPORT_LIST": "POC ରିପୋର୍ଟ ତାଲିକା",
   "SEND_SMS": "SMS ପଠାନ୍ତୁ ",
   "CONFIRM_ORDER_LIST": "ଅର୍ଡର ତାଲିକା ନିଶ୍ଚିତ କରନ୍ତୁ",
   "REJECT": "ପ୍ରତ୍ୟାଖ୍ୟାନ",
+  "REJECTED": "ପ୍ରତ୍ୟାଖ୍ୟାନ",
   "ACCEPT": "ଗ୍ରହଣ କର",
   "CONFIRMED_ORDER": "ନିଶ୍ଚିତ ଅର୍ଡର ",
   "PROCESSED_ORDER": "ପ୍ରକ୍ରିୟା ଅର୍ଡର ",
@@ -368,7 +372,7 @@
   "ORDER_PREPARING": "ଆମେ ତୁମର ଅର୍ଡର ପ୍ରସ୍ତୁତ କରୁଛୁ ",
   "ORDER_READYTO_PICKUP": "ତୁମର ଅର୍ଡର ପିକଅପ୍ ପାଇଁ ପ୍ରସ୍ତୁତ",
   "CALL": "କଲ୍",
-
+  "ACCEPTED": "ଗ୍ରହଣ",
 
   "PLEASE_SELECT_ORGANIZATION": "Please select Organization Name",
   "PLEASE_SELECT_TITLE": "Please select Title",
@@ -477,10 +481,13 @@
   "ORDER_ID": "ଅର୍ଡର ID",
   "TIME": "ସମୟ",
   "REFFERED_PATIENT": "ରେଫର୍ଡ୍ ରୋଗୀ",
+  "REFFERED_NAME": "ରେଫର୍ ନାମ",
   "REMEMBER_ME": "ମୋତେ ମନେ ରଖିବେ",
   "CREATE_ID": "ଉପଯୋଗକର୍ତ୍ତା ID ସୃଷ୍ଟି କରନ୍ତୁ",
-
-
+  "PATIENT_DETAILS": "ରୋଗୀ ବିବରଣୀ",
+  "PATIENT_HISTORY": "ରୋଗୀର ଇତିହାସ",
+  "ORDER_NO": "ଅର୍ଡର ନମ୍ବର",
+  "DELIVER_TO": "ବିତରଣ କରନ୍ତୁ",
 
 
 

@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'package:intl/intl.dart';
 import 'package:user/models/AmbulanceAllModel.dart';
 
 import 'package:user/models/BloodbanklistModel.dart' as ambulanceappoint;
@@ -36,6 +37,18 @@ class _AcceptBloodBankState extends State<AcceptBloodBank> {
       _selectedDestination = index;
     });
   }
+
+  static String toDate(String date) {
+    if (date != null && date != "") {
+      final DateTime formatter = DateFormat("yyyy-MM-dd").parse(date);
+      DateFormat toNeed = DateFormat("dd-MM-yyyy");
+      final String formatted = toNeed.format(formatter);
+      return formatted;
+    } else {
+      return "";
+    }
+  }
+
 
   @override
   void initState() {
@@ -173,7 +186,7 @@ class _AcceptBloodBankState extends State<AcceptBloodBank> {
                                                       Container(
                                                         width: 140,
                                                         child: Text(
-                                                          "Bloodgroup",
+                                                          "Blood group",
                                                           style: TextStyle(
                                                             fontWeight:
                                                                 FontWeight.w600,
@@ -210,7 +223,7 @@ class _AcceptBloodBankState extends State<AcceptBloodBank> {
                                                       // Spacer(),
                                                       Expanded(
                                                         child: Text(
-                                                          body.bookedDate,
+                                                         toDate(body.bookedDate),
                                                           style: TextStyle(
                                                               fontSize: 15),
                                                         ),

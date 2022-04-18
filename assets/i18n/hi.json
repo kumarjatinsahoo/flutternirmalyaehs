@@ -63,6 +63,7 @@
   "PATHOLOGYLAB": "पैथोलोजीलैब",
   "NEXT": "अगला",
   "FILL_IN_PERSONAL_INFORMATION": "व्यक्तिगत जानकारी भरें (सभी फील्ड अनिवार्य हैं)",
+  "PERSONAL_INFORMATION": "व्यक्तिगत जानकारी",
   "ORGANIZATION_NAME": "संस्था का नाम",
   "PROFESSIONAL_NAME": "पेशेवर नाम",
   "EDUCATION": "शिक्षा का नाम",
@@ -173,6 +174,7 @@
   "REGISTERED_DOCTOR": "पंजीकृत चिकित्सक",
   "OTHER_DOCTOR": "अन्य डॉक्टर",
   "REASON_FOR_DOCTOR":"पसंद डॉक्टर का कारण",
+  "REASON_FOR_CHOICE":"पसंद का कारण",
   "FIND_HEALTH_PROVIDER": "",
   "HEALTHCARE_PROVIDER": "",
   "SEARCH": "खोज",
@@ -344,12 +346,14 @@
   "STATUS": "स्थिति",
 
   "SEARCH_BENEFICIARY": "लाभार्थी खोजें",
+  "SEARCH_HERE": "यहां तलाश करो",
   "BENEFICIARY_NO": "लाभार्थी संख्या",
   "SCAN": "स्कैन",
   "POC_REPORT_LIST": "पीओसी रिपोर्ट सूची",
   "SEND_SMS": "संदेश भेजो",
   "CONFIRM_ORDER_LIST": "आदेश सूची की पुष्टि करें",
   "REJECT": "अस्वीकार",
+  "REJECTED": "अस्वीकार",
   "ACCEPT": "स्वीकार",
   "CONFIRMED_ORDER": " पुष्टि आदेश",
   "PROCESSED_ORDER": "संसाधित आदेश",
@@ -478,11 +482,14 @@
   "ORDER_ID": "आदेश ID",
   "TIME": "समय",
   "REFFERED_PATIENT": "रेफर किया गया रोगी",
+  "REFFERED_NAME": "संदर्भित नाम",
   "REMEMBER_ME": "मुझे याद रखें",
   "CREATE_ID": "यूजर आईडी बनाएं",
-
-
-
+  "PATIENT_DETAILS": "रोगी विवरण",
+  "PATIENT_HISTORY": "रोगी का इतिहास",
+  "ACCEPTED": "स्वीकृत",
+  "ORDER_NO": "क्रम संख्या",
+  "DELIVER_TO": "करने के लिए वितरित",
 
 
   "USER_ADDRESS": "उपयोगकर्ता का पता"

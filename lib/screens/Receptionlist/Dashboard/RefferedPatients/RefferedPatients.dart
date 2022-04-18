@@ -92,7 +92,7 @@ class _RefferedPatientsState extends State<RefferedPatients> {
         appBar: AppBar(
           centerTitle: true,
           backgroundColor: AppData.kPrimaryColor,
-          title: Text("Reffered Patient"),
+          title: Text(MyLocalizations.of(context).text("REFFERED_PATIENT")),
         ),
         body: isdata == true
             ? Center(
@@ -189,9 +189,8 @@ class _RefferedPatientsState extends State<RefferedPatients> {
                                     children: [
                                       Container(
                                         width: 120,
-                                        child: Text(
+                                        child: Text( MyLocalizations.of(context).text("REFFERED_NAME"),
                                           /*'Confirmed'*/
-                                          "Reffered Name",
                                           style: TextStyle(
                                             fontWeight:
                                             FontWeight
@@ -234,9 +233,8 @@ class _RefferedPatientsState extends State<RefferedPatients> {
                                     children: [
                                       Container(
                                         width: 120,
-                                        child: Text(
+                                        child: Text(MyLocalizations.of(context).text("NOTE"),
                                           /*'Confirmed'*/
-                                          ("Notes"),
                                           style: TextStyle(
                                             fontWeight:
                                             FontWeight
@@ -333,10 +331,9 @@ class _RefferedPatientsState extends State<RefferedPatients> {
                                               3.0),
                                           child:
                                           MaterialButton(
-                                            minWidth: 90,
+                                            minWidth: 170,
                                             height: 40.0,
-                                            child: Text(
-                                              "BOOK APPOINTMENT",
+                                            child: Text(MyLocalizations.of(context).text("BOOK_APPOINTMENT"),
                                               style: TextStyle(
                                                   fontWeight:
                                                   FontWeight
