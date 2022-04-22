@@ -2714,7 +2714,6 @@ class MyPage1Widget extends StatelessWidget {
         height: _height,
         width: _width,
         decoration: BoxDecoration(
-
             /// borderRadius: BorderRadius.circular(7.0),
            /* borderRadius: BorderRadius.only(
               topLeft: Radius.circular(10.0),
@@ -2981,7 +2980,6 @@ class MyPage1Widget extends StatelessWidget {
         height: _height,
         width: _width,
         decoration: BoxDecoration(
-
             // /// borderRadius: BorderRadius.circular(7.0),
             // borderRadius: BorderRadius.only(
             //   topLeft: Radius.circular(10.0),

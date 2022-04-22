@@ -139,6 +139,7 @@
   "HEALTH_CHART": "Health Chart",
   "TEST_REPORT": "Test Report",
   "MEDICINE": "Medicine",
+  "MEDICINE_NAME": "Medicine Name",
   "MEDICINE_LIST": "Medicine List",
   "TEST": "Test",
   "TEST_LIST": "Test List",
@@ -400,6 +401,7 @@
   "USER_ADDRESS": "User Address",
   "PRESCRIPTION_DATE": "Prescription Date",
   "DOSAGE": "Dosage",
+  "DOSAGE_TIME": "Dosage Time",
   "NO": "No",
   "YES": "Yes",
   "EDIT_ALLERGIC": "Edit Allergic",
@@ -496,6 +498,7 @@
   "PATIENT_DETAILS": "Patient Details",
   "PATIENT_HISTORY": "Patient History",
   "DELIVER_TO": "Deliver To",
+  "SET_MEDICINE_WATER": "Set reminder for medicines, water intake or any other medical needs",
 
 
 

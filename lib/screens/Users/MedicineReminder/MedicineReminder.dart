@@ -281,8 +281,7 @@ MedicineReminderDTO1 medicineReminderDTO1;
                         },
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                          child: Text(
-                            "Set reminder for medicines, water intake or any other medical needs",
+                          child: Text(MyLocalizations.of(context).text("SET_MEDICINE_WATER"),
                             style: TextStyle(color: Colors.black, fontSize: 18),
                             textAlign: TextAlign.center,
                           ),
@@ -301,7 +300,7 @@ MedicineReminderDTO1 medicineReminderDTO1;
                             Row(
                               children: [
                                 Expanded(
-                                    child: Text("Medicine Name ")),
+                                    child: Text(MyLocalizations.of(context).text("MEDICINE_NAME"))),
                                 SizedBox(width: 15),
                                 Expanded(
                                     child: Text(medicineReminderDTO1.body[i].medName)),
@@ -310,7 +309,7 @@ MedicineReminderDTO1 medicineReminderDTO1;
                             Row(
                               children: [
                                 Expanded(
-                                    child: Text("Dosage")),
+                                    child: Text(MyLocalizations.of(context).text("DOSAGE"))),
                                 SizedBox(width: 15),
                                 Expanded(
                                     child: Text(medicineReminderDTO1.body[i].medDosage)),
@@ -319,7 +318,7 @@ MedicineReminderDTO1 medicineReminderDTO1;
                             Row(
                               children: [
                                 Expanded(
-                                    child: Text("Dosage Time ")),
+                                    child: Text(MyLocalizations.of(context).text("DOSAGE_TIME"))),
                                 SizedBox(width: 15),
                                 Expanded(
                                     child: Text(medicineReminderDTO1.body[i].dosageTime??"")),
@@ -362,7 +361,7 @@ MedicineReminderDTO1 medicineReminderDTO1;
                                 height: 30,
                               ),*/
                               PopupMenuItem(
-                                child: Text("DELETE"),
+                                child: Text(MyLocalizations.of(context).text("DELETE")),
                                 value: 2,
                                 height: 30,
                               ),

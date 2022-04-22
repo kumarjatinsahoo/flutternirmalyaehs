@@ -132,6 +132,7 @@
   "UPLOAD_DOCUMENT": "दस्तऐवज अपलोड करा",
   "LIFESTYLE_HISTORY": "जीवनशैलीचा इतिहास",
   "MEDICINE": "औषध",
+  "MEDICINE_NAME": "औषधाचे नाव",
   "MEDICINE_LIST": "औषधांची यादी",
   "TEST": "चाचणी",
   "TEST_LIST": "चाचणी यादी",
@@ -207,6 +208,7 @@
   "OPTHALMOLOGY": "नेत्ररोगशास्त्र",
   "NEPHROLOGY": "नेफ्रोलॉजी",
   "BOOK_HEARSE_VAN": "शववाहिनीसाठी नोंदणी करा",
+  "HEARSE_VAN": "शववाहिनीसाठी ",
   "BOOOK_MORTUARY_FREEZER": "शवगृहातील शीतपेटीका बुक करा",
   "BOOK_PRIEST": "पुरोहितांसाठी नोंदणी करा",
   "BOOK_REPATRIATION": "मूळ जागी परत पाठवणीसाठी बुकिंग करा",
@@ -389,6 +391,7 @@
   "PRESCRIPTION_DATE": "प्रिस्क्रिप्शनची तारीख",
   "GIVE_PRESCRIPTION": "प्रिस्क्रिप्शन द्या",
   "DOSAGE": "डोस",
+  "DOSAGE_TIME": "डोस वेळ",
   "NO": "नाही",
   "YES": "होय",
   "EDIT_ALLERGIC": "ऍलर्जी संपादित करा",
@@ -484,6 +487,7 @@
   "ACCEPTED": "स्वीकारले",
   "ORDER_NO": "ऑर्डर क्रमांक",
   "DELIVER_TO": "पर्यंत वितरित करा",
+  "SET_MEDICINE_WATER": "औषधे, पाण्याचे सेवन किंवा इतर कोणत्याही वैद्यकीय गरजांसाठी स्मरणपत्र सेट करा",
 
 
 

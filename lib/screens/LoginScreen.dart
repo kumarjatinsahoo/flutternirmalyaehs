@@ -763,7 +763,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       children: <Widget>[
                         //_buildAboutText(),
                         //_buildLogoAttribution(),
-
                         ListView.separated(
                           separatorBuilder: (c, i) {
                             return Divider();

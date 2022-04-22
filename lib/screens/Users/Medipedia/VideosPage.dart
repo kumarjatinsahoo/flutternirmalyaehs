@@ -78,7 +78,7 @@ class _VideosPageState extends State<VideosPage> {
                             padding: const EdgeInsets.all(8.0),
                             child: Row(
                               children: [
-                                Image.asset("assets/logo1.png",height: 40,color: Color(0xFF006CE2),),
+                                Image.asset("assets/logo1.png",height: 40,),
                                 Padding(
                                   padding: const EdgeInsets.only(left:8.0),
                                   child: Column(

@@ -57,7 +57,7 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
         fun: (Map<String, dynamic> map){
           if (map[Const.CODE] == Const.SUCCESS) {
             patientRegModel=PatientRegModel.fromJson(map);
-            log("?????"+patientRegModel.body[0].countryId+",name:"+ patientRegModel.body[0].countryName);
+            log("?????"+patientRegModel.body[0].countryId+"name:"+ patientRegModel.body[0].countryName);
             PatientRegistration3.countryModel=new KeyvalueModel(
                 key: patientRegModel.body[0].countryId,name: patientRegModel.body[0].countryName);
             PatientRegistration3.stateModel=new KeyvalueModel(

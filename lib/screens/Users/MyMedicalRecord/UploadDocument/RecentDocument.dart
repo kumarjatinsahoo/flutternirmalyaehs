@@ -148,6 +148,7 @@ class _RecentDocumentState extends State<RecentDocument> {
   }
 */
   getFormatType(String ext) {
+
     switch (ext.toLowerCase()) {
       case 'jpg':
         return 'img';
@@ -175,6 +176,8 @@ class _RecentDocumentState extends State<RecentDocument> {
         return 'vdo';
       case 'avp':
         return 'vdo';
+      default:
+        return null;
     }
   }
 
@@ -272,43 +275,47 @@ class _RecentDocumentState extends State<RecentDocument> {
                                             pdfurl);
                                         String format =
                                         getFormatType(extension);
-                                        if (format == "img") {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      DocumentImage(
-                                                        model: widget
-                                                            .model,
-                                                      ))).then(
-                                                  (value) =>
-                                              widget.model.pdfurl);
+                                        log("print<<<<<<<<<<<"+getFormatType(extension));
+                                        if(format!=null) {
+                                          if (format == "img") {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        DocumentImage(
+                                                          model: widget
+                                                              .model,
+                                                        ))).then(
+                                                    (value) =>
+                                                widget.model.pdfurl);
 
-                                          /*  Navigator.pushNamed(context, "/documentimage",).then((
+                                            /*  Navigator.pushNamed(context, "/documentimage",).then((
                                           value) => widget.model.pdfurl);*/
-                                        } else if (format == "doc") {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      PdfViewPage(
-                                                        model: widget
-                                                            .model,
-                                                      ))).then(
-                                                  (value) =>
-                                              widget.model.pdfurl);
-                                        } else if (format == "vdo") {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      VideoDetailsPage(
-                                                        model: widget
-                                                            .model,
-                                                      ))).then(
-                                                  (value) =>
-                                              widget.model.pdfurl);
-
+                                          } else if (format == "doc") {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        PdfViewPage(
+                                                          model: widget
+                                                              .model,
+                                                        ))).then(
+                                                    (value) =>
+                                                widget.model.pdfurl);
+                                          } else if (format == "vdo") {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        VideoDetailsPage(
+                                                          model: widget
+                                                              .model,
+                                                        ))).then(
+                                                    (value) =>
+                                                widget.model.pdfurl);
+                                          }
+                                        }else{
+                                          AppData.showInSnackBar(context, "Unsupported file format");
                                         }
                                       },
                                       child: Icon(

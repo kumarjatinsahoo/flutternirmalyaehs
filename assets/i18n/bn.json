@@ -137,6 +137,7 @@
   "UPLOAD_DOCUMENT": "ଡକ୍ୟୁମେଣ୍ଟ୍ ଅପଲୋଡ୍ କରନ୍ତୁ",
   "LIFESTYLE_HISTORY": "ଜୀବନ ଶଳୀ ଇତିହାସ ",
   "MEDICINE": "ଓଷଧ",
+  "MEDICINE_NAME": "ଓଷଧର ନାମ",
   "MEDICINE_LIST": "ଓଷଧ ତାଲିକା ",
   "TEST": "ପରୀକ୍ଷା",
   "TEST_LIST": "ପରୀକ୍ଷା ତାଲିକା",
@@ -212,6 +213,7 @@
   "OPTHALMOLOGY": "ଚକ୍ଷୁ ଚିକିତ୍ସା",
   "NEPHROLOGY": "ନେଫ୍ରୋଲୋଜି ",
   "BOOK_HEARSE_VAN": "ଏକ ହର୍ସ ଭ୍ୟାନ୍ ବୁକ୍ କରନ୍ତୁ ",
+  "HEARSE_VAN": "ହର୍ସ ଭ୍ୟାନ୍",
   "BOOOK_MORTUARY_FREEZER": "ଏକ ମର୍ଟାରୀ ଫ୍ରିଜର୍ ବୁକ୍ କରନ୍ତୁ ",
   "BOOK_PRIEST": "ପୁରୋହିତ ବୁକ୍ କରନ୍ତୁ ",
   "BOOK_REPATRIATION": "ଏକ ପ୍ରତ୍ୟାବର୍ତ୍ତନ ବୁକ୍ କରନ୍ତୁ ",
@@ -395,6 +397,7 @@
   "PRESCRIPTION_DATE": "ପ୍ରେସକ୍ରିପସନ୍ ତାରିଖ",
   "GIVE_PRESCRIPTION": "ପ୍ରେସକ୍ରିପସନ୍ ଦିଅ",
   "DOSAGE": "ଡୋଜ",
+  "DOSAGE_TIME": "ଡୋଜେଜ୍ ସମୟ",
   "NO": "ନା",
   "YES": "ହଁ",
   "EDIT_ALLERGIC": "ଆଲର୍ଜି ସଂପାଦନ କରନ୍ତୁ",
@@ -488,6 +491,7 @@
   "PATIENT_HISTORY": "ରୋଗୀର ଇତିହାସ",
   "ORDER_NO": "ଅର୍ଡର ନମ୍ବର",
   "DELIVER_TO": "ବିତରଣ କରନ୍ତୁ",
+  "SET_MEDICINE_WATER": "ଓଷଧ, ଜଳ ଗ୍ରହଣ କିମ୍ବା ଅନ୍ୟ କୌଣସି ମେଡିକାଲ୍ ଚିକିତ୍ସା ଆବଶ୍ୟକତା ପାଇଁ ସ୍ମାରକପତ୍ର ସେଟ୍ କରନ୍ତୁ",
 
 
 

@@ -219,7 +219,7 @@ class _DieseInfoState extends State<DieseInfo> {
                         onChanged: (value) => _runFilter(value),
                         decoration: InputDecoration(
                             suffixIcon: Icon(Icons.search),
-                            hintText: "Search"),
+                            hintText: MyLocalizations.of(context).text("SEARCH")),
                       ),
                     ),
                   )

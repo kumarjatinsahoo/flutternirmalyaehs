@@ -22,10 +22,7 @@ class AadharRegistration extends StatefulWidget {
 
   final MainModel model;
 
-  const AadharRegistration({
-    Key key,
-    this.model,
-  }) : super(key: key);
+  const AadharRegistration({Key key, this.model,}) : super(key: key);
 
   @override
   _AadharRegistrationState createState() => _AadharRegistrationState();

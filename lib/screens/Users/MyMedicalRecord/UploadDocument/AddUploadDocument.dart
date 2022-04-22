@@ -209,7 +209,7 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
                                 )),
                             Text(
                               /*'Confirmed'*/
-                              "Image",
+                              "Imagse",
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 13,
@@ -521,7 +521,7 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
     String _fileName = _path != null ? _path.split('/').last : '...';
     var pos = _fileName.lastIndexOf('.');
     String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
-    print(extName);
+    print("EXT NAME?????>>>>>>>"+extName);
 
     setState(() {
       selectFile = image;
@@ -548,17 +548,17 @@ class _AddUploadDocumentState extends State<AddUploadDocument> {
     File file = await FilePicker.getFile(
       type: FileType.custom,
       allowedExtensions: [
-        'pdf',
-        'docx'
+        'pdf'
       ], //here you can add any of extention what you need to pick
     );
     var enc = await file.readAsBytes();
-    String _path = file.path;
+    String _path = file.path+".pdf";
+    log("Full path>>>>"+file.path);
 
     String _fileName = _path != null ? _path.split('/').last : '...';
     var pos = _fileName.lastIndexOf('.');
     String extName = (pos != -1) ? _fileName.substring(pos + 1) : _fileName;
-    print(extName);
+    print("??????????EXT NAME"+extName);
 
     if (file != null) {
       setState(() {

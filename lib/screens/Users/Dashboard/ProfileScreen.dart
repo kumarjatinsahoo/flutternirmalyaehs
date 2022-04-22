@@ -3187,8 +3187,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       if (textEditingController[1].text != "") {
                         updateProfileModel.address =
                             textEditingController[1].text;
-                      }
-                      updateProfileModel.occupation =
+                      }updateProfileModel.occupation =
                           textEditingController[2].text.trim();
                       updateProfileModel.qualification =
                           textEditingController[3].text.trim();
