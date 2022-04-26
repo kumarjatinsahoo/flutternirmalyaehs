@@ -159,7 +159,7 @@
   "OXYGEN_SATURATION": "ଅମ୍ଳଜାନ ସାଚୁରେଚର",
   "UPDATE_VITAL": "ଗୁରୁତ୍ୱପୂର୍ଣ୍ଣ ଚିହ୍ନ ଅଦ୍ୟତନ କରନ୍ତୁ",
   "APPOINT_NO": "",
-  "TYPE": "",
+  "TYPE": "ପ୍ରକାର",
   "REMARK": "",
   "NO_IMMUNIZATION_FOUND": "No immunization found",
   "VACCINATED":"ତୁମେ ଟୀକାକରଣ କର କି?",
@@ -491,6 +491,17 @@
   "PATIENT_HISTORY": "ରୋଗୀର ଇତିହାସ",
   "ORDER_NO": "ଅର୍ଡର ନମ୍ବର",
   "DELIVER_TO": "ବିତରଣ କରନ୍ତୁ",
+  "SET_REMINDER": "ସ୍ମାରକପତ୍ର ସେଟ୍ କରନ୍ତୁ",
+  "REMINDER_TIME": "ସ୍ମାରକ ସମୟ",
+  "HOW_MANY_TIMES": "ଦିନକୁ କେତେ ଥର",
+  "FREQUENCY": "ବାରମ୍ବାର",
+  "TIMINGS": "ସମୟ",
+  "DAILY": "ପ୍ରତିଦିନ",
+  "WEEKLY": "ସାପ୍ତାହିକ",
+  "MONTHLY": "ମାସିକ",
+  "ADD_DOCTOR_INSTRUCTION": "ଡାକ୍ତର ନିର୍ଦ୍ଦେଶନାମା ଯୋଡନ୍ତୁ",
+  "Days": "ଦିନ",
+
   "SET_MEDICINE_WATER": "ଓଷଧ, ଜଳ ଗ୍ରହଣ କିମ୍ବା ଅନ୍ୟ କୌଣସି ମେଡିକାଲ୍ ଚିକିତ୍ସା ଆବଶ୍ୟକତା ପାଇଁ ସ୍ମାରକପତ୍ର ସେଟ୍ କରନ୍ତୁ",
 
 

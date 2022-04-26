@@ -338,7 +338,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         */ /**/ /*selectGender = "2";
                         callingAPI(selectGender, salID);
                         Navigator.pop(context);
-                        _selectDate(context);*/ /**/ /*
+                        _selectDate(context);*/ /**/
+          /*
                       });
                     },
                     child: Container(
@@ -462,7 +463,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                       SizedBox(
-                        height: 20,
+                         height: 20,
                       ),
                       Align(
                         alignment: Alignment.topLeft,

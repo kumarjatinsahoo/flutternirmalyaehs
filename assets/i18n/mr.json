@@ -154,7 +154,7 @@
   "OXYGEN_SATURATION": "ऑक्सिजन संपृक्ती",
   "UPDATE_VITAL": "महत्त्वपूर्ण चिन्ह अद्यतनित करा",
   "APPOINT_NO": "",
-  "TYPE": "",
+  "TYPE": "प्रकार",
   "REMARK": "",
   "NO_IMMUNIZATION_FOUND": "No immunization found",
   "VACCINATED":"आपण लसीकरण केले आहे?",
@@ -487,6 +487,17 @@
   "ACCEPTED": "स्वीकारले",
   "ORDER_NO": "ऑर्डर क्रमांक",
   "DELIVER_TO": "पर्यंत वितरित करा",
+  "SET_REMINDER": "स्मरणपत्र सेट करा",
+  "REMINDER_TIME": "स्मरण वेळ",
+  "HOW_MANY_TIMES": "दिवसातून किती वेळा",
+  "FREQUENCY": "वारंवारता",
+  "TIMINGS": "वेळा",
+  "DAILY": "रोज",
+  "WEEKLY": "साप्ताहिक",
+  "MONTHLY": "मासिक",
+  "ADD_DOCTOR_INSTRUCTION": "डॉक्टरांच्या सूचना जोडा",
+  "Days": "दिवस",
+
   "SET_MEDICINE_WATER": "औषधे, पाण्याचे सेवन किंवा इतर कोणत्याही वैद्यकीय गरजांसाठी स्मरणपत्र सेट करा",
 
 
