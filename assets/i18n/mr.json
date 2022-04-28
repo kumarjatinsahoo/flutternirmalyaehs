@@ -155,7 +155,7 @@
   "UPDATE_VITAL": "महत्त्वपूर्ण चिन्ह अद्यतनित करा",
   "APPOINT_NO": "",
   "TYPE": "प्रकार",
-  "REMARK": "",
+  "REMARK": "टिप्पणी",
   "NO_IMMUNIZATION_FOUND": "No immunization found",
   "VACCINATED":"आपण लसीकरण केले आहे?",
   "NAME": "नाव",
@@ -166,7 +166,7 @@
   "ADD_ALLERGIC": "ऍलर्जी जोडा",
   "NO_DATA_FOUND": "माहिती आढळली नाही",
   "DATE": "तारीख",
-  "DATE_IMPLANT": "Date Of Implant",
+  "DATE_IMPLANT": "इम्प्लांटची तारीख",
   "REASON": "कारण",
   "ADD_DETAILS": "तपशील जोडा",
   "BOOK_APPOINTMENT": "बुक भेट",
@@ -497,6 +497,13 @@
   "MONTHLY": "मासिक",
   "ADD_DOCTOR_INSTRUCTION": "डॉक्टरांच्या सूचना जोडा",
   "Days": "दिवस",
+  "NIGHT": "रात्री",
+  "ADD_MEDICINE": "औषध घाला",
+  "DURATION_DAYS": "कालावधी (दिवसांमध्ये)",
+  "ADD_TEST": "चाचणी जोडा",
+  "TEST_GROUP": "चाचणी गट",
+  "TEST_NAME": "चाचणी नाव",
+
 
   "SET_MEDICINE_WATER": "औषधे, पाण्याचे सेवन किंवा इतर कोणत्याही वैद्यकीय गरजांसाठी स्मरणपत्र सेट करा",
 

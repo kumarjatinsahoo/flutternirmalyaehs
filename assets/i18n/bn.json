@@ -160,7 +160,7 @@
   "UPDATE_VITAL": "ଗୁରୁତ୍ୱପୂର୍ଣ୍ଣ ଚିହ୍ନ ଅଦ୍ୟତନ କରନ୍ତୁ",
   "APPOINT_NO": "",
   "TYPE": "ପ୍ରକାର",
-  "REMARK": "",
+  "REMARK": "ଟିପ୍ପଣୀ",
   "NO_IMMUNIZATION_FOUND": "No immunization found",
   "VACCINATED":"ତୁମେ ଟୀକାକରଣ କର କି?",
   "NAME": "ନାମ",
@@ -171,7 +171,7 @@
   "ADD_ALLERGIC": "ଆଲର୍ଜି ଯୋଡନ୍ତୁ ",
   "NO_DATA_FOUND": "କଣସି ତଥ୍ୟ ମିଳିଲା ନାହିଁ ",
   "DATE": "ତାରିଖ",
-  "DATE_IMPLANT": "Date Of Implant",
+  "DATE_IMPLANT": "ପ୍ରତିରୋପଣର ତାରିଖ",
   "REASON": "କାରଣ",
   "ADD_DETAILS": "ବିବରଣୀ ଯୋଡନ୍ତୁ ",
   "BOOK_APPOINTMENT": "ବୁକ୍ ନିଯୁକ୍ତି ",
@@ -501,6 +501,13 @@
   "MONTHLY": "ମାସିକ",
   "ADD_DOCTOR_INSTRUCTION": "ଡାକ୍ତର ନିର୍ଦ୍ଦେଶନାମା ଯୋଡନ୍ତୁ",
   "Days": "ଦିନ",
+  "NIGHT": "ରାତି",
+  "ADD_MEDICINE": "ମେଡିସିନ୍ ଯୋଗ କରନ୍ତୁ",
+  "DURATION_DAYS": "ଅବଧି (ଦିନରେ)",
+  "ADD_TEST": "ପରୀକ୍ଷା ଯୋଡନ୍ତୁ ",
+  "TEST_GROUP": "ପରୀକ୍ଷା ଗୋଷ୍ଠୀ",
+  "TEST_NAME": "ପରୀକ୍ଷା ନାମ",
+
 
   "SET_MEDICINE_WATER": "ଓଷଧ, ଜଳ ଗ୍ରହଣ କିମ୍ବା ଅନ୍ୟ କୌଣସି ମେଡିକାଲ୍ ଚିକିତ୍ସା ଆବଶ୍ୟକତା ପାଇଁ ସ୍ମାରକପତ୍ର ସେଟ୍ କରନ୍ତୁ",
 

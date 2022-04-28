@@ -416,9 +416,11 @@ class _ImmunizationState extends State<Immunization> {
                           child:
                           Image.asset("assets/images/indication.png")))),
             ))
+
       ],
     );
   }
+
 
   displayStatushangeDialog(BuildContext context, String slno, String status) {
     showDialog(

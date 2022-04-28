@@ -153,7 +153,7 @@
   "UPDATE_VITAL": "महत्वपूर्ण साइन अपडेट करें",
   "APPOINT_NO": "",
   "TYPE": "प्रकार",
-  "REMARK": "",
+  "REMARK": "टिप्पणी",
   "NO_IMMUNIZATION_FOUND": "No immunization found",
   "NAME": "नाम",
   "ALLERGEN": "एलर्जी",
@@ -163,7 +163,7 @@
   "ADD_ALLERGIC": "एलर्जी जोड़ें",
   "NO_DATA_FOUND": "डाटा प्राप्त नहीं हुआ",
   "DATE": "दिनांक",
-  "DATE_IMPLANT": "Date Of Implant",
+  "DATE_IMPLANT": "प्रत्यारोपण की तिथि",
   "REASON": "कारण",
   "ADD_DETAILS": "विवरण जोड़ें",
   "BOOK_APPOINTMENT": "निर्धारित तारीख बुक करना",
@@ -502,6 +502,13 @@
   "MONTHLY": "महीने के",
   "ADD_DOCTOR_INSTRUCTION": "डॉक्टर निर्देश जोड़ें",
   "Days": "दिन",
+  "NIGHT": "रात",
+  "ADD_MEDICINE": "दवा जोड़ें",
+  "DURATION_DAYS": "अवधि (दिनों में)",
+  "ADD_TEST": "टेस्ट जोड़ें",
+  "TEST_GROUP": "परीक्षण समूह",
+  "TEST_NAME": "परीक्षण नाम",
+
 
   "SET_MEDICINE_WATER": "दवाओं, पानी के सेवन या किसी अन्य चिकित्सीय आवश्यकता के लिए रिमाइंडर सेट करें",
 

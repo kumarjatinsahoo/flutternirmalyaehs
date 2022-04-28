@@ -3060,6 +3060,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
             actions: <Widget>[
               FlatButton(
+                // shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
                 textColor: Colors.grey,
                 child: Text(MyLocalizations.of(context).text("CANCEL"),
                     style: TextStyle(color: AppData.kPrimaryRedColor)),

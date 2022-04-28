@@ -106,11 +106,11 @@ class _MyPatientlistState extends State<MyPatientlist> {
                                               // height: 25,
                                             )
           ),
-
         ) :
         SingleChildScrollView(
 
-          child: (myPatientlistModel != null) ? ListView.builder(
+          child: (myPatientlistModel != null) ?
+          ListView.builder(
             physics: NeverScrollableScrollPhysics(),
             // controller: _scrollController,
             shrinkWrap: true,

@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/services.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:user/localization/localizations.dart';
 import 'package:user/models/KeyvalueModel.dart';
 
 import 'package:user/models/MedicinModel.dart';
@@ -56,6 +57,7 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
   List<MedicinlistModel> medicinlist = [];
 
   void initState() {
+
     // TODO: implement initState
     super.initState();
     setState(() {
@@ -138,8 +140,7 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
                     //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Expanded(
-                        child: Text(
-                          "Add Test",
+                        child: Text(MyLocalizations.of(context).text("ADD_TEST"),
                           style: TextStyle(
                               color: Colors.black,
                               fontSize: 17,
@@ -236,7 +237,7 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
                               children: [
                                 SizedBox(
                                   height:
-                                      MediaQuery.of(context).size.height * 0.35,
+                                      MediaQuery.of(context).size.height * 0.5,
                                 ),
                                 CircularProgressIndicator(
                                     // backgroundColor: AppData.matruColor,
@@ -500,7 +501,9 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
               children: <Widget>[
                 //_buildAboutText(),
                 //_buildLogoAttribution(),
-                Text("Add Test"),
+                // Text(MyLocalizations.of(context).text("ADD_TEST")),
+                Text(MyLocalizations.of(context).text("ADD_TEST")),
+
                 SizedBox(
                   height: 10,
                 ),
@@ -509,7 +512,7 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
                   child: SizedBox(
                     height: 58,
                     child: DropDown.networkDropdownGetpartUser(
-                        "Test",
+                      MyLocalizations.of(context).text("TEST"),
                         ApiFactory.TESTNAME_LIST,
                         // "http://192.168.43.248:8062/nirmalyaRest/api/get-testname-list",
                         "test",
@@ -530,11 +533,11 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
                     }),
                   ),
                 ),
-                fromField1(0, "Test Group", TextInputAction.next,
+                fromField1(0,MyLocalizations.of(context).text("TEST_GROUP"), TextInputAction.next,
                     TextInputType.text, "Type"),
-                fromField1(1, "Test Name", TextInputAction.next,
+                fromField1(1,MyLocalizations.of(context).text("TEST_NAME"), TextInputAction.next,
                     TextInputType.text, "Type"),
-                fromAddress(2, "Remark", TextInputAction.next,
+                fromAddress(2,MyLocalizations.of(context).text("REMARK"), TextInputAction.next,
                     TextInputType.text, "remark"),
               ],
             ),
@@ -550,7 +553,7 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
             textEditingController[2].text = "";
           },
           textColor: AppData.kPrimaryRedColor,
-          child: const Text('Cancel'),
+          child:  Text(MyLocalizations.of(context).text("CANCEL")),
         ),
         new FlatButton(
           onPressed: () {
@@ -568,8 +571,6 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
                   "appno": widget.model.appointmentlist.doctorName, //appno"4",
                   "remarks": textEditingController[2].text,
                   "doctor": widget.model.user,
-                  // "testgroup": textEditingController[0].text,
-                  // "testname": textEditingController[1].text
                   "testgroup": DoctorTestlist.medicinModel.groupId,
                   "testname":DoctorTestlist.medicinModel.testNameId
                 }
@@ -603,7 +604,7 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
              controller[1].text="";*/
           },
           textColor: Theme.of(context).primaryColor,
-          child: const Text('Save'),
+          child: Text(MyLocalizations.of(context).text("SAVE")),
         ),
       ],
     );
@@ -612,7 +613,8 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
   /* DataTable _dataTable() {
     */ /*MaterialStateProperty<Colors> material=[
       Colors.red
-    ];*/ /*
+    ];*/
+  /*
     return DataTable(
       columns: [
         DataColumn(
@@ -662,7 +664,8 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
         // sortColumnIndex: 1,
         sortAscending: true,
         columns: <DataColumn>[
-          */ /**/ /*DataColumn(
+          */ /**/
+  /*DataColumn(
             label: Container(
               //color: Colors.red,
               child: Text(
@@ -671,7 +674,8 @@ class _DoctorTestlistState extends State<DoctorTestlist> {
                     TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
               ),
             ),
-          ),*/ /**/ /*
+          ),*/ /**/
+  /*
           DataColumn(
             label: Container(
               //color: Colors.red,
