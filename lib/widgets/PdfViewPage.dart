@@ -121,7 +121,6 @@ class _PDFScreenState extends State<PDFScreen> with WidgetsBindingObserver {
       body: Stack(
         children: <Widget>[
           PDFView(
-
             filePath: widget.path,
             enableSwipe: true,
             swipeHorizontal: false,

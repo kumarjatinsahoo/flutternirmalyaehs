@@ -7,8 +7,8 @@ class ApiFactory {
   ////Local : isLocal:true && isProduction:false
 
   static bool isProduction = false;
-  static bool isLocal = false;
-  static String LOCAL_URL = "http://192.168.0.143:8062/nirmalyaRest/api/";
+  static bool isLocal = true;
+  static String LOCAL_URL = "http://192.168.0.140:8062/nirmalyaRest/api/";
 
   static String REG_DEVICE = "https://cca.medtel.in/Ziniai/manageDeviceId";
   static String MAIN_URL = (!isLocal)
@@ -41,6 +41,12 @@ class ApiFactory {
   static String AMBULANCE_API = MAIN_URL + 'get-ambulance-orglist';
   static String BLOODBBANKNAME_API = MAIN_URL + 'get-bloodbank-orglist';
   static String TITLE_API = MAIN_URL + 'get-user-title-list';
+  static String INSURANCE_TITLE = MAIN_URL + 'get-insurance-title-list';
+  static String INSURANCE_PINCODE = MAIN_URL + 'get-insurance-pincode-list';
+  static String INSURANCE_MARITALSTATUS = MAIN_URL + 'get-insurance-maritalstatus-list';
+  static String INSURANCE_OCCUPATION = MAIN_URL + 'get-insurance-ocupation-list';
+
+
   static String NAME_API = MAIN_URL + 'get-allergy-name-list';
   static String TYPE_API = MAIN_URL + 'get-allergy-type-list';
   static String ORGAN_API = MAIN_URL + 'get-organ-list';
@@ -95,6 +101,8 @@ class ApiFactory {
       MAIN_URL + 'get-doctor-list-by-org?userid=';
   static String SHARE_APPOINTMENT_DOCTORRECEPTIONIST =
       MAIN_URL + 'get-doctorreceptionist-list?drid=';
+
+
 
 
   static String DELETE_REMINDER =
