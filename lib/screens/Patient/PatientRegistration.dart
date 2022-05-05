@@ -98,7 +98,7 @@ class _PatientRegistrationState extends State<PatientRegistration> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 8, right: 8, top: 10),
+                  padding: const EdgeInsets.only(left: 11, right: 8, top: 10),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -134,7 +134,7 @@ class _PatientRegistrationState extends State<PatientRegistration> {
                                         left: 5.0, right: 5.0),
                                     child: Image.asset(
                                       "assets/indiaflagpng.png",
-                                      height: 15,
+                                      height: 12,
                                     )),
                                 Text(
                                   'IN',

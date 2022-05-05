@@ -25,13 +25,14 @@ class _ConfirmOrdersLabState extends State<ConfirmOrdersLab> {
   int _selectedDestination = -1;
   LoginResponse1 loginResponse;
   bool isDataNotAvail = false;
-  bool isdata = false;
+  bool isdata = true;
   oderlist.PharmacyorderModel pharmacyorderModel;
   void selectDestination(int index) {
     setState(() {
       _selectedDestination = index;
     });
   }
+  bool isDataNotFound = false;
 
   @override
   void initState() {
@@ -52,11 +53,11 @@ class _ConfirmOrdersLabState extends State<ConfirmOrdersLab> {
             if (map[Const.CODE] == Const.SUCCESS) {
               setState(() {
                 pharmacyorderModel = oderlist.PharmacyorderModel.fromJson(map);
-                isdata=false;
+                isDataNotFound=false;
               });
 
             } else {
-              isdata=false;
+              isDataNotFound=true;
             /*  isDataNotAvail = true;
               AppData.showInSnackBar(context, msg);*/
             }
@@ -84,18 +85,18 @@ class _ConfirmOrdersLabState extends State<ConfirmOrdersLab> {
       body:
       /*(pharmacyorderModel != null)
       ? */
-      isdata == true
-          ? Center(
-        child: CircularProgressIndicator(
-          //backgroundColor: AppData.matruColor,
-        ),
-      )
-          : pharmacyorderModel == null || pharmacyorderModel == null
+      (isDataNotFound == true)
           ? Container(
         child: Center(
             child:Image.asset("assets/NoRecordFound.png",
               // height: 25,
             )
+        ),
+      )
+          :pharmacyorderModel == null
+          ? Center(
+        child: CircularProgressIndicator(
+          //backgroundColor: AppData.matruColor,
         ),
       )
           : (pharmacyorderModel != null)
@@ -287,8 +288,15 @@ class _ConfirmOrdersLabState extends State<ConfirmOrdersLab> {
             },
           itemCount: pharmacyorderModel.body.length,
       )
-
-    ) :Container(),
+    ) :Container(
+        height: size.height - 100,
+        child: Center(
+            child: Image.asset("assets/NoRecordFound.png",
+              // height: 25,
+            )
+        ),
+      )
+            //: MyWidgets.loading(context),
     );
   }
 
@@ -307,7 +315,6 @@ class _ConfirmOrdersLabState extends State<ConfirmOrdersLab> {
                //pharmacyorderModel = oderlist.PharmacyorderModel.fromJson(map);
              //  AppData.showInSnackBar(context, msg);
                callAPI();
-
              } else {
                isDataNotAvail = true;
                AppData.showInSnackBar(context, msg);

@@ -191,7 +191,7 @@ class _BiomediImplantsState extends State<BiomediImplants> {
                                                     children: [
                                                       Expanded(
                                                         flex: 1,
-                                                        child: Text(MyLocalizations.of(context).text("NAME"),
+                                                         child: Text(MyLocalizations.of(context).text("NAME"),
                                                           style: TextStyle(
                                                               fontSize: 15,
                                                               fontWeight:

@@ -7,8 +7,8 @@ class ApiFactory {
   ////Local : isLocal:true && isProduction:false
 
   static bool isProduction = false;
-  static bool isLocal = true;
-  static String LOCAL_URL = "http://192.168.0.140:8062/nirmalyaRest/api/";
+  static bool isLocal = false;
+  static String LOCAL_URL = "http://192.168.0.124:8062/nirmalyaRest/api/";
 
   static String REG_DEVICE = "https://cca.medtel.in/Ziniai/manageDeviceId";
   static String MAIN_URL = (!isLocal)
@@ -42,9 +42,10 @@ class ApiFactory {
   static String BLOODBBANKNAME_API = MAIN_URL + 'get-bloodbank-orglist';
   static String TITLE_API = MAIN_URL + 'get-user-title-list';
   static String INSURANCE_TITLE = MAIN_URL + 'get-insurance-title-list';
-  static String INSURANCE_PINCODE = MAIN_URL + 'get-insurance-pincode-list';
+  static String INSURANCE_PINCODE = MAIN_URL + 'get-Insurance-Pincode-Autosearch?id=';
   static String INSURANCE_MARITALSTATUS = MAIN_URL + 'get-insurance-maritalstatus-list';
   static String INSURANCE_OCCUPATION = MAIN_URL + 'get-insurance-ocupation-list';
+  static String INSURANCE_RELATION = MAIN_URL + 'get-insurance-relationCode-list';
 
 
   static String NAME_API = MAIN_URL + 'get-allergy-name-list';

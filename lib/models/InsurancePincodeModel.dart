@@ -1,12 +1,12 @@
-class Model {
+class InsurancePincodeModel {
   List<Body> body;
   String message;
   String code;
   Null total;
 
-  Model({this.body, this.message, this.code, this.total});
+  InsurancePincodeModel({this.body, this.message, this.code, this.total});
 
-  Model.fromJson(Map<String, dynamic> json) {
+  InsurancePincodeModel.fromJson(Map<String, dynamic> json) {
     if (json['body'] != null) {
       body = new List<Body>();
       json['body'].forEach((v) {

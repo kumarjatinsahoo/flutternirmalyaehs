@@ -16,7 +16,9 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:user/models/AddOrganDonModel.dart';
 import 'package:user/models/AutocompleteDTO.dart';
+import 'package:user/models/InsurancePincodeModel.dart' as ins;
 import 'package:user/models/EmergencyMessageModel.dart';
+import 'package:user/models/InsurancePincodeModel.dart';
 import 'package:user/models/ProfileModel.dart';
 import 'package:user/models/TissueModel.dart' as tissue;
 import 'package:user/models/OrganModel.dart' as organ;
@@ -162,6 +164,7 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
   TextEditingController _message = TextEditingController();
   TextEditingController stdob = TextEditingController();
   TextEditingController nomdob = TextEditingController();
+  TextEditingController pincode = TextEditingController();
   List<bool> error = [false, false, false, false, false, false];
   bool _isSignUpLoading = false;
 
@@ -465,19 +468,19 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
       });
   }
 
-  Future<List<Predictions>> fetchSearchAutoComplete(String course_name) async {
+  Future<List<ins.Body>> fetchSearchAutoComplete(String course_name) async {
     var dio = Dio();
     //Map<String, dynamic> postMap = {"course_name": course_name};
     final response = await dio.get(
-      ApiFactory.AUTO_COMPLETE + course_name,
+      ApiFactory.INSURANCE_PINCODE + course_name,
     );
 
     if (response.statusCode == 200) {
-      AutoCompleteDTO model = AutoCompleteDTO.fromJson(response.data);
+      ins.InsurancePincodeModel model = ins.InsurancePincodeModel.fromJson(response.data);
       setState(() {
         //this.courcesDto = model;
       });
-      return model.predictions;
+      return model.body;
     } else {
       setState(() {
         //isAnySearchFail = true;
@@ -583,7 +586,6 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
     List<Contact> foundUser=[];
     foundUser=list;
     // List<Contact> myList;
-
 
     return showDialog(
         context: context,
@@ -711,7 +713,6 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
   }
 
 
-
   void connectionChanged(dynamic hasConnection) {
     setState(() {
       isOnline = hasConnection;
@@ -788,7 +789,6 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
                     "Last Name"),
                 SizedBox(height: 8),
                 dobBirth(),
-
                 Padding(
                   padding: const EdgeInsets.symmetric(
                       horizontal: 0),
@@ -854,10 +854,11 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
                       child: TypeAheadField(
                         textFieldConfiguration: TextFieldConfiguration(
                           style: TextStyle(color: Colors.black),
+                          controller: pincode,
                           textInputAction: TextInputAction.search,
                           decoration: InputDecoration(
                             border: InputBorder.none,
-                            hintText: 'Search',
+                            hintText: 'Pin code',
                             alignLabelWithHint: true,
                             hintStyle: TextStyle(
                                 fontFamily: "Monte",
@@ -882,16 +883,17 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
                               : null;
                         },
                         hideOnLoading: true,
-                        itemBuilder: (context, Predictions suggestion) {
+                        itemBuilder: (context, ins.Body suggestion) {
                           return ListTile(
                             leading: Icon(Icons.search),
-                            title: Text(suggestion.description),
+                            title: Text(suggestion.name),
                           );
                         },
-                        onSuggestionSelected: (Predictions suggestion) {
+                        onSuggestionSelected: (ins.Body suggestion) {
                           //widget.model.courceName = suggestion.courseSlug;
                           //Navigator.pushNamed(context, "/courceDetail1");
-                          Navigator.pop(context);
+                          //Navigator.pop(context);
+                        pincode.text=suggestion.name;
                         },
                       ),
                     ),
@@ -957,7 +959,7 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
                 SizedBox(height: 8),
                 stdLandlineNo(10,"Landline No", /*fnode13, fnode14*/),
                 SizedBox(height: 8),
-                panNo(11,"PanNo", /*fnode13, fnode14*/),
+                panNo(11,"PAN No", /*fnode13, fnode14*/),
                 SizedBox(height: 8),
                 panNo(12,"Passport Number", /*fnode13, fnode14*/),
                 SizedBox(height: 8),
@@ -965,61 +967,61 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
                 SizedBox(height: 8),
                 panNo(14,"Annual Income", /*fnode13, fnode14*/),
                 SizedBox(height: 8),
-                panNo(15,"remarks", /*fnode13, fnode14*/),
+                panNo(15,"Remarks", /*fnode13, fnode14*/),
+           /*     SizedBox(height: 8),
+                panNo(16,"remarks", *//*fnode13, fnode14*//*),*/
                 SizedBox(height: 8),
-                panNo(16,"remarks", /*fnode13, fnode14*/),
+                homeAddressLine1(17,"Home Address Line1", /*fnode13, fnode14*/),
                 SizedBox(height: 8),
-                homeAddressLine1(17,"HomeAddressLine1", /*fnode13, fnode14*/),
+                homeAddressLine1(18,"Home Address Line2", /*fnode13, fnode14*/),
                 SizedBox(height: 8),
-                homeAddressLine1(18,"HomeAddressLine2", /*fnode13, fnode14*/),
+                homeAddressLine1(19,"Home Address Line3", /*fnode13, fnode14*/),
                 SizedBox(height: 8),
-                homeAddressLine1(19,"HomeAddressLine3", /*fnode13, fnode14*/),
+                panNo(20,"Home PinCode", /*fnode13, fnode14*/),
                 SizedBox(height: 8),
-                panNo(20,"HomePinCode", /*fnode13, fnode14*/),
+                homeAddressLine1(21,"Home Area", /*fnode13, fnode14*/),
                 SizedBox(height: 8),
-                homeAddressLine1(21,"HomeArea", /*fnode13, fnode14*/),
+                formFieldPhoneNo(22,"Home Contact MobileNo", /*fnode13, fnode14*/),
                 SizedBox(height: 8),
-                formFieldPhoneNo(22,"HomeContactMobileNo", /*fnode13, fnode14*/),
+                formFieldPhoneNo(23,"home Contact MobileNo1", /*fnode13, fnode14*/),
                 SizedBox(height: 8),
-                formFieldPhoneNo(23,"homeContactMobileNo1", /*fnode13, fnode14*/),
+                stdLandlineNo(24,"Home STD Landline No", /*fnode13, fnode14*/),
                 SizedBox(height: 8),
-                stdLandlineNo(24,"HomeSTDLandlineNo", /*fnode13, fnode14*/),
+                homeAddressLine1(25,"Home Fax No", /*fnode13, fnode14*/),
                 SizedBox(height: 8),
-                homeAddressLine1(25,"HomeFaxNo", /*fnode13, fnode14*/),
+                homeAddressLine1(26,"Same As Home Address", /*fnode13, fnode14*/),
                 SizedBox(height: 8),
-                homeAddressLine1(26,"SameAsHomeAddress", /*fnode13, fnode14*/),
+                homeAddressLine1(27,"Mailing Address Line1", /*fnode13, fnode14*/),
                 SizedBox(height: 8),
-                homeAddressLine1(27,"MailingAddressLine1", /*fnode13, fnode14*/),
+                homeAddressLine1(28,"Mailing  Address Line2", /*fnode13, fnode14*/),
                 SizedBox(height: 8),
-                homeAddressLine1(28,"MailingAddressLine2", /*fnode13, fnode14*/),
+                homeAddressLine1(29,"mailing Address Line3", /*fnode13, fnode14*/),
                 SizedBox(height: 8),
-                homeAddressLine1(29,"mailingAddressLine3", /*fnode13, fnode14*/),
+                panNo(30,"Mailing PinCode", /*fnode13, fnode14*/),
                 SizedBox(height: 8),
-                panNo(30,"MailingPinCode", /*fnode13, fnode14*/),
+                homeAddressLine1(31,"Mailing Area", /*fnode13, fnode14*/),
                 SizedBox(height: 8),
-                homeAddressLine1(31,"MailingArea", /*fnode13, fnode14*/),
+                formFieldPhoneNo(32,"Mailing Contact Mobile No", /*fnode13, fnode14*/),
                 SizedBox(height: 8),
-                formFieldPhoneNo(32,"MailingContactMobileNo", /*fnode13, fnode14*/),
+                formFieldPhoneNo(33,"Mailing Contact Mobile No2", /*fnode13, fnode14*/),
                 SizedBox(height: 8),
-                formFieldPhoneNo(33,"MailingContactMobileNo2", /*fnode13, fnode14*/),
+                stdLandlineNo(12,"Mailing STD Landline No", /*fnode13, fnode14*/),
                 SizedBox(height: 8),
-                stdLandlineNo(12,"MailingSTDLandlineNo", /*fnode13, fnode14*/),
+                stdLandlineNo(34,"Mailing STD Landline No2", /*fnode13, fnode14*/),
                 SizedBox(height: 8),
-                stdLandlineNo(34,"MailingSTDLandlineNo2", /*fnode13, fnode14*/),
+                homeAddressLine1(35,"Mailing Fax No"),
                 SizedBox(height: 8),
-                homeAddressLine1(35,"MailingFaxNo"),
+                homeAddressLine1(36,"Bank Account Type"),
                 SizedBox(height: 8),
-                homeAddressLine1(36,"BankAccountType"),
+                panNo(37,"Bank Account No"),
                 SizedBox(height: 8),
-                panNo(37,"BankAccountNo"),
+                panNo(38,"IFSC Code"),
                 SizedBox(height: 8),
-                panNo(38,"ifscCode"),
+                formFieldPinno(39,"GST IN"),
                 SizedBox(height: 8),
-                formFieldPinno(39,"GSTIN"),
+                formFieldPinno(40,"GST Registration Status"),
                 SizedBox(height: 8),
-                formFieldPinno(40,"GSTRegistrationStatus"),
-                SizedBox(height: 8),
-                panNo(41,"EIAAccountNo"),
+                panNo(41,"EIA AccountNo"),
                /* Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
@@ -1137,9 +1139,7 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
                     children: [
                       Expanded(
                         child: Container(
-
                           child: Text(
-
                             "Report Path :" + idproof,
                             style: TextStyle(color: Colors.green),
                           ),
@@ -1437,7 +1437,7 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
                     showDialog(
                       context: context,
                       builder: (BuildContext context) =>
-                          dialogaddnomination(context),
+                           dialogaddnomination(context),
                     );
                   },
                   child: Padding(
@@ -2166,28 +2166,50 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
                     "Last Name"),
                 SizedBox(height: 8),
                 dobBirth(),
-                SizedBox(height: 8),
-                panNo(37,"Relation Code"),
-
-
+                //panNo(37,"Relation Code"),
                 Padding(
                   padding: const EdgeInsets.symmetric(
                       horizontal: 0),
                   child: SizedBox(
                     height: 58,
                     child:DropDown.networkDropdown1(
-                        MyLocalizations.of(context).text("MARITAL_STATUS"),
-                        ApiFactory.MARITAL_API,
-                        "marital",
+                       "Relation Code",
+                        ApiFactory.INSURANCE_RELATION,
+                        "insurancerelation",
                         Icons.wc_outlined,
                         23.0, (KeyvalueModel data) {
                       setState(() {
-                        print(ApiFactory.GENDER_API);
-                        InsuranceFormNew.materialmodel = data;
-                        patientProfileModel.body.mstausid =
+                     print(ApiFactory.INSURANCE_RELATION);
+                         InsuranceFormNew.relationmodel = data;
+                        /*patientProfileModel.body.mstausid =
                             data.key;
                         patientProfileModel.body.maritialstatus =
-                            data.name;
+                            data.name;*/
+                        //userModel.gender = data.key;
+                        // UserSignUpForm.cityModel = null;
+                      });
+                    }),
+                  ),
+                ),
+
+            Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 0),
+                  child: SizedBox(
+                    height: 58,
+                    child:DropDown.networkDropdown1(
+                        MyLocalizations.of(context).text("MARITAL_STATUS"),
+                        ApiFactory.INSURANCE_MARITALSTATUS,
+                        "insurancemarital",
+                        Icons.wc_outlined,
+                        23.0, (KeyvalueModel data) {
+                      setState(() {
+                        print(ApiFactory.INSURANCE_MARITALSTATUS);
+                        InsuranceFormNew.materialmodel = data;
+                      /*  patientProfileModel.body.mstausid =
+                            data.key;
+                        patientProfileModel.body.maritialstatus =
+                            data.name;*/
                         //userModel.gender = data.key;
                         // UserSignUpForm.cityModel = null;
                       });

@@ -4744,6 +4744,12 @@ class DropDown {
             case "insuranceoccupation":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
+            case "insurancerelation":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+            case "insurancemarital":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
 
         }
 

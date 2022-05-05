@@ -663,7 +663,7 @@ class _LabDashboardState extends State<LabDashboard> {
                     "assets/images/support.png",
                     height: 30,
                   ),
-                  title: Text("Peak Flow App"),
+                  title: Text(MyLocalizations.of(context).text("PEAK_FLOW_APP")),
                   selected: _selectedDestination == 8,
                   onTap: () {
                     selectDestination(8);
@@ -721,7 +721,6 @@ class _LabDashboardState extends State<LabDashboard> {
     //    body: _dashboardnew(context),
     );
   }
-
   /* Future<void> initUniqueIdentifierState() async {
     if(Platform.isAndroid) {
       MyWidgets.showLoading(context);
