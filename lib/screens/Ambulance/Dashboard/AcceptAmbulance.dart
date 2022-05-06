@@ -263,8 +263,7 @@ class _AcceptAmbulanceState extends State<AcceptAmbulance> {
                                                     children: [
                                                       Container(
                                                         width: 140,
-                                                        child: Text(
-                                                         "Date",
+                                                        child: Text(MyLocalizations.of(context).text("DATE"),
                                                           style: TextStyle(
                                                             fontWeight:
                                                             FontWeight

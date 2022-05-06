@@ -149,12 +149,12 @@ class _RejectAmbulanceState extends State<RejectAmbulance> {
                                         ),
                                       ),
                                     //  Spacer(),
-                                      Text(
-                                        body.patientName.trim(),
-                                        style: TextStyle(
-                                            fontSize: 15),
-                                        textAlign:
-                                        TextAlign.right,
+                                      Expanded(
+                                        child: Text(
+                                          body.patientName.trim(),
+                                          style: TextStyle(
+                                              fontSize: 15),
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -244,8 +244,7 @@ class _RejectAmbulanceState extends State<RejectAmbulance> {
                                     children: [
                                       Container(
                                         width:140.00,
-                                        child: Text(
-                                          "Date",
+                                        child: Text(MyLocalizations.of(context).text('DATE'),
                                           style: TextStyle(
                                             fontWeight:
                                             FontWeight.w600,

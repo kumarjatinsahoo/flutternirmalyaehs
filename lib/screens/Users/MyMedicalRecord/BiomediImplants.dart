@@ -188,7 +188,7 @@ class _BiomediImplantsState extends State<BiomediImplants> {
                                                   child: Row(
                                                     crossAxisAlignment:
                                                         CrossAxisAlignment.start,
-                                                    children: [
+                                                     children: [
                                                       Expanded(
                                                         flex: 1,
                                                          child: Text(MyLocalizations.of(context).text("NAME"),

@@ -572,6 +572,25 @@ class _AmbulanceDashboardState extends State<AmbulanceDashboard> {
                   Navigator.pushNamed(context, "/labprofile");
                 },*/
               ),
+
+             /* ListTile(
+                leading: Image.asset(
+                  "assets/images/myprofile.png",
+                  height: 30,
+                  //color: Colors.redAccent,
+                ),
+                title: Text(MyLocalizations.of(context).text("MY_PROjhvbFILE"),),
+                selected: _selectedDestination == 1,
+                onTap: () {
+                  selectDestination(1);
+                  Navigator.pushNamed(context, "/doctorsignupform");
+                },
+
+                *//*onTap: () {
+                  selectDestination(1);
+                  Navigator.pushNamed(context, "/labprofile");
+                },*//*
+              ),*/
               ListTile(
                 leading: Row(
                   mainAxisSize: MainAxisSize.min,
@@ -587,7 +606,7 @@ class _AmbulanceDashboardState extends State<AmbulanceDashboard> {
                     // ),
                   ],
                 ),
-                title: Text("Change Password"),
+                title: Text(MyLocalizations.of(context).text("CHANGE_PASSWORD")),
                 onTap: () {
                   Navigator.pop(context);
                   Navigator.pushNamed(context, "/changePassword");
