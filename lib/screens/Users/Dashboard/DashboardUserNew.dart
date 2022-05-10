@@ -105,34 +105,38 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
     callApi();
     callNewsApi();
     // callEmergencyAPI();
- if(loginResponse1.body.userStateId == "21" ){
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      /*await showDialog(
+    if (loginResponse1.body.userStateId == "21") {
+      WidgetsBinding.instance.addPostFrameCallback((_) async {
+        /*await showDialog(
         context: context,
         barrierDismissible: false,
         builder: dialogGender,
       );*/
-      //dialogGender1();
-      _displayTextInputDialog1(context);
-    });
+        //dialogGender1();
+        _displayTextInputDialog1(context);
+      });
     }
     FirebaseMessaging.instance
         .getInitialMessage()
         .then((RemoteMessage message) {
-    /*  if (message != null) {
+      /*  if (message != null) {
         Navigator.pushNamed(context, '/aboutus');
       }*/
-      if(message!=null && message.data!=null && message.data.containsKey("id")){
-        TakeMedModel model=TakeMedModel.fromJson(message.data);
-        widget.model.medicineData=model;
+      if (message != null &&
+          message.data != null &&
+          message.data.containsKey("id")) {
+        TakeMedModel model = TakeMedModel.fromJson(message.data);
+        widget.model.medicineData = model;
         Navigator.pushNamed(context, '/takenpage');
       }
     });
 
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      if(message!=null && message.data!=null && message.data.containsKey("id")){
-        TakeMedModel model=TakeMedModel.fromJson(message.data);
-        widget.model.medicineData=model;
+      if (message != null &&
+          message.data != null &&
+          message.data.containsKey("id")) {
+        TakeMedModel model = TakeMedModel.fromJson(message.data);
+        widget.model.medicineData = model;
         Navigator.pushNamed(context, '/takenpage');
       }
     });
@@ -140,9 +144,11 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
       print('A new onMessageOpenedApp event was published!');
       // Navigator.pushNamed(context, '/aboutus');
-      if(message!=null && message.data!=null && message.data.containsKey("id")){
-        TakeMedModel model=TakeMedModel.fromJson(message.data);
-        widget.model.medicineData=model;
+      if (message != null &&
+          message.data != null &&
+          message.data.containsKey("id")) {
+        TakeMedModel model = TakeMedModel.fromJson(message.data);
+        widget.model.medicineData = model;
         Navigator.pushNamed(context, '/takenpage');
       }
     });
@@ -174,8 +180,9 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
           });
         });
   }
+
   _displayTextInputDialog1(BuildContext context) async {
-    bool _rememberMe=false;
+    bool _rememberMe = false;
     return showDialog(
         context: context,
         barrierDismissible: false,
@@ -186,7 +193,6 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
             insetPadding: EdgeInsets.zero,
             content: StatefulBuilder(
               builder: (BuildContext context, StateSetter setState) {
-
                 return Container(
                   width: MediaQuery.of(context).size.width * 0.8,
                   //height: MediaQuery.of(context).size.height * 0.5,
@@ -197,7 +203,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           SizedBox(height: 10),
-                         /* Row(
+                          /* Row(
                             children: [
                               Checkbox(
                                 value: _rememberMe,
@@ -216,82 +222,96 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                   )
                             ],
                           ),*/
-                          Row(
-                              children: [
-                                InkWell(
-                                    onTap: () {
-                                      //Navigator.pop(context);
-                                    },
-                                    child: Container(
-                                        child: Column(
-                                          children: [
-                                            Checkbox(
-                                              value: _rememberMe,
-                                              onChanged: (value) {
-                                                setState(() {
-                                                  _rememberMe = !_rememberMe;
-                                                });
-                                              },
-                                            ),
-                                          ],
-                                        ))),
-                                SizedBox(width: 5),
-                                Expanded(
+                          Row(children: [
+                            InkWell(
+                                onTap: () {
+                                  //Navigator.pop(context);
+                                },
+                                child: Container(
                                     child: Column(
-                                      children: [
-                                        Text.rich(TextSpan(children: [
-                                          TextSpan(text: "Log in as Dhan Arogya Kranti User",
-                                              style: TextStyle(color: Colors.black, fontSize: 18,)),
-                                          TextSpan(text: " Know More",
-                                              style: TextStyle(color: Colors.grey,fontSize: 12))
-                                        ])),
-                                        /*Text("Log in as Dhan Arogya Kranti User.",
+                                  children: [
+                                    Checkbox(
+                                      value: _rememberMe,
+                                      onChanged: (value) {
+                                        setState(() {
+                                          _rememberMe = !_rememberMe;
+                                        });
+                                      },
+                                    ),
+                                  ],
+                                ))),
+                            SizedBox(width: 5),
+                            Expanded(
+                                child: Column(
+                              children: [
+                                Text.rich(TextSpan(children: [
+                                  TextSpan(
+                                      text: "Log in as Dhan Arogya Kranti User",
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 18,
+                                      )),
+                                  TextSpan(
+                                      text: " Know More",
+                                      style: TextStyle(
+                                          color: Colors.grey, fontSize: 12))
+                                ])),
+                                /*Text("Log in as Dhan Arogya Kranti User.",
                                           textAlign: TextAlign.start,
                                           style: TextStyle(color: Colors.black, fontSize: 20),
                                         ),*/
-                                      ],
-                                    )),
-                              ]),
+                              ],
+                            )),
+                          ]),
                           SizedBox(
                             height: 30,
                           ),
                           Row(
                             children: [
                               Expanded(
-                          child:GestureDetector(
+                                child: GestureDetector(
                                   onTap: () {
                                     Navigator.pop(context);
                                   },
-                      child: Container(
-                                  height: 40,
-                                  width: 50,
-                                  decoration: BoxDecoration(color:AppData.kPrimaryColor,),
-                                  child: Text("CANCEL",style: TextStyle(
-                                      color: Colors.white,fontSize: 15),),
-                                  alignment: Alignment.center,
+                                  child: Container(
+                                    height: 40,
+                                    width: 50,
+                                    decoration: BoxDecoration(
+                                      color: AppData.kPrimaryColor,
+                                    ),
+                                    child: Text(
+                                      "CANCEL",
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 15),
+                                    ),
+                                    alignment: Alignment.center,
+                                  ),
                                 ),
-                              ),),
-                              SizedBox(width: 10),
-                             Expanded(
-                               child:GestureDetector(
-                                 onTap: () {
-                                   Navigator.pop(context);
-                                 },
-
-                                 child: Container(
-                                  height: 40,
-                                  width: 50,
-                                  decoration: BoxDecoration(color:AppData.kPrimaryColor,),
-                                  child: Text("OK",style: TextStyle(
-                                      color: Colors.white,fontSize: 15),),
-                                  alignment: Alignment.center,
-                                ),
-                               ),
                               ),
-
+                              SizedBox(width: 10),
+                              Expanded(
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: Container(
+                                    height: 40,
+                                    width: 50,
+                                    decoration: BoxDecoration(
+                                      color: AppData.kPrimaryColor,
+                                    ),
+                                    child: Text(
+                                      "OK",
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 15),
+                                    ),
+                                    alignment: Alignment.center,
+                                  ),
+                                ),
+                              ),
                             ],
                           ),
-                         /* InkWell(
+                          /* InkWell(
                             onTap: (){
                               Navigator.pop(context);
 
@@ -308,8 +328,6 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                               ),
                             ),
                           ),*/
-
-
                         ],
                       ),
                     ),
@@ -328,6 +346,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
           );
         });
   }
+
   /*callProfApi() {
     widget.model.GETMETHODCALL_TOKEN(
         api: ApiFactory.PATIENT_PROFILE + loginResponse1.body.user,
@@ -400,7 +419,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
     widget.model.GETMETHODCALL(
         api: ApiFactory.NEWSUPDATE_VIEW + loginResponse1.body.user,
         fun: (Map<String, dynamic> map) {
-           log("Json Response>>>" + JsonEncoder().convert(map));
+          log("Json Response>>>" + JsonEncoder().convert(map));
           // String msg = map[Const.MESSAGE];
           if (map[Const.CODE] == Const.SUCCESS) {
             // pocReportModel = PocReportModel.fromJson(map);
@@ -456,7 +475,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
               child: Stack(
                 //alignment: Alignment.topCenter,
                 //fit: ,
-                children:[
+                children: [
                   Align(
                     alignment: Alignment.centerRight,
                     child: Image.asset(
@@ -609,34 +628,33 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
             //       height: 30,),),
             ClipRRect(
                 borderRadius: BorderRadius.circular(25),
-                child:
-                (loginResponse1?.body?.userPic!=null)?Image.network(
-                  loginResponse1?.body?.userPic,
-                  width: 30,
-                  height: 30,
-                  fit: BoxFit.cover,
-                  errorBuilder:(context, error, stackTrace) {
-                    return Image.asset("assets/images/Dashboardimg5.png",
-                        width:30,
-                        height: 30);
-                  },
-                ):Image.asset("assets/images/Dashboardimg5.png",
-                    width:30,
-                    height: 30)
-              //     Image.asset(
-              //   "assets/images/user.png",
-              //   // 'assets/images/Dashboardprofile.png',
-              //   height: size.height * 0.05,
-              //   width: size.width * 0.10,
-              //   //fit: BoxFit.cover,
-              // ),
-              /*: Image.network(
+                child: (loginResponse1?.body?.userPic != null)
+                    ? Image.network(
+                        loginResponse1?.body?.userPic,
+                        width: 30,
+                        height: 30,
+                        fit: BoxFit.cover,
+                        errorBuilder: (context, error, stackTrace) {
+                          return Image.asset("assets/images/Dashboardimg5.png",
+                              width: 30, height: 30);
+                        },
+                      )
+                    : Image.asset("assets/images/Dashboardimg5.png",
+                        width: 30, height: 30)
+                //     Image.asset(
+                //   "assets/images/user.png",
+                //   // 'assets/images/Dashboardprofile.png',
+                //   height: size.height * 0.05,
+                //   width: size.width * 0.10,
+                //   //fit: BoxFit.cover,
+                // ),
+                /*: Image.network(
                                     loginResponse1.body.userPic,
                                     height: size.height * 0.07,
                                     width: size.width * 0.13,
                                     //fit: BoxFit.cover,
                                   )*/
-            ),
+                ),
             SizedBox(
               width: 10,
             ),
@@ -717,35 +735,39 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                                 )),
                           ),*/
                           ClipRRect(
-                            borderRadius: BorderRadius.circular(25),
-                            child:
-                            (loginResponse1?.body?.userPic!=null)?Image.network(
-                              loginResponse1?.body?.userPic,
-                              width: 40,
-                              height: 40,
-                              fit: BoxFit.cover,
-                              errorBuilder:(context, error, stackTrace) {
-                                return Image.asset("assets/images/Dashboardimg5.png",
-                                    width:40,
-                                    height: 40);
-                              },
-                            ):Image.asset("assets/images/Dashboardimg5.png",
-                              width:40,
-                              height: 40)
-                            //     Image.asset(
-                            //   "assets/images/user.png",
-                            //   // 'assets/images/Dashboardprofile.png',
-                            //   height: size.height * 0.05,
-                            //   width: size.width * 0.10,
-                            //   //fit: BoxFit.cover,
-                            // ),
-                            /*: Image.network(
+                              borderRadius: BorderRadius.circular(25),
+                              child: (loginResponse1?.body?.userPic != null)
+                                  ? Image.network(
+                                      loginResponse1?.body?.userPic,
+                                      width: 40,
+                                      height: 40,
+                                      fit: BoxFit.cover,
+                                      errorBuilder:
+                                          (context, error, stackTrace) {
+                                        return Image.asset(
+                                            "assets/images/Dashboardimg5.png",
+                                            width: 40,
+                                            height: 40);
+                                      },
+                                    )
+                                  : Image.asset(
+                                      "assets/images/Dashboardimg5.png",
+                                      width: 40,
+                                      height: 40)
+                              //     Image.asset(
+                              //   "assets/images/user.png",
+                              //   // 'assets/images/Dashboardprofile.png',
+                              //   height: size.height * 0.05,
+                              //   width: size.width * 0.10,
+                              //   //fit: BoxFit.cover,
+                              // ),
+                              /*: Image.network(
                                     loginResponse1.body.userPic,
                                     height: size.height * 0.07,
                                     width: size.width * 0.13,
                                     //fit: BoxFit.cover,
                                   )*/
-                          ),
+                              ),
                           SizedBox(
                             width: 20,
                           ),
@@ -840,7 +862,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                   );
                   Add2Calendar.addEvent2Cal(event);*/
                 },
-                onLongPress: (){
+                onLongPress: () {
                   Navigator.pushNamed(context, "/razor");
                 },
               ),
@@ -932,7 +954,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
                     Navigator.pushNamed(context, "/contactus");
                     //Navigator.pushNamed(context, "/discountoffer");
                   }),
-            /*  ListTile(
+              /*  ListTile(
                   leading: Image.asset(
                     "assets/images/support.png",
                     height: 30,
@@ -1074,7 +1096,8 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
 
   _exitApp() async {
     FirebaseMessaging.instance.unsubscribeFromTopic(loginResponse1.body.user);
-    FirebaseMessaging.instance.unsubscribeFromTopic(loginResponse1.body.userMobile);
+    FirebaseMessaging.instance
+        .unsubscribeFromTopic(loginResponse1.body.userMobile);
     sharedPref.save(Const.IS_LOGIN, false.toString());
     sharedPref.save(Const.IS_REGISTRATION, false.toString());
     sharedPref.remove(Const.IS_REGISTRATION);
@@ -1095,13 +1118,11 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
         child: Column(
           children: <Widget>[
             Container(
-              height: 560,
+              height: size.height * 0.65,
               child: PageView(
                 controller: _controller,
                 children: [
-                  MyPage1Widget(
-                    model: widget.model,
-                  ),
+                  MyPage1Widget(model: widget.model, size: size),
                   //MyPage2Widget(),
                 ],
               ),
@@ -1115,7 +1136,7 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
             CarouselSlider(
               options: CarouselOptions(
                   // height: size.height * 0.3,
-                  height: 200,
+                  height: size.height * 0.23,
                   autoPlay: true,
                   pageSnapping: true,
                   viewportFraction: 1,
@@ -1706,9 +1727,10 @@ class MyPage1Widget extends StatelessWidget {
   double _width;
 
   final MainModel model;
+  final Size size;
   LoginResponse1 loginResponse1;
 
-  MyPage1Widget({Key key, this.model}) : super(key: key);
+  MyPage1Widget({Key key, this.model, this.size}) : super(key: key);
 
   chooseAppointment(BuildContext context, model) {
     return showDialog(
@@ -1852,14 +1874,14 @@ class MyPage1Widget extends StatelessWidget {
     );
   }
 
-  _displayTextInputDialog(BuildContext context,int v) async {
+  _displayTextInputDialog(BuildContext context, int v) async {
     bool _rememberMe = false;
     return showDialog(
         context: context,
         builder: (context) {
           return AlertDialog(
             insetPadding: EdgeInsets.zero,
-              backgroundColor:Colors.transparent,
+            backgroundColor: Colors.transparent,
             elevation: 0,
             content: StatefulBuilder(
               builder: (BuildContext context, StateSetter setState) {
@@ -1868,9 +1890,8 @@ class MyPage1Widget extends StatelessWidget {
                   height: MediaQuery.of(context).size.height * 0.45,
                   padding: EdgeInsets.all(19),
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(15)),
-                    color: Colors.white
-                  ),
+                      borderRadius: BorderRadius.all(Radius.circular(15)),
+                      color: Colors.white),
                   child: SingleChildScrollView(
                     child: Padding(
                       padding: const EdgeInsets.all(5.0),
@@ -1898,13 +1919,17 @@ class MyPage1Widget extends StatelessWidget {
                               ),
                               //Text("I accept terms & condition",),
                               InkWell(
-                                onTap: (){
-                                  Navigator.pushNamed(context, "/termsandConditionPage");
+                                onTap: () {
+                                  Navigator.pushNamed(
+                                      context, "/termsandConditionPage");
                                 },
                                 child: Text.rich(TextSpan(children: [
                                   TextSpan(text: "I accept "),
-                                  TextSpan(text: "terms & conditions",
-                                      style: TextStyle(color: Colors.blue,))
+                                  TextSpan(
+                                      text: "terms & conditions",
+                                      style: TextStyle(
+                                        color: Colors.blue,
+                                      ))
                                 ])),
                               )
                             ],
@@ -1916,15 +1941,20 @@ class MyPage1Widget extends StatelessWidget {
                             children: [
                               Expanded(
                                 child: InkWell(
-                                  onTap: (){
+                                  onTap: () {
                                     AppData.launchURL("tel://8888825912");
                                   },
                                   child: Container(
                                     height: 50,
                                     width: 50,
-                                    decoration: BoxDecoration(color:AppData.kPrimaryColor,),
-                                    child: Text("Contact Sales",style: TextStyle(
-                                        color: Colors.white,fontSize: 15),),
+                                    decoration: BoxDecoration(
+                                      color: AppData.kPrimaryColor,
+                                    ),
+                                    child: Text(
+                                      "Contact Sales",
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 15),
+                                    ),
                                     alignment: Alignment.center,
                                   ),
                                 ),
@@ -1932,41 +1962,51 @@ class MyPage1Widget extends StatelessWidget {
                               SizedBox(width: 10),
                               Expanded(
                                 child: InkWell(
-                                  onTap: (){
+                                  onTap: () {
                                     Navigator.pop(context);
-                                    AppData.showInSnackDone(context, "Thank you ! We will get back to you with in two working days");
+                                    AppData.showInSnackDone(context,
+                                        "Thank you ! We will get back to you with in two working days");
                                   },
                                   child: Container(
                                     height: 50,
                                     width: 50,
-                                    decoration: BoxDecoration(color:AppData.kPrimaryColor,),
-                                    child: Text("Get a call back",style: TextStyle(
-                                        color: Colors.white,fontSize: 15),),
+                                    decoration: BoxDecoration(
+                                      color: AppData.kPrimaryColor,
+                                    ),
+                                    child: Text(
+                                      "Get a call back",
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 15),
+                                    ),
                                     alignment: Alignment.center,
                                   ),
                                 ),
                               ),
                             ],
                           ),
-                           SizedBox(height: 10),
-                           InkWell(
-                             onTap: (){
-                               if(v==2) {
-                                 Navigator.pushNamed(
-                                     context, "/insurancenew");
-                               }else{
-                                 Navigator.pushNamed(
-                                     context, "/medicalrecordpage");
-                               }
-                             },
-                             child: Container(
+                          SizedBox(height: 10),
+                          InkWell(
+                            onTap: () {
+                              if (v == 2) {
+                                Navigator.pushNamed(context, "/insurancenew");
+                              } else {
+                                Navigator.pushNamed(
+                                    context, "/medicalrecordpage");
+                              }
+                            },
+                            child: Container(
                               height: 50,
-                              decoration: BoxDecoration(color:Colors.green,),
-                              child: Text("Continue",style: TextStyle(
-                                  color: Colors.white,fontSize: 15),),
+                              decoration: BoxDecoration(
+                                color: Colors.green,
+                              ),
+                              child: Text(
+                                "Continue",
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 15),
+                              ),
                               alignment: Alignment.center,
+                            ),
                           ),
-                           ),
                         ],
                       ),
                     ),
@@ -1985,9 +2025,6 @@ class MyPage1Widget extends StatelessWidget {
         });
   }
 
-
-
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -2003,143 +2040,159 @@ class MyPage1Widget extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              (loginResponse1.body?.userStateId != null&&loginResponse1.body?.userStateId == "21" )?Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                _buildTilePremium(
-                  icon: "assets/folder.png",
-                  fun: () {
-                    //AppData.showInSnackBar(context, "Coming soon");
-                    //Navigator.pushNamed(context, "/medicalrecordpage");
-                    _displayTextInputDialog(context,1);
-                  },
-                  color: AppData.BG2BLUE,
-                  bordercolor: AppData.BG2BLUE,
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                Container(
-                  width: 100,
-                  height: 35,
-                  /* child: Expanded(*/
-                  child: Text(
-                    MyLocalizations.of(context).text("MEDICAL_RECORD"),
-                    textAlign: TextAlign.center,
-                    //overflow: TextOverflow.ellipsis,
-                   // style: TextStyle(fontSize: 30),
+              (loginResponse1.body?.userStateId != null &&
+                      loginResponse1.body?.userStateId == "21")
+                  ? Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                          Expanded(
+                            child: _buildTilePremium(
+                              icon: "assets/folder.png",
+                              fun: () {
+                                //AppData.showInSnackBar(context, "Coming soon");
+                                //Navigator.pushNamed(context, "/medicalrecordpage");
+                                _displayTextInputDialog(context, 1);
+                              },
+                              color: AppData.BG2BLUE,
+                              bordercolor: AppData.BG2BLUE,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Container(
+                            width: 100,
+                            height: 35,
+                            /* child: Expanded(*/
+                            child: Text(
+                              MyLocalizations.of(context)
+                                  .text("MEDICAL_RECORD"),
+                              textAlign: TextAlign.center,
+                              //overflow: TextOverflow.ellipsis,
+                              // style: TextStyle(fontSize: 30),
+                            ),
+                          ),
+                        ])
+                  : Container(
+                height: size.height*0.175,
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                            _buildTileblue(
+                              icon: "assets/folder.png",
+                              fun: () {
+                                //AppData.showInSnackBar(context, "Coming soon");
+                                Navigator.pushNamed(
+                                    context, "/medicalrecordpage");
+                                // _displayTextInputDialog(context,1);
+                              },
+                              size: size
+                              /*color: AppData.BG2BLUE,
+                        bordercolor: AppData.BG2BLUE,*/
+                              // ,
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Container(
+                              width: 100,
+                              height: 35,
+                              /* child: Expanded(*/
+                              child: Text(
+                                MyLocalizations.of(context)
+                                    .text("MEDICAL_RECORD"),
+                                textAlign: TextAlign.center,
+                                style: TextStyle(fontSize: 12),
+                                //overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                          ]),
                   ),
-                ),
-              ]):
-          Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    _buildTileblue(
-                      icon: "assets/folder.png",
-                      fun: () {
-                        //AppData.showInSnackBar(context, "Coming soon");
-                        Navigator.pushNamed(context, "/medicalrecordpage");
-                       // _displayTextInputDialog(context,1);
-                      },
-                      /*color: AppData.BG2BLUE,
-                      bordercolor: AppData.BG2BLUE,*/
-                      // ,
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Container(
-                      width: 100,
-                      height: 35,
-                      /* child: Expanded(*/
-                      child: Text(
-                        MyLocalizations.of(context).text("MEDICAL_RECORD"),
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 12),
-                        //overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                  ]),
               SizedBox(
                 width: 5,
               ),
-              (loginResponse1.body?.userStateId != null&&loginResponse1.body.userStateId == "21" )?
-              Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    _buildTilePremium1(
-                      icon: "assets/insuranceF.png",
-                      //icon: Icons.drive_folder_upload,
-                      //icon: FontAwesomeIcons.accusoft,
-                      title: "Upload Medical Data",
-                      fun: () {
-                        //AppData.showInSnackDone(context, "Coming Soon");
-                        //Navigator.pushNamed(context, "/insuranceList");
-                        _displayTextInputDialog(context,2);
+              (loginResponse1.body?.userStateId != null &&
+                      loginResponse1.body.userStateId == "21")
+                  ? Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                          _buildTilePremium1(
+                            icon: "assets/insuranceF.png",
+                            //icon: Icons.drive_folder_upload,
+                            //icon: FontAwesomeIcons.accusoft,
+                            title: "Upload Medical Data",
+                            fun: () {
+                              //AppData.showInSnackDone(context, "Coming Soon");
+                              //Navigator.pushNamed(context, "/insuranceList");
+                              _displayTextInputDialog(context, 2);
 
-                        /*  AppData.showSnack(
+                              /*  AppData.showSnack(
                                     context, "Coming soon", Colors.green);*/
-                      },
-                      color: AppData.BG1RED,
-                      bordercolor: AppData.BG1RED,
-                      //size: (size.width - 130) / 3,
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Container(
-                      width: 100,
-                      height: 35,
-                      /* child: Expanded(*/
-                      child: Text(
-                        MyLocalizations.of(context).text("INSURANCE"),
-                        textAlign: TextAlign.center,
+                            },
+                            color: AppData.BG1RED,
+                            bordercolor: AppData.BG1RED,
+                            //size: (size.width - 130) / 3,
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Container(
+                            width: 100,
+                            height: 35,
+                            /* child: Expanded(*/
+                            child: Text(
+                              MyLocalizations.of(context).text("INSURANCE"),
+                              textAlign: TextAlign.center,
 
-                        //overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                  ]): Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    _buildTilered(
-                      icon: "assets/insuranceF.png",
-                      //icon: Icons.drive_folder_upload,
-                      //icon: FontAwesomeIcons.accusoft,
-                      title: "Upload Medical Data",
-                      fun: () {
-                        //AppData.showInSnackDone(context, "Coming Soon");
-                        (loginResponse1.body?.userStateId != null&&loginResponse1.body.userStateId == "21" )?
-                        Navigator.pushNamed(context, "/insurancenew"):
-                        Navigator.pushNamed(context, "/insuranceList");
+                              //overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ])
+                  : Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                          _buildTilered(
+                            icon: "assets/insuranceF.png",
+                            //icon: Icons.drive_folder_upload,
+                            //icon: FontAwesomeIcons.accusoft,
+                            title: "Upload Medical Data",
+                            fun: () {
+                              //AppData.showInSnackDone(context, "Coming Soon");
+                              (loginResponse1.body?.userStateId != null &&
+                                      loginResponse1.body.userStateId == "21")
+                                  ? Navigator.pushNamed(
+                                      context, "/insurancenew")
+                                  : Navigator.pushNamed(
+                                      context, "/insuranceList");
 
-                        //_displayTextInputDialog(context,2);
+                              //_displayTextInputDialog(context,2);
 
-                        /*  AppData.showSnack(
+                              /*  AppData.showSnack(
                                     context, "Coming soon", Colors.green);*/
-                      },
-                      /*color: AppData.BG1RED,
+                            },
+                            /*color: AppData.BG1RED,
                       bordercolor: AppData.BG1RED,*/
-                      //size: (size.width - 130) / 3,
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Container(
-                      width: 100,
-                      height: 35,
-                      /* child: Expanded(*/
-                      child: Text(
-                        MyLocalizations.of(context).text("INSURANCE"),
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 12),
-                        //overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                  ]),
+                            //size: (size.width - 130) / 3,
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Container(
+                            width: 100,
+                            height: 35,
+                            /* child: Expanded(*/
+                            child: Text(
+                              MyLocalizations.of(context).text("INSURANCE"),
+                              textAlign: TextAlign.center,
+                              style: TextStyle(fontSize: 12),
+                              //overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ]),
               SizedBox(
                 width: 5,
               ),
@@ -2161,7 +2214,7 @@ class MyPage1Widget extends StatelessWidget {
                         /*if (model.emergencyContact == 0) {
                           Navigator.pushNamed(context, "/setupcontacts");
                         } else {*/
-                          Navigator.pushNamed(context, "/emergencyHelp");
+                        Navigator.pushNamed(context, "/emergencyHelp");
                         // }
                       },
                       color: AppData.kPrimaryRedColor,
@@ -2209,7 +2262,7 @@ class MyPage1Widget extends StatelessWidget {
                               context, "/findHealthcareService");
                           //AppData.showInSnackBar(context, "Coming soon");
                         },
-                      /*  color: AppData.BG1RED,
+                        /*  color: AppData.BG1RED,
                         bordercolor: AppData.BG1RED,*/
                         //size: (size.width - 130) / 3,
                         fun2: () {
@@ -2244,6 +2297,7 @@ class MyPage1Widget extends StatelessWidget {
                       //icon: Icons.animation,
                       //icon: FontAwesomeIcons.accusoft,
                       title: "Generic Medical Stores",
+                  size: size,
                       fun: () {
                         //AppData.showInSnackDone(context, "Coming Soon");
                         Navigator.pushNamed(context, "/geneicstores");
@@ -2286,7 +2340,7 @@ class MyPage1Widget extends StatelessWidget {
                         //AppData.showInSnackDone(context, "Coming Soon");
                         Navigator.pushNamed(context, "/bookAmbulancelist");
                       },
-                     /* color: AppData.BG1RED,
+                      /* color: AppData.BG1RED,
                       bordercolor: AppData.BG1RED,*/
                       //size: (size.width - 130) / 3,
                     ),
@@ -2347,6 +2401,7 @@ class MyPage1Widget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     _buildTileblue(
+                      size: size,
                       icon: "assets/blooddonationuser.png",
                       //icon: Icons.search,
                       //icon: FontAwesomeIcons.accusoft,
@@ -2388,7 +2443,7 @@ class MyPage1Widget extends StatelessWidget {
                       fun: () {
                         //chooseAppointment(context, model);
                         //Navigator.pushNamed(context, "/userAppoint");
-                         Navigator.pushNamed(context, "/myAppointment");
+                        Navigator.pushNamed(context, "/myAppointment");
                         /*Navigator.pushNamed(
                                       context, "/medipedia");*/
                         // AppData.showSnack(
@@ -2432,6 +2487,7 @@ class MyPage1Widget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     _buildTileblue(
+                      size: size,
                       icon: "assets/clock.png",
                       //icon: Icons.alarm,
                       //icon: FontAwesomeIcons.accusoft,
@@ -2442,7 +2498,7 @@ class MyPage1Widget extends StatelessWidget {
                         // AppData.showSnack(
                         //     context, "Coming soon", Colors.green);
                       },
-                     /* color: AppData.BG2BLUE,
+                      /* color: AppData.BG2BLUE,
                       bordercolor: AppData.BG2BLUE,*/
                       //size: (size.width - 130) / 3,
                     ),
@@ -2560,6 +2616,7 @@ class MyPage1Widget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     _buildTileblue(
+                      size: size,
                       icon: "assets/govtscheme.png",
                       //icon: Icons.home_outlined,
                       //icon: FontAwesomeIcons.accusoft,
@@ -2643,7 +2700,7 @@ class MyPage1Widget extends StatelessWidget {
                       // AppData.showSnack(
                       //     context, "Coming soon", Colors.green);
                     },
-                   /* color: AppData.BG1RED,
+                    /* color: AppData.BG1RED,
                     bordercolor: AppData.BG1RED,*/
                     size: (size.width - 130) / 3,
                   ),
@@ -2701,124 +2758,128 @@ class MyPage1Widget extends StatelessWidget {
       {String icon,
       /*IconData icon,*/
       String title,
-      double size,
+      // double size,
       Color bordercolor,
       Color iconColor,
       Color color,
+      Size size,
       Function fun}) {
     return InkWell(
       onTap: fun,
-      child: Container(
-        padding: const EdgeInsets.all(0.0),
-        /* height: MediaQuery.of(context).size.height * 0.23,*/
-        height: _height,
-        width: _width,
-        decoration: BoxDecoration(
-            /// borderRadius: BorderRadius.circular(7.0),
-           /* borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(10.0),
-              topRight: Radius.zero,
-              bottomLeft: Radius.zero,
-              bottomRight: Radius.circular(10.0),
-            ),*/
-            shape: BoxShape.circle,
-            color: Colors.white,
-            border: Border.all(
-              color: AppData.kPrimaryBlueColor,
-              width: 1.0,
-            )
-            /* boxShadow: [
-            BoxShadow(
-              color: bordercolor,
-              blurRadius: 5.0,
-              spreadRadius: 2.0,
-              offset: Offset(2.0, 2.0), // shadow direction: bottom right
-            )
-          ],*/
-            ),
-        child: Stack(
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Align(
-                    alignment: Alignment.center,
-                    child: Image.asset(
-                      /* "assets/logo1.png"*/
-                      icon,
-                      color: iconColor ?? null,
-                      fit: BoxFit.fitWidth,
-                      width: 50,
-                      height: 70.0,
-                    )),
-                //child: Icon(icon, color: AppData.kPrimaryColor,size: 40.0)),
+      child: FittedBox(
+        child: Container(
+          padding: EdgeInsets.all(10.0),
+          /* height: MediaQuery.of(context).size.height * 0.23,*/
+          // height: _height,
+          // width: _width,
+          decoration: BoxDecoration(
 
-                /*Text(
-                  '12',
-                  style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: "Monte",
-                            fontSize: 22.0,
+              /// borderRadius: BorderRadius.circular(7.0),
+              /* borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(10.0),
+                topRight: Radius.zero,
+                bottomLeft: Radius.zero,
+                bottomRight: Radius.circular(10.0),
+              ),*/
+              shape: BoxShape.circle,
+              color: Colors.white,
+              border: Border.all(
+                color: AppData.kPrimaryBlueColor,
+                width: 1.0,
+              )
+              /* boxShadow: [
+              BoxShadow(
+                color: bordercolor,
+                blurRadius: 5.0,
+                spreadRadius: 2.0,
+                offset: Offset(2.0, 2.0), // shadow direction: bottom right
+              )
+            ],*/
+              ),
+          child: Stack(
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Align(
+                      alignment: Alignment.center,
+                      child: Image.asset(
+                        /* "assets/logo1.png"*/
+                        icon,
+                        color: iconColor ?? null,
+                        fit: BoxFit.fitWidth,
+                        width: 30,
+                        height: size.height*0.07,
+                      )),
+                  //child: Icon(icon, color: AppData.kPrimaryColor,size: 40.0)),
+
+                  /*Text(
+                    '12',
+                    style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: "Monte",
+                              fontSize: 22.0,
+                    ),
+
+                  ),*/
+                  /*Padding(
+                        padding: const EdgeInsets.only( top: 10,left: 3,right: 3
+                        ),
+                       child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Expanded(
+                              child: Text(
+                    title,
+                    style: TextStyle(
+                              color: Colors.white,
+                              // fontWeight: FontWeight.w600,
+                              fontFamily: "Monte",
+                              fontSize: 18.0,
+                    ),
+                    textAlign: TextAlign.center,
+                    maxLines: 2,
+                    overflow: TextOverflow.clip,
                   ),
+                            ),
+                          ],
+                        ),
+                      ),*/
+                ],
+              ),
 
-                ),*/
-                /*Padding(
-                      padding: const EdgeInsets.only( top: 10,left: 3,right: 3
-                      ),
-                     child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Expanded(
-                            child: Text(
-                  title,
-                  style: TextStyle(
-                            color: Colors.white,
-                            // fontWeight: FontWeight.w600,
-                            fontFamily: "Monte",
-                            fontSize: 18.0,
-                  ),
-                  textAlign: TextAlign.center,
-                  maxLines: 2,
-                  overflow: TextOverflow.clip,
-                ),
-                          ),
-                        ],
-                      ),
-                    ),*/
-              ],
-            ),
-
-            /* Positioned(
-          top: -3,
-          right: -3,
-          child: Container(
-            height: 40,
-            width: 40,
-             decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(40.0),
-          color: Colors.white24,),
-            child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Icon(icon, color: Colors.white,)
+              /* Positioned(
+            top: -3,
+            right: -3,
+            child: Container(
+              height: 40,
+              width: 40,
+               decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(40.0),
+            color: Colors.white24,),
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Icon(icon, color: Colors.white,)
+              )
             )
-          )
-        ),*/
-            //   Positioned(
-            // top: 20,
-            // left: 15,
-            // child:Text('Heart Rate', style: TextStyle(color: Colors.white),)),
-            //  Positioned(
-            // bottom: 20,
-            // right: 15,
-            // child:Column(
-            //   children: [
-            //     Text('Daily Goal', style: TextStyle(color: Colors.white),),
-            //      Text('900 kcal', style: TextStyle(color: Colors.white),),
-            //   ],
-            // ))
-          ],
+          ),*/
+              //   Positioned(
+              // top: 20,
+              // left: 15,
+              // child:Text('Heart Rate', style: TextStyle(color: Colors.white),)),
+              //  Positioned(
+              // bottom: 20,
+              // right: 15,
+              // child:Column(
+              //   children: [
+              //     Text('Daily Goal', style: TextStyle(color: Colors.white),),
+              //      Text('900 kcal', style: TextStyle(color: Colors.white),),
+              //   ],
+              // ))
+            ],
+          ),
         ),
       ),
     );
@@ -2826,7 +2887,6 @@ class MyPage1Widget extends StatelessWidget {
 
   Widget _buildTilePremium(
       {String icon,
-      /*IconData icon,*/
       String title,
       double size,
       Color bordercolor,
@@ -2837,35 +2897,12 @@ class MyPage1Widget extends StatelessWidget {
       onTap: fun,
       child: Container(
         padding: const EdgeInsets.all(0.0),
-        /* height: MediaQuery.of(context).size.height * 0.23,*/
         height: _height,
         width: _width,
         decoration: BoxDecoration(
-
-            /// borderRadius: BorderRadius.circular(7.0),
-           /* borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(10.0),
-              topRight: Radius.zero,
-              bottomLeft: Radius.zero,
-              bottomRight: Radius.circular(10.0),
-            ),*/
-            color: color,
-            image: DecorationImage(
-              image: AssetImage("assets/images/premium2.png")
-            ),
-          /*  border: Border.all(
-              color: Colors.amber,
-              width: 2.5,
-            )*/
-            /* boxShadow: [
-            BoxShadow(
-              color: bordercolor,
-              blurRadius: 5.0,
-              spreadRadius: 2.0,
-              offset: Offset(2.0, 2.0), // shadow direction: bottom right
-            )
-          ],*/
-            ),
+          color: color,
+          image: DecorationImage(image: AssetImage("assets/images/premium2.png")),
+        ),
         child: Stack(
           children: [
             Column(
@@ -2882,81 +2919,8 @@ class MyPage1Widget extends StatelessWidget {
                       width: 50,
                       height: 70.0,
                     )),
-                //child: Icon(icon, color: AppData.kPrimaryColor,size: 40.0)),
-
-                /*Text(
-                  '12',
-                  style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: "Monte",
-                            fontSize: 22.0,
-                  ),
-
-                ),*/
-                /*Padding(
-                      padding: const EdgeInsets.only( top: 10,left: 3,right: 3
-                      ),
-                     child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Expanded(
-                            child: Text(
-                  title,
-                  style: TextStyle(
-                            color: Colors.white,
-                            // fontWeight: FontWeight.w600,
-                            fontFamily: "Monte",
-                            fontSize: 18.0,
-                  ),
-                  textAlign: TextAlign.center,
-                  maxLines: 2,
-                  overflow: TextOverflow.clip,
-                ),
-                          ),
-                        ],
-                      ),
-                    ),*/
               ],
             ),
-           /* Positioned(
-                right: 9,
-                top: 3,
-                child: Icon(
-                  *//* "assets/logo1.png"*//*
-                  FontAwesomeIcons.crown,
-                  color: Colors.amberAccent,
-                  size: 15,
-                )),*/
-
-            /* Positioned(
-          top: -3,
-          right: -3,
-          child: Container(
-            height: 40,
-            width: 40,
-             decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(40.0),
-          color: Colors.white24,),
-            child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Icon(icon, color: Colors.white,)
-            )
-          )
-        ),*/
-            //   Positioned(
-            // top: 20,
-            // left: 15,
-            // child:Text('Heart Rate', style: TextStyle(color: Colors.white),)),
-            //  Positioned(
-            // bottom: 20,
-            // right: 15,
-            // child:Column(
-            //   children: [
-            //     Text('Daily Goal', style: TextStyle(color: Colors.white),),
-            //      Text('900 kcal', style: TextStyle(color: Colors.white),),
-            //   ],
-            // ))
           ],
         ),
       ),
@@ -2980,23 +2944,22 @@ class MyPage1Widget extends StatelessWidget {
         height: _height,
         width: _width,
         decoration: BoxDecoration(
-            // /// borderRadius: BorderRadius.circular(7.0),
-            // borderRadius: BorderRadius.only(
-            //   topLeft: Radius.circular(10.0),
-            //   topRight: Radius.zero,
-            //   bottomLeft: Radius.zero,
-            //   bottomRight: Radius.circular(10.0),
-            // ),
-            color: color,
-          image: DecorationImage(
-              image: AssetImage("assets/images/premium3.png")
-          ),
-            // border: Border.all(
-            //   //color: AppData.kPrimaryRedColor,
-            //   color: Colors.amber,
-            //   width: 2.5,
-            // )
-            /* boxShadow: [
+          // /// borderRadius: BorderRadius.circular(7.0),
+          // borderRadius: BorderRadius.only(
+          //   topLeft: Radius.circular(10.0),
+          //   topRight: Radius.zero,
+          //   bottomLeft: Radius.zero,
+          //   bottomRight: Radius.circular(10.0),
+          // ),
+          color: color,
+          image:
+              DecorationImage(image: AssetImage("assets/images/premium3.png")),
+          // border: Border.all(
+          //   //color: AppData.kPrimaryRedColor,
+          //   color: Colors.amber,
+          //   width: 2.5,
+          // )
+          /* boxShadow: [
             BoxShadow(
               color: bordercolor,
               blurRadius: 5.0,
@@ -3004,7 +2967,7 @@ class MyPage1Widget extends StatelessWidget {
               offset: Offset(2.0, 2.0), // shadow direction: bottom right
             )
           ],*/
-            ),
+        ),
         child: Stack(
           children: [
             Column(
@@ -3120,7 +3083,7 @@ class MyPage1Widget extends StatelessWidget {
         width: _width,
         decoration: BoxDecoration(
           /// borderRadius: BorderRadius.circular(7.0),
-         /* borderRadius: BorderRadius.only(
+          /* borderRadius: BorderRadius.only(
             topLeft: Radius.zero,
             topRight: Radius.circular(10.0),
             bottomLeft: Radius.circular(10.0),
@@ -3235,8 +3198,8 @@ class MyPage1Widget extends StatelessWidget {
 
             /// borderRadius: BorderRadius.circular(7.0),
             // borderRadius:  BorderRadius.all(Radius.circular(60)),
-          shape: BoxShape.circle,
-          /*    topLeft:  Radius.circular(10.0),
+            shape: BoxShape.circle,
+            /*    topLeft:  Radius.circular(10.0),
               topRight: Radius.circular(10.0),
               bottomLeft: Radius.circular(10.0),
               bottomRight: Radius.circular(10.0),
