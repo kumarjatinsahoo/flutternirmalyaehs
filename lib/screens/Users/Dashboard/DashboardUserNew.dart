@@ -2213,6 +2213,7 @@ class MyPage1Widget extends StatelessWidget {
                       //icon: "assets/meditate.png",
                       icon: Icons.local_offer,
                       //icon: FontAwesomeIcons.accusoft,
+                      size:size,
                       title: "HELP",
                       fun: () {
                         //AppData.showInSnackBar(context, "Coming soon");
@@ -3081,7 +3082,7 @@ class MyPage1Widget extends StatelessWidget {
   Widget _buildTile1(
       {icon,
       String title,
-      double size,
+      Size size,
       Color bordercolor,
       Color color,
       Function fun}) {
@@ -3090,10 +3091,8 @@ class MyPage1Widget extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(0.0),
         /* height: MediaQuery.of(context).size.height * 0.23,*/
-        height: _height,
-
-        ///width: (MediaQuery.of(context).size.width - 80) / 3,
-        width: _width,
+        height: size.height * 0.1525 - 45,
+        width: size.height * 0.1525 - 45,
         decoration: BoxDecoration(
           /// borderRadius: BorderRadius.circular(7.0),
           /* borderRadius: BorderRadius.only(
