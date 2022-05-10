@@ -1136,7 +1136,13 @@ class _DashboardUserNewState extends State<DashboardUserNew> {
             CarouselSlider(
               options: CarouselOptions(
                   // height: size.height * 0.3,
-                  height: size.height * 0.23,
+                  // height: size.height * 0.27,
+                  height: size.height -
+                      AppBar().preferredSize.height -
+                      MediaQuery.of(context).padding.top -
+                      MediaQuery.of(context).padding.bottom -
+                      size.height * 0.65 -
+                      10,
                   autoPlay: true,
                   pageSnapping: true,
                   viewportFraction: 1,
@@ -2075,24 +2081,24 @@ class MyPage1Widget extends StatelessWidget {
                           ),
                         ])
                   : Container(
-                height: size.height*0.175,
-                    child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
+                      height: size.height * 0.65/4 - (size.height * 0.03 -15),
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
                             _buildTileblue(
-                              icon: "assets/folder.png",
-                              fun: () {
-                                //AppData.showInSnackBar(context, "Coming soon");
-                                Navigator.pushNamed(
-                                    context, "/medicalrecordpage");
-                                // _displayTextInputDialog(context,1);
-                              },
-                              size: size
-                              /*color: AppData.BG2BLUE,
+                                icon: "assets/folder.png",
+                                fun: () {
+                                  //AppData.showInSnackBar(context, "Coming soon");
+                                  Navigator.pushNamed(
+                                      context, "/medicalrecordpage");
+                                  // _displayTextInputDialog(context,1);
+                                },
+                                size: size
+                                /*color: AppData.BG2BLUE,
                         bordercolor: AppData.BG2BLUE,*/
-                              // ,
-                            ),
+                                // ,
+                                ),
                             SizedBox(
                               height: 5,
                             ),
@@ -2109,7 +2115,7 @@ class MyPage1Widget extends StatelessWidget {
                               ),
                             ),
                           ]),
-                  ),
+                    ),
               SizedBox(
                 width: 5,
               ),
@@ -2151,48 +2157,50 @@ class MyPage1Widget extends StatelessWidget {
                             ),
                           ),
                         ])
-                  : Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                          _buildTilered(
-                            icon: "assets/insuranceF.png",
-                            //icon: Icons.drive_folder_upload,
-                            //icon: FontAwesomeIcons.accusoft,
-                            title: "Upload Medical Data",
-                            fun: () {
-                              //AppData.showInSnackDone(context, "Coming Soon");
-                              (loginResponse1.body?.userStateId != null &&
-                                      loginResponse1.body.userStateId == "21")
-                                  ? Navigator.pushNamed(
-                                      context, "/insurancenew")
-                                  : Navigator.pushNamed(
-                                      context, "/insuranceList");
+                  : Container(
+                height: size.height * 0.65/4 - (size.height * 0.03 -15),
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                            _buildTilered(
+                              icon: "assets/insuranceF.png",
+                              size: size,
+                              title: "Upload Medical Data",
+                              fun: () {
+                                //AppData.showInSnackDone(context, "Coming Soon");
+                                (loginResponse1.body?.userStateId != null &&
+                                        loginResponse1.body.userStateId == "21")
+                                    ? Navigator.pushNamed(
+                                        context, "/insurancenew")
+                                    : Navigator.pushNamed(
+                                        context, "/insuranceList");
 
-                              //_displayTextInputDialog(context,2);
+                                //_displayTextInputDialog(context,2);
 
-                              /*  AppData.showSnack(
-                                    context, "Coming soon", Colors.green);*/
-                            },
-                            /*color: AppData.BG1RED,
-                      bordercolor: AppData.BG1RED,*/
-                            //size: (size.width - 130) / 3,
-                          ),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          Container(
-                            width: 100,
-                            height: 35,
-                            /* child: Expanded(*/
-                            child: Text(
-                              MyLocalizations.of(context).text("INSURANCE"),
-                              textAlign: TextAlign.center,
-                              style: TextStyle(fontSize: 12),
-                              //overflow: TextOverflow.ellipsis,
+                                /*  AppData.showSnack(
+                                      context, "Coming soon", Colors.green);*/
+                              },
+                              /*color: AppData.BG1RED,
+                        bordercolor: AppData.BG1RED,*/
+                              //size: (size.width - 130) / 3,
                             ),
-                          ),
-                        ]),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Container(
+                              width: 100,
+                              height: 35,
+                              /* child: Expanded(*/
+                              child: Text(
+                                MyLocalizations.of(context).text("INSURANCE"),
+                                textAlign: TextAlign.center,
+                                style: TextStyle(fontSize: 12),
+                                //overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                          ]),
+                  ),
               SizedBox(
                 width: 5,
               ),
@@ -2256,6 +2264,7 @@ class MyPage1Widget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     _buildTilered(
+                        size: size,
                         icon: "assets/search_icon.png",
                         fun: () {
                           Navigator.pushNamed(
@@ -2297,7 +2306,7 @@ class MyPage1Widget extends StatelessWidget {
                       //icon: Icons.animation,
                       //icon: FontAwesomeIcons.accusoft,
                       title: "Generic Medical Stores",
-                  size: size,
+                      size: size,
                       fun: () {
                         //AppData.showInSnackDone(context, "Coming Soon");
                         Navigator.pushNamed(context, "/geneicstores");
@@ -2332,6 +2341,7 @@ class MyPage1Widget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     _buildTilered(
+                      size: size,
                       icon: "assets/ambulance.png",
                       //icon: Icons.search,
                       //icon: FontAwesomeIcons.accusoft,
@@ -2439,6 +2449,7 @@ class MyPage1Widget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     _buildTilered(
+                      size: size,
                       icon: "assets/AppmntF.png",
                       fun: () {
                         //chooseAppointment(context, model);
@@ -2451,7 +2462,7 @@ class MyPage1Widget extends StatelessWidget {
                       },
                       /*color: AppData.BG1RED,
                       bordercolor: AppData.BG1RED,*/
-                      size: (size.width - 130) / 3,
+                      // size: (size.width - 130) / 3,
                     ),
                     SizedBox(
                       height: 5,
@@ -2548,7 +2559,8 @@ class MyPage1Widget extends StatelessWidget {
                       },
                       /*color: AppData.BG1RED,
                       bordercolor: AppData.BG1RED,*/
-                      size: (size.width - 130) / 3,
+                      // size: (size.width - 130) / 3,
+                        size: size,
                     ),
                     SizedBox(
                       height: 5,
@@ -2702,7 +2714,8 @@ class MyPage1Widget extends StatelessWidget {
                     },
                     /* color: AppData.BG1RED,
                     bordercolor: AppData.BG1RED,*/
-                    size: (size.width - 130) / 3,
+                    // size: (size.width - 130) / 3,
+                      size: size,
                   ),
                   SizedBox(
                     height: 5,
@@ -2766,120 +2779,119 @@ class MyPage1Widget extends StatelessWidget {
       Function fun}) {
     return InkWell(
       onTap: fun,
-      child: FittedBox(
-        child: Container(
-          padding: EdgeInsets.all(10.0),
-          /* height: MediaQuery.of(context).size.height * 0.23,*/
-          // height: _height,
-          // width: _width,
-          decoration: BoxDecoration(
+      child: Container(
+        // padding: EdgeInsets.all(10.0),
+        /* height: MediaQuery.of(context).size.height * 0.23,*/
+        height: size.height * 0.1525 - 45,
+        width: size.height * 0.1525 - 45,
+        // width: _width,
+        decoration: BoxDecoration(
 
-              /// borderRadius: BorderRadius.circular(7.0),
-              /* borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(10.0),
-                topRight: Radius.zero,
-                bottomLeft: Radius.zero,
-                bottomRight: Radius.circular(10.0),
-              ),*/
-              shape: BoxShape.circle,
-              color: Colors.white,
-              border: Border.all(
-                color: AppData.kPrimaryBlueColor,
-                width: 1.0,
-              )
-              /* boxShadow: [
-              BoxShadow(
-                color: bordercolor,
-                blurRadius: 5.0,
-                spreadRadius: 2.0,
-                offset: Offset(2.0, 2.0), // shadow direction: bottom right
-              )
-            ],*/
-              ),
-          child: Stack(
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Align(
-                      alignment: Alignment.center,
-                      child: Image.asset(
-                        /* "assets/logo1.png"*/
-                        icon,
-                        color: iconColor ?? null,
-                        fit: BoxFit.fitWidth,
-                        width: 30,
-                        height: size.height*0.07,
-                      )),
-                  //child: Icon(icon, color: AppData.kPrimaryColor,size: 40.0)),
-
-                  /*Text(
-                    '12',
-                    style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: "Monte",
-                              fontSize: 22.0,
-                    ),
-
-                  ),*/
-                  /*Padding(
-                        padding: const EdgeInsets.only( top: 10,left: 3,right: 3
-                        ),
-                       child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Expanded(
-                              child: Text(
-                    title,
-                    style: TextStyle(
-                              color: Colors.white,
-                              // fontWeight: FontWeight.w600,
-                              fontFamily: "Monte",
-                              fontSize: 18.0,
-                    ),
-                    textAlign: TextAlign.center,
-                    maxLines: 2,
-                    overflow: TextOverflow.clip,
-                  ),
-                            ),
-                          ],
-                        ),
-                      ),*/
-                ],
-              ),
-
-              /* Positioned(
-            top: -3,
-            right: -3,
-            child: Container(
-              height: 40,
-              width: 40,
-               decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(40.0),
-            color: Colors.white24,),
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Icon(icon, color: Colors.white,)
-              )
+            /// borderRadius: BorderRadius.circular(7.0),
+            /* borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(10.0),
+              topRight: Radius.zero,
+              bottomLeft: Radius.zero,
+              bottomRight: Radius.circular(10.0),
+            ),*/
+            shape: BoxShape.circle,
+            color: Colors.white,
+            border: Border.all(
+              color: AppData.kPrimaryBlueColor,
+              width: 1.0,
             )
-          ),*/
-              //   Positioned(
-              // top: 20,
-              // left: 15,
-              // child:Text('Heart Rate', style: TextStyle(color: Colors.white),)),
-              //  Positioned(
-              // bottom: 20,
-              // right: 15,
-              // child:Column(
-              //   children: [
-              //     Text('Daily Goal', style: TextStyle(color: Colors.white),),
-              //      Text('900 kcal', style: TextStyle(color: Colors.white),),
-              //   ],
-              // ))
-            ],
-          ),
+            /* boxShadow: [
+            BoxShadow(
+              color: bordercolor,
+              blurRadius: 5.0,
+              spreadRadius: 2.0,
+              offset: Offset(2.0, 2.0), // shadow direction: bottom right
+            )
+          ],*/
+            ),
+        child: Stack(
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Align(
+                    alignment: Alignment.center,
+                    child: Image.asset(
+                      /* "assets/logo1.png"*/
+                      icon,
+                      color: iconColor ?? null,
+                      fit: BoxFit.fitWidth,
+                      width: size.height * 0.05,
+                      height: size.height * 0.05,
+                    )),
+                //child: Icon(icon, color: AppData.kPrimaryColor,size: 40.0)),
+
+                /*Text(
+                  '12',
+                  style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: "Monte",
+                            fontSize: 22.0,
+                  ),
+
+                ),*/
+                /*Padding(
+                      padding: const EdgeInsets.only( top: 10,left: 3,right: 3
+                      ),
+                     child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            child: Text(
+                  title,
+                  style: TextStyle(
+                            color: Colors.white,
+                            // fontWeight: FontWeight.w600,
+                            fontFamily: "Monte",
+                            fontSize: 18.0,
+                  ),
+                  textAlign: TextAlign.center,
+                  maxLines: 2,
+                  overflow: TextOverflow.clip,
+                ),
+                          ),
+                        ],
+                      ),
+                    ),*/
+              ],
+            ),
+
+            /* Positioned(
+          top: -3,
+          right: -3,
+          child: Container(
+            height: 40,
+            width: 40,
+             decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(40.0),
+          color: Colors.white24,),
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Icon(icon, color: Colors.white,)
+            )
+          )
+        ),*/
+            //   Positioned(
+            // top: 20,
+            // left: 15,
+            // child:Text('Heart Rate', style: TextStyle(color: Colors.white),)),
+            //  Positioned(
+            // bottom: 20,
+            // right: 15,
+            // child:Column(
+            //   children: [
+            //     Text('Daily Goal', style: TextStyle(color: Colors.white),),
+            //      Text('900 kcal', style: TextStyle(color: Colors.white),),
+            //   ],
+            // ))
+          ],
         ),
       ),
     );
@@ -2901,7 +2913,8 @@ class MyPage1Widget extends StatelessWidget {
         width: _width,
         decoration: BoxDecoration(
           color: color,
-          image: DecorationImage(image: AssetImage("assets/images/premium2.png")),
+          image:
+              DecorationImage(image: AssetImage("assets/images/premium2.png")),
         ),
         child: Stack(
           children: [
@@ -3180,7 +3193,7 @@ class MyPage1Widget extends StatelessWidget {
       {String icon,
       /*IconData icon,*/
       String title,
-      double size,
+      Size size,
       Color bordercolor,
       Color color,
       Function fun,
@@ -3191,9 +3204,8 @@ class MyPage1Widget extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(0.0),
         /* height: MediaQuery.of(context).size.height * 0.23,*/
-        height: _height,
-        //width: (MediaQuery.of(context).size.width - 80) / 3,
-        width: _width,
+        height: size.height * 0.1525 - 45,
+        width: size.height * 0.1525 - 45,
         decoration: BoxDecoration(
 
             /// borderRadius: BorderRadius.circular(7.0),
@@ -3231,8 +3243,8 @@ class MyPage1Widget extends StatelessWidget {
                     icon,
                     fit: BoxFit.fitWidth,
                     color: AppData.kPrimaryRedColor,
-                    width: 50,
-                    height: 70.0,
+                    width: size.height * 0.05,
+                    height: size.height * 0.05,
                   ),
                 ),
                 /*child: Icon(icon, color: AppData.kPrimaryRedColor,size: 40.0)),*/
