@@ -3129,27 +3129,25 @@ class MyPage1Widget extends StatelessWidget {
                   ),
 
                 ),*/
-                Padding(
-                  padding: const EdgeInsets.only(top: 10, left: 3, right: 3),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        child: Text(
-                          title,
-                          style: TextStyle(
-                            color: Colors.white,
-                            // fontWeight: FontWeight.w600,
-                            fontFamily: "Monte",
-                            fontSize: 22.0,
-                          ),
-                          textAlign: TextAlign.center,
-                          maxLines: 2,
-                          overflow: TextOverflow.clip,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    FittedBox(
+                      fit:BoxFit.fitWidth,
+                      child: Text(
+                        title,
+                        style: TextStyle(
+                          color: Colors.white,
+                          // fontWeight: FontWeight.w600,
+                          fontFamily: "Monte",
+                          // fontSize: 22.0,
                         ),
+                        textAlign: TextAlign.center,
+                        maxLines: 1,
+                        overflow: TextOverflow.clip,
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ],
             ),
