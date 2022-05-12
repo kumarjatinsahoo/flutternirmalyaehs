@@ -1738,6 +1738,7 @@ class MyPage1Widget extends StatelessWidget {
 
   MyPage1Widget({Key key, this.model, this.size}) : super(key: key);
 
+
   chooseAppointment(BuildContext context, model) {
     return showDialog(
         context: context,
@@ -1787,7 +1788,6 @@ class MyPage1Widget extends StatelessWidget {
                             // Navigator.pop(context);
                           },
                         ),
-
                         /* ListTile(
                           title: Text("Health Screening"),
                           leading: Icon(

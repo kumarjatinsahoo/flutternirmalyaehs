@@ -1,6 +1,7 @@
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:user/localization/localizations.dart';
+import 'package:user/models/KeyvalueModel.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
@@ -12,6 +13,7 @@ import 'package:user/widgets/text_field_container.dart';
 
 class PatientRegistration2 extends StatefulWidget {
   final MainModel model;
+ // static KeyvalueModel genderModel = null;
 
   const PatientRegistration2({Key key, this.model}) : super(key: key);
 
@@ -30,6 +32,7 @@ class _PatientRegistration2State extends State<PatientRegistration2> {
 
   ];
   bool _value = false;
+
 
   @override
   Widget build(BuildContext context) {
@@ -190,6 +193,7 @@ class _PatientRegistration2State extends State<PatientRegistration2> {
       text: MyLocalizations.of(context).text("NEXT").toUpperCase(),
       context: context,
       fun: () {
+        widget.model.patientgender=_value?"1":"2";
         if (textEditingController[0].text == "" || textEditingController[0].text== null) {
           AppData.showInSnackBar(context, "Please enter age");
         } else if (textEditingController[0].text != "" && textEditingController[0].text== "0") {

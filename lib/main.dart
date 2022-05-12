@@ -401,7 +401,7 @@ void main() async {
   selectedLan = (preferences.getString('Lan') ?? "en");
   AppData.setSelectedLanCode(selectedLan);
   print("selectedLan : ${selectedLan}");
-  debugPaintSizeEnabled=true;
+  //debugPaintSizeEnabled=true;
 
   runApp(MyApp(
     localizedValues: localizedValues,
