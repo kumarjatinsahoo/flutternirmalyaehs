@@ -5,6 +5,7 @@ import 'dart:convert' show base64, utf8;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:intl/intl.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:another_flushbar/flushbar.dart';
@@ -24,6 +25,7 @@ static String defultImgUrll="https://pixabay.com/photos/tree-sunset-clouds-sky-s
   static Color BG1RED = Color(0xFFFEF7F8);
   static Color BG2BLUE = Color(0xFFF5FAFE);
   static Color klightblurColor = Color(0xFFF0F8FF);
+  static Color kappbarColor = Color(0xFFF2F2F2);
 
   static Color green1 = Color(0xFFE5FAEB);
   static Color green2 = Color(0xFFBCF9C5);
@@ -469,7 +471,19 @@ static bool validateStructure(String value){
     )..show(context);
   }
 
-static void showbar(BuildContext context, String value) {
+  static String toDate(String date) {
+    if (date != null && date != "") {
+      final DateTime formatter = DateFormat("yyyy-MM-dd").parse(date);
+      DateFormat toNeed = DateFormat("dd-MM-yyyy");
+      final String formatted = toNeed.format(formatter);
+      return formatted;
+    } else {
+      return "";
+    }
+  }
+
+
+  static void showbar(BuildContext context, String value) {
     // final scaffold = Scaffold.of(context);
     // scaffold.showSnackBar(
     //   SnackBar(

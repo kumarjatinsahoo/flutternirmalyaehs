@@ -224,7 +224,6 @@ class _BookAmbulancelistState extends State<BookAmbulancelist> {
                                                         crossAxisAlignment:
                                                             CrossAxisAlignment
                                                                 .start,
-
                                                         children: [
                                                           Container(
                                                             width: 120,
@@ -333,15 +332,17 @@ class _BookAmbulancelistState extends State<BookAmbulancelist> {
                                                             ),
                                                           ),
                                                           Text(" : "),
-                                                          Text(
-                                                            /*'23-Nov-2020-11:30AM'*/
-                                                            body.patientNote,
-                                                            overflow:
-                                                                TextOverflow
-                                                                    .clip,
-                                                            style: TextStyle(
-                                                                color: Colors
-                                                                    .black),
+                                                          Expanded(
+                                                            child: Text(
+                                                              /*'23-Nov-2020-11:30AM'*/
+                                                              body.patientNote,
+                                                              overflow:
+                                                                  TextOverflow
+                                                                      .clip,
+                                                              style: TextStyle(
+                                                                  color: Colors
+                                                                      .black),
+                                                            ),
                                                           ),
                                                         ],
                                                       ),

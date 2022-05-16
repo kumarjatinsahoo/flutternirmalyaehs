@@ -100,8 +100,7 @@ class _ProccesedOrdersState extends State<ProccesedOrders> {
                       Container(
                           child: Column(
                             children: [
-                              Text(
-                                'Order Number',
+                              Text(MyLocalizations.of(context).text("ORDER_NO"),
                                 style: TextStyle(color: Colors.black54),
                               ),
                               SizedBox(height: 10),
@@ -115,8 +114,7 @@ class _ProccesedOrdersState extends State<ProccesedOrders> {
                           )),
                       Column(
                         children: [
-                          Text(
-                            'Pharmacy',
+                          Text(MyLocalizations.of(context).text("PHARMACY"),
                             style: TextStyle(color: Colors.black54),
                           ),
                           SizedBox(height: 10),
@@ -130,8 +128,7 @@ class _ProccesedOrdersState extends State<ProccesedOrders> {
                       SizedBox(height: 10),
                       Column(
                         children: [
-                          Text(
-                            'Deliver To',
+                          Text(MyLocalizations.of(context).text("DELIVER_TO"),
                             style: TextStyle(color: Colors.black54),
                           ),
                           SizedBox(height: 10),

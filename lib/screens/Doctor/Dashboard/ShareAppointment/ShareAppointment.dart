@@ -64,7 +64,7 @@ class _ShareAppointment extends State<ShareAppointment> {
     // Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Share Appointment'),
+        title: Text(MyLocalizations.of(context).text("SHARE_APPOINTMENT")),
         centerTitle: true,
         backgroundColor: AppData.kPrimaryColor,
       ),
@@ -109,8 +109,7 @@ class _ShareAppointment extends State<ShareAppointment> {
                             });
                           },
                         ),
-                        Text(
-                          "Doctor",
+                        Text(MyLocalizations.of(context).text("DOCTOR"),
                           style: TextStyle(color: Colors.black, fontSize: 12),
                         )
                       ],
@@ -129,8 +128,7 @@ class _ShareAppointment extends State<ShareAppointment> {
                             });
                           },
                         ),
-                        Text(
-                          "Receptionist",
+                        Text(MyLocalizations.of(context).text("RECEPTIONIST"),
                           style: TextStyle(color: Colors.black, fontSize: 12),
                         )
                       ],
@@ -151,9 +149,8 @@ class _ShareAppointment extends State<ShareAppointment> {
                 });
               }),
               SizedBox(height: 8),
-              formField(1, "Notes"),
+              formField(1, MyLocalizations.of(context).text("NOTES")),
               SizedBox(height: 30),
-
               InkWell(
                 onTap: () {
                   if (ShareAppointment.shareappontmentmodel == null ||
@@ -205,7 +202,7 @@ class _ShareAppointment extends State<ShareAppointment> {
                     minWidth: 200,
                     height: 50.0,
                       child:  Text(
-                          "Share",
+                        MyLocalizations.of(context).text("SHARE"),
                           style: TextStyle(
                               fontWeight:
                               FontWeight

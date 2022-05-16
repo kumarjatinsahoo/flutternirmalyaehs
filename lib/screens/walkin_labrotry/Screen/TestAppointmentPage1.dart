@@ -210,7 +210,7 @@ class _TestAppointmentPage1State extends State<TestAppointmentPage1>
                             onChanged: (value) => _runFilter(value),
                             decoration: InputDecoration(
                                 suffixIcon: Icon(Icons.search),
-                                hintText: "Search"),
+                                hintText: MyLocalizations.of(context).text("SEARCH")),
                           ),
                         ),
                       )
@@ -242,7 +242,7 @@ class _TestAppointmentPage1State extends State<TestAppointmentPage1>
                                 },
                             ),
                             TextSpan(
-                                text:MyLocalizations.of(context).text("     APPOINTMENT").toUpperCase(),
+                                text:"   " + MyLocalizations.of(context).text("APPOINTMENT").toUpperCase(),
                                 style: TextStyle(
                                     fontWeight: FontWeight.w600,
                                     fontSize: 15.0,

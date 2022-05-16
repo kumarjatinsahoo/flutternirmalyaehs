@@ -568,7 +568,7 @@ class _DocMyProfileState extends State<DocMyProfile> {
                                             "N/A"),
                                       ),
                                       ListTile(
-                                        leading: Icon(Icons.call),
+                                        leading: Icon(Icons.mail),
                                         title: Text(MyLocalizations.of(context).text("EMAILID").toUpperCase()),
                                         //subtitle: Text("NIRMALYA"),
                                         subtitle: Text(profileModel1?.body?.email!=""?profileModel1.body.email:"N/A"),

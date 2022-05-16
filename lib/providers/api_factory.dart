@@ -8,7 +8,7 @@ class ApiFactory {
 
   static bool isProduction = false;
   static bool isLocal = false;
-  static String LOCAL_URL = "http://192.168.0.109:8063/nirmalyaRest/api/";
+  static String LOCAL_URL = "http://192.168.0.124:8062/nirmalyaRest/api/";
 
   static String REG_DEVICE = "https://cca.medtel.in/Ziniai/manageDeviceId";
   static String MAIN_URL = (!isLocal)
@@ -41,6 +41,13 @@ class ApiFactory {
   static String AMBULANCE_API = MAIN_URL + 'get-ambulance-orglist';
   static String BLOODBBANKNAME_API = MAIN_URL + 'get-bloodbank-orglist';
   static String TITLE_API = MAIN_URL + 'get-user-title-list';
+  static String INSURANCE_TITLE = MAIN_URL + 'get-insurance-title-list';
+  static String INSURANCE_PINCODE = MAIN_URL + 'get-Insurance-Pincode-Autosearch?id=';
+  static String INSURANCE_MARITALSTATUS = MAIN_URL + 'get-insurance-maritalstatus-list';
+  static String INSURANCE_OCCUPATION = MAIN_URL + 'get-insurance-ocupation-list';
+  static String INSURANCE_RELATION = MAIN_URL + 'get-insurance-relationCode-list';
+
+
   static String NAME_API = MAIN_URL + 'get-allergy-name-list';
   static String TYPE_API = MAIN_URL + 'get-allergy-type-list';
   static String ORGAN_API = MAIN_URL + 'get-organ-list';
@@ -97,6 +104,8 @@ class ApiFactory {
       MAIN_URL + 'get-doctorreceptionist-list?drid=';
 
 
+
+
   static String DELETE_REMINDER =
       MAIN_URL + 'delete-medicine-reminder-details?reminderId=';
 
@@ -144,6 +153,11 @@ class ApiFactory {
   static String STATE_API = MAIN_URL + 'get-state-list?country=';
   static String DISTRICT_API = MAIN_URL + 'get-district-list?state=';
   static String CITY_API = MAIN_URL + 'get-city-list?district=';
+
+
+  static String PATIENT_REG_ADDRESS = MAIN_URL + 'view-lab-technician-details?labTechId=';
+
+
   static String DOCTOOR_API = MAIN_URL + 'get-doctor-list?type=';
   static String HOSPITAL_API = MAIN_URL + 'get-hospital-list?doctor=';
   static String POST_ORGAN_DONOR = MAIN_URL + 'post-organ-donor-details';
@@ -360,6 +374,10 @@ class ApiFactory {
   static String bloodbank_status =
       MAIN_URL + 'change-bloodbank-status?orderid=';
   static String TEST_REPORT_USER = MAIN_URL + 'view-medteltest-list-throughId';
+  static String VALIDATE_AADHAR = MAIN_URL + 'get-patient-aadhaar-exists?aadhhar=';
+
+
+
   static String USER_APPOINTMENTS =
       MAIN_URL + 'get-user-appointment-list?userid=';
   static String ORDER_LIST =
@@ -416,12 +434,35 @@ class ApiFactory {
 
   static String API_VERSION = MAIN_URL + "get-version";
 
-/* (
-      String doctor, String appointdate, String hospitalid) {
-    return
-      MAIN_URL + "/Doc/GetDocSlotInfo?doctor=$doctor&appointdate=$appointdate&hospitalid=$hospitalid";
-  }*/
+
+
+
+
+
+
+  //////////////////////////////
+  // static String ABHA_BASE_URL = "https://dev.abdm.gov.in/gateway/v0.5/sessions";
+  static String SESSION = "https://dev.abdm.gov.in/gateway/v0.5/sessions";
+  static String GET_ADHAR_OTP = "https://healthidsbx.abdm.gov.in/api/v1/registration/aadhaar/generateOtp";
+  static String POST_ADHAR_VERIFY_OTP = "https://healthidsbx.abdm.gov.in/api/v1/registration/aadhaar/verifyOTP";
+  static String POST_ABHA_REGISTRATION = "https://healthidsbx.abdm.gov.in/api/v1/registration/aadhaar/createHealthIdWithPreVerified";
+  static String SEND_PERSONAL_NO = "https://healthidsbx.abdm.gov.in/api/v1/registration/aadhaar/generateMobileOTP";
+  static String VERIFY_MOBILE_NO = "https://healthidsbx.abdm.gov.in/api/v1/registration/aadhaar/verifyMobileOTP";
+
+
+
+  //////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
 
 }
-/*
-https://1331.co.in/api/Doc/GetDocList?speciality=*/
+

@@ -1,4 +1,5 @@
 import 'package:flutter/gestures.dart';
+import 'package:user/localization/localizations.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
@@ -33,7 +34,7 @@ class _DoctorMedicationTabState extends State<DoctorMedicationTab> {
       child: Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title:Text('Medication'),
+          title:Text(MyLocalizations.of(context).text("MEDICATION")),
 
               //Spacer(),
             /*  InkWell(
@@ -56,11 +57,11 @@ class _DoctorMedicationTabState extends State<DoctorMedicationTab> {
             dragStartBehavior: DragStartBehavior.down,
             tabs: [
               Tab(
-                text:"Medication",
+                text:MyLocalizations.of(context).text("MEDICATION"),
 
               ),
               Tab(
-                text:"Test",
+                text:MyLocalizations.of(context).text("TEST"),
               ),
             ],
           ),

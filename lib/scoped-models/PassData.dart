@@ -1,5 +1,6 @@
 // import 'package:device_calendar/device_calendar.dart';
 import 'package:scoped_model/scoped_model.dart';
+import 'package:user/models/AbhaTokenModel.dart';
 import 'package:user/models/ForgetUseridModel.dart' as forgotuser;
 import 'package:user/models/MasterLoginResponse.dart';
 import 'package:user/models/PharmacyorderModel.dart' as cnfrm;
@@ -196,6 +197,17 @@ String otpText;
 int emergencyContact;
 
 TakeMedModel medicineData;
+
+
+
+
+//////ABHA MODEL?????
+AbhaTokenModel abhaTokenModel;
+String txnIDAdhar;
+
+String abhaadhar;
+String abhaphoneno;
+
 
 
 }

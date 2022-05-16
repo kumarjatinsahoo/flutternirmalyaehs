@@ -519,7 +519,7 @@ class _MonthlyOverview extends State<MonthlyOverviewAmbulanc> {
                                 Align(
                                   alignment: Alignment.center,
                                   child: Text(
-                                    MyLocalizations.of(context).text("REJECT"),
+                                    MyLocalizations.of(context).text("REJECTED"),
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 13,

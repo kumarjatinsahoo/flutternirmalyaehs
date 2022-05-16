@@ -783,7 +783,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                 title: Text(MyLocalizations.of(context).text("SHARE")),
                 onTap: () {
                   //Navigator.pushNamed(context, "/emergencydetails");
-                  Navigator.pushNamed(context, "/myopdpage");
+                  //Navigator.pushNamed(context, "/myopdpage");
                 },
               ),
               SizedBox(
@@ -809,11 +809,11 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                   ),
                   title: Text(MyLocalizations.of(context).text("CONTACT_US")),
                   onTap: () {
-                    widget.model.contactscreen = "Contact Screen";
+                   // widget.model.contactscreen = "Contact Screen";
                     Navigator.pushNamed(context, "/contactus");
                     //Navigator.pushNamed(context, "/discountoffer");
                   }),
-              ListTile(
+             /* ListTile(
                   leading: Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: Row(
@@ -835,7 +835,7 @@ class _NewDashboardDoctorState extends State<NewDashboardDoctor> {
                   onTap: () {
                     widget.model.contactscreen = "Support Screen";
                     Navigator.pushNamed(context, "/contactus");
-                  }),
+                  }),*/
 
               SizedBox(
                 height: 8,

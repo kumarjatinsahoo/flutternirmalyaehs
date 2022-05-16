@@ -104,7 +104,7 @@ class _BookAppointment extends State<BookAppointment> {
     // Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Book Appointment'),
+        title:Text(MyLocalizations.of(context).text("BOOK_APPOINTMENT")),
         centerTitle: true,
         backgroundColor: AppData.kPrimaryColor,
       ),
@@ -120,7 +120,7 @@ class _BookAppointment extends State<BookAppointment> {
                 height: 20,
               ),
               DropDown.networkDropdownGetpartUser1(
-                  "Doctor",
+                 MyLocalizations.of(context).text("DOCTOR"),
                   ApiFactory.RECEPTIONLIST_DOCTOR + loginResponse.body.user,
                   "doctorrecipt",
                   Icons.location_on_rounded,
@@ -161,11 +161,10 @@ class _BookAppointment extends State<BookAppointment> {
               SizedBox(height: 10,),
               fromAddress(
                   1,
-                  "Reason For Choice", TextInputAction.next,
+                  MyLocalizations.of(context).text("REASON_FOR_CHOICE"),TextInputAction.next,
                   TextInputType.text,
                   "reasonforDr"),
               SizedBox(height: 30),
-
               InkWell(
                 onTap: () {
                    if (BookAppointment.doctorreceptionmodel == null ||
@@ -179,7 +178,6 @@ class _BookAppointment extends State<BookAppointment> {
                     AppData.showInSnackBar(context, "Please select valid time");
                   } else {
                      saveDb();
-
                   }
                 },
                 child: Material(
@@ -194,8 +192,7 @@ class _BookAppointment extends State<BookAppointment> {
                   MaterialButton(
                     minWidth: 200,
                     height: 50.0,
-                    child: Text(
-                      "Submit",
+                    child: Text(MyLocalizations.of(context).text("SUBMIT"),
                       style: TextStyle(
                           fontWeight:
                           FontWeight
@@ -270,7 +267,7 @@ class _BookAppointment extends State<BookAppointment> {
                 borderRadius: BorderRadius.circular(5),
                 border: Border.all(color: Colors.black, width: 0.3)),
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 5.0),
+              padding: const EdgeInsets.only(left: 1),
               child: TextFormField(
                 //focusNode: fnode4,
                 //enabled: !widget.isConfirmPage ? false : true,

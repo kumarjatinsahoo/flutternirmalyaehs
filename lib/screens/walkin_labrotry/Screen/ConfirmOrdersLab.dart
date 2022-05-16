@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:user/localization/localizations.dart';
 import 'package:user/models/PharmacyorderModel.dart'as oderlist;
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/api_factory.dart';
@@ -24,13 +25,14 @@ class _ConfirmOrdersLabState extends State<ConfirmOrdersLab> {
   int _selectedDestination = -1;
   LoginResponse1 loginResponse;
   bool isDataNotAvail = false;
-  bool isdata = false;
+  bool isdata = true;
   oderlist.PharmacyorderModel pharmacyorderModel;
   void selectDestination(int index) {
     setState(() {
       _selectedDestination = index;
     });
   }
+  bool isDataNotFound = false;
 
   @override
   void initState() {
@@ -51,11 +53,11 @@ class _ConfirmOrdersLabState extends State<ConfirmOrdersLab> {
             if (map[Const.CODE] == Const.SUCCESS) {
               setState(() {
                 pharmacyorderModel = oderlist.PharmacyorderModel.fromJson(map);
-                isdata=false;
+                isDataNotFound=false;
               });
 
             } else {
-              isdata=false;
+              isDataNotFound=true;
             /*  isDataNotAvail = true;
               AppData.showInSnackBar(context, msg);*/
             }
@@ -83,18 +85,18 @@ class _ConfirmOrdersLabState extends State<ConfirmOrdersLab> {
       body:
       /*(pharmacyorderModel != null)
       ? */
-      isdata == true
-          ? Center(
-        child: CircularProgressIndicator(
-          //backgroundColor: AppData.matruColor,
-        ),
-      )
-          : pharmacyorderModel == null || pharmacyorderModel == null
+      (isDataNotFound == true)
           ? Container(
         child: Center(
             child:Image.asset("assets/NoRecordFound.png",
               // height: 25,
             )
+        ),
+      )
+          :pharmacyorderModel == null
+          ? Center(
+        child: CircularProgressIndicator(
+          //backgroundColor: AppData.matruColor,
         ),
       )
           : (pharmacyorderModel != null)
@@ -203,8 +205,7 @@ class _ConfirmOrdersLabState extends State<ConfirmOrdersLab> {
                                         SizedBox(
                                           height: size.height * 0.01,
                                         ),
-                                        Text(
-                                          'Order ID: ',
+                                        Text(MyLocalizations.of(context).text("ORDER_ID"),
                                           style: TextStyle(
                                               color: Colors.blue,
                                               fontWeight: FontWeight.w600),
@@ -222,8 +223,7 @@ class _ConfirmOrdersLabState extends State<ConfirmOrdersLab> {
                                         SizedBox(
                                           height: 4,
                                         ),
-                                        Text(
-                                          'Address: ',
+                                        Text(MyLocalizations.of(context).text("ADDRESS"),
                                           style: TextStyle(
                                               color: Colors.blue,
                                               fontWeight: FontWeight.w600),
@@ -266,7 +266,7 @@ class _ConfirmOrdersLabState extends State<ConfirmOrdersLab> {
                                     child: RaisedButton(
                                       onPressed: null,
                                       child: Text(
-                                        'Accepted',
+                                        MyLocalizations.of(context).text("ACCEPTED"),
                                         style: TextStyle(
                                             color: Colors.white,
                                             fontSize: 16,
@@ -288,8 +288,15 @@ class _ConfirmOrdersLabState extends State<ConfirmOrdersLab> {
             },
           itemCount: pharmacyorderModel.body.length,
       )
-
-    ) :Container(),
+    ) :Container(
+        height: size.height - 100,
+        child: Center(
+            child: Image.asset("assets/NoRecordFound.png",
+              // height: 25,
+            )
+        ),
+      )
+            //: MyWidgets.loading(context),
     );
   }
 
@@ -308,7 +315,6 @@ class _ConfirmOrdersLabState extends State<ConfirmOrdersLab> {
                //pharmacyorderModel = oderlist.PharmacyorderModel.fromJson(map);
              //  AppData.showInSnackBar(context, msg);
                callAPI();
-
              } else {
                isDataNotAvail = true;
                AppData.showInSnackBar(context, msg);

@@ -180,7 +180,7 @@ class _MedicineList extends State<UserMedicineList> {
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: AppData.kPrimaryColor,
-        title: Text("Medicine List"),
+        title: Text(MyLocalizations.of(context).text("MEDICINE_LIST")),
         actions: <Widget>[
           Padding(
             padding: const EdgeInsets.only(right: 15.0,top: 20),

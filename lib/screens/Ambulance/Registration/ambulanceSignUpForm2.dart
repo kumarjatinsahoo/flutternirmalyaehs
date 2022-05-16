@@ -499,7 +499,8 @@ class AmbulanceSignUpForm2State extends State<AmbulanceSignUpForm2> {
                                               children: [
                                                 TextSpan(
                                                   text:  MyLocalizations.of(context).text("AGREE_TO_NCORDS") ,
-                                                  *//* "Welcome back",*//*
+                                                  */
+                                        /* "Welcome back",*//*
                                                   style: TextStyle(
                                                     // fontWeight: FontWeight.w800,
                                                     fontFamily: "Monte",

@@ -290,14 +290,16 @@ class _BookBloodBanklistState extends State<BookBloodBanklist> {
                                                             ),
                                                           ),
                                                           Text(" : "),
-                                                          Text(
-                                                            /*'23-Nov-2020-11:30AM'*/
-                                                            body.patientNote,
-                                                            overflow:
-                                                                TextOverflow.clip,
-                                                            style: TextStyle(
-                                                                color:
-                                                                    Colors.black),
+                                                          Expanded(
+                                                            child: Text(
+                                                              /*'23-Nov-2020-11:30AM'*/
+                                                              body.patientNote,
+                                                              overflow:
+                                                                  TextOverflow.clip,
+                                                              style: TextStyle(
+                                                                  color:
+                                                                      Colors.black),
+                                                            ),
                                                           ),
                                                         ],
                                                       ),

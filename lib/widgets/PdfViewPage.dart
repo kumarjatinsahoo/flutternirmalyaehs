@@ -109,7 +109,7 @@ class _PDFScreenState extends State<PDFScreen> with WidgetsBindingObserver {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Pdf"),
+        title: Text("View"),
         centerTitle: true,
       /*  actions: <Widget>[
           IconButton(
@@ -121,10 +121,9 @@ class _PDFScreenState extends State<PDFScreen> with WidgetsBindingObserver {
       body: Stack(
         children: <Widget>[
           PDFView(
-
             filePath: widget.path,
             enableSwipe: true,
-            swipeHorizontal: true,
+            swipeHorizontal: false,
             autoSpacing: false,
             pageFling: true,
             pageSnap: true,
@@ -176,7 +175,7 @@ class _PDFScreenState extends State<PDFScreen> with WidgetsBindingObserver {
                 )
         ],
       ),
-      floatingActionButton: FutureBuilder<PDFViewController>(
+     /* floatingActionButton: FutureBuilder<PDFViewController>(
         future: _controller.future,
         builder: (context, AsyncSnapshot<PDFViewController> snapshot) {
           if (snapshot.hasData) {
@@ -190,7 +189,7 @@ class _PDFScreenState extends State<PDFScreen> with WidgetsBindingObserver {
 
           return Container();
         },
-      ),
+      ),*/
     );
   }
 }

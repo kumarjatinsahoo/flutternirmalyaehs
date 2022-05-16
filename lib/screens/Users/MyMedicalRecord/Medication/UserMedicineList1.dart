@@ -124,6 +124,19 @@ class _MedicineList extends State<UserMedicineList1> {
       return "";
     }
   }
+  static String toDate1(String date) {
+    if (date != null && date != "") {
+      DateTime formatter = new DateFormat("d-MMM-yyyy").parse(date);
+     // final DateTime formatter =
+      //DateFormat("yyyy-MM-dd\'T\'HH:mm:ss.SSSZ\'").parse(date);
+      //DateFormat("dd/MM/yyyy").parse(date);
+      DateFormat toNeed = DateFormat("dd-MM-yyyy");
+      final String formatted = toNeed.format(formatter);
+      return formatted;
+    } else {
+      return "";
+    }
+  }
   _getLocationName() async {
     Position position = await Geolocator()
         .getCurrentPosition(desiredAccuracy: loca.LocationAccuracy.high);
@@ -203,12 +216,9 @@ class _MedicineList extends State<UserMedicineList1> {
                               Navigator.pushNamed(
                                   context,
                                   "/userMedicineList");
-
                           //  Navigator.pushNamed(context, "/medicinelisturl");
-
                           },
                           child: Container(
-
                             child: GestureDetector(
                               // onTap:()=> Navigator.pushNamed(context, "/immunizitaion"),
                               // onTap: () =>   Navigator.pushNamed(context, "/immunizationlist")
@@ -267,8 +277,8 @@ class _MedicineList extends State<UserMedicineList1> {
                                             Spacer(),
                                             Text(
 
-                                              //toDate(body.meddate)??"N/A",
-                                                body.meddate??"N/A",
+                                              body.meddate??"N/A",
+                                              //   body.meddate??"N/A",
                                               style: TextStyle(
                                                   fontSize: 14,
                                                   color: Colors

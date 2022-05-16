@@ -69,16 +69,12 @@ class _WalkinRegisterListPageState extends State<WalkinRegisterListPage> {
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
-
         title: Row(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(MyLocalizations.of(context).text("BENEFICIARY_LIST"),
-                style: TextStyle(color: Colors.white),
-              ),
+            Text(MyLocalizations.of(context).text("BENEFICIARY_LIST"),
+              style: TextStyle(color: Colors.white),
             ),
-           Spacer(),
+           //Spacer(),
             IconButton(
                 icon: Icon(Icons.add_box_rounded),
                 onPressed: () {

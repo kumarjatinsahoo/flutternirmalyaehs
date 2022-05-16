@@ -220,7 +220,7 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
                           onChanged: (value) => _runFilter(value),
                           decoration: InputDecoration(
                               suffixIcon: Icon(Icons.search),
-                              hintText: "Search"),
+                              hintText:MyLocalizations.of(context).text("SEARCH")),
                         ),
                       ),
                     )
@@ -252,7 +252,20 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
                               },
                           ),
                           TextSpan(
-                              text: MyLocalizations.of(context).text("   APPOINTMENT").toUpperCase(),
+                            text: "     ",
+                            style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 15.0,
+                              color: Colors.black,
+                             // decoration: TextDecoration.underline,
+                            ),
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () {
+                                _selectDate(context);
+                              },
+                          ),
+                          TextSpan(
+                              text: MyLocalizations.of(context).text("APPOINTMENT").toUpperCase(),
                               style: TextStyle(
                                   fontWeight: FontWeight.w600,
                                   fontSize: 15.0,

@@ -93,10 +93,9 @@ class _TestDetailslistState extends State<TestDetailslist> {
         child: Center(
             child: Image.asset("assets/NoRecordFound.png",
               // height: 25,
-            )
+              )
         ),
-      )
-          : pharmacycnfrmModel == null
+      ) : pharmacycnfrmModel == null
           ? Container(
           child:
           Center(

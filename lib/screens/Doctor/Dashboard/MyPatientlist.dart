@@ -91,7 +91,7 @@ class _MyPatientlistState extends State<MyPatientlist> {
         appBar: AppBar(
           centerTitle: true,
           backgroundColor: AppData.kPrimaryColor,
-          title: Text("My Patient"),
+          title: Text(MyLocalizations.of(context).text("MY_PATIENT")),
         ),
         body: isdata == true
             ? Center(
@@ -106,11 +106,11 @@ class _MyPatientlistState extends State<MyPatientlist> {
                                               // height: 25,
                                             )
           ),
-
         ) :
         SingleChildScrollView(
 
-          child: (myPatientlistModel != null) ? ListView.builder(
+          child: (myPatientlistModel != null) ?
+          ListView.builder(
             physics: NeverScrollableScrollPhysics(),
             // controller: _scrollController,
             shrinkWrap: true,
@@ -148,7 +148,7 @@ class _MyPatientlistState extends State<MyPatientlist> {
                                     // mainAxisAlignment: MainAxisAlignment.center,
                                     crossAxisAlignment:
                                     CrossAxisAlignment
-                                        .end,
+                                        .start,
                                     children: [
                                       Container(
                                         width: 120,
@@ -164,15 +164,17 @@ class _MyPatientlistState extends State<MyPatientlist> {
                                         ),
                                       ),
                                       Text(" : "),
-                                      Text(
-                                        /*'23-Nov-2020-11:30AM'*/
-                                        body.patName,
-                                        overflow:
-                                        TextOverflow
-                                            .clip,
-                                        style: TextStyle(
-                                            color: Colors
-                                                .black),
+                                      Expanded(
+                                        child: Text(
+                                          /*'23-Nov-2020-11:30AM'*/
+                                          body.patName,
+                                          overflow:
+                                          TextOverflow
+                                              .clip,
+                                          style: TextStyle(
+                                              color: Colors
+                                                  .black),
+                                        ),
                                       ),
                                     ],
                                   ),

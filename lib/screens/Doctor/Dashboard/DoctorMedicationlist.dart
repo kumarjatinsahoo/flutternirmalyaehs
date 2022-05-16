@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/services.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:user/localization/localizations.dart';
 import 'package:user/models/DocterMedicationlistModel.dart';
 
 import 'package:user/models/KeyvalueModel.dart';
@@ -138,8 +139,7 @@ class _MedicationlistState extends State<Medicationlist> {
                     //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Expanded(
-                        child: Text(
-                          "Add Medicine",
+                        child: Text(MyLocalizations.of(context).text("ADD_MEDICINE"),
                           style: TextStyle(
                               color: Colors.black,
                               fontSize: 17,
@@ -169,15 +169,13 @@ class _MedicationlistState extends State<Medicationlist> {
               ),
               SizedBox(height: 10,),
           SingleChildScrollView(
-
             child: isdata == true
                 ? Center(
                   child: Column(
                     children: [
                       SizedBox(height:  MediaQuery.of(context).size.height* 0.35,),
                       CircularProgressIndicator(
-             // backgroundColor: AppData.matruColor,
-            ),
+               ),
                     ],
                   ),
                 )
@@ -400,7 +398,8 @@ class _MedicationlistState extends State<Medicationlist> {
               children: <Widget>[
                 //_buildAboutText(),
                 //_buildLogoAttribution(),
-                Text("Add Medicine"),
+                Text(MyLocalizations.of(context).text("ADD_MEDICINE")),
+
                 SizedBox(
                   height: 10,
                 ),
@@ -409,7 +408,7 @@ class _MedicationlistState extends State<Medicationlist> {
                   child: SizedBox(
                     height: 58,
                     child: DropDown.networkDropdownGetpartUser(
-                        "Medicine",
+                        MyLocalizations.of(context).text("MEDICINE"),
                         ApiFactory.MEDICINE_API,
                         "medicine",
                         Icons.fiber_manual_record,
@@ -426,7 +425,8 @@ class _MedicationlistState extends State<Medicationlist> {
                     }),
                   ),
                 ),
-                fromField1(0, "Type", TextInputAction.next, TextInputType.text,
+                fromField1(0, MyLocalizations.of(context).text("TYPE"),
+                    TextInputAction.next, TextInputType.text,
                     "Type"),
 
                 //formFieldMobile(1,"Day Duration"),
@@ -435,8 +435,7 @@ class _MedicationlistState extends State<Medicationlist> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        'Morning: ',
+                      Text(MyLocalizations.of(context).text("MORNING"),
                         style: TextStyle(fontSize: 17.0),
                       ),
                       Checkbox(
@@ -478,8 +477,7 @@ class _MedicationlistState extends State<Medicationlist> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        'Afternoon ',
+                      Text(MyLocalizations.of(context).text("AFTERNOON"),
                         style: TextStyle(fontSize: 17.0),
                       ),
                       Checkbox(
@@ -507,8 +505,7 @@ class _MedicationlistState extends State<Medicationlist> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        'Night ',
+                      Text(MyLocalizations.of(context).text("NIGHT"),
                         style: TextStyle(fontSize: 17.0),
                       ),
                       Checkbox(
@@ -529,9 +526,9 @@ class _MedicationlistState extends State<Medicationlist> {
                     ],
                   ),
                 ),
-                fromfild(1, "Duration (In Days)", TextInputAction.next,
+                fromfild(1, MyLocalizations.of(context).text("DURATION_DAYS"),TextInputAction.next,
                     TextInputType.text, "duration"),
-                fromAddress(2, "Remark", TextInputAction.next,
+                fromAddress(2, MyLocalizations.of(context).text("REMARK"), TextInputAction.next,
                     TextInputType.text, "remark"),
               ],
             ),
@@ -547,7 +544,7 @@ class _MedicationlistState extends State<Medicationlist> {
             textEditingController[2].text = "";
           },
           textColor: AppData.kPrimaryRedColor,
-          child: const Text('Cancel'),
+          child: Text(MyLocalizations.of(context).text("CANCEL")),
         ),
         new FlatButton(
           onPressed: () {
@@ -604,7 +601,7 @@ class _MedicationlistState extends State<Medicationlist> {
              controller[1].text="";*/
           },
           textColor: Theme.of(context).primaryColor,
-          child: const Text('Save'),
+          child: Text(MyLocalizations.of(context).text("SAVE")),
         ),
       ],
     );
@@ -613,7 +610,8 @@ class _MedicationlistState extends State<Medicationlist> {
   /* DataTable _dataTable() {
     */ /*MaterialStateProperty<Colors> material=[
       Colors.red
-    ];*/ /*
+    ];*/
+  /*
     return DataTable(
       columns: [
         DataColumn(
@@ -671,7 +669,8 @@ class _MedicationlistState extends State<Medicationlist> {
                     TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
               ),
             ),
-          ),*/ /**/ /*
+          ),*/ /**/
+  /*
           DataColumn(
             label: Container(
               //color: Colors.red,
@@ -815,7 +814,8 @@ class _MedicationlistState extends State<Medicationlist> {
         ))
 
             .values
-            .toList());*/ /*
+            .toList());*/
+  /*
 
 
   }*/

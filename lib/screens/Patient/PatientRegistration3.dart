@@ -1,8 +1,12 @@
+import 'dart:developer';
+
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/KeyvalueModel.dart';
+import 'package:user/models/PatientRegModel.dart';
 import 'package:user/providers/Aadhar.dart';
+import 'package:user/providers/Const.dart';
 import 'package:user/providers/DropDown.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
@@ -30,6 +34,7 @@ class PatientRegistration3 extends StatefulWidget {
 class _PatientRegistration3State extends State<PatientRegistration3> {
   var selectedMinValue;
   File pathUsr = null;
+  PatientRegModel patientRegModel;
 
   List<TextEditingController> textEditingController = [
     new TextEditingController(),
@@ -39,6 +44,39 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
   ];
   String email;
 
+  @override
+  void initState() {
+    // TODO: implement initState
+    callApi();
+
+  }
+  callApi(){
+    widget.model.GETMETHODCALL(
+        api: ApiFactory.PATIENT_REG_ADDRESS+widget.model.loginResponse1.body.user,
+        //token: widget.model.loginResponse.body.token,
+        fun: (Map<String, dynamic> map){
+          if (map[Const.CODE] == Const.SUCCESS) {
+            patientRegModel=PatientRegModel.fromJson(map);
+            log("?????"+patientRegModel.body[0].countryId+"name:"+ patientRegModel.body[0].countryName);
+            PatientRegistration3.countryModel=new KeyvalueModel(
+                key: patientRegModel.body[0].countryId,name: patientRegModel.body[0].countryName);
+            PatientRegistration3.stateModel=new KeyvalueModel(
+              key: patientRegModel.body[0].stateId,name: patientRegModel.body[0].stateName);
+            PatientRegistration3.districtModel=new KeyvalueModel(
+              key: patientRegModel.body[0].districtId,name: patientRegModel.body[0].districtName);
+            PatientRegistration3.cityModel=new KeyvalueModel(
+              key: patientRegModel.body[0].cityId,name: patientRegModel.body[0].cityName);
+            setState(() {
+
+            });
+          }else {
+            setState(() {
+              //isDataNoFound = true;
+              // AppData.showInSnackBar(context, msg);
+            });
+          }
+    });
+  }
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -119,7 +157,7 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
                       height: 55,
                       child: DropDown.networkDropdownGetpart4(
                           MyLocalizations.of(context).text("COUNTRY"),
-                          ApiFactory.COUNTRY_API, "country",
+                          ApiFactory.COUNTRY_API, "countryReg",
                           (KeyvalueModel data) {
                         setState(() {
                           print(ApiFactory.COUNTRY_API);
@@ -144,7 +182,7 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
                                 MyLocalizations.of(context).text("STATE"),
                                 ApiFactory.STATE_API +
                                     PatientRegistration3.countryModel.key,
-                                "state", (KeyvalueModel data) {
+                                "stateReg", (KeyvalueModel data) {
                               setState(() {
                                 PatientRegistration3.stateModel = data;
                                 PatientRegistration3.districtModel = null;
@@ -167,7 +205,7 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
                                 MyLocalizations.of(context).text("DIST"),
                                 ApiFactory.DISTRICT_API +
                                     PatientRegistration3.stateModel.key,
-                                "districtid", (KeyvalueModel data) {
+                                "districtReg", (KeyvalueModel data) {
                               setState(() {
                                 PatientRegistration3.districtModel = data;
                                 PatientRegistration3.cityModel = null;
@@ -189,7 +227,7 @@ class _PatientRegistration3State extends State<PatientRegistration3> {
                                 MyLocalizations.of(context).text("CITY"),
                                 ApiFactory.CITY_API +
                                     PatientRegistration3.districtModel.key,
-                                "city", (KeyvalueModel data) {
+                                "cityReg", (KeyvalueModel data) {
                               setState(() {
                                 PatientRegistration3.cityModel = data;
                               });

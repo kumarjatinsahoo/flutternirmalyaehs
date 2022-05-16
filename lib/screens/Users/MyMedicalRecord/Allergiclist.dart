@@ -618,19 +618,19 @@ class _AllergicListListState extends State<AllergicListList> {
                         AllergicListList.severitylistModel == "") {
                       AppData.showInSnackBar(
                           context, "Please select severity ");
-                    } else if (textEditingController[0].text == "" ||
-                        textEditingController[0].text == null) {
+                    } else if (textEditingController[0].text.trim() == "" ||
+                        textEditingController[0].text.trim() == null) {
                       FocusScope.of(context).requestFocus(fnode1);
                       AppData.showInSnackBar(context, "Please enter reaction");
-                    } else if (textEditingController[0].text != "" &&  textEditingController[0].text.length <= 2) {
+                    } else if (textEditingController[0].text.trim() != "" &&  textEditingController[0].text.trim().length <= 2) {
                       FocusScope.of(context).requestFocus(fnode1);
                       AppData.showInSnackBar(context, "Please enter valid reaction");
-                    } else if (textEditingController[1].text == "" ||
-                        textEditingController[1].text == null) {
+                    } else if (textEditingController[1].text.trim() == "" ||
+                        textEditingController[1].text.trim() == null) {
                       FocusScope.of(context).requestFocus(fnode2);
                       AppData.showInSnackBar(
                           context, "Please enter updated by");
-                    } else if ( textEditingController[1].text != "" &&  textEditingController[1].text.length <= 2) {
+                    } else if ( textEditingController[1].text.trim() != "" &&  textEditingController[1].text.trim().length <= 2) {
                       FocusScope.of(context).requestFocus(fnode2);
                       AppData.showInSnackBar(context, "Please enter valid name");
                     } else {

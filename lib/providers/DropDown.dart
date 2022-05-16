@@ -8,11 +8,13 @@ import 'package:user/models/DoctoreModel.dart';
 import 'package:user/models/ShareApntModel.dart';
 import 'package:user/models/TimeScheduleModel.dart';
 import 'package:user/providers/api_factory.dart';
+import 'package:user/screens/AadharRegistration/AbhaMobileVerification.dart';
 import 'package:user/screens/Ambulance/Registration/ambulanceSignUpForm2.dart';
 import 'package:user/screens/Doctor/Dashboard/DocMyProfile.dart';
 import 'package:user/screens/Doctor/registartion/DoctorSignUpForm4.dart';
 import 'package:user/screens/Ngo/Registration/NgoSignUpForm2.dart';
 import 'package:user/screens/OrganisationSignUpForm.dart';
+import 'package:user/screens/Patient/PatientRegistration3.dart';
 import 'package:user/screens/Pharmacists/registration/PharmaSignUpForm3.dart';
 import 'package:user/screens/Receptionlist/registration/ReceptionlistSignUpFormm.dart';
 import 'package:user/screens/Users/Dashboard/ProfileScreen.dart';
@@ -2318,6 +2320,18 @@ class DropDown {
       case "stategov":
         return GovtSchemes.stateModel;
         break;
+      case "countryReg":
+        return PatientRegistration3.countryModel;
+        break;
+        case "stateReg":
+        return PatientRegistration3.stateModel;
+        break;
+        case "districtReg":
+        return PatientRegistration3.districtModel;
+        break;
+        case "cityReg":
+        return PatientRegistration3.cityModel;
+        break;
 
     }
   }
@@ -2366,6 +2380,20 @@ class DropDown {
       case "cityU":
         return UserSignUpForm.cityModel;
         break;
+
+        case "countryabh":
+        return AbhaMobileVerification.countryModel;
+        break;
+         case "stateabh":
+        return AbhaMobileVerification.stateModel;
+        break;
+         case "districtabh":
+        return AbhaMobileVerification.districtModel;
+        break;
+         case "cityabh":
+        return AbhaMobileVerification.cityModel;
+        break;
+
       case "stateDA":
         return DoctorconsultationPage.stateModel;
         break;
@@ -2963,6 +2991,21 @@ class DropDown {
           case "cityU":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
+            case "countryabh":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+            case "stateabh":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+            case "districtabh":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+            case "cityabh":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+
+
+
           case "stateDA":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
@@ -4528,6 +4571,9 @@ class DropDown {
           case "countryU":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
+            case "countryabh":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
           case "organisation":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
@@ -4684,6 +4730,24 @@ class DropDown {
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
           case "marital":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "insurancetitle":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+            case "insurancepincode":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+            case "insurancemarital":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+            case "insuranceoccupation":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+            case "insurancerelation":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+            case "insurancemarital":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
 
@@ -4948,13 +5012,25 @@ class DropDown {
           case "country":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
+          case "countryReg":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
           case "state":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+          case "stateReg":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
           case "districtid":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
+            case "districtReg":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
           case "city":
+            list = KeyvalueModel.fromJsonList(response.data["body"]);
+            break;
+            case "cityReg":
             list = KeyvalueModel.fromJsonList(response.data["body"]);
             break;
           case "healthcareProvider":

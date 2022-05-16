@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:user/localization/localizations.dart';
 import 'package:user/models/PharmacyorderModel.dart'as oderlist;
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/api_factory.dart';
@@ -183,8 +184,7 @@ class _CancelledOrdersLabState extends State<CancelledOrdersLab> {
                                       SizedBox(
                                         height: size.height * 0.01,
                                       ),
-                                      Text(
-                                        'Order ID: ',
+                                      Text(MyLocalizations.of(context).text("ORDER_ID"),
                                         style: TextStyle(
                                             color: Colors.blue,
                                             fontWeight: FontWeight.w600),
@@ -202,8 +202,7 @@ class _CancelledOrdersLabState extends State<CancelledOrdersLab> {
                                       SizedBox(
                                         height: 4,
                                       ),
-                                      Text(
-                                        'Address: ',
+                                      Text(MyLocalizations.of(context).text("ADDRESS"),
                                         style: TextStyle(
                                             color: Colors.blue,
                                             fontWeight: FontWeight.w600),
@@ -245,8 +244,7 @@ class _CancelledOrdersLabState extends State<CancelledOrdersLab> {
                                       color: Colors.red[900]),
                                   child: RaisedButton(
                                     onPressed: null,
-                                    child: Text(
-                                      'Rejected',
+                                    child: Text(MyLocalizations.of(context).text("REJECTED"),
                                       style: TextStyle(
                                           color: Colors.white,
                                           fontSize: 16,

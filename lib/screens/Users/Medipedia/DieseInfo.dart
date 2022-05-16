@@ -219,7 +219,7 @@ class _DieseInfoState extends State<DieseInfo> {
                         onChanged: (value) => _runFilter(value),
                         decoration: InputDecoration(
                             suffixIcon: Icon(Icons.search),
-                            hintText: "Search"),
+                            hintText: MyLocalizations.of(context).text("SEARCH")),
                       ),
                     ),
                   )
@@ -274,8 +274,13 @@ class _DieseInfoState extends State<DieseInfo> {
                                             onTap: (){
                                               String pdfurl = foundUser[i].url;
                                               widget.model.diesepdf=pdfurl;
+                                             /* widget.model.diesepdf=pdfurl;
                                               Navigator.pushNamed(
                                                 context, "/diesepdf",
+                                              );*/
+                                              widget.model.pdfurl=pdfurl;
+                                              Navigator.pushNamed(
+                                                context, "/documentpdf",
                                               );
                                               },
                                             child: Text.rich(TextSpan(children: [
@@ -322,12 +327,16 @@ class _DieseInfoState extends State<DieseInfo> {
                                       InkWell(
                                         onTap: () {
                                           String pdfurl = foundUser[i].url;
-                                          widget.model.diesepdf=pdfurl;
+                                         /* widget.model.diesepdf=pdfurl;
                                           print("ppppdddddddddddffffff" + pdfurl);
                                           Navigator.pushNamed(
                                             context,
                                             "/diesepdf",
-                                          ).then((value) => widget.model.diesepdf);
+                                          ).then((value) => widget.model.diesepdf);*/
+                                          widget.model.pdfurl=pdfurl;
+                                          Navigator.pushNamed(
+                                            context, "/documentpdf",
+                                          );
                                         },
                                         child: Center(
                                           child: Container(

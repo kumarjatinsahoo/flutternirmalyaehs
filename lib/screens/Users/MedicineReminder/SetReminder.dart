@@ -1,17 +1,13 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
-import 'dart:io';
-
-// import 'package:add_2_calendar/add_2_calendar.dart';
-// import 'package:device_calendar/device_calendar.dart' as cal;
-// import 'package:device_calendar/device_calendar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 // import 'package:syncfusion_flutter_calendar/calendar.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/models/SetReminderModel.dart';
@@ -21,10 +17,12 @@ import 'package:user/providers/SharedPref.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
+import 'package:user/localization/localizations.dart';
 
 import '../../../localization/localizations.dart';
 import '../../../models/KeyvalueModel.dart';
 import '../../../providers/app_data.dart';
+
 class SetReminder extends StatefulWidget {
   final MainModel model;
   final String type;
@@ -41,6 +39,7 @@ class SetReminder extends StatefulWidget {
   @override
   SetReminderState createState() => SetReminderState();
 }
+
 enum PayMode1 { Daily, Weekly, Monthly }
 
 class SetReminderState extends State<SetReminder> {
@@ -108,7 +107,6 @@ class SetReminderState extends State<SetReminder> {
   TextEditingController _email = TextEditingController();
   FocusNode emailFocus_ = FocusNode();
 
-
   List<bool> dropdownError = [false, false, false];
   var color = Colors.black;
   var strokeWidth = 3.0;
@@ -147,7 +145,7 @@ class SetReminderState extends State<SetReminder> {
   // DeviceCalendarPlugin _deviceCalendarPlugin = new DeviceCalendarPlugin();
 
   List<KeyvalueModel> days = [];
-  var frequncyText='Days';
+  var frequncyText = 'Days';
 
   @override
   void initState() {
@@ -157,8 +155,8 @@ class SetReminderState extends State<SetReminder> {
     SetReminder.blockModel = null;
     SetReminder.dosageModel = null;
     textEditingController[0].text = widget.type;
-    stime.text="04:55 AM";
-    endtime.text="12:55 PM";
+    stime.text = "04:55 AM";
+    endtime.text = "12:55 PM";
     getList();
   }
 
@@ -286,7 +284,7 @@ class SetReminderState extends State<SetReminder> {
       appBar: AppBar(
         backgroundColor: AppData.kPrimaryColor,
         centerTitle: true,
-        title: Text("Set Reminder"),
+        title: Text(MyLocalizations.of(context).text("SET_REMINDER")),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -299,7 +297,7 @@ class SetReminderState extends State<SetReminder> {
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  'Type',
+                  MyLocalizations.of(context).text("TYPE"),
                   style: TextStyle(
                       fontWeight: FontWeight.w600,
                       color: Colors.black,
@@ -329,7 +327,7 @@ class SetReminderState extends State<SetReminder> {
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  'Medicine Name',
+                  MyLocalizations.of(context).text("MEDICINE_NAME"),
                   style: TextStyle(
                       fontWeight: FontWeight.w600,
                       color: Colors.black,
@@ -341,7 +339,7 @@ class SetReminderState extends State<SetReminder> {
               padding: const EdgeInsets.symmetric(horizontal: 18),
               child: TextFormField(
                 decoration: InputDecoration(
-                    hintText: "Medicine Name",
+                    hintText: MyLocalizations.of(context).text("MEDICINE_NAME"),
                     hintStyle: TextStyle(color: Colors.grey)),
                 controller: textEditingController[1],
                 textInputAction: TextInputAction.next,
@@ -354,7 +352,9 @@ class SetReminderState extends State<SetReminder> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 18),
               child: DropDown.staticDropdown2(
-                  "Dosage", "genderSignup", dosageList, (KeyvalueModel data) {
+                  MyLocalizations.of(context).text("DOSAGE"),
+                  "genderSignup",
+                  dosageList, (KeyvalueModel data) {
                 setState(() {
                   SetReminder.dosageModel = data;
                 });
@@ -368,7 +368,7 @@ class SetReminderState extends State<SetReminder> {
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  'Reminder Time',
+                  MyLocalizations.of(context).text("REMINDER_TIME"),
                   style: TextStyle(
                       fontWeight: FontWeight.w600,
                       color: Colors.black,
@@ -379,7 +379,7 @@ class SetReminderState extends State<SetReminder> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 18),
               child: DropDown.staticDropdown2(
-                  'How Many Times a Day',
+                  MyLocalizations.of(context).text("HOW_MANY_TIMES"),
                   // MyLocalizations.of(context).text("SELECT_GENDER"),
                   "genderSignup",
                   districtList, (KeyvalueModel data) {
@@ -392,7 +392,7 @@ class SetReminderState extends State<SetReminder> {
               }),
             ),
             SizedBox(height: 10),
-           /* Padding(
+            /* Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 18),
                 child: Row(
                   children: const <Widget>[
@@ -438,7 +438,7 @@ class SetReminderState extends State<SetReminder> {
                         child: Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            'Timings',
+                            MyLocalizations.of(context).text("TIMINGS"),
                             style: TextStyle(
                                 fontWeight: FontWeight.w600,
                                 color: Colors.black,
@@ -453,7 +453,7 @@ class SetReminderState extends State<SetReminder> {
                           shrinkWrap: true,
                           physics: NeverScrollableScrollPhysics(),
                           itemCount:
-                           int.tryParse(SetReminder.timeDayModel.name),
+                              int.tryParse(SetReminder.timeDayModel.name),
                           gridDelegate:
                               SliverGridDelegateWithFixedCrossAxisCount(
                                   crossAxisCount: 3,
@@ -475,7 +475,7 @@ class SetReminderState extends State<SetReminder> {
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  'Frequency',
+                  MyLocalizations.of(context).text("FREQUENCY"),
                   style: TextStyle(
                       fontWeight: FontWeight.w600,
                       color: Colors.black,
@@ -487,30 +487,22 @@ class SetReminderState extends State<SetReminder> {
             viewMode(),
             SizedBox(height: 5),
             Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: Row(
-                  children: const <Widget>[
-                    SizedBox(width: 8),
-                    Text(
-                      'Start Date :',
-                      style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                          fontSize: 15),
-                    ),
-                    // SizedBox(width: 75),
-                    SizedBox(width: 16),
-/*                    Expanded(
-                      child: Text(
-                        'End Date :',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            color: Colors.black,
-                            fontSize: 15),
-                      ),
-                    ),*/
-                  ],
-                )),
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Row(
+                children:  <Widget>[
+                  SizedBox(width: 8),
+                  Text(
+                    MyLocalizations.of(context).text("START_DATE"),
+                    style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black,
+                        fontSize: 15),
+                  ),
+                  // SizedBox(width: 75),
+                  SizedBox(width: 16),
+                ],
+              ),
+            ),
             SizedBox(height: 5),
             Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 18),
@@ -526,8 +518,7 @@ class SetReminderState extends State<SetReminder> {
               padding: const EdgeInsets.symmetric(horizontal: 18),
               child: Align(
                 alignment: Alignment.centerLeft,
-                child: Text(
-                  frequncyText,
+                child: Text(MyLocalizations.of(context).text(frequncyText),
                   style: TextStyle(
                       fontWeight: FontWeight.w600,
                       color: Colors.black,
@@ -539,7 +530,8 @@ class SetReminderState extends State<SetReminder> {
               padding: const EdgeInsets.symmetric(horizontal: 18),
               child: TextFormField(
                 decoration: InputDecoration(
-                    hintText: frequncyText, hintStyle: TextStyle(color: Colors.grey)),
+                    hintText:MyLocalizations.of(context).text(frequncyText),
+                    hintStyle: TextStyle(color: Colors.grey)),
                 controller: textEditingController[2],
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.number,
@@ -554,7 +546,7 @@ class SetReminderState extends State<SetReminder> {
               padding: const EdgeInsets.symmetric(horizontal: 18),
               child: TextFormField(
                 decoration: InputDecoration(
-                    hintText: "Add Doctor Instruction",
+                    hintText: MyLocalizations.of(context).text("ADD_DOCTOR_INSTRUCTION"),
                     hintStyle: TextStyle(color: Colors.grey)),
                 textInputAction: TextInputAction.next,
                 controller: textEditingController[5],
@@ -591,11 +583,11 @@ class SetReminderState extends State<SetReminder> {
           onChanged: (PayMode1 value) {
             setState(() {
               payMode1 = value;
-              frequncyText='Days';
+              frequncyText = 'Days';
             });
           },
         ),
-        Text("Daily"),
+        Text(MyLocalizations.of(context).text("DAILY")),
         SizedBox(
           width: 10,
         ),
@@ -606,11 +598,11 @@ class SetReminderState extends State<SetReminder> {
           onChanged: (PayMode1 value) {
             setState(() {
               payMode1 = value;
-              frequncyText='Week';
+              frequncyText = 'Week';
             });
           },
         ),
-        Text("Weekly"),
+        Text(MyLocalizations.of(context).text("WEEKLY")),
         SizedBox(
           width: 10,
         ),
@@ -621,11 +613,11 @@ class SetReminderState extends State<SetReminder> {
           onChanged: (PayMode1 value) {
             setState(() {
               payMode1 = value;
-              frequncyText='Month';
+              frequncyText = 'Month';
             });
           },
         ),
-        Text("Monthly"),
+        Text(MyLocalizations.of(context).text("MONTHLY")),
       ],
     );
   }
@@ -674,9 +666,9 @@ class SetReminderState extends State<SetReminder> {
     //setReminder1(textEditingController[1].text);
     // _formKey.currentState.validate();
 
-    bool isAllDateFill=true;
-    if(SetReminder.timeDayModel != null) {
-      for (int i = 0; i <int.tryParse(SetReminder.timeDayModel.name); i++) {
+    bool isAllDateFill = true;
+    if (SetReminder.timeDayModel != null) {
+      for (int i = 0; i < int.tryParse(SetReminder.timeDayModel.name); i++) {
         if (timePicker[i].text == "") {
           isAllDateFill = false;
           break;
@@ -684,42 +676,39 @@ class SetReminderState extends State<SetReminder> {
       }
     }
 
-
-    if (textEditingController[0].text.trim()== "" ||
+    if (textEditingController[0].text.trim() == "" ||
         textEditingController[0].text.trim() == null) {
       AppData.showInSnackBar(context, "Please enter type");
-    } else if (textEditingController[1].text .trim()== "" ||
+    } else if (textEditingController[1].text.trim() == "" ||
         textEditingController[1].text.trim() == null) {
       AppData.showInSnackBar(context, "Please enter medicine name");
     } else if (SetReminder.dosageModel == null) {
       AppData.showInSnackBar(context, "Please select dosage");
     } else if (SetReminder.timeDayModel == null) {
       AppData.showInSnackBar(context, "Please select reminder time");
-    }else if (!isAllDateFill) {
+    } else if (!isAllDateFill) {
       AppData.showInSnackBar(context, "Please enter timings");
-    }else if (stdob.text == "" || stdob.text == null) {
+    } else if (stdob.text == "" || stdob.text == null) {
       AppData.showInSnackBar(context, "Please enter start date");
-    } else if (textEditingController[2].text.trim()== "" ||
-        textEditingController[2].text.trim()== null) {
+    } else if (textEditingController[2].text.trim() == "" ||
+        textEditingController[2].text.trim() == null) {
       AppData.showInSnackBar(context, "Please enter days");
     } else if (int.parse(textEditingController[2].text) < 1) {
       AppData.showInSnackBar(context, "Days should not be less than 1");
-    }  
-
-    else {
+    } else {
       SetReminderModel setReminderModel = SetReminderModel();
-      setReminderModel.userId=loginResponse.body.user;
-      setReminderModel.medType=textEditingController[0].text;
-      setReminderModel.medName=textEditingController[1].text;
-      setReminderModel.medDosage=SetReminder.dosageModel.name;
-      setReminderModel.dosagePerDay=SetReminder.timeDayModel.name;
-      setReminderModel.startTime=stime.text;
-      setReminderModel.endTime=endtime.text;
-      setReminderModel.startDate=stdob.text;
-      setReminderModel.totalDays=textEditingController[2].text;
-      setReminderModel.instructions=textEditingController[5].text;
-      setReminderModel.frequency=payMode1.toString().substring(9);
-      setReminderModel.doseTime=doseTimeList;
+      setReminderModel.userId = loginResponse.body.user;
+      setReminderModel.medType = textEditingController[0].text;
+      setReminderModel.medName = textEditingController[1].text;
+      setReminderModel.medDosage = SetReminder.dosageModel.name;
+      setReminderModel.dosagePerDay = SetReminder.timeDayModel.name;
+      setReminderModel.startTime = stime.text;
+      setReminderModel.endTime = endtime.text;
+      setReminderModel.startDate = stdob.text;
+      setReminderModel.totalDays = textEditingController[2].text;
+      setReminderModel.instructions = textEditingController[5].text;
+      setReminderModel.frequency = payMode1.toString().substring(9);
+      setReminderModel.doseTime = doseTimeList;
       log("Post json>>>>" + jsonEncode(setReminderModel.toJson()));
       MyWidgets.showLoading(context);
       widget.model.POSTMETHOD1(
@@ -736,7 +725,7 @@ class SetReminderState extends State<SetReminder> {
           });
       // _formKey.currentState.save();
       // Navigator.pop(context);
-    /*  bool isAllAccept = true;
+      /*  bool isAllAccept = true;
       for (int i = 0; i < int.tryParse(SetReminder.timeDayModel.name); i++) {
         if (timePicker[i].text == "") {
           isAllAccept = false;
@@ -776,9 +765,8 @@ class SetReminderState extends State<SetReminder> {
               keyboardType: TextInputType.datetime,
               textAlign: TextAlign.left,
               decoration: InputDecoration(
-                hintText: "Time",
+                hintText: MyLocalizations.of(context).text("TIME"),
                 border: InputBorder.none,
-
               ),
             ),
           ),
@@ -810,7 +798,7 @@ class SetReminderState extends State<SetReminder> {
               keyboardType: TextInputType.datetime,
               textAlign: TextAlign.left,
               decoration: InputDecoration(
-                hintText: "Date ",
+                hintText:MyLocalizations.of(context).text("DATE"),
                 border: InputBorder.none,
               ),
             ),
@@ -982,6 +970,7 @@ class SetReminderState extends State<SetReminder> {
       ),
     );
   }
+
   _selectTime(BuildContext context) async {
     final TimeOfDay timeOfDay = await showTimePicker(
         context: context,
@@ -1016,16 +1005,17 @@ class SetReminderState extends State<SetReminder> {
     setState(() {
       // selectedTime = timeOfDay;
       // selectedStartTime = timeOfDay;
-      actualTime[v] = timeOfDay;  
-      timePicker[v].text = formatTimeOfDay(timeOfDay);    
-      if(doseTimeList.contains(timePicker[v].text)){    
-           selectedTime = TimeOfDay.now();
-           timePicker[v].text="";
-          AppData.showInSnackBar(context, 'Time is already added');
-                   
-      }      
-     doseTimeList.add(timePicker[v].text.toString());     
+      actualTime[v] = timeOfDay;
+      timePicker[v].text = formatTimeOfDay(timeOfDay);
+      if (doseTimeList.contains(timePicker[v].text)) {
+        selectedTime = TimeOfDay.now();
+        timePicker[v].text = "";
+        AppData.showInSnackBar(context, 'Time is already added');
+      }
+
+      doseTimeList.add(timePicker[v].text.toString());
     });
+
     // }
   }
 
@@ -1048,6 +1038,7 @@ class SetReminderState extends State<SetReminder> {
       });
     }
   }
+
   String formatTimeOfDay(TimeOfDay tod) {
     print("Value is>>>>>>\n\n\n\n" + tod.toString());
     final now = new DateTime.now();
@@ -1083,4 +1074,5 @@ class SetReminderState extends State<SetReminder> {
             radius: BorderRadius.circular(0.0),
           ),
         ]).show();
-  }}
+  }
+}

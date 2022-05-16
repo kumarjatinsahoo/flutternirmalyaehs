@@ -122,7 +122,6 @@ class _AllAmbulanceState extends State<AllAmbulance> {
                                 // color: Colors.grey[200],
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
-
                                   children: [
                                     Container(
                                       decoration: BoxDecoration(
@@ -136,7 +135,7 @@ class _AllAmbulanceState extends State<AllAmbulance> {
                                             right: 8.0,
                                             top: 8,
                                             ),
-                                        child: InkWell(
+                                         child: InkWell(
                                           onTap: () {
                                             /* widget.model.pharmacyorderModel=body;
                               Navigator.pushNamed(context, "/orderDetails");*/
@@ -251,7 +250,7 @@ class _AllAmbulanceState extends State<AllAmbulance> {
                                                   Container(
                                                     width:140.00,
                                                     child: Text(
-                                                      "Date",
+                                                      MyLocalizations.of(context).text("DATE"),
                                                       style: TextStyle(
                                                         fontWeight:
                                                         FontWeight.w600,

@@ -3,12 +3,21 @@ import 'dart:io';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/SharedPref.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
+import 'package:user/screens/AadharRegistration/AadharRegistration.dart';
+import 'package:user/screens/AadharRegistration/AbhaAutoRegForm.dart';
+import 'package:user/screens/AadharRegistration/AbhaMobileVerification.dart';
+import 'package:user/screens/AadharRegistration/AbhaRegForm.dart';
+// import 'package:user/screens/AadharRegistration/AdharOTPPage.dart';
+import 'package:user/screens/AadharRegistration/AdharOTPPinView.dart';
+import 'package:user/screens/AadharRegistration/PANRegistration/AbhaPAN.dart';
+import 'package:user/screens/AadharRegistration/PhoneOTPPinView.dart';
 import 'package:user/screens/Admin/Admin.dart';
 import 'package:user/screens/Ambulance/Dashboard/AcceptAmbulance.dart';
 import 'package:user/screens/Ambulance/Dashboard/AllAmbulance.dart';
@@ -392,6 +401,8 @@ void main() async {
   selectedLan = (preferences.getString('Lan') ?? "en");
   AppData.setSelectedLanCode(selectedLan);
   print("selectedLan : ${selectedLan}");
+  //debugPaintSizeEnabled=true;
+
   runApp(MyApp(
     localizedValues: localizedValues,
   ));
@@ -510,6 +521,7 @@ class _MyAppState extends State<MyApp> {
             debugShowCheckedModeBanner: false,
             navigatorKey: Const.navigatorKey,
             locale: Locale(selectedLan),
+            // debugShowMaterialGrid: true,
             theme: ThemeData(primarySwatch: Colors.blue, fontFamily: ''),
             /*home: SplashScreen(
               model: _model,
@@ -1183,6 +1195,32 @@ class _MyAppState extends State<MyApp> {
               '/healthChaatlist': (context) => HealthChaatlist(
                     model: _model,
                   ),
+              '/aadharregistration': (context) => AadharRegistration(
+                    model: _model,
+                  ),
+              /*'/adharOtp': (context) => AdharOTPPage(
+                    model: _model,
+                  ),*/
+              '/adharOtppinview': (context) => AdharOTPPinView(
+                    model: _model,
+                  ),
+              '/abharegform': (context) => AbhaRegForm(
+                    model: _model,
+                  ),
+              '/abhamobileverification': (context) => AbhaMobileVerification(
+                    model: _model,
+                  ),
+              '/abhaautoregform': (context) => AbhaAutoRegForm(
+                    model: _model,
+                  ),
+              '/finalAdharStep': (context) => AbhaAutoRegForm(
+                model: _model,
+              ),
+              '/abhapan': (context) => AbhaPAN(
+                model: _model,
+              ),
+
+
 
 ////////////////////////////////////////////////////////////////////////////////
               // syndicate partner
@@ -1300,6 +1338,10 @@ class _MyAppState extends State<MyApp> {
               '/medicineDetailslist': (context) => MedicineDetailslist(
                 model: _model,
               ),
+              '/phoneOtp': (context) => PhoneOTPPinView(
+                model: _model,
+              ),
+
 
           '/testDetailslist': (context) => TestDetailslist(
           model: _model,

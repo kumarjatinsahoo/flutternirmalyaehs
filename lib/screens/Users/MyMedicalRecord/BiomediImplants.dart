@@ -188,10 +188,10 @@ class _BiomediImplantsState extends State<BiomediImplants> {
                                                   child: Row(
                                                     crossAxisAlignment:
                                                         CrossAxisAlignment.start,
-                                                    children: [
+                                                     children: [
                                                       Expanded(
                                                         flex: 1,
-                                                        child: Text(MyLocalizations.of(context).text("NAME"),
+                                                         child: Text(MyLocalizations.of(context).text("NAME"),
                                                           style: TextStyle(
                                                               fontSize: 15,
                                                               fontWeight:
@@ -446,9 +446,9 @@ class _BiomediImplantsState extends State<BiomediImplants> {
                     AppData.showInSnackBar(context, "Please select name ");
                   } else if (_date.text == "" || _date.text == null) {
                     AppData.showInSnackBar(context, "Please enter date");
-                  } else if (_reason.text == "" || _reason.text == null) {
+                  } else if (_reason.text.trim() == "" || _reason.text.trim() == null) {
                     AppData.showInSnackBar(context, "Please enter reason");
-                  } else if (_reason.text != "" && _reason.text.length <= 2) {
+                  } else if (_reason.text.trim() != "" && _reason.text.trim().length <= 2) {
                     AppData.showInSnackBar(
                         context, "Please enter valid reason");
                   } else {

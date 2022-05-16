@@ -9,12 +9,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:user/models/AddOrganDonModel.dart';
+import 'package:user/models/AutocompleteDTO.dart';
+import 'package:user/models/InsurancePincodeModel.dart' as ins;
 import 'package:user/models/EmergencyMessageModel.dart';
+import 'package:user/models/InsurancePincodeModel.dart';
 import 'package:user/models/ProfileModel.dart';
 import 'package:user/models/TissueModel.dart' as tissue;
 import 'package:user/models/OrganModel.dart' as organ;
@@ -48,6 +52,10 @@ class InsuranceFormNew extends StatefulWidget {
   static KeyvalueModel relationmodel = null;
   static KeyvalueModel materialmodel = null;
   static KeyvalueModel titleModel = null;
+  static KeyvalueModel insurancetitlemodel = null;
+  static KeyvalueModel insurancepincodemodel = null;
+  static KeyvalueModel insurancemaritalmodel = null;
+  static KeyvalueModel insuranceoccupationmodel = null;
   static List<KeyvalueModel> UserType1 = [];
 
   InsuranceFormNew({
@@ -156,6 +164,7 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
   TextEditingController _message = TextEditingController();
   TextEditingController stdob = TextEditingController();
   TextEditingController nomdob = TextEditingController();
+  TextEditingController pincode = TextEditingController();
   List<bool> error = [false, false, false, false, false, false];
   bool _isSignUpLoading = false;
 
@@ -364,7 +373,24 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
     //organcallAPI();
     //tissuecallAPI();
     //profileAPI();
+    //pincodeAPI();
   }
+
+ /* pincodeAPI(){
+    widget.model.GETMETHODCAL(api: ApiFactory.INSURANCE_PINCODE,
+        fun:(Map<String, dynamic> map){
+      setState(() {
+        String msg = map[Const.MESSAGE];
+        if (map[Const.CODE] == Const.SUCCESS){
+
+        }
+
+      });
+        }
+    )
+  }*/
+
+
 
   Future<void> _askPermissions(String routeName) async {
     PermissionStatus permissionStatus = await _getContactPermission();
@@ -442,7 +468,26 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
       });
   }
 
+  Future<List<ins.Body>> fetchSearchAutoComplete(String course_name) async {
+    var dio = Dio();
+    //Map<String, dynamic> postMap = {"course_name": course_name};
+    final response = await dio.get(
+      ApiFactory.INSURANCE_PINCODE + course_name,
+    );
 
+    if (response.statusCode == 200) {
+      ins.InsurancePincodeModel model = ins.InsurancePincodeModel.fromJson(response.data);
+      setState(() {
+        //this.courcesDto = model;
+      });
+      return model.body;
+    } else {
+      setState(() {
+        //isAnySearchFail = true;
+      });
+      throw Exception('Failed to load album');
+    }
+  }
 
   List<DropdownMenuItem<KeyvalueModel>> buildDropDownMenuItems(List listItems) {
     List<DropdownMenuItem<KeyvalueModel>> items = List();
@@ -541,7 +586,6 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
     List<Contact> foundUser=[];
     foundUser=list;
     // List<Contact> myList;
-
 
     return showDialog(
         context: context,
@@ -669,7 +713,6 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
   }
 
 
-
   void connectionChanged(dynamic hasConnection) {
     setState(() {
       isOnline = hasConnection;
@@ -713,13 +756,13 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
                       // "TITLE"
                         MyLocalizations.of(context)
                             .text("TITLE"),
-                        ApiFactory.TITLE_API,
-                        "title",
+                        ApiFactory.INSURANCE_TITLE,
+                        "insurancetitle",
                         Icons.person_rounded,
                         23.0, (KeyvalueModel data) {
                       setState(() {
-                        print(ApiFactory.TITLE_API);
-                        InsuranceFormNew.titleModel = data;
+                        print(ApiFactory.INSURANCE_TITLE);
+                        InsuranceFormNew.insurancetitlemodel = data;
                         //userModel.title = data.key;
                       });
                     }),
@@ -746,7 +789,6 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
                     "Last Name"),
                 SizedBox(height: 8),
                 dobBirth(),
-
                 Padding(
                   padding: const EdgeInsets.symmetric(
                       horizontal: 0),
@@ -773,8 +815,93 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
                 educationalQualification(4, "Educational Qualification"),
                 SizedBox(height: 8,),
                 formFieldemail(5, MyLocalizations.of(context).text("EMAILID")),
-                SizedBox(height: 8),
-                formFieldPinno(6,MyLocalizations.of(context).text("PIN_CODE"), /*fnode13, fnode14*/),
+                SizedBox(height: 8,),
+              /*  Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 0),
+                  child: SizedBox(
+                    height: 58,
+                    child:
+                    DropDown.networkDropdown1(
+                      //"Gender"
+                       "Insurance Pin Code",
+                        ApiFactory.INSURANCE_PINCODE,
+                        "insurancepincode",
+                        Icons.wc_outlined,
+                        23.0, (KeyvalueModel data) {
+                      setState(() {
+                        print(ApiFactory.INSURANCE_PINCODE);
+                        InsuranceFormNew.insurancepincodemodel = data;
+                        //userModel.gender = data.key;
+                        // UserSignUpForm.cityModel = null;
+                      });
+                    }),
+                  ),
+                ),*/
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 8),
+                  child: Material(
+                    //elevation: 5,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius:
+                        BorderRadius.circular(5),
+                        border: Border.all(
+                            color: Colors.black, width: 0.3),
+                      ),
+                      width: double.maxFinite,
+                      child: TypeAheadField(
+                        textFieldConfiguration: TextFieldConfiguration(
+                          style: TextStyle(color: Colors.black),
+                          controller: pincode,
+                          textInputAction: TextInputAction.search,
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                            hintText: 'Pin code',
+                            alignLabelWithHint: true,
+                            hintStyle: TextStyle(
+                                fontFamily: "Monte",
+                                fontSize: 15,
+                                color:AppData.hintColor),
+                            contentPadding: EdgeInsets.symmetric(
+                                vertical: 2, horizontal: 10),
+                          ),
+                          onSubmitted: (String value) {
+                            if (value != "") {
+                              /*widget.model.searchFilter = value;
+                                    Navigator.pushNamed(context, "/searchResult");*/
+                              //fetchSearchResult(value);
+                            }
+                            //AppData.showInSnackDone(context, value);
+                          },
+                        ),
+                        getImmediateSuggestions: true,
+                        suggestionsCallback: (pattern) async {
+                          return (pattern != null)
+                              ? await fetchSearchAutoComplete(pattern)
+                              : null;
+                        },
+                        hideOnLoading: true,
+                        itemBuilder: (context, ins.Body suggestion) {
+                          return ListTile(
+                            leading: Icon(Icons.search),
+                            title: Text(suggestion.name),
+                          );
+                        },
+                        onSuggestionSelected: (ins.Body suggestion) {
+                          //widget.model.courceName = suggestion.courseSlug;
+                          //Navigator.pushNamed(context, "/courceDetail1");
+                          //Navigator.pop(context);
+                        pincode.text=suggestion.name;
+                        },
+                      ),
+                    ),
+                  ),
+                ),
+
+
+
                 SizedBox(height: 8),
                 formFieldAadhaaerno(7, "Uid No"),
                 Padding(
@@ -784,31 +911,55 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
                     height: 58,
                     child:DropDown.networkDropdown1(
                         MyLocalizations.of(context).text("MARITAL_STATUS"),
-                        ApiFactory.MARITAL_API,
-                        "marital",
+                        ApiFactory.INSURANCE_MARITALSTATUS,
+                        "insurancemarital",
                         Icons.wc_outlined,
                         23.0, (KeyvalueModel data) {
                       setState(() {
-                        print(ApiFactory.GENDER_API);
-                        InsuranceFormNew.materialmodel = data;
-                        patientProfileModel.body.mstausid =
+                        print(ApiFactory.INSURANCE_MARITALSTATUS);
+                        InsuranceFormNew.insurancemaritalmodel = data;
+                      /*  patientProfileModel.body.mstausid =
                             data.key;
                         patientProfileModel.body.maritialstatus =
-                            data.name;
+                            data.name;*/
                         //userModel.gender = data.key;
                         // UserSignUpForm.cityModel = null;
                       });
                     }),
                   ),
                 ),
-                SizedBox(height: 8),
-                educationalQualification(8, "Occupation"),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 0),
+                  child: SizedBox(
+                    height: 58,
+                    child:DropDown.networkDropdown1(
+                        "Occupation",
+                        ApiFactory.INSURANCE_OCCUPATION,
+                        "insuranceoccupation",
+                        Icons.wc_outlined,
+                        23.0, (KeyvalueModel data) {
+                      setState(() {
+                        print(ApiFactory.INSURANCE_OCCUPATION);
+                        InsuranceFormNew.insuranceoccupationmodel = data;
+                      /*  patientProfileModel.body.mstausid =
+                            data.key;
+                        patientProfileModel.body.maritialstatus =
+                            data.name;*/
+                        //userModel.gender = data.key;
+                        // UserSignUpForm.cityModel = null;
+                      });
+                    }),
+                  ),
+                ),
+          /*      SizedBox(height: 8),
+                educationalQualification(8, "Occupation"),*/
                 SizedBox(height: 8),
                 formFieldPhoneNo(9,"Contact MobileNo", /*fnode13, fnode14*/),
                 SizedBox(height: 8),
                 stdLandlineNo(10,"Landline No", /*fnode13, fnode14*/),
                 SizedBox(height: 8),
-                panNo(11,"PanNo", /*fnode13, fnode14*/),
+                panNo(11,"PAN No", /*fnode13, fnode14*/),
                 SizedBox(height: 8),
                 panNo(12,"Passport Number", /*fnode13, fnode14*/),
                 SizedBox(height: 8),
@@ -816,61 +967,61 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
                 SizedBox(height: 8),
                 panNo(14,"Annual Income", /*fnode13, fnode14*/),
                 SizedBox(height: 8),
-                panNo(15,"remarks", /*fnode13, fnode14*/),
+                panNo(15,"Remarks", /*fnode13, fnode14*/),
+           /*     SizedBox(height: 8),
+                panNo(16,"remarks", *//*fnode13, fnode14*//*),*/
                 SizedBox(height: 8),
-                panNo(16,"remarks", /*fnode13, fnode14*/),
+                homeAddressLine1(17,"Home Address Line1", /*fnode13, fnode14*/),
                 SizedBox(height: 8),
-                homeAddressLine1(17,"HomeAddressLine1", /*fnode13, fnode14*/),
+                homeAddressLine1(18,"Home Address Line2", /*fnode13, fnode14*/),
                 SizedBox(height: 8),
-                homeAddressLine1(18,"HomeAddressLine2", /*fnode13, fnode14*/),
+                homeAddressLine1(19,"Home Address Line3", /*fnode13, fnode14*/),
                 SizedBox(height: 8),
-                homeAddressLine1(19,"HomeAddressLine3", /*fnode13, fnode14*/),
+                panNo(20,"Home PinCode", /*fnode13, fnode14*/),
                 SizedBox(height: 8),
-                panNo(20,"HomePinCode", /*fnode13, fnode14*/),
+                homeAddressLine1(21,"Home Area", /*fnode13, fnode14*/),
                 SizedBox(height: 8),
-                homeAddressLine1(21,"HomeArea", /*fnode13, fnode14*/),
+                formFieldPhoneNo(22,"Home Contact MobileNo", /*fnode13, fnode14*/),
                 SizedBox(height: 8),
-                formFieldPhoneNo(22,"HomeContactMobileNo", /*fnode13, fnode14*/),
+                formFieldPhoneNo(23,"home Contact MobileNo1", /*fnode13, fnode14*/),
                 SizedBox(height: 8),
-                formFieldPhoneNo(23,"homeContactMobileNo1", /*fnode13, fnode14*/),
+                stdLandlineNo(24,"Home STD Landline No", /*fnode13, fnode14*/),
                 SizedBox(height: 8),
-                stdLandlineNo(24,"HomeSTDLandlineNo", /*fnode13, fnode14*/),
+                homeAddressLine1(25,"Home Fax No", /*fnode13, fnode14*/),
                 SizedBox(height: 8),
-                homeAddressLine1(25,"HomeFaxNo", /*fnode13, fnode14*/),
+                homeAddressLine1(26,"Same As Home Address", /*fnode13, fnode14*/),
                 SizedBox(height: 8),
-                homeAddressLine1(26,"SameAsHomeAddress", /*fnode13, fnode14*/),
+                homeAddressLine1(27,"Mailing Address Line1", /*fnode13, fnode14*/),
                 SizedBox(height: 8),
-                homeAddressLine1(27,"MailingAddressLine1", /*fnode13, fnode14*/),
+                homeAddressLine1(28,"Mailing  Address Line2", /*fnode13, fnode14*/),
                 SizedBox(height: 8),
-                homeAddressLine1(28,"MailingAddressLine2", /*fnode13, fnode14*/),
+                homeAddressLine1(29,"mailing Address Line3", /*fnode13, fnode14*/),
                 SizedBox(height: 8),
-                homeAddressLine1(29,"mailingAddressLine3", /*fnode13, fnode14*/),
+                panNo(30,"Mailing PinCode", /*fnode13, fnode14*/),
                 SizedBox(height: 8),
-                panNo(30,"MailingPinCode", /*fnode13, fnode14*/),
+                homeAddressLine1(31,"Mailing Area", /*fnode13, fnode14*/),
                 SizedBox(height: 8),
-                homeAddressLine1(31,"MailingArea", /*fnode13, fnode14*/),
+                formFieldPhoneNo(32,"Mailing Contact Mobile No", /*fnode13, fnode14*/),
                 SizedBox(height: 8),
-                formFieldPhoneNo(32,"MailingContactMobileNo", /*fnode13, fnode14*/),
+                formFieldPhoneNo(33,"Mailing Contact Mobile No2", /*fnode13, fnode14*/),
                 SizedBox(height: 8),
-                formFieldPhoneNo(33,"MailingContactMobileNo2", /*fnode13, fnode14*/),
+                stdLandlineNo(12,"Mailing STD Landline No", /*fnode13, fnode14*/),
                 SizedBox(height: 8),
-                stdLandlineNo(12,"MailingSTDLandlineNo", /*fnode13, fnode14*/),
+                stdLandlineNo(34,"Mailing STD Landline No2", /*fnode13, fnode14*/),
                 SizedBox(height: 8),
-                stdLandlineNo(34,"MailingSTDLandlineNo2", /*fnode13, fnode14*/),
+                homeAddressLine1(35,"Mailing Fax No"),
                 SizedBox(height: 8),
-                homeAddressLine1(35,"MailingFaxNo"),
+                homeAddressLine1(36,"Bank Account Type"),
                 SizedBox(height: 8),
-                homeAddressLine1(36,"BankAccountType"),
+                panNo(37,"Bank Account No"),
                 SizedBox(height: 8),
-                panNo(37,"BankAccountNo"),
+                panNo(38,"IFSC Code"),
                 SizedBox(height: 8),
-                panNo(38,"ifscCode"),
+                formFieldPinno(39,"GST IN"),
                 SizedBox(height: 8),
-                formFieldPinno(39,"GSTIN"),
+                formFieldPinno(40,"GST Registration Status"),
                 SizedBox(height: 8),
-                formFieldPinno(40,"GSTRegistrationStatus"),
-                SizedBox(height: 8),
-                panNo(41,"EIAAccountNo"),
+                panNo(41,"EIA AccountNo"),
                /* Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
@@ -988,9 +1139,7 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
                     children: [
                       Expanded(
                         child: Container(
-
                           child: Text(
-
                             "Report Path :" + idproof,
                             style: TextStyle(color: Colors.green),
                           ),
@@ -1288,7 +1437,7 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
                     showDialog(
                       context: context,
                       builder: (BuildContext context) =>
-                          dialogaddnomination(context),
+                           dialogaddnomination(context),
                     );
                   },
                   child: Padding(
@@ -2017,28 +2166,50 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
                     "Last Name"),
                 SizedBox(height: 8),
                 dobBirth(),
-                SizedBox(height: 8),
-                panNo(37,"Relation Code"),
-
-
+                //panNo(37,"Relation Code"),
                 Padding(
                   padding: const EdgeInsets.symmetric(
                       horizontal: 0),
                   child: SizedBox(
                     height: 58,
                     child:DropDown.networkDropdown1(
-                        MyLocalizations.of(context).text("MARITAL_STATUS"),
-                        ApiFactory.MARITAL_API,
-                        "marital",
+                       "Relation Code",
+                        ApiFactory.INSURANCE_RELATION,
+                        "insurancerelation",
                         Icons.wc_outlined,
                         23.0, (KeyvalueModel data) {
                       setState(() {
-                        print(ApiFactory.GENDER_API);
-                        InsuranceFormNew.materialmodel = data;
-                        patientProfileModel.body.mstausid =
+                     print(ApiFactory.INSURANCE_RELATION);
+                         InsuranceFormNew.relationmodel = data;
+                        /*patientProfileModel.body.mstausid =
                             data.key;
                         patientProfileModel.body.maritialstatus =
-                            data.name;
+                            data.name;*/
+                        //userModel.gender = data.key;
+                        // UserSignUpForm.cityModel = null;
+                      });
+                    }),
+                  ),
+                ),
+
+            Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 0),
+                  child: SizedBox(
+                    height: 58,
+                    child:DropDown.networkDropdown1(
+                        MyLocalizations.of(context).text("MARITAL_STATUS"),
+                        ApiFactory.INSURANCE_MARITALSTATUS,
+                        "insurancemarital",
+                        Icons.wc_outlined,
+                        23.0, (KeyvalueModel data) {
+                      setState(() {
+                        print(ApiFactory.INSURANCE_MARITALSTATUS);
+                        InsuranceFormNew.materialmodel = data;
+                      /*  patientProfileModel.body.mstausid =
+                            data.key;
+                        patientProfileModel.body.maritialstatus =
+                            data.name;*/
                         //userModel.gender = data.key;
                         // UserSignUpForm.cityModel = null;
                       });
@@ -2930,7 +3101,6 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
         },
         onFieldSubmitted: (value) {
           print("ValueValue" + error[index].toString());
-
           setState(() {
             error[index] = false;
           });
@@ -2948,18 +3118,93 @@ class InsuranceFormNewState extends State<InsuranceFormNew> {
         text: MyLocalizations.of(context).text("SUBMIT"),
         context: context,
         fun: () {
-          Navigator.pushNamed(context, "/dashboard");
-          // if (textEditingController[0].text == "" ||
-          //     textEditingController[0].text == null) {
-          //   AppData.showInSnackBar(context, "Please enter name");
-          // } else if (textEditingController[0].text != "" &&
-          //     textEditingController[0].text.length <= 2) {
-          //   AppData.showInSnackBar(context, "Please enter a valid  name");
-          // } else if (textEditingController[1].text == "" ||
-          //     textEditingController[1].text == null) {
-          //   AppData.showInSnackBar(context, "Please enter S/O,D/O,W/O");
-          // } else if (textEditingController[1].text != "" &&
-          //     textEditingController[1].text.length <= 2) {
+         // Navigator.pushNamed(context, "/dashboard");
+
+          /*if (textEditingController[0].text == "" ||
+              textEditingController[0].text == null) {
+            AppData.showInSnackBar(context, "Please enter customer id(UHID)");
+
+          } else if (InsuranceFormNew.titleModel == null) {
+          AppData.showInSnackBar(context, "please select title");
+
+          }else if (textEditingController[1].text == "" ||
+              textEditingController[1].text == null) {
+            AppData.showInSnackBar(context, "Please enter first name");
+          } else if (textEditingController[1].text != "" &&
+              textEditingController[1].text.length <= 2) {
+            AppData.showInSnackBar(context, "Please enter a valid  name");
+
+          }else if (textEditingController[3].text == "" ||
+              textEditingController[3].text == null) {
+            AppData.showInSnackBar(context, "Please enter last name");
+
+
+          }else if (textEditingController[4].text == "" ||
+              textEditingController[4].text == null) {
+            AppData.showInSnackBar(context, "Please enter date of birth");
+
+          } else if (InsuranceFormNew.genderModel == null) {
+            AppData.showInSnackBar(context, "please select gender");
+
+          } else if (textEditingController[4].text == "" ||
+              textEditingController[4].text == null) {
+            AppData.showInSnackBar(context, "Please enter education qualification");
+
+
+          } else if (textEditingController[4].text == "" ||
+              textEditingController[4].text == null) {
+            AppData.showInSnackBar(context, "Please enter email id");
+
+
+          } else if (textEditingController[4].text == "" ||
+              textEditingController[4].text == null) {
+            AppData.showInSnackBar(context, "Please enter pin code");
+
+          } else if (textEditingController[4].text == "" ||
+              textEditingController[4].text == null) {
+            AppData.showInSnackBar(context, "Please enter uid number");
+
+          } else if (textEditingController[4].text == "" ||
+              textEditingController[4].text == null) {
+            AppData.showInSnackBar(context, "Please enter occupation");
+
+          } else if (textEditingController[4].text == "" ||
+              textEditingController[4].text == null) {
+            AppData.showInSnackBar(context, "Please enter mobile number");
+
+          } else if (textEditingController[4].text == "" ||
+              textEditingController[4].text == null) {
+            AppData.showInSnackBar(context, "Please enter landline number");
+
+          } else if (textEditingController[4].text == "" ||
+              textEditingController[4].text == null) {
+            AppData.showInSnackBar(context, "Please enter pan number");
+
+          } else if (textEditingController[4].text == "" ||
+              textEditingController[4].text == null) {
+            AppData.showInSnackBar(context, "Please enter passport number");
+
+          } else if (textEditingController[4].text == "" ||
+              textEditingController[4].text == null) {
+            AppData.showInSnackBar(context, "Please enter contact person");
+
+          } else if (textEditingController[4].text == "" ||
+              textEditingController[4].text == null) {
+            AppData.showInSnackBar(context, "Please enter annual income");
+
+
+             } else if (textEditingController[4].text == "" ||
+              textEditingController[4].text == null) {
+            AppData.showInSnackBar(context, "Please enter remarks");
+          }
+
+*/
+
+
+
+
+
+
           //   AppData.showInSnackBar(
           //       context, "Please enter a valid  S/O,D/O,W/O");
           // } else if (textEditingController[2].text == "" ||

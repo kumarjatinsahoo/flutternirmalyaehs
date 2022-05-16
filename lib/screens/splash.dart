@@ -210,7 +210,8 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Align(
           alignment: Alignment.center,
           child: Column(
-           *//* mainAxisAlignment: MainAxisAlignment.center,*//*
+           */
+  /* mainAxisAlignment: MainAxisAlignment.center,*//*
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Padding(
@@ -232,7 +233,8 @@ class _SplashScreenState extends State<SplashScreen> {
               Container(
                 child: Align(
                   alignment: Alignment(0.0, 1.0),
-                   *//*  Alignment(0.0, 1.0)*//*
+                   *//*  Alignment(0.0, 1.0)*/
+  /*
                   child: Padding(
                   padding: const EdgeInsets.only(left: 25.0, right: 25.0),
                   child: Text(

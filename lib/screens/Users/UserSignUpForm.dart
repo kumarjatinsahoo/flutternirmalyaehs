@@ -653,15 +653,6 @@ class UserSignUpFormState extends State<UserSignUpForm> {
 
 
 
-
-
-
-
-
-
-
-
-
                               /* Row(
                             children: [
                               Expanded(
@@ -1482,6 +1473,7 @@ class UserSignUpFormState extends State<UserSignUpForm> {
               //popup(context, map[Const.MESSAGE]);
             } else {
               AppData.showInSnackBar(context, msg);
+              // Navigator.pushNamed(context, "/");
              // AppData.showInSnackBar(context, map[Const.MESSAGE]);
             }
           });

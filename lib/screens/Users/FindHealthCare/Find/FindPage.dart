@@ -397,7 +397,7 @@ class _FindPageState extends State<FindPage> {
                         child: SizedBox(
                           height: 55,
                           child: DropDown.networkDropdownGetpart4(
-                              "Select Healthcare Provider",
+                            MyLocalizations.of(context).text("SELECT_HEALTHCARE"),
                               ApiFactory.HEALTHPROVIDER_API,
                               "healthcareProvider", (KeyvalueModel data) {
                             setState(() {
@@ -647,35 +647,44 @@ class _FindPageState extends State<FindPage> {
         text: MyLocalizations.of(context).text("SEARCH").toUpperCase(),
         context: context,
         fun: () {
-          /* else if(FindScreen.healthcareProvider != null || FindScreen.healthcareProvider != ""
+          if (FindPage.healthcareProvider == null ||
+              FindPage.healthcareProvider == "") {
+            AppData.showInSnackBar(
+                context, "Please select healthcare provider");
+          } else if (FindPage.specialistModel == null ||
+              FindPage.specialistModel == "") {
+            AppData.showInSnackBar(context, "Please select speciality");
+          } else {
+            /* else if(FindScreen.healthcareProvider != null || FindScreen.healthcareProvider != ""
         && FindScreen.specialistModel == "" || FindScreen.specialistModel == null){
       AppData.showInSnackBar(context,"Select Speciality");*/ /*
     }else {*/
-          /*if (FindScreen.healthcareProvider == null ||
+            /*if (FindScreen.healthcareProvider == null ||
               FindScreen.healthcareProvider == "") {
             AppData.showInSnackBar(context, "Select healthcare Provider");
           } else {*/
-          widget.model.longi = longitudes;
-          widget.model.lati = latitudes;
-          widget.model.addr = address;
-          widget.model.city = cityName;
-          widget.model.type = FindPage?.specialistModel?.key ?? "";
-          widget.model.healthpro = FindPage.healthcareProvider.key;
-          widget.model.healthproname = FindPage.healthcareProvider.name;
-          //widget.model.healthproname = "Doctor";
+            widget.model.longi = longitudes;
+            widget.model.lati = latitudes;
+            widget.model.addr = address;
+            widget.model.city = cityName;
+            widget.model.type = FindPage?.specialistModel?.key ?? "";
+            widget.model.healthpro = FindPage.healthcareProvider.key;
+            widget.model.healthproname = FindPage.healthcareProvider.name;
+            //widget.model.healthproname = "Doctor";
 
-          //Navigator.pushNamed(context, "/navigation");
-          /*if (_loginId.text == "" || _loginId.text == null) {
+            //Navigator.pushNamed(context, "/navigation");
+            /*if (_loginId.text == "" || _loginId.text == null) {
           AppData.showInSnackBar(context, "Please enter mobile no");
         } else if (_loginId.text.length != 10) {
           AppData.showInSnackBar(context, "Please enter 10 digit mobile no");
         } else {*/
-        print('------------ longitudes Narmada ' + latitudes +","+ longitudes);
-          Navigator.pushNamed(context, "/chemistspage");
-          //Navigator.pushNamed(context, "/searchScreen");
+            print('------------ longitudes Narmada ' + latitudes + "," +
+                longitudes);
+            Navigator.pushNamed(context, "/chemistspage");
+            //Navigator.pushNamed(context, "/searchScreen");
+          }
+          /* }*/
         }
-        /* }*/
-
         // },
         );
   }

@@ -670,7 +670,7 @@ class _BloodBankDashboardState extends State<BloodBankDashboard> {
                     // ),
                   ],
                 ),
-                title: Text("Change Password"),
+                title: Text(MyLocalizations.of(context).text("CHANGE_PASSWORD")),
                 onTap: () {
                   Navigator.pop(context);
                   Navigator.pushNamed(context, "/changePassword");

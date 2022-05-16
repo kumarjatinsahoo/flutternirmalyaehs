@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:user/localization/localizations.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -67,7 +68,7 @@ class _ShowEmr extends State<ShowEmr> {
               backgroundColor: AppData.kPrimaryColor,
             title: Padding(
               padding: const EdgeInsets.only(left: 30),
-              child: Text("My Medical Record"),
+              child: Text(MyLocalizations.of(context).text("MEDICAL_RECORD")),
             ),
             leading: InkWell(
                 onTap: (){
@@ -151,37 +152,43 @@ class _ShowEmr extends State<ShowEmr> {
                               //  width: 70,
                               height: 50.0,
                               child: new Tab(
-                                text: 'PATIENT DETAILS',
+                                text:MyLocalizations.of(context).text("PATIENT_DETAILS").toUpperCase(),
                               )),
                           new Container(
                             // width: 100,
                             height: 50.0,
-                            child: new Tab(text: 'PATIENT HISTORY'),
+                            child: new Tab(
+                                text:MyLocalizations.of(context).text("PATIENT_HISTORY").toUpperCase()),
                           ),
                           new Container(
                             //  width: 100,
                             height: 50.0,
-                            child: new Tab(text: 'TEST REPORT'),
+                            child: new Tab(
+                                text:MyLocalizations.of(context).text("TEST_REPORT").toUpperCase()),
                           ),
                           new Container(
                             // width: 80,
                             height: 50.0,
-                            child: new Tab(text: 'MEDICATION'),
+                            child: new Tab(
+                                text:MyLocalizations.of(context).text("MEDICATION").toUpperCase()),
                           ),
                           new Container(
                             //  width: 100,
                             height: 50.0,
-                            child: new Tab(text: 'LIFE STYLE HISTORY'),
+                            child: new Tab(
+                                text:MyLocalizations.of(context).text("LIFESTYLE_HISTORY").toUpperCase()),
                           ),
                           new Container(
                             //  width: 100,
                             height: 50.0,
-                            child: new Tab(text: 'FAMILY DETAILS'),
+                            child: new Tab(
+                                text:MyLocalizations.of(context).text("FAMILY_DETAILS").toUpperCase()),
                           ),
                           new Container(
                             //  width: 100,
                             height: 50.0,
-                            child: new Tab(text: 'IMMUNIZATION'),
+                            child: new Tab(
+                                text:MyLocalizations.of(context).text("IMMUNIZATION").toUpperCase()),
                           ),
                           /* new Container(
                             //  width: 100,
@@ -191,7 +198,8 @@ class _ShowEmr extends State<ShowEmr> {
                           new Container(
                             //  width: 100,
                             height: 50.0,
-                            child: new Tab(text: 'MEDICAL DATA UPLOAD'),
+                            child: new Tab(
+                                text:MyLocalizations.of(context).text("MEDICAL_DATA_UPLOAD").toUpperCase()),
                           ),
                         ],
                       ),

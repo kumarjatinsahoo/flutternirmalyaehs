@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:user/localization/localizations.dart';
 // import 'package:maps_launcher/maps_launcher.dart';
 import 'package:user/models/GooglePlaceSearchModell.dart';
 import 'package:user/providers/map_launcher.dart';
@@ -48,7 +49,7 @@ class _ContactScreenState extends State<ContactScreen> {
         backgroundColor: Colors.grey.shade100,
         //extendBody: true,
         appBar: AppBar(
-          title: Text(contactus),
+          title: Text(MyLocalizations.of(context).text("CONTACT_US")),
           centerTitle: true,
           backgroundColor: AppData.kPrimaryColor,
         ),
@@ -77,7 +78,8 @@ class _ContactScreenState extends State<ContactScreen> {
                     padding: const EdgeInsets.all(15.0),
                     child: Column(children: <Widget>[
                       buildTile(
-                          name: "Contact Number".toUpperCase(),
+                          name: MyLocalizations.of(context).text("CONTACT_NO").toUpperCase(),
+                      //"Contact Number".toUpperCase(),
                           value: " 7020186259",
                           /*value1: "011-41182138",*/
                           fun: () {
@@ -88,7 +90,7 @@ class _ContactScreenState extends State<ContactScreen> {
                         height: 5,
                       ),
                       buildTile(
-                          name: "Address".toUpperCase(),
+                          name: MyLocalizations.of(context).text("ADDRESS").toUpperCase(),
                           value: AppData.address,
                           fun: () {
                             MapsLauncher.launchQuery(
@@ -99,7 +101,7 @@ class _ContactScreenState extends State<ContactScreen> {
                         height: 5,
                       ),
                       buildTile(
-                          name: "Office hour".toUpperCase(),
+                          name: MyLocalizations.of(context).text("OFFICE_HOUR").toUpperCase(),
                           value: "10.00AM to 7.00PM",
 
                           icon: Icons.timelapse_outlined),
