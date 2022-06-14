@@ -4,15 +4,20 @@ import 'dart:developer';
 import 'dart:io';
 import 'dart:math' as math;
 import 'package:device_info_plus/device_info_plus.dart';
+import 'package:dio/dio.dart';
 import 'package:package_info/package_info.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:intl/intl.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 import 'package:user/localization/application.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/LoginResponse1.dart';
 import 'package:user/models/MasterLoginResponse.dart' as master;
+import 'package:user/models/WritzoReceiveModel.dart';
+import 'package:user/providers/Aes.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/SharedPref.dart';
 import 'package:user/providers/api_factory.dart';
@@ -73,6 +78,7 @@ class _LoginScreenState extends State<LoginScreen> {
     version: 'Unknown',
     buildNumber: 'Unknown',
   );
+  var dio = Dio();
 
   void _update(Locale locale) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
@@ -114,6 +120,10 @@ class _LoginScreenState extends State<LoginScreen> {
   String formattedDate;
 
   master.MasterLoginResponse masterResponse;
+  File file;
+  File testWritzoFile;
+  String UHID = '9121211263207075';
+  String userName = 'ehealthsystem@ehs.com';
 
 // String imeiNo = await DeviceInformation.deviceIMEINumber;
 
@@ -308,11 +318,13 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: InkWell(
                     onTap: () {
                       setState(() {
-                      */ /*  selectGender = "1";
+                      */
+          /*  selectGender = "1";
                         callingAPI(selectGender, salID);
                         Navigator.pop(context);
                         _selectDate(context);
-                        Navigator.pop(context);*/ /*
+                        Navigator.pop(context);*/
+          /*
                       });
                     },
                       child:DialogButton(
@@ -331,11 +343,14 @@ class _LoginScreenState extends State<LoginScreen> {
                 VerticalDivider(
                   color: Colors.grey[400],
                 ),
-               */ /* Expanded(
+               */
+          /* Expanded(
                   child: InkWell(
                     onTap: () {
                       setState(() {
-                        */ /**/ /*selectGender = "2";
+                        */
+          /**/
+          /*selectGender = "2";
                         callingAPI(selectGender, salID);
                         Navigator.pop(context);
                         _selectDate(context);*/ /**/
@@ -462,26 +477,35 @@ class _LoginScreenState extends State<LoginScreen> {
                           ],
                         ),
                       ),
+                      (testWritzoFile != null)
+                          ? Image.file(testWritzoFile)
+                          : Container(),
                       SizedBox(
-                         height: 20,
+                        height: 20,
                       ),
-                      Align(
-                        alignment: Alignment.topLeft,
-                        child: RichText(
-                          textAlign: TextAlign.start,
-                          text: TextSpan(
-                            children: [
-                              TextSpan(
-                                text: MyLocalizations.of(context)
-                                    .text("WELCOMENACK"),
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w800,
-                                  fontFamily: "Monte",
-                                  fontSize: 25.0,
-                                  color: Colors.black,
-                                ),
-                              )
-                            ],
+                      InkWell(
+                        onTap: () {
+                          callSpiro();
+                          // getPdf();
+                        },
+                        child: Align(
+                          alignment: Alignment.topLeft,
+                          child: RichText(
+                            textAlign: TextAlign.start,
+                            text: TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: MyLocalizations.of(context)
+                                      .text("WELCOMENACK"),
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w800,
+                                    fontFamily: "Monte",
+                                    fontSize: 25.0,
+                                    color: Colors.black,
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -604,6 +628,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       SizedBox(
                         height: size.height * 0.06,
                       ),
+
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 40.0),
                         child: Image.asset("assets/intro/main_logo.bmp"),
@@ -954,8 +979,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     });*/
 
                     showDialog(
-                      context: context,                      builder: (BuildContext context) =>
-
+                      context: context,
+                      builder: (BuildContext context) =>
                           dialogUserView(context, masterResponse.body),
                     );
 
@@ -1118,14 +1143,22 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Container(
               child: ListView(
                 children: [
-                  SizedBox(height: 10,),
+                  SizedBox(
+                    height: 10,
+                  ),
                   Center(
-                      child: Text("Registration option",
-                    style: TextStyle(color: Colors.black,
-                        fontSize: 22,fontWeight: FontWeight.bold),)),
-                  SizedBox(height: 10,),
+                      child: Text(
+                    "Registration option",
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold),
+                  )),
+                  SizedBox(
+                    height: 10,
+                  ),
                   InkWell(
-                    onTap: (){
+                    onTap: () {
                       Navigator.pushNamed(context, "/aadharregistration");
                     },
                     child: ListTile(
@@ -1134,7 +1167,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   InkWell(
-                    onTap: (){
+                    onTap: () {
                       Navigator.pushNamed(context, "/abhapan");
                     },
                     child: ListTile(
@@ -1154,7 +1187,6 @@ class _LoginScreenState extends State<LoginScreen> {
       },
     );
   }
-
 
   dashOption(BuildContext context) {
     return showDialog(
@@ -1405,7 +1437,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                     */ /* Positioned(
+                     */
+    /* Positioned(
                         right: 10.0,
                         child: GestureDetector(
                           onTap: () {
@@ -1420,7 +1453,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           ),
                         ),
-                      ),*/ /*
+                      ),*/
+    /*
                    Align(
                   alignment: Alignment.center,
                     child: Text(
@@ -1452,7 +1486,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   "Yes", style: TextStyle(color: AppData.matruColor),
                 ),
                 onPressed: () {
-                  Navigator.pushNamed(context,organisation */ /*"/doctorsignupform2"*/ /*);
+                  Navigator.pushNamed(context,organisation */
+    /*"/doctorsignupform2"*/
+    /*);
 
 
                 },
@@ -1461,5 +1497,191 @@ class _LoginScreenState extends State<LoginScreen> {
           );
         },
         context: context);*/
+  }
+
+/*  getPdf() async {
+    String dataToSend =
+        '{"patientId" : "9121211263207075","filePath" : filepath,"screeningDate" : 1652785855000,"screeningDetails" :[{"vitalName" : "temperature","result" : "32","type" : "value"},{"vitalName" : "pulse","result" : "70","type" : "value"},{"vitalName" : "ecgPdf","result" : "filename.pdf","type" : "file"},{"vitalName" : "ecgRaw","result" : "filename.txt","type" : "file"}]}';
+log(jsonDecode(dataToSend).toString());
+if (await file.exists()) {
+  await file.delete();
+}
+  var result= MultipartFile.fromFileSync(
+      file.path,
+      filename:"jks.pdf",
+    );
+ log(">>>>>>>>>>>>>>>>>>>>"+result.toString());
+  }*/
+
+  Future<void> callWritzoApp() async {
+    try {
+      // final Directory directory = await getApplicationDocumentsDirectory();
+      if (await Permission.storage.request().isGranted) {
+       /* List<Directory>  directories = await getExternalStorageDirectories(type: StorageDirectory.downloads);*/
+        Directory  directory = await getExternalStorageDirectory();
+       /* Directory  directory = directories[0];*/
+        final Directory folder = Directory(directory.path + "/writzoFiles");
+        // file = File('${directory.path}/${Aes.encrypt(UHID)}');
+        if (!await folder.exists()) {
+          folder.create();
+        }
+        log("External path?????>>>>>>>"+folder.path);
+        String val =
+            '${Aes.encrypt(UHID)},23,male,${Aes.encrypt("Aman Singh")},${folder.path}';
+        /*  String val = "JKS,KUMAR,male,55,20,9121211263207075";
+        String dataToSend =
+          '{"patientId":"9121211263207075","filePath":"${folder.path}/","screeningDate":1652785855000,"screeningDetails":[{"vitalName":"temperature","result":"32","type":"value"},{"vitalName":"pulse","result":"70","type":"value"},{"vitalName":"ecgPdf","result":"${folder.path}/certificate_jatin.pdf","type":"file"},{"vitalName":"ecgRaw","result":"${folder.path}/1642662519892.JPEG","type":"file"}]}';
+
+
+         log(document.toString());
+      log(value.toString());
+      log("??????????????" + val);*/
+
+        dynamic result = await AppData.channel.invokeMethod('writzo', val);
+        AppData.showInSnackBar(context, "Permission Granted");
+        /*    String result;
+      String dataToSend =
+          '{"patientId":"GEJV3HYb6gyzuwgzqcFKt1kWzWqVo1A0Y9znOk+B73U=","filePath":"${folder.path}/","screeningDate":1652785855000,"screeningDetails":[{"vitalName":"temperature","result":"32","type":"value"},{"vitalName":"pulse","result":"70","type":"value"},{"vitalName":"ecgPdf","result":"${folder.path}/certificate_jatin.pdf","type":"file"},{"vitalName":"ecgRaw","result":"${folder.path}/1642662519892.JPEG","type":"file"}]}';
+      result = dataToSend;*/
+        if (result != null) {
+          try {
+            WritzoReceiveModel writzoReceiveModel =
+                WritzoReceiveModel.fromJson(json.decode(result));
+            AppData.showInSnackDone1(context, result);
+            log(writzoReceiveModel.screeningDetails[0].vitalName);
+            List<ScreeningDetails> document = [];
+            List<ScreeningDetails> value = [];
+            var formData = FormData();
+            formData.fields
+                .add(MapEntry("patientId", writzoReceiveModel.patientId));
+            formData.fields.add(MapEntry(
+                "screeningDate", writzoReceiveModel.screeningDate.toString()));
+            print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" +
+                File(writzoReceiveModel.screeningDetails[2].result).path);
+            writzoReceiveModel.screeningDetails.forEach((element) {
+              if (element.type == "file") {
+                if (element.result.contains("jpg") ||
+                    element.result.contains("png")) {
+                  testWritzoFile = File(element.result);
+                }
+                document.add(new ScreeningDetails(
+                    type: element.type,
+                    vitalName: element.vitalName,
+                    result: File(element.result).path));
+                print(File(element.result).path);
+              } else {
+                value.add(element);
+              }
+            });
+
+            //////////////Multipart File DATA//////
+            for (int i = 0; i < document.length; i++) {
+              formData.fields.add(MapEntry(
+                  "fileDetails[${i.toString()}].key", document[i].vitalName));
+              formData.fields.add(MapEntry("fileDetails[${i.toString()}].ext",
+                  AppData.getExt(document[i].result)));
+              formData.files.add(MapEntry(
+                  "fileDetails[${i.toString()}].file",
+                  MultipartFile.fromFileSync(
+                    document[i].result,
+                    filename: document[i].result,
+                  )));
+            }
+
+            //////////////Multipart Field DATA//////
+            for (int i = 0; i < value.length; i++) {
+              formData.fields.add(MapEntry(
+                  "screeningDetails[${i.toString()}].vitalName",
+                  value[i].vitalName));
+              formData.fields.add(MapEntry(
+                  "screeningDetails[${i.toString()}].result", value[i].result));
+              formData.fields.add(MapEntry(
+                  "screeningDetails[${i.toString()}].type", value[i].type));
+            }
+
+            /* postFromWritzo(formData,
+              ApiFactory.API_Writzo);*/
+
+            setState(() {});
+          } catch (e) {
+            AppData.showInSnackDone(context, e.toString());
+          }
+        }
+      } else if (await Permission.storage.request().isPermanentlyDenied) {
+        await openAppSettings();
+        AppData.showInSnackBar(context, "Storage Permission Required");
+      } else if (await Permission.storage.request().isDenied) {
+        AppData.showInSnackBar(context, "Storage Permission Required");
+        await Permission.storage.request();
+      }
+    } on PlatformException catch (e) {}
+  }
+
+  Future<void> callSpiro() async {
+    try {
+      String val = "SATYA,SAHOO,male,65,20,9105105311619572";
+      if (await Permission.storage.request().isGranted) {
+         await AppData.channel.invokeMethod('intentTest', val);
+        AppData.showInSnackBar(context, "Permission Granted");
+      } else if (await Permission.storage.request().isPermanentlyDenied) {
+        await openAppSettings();
+        AppData.showInSnackBar(context, "Storage Permission Required");
+      } else if (await Permission.storage.request().isDenied) {
+        AppData.showInSnackBar(context, "Storage Permission Required");
+        await Permission.storage.request();
+      }
+    } on PlatformException catch (e) {}
+  }
+
+  postFromWritzo(FormData formData, String Url) async {
+    /*MyWidgets.showLoading(context);*/
+    log("API call>>>>>>>>>>>" + Url);
+    try {
+      Response response;
+
+      response = await dio.post(
+        Url,
+        data: formData,
+        onSendProgress: (received, total) {
+          if (total != -1) {
+            setState(() {
+              print((received / total * 100).toStringAsFixed(0) + '%');
+            });
+          }
+        },
+      );
+      // Navigator.pop(context);
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        log("value" + jsonEncode(response.data));
+        if (response.data["code"] == "success") {
+          print("Data Saved Successfully");
+          // Navigator.pushNamed(context, "/servicesavedsuccessfully");
+          AppData.showInSnackDone(context, "Data Saved Successfully");
+          // Navigator.pop(context, true);
+        } else {
+          AppData.showInSnackBar(context, "Something went wrong ");
+        }
+      } else {
+        // Navigator.pop(context);
+        AppData.showInSnackBar(context, "Something went wrong");
+      }
+    } on DioError catch (e) {
+      if (e.type == DioErrorType.CONNECT_TIMEOUT) {
+        AppData.showInSnackBar(
+            context, "Dio Error" + jsonEncode(e.response.data).toString());
+      }
+      if (e.type == DioErrorType.RECEIVE_TIMEOUT) {
+        AppData.showInSnackBar(
+            context, "Dio Error" + jsonEncode(e.response.data).toString());
+      }
+      if (e.type == DioErrorType.DEFAULT) {
+        AppData.showInSnackBar(context,
+            "Dio Error" + jsonEncode(e.response?.data ?? "").toString());
+      }
+      if (e.type == DioErrorType.RESPONSE) {
+        AppData.showInSnackBar(
+            context, "Dio Error" + jsonEncode(e.response.data).toString());
+      }
+    }
   }
 }

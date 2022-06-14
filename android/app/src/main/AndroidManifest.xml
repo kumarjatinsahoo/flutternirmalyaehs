@@ -81,8 +81,10 @@
             <intent-filter>
                 <data android:scheme="com.ehealthsystem.mobile" />
                 <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.intent.action.PICK"/>
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
             </intent-filter>
 
             <meta-data

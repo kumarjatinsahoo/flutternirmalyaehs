@@ -726,4 +726,52 @@ class RestAPI extends Model with PassData{
   HealthChartResponse get healthChartResponse {
     return healthChartData;
   }
+  postFromWritzo(FormData formData, String Url) async {
+    /*MyWidgets.showLoading(context);*/
+    log("API call>>>>>>>>>>>" + Url);
+    try {
+      Response response;
+
+      response = await dio.post(
+        Url,
+        data: formData,
+        onSendProgress: (received, total) {
+          if (total != -1) {
+          /*  setState(() {
+              print((received / total * 100).toStringAsFixed(0) + '%');
+            });*/
+            print((received / total * 100).toStringAsFixed(0) + '%');
+          }
+        },
+      );
+      // Navigator.pop(context);
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        log("value" + jsonEncode(response.data));
+        if (response.data["code"] == "success") {
+          print("Data Saved Successfully");
+          log( "Data Saved Successfully");
+          // Navigator.pop(context, true);
+        } else {
+          log( "Something went wrong ");
+        }
+      } else {
+        // Navigator.pop(context);
+       log( "Something went wrong");
+      }
+    } on DioError catch (e) {
+      if (e.type == DioErrorType.CONNECT_TIMEOUT) {
+        log("Dio Error"+jsonEncode(e.response.data).toString());
+      }
+      if (e.type == DioErrorType.RECEIVE_TIMEOUT) {
+       log("Dio Error"+jsonEncode(e.response.data).toString());
+      }
+      if (e.type == DioErrorType.DEFAULT) {
+        log("Dio Error"+jsonEncode(e.response?.data?? "").toString());
+      }
+      if (e.type == DioErrorType.RESPONSE) {
+      log("Dio Error"+jsonEncode(e.response.data).toString());
+      }
+    }
+  }
+
 }

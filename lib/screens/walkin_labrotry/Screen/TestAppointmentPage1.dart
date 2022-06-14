@@ -1,16 +1,24 @@
 import 'dart:async';
+import 'dart:convert';
+import 'dart:developer';
+/*import 'dart:html';*/
+import 'dart:io';
+import 'package:dio/dio.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/LabBookModel.dart';
+import 'package:user/models/WritzoReceiveModel.dart';
+import 'package:user/providers/Aes.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/api_factory.dart';
 import 'package:user/providers/app_data.dart';
 import 'package:user/scoped-models/MainModel.dart';
 import 'package:user/widgets/MyWidget.dart';
-
 
 class TestAppointmentPage1 extends StatefulWidget {
   final bool isConfirmPage;
@@ -48,7 +56,7 @@ class _TestAppointmentPage1State extends State<TestAppointmentPage1>
     TextEditingController(),
     TextEditingController(),
   ];
-
+  var dio = Dio();
   List<bool> error = [false, false, false, false, false, false];
   String today;
   String comeFrom;
@@ -81,10 +89,123 @@ class _TestAppointmentPage1State extends State<TestAppointmentPage1>
 
   Future<void> _callLabApp(String data) async {
     try {
-      final int result = await platform.invokeMethod('iLab', data);
+      if (await Permission.storage.request().isGranted) {
+        Directory directory = await getExternalStorageDirectory();
+        final Directory folder = Directory(directory.path + "/writzoFiles");
+        // file = File('${directory.path}/${Aes.encrypt(UHID)}');
+        if (!await folder.exists()) {
+          folder.create();
+        }
+        String data1 = data + "," + "${folder.path}";
+        log("Whole Dataa>>>>>>" + data1);
+        dynamic result = await platform.invokeMethod('writzo', data1);
+        if (result != null) {
+          try {
+            WritzoReceiveModel writzoReceiveModel =
+            WritzoReceiveModel.fromJson(json.decode(result));
+            AppData.showInSnackDone1(context, result);
+            log(writzoReceiveModel.screeningDetails[0].vitalName);
+            List<ScreeningDetails> document = [];
+            List<ScreeningDetails> value = [];
+            var formData = FormData();
+            formData.fields
+                .add(MapEntry("patientId", writzoReceiveModel.patientId));
+            formData.fields.add(MapEntry("screeningDate", "1654253238098"));
+            print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" +
+                File(writzoReceiveModel.screeningDetails[2].result).path);
+            writzoReceiveModel.screeningDetails.forEach((element) {
+              if (element.type == "file") {
+                document.add(new ScreeningDetails(
+                    type: element.type,
+                    vitalName: element.vitalName,
+                    result: File(element.result).path));
+                print(File(element.result).path);
+              } else {
+                value.add(element);
+              }
+            });
+            for (int i = 0; i < document.length; i++) {
+              formData.fields.add(MapEntry(
+                  "fileDetails[${i.toString()}].key", document[i].vitalName));
+              formData.fields.add(MapEntry("fileDetails[${i.toString()}].ext",
+                  AppData.getExt(document[i].result)));
+              formData.files.add(MapEntry(
+                  "fileDetails[${i.toString()}].file",
+                  MultipartFile.fromFileSync(
+                    document[i].result,
+                    filename: document[i].result,
+                  )));
+            }
+            for (int i = 0; i < value.length; i++) {
+              formData.fields.add(MapEntry(
+                  "screeningDetails[${i.toString()}].vitalName",
+                  value[i].vitalName));
+              formData.fields.add(MapEntry(
+                  "screeningDetails[${i.toString()}].result", value[i].result));
+              formData.fields.add(MapEntry(
+                  "screeningDetails[${i.toString()}].type", value[i].type));
+            }
+            postFromWritzo(formData, ApiFactory.API_Writzo);
+          } catch (e) {
+            AppData.showInSnackDone(context, e.toString());
+          }
+        }
+      }else if (await Permission.storage.request().isPermanentlyDenied) {
+        await openAppSettings();
+        AppData.showInSnackBar(context, "Storage Permission Required");
+      } else if (await Permission.storage.request().isDenied) {
+        AppData.showInSnackBar(context, "Storage Permission Required");
+        await Permission.storage.request();
+      }
     } on PlatformException catch (e) {}
   }
-
+  postFromWritzo(FormData formData, String Url) async {
+    /*MyWidgets.showLoading(context);*/
+    log("API call>>>>>>>>>>>" + Url);
+    try {
+      Response response;
+      response = await dio.post(
+        Url,
+        data: formData,
+        onSendProgress: (received, total) {
+          if (total != -1) {
+            /*  setState(() {
+              print((received / total * 100).toStringAsFixed(0) + '%');
+            });*/
+            print((received / total * 100).toStringAsFixed(0) + '%');
+          }
+        },
+      );
+      // Navigator.pop(context);
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        log("value" + jsonEncode(response.data));
+        if (response.data["code"] == "success") {
+          print("Data Saved Successfully");
+          log( "Data Saved Successfully");
+          AppData.showInSnackDone(context,"Data Saved Successfully");
+          // Navigator.pop(context, true);
+        } else {
+          log( "Something went wrong ");
+        }
+      } else {
+        // Navigator.pop(context);
+        log( "Something went wrong");
+      }
+    } on DioError catch (e) {
+      if (e.type == DioErrorType.CONNECT_TIMEOUT) {
+        log("Dio Error"+jsonEncode(e.response.data).toString());
+      }
+      if (e.type == DioErrorType.RECEIVE_TIMEOUT) {
+        log("Dio Error"+jsonEncode(e.response.data).toString());
+      }
+      if (e.type == DioErrorType.DEFAULT) {
+        log("Dio Error"+jsonEncode(e.response?.data?? "").toString());
+      }
+      if (e.type == DioErrorType.RESPONSE) {
+        log("Dio Error"+jsonEncode(e.response.data).toString());
+      }
+    }
+  }
   callAPI(String today) {
     widget.model.GETMETHODCALL_TOKEN(
         api: ApiFactory.HEALTH_SCREENING_LIST + today,
@@ -141,11 +262,11 @@ class _TestAppointmentPage1State extends State<TestAppointmentPage1>
       results = appointModel.body;
     } else {
       results = appointModel.body
-          .where((user) => user.patientName
-              .toLowerCase()
-              .contains(enteredKeyword.toLowerCase()) ||  user.regNo
-          .toLowerCase()
-          .contains(enteredKeyword.toLowerCase()))
+          .where((user) =>
+              user.patientName
+                  .toLowerCase()
+                  .contains(enteredKeyword.toLowerCase()) ||
+              user.regNo.toLowerCase().contains(enteredKeyword.toLowerCase()))
           .toList();
     }
     setState(() {
@@ -169,7 +290,7 @@ class _TestAppointmentPage1State extends State<TestAppointmentPage1>
             Padding(
               padding: const EdgeInsets.only(left: 90),
               child: Text(
-                MyLocalizations.of(context).text("TESTS"),
+                MyLocalizations.of(context).text("TESTS11"),
                 style: TextStyle(color: bgColor),
               ),
             ),
@@ -210,7 +331,8 @@ class _TestAppointmentPage1State extends State<TestAppointmentPage1>
                             onChanged: (value) => _runFilter(value),
                             decoration: InputDecoration(
                                 suffixIcon: Icon(Icons.search),
-                                hintText: MyLocalizations.of(context).text("SEARCH")),
+                                hintText:
+                                    MyLocalizations.of(context).text("SEARCH")),
                           ),
                         ),
                       )
@@ -242,7 +364,10 @@ class _TestAppointmentPage1State extends State<TestAppointmentPage1>
                                 },
                             ),
                             TextSpan(
-                                text:"   " + MyLocalizations.of(context).text("APPOINTMENT").toUpperCase(),
+                                text: "   " +
+                                    MyLocalizations.of(context)
+                                        .text("APPOINTMENT")
+                                        .toUpperCase(),
                                 style: TextStyle(
                                     fontWeight: FontWeight.w600,
                                     fontSize: 15.0,
@@ -273,7 +398,9 @@ class _TestAppointmentPage1State extends State<TestAppointmentPage1>
                               fontWeight: FontWeight.bold),
                         ),
                       ),
-                      SizedBox(width: 10,),
+                      SizedBox(
+                        width: 10,
+                      ),
                       Expanded(
                         child: Text(
                           MyLocalizations.of(context).text("NAME"),
@@ -329,7 +456,6 @@ class _TestAppointmentPage1State extends State<TestAppointmentPage1>
                         padding: EdgeInsets.fromLTRB(5, 10, 5, 0),
                         itemCount: foundUser.length,
                         itemBuilder: (context, index) {
-
                           //String ageFirst=foundUser[index]?.gender[0];
                           return Column(
                             children: [
@@ -356,7 +482,9 @@ class _TestAppointmentPage1State extends State<TestAppointmentPage1>
                                         ),
                                       ),
                                     ),
-                                    SizedBox(width: 10,),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
                                     Expanded(
                                       child: Text(
                                         foundUser[index].patientName,
@@ -385,7 +513,9 @@ class _TestAppointmentPage1State extends State<TestAppointmentPage1>
                                     SizedBox(
                                       width: 60,
                                       child: Text(
-                                        (foundUser[index]?.gender!=null)?foundUser[index]?.gender[0]:"",
+                                        (foundUser[index]?.gender != null)
+                                            ? foundUser[index]?.gender[0]
+                                            : "",
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           color: Colors.black,
@@ -402,8 +532,10 @@ class _TestAppointmentPage1State extends State<TestAppointmentPage1>
                                               builder: (BuildContext context) =>
                                                   dialogRegNo(context,
                                                       foundUser[index]));*/
-                                          widget.model.bodyUser=foundUser[index];
-                                          Navigator.pushNamed(context, "/vitalDoctor");
+                                          widget.model.bodyUser =
+                                              foundUser[index];
+                                          Navigator.pushNamed(
+                                              context, "/vitalDoctor");
                                         },
                                         child: Container(
                                           decoration: BoxDecoration(
@@ -439,10 +571,10 @@ class _TestAppointmentPage1State extends State<TestAppointmentPage1>
                         ? Container(
                             height: size.height - 100,
                             child: Center(
-                              child: Image.asset("assets/NoRecordFound.png",
-                                              // height: 25,
-                                            )
-                            ),
+                                child: Image.asset(
+                              "assets/NoRecordFound.png",
+                              // height: 25,
+                            )),
                           )
                         : MyWidgets.loading(context),
               ],
@@ -503,37 +635,28 @@ class _TestAppointmentPage1State extends State<TestAppointmentPage1>
         },
       ),
       actions: <Widget>[
-         FlatButton(
+        FlatButton(
           onPressed: () {
             Navigator.of(context).pop();
           },
           textColor: Colors.grey[900],
           child: const Text('CANCEL'),
         ),
-         FlatButton(
+        FlatButton(
           onPressed: () {
             if (height.text == "" || height.text == null) {
               AppData.showInSnackBar(context, "Please enter height");
             } else if (weight.text == "" || weight.text == null) {
               AppData.showInSnackBar(context, "Please enter weight");
             } else {
-              String mob =
-                  (body.mob == null || body.mob == "" || body.mob == "null")
-                      ? ""
-                      : body.mob;
-              String mapping = body.regNo.trim() +
+              String mapping = Aes.encrypt(body.regNo.trim()) +
                   "," +
-                  body.patientName.trim() +
-                  "," +
-                  mob.trim() +
+                  body.age.toString().trim() +
                   "," +
                   body.gender +
                   "," +
-                  height.text +
-                  "," +
-                  weight.text +
-                  "," +
-                  body.age.toString().trim();
+                  Aes.encrypt(body.patientName);
+
               _callLabApp(mapping.trim());
             }
           },

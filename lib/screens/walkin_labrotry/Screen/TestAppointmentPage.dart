@@ -1,14 +1,21 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
+/*import 'dart:html';*/
+import 'dart:io';
+import 'package:dio/dio.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:user/localization/localizations.dart';
 import 'package:user/models/KeyvalueModel.dart';
 import 'package:user/models/LabBookModel.dart';
 import 'package:user/models/LoginResponse1.dart' as login;
+import 'package:user/models/WritzoReceiveModel.dart';
+import 'package:user/providers/Aes.dart';
 import 'package:user/providers/Const.dart';
 import 'package:user/providers/DropDown.dart';
 import 'package:user/providers/api_factory.dart';
@@ -88,13 +95,134 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
   }
 
   bool isDataNotAvail = false;
+  var dio = Dio();
   Future<void> _callLabApp(String data) async {
     try {
-      print("<<>>>>>iLab>>>>>>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" + data);
-      final int result = await platform.invokeMethod('iLab', data);
+      if (await Permission.storage.request().isGranted) {
+        print("<<>>>>>writzoData>>>>>>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" +
+            data);
+        Directory directory = await getExternalStorageDirectory();
+        final Directory folder = Directory(directory.path + "/writzoFiles");
+        if (!await folder.exists()) {
+          folder.create();
+        }
+        log(folder.path);
+        String data1 = data + "," + "${folder.path}";
+        log("Whole Dataa>>>>>>" + data1);
+        dynamic result = await platform.invokeMethod('writzo', data1);
+
+        if (result != null) {
+          try {
+            WritzoReceiveModel writzoReceiveModel =
+            WritzoReceiveModel.fromJson(json.decode(result));
+            AppData.showInSnackDone1(context, result);
+            log(writzoReceiveModel.screeningDetails[0].vitalName);
+            List<ScreeningDetails> document = [];
+            List<ScreeningDetails> value = [];
+            var formData = FormData();
+            formData.fields.add(
+                MapEntry("patientId", writzoReceiveModel.patientId));
+            formData.fields.add(MapEntry(
+                "screeningDate", "1654253238098"));
+            print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" +
+                File(writzoReceiveModel.screeningDetails[2].result).path);
+            writzoReceiveModel.screeningDetails.forEach((element) {
+              if (element.type == "file") {
+                document.add(new ScreeningDetails(
+                    type: element.type,
+                    vitalName: element.vitalName,
+                    result: File(element.result).path));
+                print(File(element.result).path);
+              } else {
+                value.add(element);
+              }
+            });
+            for (int i = 0; i < document.length; i++) {
+              formData.fields.add(MapEntry(
+                  "fileDetails[${i.toString()}].key", document[i].vitalName));
+              formData.fields.add(MapEntry("fileDetails[${i.toString()}].ext",
+                  AppData.getExt(document[i].result)));
+              formData.files.add(MapEntry(
+                  "fileDetails[${i.toString()}].file",
+                  MultipartFile.fromFileSync(
+                    document[i].result,
+                    filename: document[i].result,
+                  )));
+            }
+            for (int i = 0; i < value.length; i++) {
+              formData.fields.add(MapEntry(
+                  "screeningDetails[${i.toString()}].vitalName",
+                  value[i].vitalName));
+              formData.fields.add(MapEntry(
+                  "screeningDetails[${i.toString()}].result", value[i].result));
+              formData.fields.add(MapEntry(
+                  "screeningDetails[${i.toString()}].type", value[i].type));
+            }
+
+            postFromWritzo(formData,
+                ApiFactory.API_Writzo);
+          }
+          catch (e) {
+            AppData.showInSnackDone(context, e.toString());
+          }
+        }
+      }
+      else if (await Permission.storage.request().isPermanentlyDenied) {
+        await openAppSettings();
+        AppData.showInSnackBar(context, "Storage Permission Required");
+      } else if (await Permission.storage.request().isDenied) {
+        AppData.showInSnackBar(context, "Storage Permission Required");
+        await Permission.storage.request();
+      }
     } on PlatformException catch (e) {}
   }
-
+  postFromWritzo(FormData formData, String Url) async {
+    /*MyWidgets.showLoading(context);*/
+    log("API call>>>>>>>>>>>" + Url);
+    try {
+      Response response;
+      response = await dio.post(
+        Url,
+        data: formData,
+        onSendProgress: (received, total) {
+          if (total != -1) {
+            /*  setState(() {
+              print((received / total * 100).toStringAsFixed(0) + '%');
+            });*/
+            print((received / total * 100).toStringAsFixed(0) + '%');
+          }
+        },
+      );
+      // Navigator.pop(context);
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        log("value" + jsonEncode(response.data));
+        if (response.data["code"] == "success") {
+          print("Data Saved Successfully");
+          log( "Data Saved Successfully");
+          AppData.showInSnackDone(context,"Data Saved Successfully");
+          // Navigator.pop(context, true);
+        } else {
+          log( "Something went wrong ");
+        }
+      } else {
+        // Navigator.pop(context);
+        log( "Something went wrong");
+      }
+    } on DioError catch (e) {
+      if (e.type == DioErrorType.CONNECT_TIMEOUT) {
+        log("Dio Error"+jsonEncode(e.response.data).toString());
+      }
+      if (e.type == DioErrorType.RECEIVE_TIMEOUT) {
+        log("Dio Error"+jsonEncode(e.response.data).toString());
+      }
+      if (e.type == DioErrorType.DEFAULT) {
+        log("Dio Error"+jsonEncode(e.response?.data?? "").toString());
+      }
+      if (e.type == DioErrorType.RESPONSE) {
+        log("Dio Error"+jsonEncode(e.response.data).toString());
+      }
+    }
+  }
   callAPI(String today) {
     log("Suvam----------" +ApiFactory.HEALTH_SCREENING_LIST + today + "&labid="
         +loginResponse1.body.user,);
@@ -562,12 +690,14 @@ class _TestAppointmentPageState extends State<TestAppointmentPage>
             //     TestAppointmentPage.relationmodel == "") {
             //   AppData.showInSnackBar(context, "Please select PHC/center ");
             }else {
-              String mob = (body.mob == null || body.mob == "" || body.mob == "null")
-                      ? "" : body.mob;
-              String mapping = body.regNo + "," + body.patientName + ","
-                  + mob + "," + body.gender + "," + height.text + "," +
-                  weight.text + "," + body.age.toString();
-              log("Value>>>"+mapping);
+              String mapping = Aes.encrypt(body.regNo.trim()) +
+                  "," +
+                  body.age.toString().trim() +
+                  "," +
+                  body.gender +
+                  "," +
+                  Aes.encrypt(body.patientName);
+
               _callLabApp(mapping.trim());
             }
           },

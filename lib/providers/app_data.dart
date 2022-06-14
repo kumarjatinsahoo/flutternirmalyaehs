@@ -559,7 +559,7 @@ static bool validateStructure(String value){
       message: value,
 
       backgroundColor: Colors.green,
-      duration: Duration(seconds: 6),
+      duration: Duration(seconds: 12),
     )..show(context);
   }
 
