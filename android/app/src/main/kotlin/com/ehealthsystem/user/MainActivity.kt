@@ -37,7 +37,8 @@ class MainActivity : FlutterActivity() {
             this.result = result
             if (call.method == "getBatteryLevel") {
 
-            } else if (call.method == "intentTest") {
+            }
+            else if (call.method == "intentTest") {
 
                 val string: String = call.arguments as String
                 val data: List<String> = string.split(",")
@@ -66,7 +67,8 @@ class MainActivity : FlutterActivity() {
                  )
                  t.show()*/
                 startActivity(LaunchIntent)
-            } else if (call.method == "writzo") {
+            }
+            else if (call.method == "writzo") {
                 val string: String = call.arguments as String
                 val data: List<String> = string.split(",")
                 val intent = Intent()
@@ -108,18 +110,22 @@ class MainActivity : FlutterActivity() {
 
                 }
 
-            } else if (call.method == "callUrl") {
+            }
+
+            else if (call.method == "callUrl") {
                 //val intent = Intent(this, WebViewActivity::class.java)
                 //intent.putExtra("key", value)
                 //startActivity(intent)
-            } else if (call.method == "deviceId") {
+            }
+            else if (call.method == "deviceId") {
                 var value = getIMEIDeviceId(this@MainActivity)
                 if (value != null)
                     result.success(value)
                 else
                     result.success("Nothing getting")
 
-            } else if (call.method == "iLab") {
+            }
+            else if (call.method == "iLab") {
 
                 var isAppInstalled = appInstalledOrNot("ilabmini.in.ilab")
                 if (isAinaPackageAvailable(this@MainActivity)) {
@@ -186,7 +192,8 @@ class MainActivity : FlutterActivity() {
                     dialog.show()
                 }
 
-            } else if (call.method == "lab2") {
+            }
+            else if (call.method == "lab2") {
 
                 var isAppInstalled = appInstalledOrNot("info.safey.peakflowapp")
                 if (isAinaPackageAvailable1(this@MainActivity)) {
@@ -253,7 +260,8 @@ class MainActivity : FlutterActivity() {
                     dialog.show()
                 }
 
-            } else {
+            }
+            else {
                 result.notImplemented()
             }
         }
